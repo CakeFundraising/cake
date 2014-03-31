@@ -15,9 +15,8 @@ gem 'therubyracer', platforms: :ruby
 #Views
 gem 'slim'
 gem 'slim-rails'
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari-bootstrap'
-gem 'less-rails'
 gem 'rails-timeago'
 
 #DB
