@@ -14,3 +14,14 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore carrierwave uploads
+/public/uploads/**/*
+
+# Ignore configuration files
+/config/*.yml
+
+# Ignore gitstats
+/gitstats
+
+/coverage
