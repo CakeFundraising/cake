@@ -7,7 +7,11 @@
   .lead Thanks for signing up. Now, let start your first steps on CakeFundraising.
 
 .row.choose-role
-  .col-md-3.col-md-offset-3.fundraisers
-    = link_to "Start Now", new_user_registration_path(role: :fundraiser), class:'btn'
+  .col-md-3.col-md-offset-2.fundraisers
+    h2 Fundraisers,
+    p create your "donation-per-click" campaign today!
+    = link_to "Start Now", new_user_registration_path(role: :fundraiser), class:'btn btn-success btn-lg btn-block'
   .col-md-3.col-md-offset-2.sponsors
-    = link_to "Start Now", new_user_registration_path(role: :sponsor), class:'btn'
+    h2 Sponsors,
+    p support great causes on a risk free "donation-per-click" basis
+    = link_to "Start Now", new_user_registration_path(role: :sponsor), class:'btn btn-primary btn-lg btn-block'

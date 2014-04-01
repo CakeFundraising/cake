@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def redirect_to_getting_started
-    redirect_to home_get_started_path unless params[:role].present?
+    redirect_to home_get_started_path unless params[:role].present? or session[:omniauth].present?
   end
 
   def build_resource(*args)
