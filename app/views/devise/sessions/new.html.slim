@@ -1,9 +1,13 @@
+= content_for :right_nav do
+  .navbar-text Not a member?
+  = menu_item t("links.user.sign_up"), new_user_registration_path
+
 .user-forms
   .text-center
     h1 Sign in
 
   .row
-    .col-md-6
+    .col-md-3.col-md-offset-3
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
         .form-group
           = f.label :email
@@ -17,8 +21,12 @@
               = f.check_box :remember_me 
               | Remember me
         .form-group
-          = f.submit "Sign in", :class => 'btn btn-primary submit'
-    .col-md-6
-      
+          = f.submit "Sign in", :class => 'btn btn-success btn-lg btn-block'
+    .col-md-3
+      .providers.text-center
+        - if devise_mapping.omniauthable?
+          - resource_class.omniauth_providers.each do |provider|
+              = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg'
+
       
   = render "devise/shared/links"

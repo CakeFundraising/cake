@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_action :redirect_to_getting_started, only: :new
+
   def create
     build_resource(sign_up_params)
     if resource.save
@@ -19,6 +21,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   private
+
+  def redirect_to_getting_started
+    redirect_to home_get_started_path unless params[:role].present?
+  end
 
   def build_resource(*args)
     super

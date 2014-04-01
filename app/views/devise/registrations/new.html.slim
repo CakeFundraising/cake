@@ -1,3 +1,7 @@
+= content_for :right_nav do
+  .navbar-text Do you have an account?
+  = menu_item t("links.user.sign_in"), new_user_session_path
+
 .user-forms
   .text-center
     h1 
@@ -7,7 +11,7 @@
     p.lead Let's Get Started. CakeFundraising is fast, easy and has no raise requirements.
 
   .row
-    .col-md-6
+    .col-md-3.col-md-offset-3
       .h4.text-center Use your email 
 
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {role: :form}) do |f|
@@ -30,12 +34,12 @@
           = f.hidden_field :auth_token
           = f.hidden_field :auth_secret
         .form-group
-          = f.submit "Sign up", :class => 'btn btn-primary submit'
-    .col-md-6
+          = f.submit "Sign up", :class => 'btn btn-success btn-lg btn-block'
+    .col-md-3
       .h4.text-center Or simply sign up with 
-      ul
+      .providers.text-center
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
-            li = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider)
+              = link_to "Sign up with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg'
       
   = render "devise/shared/links"
