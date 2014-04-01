@@ -28,8 +28,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def build_resource(*args)
     super
-    if session[:omniauth] && params[:user].blank?
-      @user = User.new_user_with(session[:omniauth])
-    end
+    @user = User.new_with(session[:omniauth], args.first) if params[:user].present? or session[:omniauth].present?
   end
 end

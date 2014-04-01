@@ -12,7 +12,7 @@ module NavigationHelpers
       '/'
 
     when /^#{capture_model}(?:'s)? registration page$/                    
-      new_user_registration_path
+      new_user_registration_path(role: :sponsor)
       
     # the following are examples using path_to_pickle
 

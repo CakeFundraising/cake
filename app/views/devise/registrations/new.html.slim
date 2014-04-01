@@ -29,11 +29,6 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control'
         .form-group
-          = f.hidden_field :provider
-          = f.hidden_field :uid
-          = f.hidden_field :auth_token
-          = f.hidden_field :auth_secret
-        .form-group
           = f.submit "Sign up", :class => 'btn btn-success btn-lg btn-block'
     .col-md-3
       .h4.text-center Or simply sign up with 
