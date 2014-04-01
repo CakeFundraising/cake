@@ -30,13 +30,22 @@ gem 'carrierwave'
 gem 'rmagick'
 
 #CLI
-gem 'pry-rails'
+group :development do
+  gem 'pry-rails' 
+  gem 'quiet_assets'
+end
 
 #Currency 
 gem 'money-rails'
 
 #User registration
 gem "devise"
+
+# Omniauth gems
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin-oauth2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -38,10 +38,10 @@ Feature: User Registration
 			And I should have <User count> new user
 
 		Examples: Failed registrations
-| user_full_name  | user_email            | user_password      | user_password_confirmation | message                                          | Receive Email?   | User count |
-| ""              | "bismark64@gmail.com" | "mySecretPassword" | "mySecretPassword"         | Full name can't be blank                        | receive no email | 0          |
+| user_full_name  | user_email            | user_password      | user_password_confirmation | message                                          | User count |
+| ""              | "bismark64@gmail.com" | "mySecretPassword" | "mySecretPassword"         | Full name can't be blank                        | 0          |
 
-| "Example User"          | "example@example.com" | "example5555555"   | "example6666666"           | Password confirmation doesn't match Password              | receive no email | 0          |
+| "Example User"          | "example@example.com" | "example5555555"   | "example6666666"           | Password confirmation doesn't match Password              |  0          |
 
 
 	@oauth
@@ -51,12 +51,13 @@ Feature: User Registration
 		When I fill in "user_email" field with "<user_email>"
 		When I fill in "user_password" field with "<user_password>"
 		When I fill in "user_password_confirmation" field with "<user_password_confirmation>"
-		When I press the "Register" button
+		When I press the "Sign up" button
 		Then I should see "<Message>"
-		And "<user_email>" should <Receive Email?>
+		And 1 email should be delivered to <user_email>
 		And I should have <User count> new user
 
 	Examples:
 | Provider Link | Message                                                                                                                | user_email          | user_password      | user_password_confirmation | Receive Email?   | User count |
-| Google        | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"         | receive an email | 1          |
-| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "aguentePepe598"   | "aguentePepe598"           | receive an email | 1          |
+| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |
+| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |
+| Linkedin      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |

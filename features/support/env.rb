@@ -56,35 +56,50 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-# Before do
-#   OmniAuth.config.test_mode = true
-#   OmniAuth.config.add_mock(:twitter, {
-#     :provider => 'twitter',
-#     :uid => '12345',
-#     :info => {
-#       :name => "Foo Man",
-#       :nickname => "fooman"
-#     },
-#     :credentials => {
-#       token: 'sijif458f5f8fs85s4xao',
-#       secret: 'sisasd88787asdjif458f5f8fs85s4xao'
-#     }
-#   })
-#   OmniAuth.config.add_mock(:google_oauth2, {
-#     :provider => 'google_oauth2',
-#     :uid => '12345',
-#     :info => {
-#       :first_name => 'Super',
-#       :last_name => 'Man',
-#       :name => 'Super Man',
-#       :email => 'bismark64@gmail.com'
-#     },
-#     :credentials => {
-#       token: 'sijif458f5f8fs85s4xao7asdjif458'
-#     }
-#   })
-# end
+Before do
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock(:twitter, {
+    :provider => 'twitter',
+    :uid => '12345',
+    :info => {
+      :name => "Foo Man",
+      :nickname => "fooman"
+    },
+    :credentials => {
+      token: 'sijif458f5f8fs85s4xao',
+      secret: 'sisasd88787asdjif458f5f8fs85s4xao'
+    }
+  })
+  OmniAuth.config.add_mock(:facebook, {
+    :provider => 'facebook',
+    :uid => '12345',
+    :info => {
+      :first_name => 'Super',
+      :last_name => 'Man',
+      :nickname => 'Super Man',
+      :email => 'test@mail.com'
+    },
+    :credentials => {
+      token: 'sijif458f5f8fs85s4xao7asdjif458',
+      secret: 'sisasd88787asdjif458f5f8fs85s4xao'
+    }
+  })
+  OmniAuth.config.add_mock(:linkedin, {
+    :provider => 'linkedin',
+    :uid => '12345',
+    :info => {
+      :first_name => 'Linked',
+      :last_name => 'Man',
+      :nickname => 'Linked Man',
+      :email => 'example@example.com'
+    },
+    :credentials => {
+      token: 'sijif458f5f8fs85s4xao7asdjif458',
+      secret: 'sisasd88787asdjif458f5f8fs85s4xao'
+    }
+  })
+end
 
-# After do
-#   OmniAuth.config.test_mode = false
-# end
+After do
+  OmniAuth.config.test_mode = false
+end
