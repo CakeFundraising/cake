@@ -50,9 +50,12 @@ group :test, :development do
 end
 
 group :test do
+  gem 'cucumber-rails', require: false
+  gem 'pickle'
   gem 'capybara'
   gem 'webmock'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
 end
