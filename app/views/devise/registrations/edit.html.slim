@@ -1,0 +1,76 @@
+h1 My Profile
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { multipart: true, :method => :put }) do |f|
+  .row
+    = devise_error_messages!
+    = f.fields_for :profile do |ff|
+      .span3
+        .form-group
+          = ff.label :avatar
+          = user_profile_image_url(resource, :medium, "avatar-form thumbnail") if resource.profile.present?
+          .inputFile 
+            = ff.file_field :avatar
+            span Browse & Upload
+          = ff.hidden_field :avatar_cache
+        .form-group
+          = f.label :nickname
+          = f.text_field :nickname 
+        .form-group
+          = ff.label :firstname
+          = ff.text_field :firstname
+        .form-group
+          = ff.label :lastname
+          = ff.text_field :lastname
+      .span3
+        .form-group
+          = ff.label :address
+          = ff.text_field :address
+        .form-group
+          = ff.label :city
+          = ff.text_field :city
+        - if resource.profile.state.present?
+          .form-group
+            = ff.label :state
+            = ff.text_field :state
+        - if resource.profile.province.present?
+          .form-group
+            = ff.label :province
+            = ff.text_field :province
+        .form-group
+          = ff.label :country
+          = ff.text_field :country
+        .form-group
+          = ff.label :zip_code
+          = ff.text_field :zip_code
+      .span3  
+        .form-group
+          = ff.label :phone
+          = ff.text_field :phone
+        .form-group
+          = ff.label :business_phone
+          = ff.text_field :business_phone
+        .form-group
+          = ff.label :cell_phone
+          = ff.text_field :cell_phone
+    .span3
+      .form-group
+        = f.label :email
+        = f.email_field :email
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        div
+          | Currently waiting confirmation for: #{resource.unconfirmed_email}
+      .form-group
+        = f.label :password
+        = f.password_field :password, :autocomplete => "off"
+        span.help-block leave blank if you don't want to change it
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+      .form-group
+        = f.label :current_password
+        = f.password_field :current_password
+        span.help-block we need your current password to confirm your changes
+    div.clear.pull-right
+      = f.submit "Update profile", :class => 'btn btn-primary submit'
+  
+= link_to "Back", my_data_users_path, 'data-no-turbolink' => true
