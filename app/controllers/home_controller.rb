@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   end
 
   def get_started
+    reset_session
   end
 end

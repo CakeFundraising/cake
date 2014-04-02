@@ -22,11 +22,11 @@ Feature: User Registration
 
 
 	Examples: Successful registrations
-| user_full_name  | user_email            | user_password      | user_password_confirmation | message                                                                                                                | Receive Email?   | User count |
-| "Emiliano Coppo"   | "emiliano@bytelion.com" | "mySecretPassword" | "mySecretPassword"         | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | receive an email | 1          |
+| user_full_name  | user_email            | user_password      | user_password_confirmation | message                                                                                                                | User count |
+| "Emiliano Coppo"   | "emiliano@bytelion.com" | "mySecretPassword" | "mySecretPassword"         | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | 1         |
 
-| "Some Anonymous"   | "anon@anon.com"			   | "anonUser123"   		| "anonUser123"         		 | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | receive an email | 1          |
-
+| "Some Anonymous"   | "anon@anon.com"			   | "anonUser123"   		| "anonUser123"         		 | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | 1         |
+		
 		Scenario Outline: User registration page
 			And I fill in "user_full_name" field with <user_full_name>
 			And I fill in "user_email" field with <user_email>
@@ -39,9 +39,9 @@ Feature: User Registration
 
 		Examples: Failed registrations
 | user_full_name  | user_email            | user_password      | user_password_confirmation | message                                          | User count |
-| ""              | "bismark64@gmail.com" | "mySecretPassword" | "mySecretPassword"         | Full name can't be blank                        | 0          |
+| ""              | "bismark64@gmail.com" | "mySecretPassword" | "mySecretPassword"         | Full name*can't be blank                        | 0          |
 
-| "Example User"          | "example@example.com" | "example5555555"   | "example6666666"           | Password confirmation doesn't match Password              |  0          |
+| "Example User"          | "example@example.com" | "example5555555"   | "example6666666"           | Password confirmationdoesn't match Password              |  0          |
 
 
 	@oauth
@@ -57,7 +57,7 @@ Feature: User Registration
 		And I should have <User count> new user
 
 	Examples:
-| Provider Link | Message                                                                                                                | user_email          | user_password      | user_password_confirmation | Receive Email?   | User count |
-| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |
-| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |
-| Linkedin      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | receive an email | 1          |
+| Provider Link | Message                                                                                                                | user_email          | user_password      | user_password_confirmation | User count |
+| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | 1          |
+| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | 1          |
+| Linkedin      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"        | 1          |

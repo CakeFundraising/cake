@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :redirect_to_getting_started, only: :new
 
   def create
     build_resource(sign_up_params)
@@ -22,12 +21,13 @@ class RegistrationsController < Devise::RegistrationsController
   
   private
 
-  def redirect_to_getting_started
-    redirect_to home_get_started_path unless params[:role].present? or session[:omniauth].present?
-  end
-
   def build_resource(*args)
-    super
-    @user = User.new_with(session[:omniauth], args.first) if params[:user].present? or session[:omniauth].present?
+    if params[:role].present?
+      session[:user_role] = params[:role].to_sym
+      super
+    else
+      @user = User.new_with(session[:omniauth], session[:user_role], args.first)
+    end
+    # @user = User.new_with(session[:omniauth], args.first) if params[:user].present? or session[:omniauth].present?
   end
 end
