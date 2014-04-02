@@ -16,7 +16,7 @@ Feature: User Registration
 		And I fill in "user_password" field with <user_password>
 		And I fill in "user_password_confirmation" field with <user_password_confirmation>
 		And I press the "Sign up" button
-		And I should see "<message>"
+		Then I should see "<message>"
 		And 1 email should be delivered to <user_email>
 		And I should have <User count> new user
 
@@ -33,7 +33,7 @@ Feature: User Registration
 			And I fill in "user_password" field with <user_password>
 			And I fill in "user_password_confirmation" field with <user_password_confirmation>
 			And I press the "Sign up" button
-			And I should see "<message>"
+			Then I should see "<message>"
 			And 0 email should be delivered to <user_email>
 			And I should have <User count> new user
 

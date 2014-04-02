@@ -59,6 +59,7 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'callback_skipper'
 end
 
