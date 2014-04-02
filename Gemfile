@@ -47,6 +47,9 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin-oauth2'
 
+#Admin panel
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
