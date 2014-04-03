@@ -1,0 +1,26 @@
+= semantic_form_for [:settings, @public_profile] do |f|
+  = f.inputs nil do
+    .row
+      .col-md-6
+        = f.input :banner, as: :uploader
+        br
+        = f.input :head_line, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :profile_message, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :demographic_description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+      .col-md-6
+        = f.input :avatar, as: :uploader
+        br
+        = f.input :cause, as: :select, collection: PublicProfile::CAUSES
+        .row
+          .col-md-6
+            = f.input :min_pledge_cents, as: :select, collection: PublicProfile::MIN_PLEDGES
+          .col-md-6
+            = f.input :min_click_donation_cents, as: :select, collection: PublicProfile::MIN_CLICK_DONATIONS
+        = f.input :donations_kind, as: :select, collection: PublicProfile::DONATION_KINDS
+        = f.input :name
+        = f.input :contact_name
+        = f.input :website
+        = f.input :phone
+        = f.input :email
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}

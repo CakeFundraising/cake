@@ -7,4 +7,18 @@ Cake::Application.routes.draw do
   namespace :home, path:'/' do
     get :get_started
   end
+
+  resources :users, only: :index do
+    collection do
+      namespace :settings do
+        resources :public_profiles, except: [:index, :destroy, :new, :create]
+
+        get :account      
+        get :update_account      
+
+        get :email_notifications      
+        get :update_email_notifications      
+      end
+    end
+  end
 end

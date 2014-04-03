@@ -60,7 +60,7 @@ Before do
   OmniAuth.config.test_mode = true
   OmniAuth.config.add_mock(:twitter, {
     :provider => 'twitter',
-    :uid => '12345',
+    :uid => '877df787s8787',
     :info => {
       :name => "Foo Man",
       :nickname => "fooman"
@@ -72,7 +72,7 @@ Before do
   })
   OmniAuth.config.add_mock(:facebook, {
     :provider => 'facebook',
-    :uid => '12345',
+    :uid => '4asdd787d787s',
     :info => {
       :first_name => 'Super',
       :last_name => 'Man',
@@ -86,7 +86,7 @@ Before do
   })
   OmniAuth.config.add_mock(:linkedin, {
     :provider => 'linkedin',
-    :uid => '12345',
+    :uid => 'asdsd7878d111',
     :info => {
       :first_name => 'Linked',
       :last_name => 'Man',

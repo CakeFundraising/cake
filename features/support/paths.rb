@@ -17,6 +17,9 @@ module NavigationHelpers
     when /^sign in page$/  
       new_user_session_path
 
+    when /^settings page$/
+      dashboard_settings_users_path  
+
     # the following are examples using path_to_pickle
 
     when /^#{capture_model}(?:'s)? page$/                           # eg. the forum's page

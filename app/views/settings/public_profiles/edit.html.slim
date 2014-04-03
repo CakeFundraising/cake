@@ -1,0 +1,12 @@
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#profile" Profile
+  li 
+    = link_to "Account", account_settings_users_path
+  li
+    = link_to "Email Notifications", email_notifications_settings_users_path
+
+.tab-content
+  #profile.tab-pane.active
+    = link_to 'View Profile', settings_public_profile_path(@public_profile)
+    == render 'form'

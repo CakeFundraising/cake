@@ -19,6 +19,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
 gem 'rails-timeago'
+gem 'chosen-rails'
 
 #DB
 gem 'pg'

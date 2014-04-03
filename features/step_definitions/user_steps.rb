@@ -2,7 +2,7 @@ Given(/^that (?:I|they) am not registered$/) do
   User.delete_all
 end
 
-When(/^(?:I|they) go to (.*?)$/) do |page_name|
+When(/^(?:I|they|he) (?:go|goes) to (.*?)$/) do |page_name|
   visit path_to(page_name)
 end
 
@@ -42,12 +42,19 @@ When(/^(?:I|they) select "(.*?)" in "(.*?)"$/) do |option, select_field|
 end
 
 Given(/^that (?:I|they) am logged in as "(.*?)" with password "(.*?)"$/) do |email, password|
-  @user = FactoryGirl.create(:user)
   visit new_user_session_path
   fill_in "user_email", :with => email
   fill_in "user_password", :with => password
   click_button("Sign in")
 end
+
+Given(/^that (.+) is logged in$/) do |user|
+  visit new_user_session_path
+  fill_in "user_email", :with => model(user).email
+  fill_in "user_password", :with => model(user).password
+  click_button("Sign in")
+end
+
 
 #Delete Account
 Then(/^there shouldn't be registered users$/) do

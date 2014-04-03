@@ -36,7 +36,7 @@ nav.navbar.navbar-default role="navigation"
         form.navbar-form.navbar-left role="search" 
           .form-group
             input.form-control placeholder="Search" type="text" 
-          button.btn.btn-default type="submit"  Submit
+          button.btn.btn-default type="submit" Submit
         ul.nav.navbar-nav.navbar-right
           li
             a href="#"  Link
@@ -44,8 +44,7 @@ nav.navbar.navbar-default role="navigation"
             a.dropdown-toggle data-toggle="dropdown" href="#" = current_user.full_name
               b.caret
             ul.dropdown-menu
-              li
-                a href="#"  Action
+              = menu_item "Settings", edit_settings_public_profile_path(current_user.public_profile)
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else
