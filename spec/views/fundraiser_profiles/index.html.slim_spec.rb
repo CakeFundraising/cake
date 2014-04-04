@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "public_profiles/index" do
+describe "fundraiser_profiles/index" do
   before(:each) do
-    assign(:public_profiles, [
-      stub_model(PublicProfile,
-        :head_line => "MyText",
-        :profile_message => "MyText",
-        :demographic_description => "MyText",
+    assign(:fundraiser_profiles, [
+      stub_model(FundraiserProfile,
+        :mission => "MyText",
+        :contact_title => "MyText",
+        :supporter_demographic => "MyText",
         :cause => "Cause",
         :min_pledge => "",
         :min_click_donation => "Min Click Donation",
@@ -19,10 +19,10 @@ describe "public_profiles/index" do
         :banner => "Banner",
         :avatar => "Avatar"
       ),
-      stub_model(PublicProfile,
-        :head_line => "MyText",
-        :profile_message => "MyText",
-        :demographic_description => "MyText",
+      stub_model(FundraiserProfile,
+        :mission => "MyText",
+        :contact_title => "MyText",
+        :supporter_demographic => "MyText",
         :cause => "Cause",
         :min_pledge => "",
         :min_click_donation => "Min Click Donation",
@@ -38,7 +38,7 @@ describe "public_profiles/index" do
     ])
   end
 
-  it "renders a list of public_profiles" do
+  it "renders a list of fundraiser_profiles" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "MyText".to_s, :count => 2

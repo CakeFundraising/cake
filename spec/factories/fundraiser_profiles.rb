@@ -1,10 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :public_profile do
-    head_line "MyText"
-    profile_message "MyText"
-    demographic_description "MyText"
+  factory :fundraiser_profile do
+    mission "MyText"
+    contact_title "MyText"
+    supporter_demographic "MyText"
     cause "MyString"
     min_pledge ""
     min_click_donation "MyString"

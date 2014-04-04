@@ -20,7 +20,6 @@ gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
 gem 'rails-timeago'
 gem 'chosen-rails'
-gem 'jquery-fileupload-rails'
 
 #DB
 gem 'pg'
@@ -31,6 +30,7 @@ gem 'thin'
 #Image processing
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
+gem 'jquery-fileupload-rails'
 
 #CLI
 group :development do
@@ -38,8 +38,9 @@ group :development do
   gem 'quiet_assets'
 end
 
-#Currency 
+#Utils
 gem 'money-rails'
+gem 'carmen-rails'
 
 #User registration
 gem "devise"

@@ -10,3 +10,15 @@ en:
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
+  activerecord: # customize attribute names for models here
+    attributes:
+      fundraiser_profile:
+        banner: Banner photo upload
+        cause: Your cause
+        min_pledge: Your Min. Pledge
+        min_click_donation: Min. Click/Donation
+        donations_kind: Accept Donations in Kind
+        tax_exempt: 503c Tax Exempt
+        name: Name of Fundraiser
+        mission: Fundraiser's Mission 
+        supporter_demographic: Supporter Demographics

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe "public_profiles/show" do
+describe "fundraiser_profiles/show" do
   before(:each) do
-    @public_profile = assign(:public_profile, stub_model(PublicProfile,
-      :head_line => "MyText",
-      :profile_message => "MyText",
-      :demographic_description => "MyText",
+    @fundraiser_profile = assign(:fundraiser_profile, stub_model(FundraiserProfile,
+      :mission => "MyText",
+      :contact_title => "MyText",
+      :supporter_demographic => "MyText",
       :cause => "Cause",
       :min_pledge => "",
       :min_click_donation => "Min Click Donation",

@@ -1,0 +1,62 @@
+= link_to 'Edit Profile', edit_settings_fundraiser_profile_path(@fundraiser_profile)
+
+.header
+  .banner = image_tag @fundraiser_profile.banner_url(:large)
+
+.content.row
+  .col-md-7.col-md-offset-1
+    h1 = @fundraiser_profile.name
+    .share-links 
+    .fr-profile
+      h3 Fundraiser Profile
+      .row
+        .col-md-6
+          strong Cause
+          div = @fundraiser_profile.cause
+          strong Contact Name
+          div = @fundraiser_profile.contact_name
+          strong Contact Title
+          div = @fundraiser_profile.contact_title 
+          strong Contact Email
+          div = @fundraiser_profile.contact_email
+          strong Contact Phone
+          div = @fundraiser_profile.contact_phone
+        .col-md-6
+          div
+            span Min. Pledge
+            strong.pull-right = @fundraiser_profile.min_pledge
+          div
+            span Min. click donation
+            strong.pull-right = @fundraiser_profile.min_click_donation
+          div
+            span Accept Donations in Kind
+            strong.pull-right = b @fundraiser_profile.donations_kind
+          div
+            span 503C Tax Exempt
+            strong.pull-right = b @fundraiser_profile.tax_exempt
+          div
+            span Campaign Reach
+            strong.pull-right 23,345,447
+          div
+            span Avg. Pledge
+            strong.pull-right $23,345
+          div
+            span Avg. Donation Click
+            strong.pull-right $4,68
+          div
+            span Avg. No. of Sponsors
+            strong.pull-right 13
+    p.profile-message 
+      h3 Fundraiser Mission
+      p = @fundraiser_profile.mission
+    .demographics
+      h3 Supporter Demographics 
+      p = @fundraiser_profile.supporter_demographic
+  .col-md-3
+    .thumbnail
+      h4 Click Generation Rank 1
+      h4 Avg. Clicks/Campaign 3
+      h4 Avg. Campaign Reach 3.2M
+      h4 Total Clicks for Sponsors 34M
+      / .avatar = image_tag @fundraiser_profile.avatar_url(:medium)
+    br

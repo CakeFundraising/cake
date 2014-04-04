@@ -11,7 +11,7 @@ Cake::Application.routes.draw do
   resources :users, only: :index do
     collection do
       namespace :settings do
-        resources :public_profiles, except: [:index, :destroy, :new, :create]
+        resources :fundraiser_profiles, except: [:index, :destroy, :new, :create]
 
         get :account      
         get :update_account      

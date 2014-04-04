@@ -1,5 +1,5 @@
 ul.nav.nav-tabs
-  li class=active_in_page(edit_settings_public_profile_path(@public_profile), settings_public_profile_path(@public_profile))
+  li class=active_in_page(edit_settings_fundraiser_profile_path(@fundraiser_profile), settings_fundraiser_profile_path(@fundraiser_profile))
     a data-toggle="tab" href="#profile" Profile
   li class=active_in_page(account_settings_users_path)
     a data-toggle="tab" href="#account" Account
@@ -7,7 +7,7 @@ ul.nav.nav-tabs
     a data-toggle="tab" href="#email_notifications" Email Notifications
     
 .tab-content
-  #profile class="tab-pane #{active_in_page(edit_settings_public_profile_path(@public_profile))}"
+  #profile class="tab-pane #{active_in_page(edit_settings_fundraiser_profile_path(@fundraiser_profile))}"
     = yield :profile if content_for?(:profile)
   #account class="tab-pane #{active_in_page(account_settings_users_path)}"
     = yield :account if content_for?(:account)

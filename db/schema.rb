@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403183652) do
+ActiveRecord::Schema.define(version: 20140404191725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,25 +49,39 @@ ActiveRecord::Schema.define(version: 20140403183652) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "public_profiles", force: true do |t|
-    t.text     "head_line"
-    t.text     "profile_message"
-    t.text     "demographic_description"
+  create_table "fundraiser_profiles", force: true do |t|
+    t.string   "banner"
     t.string   "cause"
     t.integer  "min_pledge"
     t.integer  "min_click_donation"
     t.boolean  "donations_kind"
-    t.string   "name"
+    t.boolean  "tax_exempt"
     t.string   "contact_name"
-    t.string   "website"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "banner"
-    t.string   "avatar"
+    t.string   "contact_title"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.string   "name"
+    t.text     "mission"
+    t.text     "supporter_demographic"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "locations", force: true do |t|
+    t.string   "address"
+    t.string   "country"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "city"
+    t.integer  "locatable_id"
+    t.string   "locatable_type"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["locatable_id", "locatable_type"], name: "index_locations_on_locatable_id_and_locatable_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "full_name"

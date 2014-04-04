@@ -106,7 +106,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def remove_html
-    if removable?
+    if removable? and object.send(method).present?
       template.content_tag(:label, class: "remove_label pull-right") do
         template.check_box_tag("#{object_name}[remove_#{method}]", "1", false, id: "#{sanitized_object_name}_remove_#{sanitized_method_name}") <<
         # XXX: There are probably better ways to do these translations using defaults.
@@ -117,7 +117,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def label_html
     template.content_tag(:label, class:'control-label') do
-      "#{method.to_s.titleize}"
+      object.class.human_attribute_name(method)
     end
   end
 
