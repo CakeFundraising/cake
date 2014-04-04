@@ -8,6 +8,8 @@ Cake::Application.routes.draw do
     get :get_started
   end
 
+  resources :organizations
+
   resources :users, only: :index do
     collection do
       namespace :settings do

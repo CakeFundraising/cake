@@ -20,11 +20,16 @@
         = f.input :name
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
         = f.input :supporter_demographic, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
-        / = f.semantic_fields_for :location, @fundraiser_profile.build_location do |l|
-        /   = l.input :country, {object: l.object, priority: %w(US CA)}
+  .row
+    .col-md-3.col-md-offset-9
+      = f.actions do
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
 
-  = f.actions do
-    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+br
+hr
+br
+
+= render partial:'organizations/form'
 
 / jquery upload template
 script#template-upload type="text/x-tmpl" 

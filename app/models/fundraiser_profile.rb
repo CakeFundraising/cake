@@ -1,20 +1,13 @@
 class FundraiserProfile < ActiveRecord::Base
   belongs_to :user
-  # has_one :location, as: :locatable
 
-  # mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
 
-  # validates_integrity_of  :avatar
-  # validates_processing_of :avatar
-  
   validates_integrity_of  :banner
   validates_processing_of :banner
 
   validates :cause, :name, :mission, :contact_title, 
   :supporter_demographic, :contact_email, presence: true, unless: :new_record?
-
-  # accepts_nested_attributes_for :location, reject_if: :all_blank
 
   CAUSES = [
     "Global Initiatives",
@@ -40,6 +33,4 @@ class FundraiserProfile < ActiveRecord::Base
     7,
     10
   ]
-
-  # DONATION_KINDS = [ ["No", false], ["Yes", true] ]
 end

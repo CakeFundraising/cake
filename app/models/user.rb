@@ -11,8 +11,10 @@ class User < ActiveRecord::Base
   has_roles [:sponsor, :fundraiser]
 
   has_one :fundraiser_profile, dependent: :destroy
+  has_one :organization
 
   after_create do
     create_fundraiser_profile
+    create_organization
   end
 end

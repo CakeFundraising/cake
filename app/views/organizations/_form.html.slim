@@ -1,0 +1,16 @@
+= semantic_form_for @organization do |f|
+  = f.inputs nil do
+    .row
+      .col-md-6
+        = f.input :avatar, as: :uploader
+        br
+        = f.input :name
+        = f.input :phone
+        = f.input :website
+        = f.input :email
+      .col-md-6
+        = f.semantic_fields_for :location, @organization.build_location do |l|
+          = l.input :country, {object: l.object, priority: %w(US CA)}
+
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
