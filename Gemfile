@@ -20,6 +20,7 @@ gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
 gem 'rails-timeago'
 gem 'chosen-rails'
+gem 'jquery-fileupload-rails'
 
 #DB
 gem 'pg'
@@ -29,7 +30,7 @@ gem 'thin'
 
 #Image processing
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', require: 'RMagick'
 
 #CLI
 group :development do

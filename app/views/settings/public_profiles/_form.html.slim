@@ -13,9 +13,9 @@
         = f.input :cause, as: :select, collection: PublicProfile::CAUSES
         .row
           .col-md-6
-            = f.input :min_pledge_cents, as: :select, collection: PublicProfile::MIN_PLEDGES
+            = f.input :min_pledge, as: :select, collection: PublicProfile::MIN_PLEDGES
           .col-md-6
-            = f.input :min_click_donation_cents, as: :select, collection: PublicProfile::MIN_CLICK_DONATIONS
+            = f.input :min_click_donation, as: :select, collection: PublicProfile::MIN_CLICK_DONATIONS
         = f.input :donations_kind, as: :select, collection: PublicProfile::DONATION_KINDS
         = f.input :name
         = f.input :contact_name
@@ -24,3 +24,10 @@
         = f.input :email
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+
+/ jquery upload template
+script#template-upload type="text/x-tmpl" 
+  .upload 
+    | {%=o.name%}
+    .progress
+      .progress-bar.bar style=("width: 0%") 

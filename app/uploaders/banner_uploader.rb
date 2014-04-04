@@ -2,6 +2,11 @@
 
 class BannerUploader < CarrierWave::Uploader::Base
 
+  VERSION_SIZES = {
+    large: [1170, 300],
+    medium: [585, 150]
+  }
+
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -33,17 +38,21 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :large do
-    process :resize_to_fill => [1170, 300]
+    process :resize_to_fill => VERSION_SIZES[:large]
   end
 
   version :medium do
-    process :resize_to_fill => [585, 150]
+    process :resize_to_fill => VERSION_SIZES[:medium]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  def default_url
+    "http://placehold.it/#{VERSION_SIZES[version_name.to_sym].join("x")}"
   end
 
   # Override the filename of the uploaded files:

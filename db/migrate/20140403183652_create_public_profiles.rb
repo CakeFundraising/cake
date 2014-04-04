@@ -5,8 +5,8 @@ class CreatePublicProfiles < ActiveRecord::Migration
       t.text :profile_message
       t.text :demographic_description
       t.string :cause
-      t.money :min_pledge
-      t.money :min_click_donation
+      t.integer :min_pledge
+      t.integer :min_click_donation
       t.boolean :donations_kind
       t.string :name
       t.string :contact_name

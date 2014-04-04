@@ -1,9 +1,6 @@
 class PublicProfile < ActiveRecord::Base
   belongs_to :user
 
-  monetize :min_pledge_cents
-  monetize :min_click_donation_cents
-
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
 

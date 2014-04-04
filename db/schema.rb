@@ -54,10 +54,8 @@ ActiveRecord::Schema.define(version: 20140403183652) do
     t.text     "profile_message"
     t.text     "demographic_description"
     t.string   "cause"
-    t.integer  "min_pledge_cents",            default: 0,     null: false
-    t.string   "min_pledge_currency",         default: "USD", null: false
-    t.integer  "min_click_donation_cents",    default: 0,     null: false
-    t.string   "min_click_donation_currency", default: "USD", null: false
+    t.integer  "min_pledge"
+    t.integer  "min_click_donation"
     t.boolean  "donations_kind"
     t.string   "name"
     t.string   "contact_name"

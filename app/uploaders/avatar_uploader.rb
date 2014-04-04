@@ -2,6 +2,12 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
+  VERSION_SIZES = {
+    ico: [25, 25],
+    thumb: [50, 50],
+    medium: [150, 150]
+  }
+
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -33,21 +39,25 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :medium do
-    process :resize_to_fill => [150, 150]
+    process :resize_to_fill => VERSION_SIZES[:medium]
   end
   
   version :thumb do
-    process :resize_to_fill => [50, 50]
+    process :resize_to_fill => VERSION_SIZES[:thumb]
   end  
 
   version :ico do
-    process :resize_to_fill => [25, 25]
+    process :resize_to_fill => VERSION_SIZES[:ico]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  def default_url
+    "http://placehold.it/#{VERSION_SIZES[version_name.to_sym].join("x")}"
   end
 
   # Override the filename of the uploaded files:

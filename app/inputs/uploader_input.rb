@@ -84,12 +84,12 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def existing_html
-    if method_present?
       # TODO: Add classes based on mime type for icons, etc.
       # existing = template.content_tag(:span, object.send(method).file.filename, existing_html_options)
       # template.link_to_if linkable?, existing, object.send(method).url, existing_link_html_options
+    template.content_tag(:div, class: method.to_s) do
       template.image_tag(object.send(method).medium.url, class:'img-responsive img-thumbnail')
-    end or "".html_safe
+    end
   end
 
   def replace_label_html
@@ -107,22 +107,28 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def remove_html
     if removable?
-      template.content_tag(:label, class: "remove_label") do
+      template.content_tag(:label, class: "remove_label pull-right") do
         template.check_box_tag("#{object_name}[remove_#{method}]", "1", false, id: "#{sanitized_object_name}_remove_#{sanitized_method_name}") <<
         # XXX: There are probably better ways to do these translations using defaults.
-        template.content_tag(:span, localized_string(method, "Remove #{method.to_s.titleize}", :remove_label))
+        template.content_tag(:span, localized_string(method, " Remove", :remove_label))
       end
     end or "".html_safe
   end
 
+  def label_html
+    template.content_tag(:label, class:'control-label') do
+      "#{method.to_s.titleize}"
+    end
+  end
+
   def to_html
     input_wrapping do
+      remove_html <<
       label_html <<
       cache_html <<
       if method_was_present?
         existing_html <<
-        replace_html <<
-        remove_html
+        replace_html
       else
         existing_html <<
         file_html
