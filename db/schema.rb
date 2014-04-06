@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20140404221342) do
 
   create_table "locations", force: true do |t|
     t.string   "address"
-    t.string   "country"
-    t.string   "state"
+    t.string   "country_code"
+    t.string   "state_code"
     t.string   "zip_code"
     t.string   "city"
     t.integer  "locatable_id"

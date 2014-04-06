@@ -10,13 +10,13 @@ class OrganizationsController < InheritedResources::Base
         redirect_to [:settings, @fundraiser_profile], notice: 'Fundraiser Profile Update successfully.'
       end
       failure.html do 
-        render template:'settings/fundraiser_profiles/edit'
+        render action:'edit'
       end
     end
   end
 
   def permitted_params
-    params.permit(organization: [:name, :avatar, :phone, :email, :website, 
-      location_attributes: [:address, :city, :zip_code, :state, :country] ])
+    params.permit(organization: [:name, :avatar, :phone, :email, :website, :remove_avatar,
+      location_attributes: [:address, :city, :zip_code, :state_code, :country_code] ])
   end
 end

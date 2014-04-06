@@ -10,6 +10,10 @@ Cake::Application.routes.draw do
 
   resources :organizations
 
+  namespace :locations do
+    get :subregion_options
+  end
+
   resources :users, only: :index do
     collection do
       namespace :settings do

@@ -1,0 +1,13 @@
+#states_wrapper
+  - if @country.nil?
+    em.help-block Please select a country above
+  - elsif @country.subregions?
+    .input.select.required.form-group
+      = label_tag :state, nil, class:' control-label'
+      span.form-wrapper
+        = subregion_select(@attr_scope, :state_code, @parent_region, {}, {class:'chosen-select form-control'})
+  - else 
+    .input.required.form-group
+      = label_tag :state, nil, class:'control-label'
+      span.form-wrapper
+        = text_field(@attr_scope, :state_code, {class:'form-control'}) 

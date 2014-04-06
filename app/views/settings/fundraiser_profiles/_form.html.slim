@@ -1,3 +1,4 @@
+h3 = FundraiserProfile.model_name.human
 = semantic_form_for [:settings, @fundraiser_profile] do |f|
   = f.inputs nil do
     .row
@@ -24,16 +25,3 @@
     .col-md-3.col-md-offset-9
       = f.actions do
         = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
-
-br
-hr
-br
-
-= render partial:'organizations/form'
-
-/ jquery upload template
-script#template-upload type="text/x-tmpl" 
-  .upload 
-    | {%=o.name%}
-    .progress
-      .progress-bar.bar style=("width: 0%") 

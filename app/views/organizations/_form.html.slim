@@ -1,3 +1,4 @@
+h3 Organization Info
 = semantic_form_for @organization do |f|
   = f.inputs nil do
     .row
@@ -9,8 +10,8 @@
         = f.input :website
         = f.input :email
       .col-md-6
-        = f.semantic_fields_for :location, @organization.build_location do |l|
-          = l.input :country, {object: l.object, priority: %w(US CA)}
-
-  = f.actions do
-    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+        = render partial:'locations/form', locals:{f: f}
+  .row
+    .col-md-3.col-md-offset-9
+      = f.actions do
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}

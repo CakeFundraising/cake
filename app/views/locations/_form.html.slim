@@ -1,0 +1,18 @@
+h4 = Location.model_name.human
+= f.semantic_fields_for :location do |l|
+  .input.select.required.form-group
+    = l.label :country, class:' control-label'
+    span.form-wrapper
+      = l.country_select :country_code, {object: l.object, priority: %w(US CA), prompt: 'Please select a country'}, class:'chosen-select form-control country_select'
+  #states_wrapper
+    - if l.object.country.present?
+      - if l.object.country.subregions?
+        = l.input :state_code, as: :select, collection: l.object.country.subregions, member_label: :name, member_value: :code
+      - else
+        = l.input :state_code
+    - else
+      em.help-block Please select a country above
+
+  = l.input :zip_code
+  = l.input :city
+  = l.input :address
