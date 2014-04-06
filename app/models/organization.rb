@@ -8,6 +8,8 @@ class Organization < ActiveRecord::Base
   validates_processing_of :avatar
 
   validates :name, :email, :phone, presence: true, unless: :new_record?
+  validates :email, email: true
+
   validates_associated :location
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank

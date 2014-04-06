@@ -15,15 +15,14 @@ Cake::Application.routes.draw do
     get :subregion_options
   end
 
-  resources :users, only: :index do
-    collection do
-      namespace :settings do
-        get :account      
-        get :update_account      
-
-        get :email_notifications      
-        get :update_email_notifications      
-      end
-    end
+  scope :settings do
+    get :account, to: redirect('users/edit')
   end
+
+  namespace :settings do
+    get :email_notifications      
+    get :update_email_notifications      
+  end
+
+  resources :users, only: :index
 end

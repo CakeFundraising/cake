@@ -41,6 +41,7 @@ end
 #Utils
 gem 'money-rails'
 gem 'carmen-rails'
+gem 'email_validator', :require => 'email_validator/strict'
 
 #User registration
 gem "devise"
