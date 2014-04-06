@@ -7,7 +7,7 @@ class OrganizationsController < InheritedResources::Base
       @fundraiser_profile = current_user.fundraiser_profile
 
       success.html do
-        redirect_to [:settings, @fundraiser_profile], notice: 'Fundraiser Profile Update successfully.'
+        redirect_to fundraiser_profile_path, notice: 'Fundraiser Profile Update successfully.'
       end
       failure.html do 
         render action:'edit'

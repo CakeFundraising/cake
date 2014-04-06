@@ -8,6 +8,7 @@ Cake::Application.routes.draw do
     get :get_started
   end
 
+  resource :fundraiser_profile, only: [:show, :edit, :update]
   resources :organizations
 
   namespace :locations do
@@ -17,8 +18,6 @@ Cake::Application.routes.draw do
   resources :users, only: :index do
     collection do
       namespace :settings do
-        resources :fundraiser_profiles, except: [:index, :destroy, :new, :create]
-
         get :account      
         get :update_account      
 

@@ -9,9 +9,9 @@ ul.nav.nav-tabs
 .tab-content
   #profile.tab-pane.active
     br
-    = link_to 'View Profile', settings_fundraiser_profile_path(@fundraiser_profile)
+    = link_to 'View Profile', fundraiser_profile_path
 
-    = render partial:'settings/fundraiser_profiles/form'
+    = render partial:'fundraiser_profiles/form'
     br
     hr
     br

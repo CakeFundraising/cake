@@ -16,7 +16,11 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with resource
     end
-    session[:omniauth] = nil unless @user.new_record?
+
+    unless @user.new_record?
+      session[:omniauth] = nil
+      session[:user_role] = nil
+    end
   end
   
   private
@@ -28,6 +32,5 @@ class RegistrationsController < Devise::RegistrationsController
     else
       @user = User.new_with(session[:omniauth], session[:user_role], args.first)
     end
-    # @user = User.new_with(session[:omniauth], args.first) if params[:user].present? or session[:omniauth].present?
   end
 end

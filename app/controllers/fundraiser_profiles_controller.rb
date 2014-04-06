@@ -1,11 +1,19 @@
-class Settings::FundraiserProfilesController < InheritedResources::Base
+class FundraiserProfilesController < InheritedResources::Base
+  defaults singleton: true
+  belongs_to :user
+
   respond_to :html
   respond_to :js, only: :update
+
+  before_action :set_user
   before_action :set_organization, only: [:edit, :show]
 
   def update
     update! do |success, failure|
       @organization = current_user.organization
+      success.html do
+        redirect_to fundraiser_profile_path, notice: 'Fundraiser profile was successfully updated.'
+      end
     end
   end
 
@@ -20,5 +28,9 @@ class Settings::FundraiserProfilesController < InheritedResources::Base
 
   def set_organization
     @organization = current_user.organization
+  end
+
+  def set_user
+    params[:user_id] = current_user.id #Hack to InheritedResources to find the parent
   end
 end

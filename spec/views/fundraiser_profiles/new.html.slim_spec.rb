@@ -24,7 +24,7 @@ describe "fundraiser_profiles/new" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form[action=?][method=?]", fundraiser_profiles_path, "post" do
+    assert_select "form[action=?][method=?]", fundraiser_profile_path, "post" do
       assert_select "textarea#fundraiser_profile_mission[name=?]", "fundraiser_profile[mission]"
       assert_select "textarea#fundraiser_profile_contact_title[name=?]", "fundraiser_profile[contact_title]"
       assert_select "textarea#fundraiser_profile_supporter_demographic[name=?]", "fundraiser_profile[supporter_demographic]"

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
 
   has_roles [:sponsor, :fundraiser]
-
+  
   has_one :fundraiser_profile, dependent: :destroy
   has_one :organization
 

@@ -44,7 +44,7 @@ nav.navbar.navbar-default role="navigation"
             a.dropdown-toggle data-toggle="dropdown" href="#" = current_user.full_name
               b.caret
             ul.dropdown-menu
-              = menu_item "Settings", edit_settings_fundraiser_profile_path(current_user.fundraiser_profile)
+              = menu_item "Settings", edit_fundraiser_profile_path
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else
