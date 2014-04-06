@@ -1,7 +1,7 @@
 class Settings::FundraiserProfilesController < InheritedResources::Base
   respond_to :html
   respond_to :js, only: :update
-  before_action :set_organization, only: :edit
+  before_action :set_organization, only: [:edit, :show]
 
   def update
     update! do |success, failure|

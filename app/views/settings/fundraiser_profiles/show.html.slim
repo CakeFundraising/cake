@@ -21,7 +21,6 @@
           div = @fundraiser_profile.contact_email
           strong Contact Phone
           div = @fundraiser_profile.contact_phone
-        .col-md-6
           div
             span Min. Pledge
             strong.pull-right = @fundraiser_profile.min_pledge
@@ -34,18 +33,28 @@
           div
             span 503C Tax Exempt
             strong.pull-right = b @fundraiser_profile.tax_exempt
+        .col-md-6
           div
-            span Campaign Reach
-            strong.pull-right 23,345,447
+            span No. of Campaigns
+            strong.pull-right 8
+          div
+            span Avg. No. of Sponsors
+            strong.pull-right 13
           div
             span Avg. Pledge
             strong.pull-right $23,345
           div
-            span Avg. Donation Click
+            span Avg. Donation
+            strong.pull-right $89,000
+          div
+            span Avg. Donation/Click
             strong.pull-right $4,68
           div
-            span Avg. No. of Sponsors
-            strong.pull-right 13
+            span Avg. Click/Pledge
+            strong.pull-right $4,68
+          div
+            span Avg. Reach/Campaign
+            strong.pull-right 3M
     p.profile-message 
       h3 Fundraiser Mission
       p = @fundraiser_profile.mission
@@ -54,9 +63,34 @@
       p = @fundraiser_profile.supporter_demographic
   .col-md-3
     .thumbnail
-      h4 Click Generation Rank 1
-      h4 Avg. Clicks/Campaign 3
-      h4 Avg. Campaign Reach 3.2M
-      h4 Total Clicks for Sponsors 34M
-      / .avatar = image_tag @fundraiser_profile.avatar_url(:medium)
-    br
+      h4 
+        span Total Clicks 
+        span.pull-right 34M
+      h4 
+        span Fundraiser Rank
+        span.pull-right 3,881
+      h4 
+        span Cause Rank
+        span.pull-right 13
+      h4 
+        span Location Rank
+        span.pull-right 4
+      .avatar = image_tag @organization.avatar_url(:medium)
+    .organization
+      address
+        strong = @organization.name
+        br
+        span = @organization.location.address
+        br
+        span #{@organization.location.city}, #{@organization.location.state_code}, #{@organization.location.zip_code}
+        br
+      address
+        abbr title="Phone" Phone:
+        | (123) #{@organization.phone}
+        br
+        strong Website: 
+        span #{@organization.website}
+        br
+        strong Email: 
+        a href="mailto:#" #{@organization.email}
+        br
