@@ -8,7 +8,7 @@ class Organization < ActiveRecord::Base
   validates_processing_of :avatar
 
   validates :name, :email, :phone, presence: true, unless: :new_record?
-  validates :email, email: true
+  validates :email, email: true, unless: :new_record?
 
   validates_associated :location
 

@@ -9,7 +9,7 @@ class FundraiserProfile < ActiveRecord::Base
   validates :cause, :name, :mission, :contact_title, 
   :supporter_demographic, :contact_email, presence: true, unless: :new_record?
 
-  validates :contact_email, email: true
+  validates :contact_email, email: true, unless: :new_record?
 
   CAUSES = [
     "Global Initiatives",
