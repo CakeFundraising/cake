@@ -1,0 +1,63 @@
+p#notice = notice
+
+p
+  strong Banner:
+  = @fundraiser.banner
+p
+  strong Avatar:
+  = @fundraiser.avatar
+p
+  strong Cause:
+  = @fundraiser.cause
+p
+  strong Min pledge:
+  = @fundraiser.min_pledge
+p
+  strong Min click donation:
+  = @fundraiser.min_click_donation
+p
+  strong Donations kind:
+  = @fundraiser.donations_kind
+p
+  strong Tax exempt:
+  = @fundraiser.tax_exempt
+p
+  strong Unsolicited pledges:
+  = @fundraiser.unsolicited_pledges
+p
+  strong Manager name:
+  = @fundraiser.manager_name
+p
+  strong Manager title:
+  = @fundraiser.manager_title
+p
+  strong Manager email:
+  = @fundraiser.manager_email
+p
+  strong Manager phone:
+  = @fundraiser.manager_phone
+p
+  strong Name:
+  = @fundraiser.name
+p
+  strong Mission:
+  = @fundraiser.mission
+p
+  strong Supporter demographics:
+  = @fundraiser.supporter_demographics
+p
+  strong Organization name:
+  = @fundraiser.organization_name
+p
+  strong Phone:
+  = @fundraiser.phone
+p
+  strong Website:
+  = @fundraiser.website
+p
+  strong Email:
+  = @fundraiser.email
+
+= link_to 'Edit', edit_fundraiser_path(@fundraiser)
+'|
+= link_to 'Back', fundraisers_path

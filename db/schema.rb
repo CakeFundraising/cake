@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407150520) do
+ActiveRecord::Schema.define(version: 20140407211020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,21 +63,26 @@ ActiveRecord::Schema.define(version: 20140407150520) do
     t.datetime "updated_at"
   end
 
-  create_table "fundraiser_profiles", force: true do |t|
+  create_table "fundraisers", force: true do |t|
     t.string   "banner"
+    t.string   "avatar"
     t.string   "cause"
     t.integer  "min_pledge"
     t.integer  "min_click_donation"
     t.boolean  "donations_kind"
     t.boolean  "tax_exempt"
-    t.string   "contact_name"
-    t.string   "contact_title"
-    t.string   "contact_email"
-    t.string   "contact_phone"
+    t.boolean  "unsolicited_pledges"
+    t.string   "manager_name"
+    t.string   "manager_title"
+    t.string   "manager_email"
+    t.string   "manager_phone"
     t.string   "name"
     t.text     "mission"
-    t.text     "supporter_demographic"
-    t.integer  "user_id"
+    t.text     "supporter_demographics"
+    t.string   "organization_name"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -96,17 +101,6 @@ ActiveRecord::Schema.define(version: 20140407150520) do
   end
 
   add_index "locations", ["locatable_id", "locatable_type"], name: "index_locations_on_locatable_id_and_locatable_type", using: :btree
-
-  create_table "organizations", force: true do |t|
-    t.string   "avatar"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "website"
-    t.string   "email"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "full_name"

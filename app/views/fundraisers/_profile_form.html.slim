@@ -1,17 +1,17 @@
-h3 = FundraiserProfile.model_name.human
+h3 #{Fundraiser.model_name.human} profile
 
-= semantic_form_for @fundraiser_profile, url: fundraiser_profile_path do |f|
+= semantic_form_for @fundraiser do |f|
   = f.inputs nil do
     .row
       .col-md-6
         = f.input :banner, as: :uploader
         br
-        = f.input :cause, as: :select, collection: FundraiserProfile::CAUSES
+        = f.input :cause, as: :select, collection: Fundraiser::CAUSES
         .row
           .col-md-6
-            = f.input :min_pledge, as: :select, collection: FundraiserProfile::MIN_PLEDGES
+            = f.input :min_pledge, as: :select, collection: Fundraiser::MIN_PLEDGES
           .col-md-6
-            = f.input :min_click_donation, as: :select, collection: FundraiserProfile::MIN_CLICK_DONATIONS
+            = f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
         = f.input :donations_kind
         = f.input :tax_exempt
         = f.input :contact_name

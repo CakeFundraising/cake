@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
-  $('form.fundraiser_profile, form.organization').fileupload
+  $('form.fundraiser').fileupload
     dataType: 'script'
     add: (e, data) ->
       types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i

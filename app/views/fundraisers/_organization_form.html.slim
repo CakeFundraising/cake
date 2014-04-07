@@ -1,0 +1,18 @@
+h3 Organization Info
+
+= semantic_form_for @fundraiser do |f|
+  = f.inputs nil do
+    .row
+      .col-md-6
+        = f.input :avatar, as: :uploader
+        br
+        = f.input :name
+        = f.input :phone
+        = f.input :website
+        = f.input :email
+      .col-md-6
+        = render partial:'locations/form', locals:{f: f}
+  .row
+    .col-md-3.col-md-offset-9
+      = f.actions do
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}

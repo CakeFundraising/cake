@@ -33,4 +33,8 @@ class RegistrationsController < Devise::RegistrationsController
       @user = User.new_with(session[:omniauth], session[:user_role], args.first)
     end
   end
+
+  def after_sign_up_path_for(resource)
+    complete_account_path
+  end
 end

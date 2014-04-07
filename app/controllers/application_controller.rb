@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:full_name, :email, :password, :password_confirmation)}
   end
+
+  def after_sign_in_path_for(resource)
+    if session[:new_user]
+      complete_account_path
+    else
+      super
+    end
+  end
 end

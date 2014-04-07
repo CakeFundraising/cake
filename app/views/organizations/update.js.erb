@@ -1,5 +1,0 @@
-<% if @organization.errors.present? %>
-  alert("Make sure you've completed all the required fields.");
-<% else %>
-  $('.avatar').html("<%=j image_tag(@organization.avatar.medium.url, class: 'img-responsive img-thumbnail') %>");
-<% end %>

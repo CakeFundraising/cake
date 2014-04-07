@@ -1,17 +1,22 @@
-h3 Organization Info
+.header.text-center
+  h1 First of all..
+  .lead Tell us you are fundraising for. Please complete the form.
 
 = semantic_form_for @organization do |f|
   = f.inputs nil do
     .row
       .col-md-6
-        = f.input :avatar, as: :uploader
-        br
         = f.input :name
-        = f.input :phone
-        = f.input :website
-        = f.input :email
+      .col-md-6
+        #claim_account
+    .row
       .col-md-6
         = render partial:'locations/form', locals:{f: f}
+      .col-md-6
+        br
+        br
+        = f.input :email
+        = f.input :phone
   .row
     .col-md-3.col-md-offset-9
       = f.actions do
