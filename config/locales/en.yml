@@ -22,3 +22,11 @@ en:
         name: Name of Fundraiser
         mission: Fundraiser's Mission 
         supporter_demographic: Supporter Demographics
+      email_setting:
+        new_pledge: New pledge offers
+        pledge_increased: Pledge has been increased
+        pledge_fully_subscribed: Pledge has been 100% subscribed
+        campaign_end: Campaign ends
+        missed_launch_campaign: Campaign launch date missed
+        account_change: Change of account information
+        public_profile_change: Change to public profile

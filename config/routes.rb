@@ -17,11 +17,7 @@ Cake::Application.routes.draw do
 
   scope :settings do
     get :account, to: redirect('users/edit')
-  end
-
-  namespace :settings do
-    get :email_notifications      
-    get :update_email_notifications      
+    resource :email_settings, only: [:edit, :update]
   end
 
   resources :users, only: :index

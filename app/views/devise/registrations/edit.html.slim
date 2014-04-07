@@ -4,11 +4,11 @@ ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#profile" Account
   li
-    = link_to "Email Notifications", settings_email_notifications_path
+    = link_to "Email Notifications", edit_email_settings_path
 
 .tab-content
   #profile.tab-pane.active
-    h2 Change your basic account settings.
+    h3.text-center Change your basic account settings.
 
     = semantic_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.inputs nil do

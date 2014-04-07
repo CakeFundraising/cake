@@ -1,0 +1,17 @@
+h3.text-center Change your email notification settings.
+
+= semantic_form_for @email_setting, url: email_settings_path do |f|
+  = f.inputs nil do
+    .row 
+      .col-md-6
+        = f.input :new_pledge              
+        = f.input :pledge_increased        
+        = f.input :pledge_fully_subscribed 
+        = f.input :campaign_end            
+      .col-md-6
+        = f.input :missed_launch_campaign  
+        = f.input :account_change          
+        = f.input :public_profile_change   
+        = f.input :campaign_result_summary 
+  = f.actions do
+    = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg btn-block'}
