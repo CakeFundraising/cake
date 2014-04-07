@@ -38,7 +38,7 @@ nav.navbar.navbar-default role="navigation"
             input.form-control placeholder="Search" type="text" 
           button.btn.btn-default type="submit" Submit
         ul.nav.navbar-nav.navbar-right
-          = menu_item edit_fundraiser_profile_path do
+          = menu_item public_profile_path do
             | Settings 
             span.glyphicon.glyphicon-cog
           li.dropdown
@@ -47,7 +47,7 @@ nav.navbar.navbar-default role="navigation"
             ul.dropdown-menu
               = menu_item "Home", root_path
               = menu_item "Public Profile", fundraiser_profile_path
-              = menu_item "Settings", edit_fundraiser_profile_path
+              = menu_item "Settings", public_profile_path
               = menu_item "Pledges", root_path
               = menu_item "Campaigns", root_path
               li.divider

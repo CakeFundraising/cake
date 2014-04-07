@@ -6,7 +6,7 @@ class FundraiserProfilesController < InheritedResources::Base
   respond_to :js, only: :update
 
   before_action :set_user
-  before_action :set_organization, only: [:edit, :show]
+  before_action :set_organization, only: :show
 
   def update
     update! do |success, failure|
