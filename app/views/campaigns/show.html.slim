@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @campaign.title
+p
+  strong Launch date:
+  = @campaign.launch_date
+p
+  strong End date:
+  = @campaign.end_date
+p
+  strong Cause:
+  = @campaign.cause
+p
+  strong Headline:
+  = @campaign.headline
+p
+  strong Story:
+  = @campaign.story
+p
+  strong Show donation:
+  = @campaign.show_donation
+p
+  strong Status:
+  = @campaign.status
+p
+  strong Fundraiser:
+  = @campaign.fundraiser_id
+
+= link_to 'Edit', edit_campaign_path(@campaign)
+'|
+= link_to 'Back', campaigns_path

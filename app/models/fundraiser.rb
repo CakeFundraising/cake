@@ -4,7 +4,7 @@ class Fundraiser < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
 
-  validates :organization_name, :email, :phone, :cause, presence: true
+  validates :name, :email, :phone, :cause, presence: true
   validates :email, email: true
   
   validates :name, :mission, :manager_title, :supporter_demographics, :manager_email, presence: true, unless: :new_record?

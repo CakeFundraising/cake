@@ -22,6 +22,7 @@ en:
         name: Name of Fundraiser
         mission: Fundraiser's Mission 
         supporter_demographic: Supporter Demographics
+        manager_name: Fundraising Manager
       email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased

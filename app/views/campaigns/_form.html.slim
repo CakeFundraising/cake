@@ -1,0 +1,36 @@
+= form_for @campaign do |f|
+  - if @campaign.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@campaign.errors.count, "error")} prohibited this campaign from being saved:"
+      ul
+        - @campaign.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :launch_date
+    = f.text_field :launch_date
+  .field
+    = f.label :end_date
+    = f.text_field :end_date
+  .field
+    = f.label :cause
+    = f.text_field :cause
+  .field
+    = f.label :headline
+    = f.text_field :headline
+  .field
+    = f.label :story
+    = f.text_area :story
+  .field
+    = f.label :show_donation
+    = f.text_field :show_donation
+  .field
+    = f.label :status
+    = f.text_field :status
+  .field
+    = f.label :fundraiser_id
+    = f.number_field :fundraiser_id
+  .actions = f.submit 'Save'

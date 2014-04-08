@@ -1,4 +1,6 @@
 Cake::Application.routes.draw do
+  resources :campaigns
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: 

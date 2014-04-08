@@ -1,7 +1,6 @@
 module ApplicationHelper
-  def active_in_page(path1, path2=nil)
-    return "active" if path2.nil? and current_page?(path1)
-    "active" if current_page?(path1) or current_page?(path2)
+  def active_in_page(path)
+    "active" if current_page?(path)
   end
 
   def b(value, options = {})

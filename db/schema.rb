@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408163140) do
+ActiveRecord::Schema.define(version: 20140408191356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20140408163140) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "campaigns", force: true do |t|
+    t.string   "title"
+    t.string   "launch_date"
+    t.string   "end_date"
+    t.string   "cause"
+    t.string   "headline"
+    t.text     "story"
+    t.string   "show_donation", default: "false"
+    t.string   "status",        default: "private"
+    t.integer  "fundraiser_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "email_settings", force: true do |t|
     t.boolean  "new_pledge",              default: false
     t.boolean  "pledge_increased",        default: false
@@ -77,7 +91,6 @@ ActiveRecord::Schema.define(version: 20140408163140) do
     t.string   "name"
     t.text     "mission"
     t.text     "supporter_demographics"
-    t.string   "organization_name"
     t.string   "phone"
     t.string   "website"
     t.string   "email"
