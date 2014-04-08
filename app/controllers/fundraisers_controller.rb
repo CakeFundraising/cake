@@ -13,6 +13,7 @@ class FundraisersController < InheritedResources::Base
     @fundraiser.manager = current_user
     create!
     current_user.set_fundraiser(@fundraiser)
+    session[:new_user] = nil if session[:new_user]
   end
 
   def permitted_params
