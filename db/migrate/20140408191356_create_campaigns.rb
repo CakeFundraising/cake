@@ -7,7 +7,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :cause
       t.string :headline
       t.text :story
-      t.string :show_donation, default: :false
+      t.string :show_donation, default: :no_donations
       t.string :status, default: :private
       t.integer :fundraiser_id
 

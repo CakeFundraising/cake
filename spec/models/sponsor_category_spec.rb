@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe FundraiserProfile do
+describe SponsorCategory do
   pending "add some examples to (or delete) #{__FILE__}"
 end

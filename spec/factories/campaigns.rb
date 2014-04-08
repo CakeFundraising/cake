@@ -9,5 +9,9 @@ FactoryGirl.define do
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     fundraiser
+
+    before(:create) do |campaign|
+      campaign.sponsor_categories = build_list(:sponsor_category, 3, campaign: campaign)
+    end
   end
 end

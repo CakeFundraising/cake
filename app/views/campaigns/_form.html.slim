@@ -1,36 +1,47 @@
-= form_for @campaign do |f|
-  - if @campaign.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@campaign.errors.count, "error")} prohibited this campaign from being saved:"
-      ul
-        - @campaign.errors.full_messages.each do |message|
-          li = message
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#main" Tell your story
+  li 
+    a data-toggle="tab" href="#sponsors_donations" Sponsors & Donations
+  li
+    a data-toggle="tab" href="#share" Solicit Sponsors
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :launch_date
-    = f.text_field :launch_date
-  .field
-    = f.label :end_date
-    = f.text_field :end_date
-  .field
-    = f.label :cause
-    = f.text_field :cause
-  .field
-    = f.label :headline
-    = f.text_field :headline
-  .field
-    = f.label :story
-    = f.text_area :story
-  .field
-    = f.label :show_donation
-    = f.text_field :show_donation
-  .field
-    = f.label :status
-    = f.text_field :status
-  .field
-    = f.label :fundraiser_id
-    = f.number_field :fundraiser_id
-  .actions = f.submit 'Save'
+.tab-content
+  #main.tab-pane.active
+    = link_to "Preview", @campaign if @campaign.persisted?
+    br 
+    = semantic_form_for @campaign do |f|
+      = f.inputs do
+        .row
+          .col-md-5.col-md-offset-1
+            = f.input :title
+            = f.input :cause
+          .col-md-5
+            = f.input :launch_date
+            = f.input :end_date
+            = f.input :headline
+        .row
+          .col-md-10.col-md-offset-1
+            = f.input :story, input_html: {rows: 5}
+        .row
+          .col-md-5.col-md-offset-1
+            = render partial:'pictures/banner_form', locals:{f: f}
+          .col-md-6
+            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+        br
+        = f.actions do
+          .text-center
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+
+  #sponsors_donations.tab-pane
+    = link_to "Preview", @campaign if @campaign.persisted?
+    br 
+    = semantic_form_for @campaign do |f|
+      = f.inputs do
+        = f.input :show_donation, as: :radio, collection: Campaign::DONATIONS_SETTINGS
+
+      = f.actions do
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success'}
+  #share.tab-pane
+    = link_to "Preview", @campaign if @campaign.persisted?
+    br
