@@ -14,7 +14,6 @@ class CreateFundraisers < ActiveRecord::Migration
       t.string :name
       t.text :mission
       t.text :supporter_demographics
-      t.string :organization_name
       t.string :phone
       t.string :website
       t.string :email

@@ -21,7 +21,7 @@ class FundraisersController < InheritedResources::Base
       [:cause, :name, :mission, :manager_title, :supporter_demographics, 
        :manager_email, :min_pledge, :min_click_donation, :donations_kind, 
        :unsolicited_pledges, :manager_name, :manager_website, :manager_phone, 
-       :tax_exempt, :organization_name, :phone, :email, :website, 
+       :tax_exempt, :phone, :email, :website, 
        location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
        picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption] ])
   end
