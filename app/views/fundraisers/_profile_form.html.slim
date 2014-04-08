@@ -4,7 +4,7 @@ h3 #{Fundraiser.model_name.human} profile
   = f.inputs nil do
     .row
       .col-md-6
-        = f.input :banner, as: :uploader
+        = render partial:'pictures/banner_form', locals:{f: f}
         br
         = f.input :cause, as: :select, collection: Fundraiser::CAUSES
         .row

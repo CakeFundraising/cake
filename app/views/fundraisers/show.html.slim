@@ -1,7 +1,7 @@
 = link_to 'Edit Profile', public_profile_path
 
 .header
-  .banner = image_tag @fundraiser.banner_url(:large)
+  .banner = image_tag @fundraiser.banner.url(:large)
 
 .content.row
   .col-md-6.col-md-offset-1
@@ -80,7 +80,9 @@
       h4 
         span Location Rank
         span.pull-right 4
-      .avatar = image_tag @fundraiser.avatar_url(:medium)
+      .avatar 
+        = image_tag @fundraiser.avatar.url(:medium)
+        .caption = @fundraiser.avatar_caption
     .fundraiser
       address
         strong = @fundraiser.name

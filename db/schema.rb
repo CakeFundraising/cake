@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408002122) do
+ActiveRecord::Schema.define(version: 20140408163140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,6 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   end
 
   create_table "fundraisers", force: true do |t|
-    t.string   "banner"
-    t.string   "avatar"
     t.string   "cause"
     t.integer  "min_pledge"
     t.integer  "min_click_donation"
@@ -102,6 +100,17 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   end
 
   add_index "locations", ["locatable_id", "locatable_type"], name: "index_locations_on_locatable_id_and_locatable_type", using: :btree
+
+  create_table "pictures", force: true do |t|
+    t.string   "avatar"
+    t.string   "avatar_caption"
+    t.string   "banner"
+    t.string   "banner_caption"
+    t.string   "picturable_type"
+    t.integer  "picturable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "full_name"

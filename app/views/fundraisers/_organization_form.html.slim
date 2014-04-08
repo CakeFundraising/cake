@@ -4,7 +4,7 @@ h3 Organization Info
   = f.inputs nil do
     .row
       .col-md-6
-        = f.input :avatar, as: :uploader
+        = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
         br
         = f.input :organization_name
         = f.input :phone

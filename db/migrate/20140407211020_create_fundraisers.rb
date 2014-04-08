@@ -1,8 +1,6 @@
 class CreateFundraisers < ActiveRecord::Migration
   def change
     create_table :fundraisers do |t|
-      t.string :banner
-      t.string :avatar
       t.string :cause
       t.integer :min_pledge
       t.integer :min_click_donation

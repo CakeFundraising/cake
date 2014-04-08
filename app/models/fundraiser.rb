@@ -1,14 +1,8 @@
 class Fundraiser < ActiveRecord::Base
-  has_one :location, as: :locatable, dependent: :destroy
   belongs_to :manager, class_name: "User"
+  has_one :location, as: :locatable, dependent: :destroy
+  has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
-
-  mount_uploader :banner, BannerUploader
-  mount_uploader :avatar, AvatarUploader
-  validates_integrity_of  :banner
-  validates_processing_of :banner
-  validates_integrity_of  :avatar
-  validates_processing_of :avatar
 
   validates :organization_name, :email, :phone, :cause, presence: true
   validates :email, email: true
@@ -17,10 +11,17 @@ class Fundraiser < ActiveRecord::Base
   validates :manager_email, email: true, unless: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   validates_associated :location
+  validates_associated :picture
+
+  delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   after_initialize do
-    self.build_location if self.new_record?
+    if self.new_record?
+      self.build_location
+      self.build_picture
+    end
   end
 
   CAUSES = [
