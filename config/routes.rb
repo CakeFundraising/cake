@@ -19,7 +19,7 @@ Cake::Application.routes.draw do
   scope :settings do
     get :public_profile, controller: :settings
 
-    get :complete_account, controller: :settings
+    get :complete_account, to: redirect('fundraisers/new')
 
     get :account, to: redirect('users/edit')
     resource :email_settings, only: [:edit, :update]

@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   belongs_to :locatable, polymorphic: true
 
-  validates :country_code, :state_code, :city, :address, presence: true, unless: :new_record?
+  validates :country_code, :state_code, :city, :address, :zip_code, presence: true
 
   COUNTRIES = Carmen::Country.all.map(&:name)
 

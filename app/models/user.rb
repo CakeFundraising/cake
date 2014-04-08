@@ -11,4 +11,20 @@ class User < ActiveRecord::Base
   has_roles [:sponsor, :fundraiser]
   
   has_one :email_setting, dependent: :destroy
+  belongs_to :fundraiser
+  belongs_to :sponsor
+
+  after_create do
+    create_email_setting
+  end
+
+  def set_fundraiser(fr)
+    self.fundraiser = fr
+    self.save
+  end
+
+  def set_sponsor(sp)
+    self.sponsor = sp
+    self.save
+  end
 end

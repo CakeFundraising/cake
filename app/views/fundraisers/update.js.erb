@@ -1,5 +1,6 @@
-<% if @fundraiser_profile.errors.present? %>
+<% if @fundraiser.errors.present? %>
   alert("Make sure you've completed all the required fields.");
 <% else %>
-  $('.banner').html("<%=j image_tag(@fundraiser_profile.banner.medium.url, class: 'img-responsive img-thumbnail') %>");
+  $('.banner').html("<%=j image_tag(@fundraiser.banner.medium.url, class: 'img-responsive img-thumbnail') %>");
+  $('.avatar').html("<%=j image_tag(@fundraiser.avatar.medium.url, class: 'img-responsive img-thumbnail') %>");
 <% end %>

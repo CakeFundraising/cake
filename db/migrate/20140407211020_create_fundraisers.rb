@@ -20,6 +20,7 @@ class CreateFundraisers < ActiveRecord::Migration
       t.string :phone
       t.string :website
       t.string :email
+      t.integer :manager_id
 
       t.timestamps
     end

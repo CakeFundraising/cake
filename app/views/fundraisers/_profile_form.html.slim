@@ -14,14 +14,15 @@ h3 #{Fundraiser.model_name.human} profile
             = f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
         = f.input :donations_kind
         = f.input :tax_exempt
-        = f.input :contact_name
-        = f.input :contact_title
-        = f.input :contact_email
-        = f.input :contact_phone
+        = f.input :unsolicited_pledges
+        = f.input :manager_name
+        = f.input :manager_title
+        = f.input :manager_email
+        = f.input :manager_phone
       .col-md-6
         = f.input :name
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
-        = f.input :supporter_demographic, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
   .row
     .col-md-3.col-md-offset-9
       = f.actions do

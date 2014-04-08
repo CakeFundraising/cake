@@ -1,2 +1,0 @@
-module FundraiserProfilesHelper
-end
