@@ -3,9 +3,9 @@
 class AvatarUploader < CarrierWave::Uploader::Base
 
   VERSION_SIZES = {
-    ico: [25, 25],
-    thumb: [50, 50],
-    medium: [150, 150]
+    ico: [25, 19],
+    thumb: [50, 38],
+    medium: [305, 230]
   }
 
   # Include RMagick or MiniMagick support:

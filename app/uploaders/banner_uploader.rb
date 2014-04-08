@@ -3,8 +3,8 @@
 class BannerUploader < CarrierWave::Uploader::Base
 
   VERSION_SIZES = {
-    large: [1170, 300],
-    medium: [585, 150]
+    large: [1400, 614],
+    medium: [342, 150]
   }
 
   # Include RMagick or MiniMagick support:
