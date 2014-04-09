@@ -10,9 +10,13 @@ class Campaign < ActiveRecord::Base
   validates_associated :picture
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: proc {|attributes| attributes['name'].blank? }
+
+  delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   after_initialize do
-    self.build_picture if self.new_record?
+    build_picture if new_record?
+    sponsor_categories.build if sponsor_categories.blank?
   end
 
   CAUSES = [

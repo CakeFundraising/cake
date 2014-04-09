@@ -3,6 +3,7 @@ class Fundraiser < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
+  has_many :campaigns
 
   validates :name, :email, :phone, :cause, presence: true
   validates :email, email: true

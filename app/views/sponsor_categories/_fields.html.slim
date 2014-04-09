@@ -1,0 +1,16 @@
+.nested-fields
+  = f.inputs do
+    .row
+      .col-md-6
+        = f.input :name, placeholder: 'Highest pledge category, i.e. Platinum Sponsors'
+      .col-md-6
+        row
+          .col-md-6
+            = f.label :min_value
+          .col-md-6
+            = f.label :max_value
+        .input-group
+          = f.input :min_value, label: false
+          span.input-group-addon to
+          = f.input :max_value, label: false
+    = link_to_remove_association "Remove", f, class:'pull-right'

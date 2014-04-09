@@ -1,0 +1,15 @@
+br
+
+h3 Congratulations on creating your fundraiser!
+p Now share your fundraising page with potential sponsors who may value website traffic from your supporters.
+p Sponsors can easily pledge to make "per-click-donations" using a simple template.
+
+h3 Copy the link to invite sponsors to pledge
+.input-group
+  input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
+    span.input-group-btn
+      button#clipboard.btn.btn-default data-clipboard-target="campaign_url" Copy
+
+.help-block 
+  | Need help findind Sponsors? 
+  span = link_to "Click here", "#"

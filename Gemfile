@@ -12,14 +12,19 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 
+#JS
+gem 'rails-timeago'
+gem 'chosen-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'zeroclipboard-rails'
+
 #Views
 gem 'slim'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
-gem 'rails-timeago'
-gem 'chosen-rails'
+gem "cocoon"
 
 #DB
 gem 'pg'

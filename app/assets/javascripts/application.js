@@ -17,4 +17,7 @@
 //= require chosen-jquery
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require bootstrap-datepicker
+//= require zeroclipboard
+//= require cocoon
 //= require_tree .

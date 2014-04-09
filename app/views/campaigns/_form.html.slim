@@ -1,3 +1,8 @@
+- if @campaign.persisted?
+  br
+  = link_to "Make Visible", @campaign, class:'btn btn-success pull-right'
+  = link_to "Preview", @campaign, class:'btn btn-primary pull-right'
+
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#main" Tell your story
@@ -5,43 +10,17 @@ ul.nav.nav-tabs
     a data-toggle="tab" href="#sponsors_donations" Sponsors & Donations
   li
     a data-toggle="tab" href="#share" Solicit Sponsors
-
 .tab-content
   #main.tab-pane.active
-    = link_to "Preview", @campaign if @campaign.persisted?
-    br 
-    = semantic_form_for @campaign do |f|
-      = f.inputs do
-        .row
-          .col-md-5.col-md-offset-1
-            = f.input :title
-            = f.input :cause
-          .col-md-5
-            = f.input :launch_date
-            = f.input :end_date
-            = f.input :headline
-        .row
-          .col-md-10.col-md-offset-1
-            = f.input :story, input_html: {rows: 5}
-        .row
-          .col-md-5.col-md-offset-1
-            = render partial:'pictures/banner_form', locals:{f: f}
-          .col-md-6
-            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-        br
-        = f.actions do
-          .text-center
-            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-
+    = render partial:'campaigns/tabs/main'
   #sponsors_donations.tab-pane
-    = link_to "Preview", @campaign if @campaign.persisted?
-    br 
-    = semantic_form_for @campaign do |f|
-      = f.inputs do
-        = f.input :show_donation, as: :radio, collection: Campaign::DONATIONS_SETTINGS
-
-      = f.actions do
-        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success'}
+    = render partial:'campaigns/tabs/sponsor_donations_form'
   #share.tab-pane
-    = link_to "Preview", @campaign if @campaign.persisted?
-    br
+    = render partial:'campaigns/tabs/share' if @campaign.persisted?
+
+/ jquery upload template
+script#template-upload type="text/x-tmpl" 
+  .upload 
+    | {%=o.name%}
+    .progress
+      .progress-bar.bar style=("width: 0%") 

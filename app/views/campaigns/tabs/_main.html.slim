@@ -1,0 +1,30 @@
+br
+= semantic_form_for @campaign do |f|
+  = f.inputs do
+    .row
+      .col-md-5.col-md-offset-1
+        = f.input :title
+        = f.input :cause, as: :select, collection: Campaign::CAUSES
+      .col-md-5
+        .row
+          .col-md-6
+            = f.label :launch_date
+          .col-md-6
+            = f.label :end_date
+        .input-daterange.input-group
+          = f.input :launch_date, label: false
+          span.input-group-addon to
+          = f.input :end_date, label: false
+        = f.input :headline
+    .row
+      .col-md-10.col-md-offset-1
+        = f.input :story, input_html: {rows: 5}
+    .row
+      .col-md-5.col-md-offset-1
+        = render partial:'pictures/banner_form', locals:{f: f}
+      .col-md-6
+        = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+    br
+    = f.actions do
+      .text-center
+        = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

@@ -54,7 +54,7 @@ nav.navbar.navbar-default role="navigation"
               = menu_item "Home", root_path
               = menu_item "Public Profile", fundraiser_path(current_fundraiser) if current_fundraiser.present?
               = menu_item "Pledges", root_path
-              = menu_item "Campaigns", root_path
+              = menu_item "Campaigns", campaigns_path
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else
