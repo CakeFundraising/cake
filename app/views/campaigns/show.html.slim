@@ -1,33 +1,19 @@
-p#notice = notice
+= link_to 'Edit Campaign', edit_campaign_path(@campaign)
 
-p
-  strong Title:
-  = @campaign.title
-p
-  strong Launch date:
-  = @campaign.launch_date
-p
-  strong End date:
-  = @campaign.end_date
-p
-  strong Cause:
-  = @campaign.cause
-p
-  strong Headline:
-  = @campaign.headline
-p
-  strong Story:
-  = @campaign.story
-p
-  strong Show donation:
-  = @campaign.show_donation
-p
-  strong Status:
-  = @campaign.status
-p
-  strong Fundraiser:
-  = @campaign.fundraiser_id
+.header
+  .banner = image_tag @campaign.banner.url(:large)
 
-= link_to 'Edit', edit_campaign_path(@campaign)
-'|
-= link_to 'Back', campaigns_path
+.content.row
+  .col-md-6.col-md-offset-1
+    h1 = @campaign.title
+    .share-links 
+    h3 = @campaign.headline
+    p = @campaign.story
+  .col-md-4
+    .thumbnail
+      .help-block Campaign ends in:
+      .campaign-end
+        = @campaign.end_date
+      avatar 
+        = image_tag @campaign.avatar.url(:medium)
+        .caption = @campaign.avatar_caption

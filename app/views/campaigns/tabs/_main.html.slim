@@ -16,9 +16,9 @@ br
               | Launch Date
               abbr title="required" *
         .input-daterange.input-group
-          = f.input :launch_date, label: false
+          = f.input :launch_date, as: :string, label: false
           span.input-group-addon to
-          = f.input :end_date, label: false
+          = f.input :end_date, as: :string, label: false
         = f.input :headline
     .row
       .col-md-10.col-md-offset-1

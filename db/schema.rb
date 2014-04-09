@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20140408203402) do
 
   create_table "campaigns", force: true do |t|
     t.string   "title"
-    t.string   "launch_date"
-    t.string   "end_date"
+    t.datetime "launch_date"
+    t.datetime "end_date"
     t.string   "cause"
     t.string   "headline"
     t.text     "story"
