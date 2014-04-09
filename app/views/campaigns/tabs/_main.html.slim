@@ -8,9 +8,13 @@ br
       .col-md-5
         .row
           .col-md-6
-            = f.label :launch_date
+            = f.label :launch_date do
+              | Launch Date
+              abbr title="required" *
           .col-md-6
-            = f.label :end_date
+            = f.label :end_date do
+              | Launch Date
+              abbr title="required" *
         .input-daterange.input-group
           = f.input :launch_date, label: false
           span.input-group-addon to
@@ -24,6 +28,8 @@ br
         = render partial:'pictures/banner_form', locals:{f: f}
       .col-md-6
         = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+
+    = f.input :step, as: :hidden, input_html:{value: :sponsors_donations} 
     br
     = f.actions do
       .text-center

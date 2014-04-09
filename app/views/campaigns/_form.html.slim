@@ -1,6 +1,6 @@
 - if @campaign.persisted?
   br
-  = link_to "Make Visible", @campaign, class:'btn btn-success pull-right'
+  = link_to "Make Visible", make_visible_campaign_path(@campaign), method: :patch, class:'btn btn-success pull-right' if @campaign.private?
   = link_to "Preview", @campaign, class:'btn btn-primary pull-right'
 
 ul.nav.nav-tabs
@@ -24,3 +24,10 @@ script#template-upload type="text/x-tmpl"
     | {%=o.name%}
     .progress
       .progress-bar.bar style=("width: 0%") 
+
+javascript:
+  // Javascript to enable link to tab
+  var hash = document.location.hash;
+  if (hash) {
+    $('.nav-tabs a[href='+hash+']').tab('show');
+  } 

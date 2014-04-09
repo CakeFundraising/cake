@@ -3,8 +3,9 @@ br
   = f.inputs do
     = render partial:'sponsor_categories/form', locals:{f: f}
     h3 Donations
-    = f.input :show_donation, as: :radio, collection: Campaign::DONATIONS_SETTINGS, label: false
+    = f.input :show_donation, as: :radio, collection: CampaignsHelper::DONATIONS_SETTINGS, label: false
 
+    = f.input :step, as: :hidden, input_html:{value: :share} 
   = f.actions do
     .text-center
       = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

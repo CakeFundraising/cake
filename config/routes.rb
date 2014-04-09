@@ -1,6 +1,4 @@
 Cake::Application.routes.draw do
-  resources :campaigns
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: 
@@ -12,6 +10,11 @@ Cake::Application.routes.draw do
     get :get_started
   end
 
+  resources :campaigns do
+    member do
+      patch :make_visible
+    end
+  end
   resources :fundraisers, except: :destroy
 
   namespace :locations do

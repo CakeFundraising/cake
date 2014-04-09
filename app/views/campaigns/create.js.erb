@@ -1,0 +1,6 @@
+<% if @campaign.errors.present? %>
+  alert("Make sure you've completed all the required fields.");
+<% else %>
+  $('.banner').html("<%=j image_tag(@campaign.banner.medium.url, class: 'img-responsive img-thumbnail') %>");
+  $('.avatar').html("<%=j image_tag(@campaign.avatar.medium.url, class: 'img-responsive img-thumbnail') %>");
+<% end %>

@@ -2,6 +2,13 @@
 en:
   application:
     name: CakeFundraising
+  formtastic:
+    labels:
+      campaign:
+        show_donation:
+          campaign_page_only: Display donation button on Campaign page only.
+          campaign_and_pledge_page: Display donation button on Campaign page and Sponsor Pledge pages.
+          no_donations: Do not solicit donations.
   links:
     user:
       sign_in: Sign In
