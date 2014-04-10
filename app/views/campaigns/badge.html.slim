@@ -1,0 +1,8 @@
+.media
+  = link_to campaign_url(@campaign), target: :_blank, class:'pull-left' do
+    = image_tag @campaign.avatar.medium.url, class:'media-object' 
+  .media-body
+    h4.media-heading = link_to @campaign.title, campaign_url(@campaign), target: :_blank
+    .end-date.help-block
+      span Ends on:
+      strong = @campaign.end_date

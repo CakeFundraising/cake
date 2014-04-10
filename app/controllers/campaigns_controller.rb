@@ -41,6 +41,12 @@ class CampaignsController < InheritedResources::Base
     redirect_to resource if resource.make_visible!
   end
 
+  def badge
+    @campaign = resource.decorate
+    render layout: false
+    response.headers.except! 'X-Frame-Options'
+  end
+
   protected
 
   def permitted_params

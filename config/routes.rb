@@ -17,6 +17,7 @@ Cake::Application.routes.draw do
         get :share
       end
       patch :make_visible
+      get :badge
     end
   end
 

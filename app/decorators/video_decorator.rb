@@ -1,4 +1,4 @@
-class VideoDecorator < Draper::Decorator
+class VideoDecorator < ApplicationDecorator
   delegate_all
 
   def thumbnail
