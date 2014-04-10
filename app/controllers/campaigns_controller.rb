@@ -2,6 +2,10 @@ class CampaignsController < InheritedResources::Base
   respond_to :html
   respond_to :js, only: [:create, :update]
 
+  def show
+    @campaign = resource.decorate
+  end
+
   def create
     @campaign = current_fundraiser.campaigns.build(*resource_params)
 

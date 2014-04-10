@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
   REGEX = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/
 
   validates :url, :recordable_type, :recordable_id, presence: true
-  validates :url, format: { with: REGEX, message: "Invalid youtube link." }
+  validates :url, format: { with: REGEX, message: "Invalid youtube link." }, if: :new_record?
 
   private
 

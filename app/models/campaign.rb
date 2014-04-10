@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attributes| attributes[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: proc {|attributes| attributes[:name].blank? }
 
-  validates :title, :launch_date, :end_date, :cause, :scope, :headline, :status, :fundraiser, presence: true
+  validates :title, :launch_date, :end_date, :cause, :scope, :headline, :story, :status, :fundraiser, presence: true
   validates_associated :picture
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
