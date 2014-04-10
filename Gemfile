@@ -26,7 +26,7 @@ gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
 gem "cocoon"
 
-#DB
+#Storage
 gem 'pg'
 
 #Server

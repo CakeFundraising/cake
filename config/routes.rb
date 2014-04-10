@@ -12,9 +12,14 @@ Cake::Application.routes.draw do
 
   resources :campaigns do
     member do
+      scope :edit do
+        get :sponsors_and_donations
+        get :share
+      end
       patch :make_visible
     end
   end
+
   resources :fundraisers, except: :destroy
 
   namespace :locations do

@@ -1,1 +1,18 @@
-== render 'form'
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#main" Tell your story
+  li 
+    a href="" Sponsors & Donations
+  li
+    a href="" Solicit Sponsors
+
+.tab-content
+  #main.tab-pane.active
+    = render partial:'campaigns/form/main'
+
+/ jquery upload template
+script#template-upload type="text/x-tmpl" 
+  .upload 
+    | {%=o.name%}
+    .progress
+      .progress-bar.bar style=("width: 0%") 

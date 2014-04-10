@@ -1,0 +1,13 @@
+= render partial:'campaigns/form/actions'
+
+ul.nav.nav-tabs
+  li
+    a href="" Tell your story
+  li
+    a href="" Sponsors & Donations
+  li.active
+    a data-toggle="tab" href="#share" Solicit Sponsors
+
+.tab-content
+  #share.tab-pane.active
+    = render partial:'campaigns/form/share'
