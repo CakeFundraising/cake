@@ -11,9 +11,14 @@ class FundraisersController < InheritedResources::Base
     @fundraiser = Fundraiser.new(*resource_params)
     @fundraiser.build_location(resource_params.first['location_attributes'])
     @fundraiser.manager = current_user
-    create!
-    current_user.set_fundraiser(@fundraiser)
-    session[:new_user] = nil if session[:new_user]
+    create! do |success, failure|
+      current_user.set_fundraiser(@fundraiser)
+      session[:new_user] = nil if session[:new_user]
+
+      success.html do
+        redirect_to new_campaign_path, notice: 'Now you can start creating a new campaign!'  
+      end
+    end
   end
 
   def permitted_params
