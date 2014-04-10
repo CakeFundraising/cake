@@ -5,6 +5,7 @@ br
       .col-md-5.col-md-offset-1
         = f.input :title
         = f.input :cause, as: :select, collection: Campaign::CAUSES
+        = f.input :scope, as: :select, collection: Campaign::SCOPES
       .col-md-5
         .row
           .col-md-6
@@ -26,6 +27,7 @@ br
     .row
       .col-md-5.col-md-offset-1
         = render partial:'pictures/banner_form', locals:{f: f}
+        = render partial:'videos/form', locals:{f: f}
       .col-md-6
         = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
 

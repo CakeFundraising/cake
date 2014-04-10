@@ -1,6 +1,7 @@
 br
 = semantic_form_for @campaign do |f|
   = f.inputs do
+    = f.input :no_sponsor_categories
     = render partial:'sponsor_categories/form', locals:{f: f}
     h3 Donations
     = f.input :show_donation, as: :radio, collection: CampaignsHelper::DONATIONS_SETTINGS, label: false
