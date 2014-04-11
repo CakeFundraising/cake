@@ -31,7 +31,7 @@ gem 'draper'
 gem 'pg'
 
 #Server
-gem 'thin'
+gem 'thin', group: :development
 
 #Image processing
 gem 'carrierwave'
@@ -84,14 +84,16 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+group :production do
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+  gem 'rails_12factor'
+end
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
