@@ -9,7 +9,7 @@
     .share-links 
     h3 = @campaign.headline
     p = @campaign.story
-    p = @campaign.video.iframe
+    p = @campaign.video.iframe if @campaign.video.present?
   .col-md-4
     .thumbnail
       .help-block Campaign ends in:
