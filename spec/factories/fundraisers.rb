@@ -5,9 +5,6 @@ FactoryGirl.define do
     cause { Faker::Lorem.sentence }
     min_pledge{ Fundraiser::MIN_PLEDGES.sample }
     min_click_donation{ Fundraiser::MIN_CLICK_DONATIONS.sample }
-    donations_kind false
-    tax_exempt false
-    unsolicited_pledges false
     manager_name{ Faker::Name.name }
     manager_title{ Faker::Name.title }
     manager_email{ Faker::Internet.safe_email }

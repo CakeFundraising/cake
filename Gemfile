@@ -71,6 +71,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'callback_skipper'
+  gem 'database_cleaner'
 end
 
 group :test do
@@ -79,7 +80,6 @@ group :test do
   gem 'capybara'
   gem 'webmock'
   gem 'selenium-webdriver'
-  gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
 end

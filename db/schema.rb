@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20140410195437) do
     t.string   "cause"
     t.integer  "min_pledge"
     t.integer  "min_click_donation"
-    t.boolean  "donations_kind"
-    t.boolean  "tax_exempt"
-    t.boolean  "unsolicited_pledges"
+    t.boolean  "donations_kind",         default: false
+    t.boolean  "tax_exempt",             default: false
+    t.boolean  "unsolicited_pledges",    default: false
     t.string   "manager_name"
     t.string   "manager_title"
     t.string   "manager_email"
