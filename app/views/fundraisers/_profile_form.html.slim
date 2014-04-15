@@ -4,7 +4,7 @@ h3 #{Fundraiser.model_name.human} profile
   = f.inputs nil do
     .row
       .col-md-6
-        = f.input :banner, as: :uploader
+        = render partial:'pictures/banner_form', locals:{f: f}
         br
         = f.input :cause, as: :select, collection: Fundraiser::CAUSES
         .row
@@ -20,7 +20,6 @@ h3 #{Fundraiser.model_name.human} profile
         = f.input :manager_email
         = f.input :manager_phone
       .col-md-6
-        = f.input :name
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
         = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
   .row

@@ -1,0 +1,20 @@
+= link_to 'Edit Campaign', edit_campaign_path(@campaign)
+
+.header
+  .banner = image_tag @campaign.banner.url(:large)
+
+.content.row
+  .col-md-6.col-md-offset-1
+    h1 = @campaign.title
+    .share-links 
+    h3 = @campaign.headline
+    p = @campaign.story
+    p = @campaign.video.iframe if @campaign.video.present?
+  .col-md-4
+    .thumbnail
+      .help-block Campaign ends in:
+      .campaign-end
+        = @campaign.end_date
+      avatar 
+        = image_tag @campaign.avatar.url(:medium)
+        .caption = @campaign.avatar_caption

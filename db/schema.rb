@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408002122) do
+ActiveRecord::Schema.define(version: 20140410195437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,22 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "campaigns", force: true do |t|
+    t.string   "title"
+    t.datetime "launch_date"
+    t.datetime "end_date"
+    t.string   "cause"
+    t.string   "scope"
+    t.string   "headline"
+    t.text     "story"
+    t.boolean  "no_sponsor_categories", default: false
+    t.string   "show_donation",         default: "no_donations"
+    t.string   "status",                default: "private"
+    t.integer  "fundraiser_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "email_settings", force: true do |t|
     t.boolean  "new_pledge",              default: false
     t.boolean  "pledge_increased",        default: false
@@ -64,14 +80,12 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   end
 
   create_table "fundraisers", force: true do |t|
-    t.string   "banner"
-    t.string   "avatar"
     t.string   "cause"
     t.integer  "min_pledge"
     t.integer  "min_click_donation"
-    t.boolean  "donations_kind"
-    t.boolean  "tax_exempt"
-    t.boolean  "unsolicited_pledges"
+    t.boolean  "donations_kind",         default: false
+    t.boolean  "tax_exempt",             default: false
+    t.boolean  "unsolicited_pledges",    default: false
     t.string   "manager_name"
     t.string   "manager_title"
     t.string   "manager_email"
@@ -79,7 +93,6 @@ ActiveRecord::Schema.define(version: 20140408002122) do
     t.string   "name"
     t.text     "mission"
     t.text     "supporter_demographics"
-    t.string   "organization_name"
     t.string   "phone"
     t.string   "website"
     t.string   "email"
@@ -102,6 +115,28 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   end
 
   add_index "locations", ["locatable_id", "locatable_type"], name: "index_locations_on_locatable_id_and_locatable_type", using: :btree
+
+  create_table "pictures", force: true do |t|
+    t.string   "avatar"
+    t.string   "avatar_caption"
+    t.string   "banner"
+    t.string   "banner_caption"
+    t.string   "picturable_type"
+    t.integer  "picturable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsor_categories", force: true do |t|
+    t.string   "name"
+    t.integer  "min_value_cents",    default: 0,     null: false
+    t.string   "min_value_currency", default: "USD", null: false
+    t.integer  "max_value_cents",    default: 0,     null: false
+    t.string   "max_value_currency", default: "USD", null: false
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "full_name"
@@ -133,5 +168,13 @@ ActiveRecord::Schema.define(version: 20140408002122) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "recordable_type"
+    t.integer  "recordable_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

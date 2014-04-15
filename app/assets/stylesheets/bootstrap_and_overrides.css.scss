@@ -1,1 +1,15 @@
 @import 'bootstrap';
+
+form{
+  .banner{
+    overflow: hidden;
+    width: 342px;
+    height: 150px;
+  }
+
+  .avatar{
+    overflow: hidden;
+    width: 305px;
+    height: 230px;
+  }
+}

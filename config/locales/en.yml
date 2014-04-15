@@ -2,6 +2,13 @@
 en:
   application:
     name: CakeFundraising
+  formtastic:
+    labels:
+      campaign:
+        show_donation:
+          campaign_page_only: Display donation button on Campaign page only.
+          campaign_and_pledge_page: Display donation button on Campaign page and Sponsor Pledge pages.
+          no_donations: Do not solicit donations.
   links:
     user:
       sign_in: Sign In
@@ -11,6 +18,10 @@ en:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
   activerecord: # customize attribute names for models here
+    models:
+      campaign:
+        one: Campaign
+        other: Campaigns
     attributes:
       fundraiser:
         banner: Banner photo upload
@@ -22,6 +33,7 @@ en:
         name: Name of Fundraiser
         mission: Fundraiser's Mission 
         supporter_demographic: Supporter Demographics
+        manager_name: Fundraising Manager
       email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased
@@ -30,3 +42,10 @@ en:
         missed_launch_campaign: Campaign launch date missed
         account_change: Change of account information
         public_profile_change: Change to public profile
+      campaign:
+        total_donation: Total Donation
+        pledges_quantity: No. of Pledges
+        total_pledges: Total Pledges
+        avg_donation: Avg. Donation
+        avg_donation_click: Avg. Donation/Click
+        conv_rate: Conv. Rate

@@ -2,24 +2,19 @@
 
 FactoryGirl.define do
   factory :fundraiser do
-    banner "MyString"
-    avatar "MyString"
-    cause "MyString"
-    min_pledge 1
-    min_click_donation 1
-    donations_kind false
-    tax_exempt false
-    unsolicited_pledges false
-    manager_name "MyString"
-    manager_title "MyString"
-    manager_email "MyString"
-    manager_phone "MyString"
-    name "MyString"
-    mission "MyText"
-    supporter_demographics "MyText"
-    organization_name "MyString"
-    phone "MyString"
-    website "MyString"
-    email "MyString"
+    cause { Faker::Lorem.sentence }
+    min_pledge{ Fundraiser::MIN_PLEDGES.sample }
+    min_click_donation{ Fundraiser::MIN_CLICK_DONATIONS.sample }
+    manager_name{ Faker::Name.name }
+    manager_title{ Faker::Name.title }
+    manager_email{ Faker::Internet.safe_email }
+    manager_phone{ Faker::PhoneNumber.phone_number }
+    name { Faker::Lorem.sentence }
+    mission { Faker::Lorem.paragraph }
+    supporter_demographics { Faker::Lorem.paragraph }
+    phone { Faker::PhoneNumber.phone_number }
+    website { Faker::Internet.domain_name }
+    email { Faker::Internet.safe_email }
+    location
   end
 end

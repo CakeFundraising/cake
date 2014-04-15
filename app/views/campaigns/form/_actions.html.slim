@@ -1,0 +1,4 @@
+- if @campaign.persisted?
+  br
+  = link_to 'Delete', @campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-danger pull-right'
+  = link_to "Preview", @campaign, class:'btn btn-primary pull-right'

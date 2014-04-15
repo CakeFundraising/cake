@@ -1,0 +1,3 @@
+= f.semantic_fields_for :picture do |p|
+  = p.input :avatar, as: :uploader, removable: false
+  = p.input :avatar_caption if defined? caption

@@ -12,20 +12,26 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 
+#JS
+gem 'rails-timeago'
+gem 'chosen-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'zeroclipboard-rails'
+
 #Views
 gem 'slim'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
-gem 'rails-timeago'
-gem 'chosen-rails'
+gem "cocoon"
+gem 'draper'
 
-#DB
+#Storage
 gem 'pg'
 
 #Server
-gem 'thin'
+gem 'thin', group: :development
 
 #Image processing
 gem 'carrierwave'
@@ -65,6 +71,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'callback_skipper'
+  gem 'database_cleaner'
 end
 
 group :test do
@@ -73,19 +80,20 @@ group :test do
   gem 'capybara'
   gem 'webmock'
   gem 'selenium-webdriver'
-  gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
 end
 
+group :production do
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+  gem 'rails_12factor'
+end
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

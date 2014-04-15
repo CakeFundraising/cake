@@ -1,14 +1,12 @@
 class CreateFundraisers < ActiveRecord::Migration
   def change
     create_table :fundraisers do |t|
-      t.string :banner
-      t.string :avatar
       t.string :cause
       t.integer :min_pledge
       t.integer :min_click_donation
-      t.boolean :donations_kind
-      t.boolean :tax_exempt
-      t.boolean :unsolicited_pledges
+      t.boolean :donations_kind, default: false
+      t.boolean :tax_exempt, default: false
+      t.boolean :unsolicited_pledges, default: false
       t.string :manager_name
       t.string :manager_title
       t.string :manager_email
@@ -16,7 +14,6 @@ class CreateFundraisers < ActiveRecord::Migration
       t.string :name
       t.text :mission
       t.text :supporter_demographics
-      t.string :organization_name
       t.string :phone
       t.string :website
       t.string :email

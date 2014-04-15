@@ -2,12 +2,11 @@
 
 FactoryGirl.define do
   factory :location do
-    address "MyString"
-    country_code "MyString"
-    state_code "MyString"
-    zip_code "MyString"
-    city "MyString"
-    locatable nil
-    name "MyString"
+    address{ Faker::Address.street_address }
+    country_code 'US'
+    state_code{ Faker::Address.state_abbr }
+    zip_code { Faker::Address.zip_code }
+    city { Faker::Address.city }
+    name { Faker::Lorem.sentence }
   end
 end

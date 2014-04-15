@@ -10,12 +10,33 @@ Cake::Application.routes.draw do
     get :get_started
   end
 
+  resources :campaigns do
+    member do
+      scope :edit do
+        get :sponsors_and_donations
+        get :share
+      end
+      patch :make_visible
+      get :badge
+    end
+  end
+  #FR CRUD
   resources :fundraisers, except: :destroy
+  
+  #FR Dashboard
+  namespace :fundraiser, controller: :fundraiser_dashboard do
+    get :home
+    get :billing
+    get :pending_pledges
+    get :campaigns
+    get :history
+  end
 
   namespace :locations do
     get :subregion_options
   end
 
+  #Settings
   scope :settings do
     get :public_profile, controller: :settings
 
