@@ -21,7 +21,7 @@ def build(qtty, assoc_or_table, opts=nil)
     if opts.present? and opts[:prebuild]
       yield(assoc_or_table, i)
     else
-      assoc_or_table.new { |record| yield(record, i) }
+      assoc_or_table.new{ |record| yield(record, i) }
     end
   end
 end

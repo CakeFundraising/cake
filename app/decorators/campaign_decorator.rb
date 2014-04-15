@@ -9,4 +9,8 @@ class CampaignDecorator < ApplicationDecorator
   def end_date
     object.end_date.strftime("%B %d, %Y")
   end
+
+  def to_s
+    object.title
+  end
 end

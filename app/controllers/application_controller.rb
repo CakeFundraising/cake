@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_fundraiser
-    current_user.fundraiser
+    current_user.fundraiser if current_user.present?
   end
 end

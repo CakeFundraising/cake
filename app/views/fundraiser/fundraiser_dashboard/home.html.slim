@@ -1,0 +1,31 @@
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#home" Home
+  li 
+    = link_to "Billing", fundraiser_billing_path
+  li
+    = link_to "Pending Pledges", fundraiser_pending_pledges_path
+  li
+    = link_to Campaign.model_name.human(count: 2), fundraiser_campaigns_path
+  li
+    = link_to "History", fundraiser_history_path
+
+.tab-content
+  #home.tab-pane.active
+    = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
+    = render partial:'fundraisers/media'
+    hr
+    .analytics
+      h3 Active Campaign Donations $7,899
+      h4 Outstanding Invoices $32,000 
+      .row
+        .col-md-6
+          = basic_list_item("Total Fundraised Lifetime", "$128")
+          = basic_list_item("Overall Fundraiser Ranking", "3")
+          = basic_list_item("Ranking in Cause", "6")
+          = basic_list_item("Ranking in Location", "2")
+        .col-md-6
+          = basic_list_item("Total Clicks Generated", "587,551,666")
+          = basic_list_item("Avg. Pledge Efficency", "23%")
+          = basic_list_item("Avg. Reach", "2,888,996")
+          = basic_list_item("Avg. Clicks/Campaign", "3,588,146")

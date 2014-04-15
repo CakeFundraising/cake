@@ -1,6 +1,6 @@
 class Campaign < ActiveRecord::Base
   include Statusable
-  has_statuses :private, :public, :launched
+  has_statuses :active, :past
 
   attr_accessor :step 
 
@@ -39,6 +39,9 @@ class Campaign < ActiveRecord::Base
     :campaign_and_pledge_page,
     :no_donations
   ]
+
+  scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
+  scope :past, ->{ where("end_date < ?", Date.today) }
 
   after_initialize do
     build_picture if picture.blank?

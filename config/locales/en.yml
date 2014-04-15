@@ -18,6 +18,10 @@ en:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
   activerecord: # customize attribute names for models here
+    models:
+      campaign:
+        one: Campaign
+        other: Campaigns
     attributes:
       fundraiser:
         banner: Banner photo upload
@@ -38,3 +42,10 @@ en:
         missed_launch_campaign: Campaign launch date missed
         account_change: Change of account information
         public_profile_change: Change to public profile
+      campaign:
+        total_donation: Total Donation
+        pledges_quantity: No. of Pledges
+        total_pledges: Total Pledges
+        avg_donation: Avg. Donation
+        avg_donation_click: Avg. Donation/Click
+        conv_rate: Conv. Rate

@@ -26,7 +26,7 @@
     u.email = "user_#{i}@example.com"
     u.full_name = Faker::Name.first_name
     u.password = 'password'
-    u.roles = [User.roles_list.sample]
+    u.roles = [:fundraiser]
     u.confirmed_at = Time.now
     u.provider = User.omniauth_providers.sample
     u.uid = SecureRandom.hex(8)
