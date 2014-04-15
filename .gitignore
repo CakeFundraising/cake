@@ -25,3 +25,7 @@
 /gitstats
 
 /coverage
+
+# Ignore sublime project files
+cake.sublime-project
+cake.sublime-workspace
