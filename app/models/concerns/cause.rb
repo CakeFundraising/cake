@@ -1,7 +1,17 @@
 module Cause
   extend ActiveSupport::Concern
 
+  # DON'T CHANGE THE ORDER, IF YOU NEED TO ADD JUST APPEND TO THE LIST
   CAUSES = [
+    "International Relief",
+    "US Relief",
+    "Education & Schools",
+    "Sports, Parks & Recreation",
+    "Medical, Hospitals & Clinics",
+    "Churches & Religion",
+    "Arts & Culture",
+    "Walks, Roads & Bridges",
+    "Infrastructure & Utility",
     "Food & Hunger",
     "Wildlife & Environment",
     "Religious & Faith Based",
@@ -19,9 +29,7 @@ module Cause
     "Business & Entrepeneurs",
     "Group & Individual Projects",
     "Military & Veterans",
-    "Memorials, Tributes & Awards",
-    "International Relief",
-    "US Relief",
+    "Memorials, Tributes & Awards"
   ]
 
   def causes=(causes)

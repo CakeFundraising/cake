@@ -1,6 +1,7 @@
 module Scope
   extend ActiveSupport::Concern
 
+  # DON'T CHANGE THE ORDER, IF YOU NEED TO ADD JUST APPEND TO THE LIST
   SCOPES = %w{Global National Regional Local}
 
   def scopes=(scopes)

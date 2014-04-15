@@ -1,6 +1,7 @@
 module CauseRequirement
   extend ActiveSupport::Concern
 
+  # DON'T CHANGE THE ORDER, IF YOU NEED TO ADD JUST APPEND TO THE LIST
   CAUSE_REQUIREMENTS = [:tax_exempt, :donations_in_kind]
 
   def cause_requirements=(cause_requirements)

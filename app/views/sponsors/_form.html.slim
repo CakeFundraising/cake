@@ -1,21 +1,27 @@
 = link_to 'View Profile', @sponsor
 
+h3 #{Sponsor.model_name.human} profile
+
 = semantic_form_for @sponsor do |f|
   = f.inputs do
-    = f.input :mission
-    = f.input :customer_demographics
-    = f.input :manager_name
-    = f.input :manager_title
-    = f.input :manager_email
-    = f.input :manager_phone
-    = f.input :name
-    = f.input :phone
-    = f.input :website
-    = f.input :email
-    = f.input :cause_requirements
-    = f.input :scopes
-    = f.input :causes
-    = f.input :manager
+    .row 
+      .col-md-6
+        = render partial:'pictures/banner_form', locals:{f: f}
+        = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+        = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS
+        = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES
+      .col-md-6
+        = f.input :name
+        = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
+        = f.input :customer_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :manager_name
+        = f.input :manager_title
+        = f.input :manager_email
+        = f.input :manager_phone
+        = f.input :phone
+        = f.input :website
+        = f.input :email
 
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}

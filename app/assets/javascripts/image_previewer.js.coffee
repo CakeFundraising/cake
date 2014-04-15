@@ -24,9 +24,20 @@ ready = ->
       reader.readAsDataURL input.files[0]
     return
 
-  image_inputs = "#campaign_picture_attributes_banner, #campaign_picture_attributes_avatar, #fundraiser_picture_attributes_avatar, #fundraiser_picture_attributes_banner"
+  picturables = [
+    "#campaign",
+    "#fundraiser",
+    "#sponsor"
+  ]
 
-  $(image_inputs).change ->
+  pictures_attributes = [
+    "picture_attributes_banner",
+    "picture_attributes_avatar"
+  ]
+
+  image_inputs = (picturable + "_" + pictures_attributes[0] + "," + picturable + "_" + pictures_attributes[1] for picturable in picturables)
+
+  $(image_inputs.toString()).change ->
     readURL this
     return
 

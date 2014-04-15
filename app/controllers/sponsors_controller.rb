@@ -17,8 +17,9 @@ class SponsorsController < InheritedResources::Base
 
   def permitted_params
     params.permit(sponsor: [:name, :mission, :manager_name, :manager_title, :manager_email, :manager_phone, 
-      :customer_demographics, :cause_requirements, :scopes, :causes, :phone, :email, :website,
+      :customer_demographics, :phone, :email, :website,
+      cause_requirements: [], scopes: [], causes: [],
       location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
-      picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption] ])
+      picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache] ])
   end
 end
