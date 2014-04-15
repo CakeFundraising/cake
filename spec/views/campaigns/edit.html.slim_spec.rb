@@ -9,7 +9,6 @@ describe "campaigns/edit" do
       :cause => "MyString",
       :headline => "MyString",
       :story => "MyText",
-      :show_donation => "MyString",
       :status => "MyString",
       :fundraiser_id => 1
     ))
@@ -26,7 +25,6 @@ describe "campaigns/edit" do
       assert_select "input#campaign_cause[name=?]", "campaign[cause]"
       assert_select "input#campaign_headline[name=?]", "campaign[headline]"
       assert_select "textarea#campaign_story[name=?]", "campaign[story]"
-      assert_select "input#campaign_show_donation[name=?]", "campaign[show_donation]"
       assert_select "input#campaign_status[name=?]", "campaign[status]"
       assert_select "input#campaign_fundraiser_id[name=?]", "campaign[fundraiser_id]"
     end

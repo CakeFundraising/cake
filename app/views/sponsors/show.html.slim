@@ -1,0 +1,48 @@
+p#notice = notice
+
+p
+  strong Mission:
+  = @sponsor.mission
+p
+  strong Customer demographics:
+  = @sponsor.customer_demographics
+p
+  strong Manager name:
+  = @sponsor.manager_name
+p
+  strong Manager title:
+  = @sponsor.manager_title
+p
+  strong Manager email:
+  = @sponsor.manager_email
+p
+  strong Manager phone:
+  = @sponsor.manager_phone
+p
+  strong Name:
+  = @sponsor.name
+p
+  strong Phone:
+  = @sponsor.phone
+p
+  strong Website:
+  = @sponsor.website
+p
+  strong Email:
+  = @sponsor.email
+p
+  strong Cause requirements:
+  = @sponsor.cause_requirements
+p
+  strong Campaign scopes:
+  = @sponsor.scopes
+p
+  strong Causes:
+  = @sponsor.causes
+p
+  strong Manager:
+  = @sponsor.manager_id
+
+= link_to 'Edit', edit_sponsor_path(@sponsor)
+'|
+= link_to 'Back', sponsors_path

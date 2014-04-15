@@ -20,8 +20,10 @@ Cake::Application.routes.draw do
       get :badge
     end
   end
+
   #FR CRUD
   resources :fundraisers, except: :destroy
+  resources :sponsors, except: :destroy
   
   #FR Dashboard
   namespace :fundraiser, controller: :fundraiser_dashboard do
@@ -39,8 +41,6 @@ Cake::Application.routes.draw do
   #Settings
   scope :settings do
     get :public_profile, controller: :settings
-
-    get :complete_account, to: redirect('fundraisers/new')
 
     get :account, to: redirect('users/edit')
     resource :email_settings, only: [:edit, :update]

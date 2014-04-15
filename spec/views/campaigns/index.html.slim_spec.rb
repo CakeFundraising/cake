@@ -10,7 +10,6 @@ describe "campaigns/index" do
         :cause => "Cause",
         :headline => "Headline",
         :story => "MyText",
-        :show_donation => "Show Donation",
         :status => "Status",
         :fundraiser_id => 1
       ),
@@ -21,7 +20,6 @@ describe "campaigns/index" do
         :cause => "Cause",
         :headline => "Headline",
         :story => "MyText",
-        :show_donation => "Show Donation",
         :status => "Status",
         :fundraiser_id => 1
       )
@@ -37,7 +35,6 @@ describe "campaigns/index" do
     assert_select "tr>td", :text => "Cause".to_s, :count => 2
     assert_select "tr>td", :text => "Headline".to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => "Show Donation".to_s, :count => 2
     assert_select "tr>td", :text => "Status".to_s, :count => 2
     assert_select "tr>td", :text => 1.to_s, :count => 2
   end

@@ -9,7 +9,6 @@ describe "campaigns/show" do
       :cause => "Cause",
       :headline => "Headline",
       :story => "MyText",
-      :show_donation => "Show Donation",
       :status => "Status",
       :fundraiser_id => 1
     ))
@@ -24,7 +23,6 @@ describe "campaigns/show" do
     rendered.should match(/Cause/)
     rendered.should match(/Headline/)
     rendered.should match(/MyText/)
-    rendered.should match(/Show Donation/)
     rendered.should match(/Status/)
     rendered.should match(/1/)
   end

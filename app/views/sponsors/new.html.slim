@@ -1,0 +1,17 @@
+.header.text-center
+  h1 First of all..
+  .lead Tell us you are sponsoring for. Please complete the form.
+
+= semantic_form_for @sponsor do |f|
+    = f.inputs nil do
+      .row
+        .col-md-6
+          = f.input :name
+          = render partial:'locations/form', locals:{f: f}
+        .col-md-6
+          = f.input :email
+          = f.input :phone
+    .row
+      .col-md-3.col-md-offset-9
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg btn-block'}

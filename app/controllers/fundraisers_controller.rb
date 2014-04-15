@@ -2,15 +2,11 @@ class FundraisersController < InheritedResources::Base
   respond_to :html
   respond_to :js, only: :update
 
-  def new
-    @fundraiser = Fundraiser.new
-    @fundraiser.build_location
-  end
-
   def create
     @fundraiser = Fundraiser.new(*resource_params)
     @fundraiser.build_location(resource_params.first['location_attributes'])
     @fundraiser.manager = current_user
+
     create! do |success, failure|
       current_user.set_fundraiser(@fundraiser)
       session[:new_user] = nil if session[:new_user]

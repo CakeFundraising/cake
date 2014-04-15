@@ -1,0 +1,19 @@
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#profile" Public Profile
+  li 
+    = link_to "Account", account_path
+  li
+    = link_to "Email Notifications", edit_email_settings_path
+
+.tab-content
+  #profile.tab-pane.active
+    br
+    = render partial:'fundraisers/form'
+
+    / jquery upload template
+    script#template-upload type="text/x-tmpl" 
+      .upload 
+        | {%=o.name%}
+        .progress
+          .progress-bar.bar style=("width: 0%") 

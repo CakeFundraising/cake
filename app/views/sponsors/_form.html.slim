@@ -1,0 +1,21 @@
+= link_to 'View Profile', @sponsor
+
+= semantic_form_for @sponsor do |f|
+  = f.inputs do
+    = f.input :mission
+    = f.input :customer_demographics
+    = f.input :manager_name
+    = f.input :manager_title
+    = f.input :manager_email
+    = f.input :manager_phone
+    = f.input :name
+    = f.input :phone
+    = f.input :website
+    = f.input :email
+    = f.input :cause_requirements
+    = f.input :scopes
+    = f.input :causes
+    = f.input :manager
+
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}

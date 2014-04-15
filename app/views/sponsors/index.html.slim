@@ -1,0 +1,47 @@
+h1 Listing sponsors
+
+table
+  thead
+    tr
+      th Mission
+      th Customer demographics
+      th Manager name
+      th Manager title
+      th Manager email
+      th Manager phone
+      th Name
+      th Phone
+      th Website
+      th Email
+      th Cause requirements mask
+      th Campaign scopes mask
+      th Causes mask
+      th Manager
+      th
+      th
+      th
+
+  tbody
+    - @sponsors.each do |sponsor|
+      tr
+        td = sponsor.mission
+        td = sponsor.customer_demographics
+        td = sponsor.manager_name
+        td = sponsor.manager_title
+        td = sponsor.manager_email
+        td = sponsor.manager_phone
+        td = sponsor.name
+        td = sponsor.phone
+        td = sponsor.website
+        td = sponsor.email
+        td = sponsor.cause_requirements
+        td = sponsor.scopes
+        td = sponsor.causes
+        td = sponsor.manager_id
+        td = link_to 'Show', sponsor
+        td = link_to 'Edit', edit_sponsor_path(sponsor)
+        td = link_to 'Destroy', sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Sponsor', new_sponsor_path

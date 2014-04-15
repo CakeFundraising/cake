@@ -38,23 +38,23 @@ nav.navbar.navbar-default role="navigation"
         /     input.form-control placeholder="Search" type="text" 
         /   button.btn.btn-default type="submit" Submit
         ul.nav.navbar-nav.navbar-right
-          - if current_fundraiser.present?
-            li.dropdown
-              a.dropdown-toggle data-toggle="dropdown" href="#" 
-                | Settings 
-                span.glyphicon.glyphicon-cog
-              ul.dropdown-menu
-                = menu_item "Edit Profile", public_profile_path
-                = menu_item "Account Settings", account_path
-                = menu_item "Email Notifications", edit_email_settings_path
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" 
+              | Settings 
+              span.glyphicon.glyphicon-cog
+            ul.dropdown-menu
+              = menu_item "Edit Profile", public_profile_path
+              = menu_item "Account Settings", account_path
+              = menu_item "Email Notifications", edit_email_settings_path
           li.dropdown
             a.dropdown-toggle data-toggle="dropdown" href="#" = current_user.full_name
               b.caret
             ul.dropdown-menu
-              = menu_item "Home", fundraiser_home_path
+              = menu_item "Home", fundraiser_home_path if current_fundraiser.present?
               = menu_item "Public Profile", fundraiser_path(current_fundraiser) if current_fundraiser.present?
+              = menu_item "Public Profile", sponsor_path(current_sponsor) if current_sponsor.present?
               = menu_item "Pledges", root_path
-              = menu_item "Campaigns", campaigns_path
+              = menu_item "Campaigns", campaigns_path if current_fundraiser.present?
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else

@@ -33,13 +33,6 @@ class Campaign < ActiveRecord::Base
   ]
   validates_inclusion_of :cause, in: CAUSES
 
-
-  DONATIONS_SETTINGS = [
-    :campaign_page_only,
-    :campaign_and_pledge_page,
-    :no_donations
-  ]
-
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
 
