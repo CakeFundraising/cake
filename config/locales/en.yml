@@ -4,7 +4,10 @@ en:
     name: CakeFundraising
   formtastic:
     labels:
-      campaign:
+      sponsor:
+        cause_requirements:
+          tax_exempt: Must be 503c Tax Exempt
+          donations_in_kind: Must accept donations in kind
   links:
     user:
       sign_in: Sign In
@@ -45,3 +48,8 @@ en:
         avg_donation: Avg. Donation
         avg_donation_click: Avg. Donation/Click
         conv_rate: Conv. Rate
+      sponsor:
+        causes: We Support
+        scopes: Types of Campaigns
+        mission: Sponsor Mission
+        customer_demographics: Our Customer Demographics

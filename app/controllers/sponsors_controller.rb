@@ -1,4 +1,8 @@
 class SponsorsController < InheritedResources::Base
+  def show
+    @sponsor = resource.decorate  
+  end
+
   def create
     @sponsor = Sponsor.new(*resource_params)
     @sponsor.build_location(resource_params.first['location_attributes'])
