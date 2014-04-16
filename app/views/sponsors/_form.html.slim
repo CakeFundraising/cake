@@ -10,7 +10,17 @@ h3 #{Sponsor.model_name.human} profile
         = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
         = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS
         = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES
+        .causes-selection
+          h4 We Support
+          .row
+            .col-md-6
+              = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false
+            .col-md-6
+              = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false
+              = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false
       .col-md-6
         = f.input :name
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
