@@ -26,11 +26,20 @@ Cake::Application.routes.draw do
   resources :sponsors, except: :destroy
   
   #FR Dashboard
-  namespace :fundraiser, controller: :fundraiser_dashboard do
+  namespace :fundraiser, controller: :dashboard do
     get :home
     get :billing
     get :pending_pledges
     get :campaigns
+    get :history
+  end
+
+  #Sponsor Dashboard
+  namespace :sponsor, controller: :dashboard do
+    get :home
+    get :billing
+    get :pledge_requests
+    get :active_pledges
     get :history
   end
 

@@ -1,4 +1,4 @@
-class Fundraiser::FundraiserDashboardController < ApplicationController
+class Fundraiser::DashboardController < ApplicationController
   def home
     @fundraiser = current_fundraiser
   end

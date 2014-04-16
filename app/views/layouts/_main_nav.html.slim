@@ -10,6 +10,7 @@ nav.navbar.navbar-default role="navigation"
       = link_to t('application.name'), root_path, class: 'navbar-brand' unless current_user.present?
     - if current_user.present?
       = link_to t('application.name'), fundraiser_home_path, class: 'navbar-brand' if current_fundraiser.present?
+      = link_to t('application.name'), sponsor_home_path, class: 'navbar-brand' if current_sponsor.present?
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
           = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
