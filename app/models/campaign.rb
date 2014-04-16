@@ -8,6 +8,7 @@ class Campaign < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
   has_many :sponsor_categories, dependent: :destroy
+  has_many :pledges
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attributes| attributes[:url].blank? }
@@ -35,10 +36,6 @@ class Campaign < ActiveRecord::Base
 
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
-
-  after_initialize do
-    build_picture if picture.blank?
-  end
 
   def make_visible!
     update_attribute(:status, :public)

@@ -7,6 +7,7 @@ class Sponsor < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
+  has_many :pledges
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true
@@ -24,7 +25,6 @@ class Sponsor < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_location
-      self.build_picture
     end
   end
 end

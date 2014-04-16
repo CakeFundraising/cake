@@ -1,4 +1,5 @@
 Cake::Application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: 
@@ -21,7 +22,18 @@ Cake::Application.routes.draw do
     end
   end
 
-  #FR CRUD
+  resources :pledges, except: :destroy do
+    member do
+      scope :edit do
+        get :tell_your_story
+        get :add_coupon
+        get :add_sweepstakes
+        get :share
+      end
+      get :badge
+    end
+  end
+
   resources :fundraisers, except: :destroy
   resources :sponsors, except: :destroy
   

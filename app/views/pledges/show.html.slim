@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Mission:
+  = @pledge.mission
+p
+  strong Headline:
+  = @pledge.headline
+p
+  strong Description:
+  = @pledge.description
+p
+  strong Amount per click:
+  = @pledge.amount_per_click
+p
+  strong Donation type:
+  = @pledge.donation_type
+p
+  strong Total amount:
+  = @pledge.total_amount
+p
+  strong Website url:
+  = @pledge.website_url
+p
+  strong Campaign:
+  = @pledge.campaign_id
+p
+  strong Sponsor:
+  = @pledge.sponsor_id
+
+= link_to 'Edit', edit_pledge_path(@pledge)
+'|
+= link_to 'Back', pledges_path

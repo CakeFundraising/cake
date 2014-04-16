@@ -1,0 +1,37 @@
+h1 Listing pledges
+
+table
+  thead
+    tr
+      th Mission
+      th Headline
+      th Description
+      th Amount per click
+      th Donation type
+      th Total amount
+      th Website url
+      th Campaign
+      th Sponsor
+      th
+      th
+      th
+
+  tbody
+    - @pledges.each do |pledge|
+      tr
+        td = pledge.mission
+        td = pledge.headline
+        td = pledge.description
+        td = pledge.amount_per_click
+        td = pledge.donation_type
+        td = pledge.total_amount
+        td = pledge.website_url
+        td = pledge.campaign_id
+        td = pledge.sponsor_id
+        td = link_to 'Show', pledge
+        td = link_to 'Edit', edit_pledge_path(pledge)
+        td = link_to 'Destroy', pledge, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Pledge', new_pledge_path

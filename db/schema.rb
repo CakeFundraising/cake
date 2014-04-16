@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415153751) do
+ActiveRecord::Schema.define(version: 20140416195035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,22 @@ ActiveRecord::Schema.define(version: 20140415153751) do
     t.string   "banner_caption"
     t.string   "picturable_type"
     t.integer  "picturable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pledges", force: true do |t|
+    t.string   "mission"
+    t.string   "headline"
+    t.text     "description"
+    t.integer  "amount_per_click_cents",    default: 0,     null: false
+    t.string   "amount_per_click_currency", default: "USD", null: false
+    t.string   "donation_type"
+    t.integer  "total_amount_cents",        default: 0,     null: false
+    t.string   "total_amount_currency",     default: "USD", null: false
+    t.string   "website_url"
+    t.integer  "campaign_id"
+    t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

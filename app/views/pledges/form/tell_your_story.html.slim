@@ -1,0 +1,30 @@
+ul.nav.nav-tabs
+  li
+    a href="" Your Pledge 
+  li.active 
+    a data-toggle="tab" href="#story" Tell your Story
+  li
+    a href="" Add Coupon
+  li
+    a href="" Add Sweepstakes
+  li
+    a href="" Launch & Share
+
+.tab-content
+  #story.tab-pane.active
+    br
+    = semantic_form_for @pledge do |f|
+      = f.inputs do
+        = f.input :mission
+        .row
+          .col-md-6
+            = render partial:'pictures/banner_form', locals:{f: f}
+            = f.input :headline
+            = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+          .col-md-6
+            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+            = render partial:'videos/form', locals:{f: f}
+            
+        = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
+      = f.actions do
+        = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

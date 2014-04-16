@@ -4,6 +4,7 @@ class Fundraiser < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
   has_many :campaigns
+  has_many :pledges, through: :campaigns
 
   validates :name, :email, :phone, :cause, presence: true
   validates :email, email: true
@@ -21,7 +22,6 @@ class Fundraiser < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_location
-      self.build_picture
     end
   end
 

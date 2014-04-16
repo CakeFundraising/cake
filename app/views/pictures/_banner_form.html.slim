@@ -1,3 +1,3 @@
-= f.semantic_fields_for :picture do |p|
+= f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
   = p.input :banner, as: :uploader, removable: false
   = p.input :banner_caption if defined? caption
