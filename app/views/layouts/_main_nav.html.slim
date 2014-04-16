@@ -15,20 +15,25 @@ nav.navbar.navbar-default role="navigation"
           = render partial:'layouts/nav/sponsor/main' if current_sponsor.present?
         = render partial: 'layouts/nav/search_form'
         ul.nav.navbar-nav.navbar-right
+          / li.dropdown
+          /   a.dropdown-toggle data-toggle="dropdown" href="#" 
+          /     | Settings 
+          /     span.glyphicon.glyphicon-cog
+          /   ul.dropdown-menu
+          /     = menu_item "Edit Profile", public_profile_path
+          /     = menu_item "Account Settings", account_path
+          /     = menu_item "Email Notifications", edit_email_settings_path
           li.dropdown
             a.dropdown-toggle data-toggle="dropdown" href="#" 
-              | Settings 
-              span.glyphicon.glyphicon-cog
-            ul.dropdown-menu
-              = menu_item "Edit Profile", public_profile_path
-              = menu_item "Account Settings", account_path
-              = menu_item "Email Notifications", edit_email_settings_path
-          li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#" = current_user.full_name
-              b.caret
+              = image_tag current_fundraiser.avatar.ico.url if current_fundraiser.present?
+              = image_tag current_sponsor.avatar.ico.url if current_sponsor.present?
+              = current_user.full_name
             ul.dropdown-menu
               = render partial:'layouts/nav/fundraiser/dropdown' if current_fundraiser.present?
               = render partial:'layouts/nav/sponsor/dropdown' if current_sponsor.present?
+              = menu_item "Edit Profile", public_profile_path
+              = menu_item "Account Settings", account_path
+              = menu_item "Email Notifications", edit_email_settings_path
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else
