@@ -20,9 +20,31 @@ class PledgesController < InheritedResources::Base
     end
   end
 
+  # Pledge wizard
   def tell_your_story
     @pledge = resource
     render 'pledges/form/tell_your_story'
+  end
+
+  def add_coupon
+    @pledge = resource
+    render 'pledges/form/add_coupon'
+  end
+
+  def add_sweepstakes
+    @pledge = resource
+    render 'pledges/form/add_sweepstakes'
+  end
+
+  def share
+    @pledge = resource
+    render 'pledges/form/share'
+  end
+
+  def badge
+    @pledge = resource.decorate
+    render layout: false
+    response.headers.except! 'X-Frame-Options'
   end
 
   def permitted_params

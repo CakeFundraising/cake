@@ -27,7 +27,8 @@ ready = ->
   picturables = [
     "#campaign",
     "#fundraiser",
-    "#sponsor"
+    "#sponsor",
+    "#pledge"
   ]
 
   pictures_attributes = [

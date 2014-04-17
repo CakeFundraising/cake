@@ -1,0 +1,34 @@
+ul.nav.nav-tabs
+  li
+    a href="" Your Pledge 
+  li
+    a href="" Tell your Story 
+  li
+    a href="" Add Coupon
+  li
+    a href="" Add Sweepstakes
+  li.active 
+    a data-toggle="tab" href="#share" Launch & Share 
+
+.tab-content
+  #share.tab-pane.active
+    br
+
+    h3 Thank you for your Pledge!
+    .lead Launch and activate your pledge to #{@pledge.campaign} 
+    .lead They will share your pledge with their many supporters and friends and drive traffic to your website. 
+
+    .share-embed.row
+      .help-block Put a CakeFundraising badge in your website that links to your pledge! 
+
+      .col-md-6
+        textarea#embedded_link.form-control disabled='' rows="5" 
+          iframe width='300px' height='300px' src=badge_pledge_url(@pledge)
+            p 
+              | See this pledge here: 
+              = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
+      .col-md-6
+        button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+
+    = link_to "Launch pledge", @pledge, class:'btn btn-success pull-left'
+    .help-block Pledge not active until Fundraiser launches Campaign

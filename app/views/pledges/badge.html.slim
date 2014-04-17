@@ -1,0 +1,9 @@
+.media
+  = link_to pledge_url(@pledge), target: :_blank, class:'pull-left' do
+    = image_tag @pledge.avatar.medium.url, class:'media-object' 
+  .media-body
+    h4.media-heading = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
+    .amount_per_click.help-block
+      = basic_list_item("Campaign ends in: ", @pledge.campaign.end_date)
+      = basic_list_item("Donation per click: ", humanized_money_with_symbol(@pledge.amount_per_click))
+      = basic_list_item("Pledge: ", humanized_money_with_symbol(@pledge.total_amount))

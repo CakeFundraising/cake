@@ -53,3 +53,5 @@ en:
         scopes: Types of Campaigns
         mission: Sponsor Mission
         customer_demographics: Our Customer Demographics
+      video:
+        url: Video Url

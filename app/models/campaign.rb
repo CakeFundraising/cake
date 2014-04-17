@@ -40,4 +40,8 @@ class Campaign < ActiveRecord::Base
   def make_visible!
     update_attribute(:status, :public)
   end
+
+  def to_s
+    title
+  end
 end

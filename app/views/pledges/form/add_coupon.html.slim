@@ -1,0 +1,21 @@
+ul.nav.nav-tabs
+  li
+    a href="" Your Pledge 
+  li
+    a href="" Tell your Story 
+  li.active 
+    a data-toggle="tab" href="#coupon" Add Coupon
+  li
+    a href="" Add Sweepstakes
+  li
+    a href="" Launch & Share
+
+.tab-content
+  #coupon.tab-pane.active
+    br
+    h2 Create coupon (you may add up to 3)
+    = semantic_form_for @pledge do |f|
+      = f.inputs do
+        = f.input :step, as: :hidden, input_html:{value: :add_sweepstakes}
+      = f.actions do
+        = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 
