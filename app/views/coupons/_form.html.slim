@@ -1,0 +1,6 @@
+= f.semantic_fields_for :coupons do |c|
+  #coupons
+    = render partial:'coupons/fields', locals:{f: c}
+
+.links
+  = link_to_add_association "Add Fields", f, :coupons, partial: 'coupons/fields', class: 'btn btn-primary'

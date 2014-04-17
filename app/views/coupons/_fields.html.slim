@@ -1,0 +1,20 @@
+.nested-fields
+  hr
+  = f.inputs do
+    .row
+      .col-md-6
+        = f.input :avatar, as: :uploader, removable: false
+        = f.input :qrcode, as: :uploader, removable: false
+      .col-md-6
+        = f.input :extra_donation_pledge, as: :boolean
+        = f.input :title
+        row
+          .col-md-6
+            = f.input :expires_at, as: :string, input_html:{class:'datepicker'}
+          .col-md-6
+            = f.input :promo_code
+        = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :terms_conditions, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :standard_terms, as: :boolean
+
+    = link_to_remove_association "Remove", f, class:'pull-right'

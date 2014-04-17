@@ -1,4 +1,11 @@
 class PledgesController < InheritedResources::Base
+  WIZARD_STEPS = [
+    :your_pledge,
+    :tell_your_story,
+    :add_coupon,
+    :add_sweepstakes,
+    :share
+  ]
 
   def show
     @pledge = resource.decorate
@@ -12,7 +19,8 @@ class PledgesController < InheritedResources::Base
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
-        render action: :new
+        step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:pledge][:step].to_sym)-1].to_s
+        render 'pledges/form/' + step_action
       end
     end
   end
@@ -21,6 +29,10 @@ class PledgesController < InheritedResources::Base
     update! do |success, failure|
       success.html do
         redirect_to controller: :pledges, action: params[:pledge][:step], id: resource
+      end
+      failure.html do
+        step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:pledge][:step].to_sym)-1].to_s
+        render 'pledges/form/' + step_action
       end
     end
   end
@@ -33,6 +45,7 @@ class PledgesController < InheritedResources::Base
 
   def add_coupon
     @pledge = resource
+    @pledge.coupons.build if @pledge.coupons.blank?
     render 'pledges/form/add_coupon'
   end
 
@@ -53,9 +66,11 @@ class PledgesController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(pledge: [ :mission, :headline, :description, :amount_per_click, :donation_type, 
+    params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:url],
-      picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache]
+      picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache],
+      coupons_attributes: [:title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, 
+      :extra_donation_pledge, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache]
     ])
   end
 end

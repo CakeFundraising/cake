@@ -37,6 +37,12 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
 
+  after_initialize do
+    if self.new_record?
+      self.build_picture if picture.blank?
+    end
+  end
+
   def make_visible!
     update_attribute(:status, :public)
   end

@@ -25,6 +25,7 @@ class Sponsor < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_location
+      self.build_picture if picture.blank?
     end
   end
 end

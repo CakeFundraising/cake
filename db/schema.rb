@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416195035) do
+ActiveRecord::Schema.define(version: 20140417141522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20140416195035) do
     t.boolean  "no_sponsor_categories", default: false
     t.string   "status",                default: "private"
     t.integer  "fundraiser_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coupons", force: true do |t|
+    t.string   "title"
+    t.datetime "expires_at"
+    t.string   "promo_code"
+    t.text     "description"
+    t.text     "terms_conditions"
+    t.string   "avatar"
+    t.string   "qrcode"
+    t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

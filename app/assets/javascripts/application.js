@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require cocoon
 //= require bootstrap
 //= require chosen-jquery
 //= require rails-timeago
@@ -20,5 +21,4 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require bootstrap-datepicker
 //= require zeroclipboard
-//= require cocoon
 //= require_tree .

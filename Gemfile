@@ -24,7 +24,7 @@ gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari-bootstrap'
 gem 'formtastic-bootstrap'
-gem "cocoon"
+gem 'cocoon'
 gem 'draper'
 
 #Storage
