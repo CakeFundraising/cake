@@ -1,6 +1,6 @@
 = link_to 'Edit Campaign', edit_campaign_path(@campaign)
 
-.header
+= content_for :header do
   .banner = image_tag @campaign.banner.url(:large)
 
 .content.row

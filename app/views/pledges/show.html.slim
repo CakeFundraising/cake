@@ -1,6 +1,6 @@
 = link_to 'Edit Pledge', edit_pledge_path(@pledge)
 
-.header
+= content_for :header do
   .banner = image_tag @pledge.banner.url(:large)
 
 .content.row
