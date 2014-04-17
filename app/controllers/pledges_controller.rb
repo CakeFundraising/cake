@@ -1,4 +1,9 @@
 class PledgesController < InheritedResources::Base
+
+  def show
+    @pledge = resource.decorate
+  end
+
   def create
     @pledge = current_sponsor.pledges.build(*resource_params)
 

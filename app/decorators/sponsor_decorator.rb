@@ -4,4 +4,8 @@ class SponsorDecorator < ApplicationDecorator
   def scopes
     object.scopes.join(", ")
   end
+
+  def to_s
+    object.name
+  end
 end

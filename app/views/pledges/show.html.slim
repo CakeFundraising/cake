@@ -1,33 +1,30 @@
-p#notice = notice
+= link_to 'Edit Pledge', edit_pledge_path(@pledge)
 
-p
-  strong Mission:
-  = @pledge.mission
-p
-  strong Headline:
-  = @pledge.headline
-p
-  strong Description:
-  = @pledge.description
-p
-  strong Amount per click:
-  = @pledge.amount_per_click
-p
-  strong Donation type:
-  = @pledge.donation_type
-p
-  strong Total amount:
-  = @pledge.total_amount
-p
-  strong Website url:
-  = @pledge.website_url
-p
-  strong Campaign:
-  = @pledge.campaign_id
-p
-  strong Sponsor:
-  = @pledge.sponsor_id
+.header
+  .banner = image_tag @pledge.banner.url(:large)
 
-= link_to 'Edit', edit_pledge_path(@pledge)
-'|
-= link_to 'Back', pledges_path
+.content.row
+  .col-md-6.col-md-offset-1
+    h1 = @pledge.mission
+    .share-links 
+    h3 = @pledge.headline
+    p = @pledge.description
+    p = @pledge.video.iframe if @pledge.video.present?
+  .col-md-4
+    .thumbnail
+      .help-block Campaign ends in:
+      .pledge-end
+        = @pledge.campaign.end_date
+      .amounts
+        .help-block.donation_per_click
+          strong = humanized_money_with_symbol(@pledge.amount_per_click)
+          span donation per click 
+        .help-block.total_amount
+          strong = humanized_money_with_symbol(@pledge.total_amount)
+          span Pledge
+      .avatar 
+        = image_tag @pledge.avatar.url(:medium)
+      .campaign_and_fundraiser
+        p #{ auto_link @pledge.sponsor } is proud to support:
+        .fundraiser = auto_link @pledge.fundraiser
+        .campaign = auto_link @pledge.campaign
