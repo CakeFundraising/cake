@@ -7,7 +7,10 @@ nav.navbar.navbar-default role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to t('application.name'), root_path, class: 'navbar-brand' unless current_user.present?
+      - unless current_user.present?
+        = link_to root_path, class: 'navbar-brand' do
+          = image_tag "cake_logo.png"
+    /! Collect the nav links, forms, and other content for toggling
     - if current_user.present?
       = link_to t('application.name'), fundraiser_home_path, class: 'navbar-brand' if current_fundraiser.present?
       = link_to t('application.name'), sponsor_home_path, class: 'navbar-brand' if current_sponsor.present?

@@ -40,7 +40,32 @@ html lang="en"
           = bootstrap_flash
           = yield
       /! /row
-      footer.text-center
-        br
-        p &copy;#{Time.now.year} #{t('application.name')}, Inc.
     /! /container
+  footer
+    .container
+      .row
+        .col-md-3
+          h4 Company
+          ul
+            li: a href="#" About Cake
+            li: a href="#" Press
+            li: a href="#" Contact
+            li: a href="#" Privacy
+            li: a href="#" Terms of Use
+        .col-md-3
+          h4 Learn
+          ul
+            li: a href="#" FAQs
+            li: a href="#" How to find Sponsors
+            li: a href="#" Sponsors Help & Training
+            li: a href="#" Fundraising Help & Training
+        .col-md-3
+           h4 Follow Us   
+        .col-md-3
+          h4 Subscribe to our newsletter
+          p Quarterly news and updates. No Spam.
+      .row.Colophon
+        .col-md-9
+          p cakefundraising.com makes it easy to launch and manage exciting “donation-per-click” fundraising campaigns that produce great results for your organizations and your corporate sponsors.
+        .col-md-3
+          p.pull-right &copy;#{Time.now.year} #{t('application.name')}, Inc.
