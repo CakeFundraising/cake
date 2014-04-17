@@ -7,10 +7,12 @@ class Pledge < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
   has_many :coupons
+  has_many :sweepstakes
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :coupons, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :sweepstakes, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
 
   monetize :amount_per_click_cents, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 1000}
   monetize :total_amount_cents, numericality: {greater_than_or_equal_to: 1}

@@ -1,0 +1,6 @@
+= f.semantic_fields_for :sweepstakes do |c|
+  #sweepstakes
+    = render partial:'sweepstakes/fields', locals:{f: c}
+
+.links
+  = link_to_add_association "Add another sweepstake", f, :sweepstakes, partial: 'sweepstakes/fields', class: 'btn btn-primary'

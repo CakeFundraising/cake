@@ -13,5 +13,5 @@ class Coupon < ActiveRecord::Base
   validates_integrity_of  :qrcode
   validates_processing_of :qrcode
 
-  validates :title, :avatar, :qrcode, :description, :terms_conditions, :expires_at, presence: true
+  validates :title, :avatar, :qrcode, :description, :terms_conditions, :expires_at, :pledge, presence: true
 end

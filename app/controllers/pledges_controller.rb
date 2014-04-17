@@ -51,11 +51,12 @@ class PledgesController < InheritedResources::Base
 
   def add_sweepstakes
     @pledge = resource
+    @pledge.sweepstakes.build if @pledge.sweepstakes.blank?
     render 'pledges/form/add_sweepstakes'
   end
 
   def share
-    @pledge = resource
+    @pledge = resource.decorate
     render 'pledges/form/share'
   end
 
@@ -70,7 +71,9 @@ class PledgesController < InheritedResources::Base
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:url],
       picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache],
       coupons_attributes: [:title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, 
-      :extra_donation_pledge, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache]
+      :extra_donation_pledge, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache],
+      sweepstakes_attributes: [:title, :description, :terms_conditions, :avatar, :winners_quantity,
+      :claim_prize_instructions, :standard_terms, :_destroy, :avatar_cache]
     ])
   end
 end

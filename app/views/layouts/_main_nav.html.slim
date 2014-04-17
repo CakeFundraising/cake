@@ -12,8 +12,12 @@ nav.navbar.navbar-default role="navigation"
           = image_tag "cake_logo.png"
     /! Collect the nav links, forms, and other content for toggling
     - if current_user.present?
-      = link_to t('application.name'), fundraiser_home_path, class: 'navbar-brand' if current_fundraiser.present?
-      = link_to t('application.name'), sponsor_home_path, class: 'navbar-brand' if current_sponsor.present?
+      - if current_fundraiser.present?
+        = link_to fundraiser_home_path, class: 'navbar-brand' do
+          = image_tag "cake_logo.png"
+      - if current_sponsor.present?
+        = link_to sponsor_home_path, class: 'navbar-brand' do
+          = image_tag "cake_logo.png"
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
           = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
