@@ -14,8 +14,11 @@ class Pledge < ActiveRecord::Base
   accepts_nested_attributes_for :coupons, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
   accepts_nested_attributes_for :sweepstakes, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
 
-  monetize :amount_per_click_cents, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 1000}
-  monetize :total_amount_cents, numericality: {greater_than_or_equal_to: 1}
+  monetize :amount_per_click_cents
+  monetize :total_amount_cents
+
+  validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
+  validates :total_amount, numericality: {greater_than: 0}
 
   validates :amount_per_click, :total_amount, :donation_type, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
