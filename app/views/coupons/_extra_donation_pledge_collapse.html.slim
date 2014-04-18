@@ -1,0 +1,9 @@
+.extra_donation_pledge_collapse.panel-group
+  .panel.panel-default
+    .panel-collapse.collapse
+      .panel-body
+        .help-block I agree to donate $
+        = f.input :unit_donation, label: false
+        .help-block throught the CakeFundraising platform up to an amount not to exceed $ 
+        = f.input :total_donation, label: false
+        .help-block each time a consumer fullfills the terms described in this coupon.

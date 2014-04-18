@@ -71,7 +71,7 @@ class PledgesController < InheritedResources::Base
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],
       picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache],
       coupons_attributes: [:id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, 
-      :extra_donation_pledge, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache],
+      :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache],
       sweepstakes_attributes: [:id, :title, :description, :terms_conditions, :avatar, :winners_quantity,
       :claim_prize_instructions, :standard_terms, :_destroy, :avatar_cache]
     ])

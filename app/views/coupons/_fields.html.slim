@@ -6,7 +6,9 @@
         = f.input :avatar, as: :uploader, removable: false
         = f.input :qrcode, as: :uploader, removable: false
       .col-md-6
-        = f.input :extra_donation_pledge, as: :boolean
+        = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
+        / = render partial:'coupons/extra_donation_pledge_modal', locals:{f: f}
+        = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
         = f.input :title
         row
           .col-md-6

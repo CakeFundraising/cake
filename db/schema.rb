@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417205323) do
+ActiveRecord::Schema.define(version: 20140418190716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,11 @@ ActiveRecord::Schema.define(version: 20140417205323) do
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "unit_donation_cents",     default: 0,     null: false
+    t.string   "unit_donation_currency",  default: "USD", null: false
+    t.integer  "total_donation_cents",    default: 0,     null: false
+    t.string   "total_donation_currency", default: "USD", null: false
+    t.boolean  "extra_donation_pledge",   default: false
   end
 
   create_table "email_settings", force: true do |t|
