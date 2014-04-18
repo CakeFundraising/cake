@@ -58,6 +58,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
       options[:class] << " present" if method_present?
       options[:class] << " changed" if method_changed?
       options[:class] << " was_present" if method_was_present?
+      options[:class] << " has-error" if errors?
     end
   end
 
@@ -121,10 +122,23 @@ class UploaderInput < Formtastic::Inputs::FileInput
     end
   end
 
+  def builder_parent
+    options[:parent] || builder
+  end
+
+  def errors?
+    builder_parent.object.errors.messages[method].present?
+  end
+
+  def errors_html
+    template.content_tag(:span, builder_parent.object.errors.messages[method].join(", "), class:"has-error help-block") if errors?
+  end
+
   def to_html
     input_wrapping do
       remove_html <<
       label_html <<
+      errors_html <<
       cache_html <<
       if method_was_present?
         existing_html <<

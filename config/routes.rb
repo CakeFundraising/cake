@@ -22,7 +22,7 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :pledges, except: :destroy do
+  resources :pledges do
     member do
       scope :edit do
         get :tell_your_story
