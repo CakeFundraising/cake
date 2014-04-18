@@ -22,6 +22,7 @@ nav.navbar.navbar-default role="navigation"
         ul.nav.navbar-nav
           = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
           = render partial:'layouts/nav/sponsor/main' if current_sponsor.present?
+          = menu_item "Help", root_path
         = render partial: 'layouts/nav/search_form'
         ul.nav.navbar-nav.navbar-right
           / li.dropdown
