@@ -24,6 +24,6 @@ class SponsorsController < InheritedResources::Base
       :customer_demographics, :phone, :email, :website,
       cause_requirements: [], scopes: [], causes: [],
       location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
-      picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache] ])
+      picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache] ])
   end
 end

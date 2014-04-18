@@ -1,5 +1,7 @@
 = render partial:'pledges/form/actions'
 
+= @pledge.coupons.reload.inspect
+
 ul.nav.nav-tabs
   li
     a href="" Your Pledge 

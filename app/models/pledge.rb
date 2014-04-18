@@ -6,13 +6,13 @@ class Pledge < ActiveRecord::Base
   has_one :fundraiser, through: :campaign
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
-  has_many :coupons
-  has_many :sweepstakes
+  has_many :coupons, dependent: :destroy
+  has_many :sweepstakes, dependent: :destroy
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
-  accepts_nested_attributes_for :coupons, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
-  accepts_nested_attributes_for :sweepstakes, update_only: true, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :coupons, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
 
   monetize :amount_per_click_cents
   monetize :total_amount_cents

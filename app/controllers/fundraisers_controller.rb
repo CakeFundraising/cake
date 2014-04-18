@@ -24,6 +24,6 @@ class FundraisersController < InheritedResources::Base
        :unsolicited_pledges, :manager_name, :manager_website, :manager_phone, 
        :tax_exempt, :phone, :email, :website, 
        location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
-       picture_attributes: [:banner, :avatar, :avatar_caption, :banner_caption] ])
+       picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption] ])
   end
 end
