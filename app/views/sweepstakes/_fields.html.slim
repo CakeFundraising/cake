@@ -10,6 +10,6 @@
         = f.input :winners_quantity
         = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
     = f.input :terms_conditions, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
-    = f.input :standard_terms, as: :boolean
+    = f.input :standard_terms, as: :boolean, input_html:{checked: true}
 
     = link_to_remove_association "Remove", f, class:'pull-right'

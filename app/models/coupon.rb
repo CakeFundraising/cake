@@ -15,7 +15,7 @@ class Coupon < ActiveRecord::Base
 
   validates :title, :avatar, :qrcode, :description, :expires_at, :pledge, presence: true
 
-  before_save do
-    terms_conditions = I18n.t('application.terms_and_conditions.standard') if terms_conditions.blank?
+  after_initialize do
+    self.terms_conditions = I18n.t('application.terms_and_conditions.standard') if self.terms_conditions.blank?
   end
 end
