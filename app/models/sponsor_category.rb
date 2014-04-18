@@ -1,8 +1,11 @@
 class SponsorCategory < ActiveRecord::Base
   belongs_to :campaign
 
-  monetize :min_value_cents, numericality: { greater_than: 0 }
-  monetize :max_value_cents, numericality: { greater_than: 0 }
+  monetize :min_value_cents
+  monetize :max_value_cents
 
-  # validates :name, :max_value_cents, presence: true
+  validates :max_value, numericality: { greater_than: 0 }
+  validates :min_value, numericality: { greater_than: 0 }
+
+  validates :name, presence: true
 end

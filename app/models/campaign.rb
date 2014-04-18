@@ -11,8 +11,8 @@ class Campaign < ActiveRecord::Base
   has_many :pledges
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
-  accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attributes| attributes[:url].blank? }
-  accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: proc {|attributes| attributes[:name].blank? }
+  accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
+  accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: proc {|attrs| attrs[:name].blank? and attrs[:min_value] == '0.00' and attrs[:max_value] == '0.00' }
 
   validates :title, :launch_date, :end_date, :cause, :scope, :headline, :story, :status, :fundraiser, presence: true
   validates_associated :picture

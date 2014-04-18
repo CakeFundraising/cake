@@ -1,6 +1,9 @@
 class CampaignsController < InheritedResources::Base
-  respond_to :html
-  respond_to :js, only: [:create, :update]
+  WIZARD_STEPS = [
+    :tell_your_story,
+    :sponsors,
+    :share
+  ]
 
   def show
     @campaign = resource.decorate
@@ -11,7 +14,7 @@ class CampaignsController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        redirect_to sponsors_and_donations_campaign_path(@campaign)
+        redirect_to sponsors_campaign_path(@campaign)
       end
       failure.html do
         render action: :new
@@ -24,21 +27,28 @@ class CampaignsController < InheritedResources::Base
       success.html do
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
+      failure.html do
+        step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:campaign][:step].to_sym)-1].to_s
+        render 'campaigns/form/' + step_action
+      end
     end
   end
 
   #Non restful actions
-  def sponsors_and_donations
+  def tell_your_story
     @campaign = resource
-    @campaign.sponsor_categories.build
+    render 'campaigns/form/main'
+  end
+
+  def sponsors
+    @campaign = resource
+    @campaign.sponsor_categories.build unless @campaign.sponsor_categories.any?
+    render 'campaigns/form/sponsors'
   end
 
   def share
     @campaign = resource
-  end
-
-  def make_visible
-    redirect_to resource if resource.make_visible!
+    render 'campaigns/form/share'
   end
 
   def badge
