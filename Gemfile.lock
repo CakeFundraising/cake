@@ -84,6 +84,8 @@ GEM
       sass-rails (>= 3.2)
     chunky_png (1.3.0)
     cocoon (1.2.6)
+    cocoon_limiter (0.1.0)
+      railties (>= 3.0, < 5.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -382,6 +384,7 @@ DEPENDENCIES
   carrierwave
   chosen-rails
   cocoon
+  cocoon_limiter
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner

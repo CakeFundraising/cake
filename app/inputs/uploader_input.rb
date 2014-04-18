@@ -72,6 +72,10 @@ class UploaderInput < Formtastic::Inputs::FileInput
     builder.file_field(method, input_html_options)
   end
 
+  def input_html_options
+    {class: "#{method}_input"}
+  end
+
   def existing_html_options
     expand_html_options(options[:existing_html]) do |opts|
       opts[:class] << "existing"

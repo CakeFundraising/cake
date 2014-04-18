@@ -1,7 +1,7 @@
-ready = ->
+image_previewer = ->
   get_image_class = (input) ->
-    splitted_id = $(input).attr("id").split("_")
-    picture_class = splitted_id[splitted_id.length-1]
+    splitted_id = $(input).attr("class").split("_")
+    picture_class = splitted_id[0]
     return picture_class
 
   readURL = (input) ->
@@ -20,33 +20,22 @@ ready = ->
             top = img.width*0.025*-1
 
         img_tag = "<img alt=\"305x230\" class=\"img-responsive img-thumbnail\" style=\"margin-top: " + top + "px;\" src=\"" + e.target.result + "\">"
-        $("."+get_image_class(input)).html(img_tag)
+
+        $(input).siblings("."+ get_image_class(input)).html(img_tag)
         return
 
       reader.readAsDataURL input.files[0]
     return
 
-  image_inputs = ->
-    picturables = [
-      "#campaign",
-      "#fundraiser",
-      "#sponsor",
-      "#pledge"
-    ]
+  inputs = [
+    ".banner_input",
+    ".avatar_input",
+    ".qrcode_input"
+  ]
 
-    pictures_attributes = [
-      "picture_attributes_banner",
-      "picture_attributes_avatar"
-    ]
-
-    picture_inputs = (picturable + "_" + pictures_attributes[0] + "," + picturable + "_" + pictures_attributes[1] for picturable in picturables)
-
-    inputs = picture_inputs + ",#pledge_coupons_attributes_0_qrcode,#pledge_coupons_attributes_0_avatar"
-    return inputs
-
-  $(image_inputs()).change ->
+  $(inputs.toString()).change ->
     readURL this
     return
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).ready(image_previewer)
+$(document).on('page:load', image_previewer)
