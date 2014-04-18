@@ -40,8 +40,9 @@ gem 'rmagick', require: 'RMagick'
 gem 'jquery-fileupload-rails'
 
 #CLI
+gem 'pry-rails'
+
 group :development do
-  gem 'pry-rails' 
   gem 'quiet_assets'
 end
 
@@ -67,12 +68,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'database_cleaner'
+gem 'faker'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'callback_skipper'
-  gem 'database_cleaner'
 end
 
 group :test do
