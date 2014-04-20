@@ -51,7 +51,7 @@ class PledgesController < InheritedResources::Base
 
   def add_sweepstakes
     @pledge = resource
-    @pledge.sweepstakes.build if @pledge.sweepstakes.blank?
+    @pledge.sweepstakes.build unless @pledge.sweepstakes.any?
     render 'pledges/form/add_sweepstakes'
   end
 
