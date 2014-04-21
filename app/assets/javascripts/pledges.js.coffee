@@ -1,17 +1,10 @@
-ready = ->
-  if $(".extra_donation_pledge").prop('checked')
-    $(".extra_donation_pledge").closest('.inputs').find('.extra_donation_pledge_collapse .collapse').collapse('show')
-   else 
-    $(".extra_donation_pledge").closest('.inputs').find('.extra_donation_pledge_collapse .collapse').collapse('hide')
+Cake.pledges ?= {}
 
-  $(".extra_donation_pledge").change ->
-    $(this).closest('.inputs').find('.extra_donation_pledge_collapse .collapse').collapse('toggle')
-
-    # Modal 
-    # if this.checked
-    #   $(this).closest('.inputs').find('.modal.fade').modal('show')
-
-    return
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
+Cake.pledges.update_triggers = ->
+  $('#coupons').on 'cocoon:after-insert', ->
+    Cake.extra_donation_pledges()
+    Cake.datepicker()
+    Cake.image_previewer()
+  $('#sweepstakes').on 'cocoon:after-insert', ->
+    Cake.image_previewer()
+  return

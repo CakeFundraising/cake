@@ -1,4 +1,4 @@
-ready = ->
+Cake.locations = ->
   $('select.country_select').change (event) ->
     select_wrapper = $('#states_wrapper')
 
@@ -9,6 +9,3 @@ ready = ->
 
     url = "/locations/subregion_options?parent_region=#{country_code}&model=#{model_name}"
     select_wrapper.load(url)
-
-$(document).ready(ready)
-$(document).on('page:load', ready)

@@ -1,4 +1,4 @@
-image_previewer = ->
+Cake.image_previewer = ->
   get_image_class = (input) ->
     splitted_id = $(input).attr("class").split("_")
     picture_class = splitted_id[0]
@@ -36,6 +36,3 @@ image_previewer = ->
   $(inputs.toString()).change ->
     readURL this
     return
-
-$(document).ready(image_previewer)
-$(document).on('page:load', image_previewer)
