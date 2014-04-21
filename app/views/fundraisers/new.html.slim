@@ -17,7 +17,7 @@
           br
           = f.input :email
           = f.input :phone
-          = f.input :cause, as: :select, collection: Fundraiser::CAUSES
+          = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
           = f.input :tax_exempt
     .row
       .col-md-3.col-md-offset-9

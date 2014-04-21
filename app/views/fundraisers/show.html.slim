@@ -11,8 +11,8 @@
       .row
         .col-md-6
           h4 #{Fundraiser.model_name.human} Profile
-          strong = Fundraiser.human_attribute_name :cause
-          div = @fundraiser.cause
+          strong = Fundraiser.human_attribute_name :causes
+          div = @fundraiser.causes
           strong = Fundraiser.human_attribute_name :manager_name
           div = @fundraiser.manager_name
           strong = Fundraiser.human_attribute_name :manager_email

@@ -4,4 +4,8 @@ class FundraiserDecorator < ApplicationDecorator
   def to_s
     object.name    
   end  
+  
+  def causes
+    object.causes.join(", ")
+  end
 end

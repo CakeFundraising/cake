@@ -1,6 +1,9 @@
 class FundraisersController < InheritedResources::Base
   respond_to :html
-  respond_to :js, only: :update
+
+  def show
+    @fundraiser = resource.decorate
+  end
 
   def create
     @fundraiser = Fundraiser.new(*resource_params)
@@ -19,10 +22,10 @@ class FundraisersController < InheritedResources::Base
 
   def permitted_params
     params.permit(fundraiser: 
-      [:cause, :name, :mission, :manager_title, :supporter_demographics, 
+      [:name, :mission, :manager_title, :supporter_demographics, 
        :manager_email, :min_pledge, :min_click_donation, :donations_kind, 
        :unsolicited_pledges, :manager_name, :manager_website, :manager_phone, 
-       :tax_exempt, :phone, :email, :website, 
+       :tax_exempt, :phone, :email, :website, causes: [],
        location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
        picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption] ])
   end

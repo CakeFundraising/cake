@@ -1,4 +1,6 @@
 class Fundraiser < ActiveRecord::Base
+  include Cause
+
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
@@ -6,7 +8,7 @@ class Fundraiser < ActiveRecord::Base
   has_many :campaigns
   has_many :pledges, through: :campaigns
 
-  validates :name, :email, :phone, :cause, presence: true
+  validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
   
   validates :mission, :manager_title, :supporter_demographics, :manager_email, presence: true, unless: :new_record?
@@ -25,17 +27,6 @@ class Fundraiser < ActiveRecord::Base
       self.build_picture if picture.blank?
     end
   end
-
-  CAUSES = [
-    "Global Initiatives",
-    "National Initiatives",
-    "Food and Hunger",
-    "Medicine",
-    "Education",
-    "Animals and Wildlife",
-    "Environment",
-    "Water"
-  ]
 
   MIN_PLEDGES = [
     10000,

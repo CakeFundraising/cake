@@ -6,7 +6,7 @@ h3 #{Fundraiser.model_name.human} profile
       .col-md-6
         = render partial:'pictures/banner_form', locals:{f: f}
         br
-        = f.input :cause, as: :select, collection: Fundraiser::CAUSES
+        = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
         .row
           .col-md-6
             = f.input :min_pledge, as: :select, collection: Fundraiser::MIN_PLEDGES
