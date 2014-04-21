@@ -2,19 +2,20 @@
 
 FactoryGirl.define do
   factory :sponsor do
-    mission "MyText"
-    customer_demographics "MyText"
-    manager_name "MyString"
-    manager_title "MyString"
-    manager_email "MyString"
-    manager_phone "MyString"
-    name "MyString"
-    phone "MyString"
-    website "MyString"
-    email "MyString"
-    cause_requirements_mask 1
-    campaign_scopes_mask 1
-    causes_mask 1
-    manager_id 1
+    mission { Faker::Lorem.paragraph }
+    customer_demographics { Faker::Lorem.paragraph }
+    manager_name{ Faker::Name.name }
+    manager_title{ Faker::Name.title }
+    manager_email{ Faker::Internet.safe_email }
+    manager_phone{ Faker::PhoneNumber.phone_number }
+    name { Faker::Lorem.sentence }
+    phone { Faker::PhoneNumber.phone_number }
+    website { Faker::Internet.domain_name }
+    email { Faker::Internet.safe_email }
+    cause_requirements { [Sponsor::CAUSE_REQUIREMENTS.sample] }
+    scopes { Sponsor::SCOPES.sample(2) }
+    causes { Sponsor::CAUSES.sample(3) }
+    association :manager, factory: :sponsor_user
+    location
   end
 end

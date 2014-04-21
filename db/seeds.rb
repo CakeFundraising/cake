@@ -10,7 +10,7 @@ end
 
 def create(qtty, assoc_or_table)
   Array.new(qtty) do |i|
-    assoc_or_table.create! { |record| yield(record, i) }
+    obj = assoc_or_table.create!{ |record| yield(record, i) }
   end
 rescue ActiveRecord::RecordInvalid => e
   options.debug? ? e.pry : raise(e)
@@ -21,7 +21,7 @@ def build(qtty, assoc_or_table, opts=nil)
     if opts.present? and opts[:prebuild]
       yield(assoc_or_table, i)
     else
-      assoc_or_table.new{ |record| yield(record, i) }
+      assoc_or_table.build{ |record| yield(record, i) }
     end
   end
 end
@@ -37,5 +37,6 @@ DatabaseCleaner.clean_with :truncation if options[:cd]
 ActionMailer::Base.perform_deliveries = false
 
 require_relative 'seeds/fundraisers.rb'
+require_relative 'seeds/sponsors.rb'
 
 ActionMailer::Base.perform_deliveries = true
