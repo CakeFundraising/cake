@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418190716) do
+ActiveRecord::Schema.define(version: 20140421182202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,6 @@ ActiveRecord::Schema.define(version: 20140418190716) do
     t.string   "title"
     t.datetime "launch_date"
     t.datetime "end_date"
-    t.string   "cause"
-    t.string   "scope"
     t.string   "headline"
     t.text     "story"
     t.boolean  "no_sponsor_categories", default: false
@@ -62,6 +60,8 @@ ActiveRecord::Schema.define(version: 20140418190716) do
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
   end
 
   create_table "coupons", force: true do |t|

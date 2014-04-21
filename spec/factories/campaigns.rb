@@ -5,8 +5,8 @@ FactoryGirl.define do
     title{ Faker::Lorem.sentence }
     launch_date{ Time.now + 2.months }
     end_date{ Time.now + 4.months }
-    cause { Campaign::CAUSES.sample }
-    scope{ Campaign::SCOPES.sample }
+    causes { Campaign::CAUSES.sample }
+    scopes { Campaign::SCOPES.sample }
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     fundraiser

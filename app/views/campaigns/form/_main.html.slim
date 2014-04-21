@@ -16,8 +16,7 @@ ul.nav.nav-tabs
         .row
           .col-md-5.col-md-offset-1
             = f.input :title
-            = f.input :cause, as: :select, collection: Campaign::CAUSES
-            = f.input :scope, as: :select, collection: Campaign::SCOPES
+            = f.input :causes, as: :select, collection: Campaign::CAUSES, input_html:{multiple: true, size: 10}, include_blank: false
           .col-md-5
             .row
               .col-md-6
@@ -33,6 +32,7 @@ ul.nav.nav-tabs
               span.input-group-addon to
               = f.input :end_date, as: :string, label: false
             = f.input :headline
+            = f.input :scopes, as: :select, collection: Campaign::SCOPES, input_html:{multiple: true}, include_blank: false
         .row
           .col-md-10.col-md-offset-1
             = f.input :story, input_html: {rows: 5}

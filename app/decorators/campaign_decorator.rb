@@ -13,4 +13,12 @@ class CampaignDecorator < ApplicationDecorator
   def to_s
     object.title
   end
+
+  def causes
+    object.causes.join(", ")
+  end
+
+  def scopes
+    object.scopes.join(", ")
+  end
 end

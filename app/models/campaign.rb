@@ -1,4 +1,6 @@
 class Campaign < ActiveRecord::Base
+  include Cause
+  include Scope
   include Statusable
   has_statuses :active, :past
 
@@ -12,27 +14,13 @@ class Campaign < ActiveRecord::Base
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
-  accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: proc {|attrs| attrs[:name].blank? and attrs[:min_value] == '0.00' and attrs[:max_value] == '0.00' }
+  accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
 
-  validates :title, :launch_date, :end_date, :cause, :scope, :headline, :story, :status, :fundraiser, presence: true
+  validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :status, :fundraiser, presence: true
   validates_associated :picture
+  validates_associated :sponsor_categories, unless: :no_sponsor_categories
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
-
-  SCOPES = %w{Global National Regional Local}
-  validates_inclusion_of :scope, in: SCOPES
-
-  CAUSES = [
-    "Global Initiatives",
-    "National Initiatives",
-    "Food and Hunger",
-    "Medicine",
-    "Education",
-    "Animals and Wildlife",
-    "Environment",
-    "Water"
-  ]
-  validates_inclusion_of :cause, in: CAUSES
 
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }

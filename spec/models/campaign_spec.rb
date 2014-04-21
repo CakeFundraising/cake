@@ -4,7 +4,7 @@ describe Campaign do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:launch_date) }
   it { should validate_presence_of(:end_date) }
-  it { should validate_presence_of(:cause) }
+  it { should validate_presence_of(:causes) }
   it { should validate_presence_of(:headline) }
   it { should validate_presence_of(:status) }
   it { should validate_presence_of(:fundraiser) }

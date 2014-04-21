@@ -28,6 +28,7 @@ class CampaignsController < InheritedResources::Base
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do
+        p @campaign.errors.messages
         step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:campaign][:step].to_sym)-1].to_s
         render 'campaigns/form/' + step_action
       end
@@ -60,11 +61,10 @@ class CampaignsController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(campaign: [:title, :launch_date, :end_date, :story, 
-    :cause, :no_sponsor_categories, :scope, :headline, :step, 
+    params.permit(campaign: [:title, :launch_date, :end_date, :story, :no_sponsor_categories, :headline, :step, 
+    causes: [], scopes: [], video_attributes: [:id, :url],
     picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache], 
-    sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :_destroy],
-    video_attributes: [:id, :url] 
+    sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :_destroy]
     ])
   end
 end
