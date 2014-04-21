@@ -7,6 +7,7 @@ class Fundraiser < ActiveRecord::Base
   has_many :users
   has_many :campaigns
   has_many :pledges, through: :campaigns
+  has_many :sponsors, through: :pledges
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true

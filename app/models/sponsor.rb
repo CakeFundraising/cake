@@ -8,6 +8,8 @@ class Sponsor < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
   has_many :pledges
+  has_many :campaigns, through: :pledges
+  has_many :fundraisers, through: :campaigns
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true

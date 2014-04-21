@@ -11,14 +11,15 @@ class Campaign < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :sponsor_categories, dependent: :destroy
   has_many :pledges
+  has_many :sponsors, through: :pledges
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
 
   validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :status, :fundraiser, presence: true
-  validates_associated :picture
   validates_associated :sponsor_categories, unless: :no_sponsor_categories
+  validates_associated :picture
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
@@ -29,9 +30,5 @@ class Campaign < ActiveRecord::Base
     if self.new_record?
       self.build_picture if picture.blank?
     end
-  end
-
-  def make_visible!
-    update_attribute(:status, :public)
   end
 end

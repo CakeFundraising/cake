@@ -26,6 +26,8 @@ class Pledge < ActiveRecord::Base
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
+  DONATION_TYPES = ["Cash", "Goods & Services"]
+
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?

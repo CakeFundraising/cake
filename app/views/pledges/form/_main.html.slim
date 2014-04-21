@@ -19,7 +19,7 @@ ul.nav.nav-tabs
       = f.inputs do
         .help-block I agree to donate $
         = f.input :amount_per_click, label: false
-        = f.input :donation_type, as: :select, collection: ["Cash", "Goods & Services"], include_blank: false, label: false
+        = f.input :donation_type, as: :select, collection: Pledge::DONATION_TYPES, include_blank: false, label: false
         .help-block per unique click to 
         = f.input :campaign, as: :select, collection: Campaign.all, label: false
         .help-block up to an amount not to exceed

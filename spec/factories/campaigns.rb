@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :campaign do
-    title{ Faker::Lorem.sentence }
-    launch_date{ Time.now + 2.months }
-    end_date{ Time.now + 4.months }
-    causes { Campaign::CAUSES.sample }
-    scopes { Campaign::SCOPES.sample }
+    title { Faker::Lorem.sentence }
+    launch_date { Time.now + 2.months }
+    end_date { Time.now + 4.months }
+    causes { Campaign::CAUSES.sample(5) }
+    scopes { Campaign::SCOPES.sample(2) }
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     fundraiser
