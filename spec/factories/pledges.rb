@@ -5,9 +5,9 @@ FactoryGirl.define do
     mission { Faker::Lorem.sentence }
     headline { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    amount_per_click { rand(99) }
+    amount_per_click "9.00"
     donation_type { Pledge::DONATION_TYPES.sample }
-    total_amount { rand(99999) }
+    total_amount "99999.00"
     website_url { Faker::Internet.domain_name }
     campaign
     sponsor

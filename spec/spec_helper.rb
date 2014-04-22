@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'simplecov'
+require "money-rails/test_helpers" 
 SimpleCov.start 'rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -18,6 +19,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
   config.include FactoryGirl::Syntax::Methods
+  config.include MoneyRails::TestHelpers
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation

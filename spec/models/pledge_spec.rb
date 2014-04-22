@@ -6,7 +6,7 @@ describe Pledge do
   it { should validate_presence_of(:website_url) }
   
   it { should validate_numericality_of(:amount_per_click).with_message("must be an integer").is_greater_than(0).is_less_than_or_equal_to(1000) }
-  it { should validate_numericality_of(:total_amount).with_message("must be an integer").is_greater_than(0).is_less_than_or_equal_to(1000) }
+  it { should validate_numericality_of(:total_amount).with_message("must be an integer").is_greater_than(0)
 
   it "should validate other attributes when editing" do
     subject.stub(:persisted?) { true } 

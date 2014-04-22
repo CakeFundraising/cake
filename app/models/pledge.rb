@@ -19,8 +19,8 @@ class Pledge < ActiveRecord::Base
   monetize :amount_per_click_cents
   monetize :total_amount_cents
 
-  validates :amount_per_click, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 1000}
-  validates :total_amount, numericality: {only_integer: true, greater_than: 0}
+  validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
+  validates :total_amount, numericality: {greater_than: 0}
 
   validates :amount_per_click, :total_amount, :donation_type, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?

@@ -6,7 +6,7 @@ FactoryGirl.define do
     winners_quantity { rand(99) }
     claim_prize_instructions { Faker::Lorem.paragraph }
     description { Faker::Lorem.paragraph }
-    remote_avatar_url { "http://placehold.it/500x500" }
+    avatar { Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/coupon.jpg")) }
     pledge
   end
 end
