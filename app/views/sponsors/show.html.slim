@@ -1,7 +1,7 @@
 = link_to 'Edit Profile', public_profile_path
 
 = content_for :header do
-  .banner = image_tag @sponsor.banner.url(:large)
+  .banner.hero
 
 .content.row
   .col-md-6.col-md-offset-1
@@ -91,3 +91,6 @@
         strong Email: 
         a href="mailto:#" #{@sponsor.email}
         br
+
+css:
+  .hero { background-image: url("#{@sponsor.banner.url(:large)}"); }

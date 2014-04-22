@@ -1,7 +1,7 @@
 = link_to 'Edit Pledge', edit_pledge_path(@pledge)
 
 = content_for :header do
-  .banner = image_tag @pledge.banner.url(:large)
+  .banner.hero
 
 .content.row
   .col-md-6.col-md-offset-1
@@ -28,3 +28,6 @@
         p #{ auto_link @pledge.sponsor } is proud to support:
         .fundraiser = auto_link @pledge.fundraiser
         .campaign = auto_link @pledge.campaign
+
+css:
+  .hero { background-image: url("#{@pledge.banner.url(:large)}"); }

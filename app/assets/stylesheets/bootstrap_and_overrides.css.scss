@@ -108,7 +108,6 @@ footer {
 // Banners -------------------------------------------------------------------------
 
 .hero {
-  background-image: url(http://placehold.it/1400x614);
   height:614px;
   margin-bottom: 0;
   border:0px;
@@ -116,6 +115,3 @@ footer {
   @include background-size(cover);
   background-position: 50% 0px;
 }
-
-
-
