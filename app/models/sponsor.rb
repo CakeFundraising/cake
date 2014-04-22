@@ -7,14 +7,14 @@ class Sponsor < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
-  has_many :pledges
+  has_many :pledges, dependent: :destroy
   has_many :campaigns, through: :pledges
   has_many :fundraisers, through: :campaigns
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true
   
-  validates :mission, :manager_title, :customer_demographics, :manager_email, presence: true, unless: :new_record?
+  validates :mission, :manager_name, :manager_phone, :manager_title, :customer_demographics, :manager_email, presence: true, unless: :new_record?
   validates :manager_email, email: true, unless: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank

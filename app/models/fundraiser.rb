@@ -5,14 +5,14 @@ class Fundraiser < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
-  has_many :campaigns
+  has_many :campaigns, dependent: :destroy
   has_many :pledges, through: :campaigns
   has_many :sponsors, through: :pledges
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
   
-  validates :mission, :manager_title, :supporter_demographics, :manager_email, presence: true, unless: :new_record?
+  validates :mission, :manager_name, :manager_phone, :manager_title, :supporter_demographics, :manager_email, presence: true, unless: :new_record?
   validates :manager_email, email: true, unless: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank

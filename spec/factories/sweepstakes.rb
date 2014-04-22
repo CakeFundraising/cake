@@ -2,12 +2,11 @@
 
 FactoryGirl.define do
   factory :sweepstake do
-    title "MyString"
-    winners_quantity 1
-    claim_prize_instructions "MyText"
-    description "MyText"
-    terms_conditions "MyText"
-    avatar "MyString"
-    pledge_id 1
+    title { Faker::Lorem.sentence }
+    winners_quantity { rand(99) }
+    claim_prize_instructions { Faker::Lorem.paragraph }
+    description { Faker::Lorem.paragraph }
+    remote_avatar_url { "http://placehold.it/500x500" }
+    pledge
   end
 end
