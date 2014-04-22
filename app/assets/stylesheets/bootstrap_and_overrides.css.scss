@@ -1,6 +1,7 @@
 @import 'fonts';
 @import 'variables';
 @import 'bootstrap';
+@import 'mixins';
 @import 'mixins-buttons';
 
 //Buttons -------------------------------------------------------------------------------
@@ -60,7 +61,7 @@
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 
-// ----------------------------------------------------
+// -------------------------------------------------------------------------------
 form{
   .banner{
     overflow: hidden;
@@ -75,7 +76,7 @@ form{
   }
 }
 
-// Footer Styles ----------------------------------------------------------------------------
+// Footer Styles ---------------------------------------------------------------
 
 footer {
   padding: 25px 0;
@@ -101,3 +102,20 @@ footer {
   border-top: 1px dotted $gray-lighter;
   padding-top: 10px;
 }
+
+// Profile Page
+
+// Banners -------------------------------------------------------------------------
+
+.hero {
+  background-image: url(http://placehold.it/1400x614);
+  height:614px;
+  margin-bottom: 0;
+  border:0px;
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+
+
+
