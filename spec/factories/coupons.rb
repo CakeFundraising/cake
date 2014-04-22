@@ -2,13 +2,12 @@
 
 FactoryGirl.define do
   factory :coupon do
-    title "MyString"
-    expires_at "2014-04-17 11:15:23"
-    promo_code "MyString"
-    description "MyText"
-    terms_conditions "MyText"
-    avatar "MyString"
-    qrcode "MyString"
-    pledge_id 1
+    title { Faker::Lorem.sentence }
+    expires_at { Time.now + 3.months }
+    promo_code { rand(9999) }
+    description { Faker::Lorem.paragraph }
+    remote_avatar_url { "http://placehold.it/500x500" }
+    remote_qrcode_url { "http://placehold.it/500x500" }
+    pledge
   end
 end

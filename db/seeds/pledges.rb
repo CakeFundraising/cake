@@ -9,13 +9,21 @@
     p.website_url = Faker::Internet.domain_name
     p.campaign = @campaigns.sample
 
-    # build(2, p.coupons) do |c|
-    #   c.title = Faker::Lorem.sentence
-    #   c.expires_at = Time.now + 3.months
-    #   c.promo_code = rand(9999)
-    #   c.description = Faker::Lorem.paragraph
-    #   c.avatar "MyString"
-    #   c.qrcode "MyString"
-    # end
+    build(2, p.coupons) do |c|
+      c.title = Faker::Lorem.sentence
+      c.expires_at = Time.now + 3.months
+      c.promo_code = rand(9999)
+      c.description = Faker::Lorem.paragraph
+      c.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
+      c.qrcode.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg')))
+    end
+
+    build(2, p.sweepstakes) do |sw|
+      sw.winners_quantity = rand(99)
+      sw.claim_prize_instructions = Faker::Lorem.paragraph
+      sw.title = Faker::Lorem.sentence
+      sw.description = Faker::Lorem.paragraph
+      sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
+    end
   end
 end

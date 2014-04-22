@@ -6,8 +6,8 @@ class Pledge < ActiveRecord::Base
   has_one :fundraiser, through: :campaign
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
-  has_many :coupons, dependent: :destroy
-  has_many :sweepstakes, dependent: :destroy
+  has_many :coupons, dependent: :destroy, :inverse_of => :pledge
+  has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }

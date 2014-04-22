@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :fundraiser do
-    causes { Fundraiser::CAUSES.sample }
+    causes { Fundraiser::CAUSES.sample(5) }
     min_pledge{ Fundraiser::MIN_PLEDGES.sample }
     min_click_donation{ Fundraiser::MIN_CLICK_DONATIONS.sample }
     manager_name{ Faker::Name.name }

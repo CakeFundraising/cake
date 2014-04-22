@@ -2,14 +2,14 @@
 
 FactoryGirl.define do
   factory :pledge do
-    mission "MyString"
-    headline "MyString"
-    description "MyText"
-    amount_per_click ""
-    donation_type "MyString"
-    total_amount ""
-    website_url "MyString"
-    campaign_id 1
-    sponsor_id 1
+    mission { Faker::Lorem.sentence }
+    headline { Faker::Lorem.sentence }
+    description { Faker::Lorem.paragraph }
+    amount_per_click { rand(99) }
+    donation_type { Pledge::DONATION_TYPES.sample }
+    total_amount { rand(99999) }
+    website_url { Faker::Internet.domain_name }
+    campaign
+    sponsor
   end
 end
