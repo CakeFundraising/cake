@@ -32,8 +32,8 @@ When(/^(?:I|they) press the "(.*?)" link and allow the required permissions$/) d
   click_link(link)
 end
 
-Then(/^(?:I|they) should be redirected to the new registration page$/) do
-  visit new_user_registration_path
+Then(/^(?:I|they|he) should be redirected to the new registration page as (.*?)$/) do |role|
+  visit new_user_registration_path(role: role)
 end
 
 #User update
@@ -48,11 +48,9 @@ Given(/^that (?:I|they) am logged in as "(.*?)" with password "(.*?)"$/) do |ema
   click_button("Sign in")
 end
 
-Given(/^that (.+) is logged in$/) do |user|
-  visit new_user_session_path
-  fill_in "user_email", :with => model(user).email
-  fill_in "user_password", :with => model(user).password
-  click_button("Sign in")
+Given(/^that (.+) is logged in$/) do |role|
+  user = model(role).manager
+  login_user(user)
 end
 
 

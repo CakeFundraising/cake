@@ -178,6 +178,8 @@ GEM
       kaminari (>= 0.13.0)
       rails
     kgio (2.9.2)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -397,6 +399,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   kaminari-bootstrap
+  launchy
   money-rails
   omniauth
   omniauth-facebook
