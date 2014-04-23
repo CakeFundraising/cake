@@ -12,13 +12,16 @@ module NavigationHelpers
       '/'
 
     when /^#{capture_model}(?:'s)? registration page$/                    
-      new_user_registration_path(role: :sponsor)
+      new_user_registration_path
       
     when /^sign in page$/  
       new_user_session_path
 
     when /^settings page$/
-      dashboard_settings_users_path  
+      dashboard_settings_users_path 
+    
+    when /^new #{capture_model}(?:'s)? page$/
+      self.send("new_#{$1}_path".to_sym)
 
     # the following are examples using path_to_pickle
 

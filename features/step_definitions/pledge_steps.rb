@@ -7,7 +7,6 @@ Then(/^he is taken to the new pledge page$/) do
 end
 
 Then(/^the sponsor should see the pledge wizard$/) do
-  save_and_open_page
   page.should have_content("Your Pledge")
   find("#pledge_campaign_id option[value='#{model(:campaign).id}']").should be_selected
   page.should have_button("Agree & Continue")

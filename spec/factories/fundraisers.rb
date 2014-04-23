@@ -17,5 +17,9 @@ FactoryGirl.define do
     email { Faker::Internet.safe_email }
     association :manager, factory: :fundraiser_user
     location
+
+    after(:create) do |fr|
+      fr.manager.set_fundraiser(fr)
+    end
   end
 end

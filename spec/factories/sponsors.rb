@@ -17,5 +17,9 @@ FactoryGirl.define do
     causes { Sponsor::CAUSES.sample(3) }
     association :manager, factory: :sponsor_user
     location
+
+    after(:create) do |sponsor|
+      sponsor.manager.set_sponsor(sponsor)
+    end
   end
 end
