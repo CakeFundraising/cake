@@ -41,3 +41,8 @@ end
 Then(/^he should see his past campaigns$/) do
   page.should have_selector('table#campaigns tr.campaign', count: @past_campaigns.count)
 end
+
+Then(/^he should see his sponsors$/) do
+  @sponsors = model(:fundraiser).sponsors
+  page.should have_selector('table#sponsors tr.sponsor', count: @sponsors.count)
+end

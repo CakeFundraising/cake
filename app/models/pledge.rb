@@ -1,6 +1,7 @@
 class Pledge < ActiveRecord::Base
   include Statusable
-  has_statuses :pending, :active, :rejected
+  has_statuses :pending, :accepted, :rejected
+  has_statuses :active, :inactive, column_name: :activity_status
 
   attr_accessor :step 
   

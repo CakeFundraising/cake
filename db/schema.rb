@@ -157,17 +157,18 @@ ActiveRecord::Schema.define(version: 20140423203747) do
     t.string   "mission"
     t.string   "headline"
     t.text     "description"
-    t.integer  "amount_per_click_cents",    default: 0,         null: false
-    t.string   "amount_per_click_currency", default: "USD",     null: false
+    t.integer  "amount_per_click_cents",    default: 0,          null: false
+    t.string   "amount_per_click_currency", default: "USD",      null: false
     t.string   "donation_type"
-    t.integer  "total_amount_cents",        default: 0,         null: false
-    t.string   "total_amount_currency",     default: "USD",     null: false
+    t.integer  "total_amount_cents",        default: 0,          null: false
+    t.string   "total_amount_currency",     default: "USD",      null: false
     t.string   "website_url"
     t.integer  "campaign_id"
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status",                    default: "pending"
+    t.string   "activity_status",           default: "inactive"
   end
 
   create_table "sponsor_categories", force: true do |t|

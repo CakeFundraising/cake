@@ -39,6 +39,7 @@ describe Pledge do
   end
 
   it "should have statuses" do
-    Pledge.statuses[:status].should == [:pending, :active, :rejected]
+    Pledge.statuses[:status].should == [:pending, :accepted, :rejected]
+    Pledge.statuses[:activity_status].should == [:active, :inactive]
   end
 end

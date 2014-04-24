@@ -8,7 +8,6 @@ class Fundraiser < ActiveRecord::Base
   has_many :campaigns, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, through: :campaigns
-  has_many :sponsors, through: :pledges
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
@@ -43,4 +42,8 @@ class Fundraiser < ActiveRecord::Base
     7,
     10
   ]
+
+  def sponsors
+    pledges.accepted.active.map(&:sponsor)
+  end
 end

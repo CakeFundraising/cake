@@ -29,3 +29,7 @@ Feature: Fundraiser Dashboard
     When he visits the fundraiser history page
     Then he should see his past campaigns
     Then he should see his sponsors
+
+  Scenario: Billing
+    When he visits the fundraiser billing page
+    Then he should see his invoices

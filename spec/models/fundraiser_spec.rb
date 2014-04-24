@@ -22,7 +22,6 @@ describe Fundraiser do
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:campaigns).dependent(:destroy) }
   it { should have_many(:pledges).through(:campaigns) }
-  it { should have_many(:sponsors).through(:pledges) }
 
   it { should accept_nested_attributes_for(:location).update_only(true) }
   it { should accept_nested_attributes_for(:picture).update_only(true) }
@@ -41,5 +40,40 @@ describe Fundraiser do
     new_fundraiser = FactoryGirl.build(:fundraiser)
     new_fundraiser.location.should_not be_nil
     new_fundraiser.location.should be_instance_of(Location)
+  end
+
+  context 'Association methods' do
+    let(:fundraiser){ FactoryGirl.create(:fundraiser) }
+    let(:campaigns){ create_list(:campaign, 5, fundraiser: fundraiser) }
+
+    describe "Pledges" do
+      it "should show a collection of fundraiser's active pledges" do
+        active_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
+        fundraiser.pledges.active.should == active_pledges
+      end
+
+      it "should show a collection of fundraiser's pending pledges" do
+        pending_pledges = create_list(:pending_pledge, 10, campaign: campaigns.sample)
+        fundraiser.pledges.pending.should == pending_pledges
+      end
+
+      it "should show a collection of fundraiser's rejected pledges" do
+        rejected_pledges = create_list(:rejected_pledge, 10, campaign: campaigns.sample)
+        fundraiser.pledges.rejected.should == rejected_pledges
+      end
+    end
+
+    describe "Sponsors" do
+      # Sponsors are the sponsors of FR's accepted pledges
+      it "should show a collection of fundraiser's sponsors" do
+        accepted_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
+        pending_pledges = create_list(:pending_pledge, 10, campaign: campaigns.sample)
+        rejected_pledges = create_list(:rejected_pledge, 10, campaign: campaigns.sample)
+
+        fundraiser.sponsors.should == accepted_pledges.map(&:sponsor)
+        fundraiser.sponsors.should_not include(pending_pledges.map(&:sponsor))
+        fundraiser.sponsors.should_not include(rejected_pledges.map(&:sponsor))
+      end
+    end
   end
 end
