@@ -12,6 +12,7 @@ describe Campaign do
   it { should have_one(:picture).dependent(:destroy) }
   it { should have_one(:video).dependent(:destroy) }
   it { should have_many(:sponsor_categories).dependent(:destroy) }
+  it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:picture).update_only(true) }
@@ -26,5 +27,16 @@ describe Campaign do
     new_campaign = FactoryGirl.build(:campaign)
     new_campaign.picture.should_not be_nil
     new_campaign.picture.should be_instance_of(Picture)
+  end
+
+  #Scopes
+  it "should return a collection of active campaigns" do
+    @campaigns = create_list(:campaign, 5)
+    Campaign.active.should == @campaigns
+  end
+
+  it "should return a collection of past campaigns" do
+    @campaigns = create_list(:past_campaign, 5)
+    Campaign.past.should == @campaigns
   end
 end

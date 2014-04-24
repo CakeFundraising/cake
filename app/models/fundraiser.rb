@@ -6,6 +6,7 @@ class Fundraiser < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
+  has_many :pledge_requests, dependent: :destroy
   has_many :pledges, through: :campaigns
   has_many :sponsors, through: :pledges
 

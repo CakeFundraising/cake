@@ -1,4 +1,4 @@
-class PledgeDecorator < ApplicationDecorator
+class PledgeRequestDecorator < ApplicationDecorator
   delegate_all
   decorates_association :campaign
   decorates_association :sponsor

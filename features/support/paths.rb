@@ -19,7 +19,7 @@ module NavigationHelpers
 
     when /^settings page$/
       dashboard_settings_users_path 
-    
+
     when /^new #{capture_model}(?:'s)? page$/
       self.send("new_#{$1}_path".to_sym)
 

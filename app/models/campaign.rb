@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
   has_many :sponsor_categories, dependent: :destroy
+  has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :sponsors, through: :pledges
 

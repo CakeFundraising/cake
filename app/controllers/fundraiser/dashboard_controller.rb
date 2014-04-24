@@ -7,6 +7,8 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def pending_pledges
+    @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
+    @requested_pledges = current_fundraiser.pledge_requests.decorate
   end
 
   def campaigns
@@ -15,6 +17,6 @@ class Fundraiser::DashboardController < ApplicationController
 
   def history
     @campaigns = current_fundraiser.campaigns.past.decorate
-    # @sponsors = ...
+    @sponsors = current_fundraiser.sponsors
   end
 end

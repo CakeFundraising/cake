@@ -19,6 +19,7 @@ describe Sponsor do
   it { should have_one(:location).dependent(:destroy) }
   it { should have_one(:picture).dependent(:destroy) }
   it { should have_many(:users) }
+  it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
   it { should have_many(:campaigns).through(:pledges) }
   it { should have_many(:fundraisers).through(:campaigns) }

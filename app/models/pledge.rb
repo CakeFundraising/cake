@@ -1,4 +1,7 @@
 class Pledge < ActiveRecord::Base
+  include Statusable
+  has_statuses :pending, :active, :rejected
+
   attr_accessor :step 
   
   belongs_to :sponsor

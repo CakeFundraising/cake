@@ -9,7 +9,16 @@ FactoryGirl.define do
     donation_type { Pledge::DONATION_TYPES.sample }
     total_amount "99999.00"
     website_url { Faker::Internet.domain_name }
+    status :active
     campaign
     sponsor
+
+    factory :pending_pledge do
+      status :pending
+    end
+
+    factory :rejected_pledge do
+      status :rejected
+    end
   end
 end

@@ -19,6 +19,7 @@ describe Fundraiser do
   it { should have_one(:location).dependent(:destroy) }
   it { should have_one(:picture).dependent(:destroy) }
   it { should have_many(:users) }
+  it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:campaigns).dependent(:destroy) }
   it { should have_many(:pledges).through(:campaigns) }
   it { should have_many(:sponsors).through(:pledges) }

@@ -1,0 +1,8 @@
+tr.pledge
+  td = auto_link pledge_request.sponsor
+  td = pledge_request.campaign.causes
+  td = pledge_request.campaign.scopes
+  td = pledge_request.start_end_dates
+  td
+    span = link_to "Cancel", nil, class:'btn btn-warning'
+    span = link_to "Delete", nil, class:'btn btn-danger'

@@ -6,6 +6,10 @@ When(/^(?:I|they|he) (?:go|goes) to (.*?)$/) do |page_name|
   visit path_to(page_name)
 end
 
+When(/^(?:I|they|he) (?:visit|visits) the (.*?)$/) do |page_name|
+  visit path_to(page_name)
+end
+
 When(/^(?:I|they) fill in "(.*?)" field with "(.*?)"$/) do |field, value|
   fill_in field, :with => value
 end

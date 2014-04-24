@@ -1,0 +1,8 @@
+tr.pledge
+  td = auto_link pledge.sponsor
+  td = pledge.campaign.causes
+  td = pledge.campaign.scopes
+  td = pledge.start_end_dates
+  td
+    span = link_to "Accept", pledge, class:'btn btn-success'
+    span = link_to "Reject", pledge, class:'btn btn-danger'

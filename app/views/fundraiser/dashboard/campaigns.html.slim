@@ -1,17 +1,3 @@
-/ ul.nav.nav-tabs
-/   li
-/     = link_to "Home", fundraiser_home_path
-/   li 
-/     = link_to "Billing", fundraiser_billing_path
-/   li
-/     = link_to "Pending Pledges", fundraiser_pending_pledges_path
-/   li.active
-/     a data-toggle="tab" href="#campaigns" = Campaign.model_name.human(count: 2)
-/   li
-/     = link_to "History", fundraiser_history_path
-
-/ .tab-content
-/   #campaigns.tab-pane.active
 = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
 h2 Active Campaigns
 = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}

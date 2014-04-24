@@ -7,6 +7,7 @@ class Sponsor < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
   has_many :users
+  has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :campaigns, through: :pledges
   has_many :fundraisers, through: :campaigns

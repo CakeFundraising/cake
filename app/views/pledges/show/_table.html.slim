@@ -1,0 +1,9 @@
+table.table.table-hover.table-bordered id=(pledge_type)
+  thead
+    tr
+      th = Pledge.human_attribute_name :sponsor
+      th = Pledge.human_attribute_name :causes
+      th = Pledge.human_attribute_name :scopes
+      th = Pledge.human_attribute_name :start_end_dates
+  tbody
+    = render partial:'pledges/show/table_row', collection: pledges, as: :pledge

@@ -1,15 +1,11 @@
-/ ul.nav.nav-tabs
-/   li
-/     = link_to "Home", fundraiser_home_path
-/   li
-/     = link_to "Billing", fundraiser_billing_path
-/   li.active 
-/     a data-toggle="tab" href="#pending_pledges" Pending Pledges 
-/   li
-/     = link_to Campaign.model_name.human(count: 2), fundraiser_campaigns_path
-/   li
-/     = link_to "History", fundraiser_history_path
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#unsolicited" Unsolicited Offers to Pledge
+  li 
+    a data-toggle="tab" href="#requested" Requests to Sponsors
 
-/ .tab-content
-/   #pending_pledges.tab-pane.active
-h2 Pending Pledges
+.tab-content
+  #unsolicited.tab-pane.active
+    = render partial:'pledges/show/table', locals:{pledges: @unsolicited_pledges, pledge_type: 'unsolicited_pledges'}
+  #requested.tab-pane
+    = render partial:'pledge_requests/show/table', locals:{pledges: @requested_pledges}
