@@ -1,5 +1,5 @@
-= f.semantic_fields_for :sweepstakes do |c|
-  #sweepstakes
+#sweepstakes
+  = f.semantic_fields_for :sweepstakes do |c|
     = render partial:'sweepstakes/fields', locals:{f: c}
-    .links
-      = link_to_add_association "Add another sweepstake", f, :sweepstakes, partial: 'sweepstakes/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 3 }
+  .links
+    = link_to_add_association "Add another sweepstake", f, :sweepstakes, partial: 'sweepstakes/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 3 }

@@ -1,12 +1,9 @@
-Then(/^he should fill out the "Tell your story" form$/) do
-  attrs = FactoryGirl.attributes_for :campaign
+Given(/^a campaign exists of that fundraiser$/) do
+  @campaign = FactoryGirl.create(:campaign, fundraiser: model(:fundraiser))
+end
 
-  fill_in("Title", with: attrs[:title])
-  select(attrs[:causes].last, from: 'Causes')
-  select(attrs[:scopes].last, from: 'Scopes')
-  fill_in("Story", with: attrs[:story])
-  fill_in("Headline", with: attrs[:headline])
-  find(:css, "#campaign_launch_date").set(attrs[:launch_date])
-  find(:css, "#campaign_end_date").set(attrs[:end_date])
-  click_button("Save & Continue")
+Then(/^he should see the invitation link and badge$/) do
+  page.should have_content("Copy the link to invite sponsors to pledge")
+  find(:css, 'input#campaign_url').value.should == campaign_url(@campaign)
+  find(:css, 'textarea#embedded_link')
 end

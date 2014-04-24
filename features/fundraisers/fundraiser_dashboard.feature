@@ -14,7 +14,7 @@ Feature: Fundraiser Dashboard
 
   Scenario: Home
     When he visits the fundraiser home page
-    Then he should see his home dashboard
+    Then he should see his fundraiser home dashboard
 
   Scenario: Campaigns
     When he visits the fundraiser campaigns page

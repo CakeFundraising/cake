@@ -14,7 +14,7 @@ Given(/^(\d+) requested pledges of his campaigns exist$/) do |quantity|
   @requested_pledges = FactoryGirl.create_list(:pledge_request, quantity.to_i, campaign: @campaigns.sample, fundraiser: model(:fundraiser))
 end
 
-Then(/^he should see his home dashboard$/) do
+Then(/^he should see his fundraiser home dashboard$/) do
   page.should have_content(model(:fundraiser).name)
   page.should have_content(model(:fundraiser).manager_name)
   page.should have_content(model(:fundraiser).manager_email)
@@ -28,7 +28,6 @@ Then(/^he should see his active campaigns$/) do
   page.should have_selector('table#campaigns tr.campaign', count: @campaigns.count)
   page.should have_link("Start New Campaign")
 end
-
 
 Then(/^he should see his unsolicited pledges$/) do
   page.should have_selector('table#unsolicited_pledges tr.pledge', count: @unsolicited_pledges.count)

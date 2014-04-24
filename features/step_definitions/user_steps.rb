@@ -10,22 +10,6 @@ When(/^(?:I|they|he) (?:visit|visits) the (.*?)$/) do |page_name|
   visit path_to(page_name)
 end
 
-When(/^(?:I|they) fill in "(.*?)" field with "(.*?)"$/) do |field, value|
-  fill_in field, :with => value
-end
-
-When(/^(?:I|they) press the "(.*?)" button$/) do |button|
-  click_button(button)
-end
-
-When(/^(?:I|they) press the "(.*?)" link$/) do |link|
-  click_link(link)
-end
-
-Then(/^(?:I|they) should see "(.*?)"$/) do |message|
-  page.should have_content(message)
-end
-
 Then(/^(?:I|they) should have (\d+) new user$/) do |ammount|
   User.count.should == ammount.to_i
 end

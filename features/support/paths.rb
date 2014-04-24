@@ -20,6 +20,12 @@ module NavigationHelpers
     when /^settings page$/
       dashboard_settings_users_path 
 
+    when /^pledge levels page$/
+      sponsors_campaign_path(@campaign)
+      
+    when /^solicit sponsors page$/
+      share_campaign_path(@campaign)
+
     when /^new #{capture_model}(?:'s)? page$/
       self.send("new_#{$1}_path".to_sym)
 

@@ -11,8 +11,10 @@ FactoryGirl.define do
     story { Faker::Lorem.paragraph }
     fundraiser
 
-    before(:create) do |campaign|
-      campaign.sponsor_categories = build_list(:sponsor_category, 3, campaign: campaign)
+    factory :campaign_with_pledge_levels do
+      before(:create) do |campaign|
+        campaign.sponsor_categories = build_list(:sponsor_category, 3, campaign: campaign)
+      end
     end
 
     factory :past_campaign do
