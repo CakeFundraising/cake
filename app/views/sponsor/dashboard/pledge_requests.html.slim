@@ -1,1 +1,11 @@
-h2 Pledge Requests
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#fr-requests" Fundraiser Requests
+  li 
+    a data-toggle="tab" href="#my-requests" My offers to Pledge
+
+.tab-content
+  #fr-requests.tab-pane.active
+    = render partial:'pledge_requests/show/table', locals:{pledges: @fundraiser_requests}
+  #my-requests.tab-pane
+    = render partial:'pledges/show/table', locals:{pledges: @sponsor_requests, pledge_type: 'sponsor_pledges'}

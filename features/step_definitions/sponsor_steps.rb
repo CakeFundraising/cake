@@ -7,3 +7,16 @@ Then(/^he should see his sponsor home dashboard$/) do
   page.should have_content("Clicks from Active Pledges")
   page.should have_content("Invoices Due")
 end
+
+Then(/^he should see his active pledges$/) do
+  page.should have_selector('table#active_pledges tr.pledge', count: @pledges.count)
+end
+
+Then(/^he should see his past pledges$/) do
+  page.should have_selector('table#past_pledges tr.pledge', count: @past_pledges.count)
+end
+
+Then(/^he should see his fundraisers$/) do
+  @fundraisers = model(:sponsor).fundraisers
+  page.should have_selector('table#fundraisers tr.fundraiser', count: @fundraisers.count)
+end

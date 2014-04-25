@@ -22,5 +22,9 @@ FactoryGirl.define do
       activity_status :inactive
       status :rejected
     end
+
+    factory :past_pledge do
+      activity_status :inactive
+    end
   end
 end

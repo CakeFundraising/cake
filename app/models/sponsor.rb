@@ -10,7 +10,6 @@ class Sponsor < ActiveRecord::Base
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :campaigns, through: :pledges
-  has_many :fundraisers, through: :campaigns
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true
@@ -30,5 +29,9 @@ class Sponsor < ActiveRecord::Base
       self.build_location
       self.build_picture if picture.blank?
     end
+  end
+
+  def fundraisers
+    pledges.accepted.active.map(&:fundraiser)
   end
 end

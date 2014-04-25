@@ -1,1 +1,11 @@
-h2 History
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#pledges" = Pledge.model_name.human(count: 2)
+  li 
+    a data-toggle="tab" href="#fundraisers" = Fundraiser.model_name.human(count: 2)
+
+.tab-content
+  #pledges.tab-pane.active
+    = render partial:'pledges/show/table', locals:{pledges: @pledges, pledge_type: 'past_pledges'}
+  #fundraisers.tab-pane
+    = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers}

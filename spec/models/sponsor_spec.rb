@@ -50,4 +50,38 @@ describe Sponsor do
     new_sponsor.location.should_not be_nil
     new_sponsor.location.should be_instance_of(Location)
   end
+
+  context 'Association methods' do
+    let(:sponsor){ FactoryGirl.create(:sponsor) }
+
+    describe "Pledges" do
+      it "should show a collection of sponsor's active pledges" do
+        active_pledges = create_list(:pledge, 10, sponsor: sponsor)
+        sponsor.pledges.active.should == active_pledges
+      end
+
+      it "should show a collection of sponsor's pending pledges" do
+        pending_pledges = create_list(:pending_pledge, 10, sponsor: sponsor)
+        sponsor.pledges.pending.should == pending_pledges
+      end
+
+      it "should show a collection of sponsor's rejected pledges" do
+        rejected_pledges = create_list(:rejected_pledge, 10, sponsor: sponsor)
+        sponsor.pledges.rejected.should == rejected_pledges
+      end
+    end
+
+    describe "Fundraisers" do
+      # Fundraisers are the FR of the pledges's campaigns
+      it "should show a collection of sponsor's fundraisers" do
+        accepted_pledges = create_list(:pledge, 10, sponsor: sponsor)
+        pending_pledges = create_list(:pending_pledge, 10, sponsor: sponsor)
+        rejected_pledges = create_list(:rejected_pledge, 10, sponsor: sponsor)
+
+        sponsor.fundraisers.should == accepted_pledges.map(&:fundraiser)
+        sponsor.fundraisers.should_not include(pending_pledges.map(&:fundraiser))
+        sponsor.fundraisers.should_not include(rejected_pledges.map(&:fundraiser))
+      end
+    end
+  end
 end

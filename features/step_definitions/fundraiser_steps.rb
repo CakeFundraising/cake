@@ -1,11 +1,3 @@
-Given(/^(\d+) campaigns of that fundraiser exist$/) do |quantity|
-  @campaigns = FactoryGirl.create_list(:campaign, quantity.to_i, fundraiser: model(:fundraiser))
-end
-
-Given(/^(\d+) past campaigns of that fundraiser exist$/) do |quantity|
-  @past_campaigns = FactoryGirl.create_list(:past_campaign, quantity.to_i, fundraiser: model(:fundraiser))
-end
-
 Given(/^(\d+) unsolicited pledges of his campaigns exist$/) do |quantity|
   @unsolicited_pledges = FactoryGirl.create_list(:pending_pledge, quantity.to_i, campaign: @campaigns.sample)
 end

@@ -1,2 +1,4 @@
 = link_to "Start new pledge", new_pledge_path, class:'btn btn-primary pull-right'
 h2 Active Pledges
+
+= render partial:'pledges/show/table', locals:{pledges: @pledges, pledge_type: 'active_pledges'}

@@ -13,10 +13,12 @@ Feature: Sponsor Dashboard
     Then he should see his sponsor home dashboard
 
   Scenario: Active Pledges
+    And 3 pledges of that sponsor exist
     When he visits the sponsor active pledges page
     Then he should see his active pledges
 
   Scenario: History
+    And 3 past pledges of that sponsor exist
     When he visits the sponsor history page
     Then he should see his past pledges
     Then he should see his fundraisers

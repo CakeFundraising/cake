@@ -1,6 +1,11 @@
-h2 All Campaigns
-= render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#campaigns-tab" = Campaign.model_name.human(count: 2)
+  li 
+    a data-toggle="tab" href="#sponsors" = Sponsor.model_name.human(count: 2)
 
-hr
-h2 All Sponsors
-= render partial:'sponsors/show/table', locals:{sponsors: @sponsors}
+.tab-content
+  #campaigns-tab.tab-pane.active
+    = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+  #sponsors.tab-pane
+    = render partial:'sponsors/show/table', locals:{sponsors: @sponsors}

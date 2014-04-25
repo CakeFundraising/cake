@@ -1,4 +1,6 @@
 module UserHelper
+  include Devise::TestHelpers
+
   def login_user(user)
     visit new_user_session_path
     fill_in "user_email", :with => user.email
@@ -27,6 +29,10 @@ module UserHelper
   def confirm_user
     @user = User.last
     @user.confirm!
+  end
+
+  def sign_out_user
+    page.driver.submit :delete, destroy_user_session_path, {}
   end
 end
 

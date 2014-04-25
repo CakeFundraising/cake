@@ -74,7 +74,7 @@
         = image_tag @sponsor.avatar.url(:medium)
         .caption = @sponsor.avatar_caption
       .request-pledge
-        = link_to "Request Pledge", new_pledge_request_path, class:'btn btn-primary'
+        = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary'
     .sponsor
       address
         strong = @sponsor.name
