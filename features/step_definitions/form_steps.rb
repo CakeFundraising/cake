@@ -14,6 +14,17 @@ Then(/^(?:I|they|he) should see "(.*?)"$/) do |message|
   page.should have_content(message)
 end
 
-When(/^he selects (.*?) in "(.*?)"$/) do |option, select|
-  select(option, from: select)
+When(/^(?:I|they|he) (?:select|selects) (.*?) in "(.*?)"$/) do |option, select_field|
+  select(option, from: select_field)
+end
+
+#Upload Avatar
+When(/^(?:I|they) attach a new (.+\.jpg)$/) do |image|
+  attach_file('user_avatar', "#{Rails.root}/features/fixtures/#{image}")
+  click_button('Update')
+end
+
+When(/^(?:I|they) attach a new (.+\.gif)$/) do |image|
+  attach_file('user_avatar', "#{Rails.root}/features/fixtures/#{image}")
+  click_button('Update')
 end

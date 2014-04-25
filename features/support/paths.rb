@@ -20,18 +20,28 @@ module NavigationHelpers
     when /^settings page$/
       dashboard_settings_users_path 
 
+    when /^new #{capture_model}(?:'s)? page$/
+      path_components = $1.split(/\s+/)
+      self.send(path_components.unshift('new').push('path').join('_').to_sym)
+
+    #pledges
+    when /^pledge invitation page$/
+      pledge_campaign_path(@campaign)
+
+    #campaign
     when /^pledge levels page$/
       sponsors_campaign_path(@campaign)
       
     when /^solicit sponsors page$/
       share_campaign_path(@campaign)
 
-    when /^new #{capture_model}(?:'s)? page$/
-      self.send("new_#{$1}_path".to_sym)
+    when /^campaign's page$/
+      campaign_path(@campaign)
 
-    #pledges
-    when /^pledge invitation page$/
-      pledge_campaign_path(@campaign)
+    #Sponsor
+    when /^sponsor's page$/
+      sponsor_path(model(:sponsor))
+
 
     # the following are examples using path_to_pickle
 

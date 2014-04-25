@@ -1,0 +1,5 @@
+= semantic_form_for @pledge_request do |f|
+  = f.inputs do
+    = f.input :campaign, as: :select, collection: current_fundraiser.campaigns
+  = f.actions do
+    = f.action :submit, label: 'Request Pledge', button_html: {class: 'btn btn-success btn-lg'} 
