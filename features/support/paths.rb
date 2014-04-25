@@ -29,6 +29,10 @@ module NavigationHelpers
     when /^new #{capture_model}(?:'s)? page$/
       self.send("new_#{$1}_path".to_sym)
 
+    #pledges
+    when /^pledge invitation page$/
+      pledge_campaign_path(@campaign)
+
     # the following are examples using path_to_pickle
 
     when /^#{capture_model}(?:'s)? page$/                           # eg. the forum's page

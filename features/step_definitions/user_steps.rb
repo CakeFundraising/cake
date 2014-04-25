@@ -21,7 +21,7 @@ When(/^(?:I|they) press the "(.*?)" link and allow the required permissions$/) d
 end
 
 Then(/^(?:I|they|he) should be redirected to the new registration page as (.*?)$/) do |role|
-  visit new_user_registration_path(role: role)
+  current_url.should == new_user_registration_url(role: role)
 end
 
 #User update
@@ -35,12 +35,6 @@ Given(/^that (?:I|they) am logged in as "(.*?)" with password "(.*?)"$/) do |ema
   fill_in "user_password", :with => password
   click_button("Sign in")
 end
-
-Given(/^that (.+) is logged in$/) do |role|
-  user = model(role).manager
-  login_user(user)
-end
-
 
 #Delete Account
 Then(/^there shouldn't be registered users$/) do
@@ -57,3 +51,18 @@ When(/^(?:I|they) attach a new (.+\.gif)$/) do |image|
   attach_file('user_avatar', "#{Rails.root}/features/fixtures/#{image}")
   click_button('Update')
 end
+
+
+Given(/^that (.+) is logged in$/) do |role|
+  user = model(role).manager
+  login_user(user)
+end
+
+When(/^the user registers as a (.+)$/) do |role|
+  send("register_#{role}")
+end
+
+When(/^he logs in$/) do
+  login_user(@user)
+end
+

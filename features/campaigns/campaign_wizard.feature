@@ -31,7 +31,7 @@ Feature: Campaign Wizard Steps
     |                 | US Relief      | Global  | Some story text | Some headline | 21/08/2014  | 21/12/2014 | can't be blank  |
   
   Scenario Outline: Pledge Levels
-    And a campaign exists of that fundraiser
+    And a campaign of that fundraiser exists
     When he goes to pledge levels page
     And he fills in "Name" field with <name>
     And he fills in "Min value" field with <min_value>
@@ -50,6 +50,6 @@ Feature: Campaign Wizard Steps
     | Gold Sponsor     |           | 100000     | must be greater than 0 |
 
   Scenario: Solicit Sponsors
-    And a campaign exists of that fundraiser
+    And a campaign of that fundraiser exists
     When he goes to solicit sponsors page
     Then he should see the invitation link and badge

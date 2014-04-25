@@ -47,7 +47,7 @@ Feature: User Registration
 	@oauth
 	Scenario Outline: OAuth2 registration
 		And I press the "<Provider Link>" link and allow the required permissions
-		Then I should be redirected to the new registration page
+		Then I visit the new registration page
 		When I fill in "user_email" field with "<user_email>"
 		When I fill in "user_password" field with "<user_password>"
 		When I fill in "user_password_confirmation" field with "<user_password_confirmation>"

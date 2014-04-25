@@ -2,10 +2,6 @@ When(/^the sponsor clicks on the invitation link to campaign$/) do
   visit new_pledge_path(campaign: model(:campaign))
 end
 
-Then(/^he is taken to the new pledge page$/) do
-  visit new_pledge_path(campaign: model(:campaign))
-end
-
 Then(/^the sponsor should see the pledge wizard$/) do
   page.should have_content("Your Pledge")
   find("#pledge_campaign_id option[value='#{model(:campaign).id}']").should be_selected
@@ -14,10 +10,6 @@ end
 
 
 Given(/^the user is not registered as sponsor$/) do
-end
-
-Then(/^he logs in$/) do
-  login_user(@sponsor_user)
 end
 
 Then(/^he registers into the site$/) do

@@ -18,6 +18,7 @@ Cake::Application.routes.draw do
         get :share
       end
       get :badge
+      get :pledge
     end
   end
 
