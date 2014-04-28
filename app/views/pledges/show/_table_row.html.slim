@@ -1,5 +1,8 @@
 tr.pledge
-  td = auto_link pledge.sponsor
+  - if current_fundraiser.present?
+    td = link_to pledge.sponsor, pledge
+  - if current_sponsor.present?
+    td = link_to pledge.fundraiser, pledge.campaign 
   td = pledge.campaign.causes
   td = pledge.campaign.scopes
   td = pledge.start_end_dates

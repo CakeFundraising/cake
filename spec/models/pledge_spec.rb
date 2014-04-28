@@ -9,7 +9,7 @@ describe Pledge do
   # it { should validate_numericality_of(:total_amount).with_message("must be an integer").is_greater_than(0) }
 
   it "should validate other attributes when editing" do
-    subject.stub(:persisted?) { true } 
+    subject.stub(:persisted?){ true } 
     should validate_presence_of(:mission) 
     should validate_presence_of(:headline) 
     should validate_presence_of(:description) 
@@ -34,12 +34,57 @@ describe Pledge do
     new_pledge.picture.should be_instance_of(Picture)
   end
 
-  it "should be return a collection of past pledges" do
-    pending "Pledge.past is not defined yet..\n Used in sponsor dashboard controller history action"
-  end
-
   it "should have statuses" do
     Pledge.statuses[:status].should == [:pending, :accepted, :rejected]
-    Pledge.statuses[:activity_status].should == [:active, :inactive]
+  end
+
+  context 'Activity status' do
+    before(:each) do
+      @sponsor = FactoryGirl.create(:sponsor)
+      @active_pledges = create_list(:pledge, 3, sponsor: @sponsor)
+      @past_pledges = create_list(:past_pledge, 3, sponsor: @sponsor)
+      @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor)
+      @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
+
+      @sponsor_active_pledges = @sponsor.pledges.active
+      @sponsor_past_pledges = @sponsor.pledges.past
+    end
+
+    describe "Active Pledges" do
+      it "should return a collection of active pledges for the sponsor" do
+        @sponsor_active_pledges.should == @active_pledges
+      end
+
+      it "should have active campaigns only" do
+        @sponsor_active_pledges.each do |p|
+          p.campaign.should be_active
+          p.campaign.should_not be_past        
+        end
+      end
+
+      it "should return only accepted pledges" do
+        @sponsor_active_pledges.should_not include(@pending_pledges)
+        @sponsor_active_pledges.should_not include(@rejected_pledges)
+      end
+    end
+
+    describe "Past Pledges" do
+      it "should return a collection of past pledges for the sponsor" do
+        @sponsor_past_pledges.should == @past_pledges
+      end
+
+      it "should have past campaigns only" do
+        @sponsor_past_pledges.each do |p|
+          p.campaign.should be_past
+          p.campaign.should_not be_active 
+        end
+      end
+
+      it "should return only accepted pledges" do
+        @sponsor_past_pledges.should_not include(@pending_pledges)
+        @sponsor_past_pledges.should_not include(@rejected_pledges)
+      end
+    end
+    
   end
 end

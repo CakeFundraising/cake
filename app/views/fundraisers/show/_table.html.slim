@@ -2,9 +2,11 @@ table#fundraisers.table.table-hover.table-bordered
   thead
     tr
       th = Fundraiser.model_name.human
-      th = Fundraiser.human_attribute_name :causes
-      th = Fundraiser.human_attribute_name :campaigns_count
-      th = Fundraiser.human_attribute_name :pledge_rank
-      th = Fundraiser.human_attribute_name :clicks
+      th = Campaign.human_attribute_name :number
+      th = Campaign.human_attribute_name :avg_donation
+      th = Campaign.human_attribute_name :avg_donation_click
+      th = Campaign.human_attribute_name :avg_clicks
+      th = Campaign.human_attribute_name :avg_reach
+      th = Campaign.human_attribute_name :avg_pledge_rank
   tbody
     = render partial:'fundraisers/show/table_row', collection: fundraisers, as: :fundraiser

@@ -22,7 +22,6 @@ describe Sponsor do
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
   it { should have_many(:campaigns).through(:pledges) }
-  it { should have_many(:fundraisers).through(:campaigns) }
 
   it { should accept_nested_attributes_for(:location).update_only(true) }
   it { should accept_nested_attributes_for(:picture).update_only(true) }

@@ -1,7 +1,6 @@
 class Pledge < ActiveRecord::Base
   include Statusable
   has_statuses :pending, :accepted, :rejected
-  has_statuses :active, :inactive, column_name: :activity_status
 
   attr_accessor :step 
   
@@ -32,9 +31,8 @@ class Pledge < ActiveRecord::Base
 
   DONATION_TYPES = ["Cash", "Goods & Services"]
 
-  class << self
-    alias_method :past, :inactive
-  end
+  scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
+  scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
 
   after_initialize do
     if self.new_record?

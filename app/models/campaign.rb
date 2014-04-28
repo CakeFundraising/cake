@@ -1,8 +1,6 @@
 class Campaign < ActiveRecord::Base
   include Cause
   include Scope
-  include Statusable
-  has_statuses :active, :past
 
   attr_accessor :step 
 
@@ -18,7 +16,7 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
 
-  validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :status, :fundraiser, presence: true
+  validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :fundraiser, presence: true
   validates_associated :sponsor_categories, unless: :no_sponsor_categories
   validates_associated :picture
 
@@ -31,5 +29,13 @@ class Campaign < ActiveRecord::Base
     if self.new_record?
       self.build_picture if picture.blank?
     end
+  end
+
+  def active?
+    (launch_date..end_date).cover?(Date.today)
+  end
+
+  def past?
+    end_date < Date.today
   end
 end

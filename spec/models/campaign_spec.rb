@@ -5,7 +5,6 @@ describe Campaign do
   it { should validate_presence_of(:launch_date) }
   it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:headline) }
-  it { should validate_presence_of(:status) }
   it { should validate_presence_of(:fundraiser) }
 
   it { should belong_to(:fundraiser) }
@@ -29,14 +28,30 @@ describe Campaign do
     new_campaign.picture.should be_instance_of(Picture)
   end
 
-  #Scopes
-  it "should return a collection of active campaigns" do
-    @campaigns = create_list(:campaign, 5)
-    Campaign.active.should == @campaigns
+  context 'Activity Status' do
+    #Scopes
+    it "should return a collection of active campaigns" do
+      @campaigns = create_list(:campaign, 5)
+      Campaign.active.should == @campaigns
+    end
+
+    it "should return a collection of past campaigns" do
+      @campaigns = create_list(:past_campaign, 5)
+      Campaign.past.should == @campaigns
+    end
+    
+    #Conditions
+    it "should show whether a campaign is active" do
+      campaign = FactoryGirl.create(:campaign)
+      campaign.should be_active
+      campaign.should_not be_past
+    end
+
+    it "should show whether a campaign is past" do
+      campaign = FactoryGirl.create(:past_campaign)
+      campaign.should be_past
+      campaign.should_not be_active 
+    end
   end
 
-  it "should return a collection of past campaigns" do
-    @campaigns = create_list(:past_campaign, 5)
-    Campaign.past.should == @campaigns
-  end
 end

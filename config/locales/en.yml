@@ -61,7 +61,11 @@ en:
         total_pledges: Total Pledges
         avg_donation: Avg. Donation
         avg_donation_click: Avg. Donation/Click
+        avg_clicks: Avg. Clicks
+        avg_reach: Avg. Reach
+        avg_pledge_rank: Avg. Pledge Rank
         conv_rate: Conv. Rate
+        number: No. of Campaigns
       sponsor:
         causes: We Support
         scopes: Types of Campaigns

@@ -9,22 +9,19 @@ FactoryGirl.define do
     total_amount "99999.00"
     website_url { Faker::Internet.domain_name }
     status :accepted
-    activity_status :active
     campaign
     sponsor
 
     factory :pending_pledge do
-      activity_status :inactive
       status :pending
     end
 
     factory :rejected_pledge do
-      activity_status :inactive
       status :rejected
     end
 
     factory :past_pledge do
-      activity_status :inactive
+      association :campaign, factory: :past_campaign
     end
   end
 end
