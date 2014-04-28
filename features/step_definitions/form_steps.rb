@@ -1,4 +1,4 @@
-When(/^(?:I|they|he) (?:fill|fills) in "(.*?)" field with (.*?)$/) do |field, value|
+When(/^(?:I|they|he) (?:fill|fills) in the "(.*?)" field with (.*?)$/) do |field, value|
   fill_in field, with: value
 end
 
@@ -18,13 +18,6 @@ When(/^(?:I|they|he) (?:select|selects) (.*?) in "(.*?)"$/) do |option, select_f
   select(option, from: select_field)
 end
 
-#Upload Avatar
-When(/^(?:I|they) attach a new (.+\.jpg)$/) do |image|
-  attach_file('user_avatar', "#{Rails.root}/features/fixtures/#{image}")
-  click_button('Update')
-end
-
-When(/^(?:I|they) attach a new (.+\.gif)$/) do |image|
-  attach_file('user_avatar', "#{Rails.root}/features/fixtures/#{image}")
-  click_button('Update')
+When(/^he attachs an "(.*?)" image for the (.*?)$/) do |image_type, model|
+  attach_file(model + '_picture_attributes_' + image_type, File.join(Rails.root, 'db/seeds/support/images/' + image_type + '.jpg') )
 end

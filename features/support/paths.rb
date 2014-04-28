@@ -22,11 +22,15 @@ module NavigationHelpers
 
     when /^new #{capture_model}(?:'s)? page$/
       path_components = $1.split(/\s+/)
-      self.send(path_components.unshift('new').push('path').join('_').to_sym)
+      send(path_components.unshift('new').push('path').join('_').to_sym)
 
     #pledges
     when /^pledge invitation page$/
       pledge_campaign_path(@campaign)
+
+    when /^pledge wizard (.*?) page$/
+      path_components = $1.split(/\s+/)
+      send(path_components.push('pledge').push('path').join('_').to_sym, @pledge)
 
     #campaign
     when /^pledge levels page$/

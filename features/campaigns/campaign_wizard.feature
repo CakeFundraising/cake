@@ -8,15 +8,15 @@ Feature: Campaign Wizard Steps
     Given a fundraiser exists
     And that fundraiser is logged in
   
-  Scenario Outline: Tell your Story Step
-    When he goes to new campaign's page
-    And he fills in "Title" field with <title>
+  Scenario Outline: Tell your Story
+    When he goes to new campaign page
+    And he fills in the "Title" field with <title>
     And he selects <causes> in "Causes"
     And he selects <scopes> in "Scopes"
-    And he fills in "Story" field with <story>
-    And he fills in "Headline" field with <headline>
-    And he fills in "campaign_launch_date" field with <launch_date>
-    And he fills in "campaign_end_date" field with <end_date>
+    And he fills in the "Story" field with <story>
+    And he fills in the "Headline" field with <headline>
+    And he fills in the "campaign_launch_date" field with <launch_date>
+    And he fills in the "campaign_end_date" field with <end_date>
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
@@ -33,9 +33,9 @@ Feature: Campaign Wizard Steps
   Scenario Outline: Pledge Levels
     And a campaign of that fundraiser exists
     When he goes to pledge levels page
-    And he fills in "Name" field with <name>
-    And he fills in "Min value" field with <min_value>
-    And he fills in "Max value" field with <max_value>
+    And he fills in the "Name" field with <name>
+    And he fills in the "Min value" field with <min_value>
+    And he fills in the "Max value" field with <max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
     

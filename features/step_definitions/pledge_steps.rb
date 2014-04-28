@@ -11,3 +11,10 @@ end
 Then(/^he is taken to the new pledge page$/) do
   visit new_pledge_path(campaign: @campaign)
 end
+
+Given(/^the user is not registered as sponsor$/) do
+end
+
+When(/^he checks the "(.*?)" checkbox$/) do |field|
+  check(field)
+end
