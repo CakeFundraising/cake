@@ -5,6 +5,7 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 
+
 //Typography ----------------------------------------------------------------------------
 h3, h4 {
   color: $brand-primary;
@@ -12,6 +13,7 @@ h3, h4 {
 .nav-tabs {
   text-transform: uppercase;
 }
+
 .italic {
   font-style: italic;
 }
@@ -210,12 +212,15 @@ table.performance-summary {
   height: 30px;
   margin: 0 auto;
 }
+<<<<<<< HEAD
 .pointer-b {
   background: url(pointer-tan.png) no-repeat;
   width: 100px;
   height: 30px;
   margin: 0 auto;
 }
+=======
+>>>>>>> updates to pledge page
 .min-case {
   margin-top: 20px;
   margin-bottom: 50px;
@@ -381,6 +386,7 @@ ul.share-coupon {
   border: 1px solid $gray-lighter;
 }
 // Coupon Edge experimental ---------------------------------------
+
 .coupon-edge {
   position: absolute;
   top: 0;
