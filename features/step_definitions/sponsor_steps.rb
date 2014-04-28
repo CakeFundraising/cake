@@ -12,6 +12,11 @@ Then(/^he should see his active pledges$/) do
   page.should have_selector('table#active_pledges tr.pledge', count: @pledges.count)
 end
 
+Then(/^he should see his pending pledge requests$/) do
+  page.should have_selector('table#requested_pledges tr.pledge', count: @pledge_requests.count)
+  page.should have_selector('table#sponsor_pledges tr.pledge', count: @pending_pledges.count)
+end
+
 Then(/^he should see his past pledges$/) do
   page.should have_selector('table#past_pledges tr.pledge', count: @past_pledges.count)
 end
