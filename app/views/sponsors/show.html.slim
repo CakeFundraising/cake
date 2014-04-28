@@ -98,6 +98,7 @@
         .avatar 
           = image_tag @sponsor.avatar.url(:medium)
           .caption = @sponsor.avatar_caption
+
           h4 Contact:
           strong = Sponsor.human_attribute_name :manager_name
           div = @sponsor.manager_name
