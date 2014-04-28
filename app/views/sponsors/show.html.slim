@@ -2,14 +2,103 @@
 
 = content_for :header do
   .banner.hero
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        h1.name = @sponsor.name
+        .sponsor
+          address
+            strong = @sponsor.name
+            br
+            span = @sponsor.location.address
+            span #{@sponsor.location.city}, #{@sponsor.location.state_code}, #{@sponsor.location.zip_code}
+            br
+          address
+            span.sponsorinfo 
+              | Phone: 
+              | (123) #{@sponsor.phone}
+            span Website: 
+            span.sponsorinfo #{@sponsor.website}
+            span Email: 
+            a href="mailto:#" #{@sponsor.email}
+            br
+        .share-links 
+      .col-md-4
+        .sidebar-bkg 
+          .row.text-center
+           .col-xs-6.border-right
+              p.donation-stats $42M
+              p Total Donations
+           .col-xs-6
+              p.donation-stats $42M
+              p Total Donations
+          .row
+           .col-md-12.rank-rows
+              = basic_list_item("Top Cause Rank", "14")
+              = basic_list_item("Location Rank", "2")
+          button.btn.btn-primary.btn-block Request Pledge
+  .white
+    .container
+      .row.sponsor-profile
+        .col-md-8
+          h3 Performance Summary
+          table.table.table-bordered.performance-summary
+            tr
+              td 
+                p.summery-stats 182
+                p No. of Pledges
+              td 
+                p.summery-stats $10,000
+                p Avg. Pledge
+              td 
+                p.summery-stats $9,980
+                p Avg. Donation
+              td 
+                p.summery-stats $2.81
+                p Avg. Donation/Click
+            tr
+              td
+                p.summery-stats 3
+                p Avg. Pledge
+              td
+                p.summery-stats 3
+                p Avg. Clicks/Campaign
+              td
+                p.summery-stats 22,874
+                p Avg. Campaign Reach
+              td
+                p.summery-stats 11%
+                p Avg. Conv. Rate
+        .col-md-4
+          h3 Top Causes
+          .causes Environment
+          .causes Community
+          .causes Sport, Teams & Comp.
+  .pointer
+  .container
+    .row.min-case
+      .col-md-8
+        h3 Minimum Cause Requirements
+        = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.tax_exempt'), b(@sponsor.has_cause_requirement?(:tax_exempt)) )
+        = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
+        .wesupport
+          strong = Sponsor.human_attribute_name :causes
+          div = @sponsor.causes.join(", ")
 
-.content.row
-  .col-md-6.col-md-offset-1
-    h1 = @sponsor.name
-    .share-links 
-    .sponsor-profile
-      .row
-        .col-md-6
+        strong = Sponsor.human_attribute_name :scopes
+        div = @sponsor.scopes
+
+        p.profile-message 
+          h3 = Sponsor.human_attribute_name :mission
+          p = @sponsor.mission
+        .demographics
+          h3 = Sponsor.human_attribute_name :customer_demographics
+          p = @sponsor.customer_demographics
+      .col-md-4
+        .avatar 
+          = image_tag @sponsor.avatar.url(:medium)
+          .caption = @sponsor.avatar_caption
           h4 #{Sponsor.model_name.human} Profile
           strong = Sponsor.human_attribute_name :manager_name
           div = @sponsor.manager_name
@@ -17,82 +106,40 @@
           div = @sponsor.manager_email
           strong = Sponsor.human_attribute_name :manager_phone
           div = @sponsor.manager_phone
-          br
+    .row
+      .col-md-12
+        ul.nav.nav-tabs
+          li.active
+            a data-toggle="tab" href="#active-pledges" Active Pledges
+          li
+            a data-toggle="tab" href="#past" Past Pledges
+          li
+            a data-toggle="tab" href="#top" Top Fundraisers
 
-          h4 Min Cause Requirements
-          = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.tax_exempt'), b(@sponsor.has_cause_requirement?(:tax_exempt)) )
-          = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
-
-          strong = Sponsor.human_attribute_name :causes
-          ul
-            - for cause in @sponsor.causes do
-              li = cause
-
-          strong = Sponsor.human_attribute_name :scopes
-          div = @sponsor.scopes
-
-        .col-md-6
-          h4 Performance Summary
-          .row
-            .col-md-6
-              strong Top 3 Causes
-              div Food & Hunger
-              div Environment
-              div Community
-            .col-md-3
-              strong Rank
-              div 3
-              div 59
-              div 125
-            .col-md-3
-              strong Donations
-              div $15M
-              div $6M
-              div $4M
-            .col-md-12
-              br
-              = basic_list_item("No. of Pledge", "182")
-              = basic_list_item("Avg. Pledge", "$23,345")
-              = basic_list_item("Avg. Donation", "$89,000")
-              = basic_list_item("Avg. Donation/Click", "$4,68")
-              = basic_list_item("Avg. Pledge Rank", "4")
-              = basic_list_item("Avg. Click/Campaign", "8,526")
-              = basic_list_item("Avg. Campaign Reach", "1M")
-    p.profile-message 
-      h3 = Sponsor.human_attribute_name :mission
-      p = @sponsor.mission
-    .demographics
-      h3 = Sponsor.human_attribute_name :customer_demographics
-      p = @sponsor.customer_demographics
-  .col-md-4
-    .thumbnail
-      = basic_list_item("Total Donations", "45M")
-      = basic_list_item("Sponsor Rank", "122")
-      = basic_list_item("Top Cause Rank", "14")
-      = basic_list_item("Location Rank", "2")
-      .avatar 
-        = image_tag @sponsor.avatar.url(:medium)
-        .caption = @sponsor.avatar_caption
-      .request-pledge
-        = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary' if can? :create, PledgeRequest
-    .sponsor
-      address
-        strong = @sponsor.name
-        br
-        span = @sponsor.location.address
-        br
-        span #{@sponsor.location.city}, #{@sponsor.location.state_code}, #{@sponsor.location.zip_code}
-        br
-      address
-        abbr title="Phone" Phone:
-        | (123) #{@sponsor.phone}
-        br
-        strong Website: 
-        span #{@sponsor.website}
-        br
-        strong Email: 
-        a href="mailto:#" #{@sponsor.email}
-        br
-
+        .tab-content
+          #active-pledges.tab-pane.active
+            table.table.data-table
+              thead
+                tr
+                  th Fundraiser
+                  th Cause
+                  th Type
+                  th Pledge
+                  th Donation/Click
+                  th Prize
+                  th Coupon
+                  th Pledge Rank
+              tbody
+                tr
+                  td Feeding America
+                  td Hunger
+                  td National
+                  td 100k
+                  td $3
+                  td Yes
+                  td Yes
+                  td 78
+          #past.tab-pane
+          #top.tab-pane
 css:
   .hero { background-image: url("#{@sponsor.banner.url(:large)}"); }

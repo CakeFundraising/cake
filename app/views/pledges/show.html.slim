@@ -1,33 +1,126 @@
-= link_to 'Edit Pledge', edit_pledge_path(@pledge)
+
 
 = content_for :header do
   .banner.hero
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        h1.name 
+          span = @pledge.mission
+          span = link_to 'Edit Pledge', edit_pledge_path(@pledge)
+        .share-links 
+      .col-md-4
+        .sidebar-bkg 
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends in:
+          .row.text-center
+            .col-xs-4.border-right
+              span.campaign-timer 003 
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer 15 
+              span h.
+            .col-xs-4
+              span.campaign-timer 47 
+              span m.
+          .row
+           .col-md-12.click-btn
+              button.btn.btn-primary.btn-block Click to help. It's free
+              p.timer-ital Our Pledge:
+              div
+              .help-block.donation_per_click
+                strong = humanized_money_with_symbol(@pledge.amount_per_click)
+                span donation per click up to 
+                strong = humanized_money_with_symbol(@pledge.total_amount)
+  .white
+    .container
+      .row.sponsor-profile
+        .col-md-4.col-md-push-8
+          .sidebar-bkg-2
+            .shake-wrap
+              = image_tag @pledge.avatar.url(:medium)
+              img src="http://placehold.it/153x115"
+              .shake
+            .campaign_and_fundraiser
+              p #{ auto_link @pledge.sponsor } is proud to support:
+              .fundraiser = auto_link @pledge.fundraiser
+              .campaign = auto_link @pledge.campaign
+              button.btn.btn-success View Campaign
+        .col-md-8.col-md-pull-4
+          h3 = @pledge.headline
+          p = @pledge.description
+          p = @pledge.video.iframe if @pledge.video.present?
+  .blue
+    .container
+      .row.pledgebluestripe
+        .col-md-12
+          h2 We will donate $3 for each person who clicks up to $3,000,000
+          span Please share our pledge with your friends! 
+          span See how it works...
+          br
+          button.btn.btn-primary Click to help. It's free
+  .container
+    .row.win-with
+      .col-md-12
+        h2 Win with Sponsor Info
+    .row
+      .col-xs-11.sweepstakes
+        .row
+          .col-md-6
+            img src="http://placehold.it/495x385"
+          .col-md-6
+            h2 Win a package to World Cup in Rio
+            p Ends: <span> 7th April 2014</span>
+            p No. of Prizes: <span> 20</span>
+            p Click to win 1 of 20 prize packages, each includes a pair of tickets to the 2014 World Cup in Rio, round trip airfare and deluz accomodations.
+            .row.terms
+              .col-xs-7
+                p <em>Terms & Conditions:</em> Must be 18 or older and a legal resident of the United States.
+              .col-xs-5
+                button.btn.btn-success.pull-right Click to Win!
+      .col-xs-1.share-coupon-block
+        ul.share-coupon
+          li
+            a.fb href="#"
+          li
+            a.twitter href="#"
+          li
+            a.mail href="#"
+          li
+            a.share href="#" 
+    .row.win-with
+      .col-md-12
+        h2 Big Savings Sponsor Info
+        .row
+      .col-xs-11.sweepstakes
+        .row
+          .col-md-4
+            img src="http://placehold.it/300x235"
+            .coupon-edge
+          .col-md-6
+            h2 Save 20%
+            p Ends: <span> 7th April 2014</span>
+            p No. of Prizes: <span> 20</span>
+            p Click to win 1 of 20 prize packages, each includes a pair of tickets to the 2014 World Cup in Rio, round trip airfare and deluz accomodations.
+            .row.terms
+              .col-xs-7
+                p <em>Terms & Conditions:</em> Must be 18 or older and a legal resident of the United States.
+              .col-xs-5      
+          .col-md-2
+            button.btn.btn-success.pull-right Print Coupon
+      .col-xs-1.share-coupon-block
+        ul.share-coupon
+          li
+            a.fb href="#"
+          li
+            a.twitter href="#"
+          li
+            a.mail href="#"
+          li
+            a.share href="#" 
 
-.content.row
-  .col-md-6.col-md-offset-1
-    h1 = @pledge.mission
-    .share-links 
-    h3 = @pledge.headline
-    p = @pledge.description
-    p = @pledge.video.iframe if @pledge.video.present?
-  .col-md-4
-    .thumbnail
-      .help-block Campaign ends in:
-      .pledge-end
-        = @pledge.campaign.end_date
-      .amounts
-        .help-block.donation_per_click
-          strong = humanized_money_with_symbol(@pledge.amount_per_click)
-          span donation per click 
-        .help-block.total_amount
-          strong = humanized_money_with_symbol(@pledge.total_amount)
-          span Pledge
-      .avatar 
-        = image_tag @pledge.avatar.url(:medium)
-      .campaign_and_fundraiser
-        p #{ auto_link @pledge.sponsor } is proud to support:
-        .fundraiser = auto_link @pledge.fundraiser
-        .campaign = auto_link @pledge.campaign
 
 css:
   .hero { background-image: url("#{@pledge.banner.url(:large)}"); }

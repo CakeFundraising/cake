@@ -5,6 +5,28 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 
+
+//Typography ----------------------------------------------------------------------------
+h3, h4 {
+  color: $brand-primary;
+}
+.nav-tabs {
+  text-transform: uppercase;
+}
+
+//Navbar --------------------------------------------------------------------------------
+.navbar {
+  margin-bottom: 0;
+}
+.navbar-brand {
+  float: left;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 55px;
+  padding-top: 6px;
+}
+
 //Buttons -------------------------------------------------------------------------------
 
 .btn {
@@ -104,3 +126,210 @@ footer {
   padding-top: 10px;
 }
 
+// Profile Page Styles ------------------------------------------------------------------
+.hero {
+  height:614px;
+  margin-bottom: 0;
+  border:0px;
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+
+.hero-screen {
+  background-image:url('hero-screen.png');
+  background-repeat: repeat-x;
+  height:614px;
+}
+.pull-up {
+  margin-top: -250px;
+}
+.name {
+  color: #fff;
+}
+address {
+  color: #fff;
+}
+.sponsorinfo {
+  padding-right: 15px;
+}
+.sponsor-profile {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  background-color:#fff;
+}
+table.performance-summary {
+  text-align: center;
+}
+.summery-stats {
+  font-size: 2em;
+  color: $brand-primary;
+  margin-bottom: 0;
+}
+.sidebar-bkg {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: $border-radius-base;
+}
+.donation-stats {
+  font-size: 3em;
+  color: $brand-primary;
+  margin-bottom: 0;
+}
+.border-right {
+  border-right: 1px solid #dddddd;
+}
+.rank-rows {
+  margin: 15px 0;
+  border-top:  1px solid #dddddd;
+}
+.rank-rows>div {
+  border-bottom: 1px solid #dddddd;
+  padding: 10px;
+}
+.causes {
+  border-top: 1px solid #dddddd;
+  padding: 10px 0;
+}
+.white {
+  background-color:#fff;
+  margin-top: -25px;
+  padding-top: 25px;
+}
+.pointer {
+  background: url(pointer.png) no-repeat;
+  width: 100px;
+  height: 30px;
+  margin: 0 auto;
+}
+.min-case {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+// Tables --------------------------------------------------------------------------
+.data-table {
+  margin: 40px 0;
+  thead {
+    background-color: $brand-primary;
+  }
+}
+
+// Pledge Page Styles -----------------------------------------------------------------
+
+.campaign-timer {
+  font-size: 2em;
+  color: $brand-primary;
+  margin-bottom: 0;
+}
+
+.click-btn {
+  margin: 15px 0;
+  padding: 15px;
+  border-top:  1px solid #dddddd;
+  p {
+    padding: 10px 0;
+  }
+}
+.timer-ital {
+  color: $gray-light;
+  font-style: italic;
+}
+.sidebar-bkg-2 {
+  padding: 0 15px;
+  background-color: #fff;
+}
+.shake-wrap {
+  position: relative;
+  margin-bottom: 50px;
+  img {
+    width: 50%;
+    border: 1px solid #fff;
+  }
+}
+.shake {
+  background-image: url('shake.png');
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: -85px auto 0;
+  z-index: 100;
+}
+.blue {
+  background-color: $brand-primary;
+}
+.pledgebluestripe {
+  text-align: center;
+  padding: 50px 200px;
+  color: #fff;
+}
+
+// Sweepstakes Styles ---------------------------------------
+
+.sweepstakes {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: $border-radius-base;
+  img {
+    width: 100%;
+  }
+  span {
+    color: $brand-primary;
+  }
+}
+.terms {
+  font-size: $font-size-small;
+  margin-top: 25px;
+  em {
+    font-style: italic;
+    color: $gray-light;
+  }
+}
+#sweeps {
+  position: relative;
+}
+#sweeps-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.share-coupon-block{
+  padding-left: 0;
+  padding-top: 70px;
+}
+ul.share-coupon {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+    margin-bottom: 1px;
+  }
+}
+.share-coupon a {
+  display: block;
+  background: url('sweeps-share.png') no-repeat;
+  width: 41px;
+  height: 35px;
+}
+.share-coupon a.fb {
+  background-position: 0 0;
+}
+.share-coupon a.twitter {
+  background-position: 0 -36px;
+}
+.share-coupon a.mail {
+  background-position: 0 -72px;
+}
+.share-coupon a.share {
+  background-position: 0 -108px;
+}
+
+// Coupon Styles ---------------------------------------
+.coupon-edge {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background-image: url('coupon-edge.png');
+  height: 235px;
+  width: 7px;
+}
