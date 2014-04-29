@@ -41,8 +41,8 @@ Feature: Pledge Wizard
     And he fills in the "Mission" field with <mission>
     And he fills in the "Headline" field with <headline>
     And he fills in the "Description" field with <description>
-    And he attachs an "avatar" image for the pledge
-    And he attachs an "banner" image for the pledge
+    And he attachs an "avatar" image on the "pledge_picture_attributes_avatar" field
+    And he attachs an "banner" image on the "pledge_picture_attributes_banner" field
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
@@ -54,3 +54,33 @@ Feature: Pledge Wizard
   | mission   | headline  | description                       | message        |
   |           | More text | Long text describing the pledge.. | can't be blank |
   |           | More text |                                   | can't be blank |
+
+  Scenario Outline: Add Coupon
+    And a pledge of that sponsor exists
+    When he goes to pledge wizard add coupon page
+    And he fills in the "Title" field with <title>
+    And he fills in the "Expires at" field with <expires_at>
+    And he fills in the "Description" field with <description>
+    And he attachs an "avatar" image on the "pledge_coupons_attributes_0_avatar" field
+    And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_qrcode" field
+    And he press the "Save & Continue" button
+    Then he should see "<message>"
+
+    Examples: Skip coupons
+    | title     | expires_at | description                        | message                          |
+    |           |            |                                    | Pledge was successfully updated. |
+    |           | 02/09/2014 | Long text describing the coupon... | Pledge was successfully updated. |
+    
+    Examples: Successful step
+    | title     | expires_at | description                        | message                          |
+    | My Coupon | 02/08/2015 | Long text describing the coupon... | Pledge was successfully updated. |
+
+    Examples: Failed step
+    | title     | expires_at | description                        | message        |
+    | My Coupon |            | Long text describing the coupon... | can't be blank |
+    | My Coupon | 02/08/2015 |                                    | can't be blank |
+
+  Scenario: Launch & Share
+    And a pledge of that sponsor exists
+    When he goes to pledge wizard share page
+    Then he should see the Launch button and the pledge badge

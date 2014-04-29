@@ -2,9 +2,7 @@
 
 FactoryGirl.define do
   factory :picture do
-    avatar "MyString"
-    banner "MyString"
-    picturable_type "MyString"
-    picturable_id 1
+    avatar { Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg")) }
+    banner { Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/banner.jpg")) }
   end
 end

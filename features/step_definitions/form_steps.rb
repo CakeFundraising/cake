@@ -18,6 +18,6 @@ When(/^(?:I|they|he) (?:select|selects) (.*?) in "(.*?)"$/) do |option, select_f
   select(option, from: select_field)
 end
 
-When(/^he attachs an "(.*?)" image for the (.*?)$/) do |image_type, model|
-  attach_file(model + '_picture_attributes_' + image_type, File.join(Rails.root, 'db/seeds/support/images/' + image_type + '.jpg') )
+When(/^he attachs an "(.*?)" image on the "(.*?)" field$/) do |image_type, field|
+  attach_file(field, File.join(Rails.root, 'db/seeds/support/images/' + image_type + '.jpg') )
 end

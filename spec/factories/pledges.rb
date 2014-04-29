@@ -11,6 +11,7 @@ FactoryGirl.define do
     status :accepted
     campaign
     sponsor
+    picture
 
     factory :pending_pledge do
       status :pending

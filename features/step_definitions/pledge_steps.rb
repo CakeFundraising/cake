@@ -18,3 +18,10 @@ end
 When(/^he checks the "(.*?)" checkbox$/) do |field|
   check(field)
 end
+
+Then(/^he should see the Launch button and the pledge badge$/) do
+  page.should have_content('Thank you for your Pledge!')
+  page.should have_content('Launch and activate your pledge to ' + @pledge.campaign.title)
+  find(:css, 'textarea#embedded_link')
+  page.should have_link('Launch pledge')
+end
