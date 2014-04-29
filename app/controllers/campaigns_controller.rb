@@ -60,6 +60,8 @@ class CampaignsController < InheritedResources::Base
   end
 
   def pledge
+    # authorize! :pledge, Campaign
+    
     if current_sponsor.present?
       redirect_to new_pledge_path
     else

@@ -5,7 +5,7 @@ class PledgesController < InheritedResources::Base
     :your_pledge,
     :tell_your_story,
     :add_coupon,
-    :add_sweepstakes,
+    # :add_sweepstakes,
     :share
   ]
 

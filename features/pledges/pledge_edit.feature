@@ -14,6 +14,7 @@ Feature: Edit Pledge
     Then he should see 5 "Edit pledge" buttons 
 
   Scenario Outline: Edit pledge page
+    And that sponsor is logged in
     And a pledge of that sponsor exists with mission: 'My mission', headline: 'This is my headline'
     When he goes to pledge wizard tell your story page
     And he fills in the "Mission" field with <mission>

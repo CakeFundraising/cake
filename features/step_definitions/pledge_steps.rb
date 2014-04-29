@@ -15,6 +15,12 @@ end
 Given(/^the user is not registered as sponsor$/) do
 end
 
+Then(/^he creates a new sponsor account$/) do
+  user = User.last
+  sponsor = FactoryGirl.create(:sponsor)
+  user.set_sponsor(sponsor)
+end
+
 When(/^he checks the "(.*?)" checkbox$/) do |field|
   check(field)
 end

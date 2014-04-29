@@ -11,11 +11,11 @@ describe Coupon do
   it { should validate_presence_of(:expires_at) }
   it { should validate_presence_of(:pledge) }
 
-  it "should validate extra donation pledges when user creates one" do
-    subject.stub(:extra_donation_pledge) { true } 
-    should validate_numericality_of(:unit_donation).with_message("must be an integer").is_greater_than(0).is_less_than_or_equal_to(1000)
-    should validate_numericality_of(:total_donation).with_message("must be an integer").is_greater_than(0)
-  end
+  # it "should validate extra donation pledges when user creates one" do
+  #   subject.stub(:extra_donation_pledge) { true } 
+  #   should validate_numericality_of(:unit_donation).with_message("must be an integer").is_greater_than(0).is_less_than_or_equal_to(1000)
+  #   should validate_numericality_of(:total_donation).with_message("must be an integer").is_greater_than(0)
+  # end
 
   it "should set default terms and conditions" do
     new_coupon = FactoryGirl.build(:coupon)
