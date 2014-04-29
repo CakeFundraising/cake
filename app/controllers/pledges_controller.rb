@@ -1,4 +1,6 @@
 class PledgesController < InheritedResources::Base
+  authorize_resource
+
   WIZARD_STEPS = [
     :your_pledge,
     :tell_your_story,

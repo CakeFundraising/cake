@@ -54,6 +54,9 @@ gem 'email_validator', :require => 'email_validator/strict'
 #User registration
 gem "devise"
 
+#User permissions
+gem 'cancancan'
+
 # Omniauth gems
 gem 'omniauth'
 gem 'omniauth-twitter'

@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 require 'simplecov'
+require "cancan/matchers"
 require "money-rails/test_helpers" 
 SimpleCov.start 'rails'
 
@@ -19,6 +20,7 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
+  config.include UserMacros
   config.include FactoryGirl::Syntax::Methods
   config.include MoneyRails::TestHelpers
 

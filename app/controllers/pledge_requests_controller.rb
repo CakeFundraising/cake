@@ -1,4 +1,6 @@
 class PledgeRequestsController < InheritedResources::Base
+  authorize_resource
+  
   def new
     @pledge_request = current_fundraiser.pledge_requests.build(sponsor_id: params[:sponsor_id])
   end

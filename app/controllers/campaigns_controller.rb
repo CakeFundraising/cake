@@ -1,4 +1,6 @@
 class CampaignsController < InheritedResources::Base
+  authorize_resource
+  
   WIZARD_STEPS = [
     :tell_your_story,
     :sponsors,
