@@ -1,4 +1,4 @@
-Feature: Pledge Campaign
+Feature: Solicit Pledge
   
   In order to receive clicks from users
   As a Sponsor

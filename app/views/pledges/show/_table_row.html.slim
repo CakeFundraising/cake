@@ -7,5 +7,8 @@ tr.pledge
   td = pledge.campaign.scopes
   td = pledge.start_end_dates
   td
-    span = link_to "Accept", pledge, class:'btn btn-success'
-    span = link_to "Reject", pledge, class:'btn btn-danger'
+    - if current_fundraiser.present?
+      span = link_to "Accept", pledge, class:'btn btn-success'
+      span = link_to "Reject", pledge, class:'btn btn-danger'
+    - if current_sponsor.present?
+      = link_to "Edit pledge", edit_pledge_path(pledge) , class:'btn btn-primary'
