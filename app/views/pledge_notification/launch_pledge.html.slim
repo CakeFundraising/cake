@@ -1,0 +1,5 @@
+h2 Hello #{@receiver}, 
+div
+  strong Congratulations, you have a new pledge offer from #{ link_to @p.sponsor.decorate, sponsor_url(@p.sponsor) } for your campaign: #{ link_to @p.campaign.decorate, campaign_url(@p.campaign) }.
+div
+  span You can check #{ link_to t('semantic.here').downcase, fundraiser_pending_pledges_url } your pending pledges.

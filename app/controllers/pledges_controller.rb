@@ -79,6 +79,11 @@ class PledgesController < InheritedResources::Base
     redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.'
   end
 
+  def launch
+    resource.notify_launch if resource.pending!
+    redirect_to resource, notice: 'Pledge was successfully launched.'
+  end
+
   def permitted_params
     params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],

@@ -1,4 +1,6 @@
 class Sponsor::DashboardController < ApplicationController
+  before_action :authenticate_user!
+  
   def home
     @sponsor = current_sponsor
   end
@@ -8,7 +10,7 @@ class Sponsor::DashboardController < ApplicationController
 
   def pledge_requests
     @fundraiser_requests = current_sponsor.pledge_requests.decorate
-    @sponsor_requests = current_sponsor.pledges.pending.decorate
+    @sponsor_requests = current_sponsor.pledges.decorate
   end
 
   def active_pledges

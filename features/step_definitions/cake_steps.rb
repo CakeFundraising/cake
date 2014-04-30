@@ -19,3 +19,15 @@ end
 Then(/^the (.*?) should have a "(.*?)" status$/) do |model, status|
   eval("@#{model.tr(' ', '_')}").reload.status.should == status
 end
+
+When(/^he press the delete button$/) do
+  find(:css, ".delete").click
+end
+
+Then(/^he should see (?:a|an)?(\d+)? edit button(?:s)?$/) do |quantity|
+  if quantity.present?
+    page.should have_css(".edit_button", count: quantity)
+  else
+    page.should have_css(".edit_button")
+  end
+end

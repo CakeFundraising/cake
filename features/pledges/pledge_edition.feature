@@ -11,7 +11,7 @@ Feature: Edit Pledge
     And that sponsor is logged in
     And 5 pledges of that sponsor exist
     When he visits the sponsor active pledges page
-    Then he should see 5 "Edit pledge" buttons 
+    Then he should see 5 edit buttons 
 
   Scenario Outline: Edit pledge page
     And that sponsor is logged in

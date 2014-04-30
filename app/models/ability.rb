@@ -7,10 +7,10 @@ class Ability
     if user.has_role?(:sponsor)
       #Pledge
       can :create, Pledge
-      can [:edit, :update, :destroy] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
+      can [:edit, :update, :destroy, :launch] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       #PledgeRequest
-      can [:accept, :reject], PledgeRequest      
+      can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id    
     end
 
     if user.has_role?(:fundraiser)
@@ -23,7 +23,7 @@ class Ability
       can [:edit, :update, :destroy], PledgeRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
-      can [:accept, :reject], Pledge      
+      can [:accept, :reject], Pledge, fundraiser: user.fundraiser
     end
 
     can :read, :all

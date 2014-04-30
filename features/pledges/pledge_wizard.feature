@@ -83,4 +83,8 @@ Feature: Pledge Wizard
   Scenario: Launch & Share
     And a pledge of that sponsor exists
     When he goes to pledge wizard share page
-    Then he should see the Launch button and the pledge badge
+    And he press the "Launch pledge" link
+    Then 1 email should be delivered with subject: "You have a new pledge offer."
+    And he should see "Pledge was successfully launched."
+    And the pledge should have a "pending" status
+    And it should delete the related pledge request if the pledge had one 

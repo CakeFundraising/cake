@@ -60,14 +60,12 @@ class CampaignsController < InheritedResources::Base
   end
 
   def pledge
-    # authorize! :pledge, Campaign
-    
     if current_sponsor.present?
       redirect_to new_pledge_path
     else
       cookies[:pledge_campaign] = resource.id
       sign_out current_user if current_user.present?
-      redirect_to new_user_registration_path(role: :sponsor), warning: "To pledge this campaign first you have to register."
+      redirect_to new_user_registration_path(role: :sponsor), alert: "To pledge this campaign first you have to register."
     end
   end
 

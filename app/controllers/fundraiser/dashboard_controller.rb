@@ -1,4 +1,6 @@
 class Fundraiser::DashboardController < ApplicationController
+  before_action :authenticate_user!
+  
   def home
     @fundraiser = current_fundraiser
   end
@@ -7,7 +9,7 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def pending_pledges
-    @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
+    @unsolicited_pledges = current_fundraiser.pledges.decorate
     @requested_pledges = current_fundraiser.pledge_requests.decorate
   end
 

@@ -7,5 +7,5 @@
   span.label.label-danger Rejected
 - if can? :destroy, pr
   div 
-    = link_to pr, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
+    = link_to pr, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger delete' do
       span.glyphicon.glyphicon-remove

@@ -90,6 +90,16 @@ describe Ability do
         let(:owned_object) { FactoryGirl.create(:pledge, sponsor: @sponsor) }
         let(:foreign_object) { FactoryGirl.create(:pledge) }
       end
+
+      it "can launch his own pledges" do
+        @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+        @ability.should be_able_to(:launch, @pledge)
+      end
+
+      it "cannot launch someone else's pledges" do
+        @pledge = FactoryGirl.create(:pledge)
+        @ability.should_not be_able_to(:launch, @pledge)
+      end
     end
 
     context 'Pledge Requests' do
@@ -100,14 +110,24 @@ describe Ability do
         end
       end
 
-      it "can accept pledge requests" do
+      it "can accept his pledge requests" do
         @pledge = FactoryGirl.create(:pledge_request, sponsor: @sponsor)
         @ability.should be_able_to(:accept, @pledge)
       end
 
-      it "can reject pledge requests" do
+      it "can reject his pledge requests" do
         @pledge = FactoryGirl.create(:pledge_request, sponsor: @sponsor)
         @ability.should be_able_to(:reject, @pledge)
+      end
+
+      it "cannot accept someone else's pledge requests" do
+        @pledge = FactoryGirl.create(:pledge_request)
+        @ability.should_not be_able_to(:accept, @pledge)
+      end
+
+      it "cannot reject someone else's pledge requests" do
+        @pledge = FactoryGirl.create(:pledge_request)
+        @ability.should_not be_able_to(:reject, @pledge)
       end
     end
   end
@@ -157,6 +177,16 @@ describe Ability do
       it "can reject pledges" do
         @pledge = FactoryGirl.create(:pending_pledge, fundraiser: @fundraiser)
         @ability.should be_able_to(:reject, @pledge)
+      end
+
+      it "cannot accept someone else's pledges" do
+        @pledge = FactoryGirl.create(:pending_pledge)
+        @ability.should_not be_able_to(:accept, @pledge)
+      end
+
+      it "cannot reject someone else's pledges" do
+        @pledge = FactoryGirl.create(:pending_pledge)
+        @ability.should_not be_able_to(:reject, @pledge)
       end
     end
   end

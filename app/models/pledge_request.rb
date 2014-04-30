@@ -11,6 +11,10 @@ class PledgeRequest < ActiveRecord::Base
 
   validates :sponsor, :campaign, :fundraiser, presence: true
 
+  after_create do
+    PledgeNotification.new_pledge_request(self).deliver
+  end
+
   def notify_rejection
     PledgeNotification.rejected_pledge_request(self).deliver
   end

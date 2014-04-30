@@ -40,6 +40,10 @@ class Pledge < ActiveRecord::Base
     end
   end
 
+  def notify_launch
+    PledgeNotification.launch_pledge(self).deliver
+  end
+
   def notify_approval
     PledgeNotification.accepted_pledge(self).deliver
   end

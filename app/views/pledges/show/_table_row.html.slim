@@ -1,4 +1,4 @@
-tr class='pledge #{"danger" if pledge.rejected? }'
+tr class='pledge #{"danger" if pledge.rejected? } #{"success" if pledge.accepted? }'
   - if current_fundraiser.present?
     td = link_to pledge.sponsor, pledge
   - if current_sponsor.present?

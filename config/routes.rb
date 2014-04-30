@@ -31,6 +31,7 @@ Cake::Application.routes.draw do
         get :share
       end
       get :badge
+      patch :launch
 
       get :accept
       patch :reject

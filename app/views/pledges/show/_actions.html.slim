@@ -1,3 +1,5 @@
+- if p.accepted?
+  span.label.label-success Accepted
 - if p.pending?
   - if can? :accept, p
     span = link_to "Accept", accept_pledge_path(p), class:'btn btn-success'
@@ -6,8 +8,8 @@
 - if p.rejected?
   span.label.label-danger Rejected
 - if can? :edit, p
-  = link_to "Edit pledge", edit_pledge_path(p) , class:'btn btn-primary'
+  = link_to edit_pledge_path(p), class:'btn btn-primary edit_button' do
+      span.glyphicon.glyphicon-pencil
 - if can? :destroy, p
-  div 
-    = link_to p, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
-      span.glyphicon.glyphicon-remove
+  = link_to p, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
+    span.glyphicon.glyphicon-remove

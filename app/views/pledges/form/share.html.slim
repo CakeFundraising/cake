@@ -30,5 +30,5 @@ ul.nav.nav-tabs
       .col-md-6
         button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
 
-    = link_to "Launch pledge", @pledge, class:'btn btn-success pull-left'
+    = link_to "Launch pledge", launch_pledge_path(@pledge), method: :patch, class:'btn btn-success pull-left'
     .help-block Pledge not active until Fundraiser launches Campaign

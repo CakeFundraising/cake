@@ -21,6 +21,7 @@ Feature: Pledge Requests
     When he selects his campaign in the dropdown
     And he press the "Request Pledge" button
     Then he should see "Pledge request was successfully created."
+    And 1 email should be delivered with subject: "You have a new pledge request."
 
   Scenario: Failed Pledge Request Creation #Missing Campaign
     And the fundraiser visits the sponsor's page

@@ -3,20 +3,25 @@ class PledgeRequestsController < InheritedResources::Base
   
   def new
     @pledge_request = current_fundraiser.pledge_requests.build(sponsor_id: params[:sponsor_id])
+    @sponsor = @pledge_request.sponsor.decorate
   end
   
   def create
     @pledge_request = current_fundraiser.pledge_requests.build(permitted_params[:pledge_request])
     create! do |success, failure|
-      success.html do
-        redirect_to fundraiser_pending_pledges_path
-      end
+      success.html{ redirect_to fundraiser_pending_pledges_path }
+    end
+  end
+
+  def destroy
+    destroy! do |success, failure|
+      success.html{ redirect_to fundraiser_pending_pledges_path }
     end
   end
 
   #Actions
   def accept
-    redirect_to new_pledge_path(campaign: resource.campaign), notice: 'Plese complete your pledge offer'
+    redirect_to new_pledge_path(campaign: resource.campaign), notice: 'Please complete your pledge offer.'
   end
 
   def reject
