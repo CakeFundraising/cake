@@ -12,22 +12,22 @@ Feature: User Sign In
     | joana@streich.name  |
     | evans@osinski.info  |
     When they go to sign in page
-    And they fill in "user_email" field with "<user_email>"
-    And they fill in "user_password" field with "<user_password>"
+    And they fill in the "user_email" field with <email>
+    And they fill in the "user_password" field with <password>
     And they press the "Sign in" button
     Then I should see "<message>"
 
     Examples: Succesful login
-    | user_email          | user_password | message                 |
+    | email               | password      | message                 |
     | example@example.com | password      | Signed in successfully. |
     | test@example.com    | password      | Signed in successfully. |
     | joana@streich.name  | password      | Signed in successfully. |
     | evans@osinski.info  | password      | Signed in successfully. |
 
     Examples: Failed login
-    | user_email          | user_password | message                    |
-    | example@example.com |       ""      | Invalid email or password. |
-    | ""                  | password      | Invalid email or password. |
+    | email               | password      | message                    |
+    | example@example.com |               | Invalid email or password. |
+    |                     | password      | Invalid email or password. |
     | joana@streich.name  | Mypassword    | Invalid email or password. |
     | unexistent@mail.info| password      | Invalid email or password. |
 
@@ -39,11 +39,11 @@ Feature: User Sign In
     | twitter  | 877df787s8787 |
     | linkedin | asdsd7878d111 |
     When they go to sign in page
-    When they press the "<Provider Link>" link and allow the required permissions
+    When they press the "<provider_link>" link and allow the required permissions
     Then they should see "<message>"
 
     Examples: Succesful login
-    | Provider Link | message                                           |
+    | provider_link | message                                           |
     | Facebook      | Successfully authenticated from Facebook account. |
     | Twitter       | Successfully authenticated from Twitter account.  |
     | Linkedin      | Successfully authenticated from Linkedin account. |

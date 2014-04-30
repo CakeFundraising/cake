@@ -17,6 +17,9 @@ module NavigationHelpers
     when /^sign in page$/  
       new_user_session_path
 
+    when /^get started page$/  
+      home_get_started_path
+
     when /^settings page$/
       dashboard_settings_users_path 
 

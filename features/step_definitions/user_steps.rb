@@ -15,7 +15,7 @@ Then(/^(?:I|they|he) should be redirected to the new registration page as (.*?)$
   current_url.should == new_user_registration_url(role: role)
 end
 
-Then(/^(?:the|that|a|he)(?:fundraiser|sponsor)? should be taken to the (.*?)$/) do |page_name|
+Then(/^(?:I|the|that|a|he)(?:fundraiser|sponsor)? should be taken to the (.*?)$/) do |page_name|
   current_path.should == path_to(page_name)
 end
 
@@ -25,6 +25,10 @@ When(/^(?:I|they) press the "(.*?)" link and allow the required permissions$/) d
 end
 
 # User Registration & Login
+When(/^I click on the "Start Now" link$/) do
+  first(:link, "Start Now").click
+end
+
 Given(/^that (?:I|they) am logged in as "(.*?)" with password "(.*?)"$/) do |email, password|
   visit new_user_session_path
   fill_in "user_email", :with => email
