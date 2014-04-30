@@ -1,15 +1,10 @@
-tr.pledge
+tr class='pledge #{"danger" if pledge_request.rejected? }'
   - if current_fundraiser.present?
-    td = link_to pledge_request.sponsor, pledge_request
+    td = auto_link pledge_request.sponsor
   - if current_sponsor.present?
     td = link_to pledge_request.fundraiser, pledge_request.campaign 
   td = pledge_request.campaign.causes
   td = pledge_request.campaign.scopes
   td = pledge_request.start_end_dates
   td
-    - if current_sponsor.present?
-      span = link_to "Accept", accept_pledge_request_path(pledge_request), class:'btn btn-success'
-      span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger'
-    - if current_fundraiser.present?
-      span = link_to "Cancel", nil, class:'btn btn-warning'
-      span = link_to "Delete", nil, class:'btn btn-danger'
+    = render partial:'pledge_requests/show/actions', locals:{pr: pledge_request}

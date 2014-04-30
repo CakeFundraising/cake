@@ -68,6 +68,17 @@ class PledgesController < InheritedResources::Base
     response.headers.except! 'X-Frame-Options'
   end
 
+  #Actions
+  def accept
+    resource.notify_approval if resource.accepted!
+    redirect_to resource.campaign, notice: 'Pledge accepted.'
+  end
+
+  def reject
+    resource.notify_rejection if resource.rejected!
+    redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.'
+  end
+
   def permitted_params
     params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],

@@ -1,0 +1,5 @@
+h2 Hello #{@receiver}, 
+div
+  strong Congratulations, your pledge request for this campaign: #{ link_to @p.campaign.decorate, campaign_url(@p.campaign) } has been accepted!
+div
+  span You can check #{ link_to t('semantic.here').downcase, sponsor_active_pledges_url } your active pledges.

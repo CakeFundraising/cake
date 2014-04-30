@@ -39,4 +39,12 @@ class Pledge < ActiveRecord::Base
       self.build_picture if picture.blank?
     end
   end
+
+  def notify_approval
+    PledgeNotification.accepted_pledge(self).deliver
+  end
+
+  def notify_rejection
+    PledgeNotification.rejected_pledge(self).deliver
+  end
 end

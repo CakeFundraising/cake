@@ -1,0 +1,11 @@
+- if pr.pending?
+  - if can? :accept, pr
+    span = link_to "Accept", accept_pledge_request_path(pr), class:'btn btn-success'
+  - if can? :reject, pr
+    span = link_to "Reject", reject_pledge_request_path(pr), method: :patch, class:'btn btn-danger'
+- if pr.rejected?
+  span.label.label-danger Rejected
+- if can? :destroy, pr
+  div 
+    = link_to pr, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
+      span.glyphicon.glyphicon-remove

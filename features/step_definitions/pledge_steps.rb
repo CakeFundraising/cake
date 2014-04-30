@@ -31,3 +31,7 @@ Then(/^he should see the Launch button and the pledge badge$/) do
   find(:css, 'textarea#embedded_link')
   page.should have_link('Launch pledge')
 end
+
+Then(/^the pledge should be one of campaign's active pledges$/) do
+  @campaign.pledges.active.should include(@pending_pledge)
+end
