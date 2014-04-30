@@ -36,7 +36,13 @@ Cake::Application.routes.draw do
 
   resources :fundraisers, except: :destroy
   resources :sponsors, except: :destroy
-  resources :pledge_requests, except: :destroy
+  
+  resources :pledge_requests do
+    member do
+      get :accept
+      patch :reject
+    end
+  end
   
   #FR Dashboard
   namespace :fundraiser, controller: :dashboard do

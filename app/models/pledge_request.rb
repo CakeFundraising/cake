@@ -10,4 +10,8 @@ class PledgeRequest < ActiveRecord::Base
   belongs_to :fundraiser
 
   validates :sponsor, :campaign, :fundraiser, presence: true
+
+  def notify_rejection
+    PledgeNotification.rejected_pledge_request(self).deliver
+  end
 end

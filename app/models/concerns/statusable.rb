@@ -9,6 +9,7 @@ module Statusable
       self.statuses[opts[:column_name]].each do |status|
         define_method(:"#{status}?") { self.send(opts[:column_name]).to_s.to_sym == status }
         define_method(:"not_#{status}?") { self.send(opts[:column_name]).to_s.to_sym != status }
+        define_method(:"#{status}!"){ self.update_attribute(opts[:column_name], status) }
         scope status, -> { where opts[:column_name] => status }
         scope :"not_#{status}", -> { where.not opts[:column_name] => status }
       end

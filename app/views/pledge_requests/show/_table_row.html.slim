@@ -7,5 +7,9 @@ tr.pledge
   td = pledge_request.campaign.scopes
   td = pledge_request.start_end_dates
   td
-    span = link_to "Cancel", nil, class:'btn btn-warning'
-    span = link_to "Delete", nil, class:'btn btn-danger'
+    - if current_sponsor.present?
+      span = link_to "Accept", accept_pledge_request_path(pledge_request), class:'btn btn-success'
+      span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger'
+    - if current_fundraiser.present?
+      span = link_to "Cancel", nil, class:'btn btn-warning'
+      span = link_to "Delete", nil, class:'btn btn-danger'

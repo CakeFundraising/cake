@@ -30,6 +30,8 @@ en:
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
+  semantic:
+    here: Here
   activerecord: # customize attribute names for models here
     models:
       campaign:

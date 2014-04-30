@@ -91,6 +91,25 @@ describe Ability do
         let(:foreign_object) { FactoryGirl.create(:pledge) }
       end
     end
+
+    context 'Pledge Requests' do
+      it "can read pledge requests" do
+        @pledges = create_list(:pledge_request, 5, sponsor: @sponsor)
+        @pledges.each do |p|
+          @ability.should be_able_to(:read, p)
+        end
+      end
+
+      it "can accept pledge requests" do
+        @pledge = FactoryGirl.create(:pledge_request, sponsor: @sponsor)
+        @ability.should be_able_to(:accept, @pledge)
+      end
+
+      it "can reject pledge requests" do
+        @pledge = FactoryGirl.create(:pledge_request, sponsor: @sponsor)
+        @ability.should be_able_to(:reject, @pledge)
+      end
+    end
   end
 
   describe "Fundraiser" do

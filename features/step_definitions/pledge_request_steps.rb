@@ -12,3 +12,7 @@ Then(/^he should see the pledge request listed$/) do
   find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.causes.join(", "))
   find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.scopes.join(", "))
 end
+
+Then(/^the page has the correct campaign selected for that pledge request$/) do
+  find("#pledge_campaign_id option[value='#{@pledge_request.campaign.id}']").should be_selected
+end

@@ -14,6 +14,16 @@ class PledgeRequestsController < InheritedResources::Base
     end
   end
 
+  #Actions
+  def accept
+    redirect_to new_pledge_path(campaign: resource.campaign), notice: 'Plese complete your pledge offer'
+  end
+
+  def reject
+    resource.notify_rejection if resource.rejected!
+    redirect_to sponsor_pledge_requests_path, alert: "Pledge request rejected."
+  end
+
   def permitted_params
     params.permit(pledge_request: [:campaign_id, :sponsor_id])
   end

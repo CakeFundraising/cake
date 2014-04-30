@@ -46,6 +46,8 @@ module NavigationHelpers
     when /^sponsor's page$/
       sponsor_path(model(:sponsor))
 
+    when /^sponsor pledge requests page$/
+      sponsor_pledge_requests_path
 
     # the following are examples using path_to_pickle
 
