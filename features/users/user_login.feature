@@ -5,13 +5,8 @@ Feature: User Sign In
   2. Via Social Networks: The user selects sign in via her social networks, the system automatically sign in the user, without filling out anything.
 
   Scenario Outline: Email based 
-    Given the following fundraisers exist
-    | email               | 
-    | example@example.com | 
-    | test@example.com    |
-    | joana@streich.name  |
-    | evans@osinski.info  |
-    When they go to sign in page
+    Given a confirmed user exists with email: "test@example.com", password: "password"
+    When he visits the sign in page
     And they fill in the "user_email" field with <email>
     And they fill in the "user_password" field with <password>
     And they press the "Sign in" button
@@ -19,18 +14,14 @@ Feature: User Sign In
 
     Examples: Succesful login
     | email               | password      | message                 |
-    | example@example.com | password      | Signed in successfully. |
     | test@example.com    | password      | Signed in successfully. |
-    | joana@streich.name  | password      | Signed in successfully. |
-    | evans@osinski.info  | password      | Signed in successfully. |
 
     Examples: Failed login
     | email               | password      | message                    |
     | example@example.com |               | Invalid email or password. |
     |                     | password      | Invalid email or password. |
-    | joana@streich.name  | Mypassword    | Invalid email or password. |
+    | test@example.com    | Mypassword    | Invalid email or password. |
     | unexistent@mail.info| password      | Invalid email or password. |
-
 
   Scenario Outline: Via Social Networks
     Given the following social_connected_users exist

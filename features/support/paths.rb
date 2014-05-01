@@ -23,6 +23,9 @@ module NavigationHelpers
     when /^settings page$/
       dashboard_settings_users_path 
 
+    when /^account settings page$/
+      account_path
+
     when /^new #{capture_model}(?:'s)? page$/
       path_components = $1.split(/\s+/)
       send(path_components.unshift('new').push('path').join('_').to_sym)

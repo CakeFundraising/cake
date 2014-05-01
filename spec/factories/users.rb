@@ -9,6 +9,7 @@ FactoryGirl.define do
     factory :confirmed_user do
       confirmation_sent_at { Time.now }
       confirmed_at { Time.now }
+      roles [:sponsor, :fundraiser]
 
       factory :sponsor_user do
         roles [:sponsor]

@@ -49,6 +49,11 @@ When(/^he logs in$/) do
   login_user(@user)
 end
 
+Given(/^the user is logged in$/) do
+  login_user(model(:confirmed_user))
+end
+
+
 # User states
 Given(/^that (?:I|they) am not registered$/) do
   User.delete_all
