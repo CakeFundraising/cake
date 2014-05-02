@@ -38,4 +38,8 @@ class Campaign < ActiveRecord::Base
   def past?
     end_date < Date.today
   end
+
+  def end!
+    CampaignNotification.campaign_ended(self).deliver if fundraiser.email_campaign_end?
+  end
 end

@@ -57,6 +57,7 @@ en:
         missed_launch_campaign: Campaign launch date missed
         account_change: Change of account information
         public_profile_change: Change to public profile
+        campaign_result_summary: Campaign result summary
       campaign:
         total_donation: Total Donation
         pledges_quantity: No. of Pledges

@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     create_email_setting
   end
 
+  after_update do
+    UserNotification.account_updated(self).deliver if email_setting.account_change
+  end
+
   def set_fundraiser(fr)
     self.fundraiser = fr
     self.save

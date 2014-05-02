@@ -29,6 +29,10 @@ class Fundraiser < ActiveRecord::Base
     end
   end
 
+  after_update do
+    UserNotification.profile_updated(self).deliver if self.email_public_profile_change?
+  end
+
   MIN_PLEDGES = [
     10000,
     25000,
@@ -45,5 +49,9 @@ class Fundraiser < ActiveRecord::Base
 
   def sponsors
     pledges.accepted.active.map(&:sponsor)
+  end
+
+  EmailSetting::SETTINGS.each do |setting|
+    define_method("email_#{setting}?"){ self.manager.email_setting.reload.send(setting) }
   end
 end

@@ -80,7 +80,7 @@ class PledgesController < InheritedResources::Base
   end
 
   def launch
-    resource.notify_launch if resource.pending!
+    resource.launch!
     redirect_to resource, notice: 'Pledge was successfully launched.'
   end
 

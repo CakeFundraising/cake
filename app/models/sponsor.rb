@@ -32,6 +32,6 @@ class Sponsor < ActiveRecord::Base
   end
 
   def fundraisers
-    pledges.active.map(&:fundraiser)
+    pledges.accepted.map(&:fundraiser)
   end
 end
