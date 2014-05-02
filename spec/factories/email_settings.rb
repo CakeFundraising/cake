@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :email_setting do
+  factory :fundraiser_email_setting do
     new_pledge false
     pledge_increased false
     pledge_fully_subscribed false

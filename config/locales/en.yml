@@ -49,15 +49,14 @@ en:
         mission: Fundraiser's Mission 
         supporter_demographic: Supporter Demographics
         manager_name: Fundraising Manager
-      email_setting:
+      fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased
         pledge_fully_subscribed: Pledge has been 100% subscribed
-        campaign_end: Campaign ends
+        campaign_end: Campaign end summary
         missed_launch_campaign: Campaign launch date missed
         account_change: Change of account information
         public_profile_change: Change to public profile
-        campaign_result_summary: Campaign result summary
       campaign:
         total_donation: Total Donation
         pledges_quantity: No. of Pledges

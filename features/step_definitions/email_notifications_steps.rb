@@ -1,11 +1,11 @@
 Given(/^the (.*?) wants to receive notifications for "(.*?)"$/) do |user, event|
-  email_settings = I18n.t('activerecord.attributes.email_setting')
-  model(user).manager.email_setting.update_attribute(email_settings.key(event), true)
+  fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
+  model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), true)
 end
 
 Given(/^the (.*?) doesn't want to receive notifications for "(.*?)"$/) do |user, event|
-  email_settings = I18n.t('activerecord.attributes.email_setting')
-  model(user).manager.email_setting.update_attribute(email_settings.key(event), false)
+  fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
+  model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), false)
 end
 
 When(/^the pledge is launched$/) do

@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140423203747) do
     t.boolean  "extra_donation_pledge",   default: false
   end
 
-  create_table "email_settings", force: true do |t|
+  create_table "fundraiser_email_settings", force: true do |t|
     t.boolean  "new_pledge",              default: false
     t.boolean  "pledge_increased",        default: false
     t.boolean  "pledge_fully_subscribed", default: false
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20140423203747) do
     t.boolean  "missed_launch_campaign",  default: false
     t.boolean  "account_change",          default: false
     t.boolean  "public_profile_change",   default: false
-    t.boolean  "campaign_result_summary", default: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

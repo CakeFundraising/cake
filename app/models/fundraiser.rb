@@ -51,7 +51,7 @@ class Fundraiser < ActiveRecord::Base
     pledges.accepted.active.map(&:sponsor)
   end
 
-  EmailSetting::SETTINGS.each do |setting|
-    define_method("email_#{setting}?"){ self.manager.email_setting.reload.send(setting) }
+  FundraiserEmailSetting::SETTINGS.each do |setting|
+    define_method("email_#{setting}?"){ self.manager.fundraiser_email_setting.reload.send(setting) }
   end
 end

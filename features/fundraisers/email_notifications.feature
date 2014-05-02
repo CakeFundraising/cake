@@ -49,7 +49,7 @@ Feature: Fundraiser Email Notifications
 
   Scenario Outline: Campaign ends
     And a campaign of that fundraiser exists
-    And the fundraiser <wants?> to receive notifications for "Campaign ends"
+    And the fundraiser <wants?> to receive notifications for "Campaign end summary"
     When his campaign ends
     Then <quantity> email should be delivered with subject: "Your campaign has ended."
 

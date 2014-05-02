@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  it { should have_one(:email_setting) }
+  it { should have_one(:fundraiser_email_setting) }
   it { should belong_to(:sponsor) }
   it { should belong_to(:fundraiser) }
 

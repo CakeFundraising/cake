@@ -10,16 +10,16 @@ class User < ActiveRecord::Base
 
   has_roles [:sponsor, :fundraiser]
   
-  has_one :email_setting, dependent: :destroy
+  has_one :fundraiser_email_setting, dependent: :destroy
   belongs_to :fundraiser
   belongs_to :sponsor
 
   after_create do
-    create_email_setting
+    create_fundraiser_email_setting
   end
 
   after_update do
-    UserNotification.account_updated(self).deliver if email_setting.account_change
+    UserNotification.account_updated(self).deliver if fundraiser_email_setting.account_change
   end
 
   def set_fundraiser(fr)
