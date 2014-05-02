@@ -4,6 +4,7 @@ class Fundraiser < ActiveRecord::Base
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
+  has_one :fundraiser_email_setting, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
@@ -29,6 +30,10 @@ class Fundraiser < ActiveRecord::Base
     end
   end
 
+  after_create do
+    create_fundraiser_email_setting
+  end
+
   after_update do
     UserNotification.profile_updated(self).deliver if self.email_public_profile_change?
   end
@@ -52,6 +57,6 @@ class Fundraiser < ActiveRecord::Base
   end
 
   FundraiserEmailSetting::SETTINGS.each do |setting|
-    define_method("email_#{setting}?"){ self.manager.fundraiser_email_setting.reload.send(setting) }
+    define_method("email_#{setting}?"){ self.fundraiser_email_setting.reload.send(setting) }
   end
 end

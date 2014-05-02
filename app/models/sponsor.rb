@@ -6,6 +6,7 @@ class Sponsor < ActiveRecord::Base
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
+  has_one :sponsor_email_setting, dependent: :destroy
   has_many :users
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
@@ -29,6 +30,10 @@ class Sponsor < ActiveRecord::Base
       self.build_location
       self.build_picture if picture.blank?
     end
+  end
+
+  after_create do
+    create_sponsor_email_setting
   end
 
   def fundraisers

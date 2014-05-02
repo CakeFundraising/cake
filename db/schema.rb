@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423203747) do
+ActiveRecord::Schema.define(version: 20140502163844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,14 +82,14 @@ ActiveRecord::Schema.define(version: 20140423203747) do
   end
 
   create_table "fundraiser_email_settings", force: true do |t|
-    t.boolean  "new_pledge",              default: false
-    t.boolean  "pledge_increased",        default: false
-    t.boolean  "pledge_fully_subscribed", default: false
-    t.boolean  "campaign_end",            default: false
-    t.boolean  "missed_launch_campaign",  default: false
-    t.boolean  "account_change",          default: false
-    t.boolean  "public_profile_change",   default: false
-    t.integer  "user_id"
+    t.boolean  "new_pledge",              default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
+    t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,6 +175,22 @@ ActiveRecord::Schema.define(version: 20140423203747) do
     t.integer  "max_value_cents",    default: 0,     null: false
     t.string   "max_value_currency", default: "USD", null: false
     t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsor_email_settings", force: true do |t|
+    t.boolean  "new_pledge_request",      default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "pledge_accepted",         default: true
+    t.boolean  "pledge_rejected",         default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
+    t.boolean  "campaign_lauch",          default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

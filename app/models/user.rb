@@ -10,25 +10,37 @@ class User < ActiveRecord::Base
 
   has_roles [:sponsor, :fundraiser]
   
-  has_one :fundraiser_email_setting, dependent: :destroy
   belongs_to :fundraiser
   belongs_to :sponsor
 
-  after_create do
-    create_fundraiser_email_setting
+  def notify_account_update
+    if fundraiser? and fundraiser.fundraiser_email_setting.account_change
+      UserNotification.account_updated(self).deliver
+    elsif sponsor? and sponsor.sponsor_email_setting.account_change
+      UserNotification.account_updated(self).deliver
+    end
   end
 
-  after_update do
-    UserNotification.account_updated(self).deliver if fundraiser_email_setting.account_change
+  #User roles methods
+  def sponsor?
+    sponsor_id.present?
+  end
+
+  def fundraiser?
+    fundraiser_id.present?
   end
 
   def set_fundraiser(fr)
-    self.fundraiser = fr
-    self.save
+    unless sponsor?
+      self.fundraiser = fr 
+      self.save
+    end
   end
 
   def set_sponsor(sp)
-    self.sponsor = sp
-    self.save
+    unless fundraiser?
+      self.sponsor = sp
+      self.save
+    end
   end
 end

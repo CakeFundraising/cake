@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  after_action :notify_account_update, only: :edit
 
   def create
     build_resource(sign_up_params)
@@ -36,5 +37,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     complete_account_path
+  end
+
+  def notify_account_update
+    resource.notify_account_update
   end
 end

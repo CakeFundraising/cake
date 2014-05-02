@@ -3,9 +3,9 @@
     p.mission = Faker::Lorem.sentence
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
-    p.amount_per_click = rand(99)
+    p.amount_per_click = rand(99) + 1
     p.donation_type = Pledge::DONATION_TYPES.sample
-    p.total_amount = rand(99999)
+    p.total_amount = rand(99999) + 1
     p.website_url = Faker::Internet.domain_name
     p.campaign = @campaigns.sample
 
