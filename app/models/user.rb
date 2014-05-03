@@ -12,11 +12,18 @@ class User < ActiveRecord::Base
   
   belongs_to :fundraiser
   belongs_to :sponsor
+  has_one :fundraiser_email_setting, dependent: :destroy
+  has_one :sponsor_email_setting, dependent: :destroy
+
+  after_create do
+    create_fundraiser_email_setting if has_role?(:fundraiser)
+    create_sponsor_email_setting if has_role?(:sponsor)
+  end
 
   def notify_account_update
-    if fundraiser? and fundraiser.fundraiser_email_setting.account_change
+    if fundraiser? and fundraiser_email_setting.account_change
       UserNotification.account_updated(self).deliver
-    elsif sponsor? and sponsor.sponsor_email_setting.account_change
+    elsif sponsor? and sponsor_email_setting.account_change
       UserNotification.account_updated(self).deliver
     end
   end

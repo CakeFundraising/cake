@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20140502163844) do
     t.boolean  "missed_launch_campaign",  default: true
     t.boolean  "account_change",          default: true
     t.boolean  "public_profile_change",   default: true
-    t.integer  "fundraiser_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 20140502163844) do
     t.boolean  "campaign_lauch",          default: true
     t.boolean  "campaign_end",            default: true
     t.boolean  "missed_launch_campaign",  default: true
-    t.integer  "sponsor_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

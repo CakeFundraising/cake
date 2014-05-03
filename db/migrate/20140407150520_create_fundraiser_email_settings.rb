@@ -8,7 +8,7 @@ class CreateFundraiserEmailSettings < ActiveRecord::Migration
       t.boolean :missed_launch_campaign, default: true
       t.boolean :account_change, default: true
       t.boolean :public_profile_change, default: true
-      t.integer :fundraiser_id
+      t.integer :user_id
 
       t.timestamps
     end

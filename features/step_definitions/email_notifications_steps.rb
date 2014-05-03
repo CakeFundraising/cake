@@ -1,20 +1,20 @@
-Given(/^the (.*?) wants to receive notifications for "(.*?)"$/) do |user, event|
+Given(/^the (.*?) manager wants to receive notifications for "(.*?)"$/) do |user, event|
   if user == 'fundraiser'
     fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
-    model(user).fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), true)
+    model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), true)
   else
     sponsor_email_settings = I18n.t('activerecord.attributes.sponsor_email_setting')
-    model(user).sponsor_email_setting.update_attribute(sponsor_email_settings.key(event), true)
+    model(user).manager.sponsor_email_setting.update_attribute(sponsor_email_settings.key(event), true)
   end
 end
 
-Given(/^the (.*?) doesn't want to receive notifications for "(.*?)"$/) do |user, event|
+Given(/^the (.*?) manager doesn't want to receive notifications for "(.*?)"$/) do |user, event|
   if user == 'fundraiser'
     fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
-    model(user).fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), false)
+    model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), false)
   else
     sponsor_email_settings = I18n.t('activerecord.attributes.sponsor_email_setting')
-    model(user).sponsor_email_setting.update_attribute(sponsor_email_settings.key(event), false)
+    model(user).manager.sponsor_email_setting.update_attribute(sponsor_email_settings.key(event), false)
   end
 end
 

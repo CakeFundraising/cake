@@ -11,7 +11,7 @@ class CreateSponsorEmailSettings < ActiveRecord::Migration
       t.boolean :campaign_lauch, default: true
       t.boolean :campaign_end, default: true
       t.boolean :missed_launch_campaign, default: true
-      t.integer :sponsor_id
+      t.integer :user_id
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 class FundraiserEmailSetting < ActiveRecord::Base
-  belongs_to :fundraiser
+  belongs_to :user
 
-  SETTINGS = self.column_names - ["id", "created_at", "updated_at", "fundraiser_id"]
+  SETTINGS = self.column_names - ["id", "created_at", "updated_at", "user_id"]
 end

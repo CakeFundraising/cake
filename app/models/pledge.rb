@@ -43,7 +43,7 @@ class Pledge < ActiveRecord::Base
   #Actions
   def launch!
     self.pending!
-    notify_launch if fundraiser.email_new_pledge?
+    notify_launch
   end
 
   def notify_launch
