@@ -43,7 +43,8 @@ nav.navbar.navbar-default role="navigation"
               = render partial:'layouts/nav/sponsor/dropdown' if current_sponsor.present?
               = menu_item "Edit Profile", public_profile_path
               = menu_item "Account Settings", account_path
-              = menu_item "Email Notifications", edit_fundraiser_email_settings_path
+              = menu_item "Email Notifications", edit_fundraiser_email_settings_path if current_fundraiser.present?
+              = menu_item "Email Notifications", edit_sponsor_email_settings_path if current_sponsor.present?
               li.divider
               = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
     - else

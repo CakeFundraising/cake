@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  after_action :notify_account_update, only: :edit
+  after_action :notify_account_update, only: :update
 
   def create
     build_resource(sign_up_params)

@@ -8,7 +8,7 @@ class CreateSponsorEmailSettings < ActiveRecord::Migration
       t.boolean :pledge_rejected, default: true
       t.boolean :account_change, default: true
       t.boolean :public_profile_change, default: true
-      t.boolean :campaign_lauch, default: true
+      t.boolean :campaign_launch, default: true
       t.boolean :campaign_end, default: true
       t.boolean :missed_launch_campaign, default: true
       t.integer :user_id

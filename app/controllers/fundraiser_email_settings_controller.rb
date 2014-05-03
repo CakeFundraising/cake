@@ -15,7 +15,7 @@ class FundraiserEmailSettingsController < InheritedResources::Base
   def permitted_params
     params.permit(fundraiser_email_setting: 
       [:new_pledge, :pledge_increased, :pledge_fully_subscribed, :campaign_end, :missed_launch_campaign, 
-       :account_change, :public_profile_change, :campaign_result_summary ])
+       :account_change, :public_profile_change ])
   end
 
   private

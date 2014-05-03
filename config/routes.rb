@@ -76,6 +76,7 @@ Cake::Application.routes.draw do
 
     get :account, to: redirect('users/edit')
     resource :fundraiser_email_settings, only: [:edit, :update]
+    resource :sponsor_email_settings, only: [:edit, :update]
   end
 
   resources :users, only: :index
