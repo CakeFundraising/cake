@@ -13,8 +13,8 @@ FactoryGirl.define do
 
     factory :extra_donation_pledge do
       extra_donation_pledge true
-      unit_donation{ rand(99) }
-      total_donation{ rand(99999) }
+      unit_donation{ rand(99) + 1  }
+      total_donation{ rand(99999) + 1 }
     end
   end
 end

@@ -31,13 +31,13 @@ html lang="en"
 
   body.fixed
     = render partial: 'layouts/main_nav'
+    = bootstrap_flash
     - if content_for? :header
       header
         = yield :header
     .container#main-container
       .row
         .col-md-12
-          = bootstrap_flash
           = yield
       /! /row
     /! /container

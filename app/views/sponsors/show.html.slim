@@ -37,7 +37,9 @@
            .col-md-12.rank-rows
               = basic_list_item("Top Cause Rank", "14")
               = basic_list_item("Location Rank", "2")
-          button.btn.btn-primary.btn-block Request Pledge
+          - if can? :create, PledgeRequest
+            .request-pledge
+              = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-block'
   .white
     .container
       .row.sponsor-profile

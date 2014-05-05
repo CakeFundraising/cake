@@ -24,13 +24,19 @@
               span.campaign-timer 47 
               span m.
           .row
-           .col-md-12.click-btn
+            .col-md-12.click-btn
               p.timer-ital Our Pledge:
               .campaign-stats
                 strong $7,430 
                 span Raised
                 strong.pull-right $958.000
                 span.pull-right Goal
+            .col-md-12.click-btn
+              .make-pledge
+                = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary'
+              - if can?(:launch, @campaign) and @campaign.inactive?
+                .launch-campaign
+                  = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary'
 
   .white
     .container
