@@ -148,6 +148,16 @@ describe Ability do
         let(:owned_object) { FactoryGirl.create(:campaign, fundraiser: @fundraiser) }
         let(:foreign_object) { FactoryGirl.create(:campaign) }
       end
+
+      it "can launch his campaign" do
+        @campaign = FactoryGirl.create(:campaign, fundraiser: @fundraiser)
+        @ability.should be_able_to(:launch, @campaign)
+      end
+
+      it "cannot launch someone else's campaign" do
+        @campaign = FactoryGirl.create(:campaign)
+        @ability.should_not be_able_to(:launch, @campaign)
+      end
     end
 
     context 'Pledge Requests' do

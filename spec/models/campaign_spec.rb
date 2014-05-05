@@ -28,6 +28,24 @@ describe Campaign do
     new_campaign.picture.should be_instance_of(Picture)
   end
 
+  it "should have statuses" do
+    Campaign.statuses[:status].should == [:inactive, :live]
+  end
+
+  context 'Actions' do
+    describe "#launch" do
+      before(:each) do
+        @campaign = FactoryGirl.create(:campaign)
+      end
+
+      it "should set a live status" do
+        @campaign.status.should == "inactive"
+        @campaign.launch!
+        @campaign.status.should == :live
+      end
+    end
+  end
+
   context 'Activity Status' do
     #Scopes
     it "should return a collection of active campaigns" do

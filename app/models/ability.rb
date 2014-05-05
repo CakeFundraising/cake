@@ -16,6 +16,7 @@ class Ability
     if user.has_role?(:fundraiser)
       #Campaign
       can :create, Campaign
+      can :launch, Campaign, fundraiser_id: user.fundraiser.id
       can [:edit, :update, :destroy] + CampaignsController::WIZARD_STEPS, Campaign, fundraiser_id: user.fundraiser.id
       
       #PledgeRequest

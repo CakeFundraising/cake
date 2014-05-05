@@ -12,5 +12,4 @@ tr.campaign
   td 9
   td 9
   td
-    span = link_to "View", campaign, class:'btn btn-primary'
-    span = link_to "Download", campaign, class:'btn btn-success'
+    = render partial:'campaigns/show/actions', locals:{campaign: campaign}

@@ -1,6 +1,9 @@
 class Campaign < ActiveRecord::Base
   include Cause
   include Scope
+  include Statusable
+
+  has_statuses :inactive, :live
 
   attr_accessor :step 
 
@@ -39,9 +42,14 @@ class Campaign < ActiveRecord::Base
     end_date < Date.today
   end
 
+  #Actions
   def end!
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
+  end
+
+  def launch!
+    update_attribute(:status, :live)
   end
 end

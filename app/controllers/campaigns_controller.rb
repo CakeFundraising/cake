@@ -69,6 +69,12 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def launch
+    # resource.notify_approval if 
+    resource.launch!
+    redirect_to resource, notice: 'Campaign is live now!'
+  end
+
   protected
 
   def permitted_params

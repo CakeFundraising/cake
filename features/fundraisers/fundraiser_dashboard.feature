@@ -16,7 +16,7 @@ Feature: Fundraiser Dashboard
     When he visits the fundraiser home page
     Then he should see his fundraiser home dashboard
 
-  Scenario: Campaigns
+  Scenario: Active Campaigns
     When he visits the fundraiser campaigns page
     Then he should see his active campaigns
 

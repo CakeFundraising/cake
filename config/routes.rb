@@ -19,6 +19,7 @@ Cake::Application.routes.draw do
       end
       get :badge
       get :pledge
+      patch :launch
     end
   end
 

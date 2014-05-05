@@ -17,6 +17,9 @@
         = @campaign.end_date
       .make-pledge
         = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary'
+      - if can? :launch, @campaign and @campaign.inactive?
+        .launch-campaign
+          = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary'
       .avatar 
         = image_tag @campaign.avatar.url(:medium)
         .caption = @campaign.avatar_caption
