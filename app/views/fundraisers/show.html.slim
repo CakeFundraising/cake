@@ -2,25 +2,86 @@
 
 = content_for :header do
   .banner.hero
-
-.content.row
-  .col-md-6.col-md-offset-1
-    h1 = @fundraiser.name
-    .share-links 
-    .fr-profile
-      .row
-        .col-md-6
-          h4 #{Fundraiser.model_name.human} Profile
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        h1.name = @fundraiser.name
+        .sponsor
+          address
+            strong = @fundraiser.name
+            br
+            span = @fundraiser.location.address
+            span #{@fundraiser.location.city}, #{@fundraiser.location.state_code}, #{@fundraiser.location.zip_code}
+            br
+          address
+            span.sponsorinfo 
+              | Phone: 
+              | (123) #{@fundraiser.phone}
+            span Website: 
+            span.sponsorinfo #{@fundraiser.website}
+            span Email: 
+            a href="mailto:#" #{@fundraiser.email}
+            br
+        .share-links 
+      .col-md-4
+        .sidebar-bkg 
+          .row.text-center
+           .col-xs-6.border-right
+              p.donation-stats $42M
+              p Total Clicks
+           .col-xs-6
+              p.donation-stats 122
+              p Sponsor Rank
+          .row
+           .col-md-12.rank-rows
+              = basic_list_item("Top Cause Rank", "14")
+              = basic_list_item("Location Rank", "2")
+          button.btn.btn-success.btn-block Make A Pledge
+  .white
+    .container
+      .row.sponsor-profile
+        .col-md-8
+          h3 Performance Summary
+          table.table.table-bordered.performance-summary
+            tr
+              td 
+                p.summery-stats 3
+                p No. of Campaigns
+              td 
+                p.summery-stats $59,000
+                p Avg. Pledge
+              td 
+                p.summery-stats $35,980
+                p Avg. Donation
+              td 
+                p.summery-stats $4.81
+                p Avg. Donation/Click
+            tr
+              td
+                p.summery-stats 15
+                p Avg. No. of Sponsors
+              td
+                p.summery-stats 272,000
+                p Avg. Clicks/Pledge
+              td
+                p.summery-stats 2M
+                p Avg. Campaign Reach
+              td
+                p.summery-stats 11%
+                p Avg. Conv. Rate
+        .col-md-4
+          h3 Top Causes
+          .causes Environment
+          .causes Community
+          .causes Sport, Teams & Comp.
+  .pointer
+  .container
+    .row.min-case
+      .col-md-8
+        .wesupport
           strong = Fundraiser.human_attribute_name :causes
           div = @fundraiser.causes
-          strong = Fundraiser.human_attribute_name :manager_name
-          div = @fundraiser.manager_name
-          strong = Fundraiser.human_attribute_name :manager_email
-          div = @fundraiser.manager_email
-          strong = Fundraiser.human_attribute_name :manager_phone
-          div = @fundraiser.manager_phone
-          br
-          div
             span = Fundraiser.human_attribute_name :donations_kind
             strong.pull-right = b @fundraiser.donations_kind
           div
@@ -37,71 +98,100 @@
           div
             span = Fundraiser.human_attribute_name :unsolicited_pledges
             strong.pull-right = b @fundraiser.unsolicited_pledges
-        .col-md-6
-          h4 Performance Summary
-          p Hi Emi
-          div
-            span No. of Campaigns
-            strong.pull-right 8
-          div
-            span Avg. No. of Sponsors
-            strong.pull-right 13
-          div
-            span Avg. Pledge
-            strong.pull-right $23,345
-          div
-            span Avg. Donation
-            strong.pull-right $89,000
-          div
-            span Avg. Donation/Click
-            strong.pull-right $4,68
-          div
-            span Avg. Click/Pledge
-            strong.pull-right $4,68
-          div
-            span Avg. Reach/Campaign
-            strong.pull-right 3M
-    p.profile-message 
-      h3 = Fundraiser.human_attribute_name :mission
-      p = @fundraiser.mission
-    .demographics
-      h3 = Fundraiser.human_attribute_name :supporter_demographics
-      p = @fundraiser.supporter_demographics
-  .col-md-4
-    .thumbnail
-      h4 
-        span Total Clicks 
-        span.pull-right 34M
-      h4 
-        span Fundraiser Rank
-        span.pull-right 3,881
-      h4 
-        span Cause Rank
-        span.pull-right 13
-      h4 
-        span Location Rank
-        span.pull-right 4
-      .avatar 
-        = image_tag @fundraiser.avatar.url(:medium)
-        .caption = @fundraiser.avatar_caption
-    .fundraiser
-      address
-        strong = @fundraiser.name
-        br
-        span = @fundraiser.location.address
-        br
-        span #{@fundraiser.location.city}, #{@fundraiser.location.state_code}, #{@fundraiser.location.zip_code}
-        br
-      address
-        abbr title="Phone" Phone:
-        | (123) #{@fundraiser.phone}
-        br
-        strong Website: 
-        span #{@fundraiser.website}
-        br
-        strong Email: 
-        a href="mailto:#" #{@fundraiser.email}
-        br
+            p.profile-message 
+            h3 = Fundraiser.human_attribute_name :mission
+              p = @fundraiser.mission
+            .demographics
+              h3 = Fundraiser.human_attribute_name :supporter_demographics
+              p = @fundraiser.supporter_demographics
+      .col-md-4
+        .avatar 
+          = image_tag @fundraiser.avatar.url(:medium)
+          .caption = @fundraiser.avatar_caption
+          h4 #{Fundraiser.model_name.human} Profile
+          strong = Fundraiser.human_attribute_name :manager_name
+          div = @fundraiser.manager_name
+          strong = Fundraiser.human_attribute_name :manager_email
+          div = @fundraiser.manager_email
+          strong = Fundraiser.human_attribute_name :manager_phone
+          div = @fundraiser.manager_phone
+    .row
+      .col-md-12
+        ul.nav.nav-tabs
+          li.active
+            a data-toggle="tab" href="#active-pledges" Active Campaigns
+          li
+            a data-toggle="tab" href="#past" Past Campaigns
+          li
+            a data-toggle="tab" href="#top" Top Sponsors
+
+        .tab-content
+          #active-pledges.tab-pane.active
+            table.table.data-table
+              thead
+                tr
+                  th Campaign
+                  th Cause
+                  th Launch/End Date
+                  th No. of Sponsors
+                  th Avg. Pledge
+                  th Avg. Donation/Click
+              tbody
+                tr
+                  td Lorem ipsum
+                  td Hunger
+                  td 20/20/2014 - 02/03/2014
+                  td 15
+                  td $10,000
+                  td $2.05
+          #past.tab-pane
+            table.table.data-table
+              thead
+                tr
+                  th Fundraiser
+                  th Cause
+                  th Type
+                  th Pledge
+                  th Donation/Click
+                  th Prize
+                  th Coupon
+                  th Pledge Rank
+              tbody
+                tr
+                  td Feeding America
+                  td Hunger
+                  td National
+                  td 100k
+                  td $3
+                  td Yes
+                  td Yes
+                  td 78
+          #top.tab-pane
+            table.table.data-table
+              thead
+                tr
+                  th Fundraiser
+                  th No. of Pledges
+                  th Cause
+                  th Type
+                  th Pledge
+                  th Donation
+                  th Donation/Click
+                  th Avg. Pledge Rank
+              tbody
+                tr
+                  td Feeding America
+                  td 30
+                  td Hunger
+                  td National
+                  td 50,000
+                  td $34,500
+                  td $3.00
+                  td 28
+
+    
+
+
 
 css:
   .hero { background-image: url("#{@fundraiser.banner.url(:large)}"); }

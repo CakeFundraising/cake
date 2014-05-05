@@ -1,28 +1,96 @@
-= link_to 'Edit Campaign', edit_campaign_path(@campaign)
-
 = content_for :header do
   .banner.hero
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        h1.name 
+          span = @campaign.title
+          span = link_to 'Edit Campaign', edit_campaign_path(@campaign)
+        .share-links 
+      .col-md-4
+        .sidebar-bkg 
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends in:
+          .row.text-center
+            .col-xs-4.border-right
+              span.campaign-timer 003 
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer 15 
+              span h.
+            .col-xs-4
+              span.campaign-timer 47 
+              span m.
+          .row
+           .col-md-12.click-btn
+              p.timer-ital Our Pledge:
+              .campaign-stats
+                strong $7,430 
+                span Raised
+                strong.pull-right $958.000
+                span.pull-right Goal
 
-.content.row
-  .col-md-6.col-md-offset-1
-    h1 = @campaign.title
-    .share-links 
-    h3 = @campaign.headline
-    p = @campaign.story
-    p = @campaign.video.iframe if @campaign.video.present?
-  .col-md-4
-    .thumbnail
-      .help-block Campaign ends in:
-      .campaign-end
-        = @campaign.end_date
-      .make-pledge
-        = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary'
-      - if can? :launch, @campaign and @campaign.inactive?
-        .launch-campaign
-          = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary'
-      .avatar 
-        = image_tag @campaign.avatar.url(:medium)
-        .caption = @campaign.avatar_caption
+  .white
+    .container
+      .row.sponsor-profile
+        .col-md-4.col-md-push-8
+          .sidebar-bkg-2
+            .avatar 
+              = image_tag @campaign.avatar.url(:medium), class: 'img-responsive'
+              .caption = @campaign.avatar_caption
+              .fundraiser-info
+                h4 I'm not for Sale 
+                span #3
+                p Global Initative
+            .campaign_and_fundraiser
+              button.btn.btn-success View Profile
+        .col-md-8.col-md-pull-4
+          h3 = @campaign.headline
+          p = @campaign.story
+          p = @campaign.video.iframe if @campaign.video.present?
+  .blue
+    .container
+      .row.pledgebluestripe
+        .col-md-12
+          h2 Your clicks help us.
+          p Please visit all our generous sponsors and share our campaign with friends!
+          p working together, we can make a difference!
+          span See how it works...
+          br
+          button.btn.btn-primary Click to help. It's free
+  .container
+    .row.win-with
+      .col-md-12
+        h2 Visit our Platinum Sponsors
+        span + $10,000
+    .row 
+      - 3.times do
+        = render partial:'campaigns/show/platinum_sponsors'
+    .row.win-with
+      .col-md-12
+        .level-divide
+        h2 Visit our Gold Sponsors
+        span + $10,000
+    .row
+      - 4.times do
+        = render partial:'campaigns/show/gold_sponsors'
+    .row.win-with
+      .col-md-12
+        .level-divide
+        h2 Visit our Silver Sponsors
+        span $5 - $20
+    .row
+      - 6.times do
+        = render partial:'campaigns/show/silver_sponsors'
+    .row
+      .col-md-12
+        .level-divide
+          .center
+            h2 Your click will make a difference!
+            p Every Dollar Helps! Please donate if you can!
+            button.btn.btn-success Make a Direct Donation
 
 css:
   .hero { background-image: url("#{@campaign.banner.url(:large)}"); }

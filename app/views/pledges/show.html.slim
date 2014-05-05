@@ -64,37 +64,9 @@
   .container
     .row.win-with
       .col-md-12
-        h2 Win with Sponsor Info
-    .row
-      .col-xs-11.sweepstakes
-        .row
-          .col-md-6
-            img src="http://placehold.it/495x385"
-          .col-md-6
-            h2 Win a package to World Cup in Rio
-            p Ends: <span> 7th April 2014</span>
-            p No. of Prizes: <span> 20</span>
-            p Click to win 1 of 20 prize packages, each includes a pair of tickets to the 2014 World Cup in Rio, round trip airfare and deluz accomodations.
-            .row.terms
-              .col-xs-7
-                p <em>Terms & Conditions:</em> Must be 18 or older and a legal resident of the United States.
-              .col-xs-5
-                button.btn.btn-success.pull-right Click to Win!
-      .col-xs-1.share-coupon-block
-        ul.share-coupon
-          li
-            a.fb href="#"
-          li
-            a.twitter href="#"
-          li
-            a.mail href="#"
-          li
-            a.share href="#" 
-    .row.win-with
-      .col-md-12
         h2 Big Savings Sponsor Info
         .row
-      .col-xs-11.sweepstakes
+      .col-xs-11.coupon
         .row
           .col-md-4
             img src="http://placehold.it/300x235"
@@ -109,7 +81,8 @@
                 p <em>Terms & Conditions:</em> Must be 18 or older and a legal resident of the United States.
               .col-xs-5      
           .col-md-2
-            button.btn.btn-success.pull-right Print Coupon
+            = image_tag("qr-code.jpg", class: "qr")
+            button.btn.btn-success.btn-block.pull-right Print Coupon
       .col-xs-1.share-coupon-block
         ul.share-coupon
           li

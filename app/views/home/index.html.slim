@@ -1,2 +1,67 @@
-h1 Cake works!
-h2 Sort of...
+= content_for :header do	
+	.banner.hero-home
+		.container.home
+			.row.cta
+				.col-md-12
+					h1 Donation Per Click Fundraising
+					h3 Now Social Marketing and Fundraising can work hand in hand so everyone wins.
+			.row.cake-steps
+				.col-md-3
+					= image_tag("step01.png", class: "step")
+					p A Fundraiser creates a campaign
+				.col-md-3
+					= image_tag("step02.png", class: "step")
+					p A Sponsor creates a donation per click pledge
+				.col-md-3
+					= image_tag("step03.png", class: "step")
+					p The Fundraiser and Sponsor share the pledge with Everyone
+				.col-md-3
+					= image_tag("step04.png", class: "step")
+					p The Sponsor wins new customers and the Fundraiser money to do good deeds
+			.row.start
+				.col-xs-12
+					.button-wrap
+						.start-fr START A CAMPAIGN
+						.start-sp SPONSOR A CAMPAIGN
+						.row
+							.col-xs-12
+								p.get-started.pull-right
+								  | GET STARTED FOR FREE!
+								  span.see
+								    | See how it works!
+								    span.play
+	.row.secondary-navbar
+		.container
+			.row
+				.col-md-12
+					ul.popular
+						li
+							a href="#" Popular Campaigns
+						li
+							a href="#" Popular Sponsors
+						li
+							a href="#" Best Discounts
+/- main content							
+.container.main-home
+	.row
+		.col-md-3
+			#custom-search-input
+			  .input-group.col-md-12
+			    input.search-query.form-control placeholder="Name, Title or Zip" type="text" /
+			    span.input-group-btn
+			      button.btn type="button" 
+			        span.glyphicon.glyphicon-search
+			ul.cats
+			  li
+			    a href="#" Cash & Credits
+			  li
+			    a href="#" Medical, Health & treatments
+			  li
+			    a href="#" Mortgage & Insurance
+			  li
+			    a href="#" Credit Cards, Loans & Banking
+
+		.col-md-9
+			.row
+				- 3.times do
+				  = render partial:'home/show/home_boxes'

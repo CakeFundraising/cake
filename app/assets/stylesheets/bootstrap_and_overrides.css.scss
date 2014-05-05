@@ -99,6 +99,12 @@ form{
   }
 }
 
+// Progress Bar Styles ---------------------------------------------------------------
+
+.progress {
+  height: 6px;
+}
+
 // Footer Styles ---------------------------------------------------------------
 
 footer {
@@ -264,9 +270,45 @@ table.performance-summary {
   color: #fff;
 }
 
-// Sweepstakes Styles ---------------------------------------
+// Campaign Page Styles -----------------------------------------------------------------
 
-.sweepstakes {
+.avatar {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+  }
+}
+.fundraiser-info{
+  margin: 15px 0;
+}
+.platinum {
+  border: 1px solid $gray-lighter;
+  background: #fff;
+  margin-bottom: 25px;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  } 
+}
+.levels {
+  border-top: 1px solid $gray-lighter;
+  padding: 15px;
+}
+
+.level-divide {
+  border-top: 1px dotted $gray-light;
+}
+.center {
+  text-align: center;
+  padding: 25px;
+}
+
+// Coupon Styles ---------------------------------------
+
+.coupon {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
@@ -323,13 +365,161 @@ ul.share-coupon {
 .share-coupon a.share {
   background-position: 0 -108px;
 }
-
-// Coupon Styles ---------------------------------------
+.qr {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 10px;
+  border: 1px solid $gray-lighter;
+}
+// Coupon Edge experimental ---------------------------------------
 .coupon-edge {
   position: absolute;
   top: 0;
   right: 15px;
   background-image: url('coupon-edge.png');
-  height: 235px;
+  height: 100%;
   width: 7px;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
 }
+
+// Home Page Styles! ---------------------------------------
+.hero-home {
+  height:666px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: url('hero-home.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+.home {
+  text-align: center;
+  color: #fff;
+}
+.cta {
+  margin: 40px 0;
+  h1 {
+    text-transform: uppercase;
+    font-size: 44px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 20px;
+  }
+}
+.button-wrap {
+  width: 549px;
+  margin: 50px auto;
+}
+.start-fr {
+  background-image: url('fr-campaign-button.png');
+  width: 269px;
+  height: 69px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.start-sp {
+  background-image: url('sp-campaign-button.png');
+  width: 280px;
+  height: 69px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.get-started {
+  font-style: italic;
+}
+.see {
+  font-size: 11px;
+  padding-left: 25px;
+}
+.secondary-navbar {
+  background-color: #fff;
+  height: 60px;
+  @include box-shadow(0 0 3px $gray-darker);
+}
+ ul.popular {
+  list-style: none;
+  text-align: center;
+  li {
+    display: inline;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+.main-home {
+  margin-top: 50px;
+}
+.cats {
+
+}
+.home-box {
+  border: 1px solid $gray-lighter;
+  background: #fff;
+  margin-bottom: 25px;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  } 
+}
+.home-box-info {
+  margin: 0;
+}
+.main-info {
+  padding: 15px;
+  height: 142px;
+}
+.time {
+  border-top: 1px solid $gray-lighter;
+  padding: 15px;
+}
+
+//Home Sidebar Search form ---------------------------------------------------
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:$gray;
+        z-index: 10;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
