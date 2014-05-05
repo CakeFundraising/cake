@@ -43,7 +43,7 @@ class Campaign < ActiveRecord::Base
   end
 
   #Actions
-  def end!
+  def end
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
@@ -51,5 +51,11 @@ class Campaign < ActiveRecord::Base
 
   def launch!
     update_attribute(:status, :live)
+  end
+
+  def missed_launch_date
+    fundraiser.users.each do |user|
+      CampaignNotification.missed_launch_date(self, user).deliver if user.fundraiser_email_setting.missed_launch_campaign
+    end
   end
 end

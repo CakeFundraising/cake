@@ -64,3 +64,17 @@ Feature: Fundraiser Email Notifications
     Examples: Disabled notification
     | wants?        | quantity |
     | doesn't want  | 0        |
+
+  Scenario Outline: Campaign launch date missed
+    And a campaign of that fundraiser exists
+    And the fundraiser user <wants?> to receive notifications for "Campaign launch date missed"
+    When his campaign launch date is missed
+    Then <quantity> email should be delivered with subject: "Your campaign has missed its launch date!"
+
+    Examples: Enabled notification
+    | wants? | quantity |
+    | wants  | 1        |
+    
+    Examples: Disabled notification
+    | wants?        | quantity |
+    | doesn't want  | 0        |

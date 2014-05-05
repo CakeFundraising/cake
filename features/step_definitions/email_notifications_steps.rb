@@ -31,5 +31,9 @@ When(/^the #{capture_model}(?:'s)? public profile is changed$/) do |user|
 end
 
 When(/^his campaign ends$/) do
-  @campaign.end!
+  @campaign.end
+end
+
+When(/^his campaign launch date is missed$/) do
+  @campaign.missed_launch_date
 end
