@@ -17,9 +17,9 @@ class PledgeNotification < ActionMailer::Base
   end
 
   #Pledges
-  def launch_pledge(pledge)
+  def launch_pledge(pledge, user)
     @p = pledge
-    @receiver = @p.fundraiser.manager.decorate
+    @receiver = user.decorate
     @sender = @p.sponsor.manager.decorate
     mail(to: @receiver.email, subject: 'You have a new pledge offer.')
   end

@@ -40,6 +40,8 @@ class Campaign < ActiveRecord::Base
   end
 
   def end!
-    CampaignNotification.campaign_ended(self).deliver if fundraiser.email_campaign_end?
+    fundraiser.users.each do |user|
+      CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
+    end
   end
 end

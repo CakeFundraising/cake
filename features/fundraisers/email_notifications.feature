@@ -9,7 +9,7 @@ Feature: Fundraiser Email Notifications
 
   Scenario Outline: New pledge offers
     And a pledge of that fundraiser exists
-    And the fundraiser manager <wants?> to receive notifications for "New pledge offers"
+    And the fundraiser user <wants?> to receive notifications for "New pledge offers"
     When the pledge is launched 
     Then <quantity> email should be delivered with subject: "You have a new pledge offer."
 
@@ -22,8 +22,12 @@ Feature: Fundraiser Email Notifications
     | doesn't want  | 0        |
 
   Scenario Outline: Change to account information
-    And the fundraiser manager <wants?> to receive notifications for "Change of account information"
-    When the fundraiser's account information is changed 
+    And the fundraiser user <wants?> to receive notifications for "Change of account information"
+    And that fundraiser is logged in
+    When he visits the account settings page
+    And he fills in the "Full name" field with My new Full Name
+    And he fills in the "Current password" field with password
+    And he press the "Update Account" button
     Then <quantity> email should be delivered with subject: "Your account information has been modified."
 
     Examples: Enabled notification
@@ -35,7 +39,7 @@ Feature: Fundraiser Email Notifications
     | doesn't want  | 0        |
 
   Scenario Outline: Change to public profile
-    And the fundraiser manager <wants?> to receive notifications for "Change to public profile"
+    And the fundraiser user <wants?> to receive notifications for "Change to public profile"
     When the fundraiser's public profile is changed 
     Then <quantity> email should be delivered with subject: "Your public profile has been modified."
 
@@ -49,7 +53,7 @@ Feature: Fundraiser Email Notifications
 
   Scenario Outline: Campaign ends
     And a campaign of that fundraiser exists
-    And the fundraiser manager <wants?> to receive notifications for "Campaign end summary"
+    And the fundraiser user <wants?> to receive notifications for "Campaign end summary"
     When his campaign ends
     Then <quantity> email should be delivered with subject: "Your campaign has ended."
 

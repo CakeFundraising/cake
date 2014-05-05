@@ -30,7 +30,9 @@ class Fundraiser < ActiveRecord::Base
   end
 
   after_update do
-    UserNotification.profile_updated(self).deliver
+    users.each do |user|
+      UserNotification.fundraiser_profile_updated(self, user).deliver if user.fundraiser_email_setting.public_profile_change
+    end
   end
 
   MIN_PLEDGES = [

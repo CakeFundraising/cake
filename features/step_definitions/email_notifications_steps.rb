@@ -1,4 +1,4 @@
-Given(/^the (.*?) manager wants to receive notifications for "(.*?)"$/) do |user, event|
+Given(/^the (.*?) user wants to receive notifications for "(.*?)"$/) do |user, event|
   if user == 'fundraiser'
     fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
     model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), true)
@@ -8,7 +8,7 @@ Given(/^the (.*?) manager wants to receive notifications for "(.*?)"$/) do |user
   end
 end
 
-Given(/^the (.*?) manager doesn't want to receive notifications for "(.*?)"$/) do |user, event|
+Given(/^the (.*?) user doesn't want to receive notifications for "(.*?)"$/) do |user, event|
   if user == 'fundraiser'
     fundraiser_email_settings = I18n.t('activerecord.attributes.fundraiser_email_setting')
     model(user).manager.fundraiser_email_setting.update_attribute(fundraiser_email_settings.key(event), false)

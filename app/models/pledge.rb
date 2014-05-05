@@ -42,12 +42,13 @@ class Pledge < ActiveRecord::Base
 
   #Actions
   def launch!
-    self.pending!
-    notify_launch
+    notify_launch if self.pending!
   end
 
   def notify_launch
-    PledgeNotification.launch_pledge(self).deliver
+    fundraiser.users.each do |user|
+      PledgeNotification.launch_pledge(self, user).deliver if user.fundraiser_email_setting.reload.new_pledge
+    end
   end
 
   def notify_approval

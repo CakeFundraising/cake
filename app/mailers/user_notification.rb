@@ -7,9 +7,9 @@ class UserNotification < ActionMailer::Base
     mail(to: @receiver.email, subject: 'Your account information has been modified.')
   end
 
-  def profile_updated(user_role)
-    @receiver = user_role.manager
-    @attributes_changed = user_role.previous_changes
+  def fundraiser_profile_updated(fr, user)
+    @receiver = user.decorate
+    @attributes_changed = fr.previous_changes
     mail(to: @receiver.email, subject: 'Your public profile has been modified.')
   end
 end
