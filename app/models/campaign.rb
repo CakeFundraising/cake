@@ -50,12 +50,22 @@ class Campaign < ActiveRecord::Base
   end
 
   def launch!
-    update_attribute(:status, :live)
+    notify_launch if update_attribute(:status, :live)
+  end
+
+  def notify_launch
+    sponsors.map(&:users).flatten.each do |user|
+      CampaignNotification.campaign_launched(self, user).deliver if user.sponsor_email_setting.campaign_launch
+    end
   end
 
   def missed_launch_date
     fundraiser.users.each do |user|
-      CampaignNotification.missed_launch_date(self, user).deliver if user.fundraiser_email_setting.missed_launch_campaign
+      CampaignNotification.fundraiser_missed_launch_date(self, user).deliver if user.fundraiser_email_setting.missed_launch_campaign
+    end
+
+    sponsors.map(&:users).flatten.each do |user|
+      CampaignNotification.sponsor_missed_launch_date(self, user).deliver if user.sponsor_email_setting.missed_launch_campaign
     end
   end
 end

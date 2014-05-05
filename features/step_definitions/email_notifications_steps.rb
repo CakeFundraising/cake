@@ -18,6 +18,13 @@ Given(/^the (.*?) user doesn't want to receive notifications for "(.*?)"$/) do |
   end
 end
 
+#Sponsor givens
+Given(/^the sponsor has pledged a campaign$/) do
+  @pledge = FactoryGirl.create(:pledge, sponsor: model(:sponsor) )
+  @campaign = @pledge.campaign
+end
+
+#FR events
 When(/^the pledge is launched$/) do
   @pledge.launch!
 end
@@ -36,4 +43,17 @@ end
 
 When(/^his campaign launch date is missed$/) do
   @campaign.missed_launch_date
+end
+
+#Sponsor events
+When(/^a pledge request to that sponsor is made$/) do
+  @pr = FactoryGirl.create(:pledge_request, sponsor: model(:sponsor) )
+end
+
+When(/^the pledge is (.*?) by the fundraiser$/) do |action|
+  @pledge.send(action.gsub("ed", "!"))
+end
+
+When(/^his campaign is launched$/) do
+  @campaign.launch!
 end

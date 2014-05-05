@@ -12,4 +12,10 @@ class UserNotification < ActionMailer::Base
     @attributes_changed = fr.previous_changes
     mail(to: @receiver.email, subject: 'Your public profile has been modified.')
   end
+
+  def sponsor_profile_updated(fr, user)
+    @receiver = user.decorate
+    @attributes_changed = fr.previous_changes
+    mail(to: @receiver.email, subject: 'Your public profile has been modified.')
+  end
 end

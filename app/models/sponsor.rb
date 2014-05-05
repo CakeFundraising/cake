@@ -31,6 +31,12 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  after_update do
+    users.each do |user|
+      UserNotification.sponsor_profile_updated(self, user).deliver if user.sponsor_email_setting.public_profile_change
+    end
+  end
+
   def fundraisers
     pledges.accepted.map(&:fundraiser)
   end

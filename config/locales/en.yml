@@ -58,13 +58,13 @@ en:
         account_change: Change of account information
         public_profile_change: Change to public profile
       sponsor_email_setting:
-        new_pledge: New pledge offers
+        new_pledge_request: New pledge request
         pledge_increased: Pledge has been increased
         pledge_fully_subscribed: Pledge has been 100% subscribed
         pledge_accepted: Offer to Pledge Accepted
         pledge_rejected: Offer to Pledge Rejected
         account_change: Change of account information
-        campaign_lauch: Campaign is launched
+        campaign_launch: Campaign is Launched
         campaign_end: Campaign end summary
         missed_launch_campaign: Campaign launch date missed
         public_profile_change: Change to public profile

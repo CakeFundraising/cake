@@ -24,16 +24,16 @@ class PledgeNotification < ActionMailer::Base
     mail(to: @receiver.email, subject: 'You have a new pledge offer.')
   end
 
-  def accepted_pledge(pledge)
+  def accepted_pledge(pledge, user)
     @p = pledge
-    @receiver = @p.sponsor.manager.decorate
+    @receiver = user.decorate
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been accepted.')
   end
 
-  def rejected_pledge(pledge)
+  def rejected_pledge(pledge, user)
     @p = pledge
-    @receiver = @p.sponsor.manager.decorate
+    @receiver = user.decorate
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
   end

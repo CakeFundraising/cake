@@ -1,0 +1,11 @@
+h2 Hello #{@receiver}, 
+div Recently your public profile have changed in CakeFundraising.
+div These are the data that were changed:
+ul
+  - @attributes_changed.each do |attr|
+    li
+      strong #{attr.first}: 
+      span from #{attr.last.first} 
+      span to #{attr.last.last}
+
+div Please click #{ link_to t('semantic.here').downcase, public_profile_url } if you want to see your actual profile data.

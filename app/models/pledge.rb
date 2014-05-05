@@ -51,11 +51,23 @@ class Pledge < ActiveRecord::Base
     end
   end
 
+  def accept!
+    notify_approval if self.accepted!
+  end
+
   def notify_approval
-    PledgeNotification.accepted_pledge(self).deliver
+    sponsor.users.each do |user|
+      PledgeNotification.accepted_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_accepted
+    end
+  end
+
+  def reject!
+    notify_rejection if self.rejected!
   end
 
   def notify_rejection
-    PledgeNotification.rejected_pledge(self).deliver
+    sponsor.users.each do |user|
+      PledgeNotification.rejected_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_rejected
+    end
   end
 end
