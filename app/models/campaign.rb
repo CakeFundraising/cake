@@ -27,6 +27,7 @@ class Campaign < ActiveRecord::Base
 
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
+  scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
 
   after_initialize do
     if self.new_record?

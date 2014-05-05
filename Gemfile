@@ -39,6 +39,9 @@ gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
 gem 'jquery-fileupload-rails'
 
+#Cron & Asynchronous tasks
+gem 'whenever', require: false
+
 #CLI
 gem 'pry-rails'
 
