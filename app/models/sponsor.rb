@@ -44,4 +44,12 @@ class Sponsor < ActiveRecord::Base
   def fundraisers
     accepted_pledges.map(&:fundraiser)
   end
+
+  #Statistic methods
+  def total_donation
+    (pledges.accepted.sum(:total_amount_cents)/100).to_money
+  end
+
+  def rank
+  end
 end

@@ -32,6 +32,9 @@ en:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
   semantic:
     here: Here
+    pending: pending
+    accepted: accepted
+    rejected: rejected
   activerecord: # customize attribute names for models here
     models:
       campaign:

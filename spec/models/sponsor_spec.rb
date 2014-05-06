@@ -50,6 +50,32 @@ describe Sponsor do
     new_sponsor.location.should be_instance_of(Location)
   end
 
+  context 'Statistic methods' do
+    before(:each) do
+      @sponsor = FactoryGirl.create(:sponsor)
+      @pledges = create_list(:pledge, 5, sponsor: @sponsor)
+    end
+    
+    describe "#total_donation" do
+      it "should return the total donation for all accepted pledges" do
+        @sponsor.total_donation.should == @pledges.map(&:total_amount).sum
+      end
+    end
+
+    # describe "#rank" do
+    #   before(:each) do
+    #     @sponsors = create_list(:sponsor, 5)
+    #     @sponsors.each_with_index{|s, i| s.stub(:total_donation){ i+1 } }
+    #   end
+
+    #   it "should return the rank position number of the sponsor" do
+    #     sponsor.stub(:total_donation){0}
+    #     sponsor.rank.should == 6
+    #   end
+    # end
+
+  end
+
   context 'Association methods' do
     let(:sponsor){ FactoryGirl.create(:sponsor) }
 
