@@ -33,10 +33,10 @@
                 span.pull-right Goal
             .col-md-12.click-btn
               .make-pledge
-                = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary'
+                = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
               - if can?(:launch, @campaign) and @campaign.inactive?
                 .launch-campaign
-                  = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary'
+                  = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary btn-block'
 
   .white
     .container

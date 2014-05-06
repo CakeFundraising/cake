@@ -1,6 +1,9 @@
 class SponsorsController < InheritedResources::Base
   def show
-    @sponsor = resource.decorate  
+    @sponsor = resource.decorate
+    @active_pledges = @sponsor.pledges.active  
+    @past_pledges = @sponsor.pledges.past
+    @accepted_pledges = @sponsor.accepted_pledges
   end
 
   def create

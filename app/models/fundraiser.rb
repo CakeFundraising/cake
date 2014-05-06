@@ -50,6 +50,6 @@ class Fundraiser < ActiveRecord::Base
   ]
 
   def sponsors
-    pledges.accepted.active.map(&:sponsor)
+    pledges.accepted.active.eager_load(:sponsor).map(&:sponsor)
   end
 end

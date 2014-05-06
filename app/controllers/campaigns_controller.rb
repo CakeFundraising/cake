@@ -61,7 +61,7 @@ class CampaignsController < InheritedResources::Base
 
   def pledge
     if current_sponsor.present?
-      redirect_to new_pledge_path
+      redirect_to new_pledge_path(campaign: resource)
     else
       cookies[:pledge_campaign] = resource.id
       sign_out current_user if current_user.present?

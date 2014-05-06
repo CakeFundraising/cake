@@ -1,5 +1,3 @@
-= link_to 'Edit Profile', public_profile_path
-
 = content_for :header do
   .banner.hero
     .hero-screen
@@ -7,10 +5,9 @@
     .content.row.pull-up
       .col-md-8
         h1.name = @sponsor.name
+        span = link_to 'Edit Profile', public_profile_path if can? :update, @sponsor
         .sponsor
           address
-            strong = @sponsor.name
-            br
             span = @sponsor.location.address
             span #{@sponsor.location.city}, #{@sponsor.location.state_code}, #{@sponsor.location.zip_code}
             br
@@ -19,7 +16,7 @@
               | Phone: 
               | (123) #{@sponsor.phone}
             span Website: 
-            span.sponsorinfo #{@sponsor.website}
+            span.sponsorinfo = link_to @sponsor.object.website, @sponsor.website, target: :_blank
             span Email: 
             a href="mailto:#" #{@sponsor.email}
             br
@@ -101,7 +98,7 @@
         .avatar 
           = image_tag @sponsor.avatar.url(:medium)
           .caption = @sponsor.avatar_caption
-          h4 #{Sponsor.model_name.human} Profile
+          h4 Contact:
           strong = Sponsor.human_attribute_name :manager_name
           div = @sponsor.manager_name
           strong = Sponsor.human_attribute_name :manager_email
@@ -120,70 +117,10 @@
 
         .tab-content
           #active-pledges.tab-pane.active
-            table.table.data-table
-              thead
-                tr
-                  th Fundraiser
-                  th Cause
-                  th Type
-                  th Pledge
-                  th Donation/Click
-                  th Prize
-                  th Coupon
-                  th Pledge Rank
-              tbody
-                tr
-                  td Feeding America
-                  td Hunger
-                  td National
-                  td 100k
-                  td $3
-                  td Yes
-                  td Yes
-                  td 78
+            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @active_pledges}
           #past.tab-pane
-            table.table.data-table
-              thead
-                tr
-                  th Fundraiser
-                  th Cause
-                  th Type
-                  th Pledge
-                  th Donation/Click
-                  th Prize
-                  th Coupon
-                  th Pledge Rank
-              tbody
-                tr
-                  td Feeding America
-                  td Hunger
-                  td National
-                  td 100k
-                  td $3
-                  td Yes
-                  td Yes
-                  td 78
+            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @past_pledges}
           #top.tab-pane
-            table.table.data-table
-              thead
-                tr
-                  th Fundraiser
-                  th No. of Pledges
-                  th Cause
-                  th Type
-                  th Pledge
-                  th Donation
-                  th Donation/Click
-                  th Avg. Pledge Rank
-              tbody
-                tr
-                  td Feeding America
-                  td 30
-                  td Hunger
-                  td National
-                  td 50,000
-                  td $34,500
-                  td $3.00
-                  td 28
+            = render partial:'sponsors/public_profile/fundraisers_table'
 css:
   .hero { background-image: url("#{@sponsor.banner.url(:large)}"); }

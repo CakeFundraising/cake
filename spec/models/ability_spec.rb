@@ -74,6 +74,17 @@ describe Ability do
       @ability = Ability.new(@user)
     end
 
+    context 'Public Profile' do
+      it_behaves_like "a Sponsor object" do
+        let(:klass) { Sponsor }
+      end
+
+      it_behaves_like "an owned object" do
+        let(:owned_object) { @sponsor }
+        let(:foreign_object) { FactoryGirl.create(:sponsor) }
+      end
+    end
+
     context 'Pledges' do
       it "can read pledges" do
         @pledges = create_list(:pledge, 5)
@@ -137,6 +148,17 @@ describe Ability do
       @fundraiser = FactoryGirl.create(:fundraiser)
       @user = @fundraiser.manager
       @ability = Ability.new(@user)
+    end
+
+    context 'Public Profile' do
+      it_behaves_like "a FR object" do
+        let(:klass) { Fundraiser }
+      end
+
+      it_behaves_like "an owned object" do
+        let(:owned_object) { @fundraiser }
+        let(:foreign_object) { FactoryGirl.create(:fundraiser) }
+      end
     end
 
     context 'Campaigns' do

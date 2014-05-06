@@ -19,7 +19,7 @@ ul.nav.nav-tabs
         = f.input :amount_per_click, label: false
         = f.input :donation_type, as: :select, collection: Pledge::DONATION_TYPES, include_blank: false, label: false
         .help-block per unique click to 
-        = f.input :campaign, as: :select, collection: Campaign.all, label: false, selected: params[:campaign]
+        = f.input :campaign, as: :select, collection: Campaign.active, label: false, selected: params[:campaign]
         .help-block up to an amount not to exceed
         = f.input :total_amount, label: false
         .help-block Please direct click to:  

@@ -1,0 +1,9 @@
+tr
+  td = pledge.fundraiser.decorate
+  td = pledge.fundraiser.causes.first
+  td = pledge.campaign.scopes.first
+  td = humanized_money_with_symbol pledge.total_amount 
+  td = humanized_money_with_symbol pledge.amount_per_click
+  td = b pledge.sweepstakes.any?
+  td = b pledge.coupons.any?
+  td 78

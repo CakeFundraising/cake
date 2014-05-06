@@ -49,6 +49,7 @@ en:
         mission: Fundraiser's Mission 
         supporter_demographic: Supporter Demographics
         manager_name: Fundraising Manager
+        pledges_quantity: No. of Pledges
       fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased
@@ -79,6 +80,9 @@ en:
         avg_pledge_rank: Avg. Pledge Rank
         conv_rate: Conv. Rate
         number: No. of Campaigns
+      pledge:
+        donation_click: Donation/Click
+        pledge_rank: Pledge Rank
       sponsor:
         causes: We Support
         scopes: Types of Campaigns

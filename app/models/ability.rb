@@ -2,26 +2,35 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    alias_action :create, :update, :destroy, to: :crud
     user ||= User.new
 
     if user.has_role?(:sponsor)
+      #Sponsor
+      can :create, Sponsor
+      can :crud, Sponsor, id: user.sponsor.id
+
       #Pledge
       can :create, Pledge
-      can [:edit, :update, :destroy, :launch] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
+      can [:update, :destroy, :launch] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       #PledgeRequest
       can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id    
     end
 
     if user.has_role?(:fundraiser)
+      #Fundraiser
+      can :create, Fundraiser
+      can :crud, Fundraiser, id: user.fundraiser.id
+
       #Campaign
       can :create, Campaign
       can :launch, Campaign, fundraiser_id: user.fundraiser.id
-      can [:edit, :update, :destroy] + CampaignsController::WIZARD_STEPS, Campaign, fundraiser_id: user.fundraiser.id
+      can [:update, :destroy] + CampaignsController::WIZARD_STEPS, Campaign, fundraiser_id: user.fundraiser.id
       
       #PledgeRequest
       can :create, PledgeRequest
-      can [:edit, :update, :destroy], PledgeRequest, fundraiser_id: user.fundraiser.id
+      can [:update, :destroy], PledgeRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
       can [:accept, :reject], Pledge, fundraiser: user.fundraiser

@@ -5,6 +5,10 @@ class SponsorDecorator < ApplicationDecorator
     object.scopes.join(", ")
   end
 
+  def website
+    "http://#{object.website}"
+  end
+
   def to_s
     object.name
   end

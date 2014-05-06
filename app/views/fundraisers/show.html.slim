@@ -27,17 +27,17 @@
       .col-md-4
         .sidebar-bkg 
           .row.text-center
-           .col-xs-6.border-right
+            .col-xs-6.border-right
               p.donation-stats $42M
               p Total Clicks
-           .col-xs-6
+            .col-xs-6
               p.donation-stats 122
               p Sponsor Rank
           .row
-           .col-md-12.rank-rows
+            .col-md-12.rank-rows
               = basic_list_item("Top Cause Rank", "14")
               = basic_list_item("Location Rank", "2")
-          button.btn.btn-success.btn-block Make A Pledge
+            = link_to "Make a Pledge", new_pledge_path, class:'btn btn-success btn-block'
   .white
     .container
       .row.sponsor-profile
@@ -188,10 +188,6 @@
                   td $34,500
                   td $3.00
                   td 28
-
-    
-
-
 
 css:
   .hero { background-image: url("#{@fundraiser.banner.url(:large)}"); }
