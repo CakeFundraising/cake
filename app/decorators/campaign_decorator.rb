@@ -10,6 +10,10 @@ class CampaignDecorator < ApplicationDecorator
     object.end_date.strftime("%m/%d/%Y")
   end
 
+  def start_end_dates
+    "#{launch_date} to #{end_date}"
+  end
+
   def to_s
     object.title
   end

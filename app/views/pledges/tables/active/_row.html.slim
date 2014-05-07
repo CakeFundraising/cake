@@ -16,10 +16,10 @@ tr.pledge id=(pledge.id)
     = link_to nil do
       span.glyphicon.glyphicon-share
 
-    - if can? :destroy, pledge
-      = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
-        span.glyphicon.glyphicon-trash
-        
+    - if can? :edit, pledge
+      = link_to edit_pledge_path(pledge), class:'edit_button' do
+        span.glyphicon.glyphicon-pencil
+
     button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
       span.glyphicon.glyphicon-plus
 

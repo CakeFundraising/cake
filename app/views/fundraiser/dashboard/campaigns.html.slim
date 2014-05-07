@@ -1,3 +1,6 @@
 = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
+
 h2 Active Campaigns
-= render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+.row
+  = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+  / = render partial:'campaigns/show/grid', collection: @campaigns, as: :campaign

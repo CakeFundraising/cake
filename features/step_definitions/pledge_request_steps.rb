@@ -9,8 +9,8 @@ end
 
 Then(/^he should see the pledge request listed$/) do
   find('#requested_pledges tr.pledge').should have_content(@pledge_request.fundraiser.name)
-  find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.causes.join(", "))
-  find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.scopes.join(", "))
+  find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.causes.first)
+  find('#requested_pledges tr.pledge').should have_content(@pledge_request.campaign.scopes.first)
 end
 
 Then(/^the page has the correct campaign selected for that pledge request$/) do

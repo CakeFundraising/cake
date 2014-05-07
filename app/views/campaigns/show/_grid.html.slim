@@ -1,0 +1,22 @@
+.campaign_grid.col-md-3
+  .thumbnail
+    .avatar = image_tag campaign.avatar.url(:medium)
+    .caption
+      h4 Campaign Name (pending)
+      .cause = campaign.object.causes.first
+      .type = campaign.object.scopes.first
+      .dates = campaign.start_end_dates
+      = link_to "Launch Campaign", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-block'
+  .sponsors.pull-left 
+    = link_to "View Sponsors", nil 
+  .actions.pull-right
+    = link_to nil do
+      span.glyphicon.glyphicon-share
+
+    - if can? :edit, campaign
+      = link_to edit_campaign_path(campaign) do
+        span.glyphicon.glyphicon-pencil
+
+    - if can? :destroy, campaign
+      = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+        span.glyphicon.glyphicon-trash
