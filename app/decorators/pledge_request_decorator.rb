@@ -7,4 +7,12 @@ class PledgeRequestDecorator < ApplicationDecorator
   def start_end_dates
     "#{campaign.launch_date} to #{campaign.end_date}"
   end
+
+  def causes
+    object.campaign.causes
+  end
+
+  def scopes
+    object.campaign.scopes
+  end
 end

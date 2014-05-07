@@ -10,7 +10,7 @@ class Sponsor::DashboardController < ApplicationController
 
   def pledge_requests
     @fundraiser_requests = current_sponsor.pledge_requests.decorate
-    @sponsor_requests = current_sponsor.pledges.decorate
+    @sponsor_requests = current_sponsor.pledges.pending.decorate
   end
 
   def active_pledges
@@ -19,6 +19,6 @@ class Sponsor::DashboardController < ApplicationController
 
   def history
     @pledges = current_sponsor.pledges.past.decorate
-    @fundraisers = current_sponsor.fundraisers
+    @fundraisers = FundraiserDecorator.decorate_collection(current_sponsor.fundraisers)
   end
 end

@@ -1,10 +1,8 @@
 tr.fundraiser
   td = auto_link fundraiser
-  td = fundraiser.campaigns.count
+  td = current_sponsor.pledges.accepted.fundraiser(fundraiser).count
   td $899,899
-  td 78,899
+  td $5,59
+  td 12
   td 25%
   td 19
-  td
-    span = link_to "View", fundraiser, class:'btn btn-primary'
-    span = link_to "Download", fundraiser, class:'btn btn-success'

@@ -1,0 +1,19 @@
+tr.pledge
+  td = link_to pledge_request.fundraiser, pledge_request.campaign 
+  td = pledge_request.causes.first
+  td = pledge_request.scopes.first
+  td = pledge_request.start_end_dates
+  td
+    - if pledge_request.pending?
+      - if can? :accept, pledge_request
+        span = link_to "Accept", accept_pledge_request_path(pledge_request), class:'btn btn-success'
+      - if can? :reject, pledge_request
+        span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger'
+    - if pledge_request.rejected?
+      strong.text-danger = t('semantic.rejected').upcase
+
+    button.btn.btn-primary data-target="#pledge_modal_#{pledge_request.id}" data-toggle="modal"
+      span.glyphicon.glyphicon-plus
+
+/ tr.modal 
+/   = render partial:'pledges/tables/active/modal', locals:{pledge: pledge_request.pledge}

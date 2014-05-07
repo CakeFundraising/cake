@@ -86,6 +86,8 @@ en:
       pledge:
         donation_click: Donation/Click
         pledge_rank: Pledge Rank
+        causes: Cause
+        scopes: Type
       sponsor:
         causes: We Support
         scopes: Types of Campaigns

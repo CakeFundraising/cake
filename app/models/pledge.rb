@@ -33,6 +33,9 @@ class Pledge < ActiveRecord::Base
 
   scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
   scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
+  
+  scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
+  scope :sponsor, ->(sponsor){ where(sponsor: sponsor) }
 
   after_initialize do
     if self.new_record?

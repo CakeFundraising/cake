@@ -19,6 +19,7 @@ Feature: Sponsor Dashboard
 
   Scenario: Pledge Requests
     And 3 pledge requests of that sponsor exist
+    And 3 pledges of that sponsor exist
     And 3 pending pledges of that sponsor exist
     When he visits the sponsor pledge requests page
     Then he should see his pending pledge requests
