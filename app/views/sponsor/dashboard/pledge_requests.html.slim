@@ -8,4 +8,4 @@ ul.nav.nav-tabs
   #fr-requests.tab-pane.active
     = render partial:'pledge_requests/tables/sponsor/table', locals:{pledges: @fundraiser_requests}
   #my-requests.tab-pane
-    = render partial:'pledges/tables/pending/table', locals:{pledges: @sponsor_requests}
+    = render partial:'pledges/tables/pending/sponsor/table', locals:{pledges: @sponsor_requests}

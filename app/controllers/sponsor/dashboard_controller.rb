@@ -9,7 +9,7 @@ class Sponsor::DashboardController < ApplicationController
   end
 
   def pledge_requests
-    @fundraiser_requests = current_sponsor.pledge_requests.decorate
+    @fundraiser_requests = current_sponsor.pledge_requests.pending.decorate
     @sponsor_requests = current_sponsor.pledges.pending.decorate
   end
 

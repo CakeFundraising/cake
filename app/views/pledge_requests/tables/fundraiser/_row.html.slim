@@ -1,0 +1,11 @@
+tr.pledge
+  td = auto_link pledge_request.sponsor
+  td = auto_link pledge_request.campaign
+  td = pledge_request.start_end_dates
+  td
+    strong class=("text-danger" if pledge_request.rejected?) = pledge_request.status
+  td
+    - if can? :destroy, pledge_request
+      div 
+        = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+          span.glyphicon.glyphicon-trash

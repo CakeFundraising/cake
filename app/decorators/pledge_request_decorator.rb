@@ -15,4 +15,8 @@ class PledgeRequestDecorator < ApplicationDecorator
   def scopes
     object.campaign.scopes
   end
+
+  def status
+    object.status.upcase
+  end
 end

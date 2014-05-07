@@ -1,0 +1,9 @@
+table#requested_pledges.table.table-hover.table-bordered
+  thead
+    tr
+      th = PledgeRequest.human_attribute_name :sponsor
+      th = PledgeRequest.human_attribute_name :campaign
+      th = PledgeRequest.human_attribute_name :start_end_dates
+      th = PledgeRequest.human_attribute_name :status
+  tbody
+    = render partial:'pledge_requests/tables/fundraiser/row', collection: pledges, as: :pledge_request
