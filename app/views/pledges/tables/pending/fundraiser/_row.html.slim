@@ -7,6 +7,6 @@ tr.pledge
   td
     - if pledge.pending?
       - if can? :accept, pledge
-        span = link_to "Accept", accept_pledge_path(pledge), class:'btn btn-success'
+        span = link_to "Accept", accept_pledge_path(pledge), method: :patch, class:'btn btn-success'
       - if can? :reject, pledge
         span = link_to "Reject", reject_pledge_path(pledge), method: :patch, class:'btn btn-danger'

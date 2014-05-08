@@ -38,5 +38,6 @@ class Ability
 
     can :read, :all
     can [:pledge, :badge], Campaign
+    can :badge, Pledge
   end
 end

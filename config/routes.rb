@@ -34,7 +34,7 @@ Cake::Application.routes.draw do
       get :badge
       patch :launch
 
-      get :accept
+      patch :accept
       patch :reject
     end
   end
@@ -44,7 +44,7 @@ Cake::Application.routes.draw do
   
   resources :pledge_requests do
     member do
-      get :accept
+      patch :accept
       patch :reject
     end
   end

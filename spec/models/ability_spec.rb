@@ -222,4 +222,55 @@ describe Ability do
       end
     end
   end
+
+  describe "Campaigns" do
+    context 'actions' do
+      describe "#badge" do
+        let(:campaign) { FactoryGirl.create(:campaign) }
+        let(:sponsor) { FactoryGirl.create(:sponsor) }
+        let(:fundraiser) { FactoryGirl.create(:fundraiser) }
+
+        it "should be available for a sponsor" do
+          ability = Ability.new(sponsor.manager)
+          ability.should be_able_to(:badge, campaign)
+        end
+
+        it "should be available for a fundraiser" do
+          ability = Ability.new(fundraiser.manager)
+          ability.should be_able_to(:badge, campaign)
+        end
+
+        it "should be available for a guest user" do
+          ability = Ability.new(nil)
+          ability.should be_able_to(:badge, campaign)
+        end
+      end
+    end
+  end
+
+  describe "Pledges" do
+    context 'actions' do
+      describe "#badge" do
+        let(:pledge) { FactoryGirl.create(:pledge) }
+        let(:sponsor) { FactoryGirl.create(:sponsor) }
+        let(:fundraiser) { FactoryGirl.create(:fundraiser) }
+
+        it "should be available for a sponsor" do
+          ability = Ability.new(sponsor.manager)
+          ability.should be_able_to(:badge, pledge)
+        end
+
+        it "should be available for a fundraiser" do
+          ability = Ability.new(fundraiser.manager)
+          ability.should be_able_to(:badge, pledge)
+        end
+
+        it "should be available for a guest user" do
+          ability = Ability.new(nil)
+          ability.should be_able_to(:badge, pledge)
+        end
+      end
+    end
+  end
+
 end

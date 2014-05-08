@@ -16,3 +16,10 @@ end
 Then(/^the page has the correct campaign selected for that pledge request$/) do
   find("#pledge_campaign_id option[value='#{@pledge_request.campaign.id}']").should be_selected
 end
+
+Then(/^a rejected flag should be present in the fundraiser pending pledges page$/) do
+  sign_out_user
+  login_user(@pledge_request.fundraiser.manager)
+  visit path_to('fundraiser pending pledges page')
+  page.should have_content('REJECTED')
+end

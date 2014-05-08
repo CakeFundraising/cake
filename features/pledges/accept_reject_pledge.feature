@@ -18,6 +18,7 @@ Feature: Accept and Reject Pledges
     And 1 email should be delivered with subject: "Your Pledge has been accepted."
     And the pending pledge should have a "accepted" status
     And the pledge should be one of campaign's active pledges
+    And the pledge should not be present in the fundraiser pending pledges page
 
   Scenario: Reject Pledge
     And he press the "Reject" link
@@ -25,3 +26,5 @@ Feature: Accept and Reject Pledges
     And he should be taken to the fundraiser pending pledges page
     And 1 email should be delivered with subject: "Your Pledge has been rejected."
     And the pending pledge should have a "rejected" status
+    And the pledge should not be present in the fundraiser pending pledges page
+    And a rejected flag should be present in the sponsor pledge requests page

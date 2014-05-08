@@ -35,3 +35,15 @@ end
 Then(/^the pledge should be one of campaign's active pledges$/) do
   @campaign.pledges.active.should include(@pending_pledge)
 end
+
+Then(/^the pledge should not be present in the fundraiser pending pledges page$/) do
+  visit path_to('fundraiser pending pledges page')
+  page.should_not have_content(@pending_pledge.sponsor.name)
+end
+
+Then(/^a rejected flag should be present in the sponsor pledge requests page$/) do
+  sign_out_user
+  login_user(@pending_pledge.sponsor.manager)
+  visit path_to('sponsor pledge requests page')
+  page.should have_content('REJECTED')
+end

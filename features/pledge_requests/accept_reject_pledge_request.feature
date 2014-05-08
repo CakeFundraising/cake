@@ -21,3 +21,4 @@ Feature: Accept or Reject Pledge Request
     And he should see "Pledge request rejected."
     And 1 email should be delivered with subject: "Your Pledge Request has been rejected."
     And the pledge request should have a "rejected" status
+    And a rejected flag should be present in the fundraiser pending pledges page
