@@ -1,13 +1,14 @@
 .col-md-3
   .platinum
-    img src="http://placekitten.com/245/185"
+    = link_to pledge do
+      = image_tag pledge.avatar.url(:medium)
     .levels
       .progress
         .progress-bar.progress-bar-success roll="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"
           span.sr-only 40% Complete (success)
       span
-        | $5 
+        span = humanized_money_with_symbol pledge.amount_per_click
         span.text-muted Per click
       span.pull-right
-        | $15 
+        span = humanized_money_with_symbol pledge.total_amount
         span.text-muted Pledge

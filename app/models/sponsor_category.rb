@@ -8,8 +8,4 @@ class SponsorCategory < ActiveRecord::Base
   validates :min_value, numericality: { greater_than: 0 }
 
   validates :name, presence: true
-
-  def self.levels
-    map(&:name)
-  end
 end

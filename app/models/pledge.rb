@@ -37,6 +37,8 @@ class Pledge < ActiveRecord::Base
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }
 
+  scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
+
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?

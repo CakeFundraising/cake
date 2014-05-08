@@ -10,10 +10,18 @@ class Campaign < ActiveRecord::Base
   belongs_to :fundraiser
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
-  has_many :sponsor_categories, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :sponsors, through: :pledges
+
+  has_many :sponsor_categories, dependent: :destroy do
+    # returns a hash: {category_name: (range_of_category) }
+    def levels
+      Hash[
+        map{|sc| [sc.name, (sc.min_value_cents..sc.max_value_cents) ] }
+      ]
+    end
+  end
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
@@ -32,6 +40,17 @@ class Campaign < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
+    end
+  end
+
+  def rank_levels
+    obj = self
+    sponsor_categories.levels.each do |name, range|
+      class_eval do
+        define_method "#{name}_pledges" do
+          obj.pledges.accepted.total_amount_in(range).order('total_amount_cents DESC')
+        end 
+      end
     end
   end
 

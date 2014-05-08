@@ -9,6 +9,8 @@ class CampaignsController < InheritedResources::Base
 
   def show
     @campaign = resource.decorate
+    @levels = @campaign.sponsor_categories.levels
+    @campaign.rank_levels
   end
 
   def create

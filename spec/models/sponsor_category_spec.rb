@@ -11,7 +11,11 @@ describe SponsorCategory do
       end
 
       it "should return the pledge levels for the campaign" do
-        @campaign.sponsor_categories.levels.should == @campaign.sponsor_categories.map(&:name)
+        levels = Hash[
+          @campaign.sponsor_categories.map{|sc| [sc.name, (sc.min_value_cents..sc.max_value_cents) ] }
+        ]
+
+        @campaign.sponsor_categories.levels.should == levels
       end
     end
   end

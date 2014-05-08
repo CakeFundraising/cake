@@ -67,29 +67,14 @@
           br
           button.btn.btn-primary Click to help. It's free
   .container
-    .row.win-with
-      .col-md-12
-        h2 Visit our Platinum Sponsors
-        span + $10,000
-    .row 
-      - 3.times do
-        = render partial:'campaigns/show/platinum_sponsors'
-    .row.win-with
-      .col-md-12
-        .level-divide
-        h2 Visit our Gold Sponsors
-        span + $10,000
-    .row
-      - 4.times do
-        = render partial:'campaigns/show/gold_sponsors'
-    .row.win-with
-      .col-md-12
-        .level-divide
-        h2 Visit our Silver Sponsors
-        span $5 - $20
-    .row
-      - 6.times do
-        = render partial:'campaigns/show/silver_sponsors'
+    - unless @levels.blank? 
+      - @levels.each do |name, range|
+        .row.win-with
+          .col-md-12
+            h2 Visit our #{name.titleize} Sponsors
+            span = range
+        .row
+          = render partial:'campaigns/show/gold_sponsors', collection: @campaign.object.send("#{name}_pledges"), as: :pledge
     .row
       .col-md-12
         .level-divide
