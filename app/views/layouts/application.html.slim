@@ -41,6 +41,9 @@ html lang="en"
           = yield
       /! /row
     /! /container
+    - if content_for? :bottom_section
+      .bottom_section
+        = yield :bottom_section
   footer
     .container
       .row

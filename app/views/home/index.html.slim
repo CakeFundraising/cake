@@ -34,34 +34,63 @@
 		.container
 			.row
 				.col-md-12
-					ul.popular
+					ul.nav.nav-pills.popular
+						li.active
+							a data-toggle="tab" href="#pop-campaign" Popular Campaigns
 						li
-							a href="#" Popular Campaigns
+							a data-toggle="tab" href="#pop-sponsors" Popular Sponsors
 						li
-							a href="#" Popular Sponsors
-						li
-							a href="#" Best Discounts
+							a data-toggle="tab" href="#best-discounts" Best Discounts
 /- main content							
 .container.main-home
 	.row
 		.col-md-3
-			#custom-search-input
-			  .input-group.col-md-12
-			    input.search-query.form-control placeholder="Name, Title or Zip" type="text" /
-			    span.input-group-btn
-			      button.btn type="button" 
-			        span.glyphicon.glyphicon-search
-			ul.cats
-			  li
-			    a href="#" Cash & Credits
-			  li
-			    a href="#" Medical, Health & treatments
-			  li
-			    a href="#" Mortgage & Insurance
-			  li
-			    a href="#" Credit Cards, Loans & Banking
+			.home-border
+				- 1.times do
+					= render partial:'search_filters/gigantic_list'
+		.tab-content
+			.col-md-9.tab-pane.active#pop-campaign
+				.row
+					- 9.times do
+						= render partial:'home/show/popular_campaigns'
+				.row
+					.col-xs-12.view-all
+						p.pull-right View all 542 Discounts
+						.view-all-border.clearfix
+			.col-md-9.tab-pane#pop-sponsors
+				.row
+					- 9.times do
+						= render partial:'home/show/popular_sponsors'
+				.row
+					.col-xs-12.view-all
+						p.pull-right View all 542 Sponsors
+						.view-all-border.clearfix
+			.col-md-9.tab-pane#best-discounts
+				.row
+					- 9.times do
+						= render partial:'home/show/best_discounts'
+				.row
+					.col-xs-12.view-all
+						p.pull-right View all 542 Discounts
+						.view-all-border.clearfix
 
-		.col-md-9
-			.row
-				- 3.times do
-				  = render partial:'home/show/home_boxes'
+= content_for :bottom_section do
+	.easy-band
+		.pointer-b
+		h2 Online Fundraising Has Never Been Easier
+		.container
+			.row.center
+				.circle-campaign
+					.totals-centerd
+						h4 235
+						p.total-type CAMPAIGNS
+				.circle-sp
+					.totals-centerd
+						h4 135
+						p.total-type SPONSORS
+				.circle-raised
+					.totals-centerd
+						h4 $235
+						p.total-type RAISED
+			h3 Let your friends know that CakeFundraising is the best way to raise money online.
+	.success-banner

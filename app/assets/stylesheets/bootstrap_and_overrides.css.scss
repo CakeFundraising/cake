@@ -13,6 +13,9 @@ h3, h4 {
 .nav-tabs {
   text-transform: uppercase;
 }
+.italic {
+  font-style: italic;
+}
 
 //Navbar --------------------------------------------------------------------------------
 .navbar {
@@ -208,6 +211,12 @@ table.performance-summary {
   height: 30px;
   margin: 0 auto;
 }
+.pointer-b {
+  background: url(pointer-tan.png) no-repeat;
+  width: 100px;
+  height: 30px;
+  margin: 0 auto;
+}
 .min-case {
   margin-top: 20px;
   margin-bottom: 50px;
@@ -385,7 +394,7 @@ ul.share-coupon {
   background-position: center;
 }
 
-// Home Page Styles! ---------------------------------------
+// Home Page Styles! -----------------------------------------------------------------------
 .hero-home {
   height:666px;
   margin-bottom: 0;
@@ -439,27 +448,53 @@ ul.share-coupon {
   font-size: 11px;
   padding-left: 25px;
 }
+// Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
   height: 60px;
   @include box-shadow(0 0 3px $gray-darker);
 }
- ul.popular {
+.popular {
   list-style: none;
   text-align: center;
-  li {
-    display: inline;
-  }
-  a {
-    color: #fff;
-    text-decoration: none;
+  margin-top: 10px;
+  li > a:hover {
+    background: #fe6a52;
   }
 }
+.popular > li {
+  display: inline-block;
+  float: none;
+  margin: 0 10px;
+}
+.popular > li > a {
+  border-radius: 25px;
+  background: $gray-light;
+  color: #fff;
+}
+.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
+  background-color: #fe6a52;
+}
+
 .main-home {
   margin-top: 50px;
 }
-.cats {
+ ul.cats {
+  list-style: none;
+  padding: 25px 0;
+  li {
+  border-bottom: 1px dotted $gray-light;
+  padding: 5px 0;
+  }
+  a {
+    color: $gray;
+    text-decoration: none;
+  }
+}
+// home box views --------------------------------------------------------
 
+.home-border {
+  border-right: 1px dotted $gray-light;
 }
 .home-box {
   border: 1px solid $gray-lighter;
@@ -478,11 +513,88 @@ ul.share-coupon {
   padding: 15px;
   height: 142px;
 }
+.main-info-sponsor {
+  padding: 15px;
+}
 .time {
   border-top: 1px solid $gray-lighter;
   padding: 15px;
+  text-align: center;
 }
-
+.view-all {
+  margin: 25px 0;
+}
+.view-all-border {
+  padding-top: 10px;
+  border-bottom: 1px dotted $gray-light;
+  width: 100%;
+  position: relative;
+}
+.easy-band {
+  background: #ff6c54;
+  text-align: center;
+  h2 {
+    color: #fff;
+    margin-bottom: 25px;
+  }
+  h3 {
+    color: black;
+    margin: 25px 0;
+  }
+}
+.circle-campaign {
+  background-image: url('circle-campaign.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.circle-sp {
+  background-image: url('circle-sp.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.circle-raised {
+  background-image: url('circle-raised.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.totals-centerd {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  h4 {
+    color: #ffa755;
+    font-size: 35px;
+    padding: 30px 0 0;
+    margin-bottom: 0;
+  }
+}
+.center {
+  text-align: center;
+}
+.success-banner {
+  height:375px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: url('success-bkg.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
 //Home Sidebar Search form ---------------------------------------------------
 #custom-search-input {
   margin:0;
