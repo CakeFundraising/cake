@@ -88,6 +88,8 @@ en:
         pledge_rank: Pledge Rank
         causes: Cause
         scopes: Type
+      pledge_request: 
+        start_end_dates: Launch/ End Date
       sponsor:
         causes: We Support
         scopes: Types of Campaigns

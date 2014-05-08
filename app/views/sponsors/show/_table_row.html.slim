@@ -1,9 +1,12 @@
 tr.sponsor
   td = auto_link sponsor
-  td = sponsor.causes
-  td = sponsor.scopes
-  td 5
+  td = current_fundraiser.pledges.sponsor(sponsor).count
+  td 98,855
+  td 36,877
+  td $5
   td 78,899
+  td 23%
+  td 11%
+  td 14
   td
     span = link_to "View", sponsor, class:'btn btn-primary'
-    span = link_to "Download", sponsor, class:'btn btn-success'

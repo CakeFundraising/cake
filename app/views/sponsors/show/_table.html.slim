@@ -1,10 +1,14 @@
-table#sponsors.table.table-hover.table-bordered
+table#sponsors.table.table-hover.table-bordered.data-table
   thead
     tr
       th = Sponsor.model_name.human
-      th = Sponsor.human_attribute_name :causes
-      th = Sponsor.human_attribute_name :scopes
-      th = Sponsor.human_attribute_name :pledge_rank
-      th = Sponsor.human_attribute_name :clicks
+      th = Sponsor.human_attribute_name :pledges_quantity
+      th = Sponsor.human_attribute_name :avg_donation
+      th = Sponsor.human_attribute_name :avg_pledge
+      th = Sponsor.human_attribute_name :avg_donation_click
+      th = Sponsor.human_attribute_name :avg_clicks
+      th = Sponsor.human_attribute_name :avg_reach
+      th = Sponsor.human_attribute_name :avg_conv_rate
+      th = Sponsor.human_attribute_name :avg_pledge_rank
   tbody
     = render partial:'sponsors/show/table_row', collection: sponsors, as: :sponsor
