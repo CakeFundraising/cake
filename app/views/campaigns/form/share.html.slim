@@ -2,12 +2,12 @@
 
 ul.nav.nav-tabs
   li
-    a href="" Tell your story
+    = link_to "Tell your story", edit_campaign_path(@campaign)
   li
-    a href="" Pledge Levels
+    = link_to "Pledge Levels", sponsors_campaign_path(@campaign)
   li.active
     a data-toggle="tab" href="#share" Solicit Sponsors
-
+    
 .tab-content
   #share.tab-pane.active
   br

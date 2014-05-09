@@ -2,16 +2,17 @@
 
 ul.nav.nav-tabs
   li
-    a href="" Tell your story
+    = link_to "Tell your story", edit_campaign_path(@campaign)
   li.active
     a data-toggle="tab" href="#sponsors_donations" Pledge Levels
   li
-    a href="" Solicit Sponsors
-
+    = link_to "Solicit Sponsors", share_campaign_path(@campaign)
+    
 .tab-content
   #sponsors_donations.tab-pane.active
     br
     = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         = f.input :no_sponsor_categories
         = render partial:'sponsor_categories/form', locals:{f: f}

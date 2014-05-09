@@ -1,12 +1,21 @@
 = render partial:'campaigns/form/actions'
 
-ul.nav.nav-tabs
-  li.active
-    a data-toggle="tab" href="#main" Tell your story
-  li 
-    a href="" Pledge Levels
-  li
-    a href="" Solicit Sponsors
+- if @campaign.persisted?
+  ul.nav.nav-tabs
+    li.active
+      a data-toggle="tab" href="#main" Tell your story
+    li
+      = link_to "Pledge Levels", sponsors_campaign_path(@campaign)
+    li
+      = link_to "Solicit Sponsors", share_campaign_path(@campaign)
+- else
+  ul.nav.nav-tabs
+    li.active
+      a data-toggle="tab" href="#main" Tell your story
+    li 
+      a href="" Pledge Levels
+    li
+      a href="" Solicit Sponsors
 
 .tab-content
   #main.tab-pane.active

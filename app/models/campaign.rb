@@ -30,6 +30,7 @@ class Campaign < ActiveRecord::Base
   validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :fundraiser, presence: true
   validates_associated :sponsor_categories, unless: :no_sponsor_categories
   validates_associated :picture
+  validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
@@ -86,6 +87,21 @@ class Campaign < ActiveRecord::Base
 
     sponsors.map(&:users).flatten.each do |user|
       CampaignNotification.sponsor_missed_launch_date(self, user).deliver if user.sponsor_email_setting.missed_launch_campaign
+    end
+  end
+
+  private
+
+  def sponsor_categories_max_min_value
+    sponsor_categories.each do |sc|
+      errors.add(:'sponsor_categories.max_value', "must be greater than Min value.") if sc.min_value_cents >= sc.max_value_cents
+    end
+  end
+
+  def sponsor_categories_overlapping
+    values = sponsor_categories.map{|sc| (sc.min_value_cents..sc.max_value_cents) }
+    values.each_with_index do |v, i|
+      errors.add(:sponsor_categories, "The max and min values must not overlap.") if values[i+1].present? and values[i].overlaps?values[i+1]
     end
   end
 end
