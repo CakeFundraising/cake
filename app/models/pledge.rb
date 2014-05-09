@@ -28,6 +28,7 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, :total_amount, :donation_type, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
+  validate :max_amount
 
   DONATION_TYPES = ["Cash", "Goods & Services"]
 
@@ -73,6 +74,15 @@ class Pledge < ActiveRecord::Base
   def notify_rejection
     sponsor.users.each do |user|
       PledgeNotification.rejected_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_rejected
+    end
+  end
+
+  private
+
+  def max_amount
+    if campaign and campaign.sponsor_categories.present?
+      max = campaign.sponsor_categories.maximum(:max_value_cents)
+      errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
     end
   end
 end

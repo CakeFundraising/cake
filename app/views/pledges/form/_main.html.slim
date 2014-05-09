@@ -1,14 +1,25 @@
 = render partial:'pledges/form/actions'
 
-ul.nav.nav-tabs
-  li.active
-    a data-toggle="tab" href="#main" Your Pledge
-  li 
-    a href="" Tell your Story
-  li
-    a href="" Add Coupon
-  li
-    a href="" Launch & Share
+- if @pledge.persisted?
+  ul.nav.nav-tabs
+    li.active
+      a data-toggle="tab" href="#main" Your Pledge
+    li 
+      = link_to "Tell your Story", tell_your_story_pledge_path(@pledge)
+    li
+      = link_to "Add Coupon", add_coupon_pledge_path(@pledge)
+    li
+      = link_to "Launch & Share", share_pledge_path(@pledge)
+- else
+  ul.nav.nav-tabs
+    li.active
+      a data-toggle="tab" href="#main" Your Pledge
+    li 
+      a href="" Tell your Story
+    li
+      a href="" Add Coupon
+    li
+      a href="" Launch & Share
 
 .tab-content
   #main.tab-pane.active

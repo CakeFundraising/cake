@@ -2,14 +2,14 @@
 
 ul.nav.nav-tabs
   li
-    a href="" Your Pledge 
+    = link_to "Your Pledge", edit_pledge_path(@pledge)
   li.active 
     a data-toggle="tab" href="#story" Tell your Story
   li
-    a href="" Add Coupon
+    = link_to "Add Coupon", add_coupon_pledge_path(@pledge)
   li
-    a href="" Launch & Share
-
+    = link_to "Launch & Share", share_pledge_path(@pledge)
+    
 .tab-content
   #story.tab-pane.active
     br
