@@ -8,10 +8,11 @@
     c.headline = Faker::Lorem.sentence
     c.story = Faker::Lorem.paragraph
 
-    build(2, c.sponsor_categories) do |sc|
+    build(2, c.sponsor_categories) do |sc, i|
+      i = i + 1
       sc.name = Faker::Lorem.sentence
-      sc.min_value_cents = rand(99999)
-      sc.max_value_cents = rand(99999)
+      sc.min_value_cents = i * 1000
+      sc.max_value_cents = (i+0.5) * 1000 
     end
   end
 end
