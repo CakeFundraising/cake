@@ -41,7 +41,7 @@ describe SponsorCategory do
     it "should validate max value greater than min value" do
       @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 50000, max_value_cents: 10000)
       @campaign.should_not be_valid
-      @campaign.errors.messages[:sponsor_categories].should include('Max value must be greater than Min value.')
+      @campaign.errors.messages[:'sponsor_categories.max_value'].should include('must be greater than Min value.')
     end
   end
 end
