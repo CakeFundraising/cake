@@ -27,7 +27,8 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
 
-  validates :title, :launch_date, :end_date, :causes, :scopes, :headline, :story, :fundraiser, presence: true
+  validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, presence: true
+  validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, unless: :no_sponsor_categories
   validates_associated :picture
   validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value

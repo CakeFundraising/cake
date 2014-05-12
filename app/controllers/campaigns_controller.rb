@@ -18,7 +18,7 @@ class CampaignsController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        redirect_to sponsors_campaign_path(@campaign)
+        redirect_to tell_your_story_campaign_path(@campaign)
       end
       failure.html do
         render action: :new
@@ -39,9 +39,14 @@ class CampaignsController < InheritedResources::Base
   end
 
   #Non restful actions
+  def basic_info
+    @campaign = resource
+    render 'campaigns/form/basic_info'
+  end
+
   def tell_your_story
     @campaign = resource
-    render 'campaigns/form/main'
+    render 'campaigns/form/tell_your_story'
   end
 
   def sponsors
@@ -80,7 +85,7 @@ class CampaignsController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(campaign: [:title, :launch_date, :end_date, :story, :no_sponsor_categories, :headline, :step, 
+    params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :no_sponsor_categories, :headline, :step, 
     causes: [], scopes: [], video_attributes: [:id, :url],
     picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache], 
     sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :_destroy]

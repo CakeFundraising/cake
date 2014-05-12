@@ -1,0 +1,57 @@
+= render partial:'campaigns/form/actions'
+
+- if @campaign.persisted?
+  ul.nav.nav-pills
+    li.active
+      a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
+    li
+      = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+    li
+      = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
+    li
+      = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
+- else
+  ul.nav.nav-pills
+    li.active
+      a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
+    li 
+      a href="" = t('links.wizards.campaign.tell_your_story')
+    li 
+      a href="" = t('links.wizards.campaign.pledge_levels')
+    li
+      a href="" = t('links.wizards.campaign.share')
+
+.tab-content
+  #main.tab-pane.active
+    br
+    = semantic_form_for @campaign do |f|
+      = f.inputs do
+        .text-center
+          h1 Basic Information Campaign
+          .lead Tell us about your campaign. Don't worry, you can edit it whenever you want.
+          br
+
+          = f.input :title
+          span.help-block Keep it simple, it is for your records only!
+
+          .input-daterange
+            = f.input :launch_date, as: :string
+            span.help-block This date is for planning purposes only. The target launch date tells your Sponsors when their pledges are due. You launch your Campaign only when you decide.
+            = f.input :end_date, as: :string
+            span.help-block This date is when your campaign ends. You can extend the End Date after you have launched your Campaign if you wish to do so.
+
+          hr 
+          h2 Choose the Cause Categories that best represent your fundraising goals.
+          .lead You can choose more than one category.
+          = f.input :causes, as: :select, collection: Campaign::CAUSES, input_html:{multiple: true, size: 10}, include_blank: false, label: false
+          
+          hr
+          h2 Type of Campaigns
+          .lead Choose the geographic designation that best describes your organization's influence with supporters and consumers.
+          .lead You can choose more than one category.
+        = f.input :scopes, as: :check_boxes, collection: Campaign::SCOPES, label: false
+
+        br
+        = f.actions do
+          .text-center
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

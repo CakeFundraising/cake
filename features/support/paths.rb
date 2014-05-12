@@ -39,11 +39,9 @@ module NavigationHelpers
       send(path_components.push('pledge').push('path').join('_').to_sym, @pledge)
 
     #campaign
-    when /^pledge levels page$/
-      sponsors_campaign_path(@campaign)
-      
-    when /^solicit sponsors page$/
-      share_campaign_path(@campaign)
+    when /^campaign wizard (.*?) page$/
+      path_components = $1.split(/\s+/)
+      send(path_components.push('campaign').push('path').join('_').to_sym, @campaign)
 
     when /^campaign's page$/
       campaign_path(@campaign)

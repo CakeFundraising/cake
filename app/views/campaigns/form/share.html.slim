@@ -1,10 +1,12 @@
 = render partial:'campaigns/form/actions'
 
-ul.nav.nav-tabs
+ul.nav.nav-pills
   li
-    = link_to "Tell your story", edit_campaign_path(@campaign)
+    = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
   li
-    = link_to "Pledge Levels", sponsors_campaign_path(@campaign)
+    = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+  li
+    = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
   li.active
     a data-toggle="tab" href="#share" Solicit Sponsors
     

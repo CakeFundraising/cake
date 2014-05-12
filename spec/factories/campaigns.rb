@@ -9,6 +9,7 @@ FactoryGirl.define do
     scopes { Campaign::SCOPES.sample(2) }
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
+    mission { Faker::Lorem.paragraph }
     fundraiser
 
     factory :campaign_with_pledge_levels do

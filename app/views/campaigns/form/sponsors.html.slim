@@ -1,15 +1,20 @@
 = render partial:'campaigns/form/actions'
 
-ul.nav.nav-tabs
+ul.nav.nav-pills
   li
-    = link_to "Tell your story", edit_campaign_path(@campaign)
+    = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
+  li
+    = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
   li.active
-    a data-toggle="tab" href="#sponsors_donations" Pledge Levels
+    a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
   li
-    = link_to "Solicit Sponsors", share_campaign_path(@campaign)
+    = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
     
 .tab-content
   #sponsors_donations.tab-pane.active
+    .text-center
+      h1 Set pledge Levels
+      .lead Would you like to create and name custom pledge levels to recognize and reward your biggest sponsors?
     br
     = semantic_form_for @campaign do |f|
       = f.semantic_errors *f.object.errors.keys

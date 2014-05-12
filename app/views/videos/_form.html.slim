@@ -1,3 +1,6 @@
 = f.semantic_fields_for :video, f.object.video || f.object.build_video do |v|
   = v.inputs do
-    = v.input :url
+    = v.label :url do
+      | Include a video - Optional
+    span.help-block Copy link for video from Youtube or Vimeo 
+    = v.input :url, label: false

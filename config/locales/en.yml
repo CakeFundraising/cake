@@ -27,6 +27,16 @@ en:
       sign_in: Sign In
       sign_out: Sign Out
       sign_up:  Sign Up
+    wizards:
+      campaign: 
+        basic_info: 1. Basic Information
+        tell_your_story: 2. Tell your story
+        pledge_levels: 3. Set Pledge Levels
+        share: 4. Solicit Sponsors
+  information: 
+    wizards:
+      campaign:
+
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
@@ -73,6 +83,10 @@ en:
         missed_launch_campaign: Campaign launch date missed
         public_profile_change: Change to public profile
       campaign:
+        title: Campaign Name
+        mission: Campaign Mission Statement
+        launch_date: Target campaign launch date
+        end_date: Target campaign end date
         total_donation: Total Donation
         pledges_quantity: No. of Pledges
         total_pledges: Total Pledges
@@ -97,3 +111,5 @@ en:
         customer_demographics: Our Customer Demographics
       video:
         url: Video Url
+      picture: 
+        avatar_caption: Image Caption

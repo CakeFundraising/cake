@@ -14,6 +14,7 @@ Cake::Application.routes.draw do
   resources :campaigns do
     member do
       scope :edit do
+        get :tell_your_story
         get :sponsors
         get :share
       end
