@@ -4,16 +4,10 @@ Cake.bootstrap_switcher = ->
   pledge_lavels_container = $('#sponsor_categories')
   checked = checkbox.prop('checked')
 
-  if checked
-    pledge_lavels_container.show()
-  else
-    pledge_lavels_container.hide()
-  
   checkbox.bootstrapSwitch({
     onText: 'Set custom pledge levels',
     offText: 'Display all Sponsors together in one level',
     size: 'large',
-    labelText: '<- Click to set custom levels',
     onSwitchChange: (event, state) ->
       pledge_lavels_container.slideToggle()
 
@@ -24,5 +18,12 @@ Cake.bootstrap_switcher = ->
       
       return
   });
+
+  if checked
+    $('label.bootstrap-switch-label').text('Click to have just one level ->')
+    pledge_lavels_container.show()
+  else
+    $('label.bootstrap-switch-label').text('<- Click to set custom levels')
+    pledge_lavels_container.hide()
 
   return
