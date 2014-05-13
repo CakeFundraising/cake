@@ -425,6 +425,9 @@ ul.share-coupon {
     font-size: 20px;
   }
 }
+.cake-steps p {
+  margin-top: 8px;
+}
 .button-wrap {
   width: 549px;
   margin: 50px auto;
@@ -883,3 +886,54 @@ ul.share-coupon {
     .search-query:focus + button {
         z-index: 3;   
     }
+// Share Block Styles ---------------------------------------------------------------------
+
+.share-block-wrap {
+  padding: 0 0 35px;
+}
+#share-block {
+  li {
+    list-style: none;
+    color: #fff;
+    display: inline-block;
+    margin-right: 2px;
+  }
+  a {
+    display: block;
+    background: url('share-block.png');
+    height: 35px;
+    color: #fff;
+  }
+}
+ul#share-block {
+  margin: 0;
+  padding: 0;
+}
+#share-block a.faceb {
+  background-position: 0 0;
+  width: 117px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.tw {
+  background-position: -123px 0;
+  width: 125px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.em {
+  background-position: -253px 0;
+  width: 134px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.sh {
+  background-position: -391px 0;
+  width: 89px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
