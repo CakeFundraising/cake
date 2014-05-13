@@ -29,7 +29,7 @@ class Campaign < ActiveRecord::Base
 
   validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, presence: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
-  validates_associated :sponsor_categories, unless: :no_sponsor_categories
+  validates_associated :sponsor_categories, if: :custom_pledge_levels
   validates_associated :picture
   validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value
 

@@ -10,6 +10,7 @@
  *
  *= require formtastic-bootstrap
  *= require bootstrap-datepicker
+ *= require bootstrap3-switch
  *= require chosen
  *= require_self
  *= require bootstrap_and_overrides

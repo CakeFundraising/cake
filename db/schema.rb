@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 20140512152918) do
     t.datetime "end_date"
     t.string   "headline"
     t.text     "story"
-    t.boolean  "no_sponsor_categories", default: false
+    t.boolean  "custom_pledge_levels", default: false
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",                default: "inactive"
+    t.string   "status",               default: "inactive"
     t.text     "mission"
   end
 

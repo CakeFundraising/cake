@@ -16,6 +16,7 @@
 //= require cocoon
 //= require cocoon_limiter
 //= require bootstrap
+//= require bootstrap-switch
 //= require chosen-jquery
 //= require rails-timeago
 //= require jquery-fileupload/basic
