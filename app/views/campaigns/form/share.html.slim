@@ -8,35 +8,38 @@ ul.nav.nav-pills
   li
     = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
   li.active
-    a data-toggle="tab" href="#share" Solicit Sponsors
+    a data-toggle="tab" href="#share" = t('links.wizards.campaign.share')
     
 .tab-content
   #share.tab-pane.active
-  br
+    .text-center
+      h1 Now share your Campaign Page
+      p Now share your fundraising page with potential sponsors who may value website traffic from your supporters.
+      p Sponsors can easily pledge to make "per-click-donations" using a simple template.
 
-  h3 Congratulations on creating your fundraiser!
-  p Now share your fundraising page with potential sponsors who may value website traffic from your supporters.
-  p Sponsors can easily pledge to make "per-click-donations" using a simple template.
+    = render partial:'campaigns/show/media', locals:{campaign: @campaign}
 
-  .share-links
-    h3 Copy the link to invite sponsors to pledge
-    .input-group
-      input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
-        span.input-group-btn
+    .row
+      .col-md-6
+        .share-links
+          h3 Share this link to invite potential Sponsors to pledge your Campaign
+            
+          label Campaign Url: 
+          input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
           button.clipboard.btn.btn-default data-clipboard-target="campaign_url" Copy
-
-    .help-block 
-      | Need help findind Sponsors? 
-      span = link_to "Click here", "#share"
-
-  .share-embed.row
-    .lead Copy code to paste in your website
-
-    .col-md-6
-      textarea#embedded_link.form-control disabled='' rows="5" 
-        iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
-          p 
-            | See this campaign here: 
-            = link_to @campaign.title, campaign_url(@campaign), target: :_blank
-    .col-md-6
-      button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+      .col-md-6
+        .share-embed.row
+          h3 Invite potential Sponsors to pledge this campaign on your website
+          .col-md-10
+            label Copy code to paste into your website:  
+            textarea#embedded_link.form-control disabled='' rows="5" 
+              iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
+                p 
+                  | See this campaign here: 
+                  = link_to @campaign.title, campaign_url(@campaign), target: :_blank
+          .col-md-2
+            button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+      .col-md-12.text-center
+        = link_to "Help me find sponsors", "#share", class:'btn btn-primary'
+        span or
+        = link_to "Go to my account", current_fundraiser, class:'btn btn-success'

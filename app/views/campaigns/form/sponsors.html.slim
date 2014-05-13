@@ -21,6 +21,7 @@ ul.nav.nav-pills
       = f.inputs do
         .buttons.text-center
           = f.input :custom_pledge_levels, label:''
+        br
         .pledge_levels
           = render partial:'sponsor_categories/form', locals:{f: f}
 

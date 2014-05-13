@@ -1,0 +1,8 @@
+.media.thumbnail
+  = link_to campaign_url(campaign), class:'pull-left' do
+    = image_tag campaign.avatar.medium.url, class:'media-object' 
+  .media-body
+    h4.media-heading = link_to campaign.title, campaign_url(campaign), target: :_blank
+    .cause = campaign.object.causes.first
+    .type = campaign.object.scopes.first
+    .dates = campaign.start_end_dates

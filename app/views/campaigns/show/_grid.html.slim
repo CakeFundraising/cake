@@ -2,7 +2,7 @@
   .thumbnail
     .avatar = image_tag campaign.avatar.url(:medium)
     .caption
-      h4 Campaign Name (pending)
+      h4 = campaign.title
       .cause = campaign.object.causes.first
       .type = campaign.object.scopes.first
       .dates = campaign.start_end_dates

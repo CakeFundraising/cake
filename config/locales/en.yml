@@ -97,6 +97,8 @@ en:
         avg_pledge_rank: Avg. Pledge Rank
         conv_rate: Conv. Rate
         number: No. of Campaigns
+      sponsor_category:
+        name: Pledge Level Name
       pledge:
         donation_click: Donation/Click
         pledge_rank: Pledge Rank

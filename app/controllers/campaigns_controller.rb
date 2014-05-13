@@ -56,7 +56,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def share
-    @campaign = resource
+    @campaign = resource.decorate
     render 'campaigns/form/share'
   end
 
