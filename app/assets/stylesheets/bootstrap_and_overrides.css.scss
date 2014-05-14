@@ -5,6 +5,7 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 
+
 //Typography ----------------------------------------------------------------------------
 h3, h4 {
   color: $brand-primary;
@@ -12,6 +13,10 @@ h3, h4 {
 .nav-tabs {
   text-transform: uppercase;
 }
+.italic {
+  font-style: italic;
+}
+
 .italic {
   font-style: italic;
 }
@@ -381,6 +386,7 @@ ul.share-coupon {
   border: 1px solid $gray-lighter;
 }
 // Coupon Edge experimental ---------------------------------------
+
 .coupon-edge {
   position: absolute;
   top: 0;
@@ -394,6 +400,7 @@ ul.share-coupon {
 }
 
 // Home Page Styles! -----------------------------------------------------------------------
+
 .hero-home {
   height:666px;
   margin-bottom: 0;
@@ -417,6 +424,9 @@ ul.share-coupon {
     color: #fff;
     font-size: 20px;
   }
+}
+.cake-steps p {
+  margin-top: 8px;
 }
 .button-wrap {
   width: 549px;
@@ -633,4 +643,297 @@ ul.share-coupon {
 
 .search-query:focus + button {
   z-index: 3;   
+}
+
+// Home Page Styles! ---------------------------------------
+.hero-home {
+  height:666px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: url('hero-home.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+.home {
+  text-align: center;
+  color: #fff;
+}
+.cta {
+  margin: 40px 0;
+  h1 {
+    text-transform: uppercase;
+    font-size: 44px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 20px;
+  }
+}
+.button-wrap {
+  width: 549px;
+  margin: 50px auto;
+}
+.start-fr {
+  background-image: url('fr-campaign-button.png');
+  width: 269px;
+  height: 69px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.start-sp {
+  background-image: url('sp-campaign-button.png');
+  width: 280px;
+  height: 69px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.get-started {
+  font-style: italic;
+}
+.see {
+  font-size: 11px;
+  padding-left: 25px;
+}
+// Tab styles ----------------------------------
+.secondary-navbar {
+  background-color: #fff;
+  height: 60px;
+  @include box-shadow(0 0 3px $gray-darker);
+}
+.popular {
+  list-style: none;
+  text-align: center;
+  margin-top: 10px;
+  li > a:hover {
+    background: #fe6a52;
+  }
+}
+.popular > li {
+  display: inline-block;
+  float: none;
+  margin: 0 10px;
+}
+.popular > li > a {
+  border-radius: 25px;
+  background: $gray-light;
+  color: #fff;
+}
+.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
+  background-color: #fe6a52;
+}
+
+.main-home {
+  margin-top: 50px;
+}
+ ul.cats {
+  list-style: none;
+  padding: 25px 0;
+  li {
+  border-bottom: 1px dotted $gray-light;
+  padding: 5px 0;
+  }
+  a {
+    color: $gray;
+    text-decoration: none;
+  }
+}
+// home box views --------------------------------------------------------
+
+.home-border {
+  border-right: 1px dotted $gray-light;
+}
+.home-box {
+  border: 1px solid $gray-lighter;
+  background: #fff;
+  margin-bottom: 25px;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  } 
+}
+.home-box-info {
+  margin: 0;
+}
+.main-info {
+  padding: 15px;
+  height: 142px;
+}
+.main-info-sponsor {
+  padding: 15px;
+}
+.time {
+  border-top: 1px solid $gray-lighter;
+  padding: 15px;
+  text-align: center;
+}
+.view-all {
+  margin: 25px 0;
+}
+.view-all-border {
+  padding-top: 10px;
+  border-bottom: 1px dotted $gray-light;
+  width: 100%;
+  position: relative;
+}
+.easy-band {
+  background: #ff6c54;
+  text-align: center;
+  h2 {
+    color: #fff;
+    margin-bottom: 25px;
+  }
+  h3 {
+    color: black;
+    margin: 25px 0;
+  }
+}
+.circle-campaign {
+  background-image: url('circle-campaign.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.circle-sp {
+  background-image: url('circle-sp.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.circle-raised {
+  background-image: url('circle-raised.png');
+  background-repeat: no-repeat;
+  height: 266px;
+  width: 266px;
+  position: relative;
+  display: inline-block;
+  margin: auto 20px;
+}
+.totals-centerd {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  h4 {
+    color: #ffa755;
+    font-size: 35px;
+    padding: 30px 0 0;
+    margin-bottom: 0;
+  }
+}
+.center {
+  text-align: center;
+}
+.success-banner {
+  height:375px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: url('success-bkg.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+//Home Sidebar Search form ---------------------------------------------------
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:$gray;
+        z-index: 10;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+// Share Block Styles ---------------------------------------------------------------------
+
+.share-block-wrap {
+  padding: 0 0 35px;
+}
+#share-block {
+  li {
+    list-style: none;
+    color: #fff;
+    display: inline-block;
+    margin-right: 2px;
+  }
+  a {
+    display: block;
+    background: url('share-block.png');
+    height: 35px;
+    color: #fff;
+  }
+}
+ul#share-block {
+  margin: 0;
+  padding: 0;
+}
+#share-block a.faceb {
+  background-position: 0 0;
+  width: 117px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.tw {
+  background-position: -123px 0;
+  width: 125px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.em {
+  background-position: -253px 0;
+  width: 134px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
+}
+#share-block a.sh {
+  background-position: -391px 0;
+  width: 89px;
+  text-align: right;
+  padding: 11px 5px 0 0;
+  font-size: 11px;
 }
