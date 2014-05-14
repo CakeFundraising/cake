@@ -4,7 +4,6 @@ describe Campaign do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:launch_date) }
   it { should validate_presence_of(:end_date) }
-  it { should validate_presence_of(:headline) }
   it { should validate_presence_of(:fundraiser) }
 
   it { should belong_to(:fundraiser) }
@@ -17,6 +16,13 @@ describe Campaign do
   it { should accept_nested_attributes_for(:picture).update_only(true) }
   it { should accept_nested_attributes_for(:video).update_only(true) }
   it { should accept_nested_attributes_for(:sponsor_categories) }
+
+  it "should validate other attributes when persisted" do
+    subject.stub(:persisted?) { true } 
+    should validate_presence_of(:headline)
+    should validate_presence_of(:mission)
+    should validate_presence_of(:story)
+  end
 
   it "should validate presence of causes" do
     FactoryGirl.build(:campaign, causes: []).should have(1).error_on(:causes)
@@ -73,35 +79,49 @@ describe Campaign do
   end
 
   describe "Sponsor Categories" do
-    before(:each) do
-      @campaign = FactoryGirl.create(:campaign)
+    context 'collection' do
+      before(:each) do
+        @campaign = FactoryGirl.create(:campaign)
 
-      @top_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "top", min_value_cents: 50000, max_value_cents: 100000)
-      @medium_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "medium", min_value_cents: 25000, max_value_cents: 50000)
-      @low_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "low", min_value_cents: 100, max_value_cents: 25000)
+        @top_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "top", min_value_cents: 50000, max_value_cents: 100000)
+        @medium_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "medium", min_value_cents: 25000, max_value_cents: 50000)
+        @low_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "low", min_value_cents: 100, max_value_cents: 25000)
 
-      @top_pledges, @medium_pledges, @low_pledges = [], [], []
-      3.times do
-        @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(50000..100000) )
-        @medium_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(25000...50000) )
-        @low_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(100...25000)   )
+        @top_pledges, @medium_pledges, @low_pledges = [], [], []
+        3.times do
+          @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(50000..100000) )
+          @medium_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(25000...50000) )
+          @low_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(100...25000)   )
+        end
+
+        @campaign.sponsor_categories.reload
+        @campaign.rank_levels
+      end
+      
+      it "should return the pledges ranked according to the pledge levels" do
+        @campaign.top_pledges.should  match_array(@top_pledges)
+        @campaign.medium_pledges.should match_array(@medium_pledges)
+        @campaign.low_pledges.should match_array(@low_pledges)
       end
 
-      @campaign.sponsor_categories.reload
-      @campaign.rank_levels
-    end
-    
-    it "should return the pledges ranked according to the pledge levels" do
-      @campaign.top_pledges.should  match_array(@top_pledges)
-      @campaign.medium_pledges.should match_array(@medium_pledges)
-      @campaign.low_pledges.should match_array(@low_pledges)
+      it "should order the pledges inside the same sponshoship level" do
+        @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.total_amount_cents }
+        @campaign.medium_pledges.should == @medium_pledges.sort_by{|p| -p.total_amount_cents }
+        @campaign.low_pledges.should == @low_pledges.sort_by{|p| -p.total_amount_cents }
+      end
     end
 
-    it "should order the pledges inside the same sponshoship level" do
-      @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.total_amount_cents }
-      @campaign.medium_pledges.should == @medium_pledges.sort_by{|p| -p.total_amount_cents }
-      @campaign.low_pledges.should == @low_pledges.sort_by{|p| -p.total_amount_cents }
-    end
+    # context 'Validation' do
+    #   it "should not validate sponsor_categories when there are not custom pledge levels" do
+    #     @campaign = FactoryGirl.build(:campaign, custom_pledge_levels: false)
+    #     @campaign.should be_valid
+    #   end
+
+    #   it "should validate sponsor_categories when there are custom pledge levels" do
+    #     @campaign = FactoryGirl.build(:campaign)
+    #     @campaign.should_not be_valid
+    #   end
+    # end
   end
 
 end

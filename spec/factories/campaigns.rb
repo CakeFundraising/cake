@@ -10,6 +10,7 @@ FactoryGirl.define do
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     mission { Faker::Lorem.paragraph }
+    custom_pledge_levels true
     fundraiser
 
     factory :campaign_with_pledge_levels do

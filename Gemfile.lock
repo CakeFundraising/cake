@@ -283,6 +283,8 @@ GEM
     request_store (1.0.5)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.2)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
@@ -337,6 +339,13 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stripe (1.11.0)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
+    stripe-rails (0.3.0)
+      rails (>= 3)
+      stripe
     temple (0.6.7)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -429,6 +438,7 @@ DEPENDENCIES
   simplecov
   slim
   slim-rails
+  stripe-rails
   therubyracer
   thin
   turbolinks

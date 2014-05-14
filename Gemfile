@@ -70,6 +70,9 @@ gem 'omniauth-linkedin-oauth2'
 #Admin panel
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+#Payments
+gem 'stripe-rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

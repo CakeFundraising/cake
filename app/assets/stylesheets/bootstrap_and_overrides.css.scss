@@ -145,7 +145,7 @@ footer {
 }
 
 .hero-screen {
-  background-image:url('hero-screen.png');
+  background-image:image-url('hero-screen.png');
   background-repeat: repeat-x;
   height:614px;
 }
@@ -205,13 +205,13 @@ table.performance-summary {
   padding-top: 25px;
 }
 .pointer {
-  background: url(pointer.png) no-repeat;
+  background: image-url(pointer.png) no-repeat;
   width: 100px;
   height: 30px;
   margin: 0 auto;
 }
 .pointer-b {
-  background: url(pointer-tan.png) no-repeat;
+  background: image-url(pointer-tan.png) no-repeat;
   width: 100px;
   height: 30px;
   margin: 0 auto;
@@ -262,7 +262,7 @@ table.performance-summary {
   }
 }
 .shake {
-  background-image: url('shake.png');
+  background-image: image-url('shake.png');
   position: relative;
   width: 48px;
   height: 48px;
@@ -357,7 +357,7 @@ ul.share-coupon {
 }
 .share-coupon a {
   display: block;
-  background: url('sweeps-share.png') no-repeat;
+  background: image-url('sweeps-share.png') no-repeat;
   width: 41px;
   height: 35px;
 }
@@ -385,7 +385,7 @@ ul.share-coupon {
   position: absolute;
   top: 0;
   right: 15px;
-  background-image: url('coupon-edge.png');
+  background-image: image-url('coupon-edge.png');
   height: 100%;
   width: 7px;
   -webkit-background-size: cover;
@@ -398,7 +398,7 @@ ul.share-coupon {
   height:666px;
   margin-bottom: 0;
   border:0px;
-  background-image: url('hero-home.jpg');
+  background-image: image-url('hero-home.jpg');
   background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
@@ -423,7 +423,7 @@ ul.share-coupon {
   margin: 50px auto;
 }
 .start-fr {
-  background-image: url('fr-campaign-button.png');
+  background-image: image-url('fr-campaign-button.png');
   width: 269px;
   height: 69px;
   display: inline-block;
@@ -432,7 +432,7 @@ ul.share-coupon {
   overflow: hidden;
 }
 .start-sp {
-  background-image: url('sp-campaign-button.png');
+  background-image: image-url('sp-campaign-button.png');
   width: 280px;
   height: 69px;
   display: inline-block;
@@ -542,7 +542,7 @@ ul.share-coupon {
   }
 }
 .circle-campaign {
-  background-image: url('circle-campaign.png');
+  background-image: image-url('circle-campaign.png');
   background-repeat: no-repeat;
   height: 266px;
   width: 266px;
@@ -551,7 +551,7 @@ ul.share-coupon {
   margin: auto 20px;
 }
 .circle-sp {
-  background-image: url('circle-sp.png');
+  background-image: image-url('circle-sp.png');
   background-repeat: no-repeat;
   height: 266px;
   width: 266px;
@@ -560,7 +560,7 @@ ul.share-coupon {
   margin: auto 20px;
 }
 .circle-raised {
-  background-image: url('circle-raised.png');
+  background-image: image-url('circle-raised.png');
   background-repeat: no-repeat;
   height: 266px;
   width: 266px;
@@ -589,7 +589,7 @@ ul.share-coupon {
   height:375px;
   margin-bottom: 0;
   border:0px;
-  background-image: url('success-bkg.jpg');
+  background-image: image-url('success-bkg.jpg');
   background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;

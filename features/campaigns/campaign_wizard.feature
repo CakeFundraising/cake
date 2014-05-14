@@ -13,7 +13,7 @@ Feature: Campaign Wizard
     And he fills in the "Campaign Name" field with <name>
     And he fills in the "campaign_launch_date" field with <launch_date>
     And he fills in the "campaign_end_date" field with <end_date>
-    And he selects <causes> in "Causes"
+    And he selects <causes> in "campaign_causes"
     And he checks <scopes> from the Types of Campaigns options
     And he press the "Save & Continue" button
     Then he should see "<message>"
@@ -51,8 +51,8 @@ Feature: Campaign Wizard
     And a campaign of that fundraiser exists
     When he goes to campaign wizard sponsors page
     And he fills in the "Name" field with <name>
-    And he fills in the "Min value" field with <min_value>
-    And he fills in the "Max value" field with <max_value>
+    And he fills in the "campaign_sponsor_categories_attributes_0_min_value" field with <min_value>
+    And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
     
