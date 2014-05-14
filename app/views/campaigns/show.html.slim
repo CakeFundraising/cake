@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> adding css
 = content_for :header do
   .banner.hero
     .hero-screen
@@ -28,26 +24,19 @@
               span.campaign-timer 47 
               span m.
           .row
-<<<<<<< HEAD
             .col-md-12.click-btn
-=======
-           .col-md-12.click-btn
->>>>>>> adding css
               p.timer-ital Our Pledge:
               .campaign-stats
                 strong $7,430 
                 span Raised
                 strong.pull-right $958.000
                 span.pull-right Goal
-<<<<<<< HEAD
             .col-md-12.click-btn
               .make-pledge
                 = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
               - if can?(:launch, @campaign) and @campaign.inactive?
                 .launch-campaign
                   = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary btn-block'
-=======
->>>>>>> adding css
 
   .white
     .container
@@ -78,7 +67,6 @@
           br
           button.btn.btn-primary Click to help. It's free
   .container
-<<<<<<< HEAD
     - unless @sponsor_categories.blank? 
       - @sponsor_categories.each do |sc|
         .row.win-with
@@ -87,31 +75,6 @@
             span = sc.range
         .row
           = render partial:'campaigns/show/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge
-=======
-    .row.win-with
-      .col-md-12
-        h2 Visit our Platinum Sponsors
-        span + $10,000
-    .row 
-      - 3.times do
-        = render partial:'campaigns/show/platinum_sponsors'
-    .row.win-with
-      .col-md-12
-        .level-divide
-        h2 Visit our Gold Sponsors
-        span + $10,000
-    .row
-      - 4.times do
-        = render partial:'campaigns/show/gold_sponsors'
-    .row.win-with
-      .col-md-12
-        .level-divide
-        h2 Visit our Silver Sponsors
-        span $5 - $20
-    .row
-      - 6.times do
-        = render partial:'campaigns/show/silver_sponsors'
->>>>>>> adding css
     .row
       .col-md-12
         .level-divide
@@ -119,9 +82,6 @@
             h2 Your click will make a difference!
             p Every Dollar Helps! Please donate if you can!
             button.btn.btn-success Make a Direct Donation
-<<<<<<< HEAD
-
-=======
->>>>>>> adding css
+            
 css:
   .hero { background-image: url("#{@campaign.banner.url(:large)}"); }
