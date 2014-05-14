@@ -11,6 +11,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_of("Linkedin")
   end
 
+  def stripe_connect
+    redirect_to root_path, notice: "You have connected your Stripe account successfully."
+    # raise request.env["omniauth.auth"].to_yaml
+  end
+
   def callback_of(provider)
     @user = User.find_user_from(request.env["omniauth.auth"])
 

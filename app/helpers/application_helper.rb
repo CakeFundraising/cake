@@ -27,4 +27,10 @@ module ApplicationHelper
   def auto_link(object)
     link_to object.to_s, object
   end
+
+  def stripe_connect_button
+    link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect pull-right' do
+      content_tag(:span, "Connect with Stripe")
+    end
+  end
 end

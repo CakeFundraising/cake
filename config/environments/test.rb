@@ -35,4 +35,7 @@ Cake::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.stripe.publishable_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
+  config.stripe.secret_key = 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4'
 end
