@@ -66,6 +66,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-stripe-connect'
 
 #Admin panel
 gem 'activeadmin', github: 'gregbell/active_admin'
