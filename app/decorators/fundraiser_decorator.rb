@@ -8,4 +8,8 @@ class FundraiserDecorator < ApplicationDecorator
   def causes
     object.causes.join(", ")
   end
+
+  def stripe_account?
+    stripe_account.present?
+  end
 end

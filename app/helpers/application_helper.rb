@@ -29,8 +29,26 @@ module ApplicationHelper
   end
 
   def stripe_connect_button
-    link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect pull-right' do
-      content_tag(:span, "Connect with Stripe")
+    content_tag(:div) do
+      content_tag(:h4, "Stripe Account")+
+      content_tag(:div) do
+        link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect' do
+          content_tag(:span, "Connect with Stripe")
+        end 
+      end+ 
+      content_tag(:span, "Link account to accept donations & payments thru Stripe.")
+    end
+  end
+
+  def stripe_connect
+    if current_fundraiser.stripe_account.blank?
+      stripe_connect_button
+    else
+      content_tag(:div) do
+        content_tag(:h4, "Stripe Account")+
+        content_tag(:strong, "Account ID: ")+
+        link_to(current_fundraiser.stripe_account.uid, "https://manage.stripe.com/", target: :_blank)
+      end
     end
   end
 end

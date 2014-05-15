@@ -100,6 +100,20 @@ Before do
       secret: 'sisasd88787asdjif458f5f8fs85s4xao'
     }
   })
+
+  OmniAuth.config.add_mock(:stripe_connect, {
+    :provider => 'stripe_connect',
+    :uid => 'acct_1041pr4RBNpk3sAu',
+    :info => {
+      scope: 'read_write',
+      livemode: false,
+      stripe_publishable_key: 'pk_test_QWtA6xTPiblpPPy3P2fWDpMv'
+    },
+    :credentials => {
+      token: 'sk_test_sLTrHz6H1XgFXD1XPBE3VDkR',
+      expires: false
+    }
+  })
 end
 
 After do

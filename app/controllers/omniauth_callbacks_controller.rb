@@ -12,8 +12,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def stripe_connect
-    redirect_to root_path, notice: "You have connected your Stripe account successfully."
-    # raise request.env["omniauth.auth"].to_yaml
+    @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
+    redirect_to fundraiser_home_path, notice: "You have connected your Stripe account successfully." if @stripe_account
   end
 
   def callback_of(provider)
