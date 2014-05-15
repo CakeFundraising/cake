@@ -10,11 +10,11 @@ ul.nav.nav-pills
   li
     = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
     
-.tab-content
+.tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
     .text-center
       h1 Set pledge Levels
-      .lead Would you like to create and name custom pledge levels to recognize and reward your biggest sponsors?
+      p.text-muted Would you like to create and name custom pledge levels to recognize and reward your biggest sponsors?
     br
     = semantic_form_for @campaign do |f|
       = f.semantic_errors *f.object.errors.keys
