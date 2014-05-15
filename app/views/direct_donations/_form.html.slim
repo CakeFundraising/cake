@@ -1,0 +1,45 @@
+= semantic_form_for campaign.direct_donations.build do |f|
+  = f.inputs do
+    = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
+    = f.input :email, as: :hidden
+    = f.input :card_token, as: :hidden
+
+  #direct_donation_amount_input.input-group
+    span.input-group-addon $
+    input type="text" class="form-control" placeholder="Donation Amount" id="direct_donation_amount"
+
+  button#donate_button.btn.btn-success Make a Direct Donation
+
+  script src="https://checkout.stripe.com/checkout.js" 
+
+javascript:
+  Cake.stripe_ckeckout = function(){
+    var handler = StripeCheckout.configure({
+      key: "#{Rails.configuration.stripe[:publishable_key]}",
+      image: '/assets/cake_logo.png',
+      token: function(token, args) {
+        $('#direct_donation_card_token').val(token.id);
+        $('#new_direct_donation').submit();
+      }
+    });
+
+    $('#donate_button').unbind('click').click(function(e){
+      e.preventDefault();
+      amount = $('#direct_donation_amount').val();
+
+      if(amount == '' || amount < 1){
+        $("#direct_donation_amount_input").addClass('has-error');
+        alert('Please check your donation amount.');
+      }else{
+        $("#direct_donation_amount_input").removeClass('has-error');
+        handler.open({
+          name: 'Make a Direct Donation',
+          description: 'To #{campaign}',
+          amount: amount*100
+        });
+      }
+    });
+  }
+
+  $(document).ready(Cake.stripe_ckeckout);
+  $(document).on('page:load', Cake.stripe_ckeckout);

@@ -1,5 +1,4 @@
 Cake::Application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: 
@@ -10,6 +9,8 @@ Cake::Application.routes.draw do
   namespace :home, path:'/' do
     get :get_started
   end
+
+  resources :direct_donations, only: :create
 
   resources :campaigns do
     member do

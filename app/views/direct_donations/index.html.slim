@@ -1,0 +1,25 @@
+h1 Listing direct_donations
+
+table
+  thead
+    tr
+      th Email
+      th Card token
+      th Campaign
+      th
+      th
+      th
+
+  tbody
+    - @direct_donations.each do |direct_donation|
+      tr
+        td = direct_donation.email
+        td = direct_donation.card_token
+        td = direct_donation.campaign_id
+        td = link_to 'Show', direct_donation
+        td = link_to 'Edit', edit_direct_donation_path(direct_donation)
+        td = link_to 'Destroy', direct_donation, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Direct donation', new_direct_donation_path
