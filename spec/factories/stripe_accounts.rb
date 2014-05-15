@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :stripe_account do
-    uid "MyString"
-    stripe_publishable_key "MyString"
-    token "MyString"
-    fundraiser_id 1
+    uid { SecureRandom.hex(8) }
+    stripe_publishable_key "pk_test_QWtA6xTPiblpPPy3P2fWDpMv"
+    token "sk_test_sLTrHz6H1XgFXD1XPBE3VDkR"
+    fundraiser
   end
 end

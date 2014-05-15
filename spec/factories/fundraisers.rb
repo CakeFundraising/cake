@@ -21,5 +21,9 @@ FactoryGirl.define do
     after(:create) do |fr|
       fr.manager.set_fundraiser(fr)
     end
+
+    factory :fundraiser_with_stripe do
+      stripe_account        
+    end
   end
 end

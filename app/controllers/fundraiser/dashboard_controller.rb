@@ -6,6 +6,7 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def billing
+    @fundraiser = current_fundraiser.decorate
   end
 
   def pending_pledges
