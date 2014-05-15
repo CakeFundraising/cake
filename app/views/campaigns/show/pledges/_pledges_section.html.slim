@@ -1,0 +1,14 @@
+- if @campaign.custom_pledge_levels
+  - @sponsor_categories.each do |sc|
+    .row.win-with
+      .col-md-12
+        h2 Visit our #{sc.name} Sponsors
+        span = sc.range
+    .row
+      = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge
+- else
+  .row.win-with
+    .col-md-12
+      h2 Visit our Sponsors
+  .row
+    = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.accepted_pledges, as: :pledge    

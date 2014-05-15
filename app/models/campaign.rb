@@ -45,6 +45,7 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  # Campaign pledges
   def rank_levels
     obj = self
     sponsor_categories.levels.each do |name, range|
@@ -56,6 +57,11 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def accepted_pledges
+    pledges.accepted.order('total_amount_cents DESC')
+  end
+
+  #Status
   def active?
     (launch_date..end_date).cover?(Date.today)
   end

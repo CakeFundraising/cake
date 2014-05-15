@@ -67,14 +67,7 @@
           br
           button.btn.btn-primary Click to help. It's free
   .container
-    - unless @sponsor_categories.blank? 
-      - @sponsor_categories.each do |sc|
-        .row.win-with
-          .col-md-12
-            h2 Visit our #{sc.name} Sponsors
-            span = sc.range
-        .row
-          = render partial:'campaigns/show/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge
+    = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
     .row
       .col-md-12
         .level-divide
