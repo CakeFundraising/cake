@@ -937,3 +937,90 @@ ul#share-block {
   padding: 11px 5px 0 0;
   font-size: 11px;
 }
+// Campaign Wizard Styles ------------------------------------------------------------------------
+.wizard-rule {
+  border: 1px dotted $gray-light;
+}
+.campaign-wizard-wrap {
+  margin-bottom: 50px;
+}
+.campaign-steps {
+  padding: 50px 100px;
+}
+.campaign-name {
+  padding: 0 350px 20px;
+}
+#campaign_launch_date_input {
+  padding: 10px 0 0;
+}
+#campaign_launch_date {
+  width: 200px;
+}
+#campaign_end_date_input {
+  padding: 10px 0 0;
+}#campaign_end_date {
+  width: 200px;
+}
+#campaign_causes {
+  width: 400px;
+  margin: 40px auto;
+}
+#campaign_scopes_input {
+  text-align: center;
+  margin: 15px 0;
+  .checkbox {
+    display: inline-block;
+    margin: 0 15px;
+  }
+}
+// Tell Your Story Step ------------------------------------
+.tell-story-wrap {
+  padding: 0 250px;
+}
+#campaign_video_attributes_url {
+  width: 50%;
+}
+#campaign_picture_attributes_avatar_input {
+  .avatar {
+    margin: 10px auto;
+  }
+  .avatar_input {
+    margin: 0 auto 35px;
+  }
+}
+.p25 {
+  padding-bottom: 25px;
+}
+// Solicit Sponsors Step ------------------------------------
+.campaign-wizard-solicit-wrap {
+  padding: 0 50px 0;
+  margin-bottom: 50px;
+}
+.solicit-wrap {
+  padding: 0 200px;
+  margin: 50px 0;
+}
+.campaign-preview-box {
+  background: #fff;
+  padding: 10px;
+  position: relative;
+}
+.media-body {
+  position: relative;
+  height: 230px;
+  .dates {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+.solicit-invite {
+  color: black;
+  margin: 10px 0 50px;
+}
+.solicit-choose {
+  margin: 40px 0;
+  span {
+    margin: 0 10px;
+  }
+}

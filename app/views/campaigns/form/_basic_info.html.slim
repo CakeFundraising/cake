@@ -1,54 +1,56 @@
-= render partial:'campaigns/form/actions'
+.row
+  .col-xs-12.campaign-steps
+    = render partial:'campaigns/form/actions'
+    - if @campaign.persisted?
+        ul.nav.nav-pills
+          li.active
+            a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
+          li
+            = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+          li
+            = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
+          li
+            = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
+    - else
+        ul.nav.nav-pills
+          li.active
+            a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
+          li 
+            a href="" = t('links.wizards.campaign.tell_your_story')
+          li 
+            a href="" = t('links.wizards.campaign.pledge_levels')
+          li
+            a href="" = t('links.wizards.campaign.share')
 
-- if @campaign.persisted?
-  ul.nav.nav-pills
-    li.active
-      a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
-    li
-      = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
-    li
-      = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
-    li
-      = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
-- else
-  ul.nav.nav-pills
-    li.active
-      a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
-    li 
-      a href="" = t('links.wizards.campaign.tell_your_story')
-    li 
-      a href="" = t('links.wizards.campaign.pledge_levels')
-    li
-      a href="" = t('links.wizards.campaign.share')
-
-.tab-content
+.tab-content.campaign-wizard-wrap
   #main.tab-pane.active
     br
     = semantic_form_for @campaign do |f|
       = f.inputs do
         .text-center
           h1 Basic Information Campaign
-          .lead Tell us about your campaign. Don't worry, you can edit it whenever you want.
+          p.text-muted Tell us about your campaign. Don't worry, you can edit it whenever you want.
           br
+        .row
+          .col-xs-12.campaign-name
+            = f.input :title
+            span.help-block.italic Keep it simple, it is for your records only!
 
-          = f.input :title
-          span.help-block Keep it simple, it is for your records only!
-
-          .input-daterange
-            = f.input :launch_date, as: :string
-            span.help-block This date is for planning purposes only. The target launch date tells your Sponsors when their pledges are due. You launch your Campaign only when you decide.
-            = f.input :end_date, as: :string
-            span.help-block This date is when your campaign ends. You can extend the End Date after you have launched your Campaign if you wish to do so.
-
-          hr 
+            .input-daterange
+              = f.input :launch_date, as: :string
+              span.help-block.italic This date is for planning purposes only. The target launch date tells your Sponsors when their pledges are due. You launch your Campaign only when you decide.
+              = f.input :end_date, as: :string
+              span.help-block.italic This date is when your campaign ends. You can extend the End Date after you have launched your Campaign if you wish to do so.
+        .text-center
+          hr.wizard-rule 
           h2 Choose the Cause Categories that best represent your fundraising goals.
-          .lead You can choose more than one category.
+          p.text-muted You can choose more than one category.
           = f.input :causes, as: :select, collection: Campaign::CAUSES, input_html:{multiple: true, size: 10}, include_blank: false, label: false
           
-          hr
+          hr.wizard-rule
           h2 Type of Campaigns
-          .lead Choose the geographic designation that best describes your organization's influence with supporters and consumers.
-          .lead You can choose more than one category.
+          p.text-muted Choose the geographic designation that best describes your organization's influence with supporters and consumers.
+          p.text-muted You can choose more than one category.
         = f.input :scopes, as: :check_boxes, collection: Campaign::SCOPES, label: false
 
         br
