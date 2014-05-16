@@ -4,6 +4,7 @@ class CreateDirectDonations < ActiveRecord::Migration
       t.string :email
       t.string :card_token
       t.integer :campaign_id
+      t.money :amount
 
       t.timestamps
     end

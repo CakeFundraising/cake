@@ -17,13 +17,17 @@ FactoryGirl.define do
     email { Faker::Internet.safe_email }
     association :manager, factory: :fundraiser_user
     location
+    stripe_account        
 
     after(:create) do |fr|
       fr.manager.set_fundraiser(fr)
     end
 
-    factory :fundraiser_with_stripe do
-      stripe_account        
+    factory :fundraiser_without_stripe_account do
+      after(:create) do |fr|
+        fr.stripe_account.destroy
+      end
     end
+    
   end
 end

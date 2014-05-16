@@ -5,6 +5,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   VERSION_SIZES = {
     ico: [25, 19],
     thumb: [50, 38],
+    square: [120, 120],
     medium: [305, 230]
   }
 
@@ -41,6 +42,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :medium do
     process :resize_to_fill => VERSION_SIZES[:medium]
   end
+
+  version :square do
+    process :resize_to_fill => VERSION_SIZES[:square]
+  end  
   
   version :thumb do
     process :resize_to_fill => VERSION_SIZES[:thumb]

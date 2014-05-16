@@ -5,7 +5,7 @@ Feature: Stripe Connect
   I want to integrate my Stripe account to my Cake account
 
   Scenario: Fundraiser Connect
-    Given a fundraiser exists
+    Given a fundraiser without stripe account exists
     And that fundraiser is logged in
     When he visits the fundraiser home page
     And he press the "Connect with Stripe" link

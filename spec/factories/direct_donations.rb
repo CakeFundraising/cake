@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :direct_donation do
-    email "MyString"
-    card_token "MyString"
-    campaign_id 1
+    email { Faker::Internet.safe_email }
+    card_token { FactoryHelpers.stripe_card_token }
+    amount_cents { rand(99999) }
+    campaign
   end
 end

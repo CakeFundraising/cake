@@ -68,13 +68,7 @@
           button.btn.btn-primary Click to help. It's free
   .container
     = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
-    .row
-      .col-md-12
-        .level-divide
-          .center
-            h2 Your click will make a difference!
-            p Every Dollar Helps! Please donate if you can!
-            = render partial:'direct_donations/form', locals:{campaign: @campaign}
-            
+    = render partial:'campaigns/show/direct_donations/section'
+
 css:
   .hero { background-image: url("#{@campaign.banner.url(:large)}"); }

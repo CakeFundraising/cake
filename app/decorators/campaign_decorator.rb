@@ -1,6 +1,7 @@
 class CampaignDecorator < ApplicationDecorator
   delegate_all
   decorates_association :video
+  decorates_association :fundraiser
 
   def launch_date
     object.launch_date.strftime("%m/%d/%Y")

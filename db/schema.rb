@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515202420) do
+ActiveRecord::Schema.define(version: 20140516162254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,26 @@ ActiveRecord::Schema.define(version: 20140515202420) do
     t.text     "mission"
   end
 
+  create_table "charges", force: true do |t|
+    t.string   "stripe_id"
+    t.string   "balance_transaction_id"
+    t.string   "kind"
+    t.integer  "amount_cents",           default: 0,     null: false
+    t.string   "amount_currency",        default: "USD", null: false
+    t.integer  "total_fee_cents",        default: 0,     null: false
+    t.string   "total_fee_currency",     default: "USD", null: false
+    t.boolean  "paid"
+    t.boolean  "captured"
+    t.json     "fee_details"
+    t.string   "chargeable_type"
+    t.integer  "chargeable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
+  add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
+
   create_table "coupons", force: true do |t|
     t.string   "title"
     t.datetime "expires_at"
@@ -87,6 +107,8 @@ ActiveRecord::Schema.define(version: 20140515202420) do
     t.string   "email"
     t.string   "card_token"
     t.integer  "campaign_id"
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "USD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -6,7 +6,7 @@
 
   #direct_donation_amount_input.input-group
     span.input-group-addon $
-    input type="text" class="form-control" placeholder="Donation Amount" id="direct_donation_amount"
+    input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
 
   button#donate_button.btn.btn-success Make a Direct Donation
 
@@ -16,9 +16,10 @@ javascript:
   Cake.stripe_ckeckout = function(){
     var handler = StripeCheckout.configure({
       key: "#{Rails.configuration.stripe[:publishable_key]}",
-      image: '/assets/cake_logo.png',
+      image: '#{campaign.avatar.url(:square)}',
       token: function(token, args) {
         $('#direct_donation_card_token').val(token.id);
+        $('#direct_donation_email').val(token.email);
         $('#new_direct_donation').submit();
       }
     });
