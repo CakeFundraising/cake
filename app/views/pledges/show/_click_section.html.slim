@@ -1,5 +1,5 @@
 - if pledge.have_donated?(request.remote_ip)
-  button.btn.btn-success.btn-block Thanks for your contribution
+  button.btn.btn-primary.btn-block.disabled Thanks for your contribution
 - else
   button.btn.btn-primary.btn-block data-target="#contribute_modal" data-toggle="modal"
     | Click to help. It's free

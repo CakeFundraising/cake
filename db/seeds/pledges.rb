@@ -27,5 +27,10 @@
       sw.description = Faker::Lorem.paragraph
       sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
     end
+
+    build(1, p.picture, {prebuild: true}) do |pic|
+      pic.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg"))
+      pic.banner = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/banner.jpg"))
+    end
   end
 end
