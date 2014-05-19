@@ -45,6 +45,9 @@ module NavigationHelpers
 
     when /^campaign's page$/
       campaign_path(@campaign)
+      
+    when /^pledge's page$/
+      pledge_path(@pledge)
 
     #Sponsor
     when /^sponsor's page$/

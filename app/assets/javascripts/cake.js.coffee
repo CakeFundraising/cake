@@ -9,6 +9,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_switcher()
+  Cake.stripe_ckeckout()
   return
 
 $(document).ready(Cake.init)

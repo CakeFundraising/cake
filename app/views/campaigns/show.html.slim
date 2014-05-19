@@ -68,7 +68,7 @@
           button.btn.btn-primary Click to help. It's free
   .container
     = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
-    = render partial:'campaigns/show/direct_donations/section'
+    = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 
 css:
   .hero { background-image: url("#{@campaign.banner.url(:large)}"); }

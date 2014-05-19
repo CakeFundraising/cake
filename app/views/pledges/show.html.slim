@@ -57,7 +57,7 @@
           span Please share our pledge with your friends! 
           span See how it works...
           br
-          button.btn.btn-primary Click to help. It's free
+          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
   .container
     .row.win-with
       .col-md-12

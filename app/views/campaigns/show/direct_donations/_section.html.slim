@@ -1,13 +1,13 @@
-- if @campaign.fundraiser.stripe_account?
+- if campaign.fundraiser.stripe_account?
   .row
     .col-md-12
       .level-divide
         .center
           h2 Your click will make a difference!
           p Every Dollar Helps! Please donate if you can!
-          = render partial:'direct_donations/form', locals:{campaign: @campaign}
+          = render partial:'direct_donations/form', locals:{campaign: campaign}
           
-- elsif current_fundraiser.present? and current_fundraiser == @campaign.fundraiser
+- elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
   .alert.alert-warning 
     span Your Campaign can't receive Direct Donations yet.
     div Please connect your Stripe Account
