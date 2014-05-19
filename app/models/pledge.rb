@@ -11,6 +11,7 @@ class Pledge < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
+  has_many :clicks, dependent: :destroy
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
@@ -75,6 +76,11 @@ class Pledge < ActiveRecord::Base
     sponsor.users.each do |user|
       PledgeNotification.rejected_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_rejected
     end
+  end
+
+  #Clicks association
+  def have_donated?(ip)
+    clicks.exists?(request_ip: ip)
   end
 
   private

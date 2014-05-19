@@ -38,6 +38,10 @@ module NavigationHelpers
       path_components = $1.split(/\s+/)
       send(path_components.push('pledge').push('path').join('_').to_sym, @pledge)
 
+    when /^pledge's page$/
+      pledge = @pledge || model(:pledge)
+      pledge_path(pledge)
+    
     #campaign
     when /^campaign wizard (.*?) page$/
       path_components = $1.split(/\s+/)
@@ -46,8 +50,6 @@ module NavigationHelpers
     when /^campaign's page$/
       campaign_path(@campaign)
       
-    when /^pledge's page$/
-      pledge_path(@pledge)
 
     #Sponsor
     when /^sponsor's page$/

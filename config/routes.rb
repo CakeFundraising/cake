@@ -38,6 +38,8 @@ Cake::Application.routes.draw do
 
       patch :accept
       patch :reject
+
+      patch :click
     end
   end
 

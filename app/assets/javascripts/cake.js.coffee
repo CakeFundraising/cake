@@ -10,6 +10,7 @@ Cake.init = ->
   Cake.pledges.update_triggers()
   Cake.bootstrap_switcher()
   Cake.stripe_ckeckout()
+  Cake.pledges.click()
   return
 
 $(document).ready(Cake.init)

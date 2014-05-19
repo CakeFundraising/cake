@@ -22,6 +22,7 @@ describe Pledge do
   it { should have_one(:video).dependent(:destroy) }
   it { should have_many(:coupons).dependent(:destroy) }
   it { should have_many(:sweepstakes).dependent(:destroy) }
+  it { should have_many(:clicks).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:picture).update_only(true) }
   it { should accept_nested_attributes_for(:video).update_only(true) }
@@ -87,4 +88,40 @@ describe Pledge do
     end
     
   end
+
+  describe "#clicks" do
+    before(:each) do
+      @pledge = FactoryGirl.create(:pledge)  
+    end
+
+    it "should store the click if the user has not clicked before" do
+      @click = @pledge.clicks.build(request_ip: "253.187.158.63")
+      @pledge.should be_valid
+    end
+
+    it "should not store a click if the user has clicked before" do
+      @clicks = create_list(:click, 5, pledge: @pledge)
+      ip = @clicks.first.request_ip
+
+      @click = @pledge.clicks.build(request_ip: ip)
+      @pledge.should_not be_valid
+    end
+
+    context 'Methods' do
+      describe "#have_donated" do
+        it "should return false if ip is not present in the clicks" do
+          @pledge.have_donated?("253.187.158.63").should be_false
+        end
+
+        it "should return true if ip is present in the clicks" do
+          @clicks = create_list(:click, 5, pledge: @pledge)
+          ip = @clicks.first.request_ip
+
+          @pledge.have_donated?(ip).should be_true
+        end
+      end
+    end
+
+  end
+
 end
