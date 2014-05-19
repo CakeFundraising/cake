@@ -28,7 +28,7 @@ describe DirectDonation do
       @transaction.kind.should == 'charge'
       @transaction.paid.should be_true
       @transaction.amount.should == @direct_donation.amount
-      @transaction.total_fee_cents.should == (@direct_donation.amount_cents*(0.029+CakeConstants::APPLICATION_FEE)).ceil + 30
+      @transaction.total_fee_cents.should be_within(1).of((@direct_donation.amount_cents*(0.029+CakeConstants::APPLICATION_FEE)).ceil + 30)
     end
   end
 end
