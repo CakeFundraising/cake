@@ -120,6 +120,19 @@ describe Pledge do
           @pledge.have_donated?(ip).should be_true
         end
       end
+
+      describe "#clicks_count" do
+        it "should update the counter when adding new clicks" do
+          @clicks = create_list(:click, 5, pledge: @pledge)
+          @pledge.reload.clicks_count.should == 5
+        end
+
+        it "should update the counter when deleting clicks from collection" do
+          @clicks = create_list(:click, 5, pledge: @pledge)
+          @clicks.first.destroy
+          @pledge.reload.clicks_count.should == 4
+        end
+      end
     end
 
   end
