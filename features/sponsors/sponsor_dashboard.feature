@@ -32,5 +32,5 @@ Feature: Sponsor Dashboard
 
   Scenario: Billing
     When he visits the sponsor billing page
-    Then he should see his outstanding invoices
-    Then he should see his past invoices
+    Then he should see his sponsor outstanding invoices
+    Then he should see his sponsor past invoices

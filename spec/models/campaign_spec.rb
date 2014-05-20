@@ -12,7 +12,7 @@ describe Campaign do
   it { should have_many(:sponsor_categories).dependent(:destroy) }
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
-  it { should have_many(:invoices).trough(:pledges) }
+  it { should have_many(:invoices).through(:pledges) }
 
   it { should have_many(:direct_donations).dependent(:destroy) }
 
@@ -86,7 +86,7 @@ describe Campaign do
       @campaigns = create_list(:past_campaign, 5)
       @campaigns.each do |c|
         create_list(:pledge, 5, campaign: c)
-        c.pledges.accepted.each(&:generate_invoice)
+        c.pledges.accepted.each(&:create_invoice)
       end
     end
 

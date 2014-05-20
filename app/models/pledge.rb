@@ -86,8 +86,12 @@ class Pledge < ActiveRecord::Base
 
   #Invoices
   def generate_invoice
-    invoice = self.create_invoice(clicks: clicks_count, click_donation: amount_per_click, due: clicks_count*amount_per_click)
-    notify_invoice(invoice) unless Rails.env.test?    
+    create_invoice
+    notify_invoice(invoice)    
+  end
+
+  def create_invoice
+    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: clicks_count*amount_per_click).save!
   end
 
   def notify_invoice(invoice)
