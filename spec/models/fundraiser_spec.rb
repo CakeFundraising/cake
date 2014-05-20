@@ -49,19 +49,19 @@ describe Fundraiser do
     let(:campaigns){ create_list(:campaign, 5, fundraiser: fundraiser) }
 
     describe "Pledges" do
-      it "should show a collection of fundraiser's active pledges" do
-        active_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.active.should == active_pledges
+      it "should show a collection of fundraiser's accepted pledges" do
+        accepted_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
+        fundraiser.pledges.accepted.reload.should == accepted_pledges
       end
 
       it "should show a collection of fundraiser's pending pledges" do
         pending_pledges = create_list(:pending_pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.pending.should == pending_pledges
+        fundraiser.pledges.pending.reload.should == pending_pledges
       end
 
       it "should show a collection of fundraiser's rejected pledges" do
         rejected_pledges = create_list(:rejected_pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.rejected.should == rejected_pledges
+        fundraiser.pledges.rejected.reload.should == rejected_pledges
       end
     end
 

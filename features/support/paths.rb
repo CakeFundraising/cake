@@ -48,7 +48,8 @@ module NavigationHelpers
       send(path_components.push('campaign').push('path').join('_').to_sym, @campaign)
 
     when /^campaign's page$/
-      campaign_path(@campaign)
+      campaign = @campaign || model(:campaign) || @inactive_campaign
+      campaign_path(campaign)
       
 
     #Sponsor

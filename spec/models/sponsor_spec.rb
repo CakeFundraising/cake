@@ -85,17 +85,17 @@ describe Sponsor do
     describe "Pledges" do
       it "should show a collection of sponsor's active pledges" do
         active_pledges = create_list(:pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.active.should == active_pledges
+        @sponsor.pledges.active.reload.should == active_pledges
       end
 
       it "should show a collection of sponsor's pending pledges" do
         pending_pledges = create_list(:pending_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.pending.should == pending_pledges
+        @sponsor.pledges.pending.reload.should == pending_pledges
       end
 
       it "should show a collection of sponsor's rejected pledges" do
         rejected_pledges = create_list(:rejected_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.rejected.should == rejected_pledges
+        @sponsor.pledges.rejected.reload.should == rejected_pledges
       end
     end
 

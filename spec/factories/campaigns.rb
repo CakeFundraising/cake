@@ -12,11 +12,16 @@ FactoryGirl.define do
     mission { Faker::Lorem.paragraph }
     custom_pledge_levels true
     fundraiser
+    status :live
 
     factory :campaign_with_pledge_levels do
       before(:create) do |campaign|
         campaign.sponsor_categories = build_list(:sponsor_category, 3, campaign: campaign)
       end
+    end
+
+    factory :inactive_campaign do
+      status :inactive
     end
 
     factory :past_campaign do

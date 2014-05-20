@@ -43,11 +43,11 @@ describe Campaign do
   context 'Actions' do
     describe "#launch" do
       before(:each) do
-        @campaign = FactoryGirl.create(:campaign)
+        @campaign = FactoryGirl.create(:inactive_campaign)
       end
 
       it "should set a live status" do
-        @campaign.status.should == "inactive"
+        @campaign.status.should == :inactive
         @campaign.launch!
         @campaign.status.should == :live
       end

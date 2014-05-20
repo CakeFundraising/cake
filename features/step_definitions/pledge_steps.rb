@@ -65,7 +65,8 @@ Then(/^the sponsor website should be open in a new window$/) do
 end
 
 Then(/^a click should be added to the Pledge$/) do
-  Pledge.find(model(:pledge).id).clicks_count.should == 1
+  sleep 5
+  Pledge.first.clicks_count.should == 1
 end
 
 Given(/^the user has already donated to that pledge$/) do
