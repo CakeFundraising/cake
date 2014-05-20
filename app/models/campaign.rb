@@ -12,6 +12,7 @@ class Campaign < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
+  has_many :invoices, through: :pledges
   has_many :sponsors, through: :pledges
 
   has_many :sponsor_categories, validate: false, dependent: :destroy do
@@ -40,6 +41,9 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
+
+  scope :with_paid_invoices, ->{ past.includes(:invoices).where('invoices.status = ?', :paid).references(:invoices) }
+  scope :with_outstanding_invoices, ->{ past.includes(:invoices).where.not('invoices.status = ?', :paid).references(:invoices) }
 
   after_initialize do
     if self.new_record?

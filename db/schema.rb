@@ -159,12 +159,12 @@ ActiveRecord::Schema.define(version: 20140520141017) do
   end
 
   create_table "invoices", force: true do |t|
-    t.integer  "clicks"
-    t.integer  "click_donation_cents",    default: 0,            null: false
-    t.string   "click_donation_currency", default: "USD",        null: false
-    t.integer  "due_cents",               default: 0,            null: false
-    t.string   "due_currency",            default: "USD",        null: false
-    t.string   "status",                  default: "due_to_pay"
+    t.integer  "clicks",                  limit: 8
+    t.integer  "click_donation_cents",              default: 0,            null: false
+    t.string   "click_donation_currency",           default: "USD",        null: false
+    t.integer  "due_cents",               limit: 8
+    t.string   "due_currency"
+    t.string   "status",                            default: "due_to_pay"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -209,18 +209,18 @@ ActiveRecord::Schema.define(version: 20140520141017) do
     t.string   "mission"
     t.string   "headline"
     t.text     "description"
-    t.integer  "amount_per_click_cents",    default: 0,         null: false
-    t.string   "amount_per_click_currency", default: "USD",     null: false
+    t.integer  "amount_per_click_cents",              default: 0,         null: false
+    t.string   "amount_per_click_currency",           default: "USD",     null: false
     t.string   "donation_type"
-    t.integer  "total_amount_cents",        default: 0,         null: false
-    t.string   "total_amount_currency",     default: "USD",     null: false
+    t.integer  "total_amount_cents",                  default: 0,         null: false
+    t.string   "total_amount_currency",               default: "USD",     null: false
     t.string   "website_url"
     t.integer  "campaign_id"
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                    default: "pending"
-    t.integer  "clicks_count",              default: 0
+    t.string   "status",                              default: "pending"
+    t.integer  "clicks_count",              limit: 8, default: 0
   end
 
   create_table "sponsor_categories", force: true do |t|

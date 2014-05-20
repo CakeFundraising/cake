@@ -89,7 +89,7 @@ class PledgesController < InheritedResources::Base
     if resource.have_donated?(request.remote_ip)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
     else
-      resource.clicks.create(request_ip: request.remote_ip)
+      resource.clicks.build(request_ip: request.remote_ip)
       redirect_to 'http://'+resource.website_url if resource.save!
     end
   end

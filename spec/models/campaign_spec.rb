@@ -12,6 +12,7 @@ describe Campaign do
   it { should have_many(:sponsor_categories).dependent(:destroy) }
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
+  it { should have_many(:invoices).trough(:pledges) }
 
   it { should have_many(:direct_donations).dependent(:destroy) }
 
@@ -77,6 +78,51 @@ describe Campaign do
       campaign = FactoryGirl.create(:past_campaign)
       campaign.should be_past
       campaign.should_not be_active 
+    end
+  end
+
+  context 'scopes' do
+    before(:each) do
+      @campaigns = create_list(:past_campaign, 5)
+      @campaigns.each do |c|
+        create_list(:pledge, 5, campaign: c)
+        c.pledges.accepted.each(&:generate_invoice)
+      end
+    end
+
+    describe "with_paid_invoices" do
+      it "should not include unpaid invoices" do
+        Campaign.with_paid_invoices.should be_empty
+      end
+
+      it "should include only paid invoices" do
+        @campaigns.first.invoices.update_all(status: :paid)
+
+        Campaign.with_paid_invoices.count.should == 1
+        Campaign.with_paid_invoices.map(&:invoices).flatten.each do |invoice|
+          invoice.status.should == "paid"
+        end
+      end
+    end
+
+    describe "with_outstanding_invoices" do
+      it "should include not paid invoices" do
+        Campaign.with_outstanding_invoices.count.should == 5
+        Campaign.with_outstanding_invoices.map(&:invoices).flatten.each do |invoice|
+          invoice.status.should_not == "paid"
+        end
+      end
+
+      it "should not include paid invoices" do
+        @campaigns.first.invoices.update_all(status: :paid)
+
+        Campaign.with_paid_invoices.count.should == 1
+        
+        Campaign.with_outstanding_invoices.count.should == 4
+        Campaign.with_outstanding_invoices.map(&:invoices).flatten.each do |invoice|
+          invoice.status.should_not == "paid"
+        end
+      end
     end
   end
 

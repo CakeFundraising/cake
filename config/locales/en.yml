@@ -115,3 +115,6 @@ en:
         url: Video Url
       picture: 
         avatar_caption: Image Caption
+      invoice: 
+        donation_click: Donation/Click
+        due: Donation Due

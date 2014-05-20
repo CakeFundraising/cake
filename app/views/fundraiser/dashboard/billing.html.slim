@@ -5,3 +5,17 @@ h2 Billing
     span Go to Stripe
 - else
   = stripe_connect_button
+
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#outstanding" Outstanding Invoices
+  li 
+    a data-toggle="tab" href="#past" Past Invoices
+
+.tab-content
+  #outstanding.tab-pane.active
+    #outstanding_invoices.panel-group
+      = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
+  #past.tab-pane
+    #past_invoices.panel-group
+      = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_past_invoices, as: :campaign
