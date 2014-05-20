@@ -37,8 +37,9 @@ When(/^the #{capture_model}(?:'s)? public profile is changed$/) do |user|
   model(user).update_attribute(:name, "New role name")
 end
 
-When(/^his campaign ends$/) do
-  @campaign.end
+When(/^(?:the|his) campaign ends$/) do
+  campaign = @campaign || model(:campaign)
+  campaign.end
 end
 
 When(/^his campaign launch date is missed$/) do

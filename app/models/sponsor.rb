@@ -10,6 +10,7 @@ class Sponsor < ActiveRecord::Base
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :campaigns, through: :pledges
+  has_many :invoices, through: :pledges
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true

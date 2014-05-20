@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520132150) do
+ActiveRecord::Schema.define(version: 20140520141017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,18 @@ ActiveRecord::Schema.define(version: 20140520132150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
+  end
+
+  create_table "invoices", force: true do |t|
+    t.integer  "clicks"
+    t.integer  "click_donation_cents",    default: 0,            null: false
+    t.string   "click_donation_currency", default: "USD",        null: false
+    t.integer  "due_cents",               default: 0,            null: false
+    t.string   "due_currency",            default: "USD",        null: false
+    t.string   "status",                  default: "due_to_pay"
+    t.integer  "pledge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locations", force: true do |t|

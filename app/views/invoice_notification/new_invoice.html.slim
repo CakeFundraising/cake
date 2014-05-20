@@ -1,0 +1,3 @@
+h2 Hello #{@receiver}, 
+div You have a new pending invoice for the #{ link_to @invoice.campaign, campaign_url(@invoice.campaign) } campaign.
+div You can check your outstanding invoices #{ link_to t('semantic.here').downcase, sponsor_billing_url }.

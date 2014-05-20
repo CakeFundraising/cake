@@ -9,6 +9,7 @@ class Pledge < ActiveRecord::Base
   has_one :fundraiser, through: :campaign
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
+  has_one :invoice
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
   has_many :clicks, dependent: :destroy
@@ -81,6 +82,18 @@ class Pledge < ActiveRecord::Base
   #Clicks association
   def have_donated?(ip)
     clicks.exists?(request_ip: ip)
+  end
+
+  #Invoices
+  def generate_invoice
+    invoice = self.create_invoice(clicks: clicks_count, click_donation: amount_per_click, due: clicks_count*amount_per_click)
+    notify_invoice(invoice)    
+  end
+
+  def notify_invoice(invoice)
+    sponsor.users.each do |user|
+      InvoiceNotification.new_invoice(invoice, user).deliver
+    end
   end
 
   private

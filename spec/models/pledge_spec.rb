@@ -20,6 +20,7 @@ describe Pledge do
   it { should have_one(:fundraiser).through(:campaign) }
   it { should have_one(:picture).dependent(:destroy) }
   it { should have_one(:video).dependent(:destroy) }
+  it { should have_one(:invoice) }
   it { should have_many(:coupons).dependent(:destroy) }
   it { should have_many(:sweepstakes).dependent(:destroy) }
   it { should have_many(:clicks).dependent(:destroy) }

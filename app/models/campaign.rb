@@ -77,6 +77,8 @@ class Campaign < ActiveRecord::Base
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
+    #generate invoice
+    pledges.accepted.each(&:generate_invoice)
   end
 
   def launch!
