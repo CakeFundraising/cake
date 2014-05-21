@@ -43,6 +43,7 @@ class Campaign < ActiveRecord::Base
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
 
   scope :with_paid_invoices, ->{ past.includes(:invoices).where('invoices.status = ?', :paid).references(:invoices) }
+  # scope :with_paid_invoices, ->{ past.includes(:invoices).where('invoices.status = ? AND (invoices.status = ? AND invoices.status IN (?))', :paid, :paid, [:due_to_pay, :in_arbitration]).references(:invoices) }
   scope :with_outstanding_invoices, ->{ past.includes(:invoices).where.not('invoices.status = ?', :paid).references(:invoices) }
 
   after_initialize do

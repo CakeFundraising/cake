@@ -45,10 +45,11 @@ describe Fundraiser do
   end
 
   context 'Association methods' do
-    let(:fundraiser){ FactoryGirl.create(:fundraiser) }
-    let(:campaigns){ create_list(:campaign, 5, fundraiser: fundraiser) }
+    let!(:fundraiser){ FactoryGirl.create(:fundraiser) }
 
     describe "Pledges" do
+      let!(:campaigns){ create_list(:campaign, 5, fundraiser: fundraiser) }
+      
       it "should show a collection of fundraiser's accepted pledges" do
         accepted_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
         fundraiser.pledges.accepted.reload.should == accepted_pledges
@@ -66,6 +67,7 @@ describe Fundraiser do
     end
 
     describe "Sponsors" do
+      let!(:campaigns){ create_list(:campaign, 5, fundraiser: fundraiser) }
       # Sponsors are the sponsors of FR's accepted pledges
       it "should show a collection of fundraiser's sponsors" do
         accepted_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
@@ -77,5 +79,43 @@ describe Fundraiser do
         fundraiser.sponsors.should_not include(rejected_pledges.map(&:sponsor))
       end
     end
+
+    context 'Campaigns' do
+      let!(:included_campaign){ FactoryGirl.create(:past_campaign, fundraiser: fundraiser) }
+      let!(:not_included_campaign){ FactoryGirl.create(:past_campaign, fundraiser: fundraiser) }
+
+      let!(:included_pledge){ FactoryGirl.create(:pledge, campaign: included_campaign) }
+      let!(:not_included_pledge){ FactoryGirl.create(:pledge, campaign: not_included_campaign) }
+
+      describe "with_paid_invoices" do
+        let!(:paid_invoice){ FactoryGirl.create(:invoice, pledge: included_pledge, status: :paid) }
+        let!(:not_paid_invoice){ FactoryGirl.create(:invoice, pledge: not_included_pledge, status: :due_to_pay) }
+
+        it "should not include campaigns with unpaid invoices" do
+          fundraiser.campaigns.with_paid_invoices.should_not include(not_included_campaign)
+        end
+
+        it "should include only campaigns with paid invoices" do
+          fundraiser.campaigns.with_paid_invoices.should == [included_campaign]
+        end
+
+        it "should not include a campaign with both paid and unpaid invoices" do
+          not_included_invoice = FactoryGirl.create(:invoice, pledge: included_pledge, status: :due_to_pay)
+
+          included_campaign.invoices.should include(paid_invoice)
+          included_campaign.invoices.should include(not_included_invoice)
+          fundraiser.campaigns.with_paid_invoices.should_not include(included_campaign)
+        end
+      end
+
+      # describe "with_outstanding_invoices" do
+      #   it "should only include not paid invoices" do
+      #   end
+
+      #   it "should not include paid invoices" do
+      #   end
+      # end
+    end
+
   end
 end

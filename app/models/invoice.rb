@@ -10,4 +10,6 @@ class Invoice < ActiveRecord::Base
 
   monetize :click_donation_cents
   monetize :due_cents
+
+  scope :outstanding, ->{ where.not(status: :paid) }
 end

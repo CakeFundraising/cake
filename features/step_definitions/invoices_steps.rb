@@ -21,12 +21,15 @@ end
 Then(/^he should see his outstanding invoices$/) do
   within(:css, '#outstanding_invoices') do
     page.should have_selector('.invoice', count: @pending_invoices.count)
+    page.should have_selector('.pay_button', count: @pending_invoices.count) if model(:sponsor).present?
   end
 end
 
 Then(/^he should see his past invoices$/) do
   within(:css, '#past_invoices') do
     page.should have_selector('.invoice', count: @past_invoices.count)
+    page.should_not have_selector('.pay_button') if model(:sponsor).present?
+    page.should_not have_selector('.arbitration_button')
   end
 end
 

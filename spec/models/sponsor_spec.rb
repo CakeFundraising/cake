@@ -111,5 +111,57 @@ describe Sponsor do
         @sponsor.fundraisers.should_not include(rejected_pledges.map(&:fundraiser))
       end
     end
+
+    context 'Invoices' do
+      describe "#outstanding_invoices" do
+        before(:each) do
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
+          @past_pledges.each do |pledge|
+            create_list(:invoice, 3, pledge: pledge)
+            create_list(:pending_invoice, 3, pledge: pledge)
+          end
+        end
+
+        it "should not include paid invoices" do
+          @sponsor.outstanding_invoices.each do |invoice|
+            invoice.status.should_not == 'paid'
+          end
+        end
+
+        it "should list invoices of past accepted pledges" do
+          @sponsor.outstanding_invoices.each do |invoice|
+            invoice.pledge.status.should == 'accepted'
+            invoice.pledge.should be_past
+            invoice.pledge.should_not be_active
+          end
+        end
+      end
+
+      describe "#past_invoices" do
+        before(:each) do
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
+          @past_pledges.each do |pledge|
+            create_list(:invoice, 3, pledge: pledge)
+            create_list(:pending_invoice, 3, pledge: pledge)
+          end
+        end
+
+        it "should include only paid invoices" do
+          @sponsor.past_invoices.each do |invoice|
+            invoice.status.should == 'paid'
+          end
+        end
+
+        it "should list invoices of past accepted pledges" do
+          @sponsor.past_invoices.each do |invoice|
+            invoice.pledge.status.should == 'accepted'
+            invoice.pledge.should be_past
+            invoice.pledge.should_not be_active
+          end
+        end
+      end
+    end
+
   end
+  
 end

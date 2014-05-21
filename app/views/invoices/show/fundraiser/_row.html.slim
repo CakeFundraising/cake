@@ -4,4 +4,4 @@ tr.invoice
   td = humanized_money_with_symbol invoice.click_donation
   td = humanized_money_with_symbol invoice.due
   td = invoice.status
-  td = link_to "Request Arbitration", nil, class:'btn btn-default'
+  td = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button' unless invoice.paid?
