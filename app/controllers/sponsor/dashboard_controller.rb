@@ -6,6 +6,8 @@ class Sponsor::DashboardController < ApplicationController
   end
 
   def billing
+    @campaigns_with_outstanding_invoices = current_sponsor.campaigns.with_outstanding_invoices
+    @campaigns_with_past_invoices = current_sponsor.campaigns.with_paid_invoices
   end
 
   def pledge_requests

@@ -1,1 +1,15 @@
 h2 Billing
+
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#outstanding" Outstanding Invoices
+  li 
+    a data-toggle="tab" href="#past" Past Invoices
+
+.tab-content
+  #outstanding.tab-pane.active
+    #outstanding_invoices.panel-group
+      = render partial:'invoices/show/sponsor/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
+  #past.tab-pane
+    #past_invoices.panel-group
+      = render partial:'invoices/show/sponsor/collapse', collection: @campaigns_with_past_invoices, as: :campaign

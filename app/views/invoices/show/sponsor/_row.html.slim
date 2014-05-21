@@ -1,0 +1,8 @@
+tr.invoice
+  td = auto_link invoice.fundraiser
+  td = invoice.clicks
+  td = humanized_money_with_symbol invoice.click_donation
+  td = humanized_money_with_symbol invoice.due
+  td = invoice.status
+  td = link_to "Pay", nil, class:'btn btn-primary'
+  td = link_to "Request Arbitration", nil, class:'btn btn-default'

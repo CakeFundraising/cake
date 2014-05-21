@@ -31,6 +31,8 @@ Feature: Sponsor Dashboard
     Then he should see his fundraisers
 
   Scenario: Billing
+    And 5 pending invoices from that sponsor exist
+    And 5 past invoices from that sponsor exist
     When he visits the sponsor billing page
-    Then he should see his sponsor outstanding invoices
-    Then he should see his sponsor past invoices
+    Then he should see his outstanding invoices
+    Then he should see his past invoices

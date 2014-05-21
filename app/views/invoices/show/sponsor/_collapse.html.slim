@@ -1,0 +1,18 @@
+.campaign_panel.panel.panel-default
+  .panel-heading
+    h4.panel-title
+      a data-parent="#accordion" data-toggle="collapse" href="##{campaign.id}" Open
+  .panel-collapse.collapse id=(campaign.id)
+    .panel-body
+      table.table.table-hover.table-bordered.data-table
+        thead
+          tr
+            th = Fundraiser.model_name.human
+            th = Invoice.human_attribute_name :clicks
+            th = Invoice.human_attribute_name :donation_click
+            th = Invoice.human_attribute_name :due
+            th = Invoice.human_attribute_name :status
+            th
+            th
+        tbody
+          = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices, as: :invoice

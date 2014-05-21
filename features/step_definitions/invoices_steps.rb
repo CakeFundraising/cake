@@ -29,3 +29,14 @@ Then(/^he should see his past invoices$/) do
     page.should have_selector('.invoice', count: @past_invoices.count)
   end
 end
+
+#Sponsor Billing
+Given(/^(\d+) pending invoices from that sponsor exist$/) do |quantity|
+  pledge = FactoryGirl.create(:past_pledge, sponsor: model(:sponsor) )
+  @pending_invoices = FactoryGirl.create_list(:pending_invoice, 5, pledge: pledge)
+end
+
+Given(/^(\d+) past invoices from that sponsor exist$/) do |quantity|
+  pledge = FactoryGirl.create(:past_pledge, sponsor: model(:sponsor) )
+  @past_invoices = FactoryGirl.create_list(:invoice, 5, pledge: pledge)
+end
