@@ -1,0 +1,43 @@
+h1 Set your Bank Account
+
+= semantic_form_for :bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
+  = f.inputs do
+    = f.input :name, label: t('activerecord.attributes.bank_account.name')
+    = f.input :type, as: :select, collection: [:Individual, :Corporation], label: t('activerecord.attributes.bank_account.type')
+    = f.input :email, label: t('activerecord.attributes.bank_account.email')
+    = f.input :routing_number, label: t('activerecord.attributes.bank_account.routing_number')
+    = f.input :account_number, label: t('activerecord.attributes.bank_account.account_number')
+    = f.input :token, as: :hidden
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+
+= render :partial => 'stripe/js'
+
+javascript:
+  Cake.bank_account = function(){
+    Stripe.setPublishableKey('#{Rails.configuration.stripe[:publishable_key]}');
+
+    var stripeResponseHandler = function(status, response){
+      if(response.error){
+        alert(response.error.message);
+      }else{
+        var token = response.id;
+        $('#bank_account_token').val(token);
+        $('form.bank_account').submit();
+      }
+    }
+
+    $('#bank_account_submit_action').unbind('click').click(function(e){
+      e.preventDefault();
+      routing = $('#bank_account_routing_number').val();
+      account = $('#bank_account_account_number').val();
+
+      Stripe.bankAccount.createToken({
+        country: 'US',
+        routingNumber: routing,
+        accountNumber: account,
+      }, stripeResponseHandler);
+
+    });
+
+  }();

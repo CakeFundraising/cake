@@ -13,7 +13,7 @@
   script src="https://checkout.stripe.com/checkout.js" 
 
 javascript:
-  Cake.stripe_ckeckout = function(){
+  Cake.direct_donation = function(){
     var handler = StripeCheckout.configure({
       key: "#{campaign.fundraiser.stripe_account.stripe_publishable_key}",
       image: '#{campaign.avatar.url(:square)}',

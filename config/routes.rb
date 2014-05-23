@@ -43,7 +43,13 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :fundraisers, except: :destroy
+  resources :fundraisers, except: :destroy do
+    member do
+      get :bank_account
+      patch :set_bank_account
+    end  
+  end
+
   resources :sponsors, except: :destroy
   
   resources :pledge_requests do
