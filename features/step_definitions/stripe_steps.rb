@@ -35,3 +35,8 @@ Then(/^a charge of (\d+) dollars should be done to the credit card$/) do |amount
   @direct_donation.charge.resource.amount.should == amount.to_i*100
   WebMock.enable!
 end
+
+#Invoice payment
+Given(/^an invoice for that pledge exists$/) do
+  @invoice = FactoryGirl.create(:pending_invoice, pledge: @past_pledge)
+end

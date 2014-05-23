@@ -12,6 +12,7 @@ class Campaign < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
+  has_many :invoices, through: :pledges
   has_many :sponsors, through: :pledges
 
   has_many :sponsor_categories, validate: false, dependent: :destroy do
@@ -40,6 +41,17 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{where("? BETWEEN launch_date AND end_date", Date.today)}
   scope :past, ->{ where("end_date < ?", Date.today) }
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
+
+  scope :with_invoices, ->{ eager_load(:invoices) }
+
+  scope :with_paid_invoices, ->{ 
+    past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
+    # past.select('DISTINCT "campaigns".*').joins('LEFT OUTER JOIN "pledges" ON "pledges"."campaign_id" = "campaigns"."id" LEFT OUTER JOIN "invoices" ON "invoices"."pledge_id" = "pledges"."id" AND "invoices"."status" = \'due_to_pay\' OR "invoices"."status" = \'in_arbitration\'').where('"invoices"."pledge_id" IS NULL')
+  }
+  scope :with_outstanding_invoices, ->{ 
+    past.with_invoices.reject{|c| c.invoices.blank? || c.invoices.map(&:status).include?('paid') }
+    # past.select('DISTINCT "campaigns".*').joins('LEFT OUTER JOIN "pledges" ON "pledges"."campaign_id" = "campaigns"."id" INNER JOIN "invoices" ON "invoices"."pledge_id" = "pledges"."id" AND "invoices"."status" = \'paid\'').where('"invoices"."pledge_id" IS NULL')
+  }
 
   after_initialize do
     if self.new_record?
@@ -77,6 +89,8 @@ class Campaign < ActiveRecord::Base
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
+    #generate invoice
+    pledges.accepted.each(&:generate_invoice)
   end
 
   def launch!

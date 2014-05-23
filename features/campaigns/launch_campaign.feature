@@ -6,7 +6,7 @@ Feature: Campaign Launch
 
   Background:
     Given a fundraiser exists
-    And a campaign of that fundraiser exists
+    And a inactive campaign of that fundraiser exists
     And that fundraiser is logged in
 
   Scenario: Launch campaign from Active Campaigns page
@@ -14,11 +14,11 @@ Feature: Campaign Launch
     And he press the "Launch Campaign" link
     Then he should see "Campaign is live now!"
     And he should be taken to the campaign's page
-    And the campaign should have a "live" status
+    And the inactive campaign should have a "live" status
 
   Scenario: Launch campaign from Campaign's page
     When he visits the campaign's page
     And he press the "Launch Campaign" link
     Then he should see "Campaign is live now!"
     And he should be taken to the campaign's page
-    And the campaign should have a "live" status
+    And the inactive campaign should have a "live" status

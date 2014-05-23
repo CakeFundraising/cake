@@ -85,6 +85,15 @@ class PledgesController < InheritedResources::Base
     redirect_to resource, notice: 'Pledge was successfully launched.'
   end
 
+  def click
+    if resource.have_donated?(request.remote_ip)
+      redirect_to resource, alert:"You can contribute to any pledge just once!"
+    else
+      resource.clicks.build(request_ip: request.remote_ip)
+      redirect_to 'http://'+resource.website_url if resource.save!
+    end
+  end
+
   def permitted_params
     params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],

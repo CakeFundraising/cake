@@ -9,10 +9,13 @@ class Pledge < ActiveRecord::Base
   has_one :fundraiser, through: :campaign
   has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
+  has_one :invoice
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
+  has_many :clicks, dependent: :destroy
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
+  delegate :past?, :active?, to: :campaign
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
@@ -74,6 +77,27 @@ class Pledge < ActiveRecord::Base
   def notify_rejection
     sponsor.users.each do |user|
       PledgeNotification.rejected_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_rejected
+    end
+  end
+
+  #Clicks association
+  def have_donated?(ip)
+    clicks.exists?(request_ip: ip)
+  end
+
+  #Invoices
+  def generate_invoice
+    create_invoice
+    notify_invoice(invoice)    
+  end
+
+  def create_invoice
+    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: clicks_count*amount_per_click).save!
+  end
+
+  def notify_invoice(invoice)
+    sponsor.users.each do |user|
+      InvoiceNotification.new_invoice(invoice, user).deliver
     end
   end
 

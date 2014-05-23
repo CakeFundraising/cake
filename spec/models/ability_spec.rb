@@ -67,6 +67,7 @@ shared_examples 'an owned object' do
 end
 
 describe Ability do
+  ##### Sponsor Abilities #####
   describe 'Sponsor' do
     before(:each) do
       @sponsor = FactoryGirl.create(:sponsor)
@@ -143,6 +144,7 @@ describe Ability do
     end
   end
 
+  ##### Fundraiser Abilities #####
   describe "Fundraiser" do
     before(:each) do
       @fundraiser = FactoryGirl.create(:fundraiser)
@@ -248,6 +250,7 @@ describe Ability do
     end
   end
 
+  ##### Pledges #####
   describe "Pledges" do
     context 'actions' do
       describe "#badge" do
@@ -268,6 +271,27 @@ describe Ability do
         it "should be available for a guest user" do
           ability = Ability.new(nil)
           ability.should be_able_to(:badge, pledge)
+        end
+      end
+
+      describe "#click" do
+        let(:pledge) { FactoryGirl.create(:pledge) }
+        let(:sponsor) { FactoryGirl.create(:sponsor) }
+        let(:fundraiser) { FactoryGirl.create(:fundraiser) }
+
+        it "should be available for a sponsor" do
+          ability = Ability.new(sponsor.manager)
+          ability.should be_able_to(:click, pledge)
+        end
+
+        it "should be available for a fundraiser" do
+          ability = Ability.new(fundraiser.manager)
+          ability.should be_able_to(:click, pledge)
+        end
+
+        it "should be available for a guest user" do
+          ability = Ability.new(nil)
+          ability.should be_able_to(:click, pledge)
         end
       end
     end

@@ -10,6 +10,7 @@ class Sponsor < ActiveRecord::Base
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
   has_many :campaigns, through: :pledges
+  has_many :invoices, through: :pledges
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true
@@ -51,5 +52,14 @@ class Sponsor < ActiveRecord::Base
   end
 
   def rank
+  end
+
+  #Invoices
+  def outstanding_invoices
+    invoices.outstanding.merge(pledges.past)
+  end
+
+  def past_invoices
+    invoices.paid.merge(pledges.past)
   end
 end

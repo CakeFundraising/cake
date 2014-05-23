@@ -1,0 +1,33 @@
+.campaign_panel.panel.panel-default
+  .panel-heading
+    h4.panel-title
+      a data-parent="#accordion" data-toggle="collapse" href="##{campaign.id}"
+        nav.navbar
+          .container-fluid
+            .navbar-header
+              .navbar-brand = campaign.title
+            ul.nav.navbar-nav.navbar-right
+              li
+                strong = campaign.end_date
+                div = Campaign.human_attribute_name :end_date
+              li
+                strong = campaign.end_date
+                div = Campaign.human_attribute_name :raised
+              li
+                strong = campaign.end_date
+                div = Campaign.human_attribute_name :goal
+            /! /.navbar-collapse
+          /! /.container-fluid
+  .panel-collapse.collapse id=(campaign.id)
+    .panel-body
+      table.table.table-hover.table-bordered.data-table
+        thead
+          tr
+            th = Sponsor.model_name.human
+            th = Invoice.human_attribute_name :clicks
+            th = Invoice.human_attribute_name :donation_click
+            th = Invoice.human_attribute_name :due
+            th = Invoice.human_attribute_name :status
+            th
+        tbody
+          = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.decorate, as: :invoice

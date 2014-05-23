@@ -9,6 +9,7 @@ class Fundraiser < ActiveRecord::Base
   has_many :campaigns, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, through: :campaigns
+  has_many :invoices, through: :pledges
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true

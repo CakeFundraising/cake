@@ -12,6 +12,7 @@ describe Campaign do
   it { should have_many(:sponsor_categories).dependent(:destroy) }
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }
+  it { should have_many(:invoices).through(:pledges) }
 
   it { should have_many(:direct_donations).dependent(:destroy) }
 
@@ -43,11 +44,11 @@ describe Campaign do
   context 'Actions' do
     describe "#launch" do
       before(:each) do
-        @campaign = FactoryGirl.create(:campaign)
+        @campaign = FactoryGirl.create(:inactive_campaign)
       end
 
       it "should set a live status" do
-        @campaign.status.should == "inactive"
+        @campaign.status.should == :inactive
         @campaign.launch!
         @campaign.status.should == :live
       end

@@ -122,3 +122,7 @@ end
 After do
   OmniAuth.config.test_mode = false
 end
+
+Before('@truncateDB') do
+  DatabaseCleaner.strategy = :truncation
+end

@@ -7,6 +7,8 @@ class Fundraiser::DashboardController < ApplicationController
 
   def billing
     @fundraiser = current_fundraiser.decorate
+    @campaigns_with_outstanding_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_outstanding_invoices
+    @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
   end
 
   def pending_pledges

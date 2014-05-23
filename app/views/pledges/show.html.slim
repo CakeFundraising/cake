@@ -25,7 +25,8 @@
               span m.
           .row
            .col-md-12.click-btn
-              button.btn.btn-primary.btn-block Click to help. It's free
+              = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
+
               p.timer-ital Our Pledge:
               div
               .help-block.donation_per_click
@@ -65,5 +66,6 @@
         .row
       .coupons
         = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
+
 css:
   .hero { background-image: url("#{@pledge.banner.url(:large)}"); }

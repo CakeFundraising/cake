@@ -255,7 +255,9 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # Put this in config/initializers/devise.rb with the rest of your Devise configuration
-  config.omniauth :stripe_connect, 'ca_42CxDvyNbYgal8JucbXyQATSYhHIUMbp', 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4',
-    :scope => 'read_write', # or :scope => 'read_only'
-    :stripe_landing => 'login' # or :stripe_landing => 'register'
+  if Rails.env.production?
+    config.omniauth :stripe_connect, 'ca_42Cxijos1IVAsQ4NKEraUUbHCdpy7O2n', ENV['STRIPE_SECRET_KEY'], :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
+  else
+    config.omniauth :stripe_connect, 'ca_42CxDvyNbYgal8JucbXyQATSYhHIUMbp', 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4', :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
+  end
 end

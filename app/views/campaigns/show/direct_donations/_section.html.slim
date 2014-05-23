@@ -1,16 +1,17 @@
-- if campaign.fundraiser.stripe_account?
-  .row
-    .col-md-12
-      .level-divide
-        .center
-          h2 Your click will make a difference!
-          p Every Dollar Helps! Please donate if you can!
-          = render partial:'direct_donations/form', locals:{campaign: campaign}
-          
-- elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
-  .alert.alert-warning 
-    span Your Campaign can't receive Direct Donations yet.
-    div Please connect your Stripe Account
-    div 
-      = link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect' do
-        span Connect with Stripe
+- if campaign.live?
+  - if campaign.fundraiser.stripe_account?
+    .row
+      .col-md-12
+        .level-divide
+          .center
+            h2 Your click will make a difference!
+            p Every Dollar Helps! Please donate if you can!
+            = render partial:'direct_donations/form', locals:{campaign: campaign}
+            
+  - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
+    .alert.alert-warning 
+      span Your Campaign can't receive Direct Donations yet.
+      div Please connect your Stripe Account
+      div 
+        = link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect' do
+          span Connect with Stripe

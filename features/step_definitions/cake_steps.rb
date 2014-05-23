@@ -31,3 +31,6 @@ Then(/^he should see (?:a|an)?(\d+)? edit button(?:s)?$/) do |quantity|
     page.should have_css(".edit_button")
   end
 end
+
+Given(/^a unique user visits Cake$/) do
+end

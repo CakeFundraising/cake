@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516162254) do
+ActiveRecord::Schema.define(version: 20140520141017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 20140516162254) do
   add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
+  create_table "clicks", force: true do |t|
+    t.string   "request_ip"
+    t.string   "email"
+    t.integer  "pledge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree
+
   create_table "coupons", force: true do |t|
     t.string   "title"
     t.datetime "expires_at"
@@ -148,6 +158,18 @@ ActiveRecord::Schema.define(version: 20140516162254) do
     t.integer  "causes_mask"
   end
 
+  create_table "invoices", force: true do |t|
+    t.integer  "clicks",                  limit: 8
+    t.integer  "click_donation_cents",              default: 0,            null: false
+    t.string   "click_donation_currency",           default: "USD",        null: false
+    t.integer  "due_cents",               limit: 8
+    t.string   "due_currency"
+    t.string   "status",                            default: "due_to_pay"
+    t.integer  "pledge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.string   "address"
     t.string   "country_code"
@@ -187,17 +209,18 @@ ActiveRecord::Schema.define(version: 20140516162254) do
     t.string   "mission"
     t.string   "headline"
     t.text     "description"
-    t.integer  "amount_per_click_cents",    default: 0,         null: false
-    t.string   "amount_per_click_currency", default: "USD",     null: false
+    t.integer  "amount_per_click_cents",              default: 0,         null: false
+    t.string   "amount_per_click_currency",           default: "USD",     null: false
     t.string   "donation_type"
-    t.integer  "total_amount_cents",        default: 0,         null: false
-    t.string   "total_amount_currency",     default: "USD",     null: false
+    t.integer  "total_amount_cents",                  default: 0,         null: false
+    t.string   "total_amount_currency",               default: "USD",     null: false
     t.string   "website_url"
     t.integer  "campaign_id"
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                    default: "pending"
+    t.string   "status",                              default: "pending"
+    t.integer  "clicks_count",              limit: 8, default: 0
   end
 
   create_table "sponsor_categories", force: true do |t|
