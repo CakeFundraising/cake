@@ -138,6 +138,156 @@ footer {
   border-top: 1px dotted $gray-lighter;
   padding-top: 10px;
 }
+// Register - Choose Styles ------------------------------------------------------------------
+.choose-role {
+  padding: 40px 0;
+}
+.fundraisers-cir {
+  background-image: image-url('fr-circle.png');
+  width: 351px;
+  height: 351px;
+  text-align: center;
+  color: #fff;
+  padding: 70px 30px 0;
+  margin: 0 auto;
+}
+.sponsors-cir {
+  background-image: image-url('sp-circle.png');
+  width: 351px;
+  height: 351px;
+  text-align: center;
+  color: #fff;
+  padding: 70px 30px 0;
+  margin: 0 auto;
+}
+.start-now-btn {
+  font-size: 25px;
+  border: 1px solid white;
+  margin-top: 10px;
+}
+.divider-vert {
+  border-right: 1px dotted $gray-light;
+  @media (max-width: $screen-md-min) {
+    border: none;
+    margin: 0 auto 50px;
+  }
+}
+.explore {
+  margin: 25px auto;
+}
+
+// Sign Up Styles ------------------------------------------------------------------
+
+.signup-wrap {
+  padding: 0 8%;
+  color: $text-color-light;
+  margin: auto;
+  text-align: center;
+  p {
+    font-size: 14px;
+    font-style: italic;
+    color: $text-color-light;
+    margin-top: -35px;
+    background-color: $body-bg;
+    padding: 0 15px;
+    display: inline-block;
+    position: relative;
+  }
+}
+.providers {
+  a {
+    display: block;
+    margin: 0 auto 10px;
+  }
+}
+.inputs > legend {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  border: none;
+  span {
+    position: relative;
+    &:before, &:after {
+      border-top: 1px solid #dfdfdf;
+      content:"";
+      position: absolute;
+      top: 9px;
+      right: 8em;
+      bottom: 0;
+      width: 140%;
+    }
+    &:after {
+      position: absolute;
+      top: 9px;
+      left:8em;
+      right:0;
+      bottom: 0;
+    }
+  } 
+}
+p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 45px;
+  @media (max-width: $screen-md-min) {
+    margin-top: 45px;
+  }
+  span {
+    position: relative;
+    &:before, &:after {
+      border-top: 1px solid #dfdfdf;
+      content:"";
+      position: absolute;
+      top: 9px;
+      right: 11em;
+      bottom: 0;
+      width: 80%;
+    }
+    &:after {
+      position: absolute;
+      top: 9px;
+      left: 11em;
+      right: 0;
+      bottom: 0;
+    }
+  } 
+}
+// Sign In Styles ------------------------------------------------------------------
+.sign-in-social {
+  margin-top: 25px;
+}
+.inputs {
+  text-align: left;
+}
+// Fundraiser Dashboard Styles -----------------------------------------------------------------------
+.fr-dash {
+  margin: 45px 0;
+}
+.fr-dash-avatar {
+  max-width: 160px;
+}
+.media-heading {
+  color: $gray-dark;
+  font-size: 22px;
+}
+.fr-name {
+  color: $brand-primary;
+}
+.link-stripe-account {
+  font-style: italic;
+  font-size: 12px;
+  color: $gray-light;
+  padding-top: 5px;
+}
+.fr-manager-email {
+  margin-bottom: 8px;
+}
+.fr-manager-email-edit {
+  padding-left: 5px;
+}
 
 // Profile Page Styles ------------------------------------------------------------------
 .hero {

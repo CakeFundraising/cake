@@ -6,8 +6,8 @@
   .text-center
     h1 Sign in
 
-  .row
-    .col-md-3.col-md-offset-3
+  .row.choose-role
+    .col-md-6.signup-wrap.divider-vert
       = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
         = f.inputs nil do
           = f.input :email
@@ -16,8 +16,8 @@
         = f.actions do
           = f.action :submit, label: 'Sign in', button_html: {class: 'btn btn-success btn-lg btn-block'}
 
-    .col-md-3
-      .providers.text-center
+    .col-md-6.signup-wrap
+      .providers.text-center.sign-in-social
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
               = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg'
