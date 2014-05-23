@@ -1,19 +1,36 @@
-= link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
+.row.fr-dash
+  = render partial:'fundraisers/media'
 
-= render partial:'fundraisers/media'
 
-hr
-.analytics
-  h3 Active Campaign Donations $7,899
-  h4 Outstanding Invoices $32,000 
   .row
-    .col-md-6
-      = basic_list_item("Total Fundraised Lifetime", "$128")
-      = basic_list_item("Overall Fundraiser Ranking", "3")
-      = basic_list_item("Ranking in Cause", "6")
-      = basic_list_item("Ranking in Location", "2")
-    .col-md-6
-      = basic_list_item("Total Clicks Generated", "587,551,666")
-      = basic_list_item("Avg. Pledge Efficency", "23%")
-      = basic_list_item("Avg. Reach", "2,888,996")
-      = basic_list_item("Avg. Clicks/Campaign", "3,588,146")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats $7,678
+            p Active Campaign Donations
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Total Fundraised Lifetime", "$128")
+            = basic_list_item("Invoice Due", "3")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats $7,678
+            p Active Campaign Donations
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Top Cause Rank", "587,551,666")
+            = basic_list_item("Ranking in Location", "23%")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats $7,678
+            p Active Campaign Donations
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Avg. Clicks/Campaign", "3,588,146")
+            = basic_list_item("Avg. Reach", "2,888,996")
+            = basic_list_item("Total Clicks for Sponsors", "42,888,996")

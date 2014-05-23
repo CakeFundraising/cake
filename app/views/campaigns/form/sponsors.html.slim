@@ -1,14 +1,16 @@
-= render partial:'campaigns/form/actions'
+.row
+  .col-xs-12.campaign-steps
+    = render partial:'campaigns/form/actions'
 
-ul.nav.nav-pills
-  li
-    = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
-  li
-    = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
-  li.active
-    a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
-  li
-    = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
+    ul.nav.nav-pills
+      li
+        = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+      li.active
+        a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
+      li
+        = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
     
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active

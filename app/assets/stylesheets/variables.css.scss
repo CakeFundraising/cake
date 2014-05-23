@@ -28,7 +28,7 @@ $border-radius-small:       2px !default;
 $body-bg:               $main-background !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
-
+$text-color-light:		$gray-light;
 //** Global textual link color.
 $link-color:            $brand-primary !default;
 //** Link hover color set via `darken()` function.

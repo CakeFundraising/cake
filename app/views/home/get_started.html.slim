@@ -4,14 +4,20 @@
 
 .header.text-center
   h1 Let's Get Started!
-  .lead Thanks for signing up. Now, let start your first steps on CakeFundraising.
+  p.text-muted Thanks for signing up. Now, let start your first steps on CakeFundraising.
 
-.row.choose-role
-  .col-md-3.col-md-offset-2.fundraisers
-    h2 Fundraisers,
-    p create your "donation-per-click" campaign today!
-    = link_to "Start Now", new_user_registration_path(role: :fundraiser), class:'btn btn-success btn-lg btn-block'
-  .col-md-3.col-md-offset-2.sponsors
-    h2 Sponsors,
-    p support great causes on a risk free "donation-per-click" basis
-    = link_to "Start Now", new_user_registration_path(role: :sponsor), class:'btn btn-primary btn-lg btn-block'
+.row.choose-role 
+  .col-md-6.divider-vert
+    .fundraisers-cir
+      h2 Fundraisers,
+      p create your free "donation-per-click" campaign today!
+      = link_to "Start Now!", new_user_registration_path(role: :fundraiser), class:'btn btn-success btn-lg start-now-btn'
+  .col-md-6
+    .sponsors-cir
+      h2 Sponsors,
+      p support great causes on a risk free "donation-per-click" basis
+      = link_to "Start Now!", new_user_registration_path(role: :sponsor), class:'btn btn-primary btn-lg start-now-btn'
+.row
+  .col-md-12.text-center
+    p.text-muted.explore
+      | I will do it later, I want to <a href="#"> explore CakeFundraising

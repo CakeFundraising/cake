@@ -1,10 +1,12 @@
 .media
+  = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
   = link_to fundraiser_path(@fundraiser), class:'pull-left' do
-    = image_tag @fundraiser.avatar.medium.url, class:'media-object' 
+    = image_tag @fundraiser.avatar.medium.url, class:'media-object fr-dash-avatar' 
   .media-body
     h4.media-heading = @fundraiser.name
     .data.help-block
-      div = @fundraiser.manager_name
-      div = @fundraiser.manager_email
-      div = link_to "Edit", public_profile_path
+      div.fr-name = @fundraiser.manager_name
+      div.fr-manager-email 
+	      span = @fundraiser.manager_email
+	      span.fr-manager-email-edit = link_to "Edit", public_profile_path
       = stripe_connect
