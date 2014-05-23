@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :stripe_account do
     uid { SecureRandom.hex(8) }
-    stripe_publishable_key "pk_test_QWtA6xTPiblpPPy3P2fWDpMv"
-    token "sk_test_sLTrHz6H1XgFXD1XPBE3VDkR"
+    stripe_publishable_key "pk_test_av3DexUAm41o6QL2yJOoJLLd"
+    token "sk_test_gipO7Xq9sytJOy2bmlfmtVob"
   end
 end
