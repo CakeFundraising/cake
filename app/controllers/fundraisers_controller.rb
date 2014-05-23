@@ -21,11 +21,19 @@ class FundraisersController < InheritedResources::Base
   end
 
   def bank_account
+    @bank_account = BankAccount.new
+    render 'bank_accounts/new'
   end
 
   def set_bank_account
     @stripe_account = resource.stripe_account
-    redirect_to fundraiser_home_path, notice: 'You have connected your Stripe account successfully.' if @stripe_account.create_stripe_recipient(permitted_params[:bank_account])
+    @bank_account = BankAccount.new(permitted_params[:bank_account])
+
+    if @bank_account.valid?
+      redirect_to fundraiser_home_path, notice: 'You have connected your Stripe account successfully.' if @stripe_account.create_stripe_recipient(permitted_params[:bank_account])
+    else
+      render 'bank_accounts/new'
+    end
   end
 
   def permitted_params

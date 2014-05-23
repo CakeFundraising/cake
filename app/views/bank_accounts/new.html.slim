@@ -1,12 +1,12 @@
 h1 Set your Bank Account
 
-= semantic_form_for :bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
+= semantic_form_for @bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
   = f.inputs do
-    = f.input :name, label: t('activerecord.attributes.bank_account.name')
-    = f.input :type, as: :select, collection: [:Individual, :Corporation], label: t('activerecord.attributes.bank_account.type')
-    = f.input :email, label: t('activerecord.attributes.bank_account.email')
-    = f.input :routing_number, label: t('activerecord.attributes.bank_account.routing_number')
-    = f.input :account_number, label: t('activerecord.attributes.bank_account.account_number')
+    = f.input :name
+    = f.input :type, as: :select, collection: [:Individual, :Corporation]
+    = f.input :email
+    = f.input :routing_number
+    = f.input :account_number
     = f.input :token, as: :hidden
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
