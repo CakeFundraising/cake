@@ -15,19 +15,17 @@ h1 Set your Bank Account
 
 javascript:
   Cake.bank_account = function(){
-    Stripe.setPublishableKey('#{Rails.configuration.stripe[:publishable_key]}');
-
     var stripeResponseHandler = function(status, response){
       if(response.error){
         alert(response.error.message);
       }else{
         var token = response.id;
         $('#bank_account_token').val(token);
-        $('form.bank_account').submit();
+        $('form.bank_account')[0].submit();
       }
     }
 
-    $('#bank_account_submit_action').unbind('click').click(function(e){
+    $('form.bank_account').submit(function(e){
       e.preventDefault();
       routing = $('#bank_account_routing_number').val();
       account = $('#bank_account_account_number').val();
@@ -37,7 +35,6 @@ javascript:
         routingNumber: routing,
         accountNumber: account,
       }, stripeResponseHandler);
-
     });
 
   }();

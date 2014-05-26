@@ -1,14 +1,9 @@
-When(/^he waits some seconds$/) do
-  sleep 10
-end
-
 Then(/^he should see some information about his Stripe account$/) do
   page.should have_content(model(:fundraiser).stripe_account.uid)
 end
 
 Then(/^a stripe account should be created for that fundraiser$/) do
   model(:fundraiser).stripe_account.should be_instance_of(StripeAccount)
-  model(:fundraiser).stripe_account.stripe_recipient_id.should_not be_nil
 end
 
 #Direct Donation

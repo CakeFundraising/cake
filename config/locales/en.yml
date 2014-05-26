@@ -45,6 +45,14 @@ en:
     pending: pending
     accepted: accepted
     rejected: rejected
+  activemodel:
+    attributes:
+      bank_account:
+        name: Owner Name
+        type: Account Type
+        email: Contact Email
+        routing_number: Routing Number
+        account_number: Account Number
   activerecord: # customize attribute names for models here
     models:
       campaign:
@@ -118,9 +126,3 @@ en:
       invoice: 
         donation_click: Donation/Click
         due: Donation Due
-      bank_account:
-        name: Owner Name
-        type: Account Type
-        email: Contact Email
-        routing_number: Routing Number
-        account_number: Account Number

@@ -55,6 +55,11 @@ class Fundraiser < ActiveRecord::Base
     pledges.accepted.active.eager_load(:sponsor).map(&:sponsor)
   end
 
+  #Stripe Account
+  def stripe_account?
+    stripe_account.present?
+  end
+
   def create_stripe_account(auth)
     self.build_stripe_account(
       uid: auth.uid,

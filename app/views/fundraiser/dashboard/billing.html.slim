@@ -1,10 +1,7 @@
 h2 Billing
 
-- if @fundraiser.stripe_account?
-  = link_to "https://manage.stripe.com/", target: :_blank, class: 'stripe-connect pull-right' do
-    span Go to Stripe
-- else
-  = stripe_connect_button
+.pull-right 
+  = stripe_buttons
 
 ul.nav.nav-tabs
   li.active

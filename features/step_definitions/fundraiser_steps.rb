@@ -13,7 +13,6 @@ Then(/^he should see his fundraiser home dashboard$/) do
   page.should have_link("Start New Campaign")
   page.should have_link("Edit")
   page.should have_content("Active Campaign Donations")
-  page.should have_content("Outstanding Invoices")
 end
 
 Then(/^he should see his active campaigns$/) do
