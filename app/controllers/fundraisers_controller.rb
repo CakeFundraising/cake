@@ -46,7 +46,7 @@ class FundraisersController < InheritedResources::Base
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption] 
       ],
-      bank_account: [:name, :type, :email, :token]
+      bank_account: [:name, :type, :email, :token, :tax_id]
     )
   end
 end

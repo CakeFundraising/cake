@@ -3,8 +3,10 @@ h1 Set your Bank Account
 = semantic_form_for @bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
   = f.inputs do
     = f.input :name
-    = f.input :type, as: :select, collection: [:Individual, :Corporation]
     = f.input :email
+    = f.input :type, as: :select, collection: [:Individual, :Corporation]
+    = f.input :tax_id
+    span.help-block The full SSN or tax ID for an individual, or the full EIN for a corporation.
     = f.input :routing_number
     = f.input :account_number
     = f.input :token, as: :hidden
