@@ -5,6 +5,8 @@ tr.invoice
   td = humanized_money_with_symbol invoice.due
   td = invoice.status
   - unless invoice.paid?
-    td 
-      = link_to "Pay", nil, class:'btn btn-primary pay_button'
+    td
+      .payment-section 
+        = render partial:'invoices/payment_form', locals:{item: invoice}
+        = link_to "Pay", nil, class:'btn btn-primary pay_button'
       = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button'

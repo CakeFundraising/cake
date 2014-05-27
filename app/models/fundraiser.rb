@@ -11,6 +11,8 @@ class Fundraiser < ActiveRecord::Base
   has_many :pledges, through: :campaigns
   has_many :invoices, through: :pledges
 
+  has_many :received_payments, as: :recipient, class_name:'Payment', dependent: :destroy
+
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
   

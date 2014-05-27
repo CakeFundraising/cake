@@ -8,6 +8,8 @@ class Invoice < ActiveRecord::Base
   has_one :fundraiser, through: :campaign
   has_one :sponsor, through: :pledge
 
+  has_one :payment, as: :item
+
   monetize :click_donation_cents
   monetize :due_cents
 

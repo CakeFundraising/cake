@@ -58,6 +58,10 @@ Cake::Application.routes.draw do
       patch :reject
     end
   end
+
+  scope :payments, controller: :payments do
+    post :invoice
+  end
   
   #FR Dashboard
   namespace :fundraiser, controller: :dashboard do

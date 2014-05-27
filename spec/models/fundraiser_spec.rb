@@ -16,14 +16,18 @@ describe Fundraiser do
   end
 
   it { should belong_to(:manager).class_name('User') }
+  
   it { should have_one(:location).dependent(:destroy) }
   it { should have_one(:picture).dependent(:destroy) }
   it { should have_one(:stripe_account).dependent(:destroy) }
+
   it { should have_many(:users) }
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:campaigns).dependent(:destroy) }
   it { should have_many(:pledges).through(:campaigns) }
   it { should have_many(:invoices).through(:pledges) }
+  
+  it { should have_many(:received_payments).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:location).update_only(true) }
   it { should accept_nested_attributes_for(:picture).update_only(true) }
