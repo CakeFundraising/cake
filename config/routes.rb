@@ -60,7 +60,7 @@ Cake::Application.routes.draw do
   end
 
   scope :payments, controller: :payments do
-    post :invoice
+    post :invoice_payment
   end
   
   #FR Dashboard

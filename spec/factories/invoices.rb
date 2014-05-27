@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :invoice do
-    clicks { rand(99999999) }
+    clicks { rand(99999) }
     click_donation_cents { rand(999) }
     due_cents { clicks*click_donation_cents }
     association :pledge, factory: :past_pledge

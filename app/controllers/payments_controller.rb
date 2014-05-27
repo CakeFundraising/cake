@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  def invoice
+  def invoice_payment
     @payment = Payment.new(permitted_params[:payment])        
     @payment.payer = current_sponsor
     @payment.recipient = @payment.item.fundraiser
