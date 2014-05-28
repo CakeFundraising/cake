@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527151349) do
+ActiveRecord::Schema.define(version: 20140528122943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -287,10 +287,12 @@ ActiveRecord::Schema.define(version: 20140527151349) do
     t.string   "uid"
     t.string   "stripe_publishable_key"
     t.string   "token"
-    t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_recipient_id"
+    t.string   "account_type"
+    t.integer  "account_id"
+    t.string   "customer_id"
   end
 
   add_index "stripe_accounts", ["uid"], name: "index_stripe_accounts_on_uid", unique: true, using: :btree

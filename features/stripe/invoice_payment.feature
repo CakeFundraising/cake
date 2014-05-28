@@ -22,3 +22,5 @@ Feature: Invoice Payment
     And he press the "Pay $1000.00" button within the popup
     Then he should see "Payment succeeded."
     And a payment for 1000 dollars should be created
+
+  #Scenario: Sponsor connected to Stripe

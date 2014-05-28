@@ -1,6 +1,7 @@
 class StripeAccount < ActiveRecord::Base
-  belongs_to :fundraiser
+  belongs_to :account, polymorphic: true
 
+  #Recipient Methods
   def create_stripe_recipient(bank_account)
     recipient = Stripe::Recipient.create(
       name: bank_account.name,

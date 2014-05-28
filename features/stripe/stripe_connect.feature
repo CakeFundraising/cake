@@ -11,3 +11,11 @@ Feature: Stripe Connect
     And he press the "Connect with Stripe" link
     Then he should see "Please add your bank account information"
     And a stripe account should be created for that fundraiser
+
+  Scenario: Sponsor Connect
+    Given a sponsor without stripe account exists
+    And that sponsor is logged in
+    When he visits the sponsor home page
+    And he press the "Connect with Stripe" link
+    Then he should see "Please add your credit card information"
+    And a stripe account should be created for that sponsor

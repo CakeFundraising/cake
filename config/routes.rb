@@ -50,7 +50,12 @@ Cake::Application.routes.draw do
     end  
   end
 
-  resources :sponsors, except: :destroy
+  resources :sponsors, except: :destroy do
+    member do
+      get :credit_card
+      patch :set_credit_card
+    end 
+  end
   
   resources :pledge_requests do
     member do

@@ -18,6 +18,7 @@ describe Sponsor do
   it { should belong_to(:manager).class_name('User') }
   it { should have_one(:location).dependent(:destroy) }
   it { should have_one(:picture).dependent(:destroy) }
+  it { should have_one(:stripe_account).dependent(:destroy) }
   it { should have_many(:users) }
   it { should have_many(:pledge_requests).dependent(:destroy) }
   it { should have_many(:pledges).dependent(:destroy) }

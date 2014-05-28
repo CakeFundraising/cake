@@ -12,8 +12,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def stripe_connect
-    @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
-    redirect_to bank_account_fundraiser_path(current_fundraiser), notice: "Please add your bank account information" if @stripe_account
+    if current_fundraiser.present?
+      @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
+      redirect_to bank_account_fundraiser_path(current_fundraiser), notice: "Please add your bank account information" if @stripe_account
+    elsif current_sponsor.present?
+      @stripe_account = current_sponsor.create_stripe_account(request.env["omniauth.auth"])
+      redirect_to credit_card_sponsor_path(current_sponsor), notice: "Please add your credit card information" if @stripe_account
+    end
   end
 
   def callback_of(provider)

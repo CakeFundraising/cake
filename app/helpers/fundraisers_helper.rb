@@ -11,7 +11,9 @@ module FundraisersHelper
   end
 
   def stripe_buttons
-    if current_fundraiser.stripe_account?
+    account = current_user.fundraiser || current_user.sponsor
+
+    if account.stripe_account?
       go_to_stripe
     else
       stripe_connect_button

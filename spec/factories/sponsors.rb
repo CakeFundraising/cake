@@ -17,9 +17,16 @@ FactoryGirl.define do
     causes { Sponsor::CAUSES.sample(3) }
     association :manager, factory: :sponsor_user
     location
+    stripe_account
 
     after(:create) do |sponsor|
       sponsor.manager.set_sponsor(sponsor)
+    end
+
+    factory :sponsor_without_stripe_account do
+      after(:create) do |sp|
+        sp.stripe_account.destroy
+      end
     end
   end
 end

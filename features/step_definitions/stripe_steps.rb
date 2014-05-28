@@ -6,6 +6,10 @@ Then(/^a stripe account should be created for that fundraiser$/) do
   model(:fundraiser).stripe_account.should be_instance_of(StripeAccount)
 end
 
+Then(/^a stripe account should be created for that sponsor$/) do
+  model(:sponsor).stripe_account.should be_instance_of(StripeAccount)
+end
+
 #Direct Donation
 Given(/^a consumer user$/) do
 end
