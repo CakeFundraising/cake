@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  attr_accessor :card_token
+  attr_accessor :card_token, :customer_id
 
   belongs_to :item, polymorphic: true
   belongs_to :payer, polymorphic: true
@@ -13,6 +13,17 @@ class Payment < ActiveRecord::Base
 
   before_save :stripe_charge_card
 
+  def self.new_invoice(params, payer)
+    payment = new(params)
+    payment.item_type = 'Invoice'        
+    payment.kind = 'invoice_payment'
+    payment.recipient = payment.item.fundraiser
+    payment.payer = payer
+    payment.total_cents = payment.item.due_cents
+    payment.customer_id = payer.stripe_account.stripe_customer_id if payer.stripe_account.present?
+    payment
+  end
+
   private
 
   def stripe_charge_card
@@ -20,6 +31,7 @@ class Payment < ActiveRecord::Base
       amount: self.total_cents,
       currency: self.total_currency.downcase,
       card: self.card_token,
+      customer: self.customer_id,
       description: "#{item_type} ##{item_id} Payment"
     )
     store_transaction(charge) 

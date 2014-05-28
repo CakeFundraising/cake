@@ -27,6 +27,10 @@ Then(/^he should see his fundraisers$/) do
 end
 
 #Credit card steps
+Given(/^a stripe account for that sponsor exists?$/) do
+  @stripe_account = FactoryGirl.create(:stripe_account, account: model(:sponsor))
+end
+
 Then(/^a credit card token should be stored in the sponsor's stripe account$/) do
   model(:sponsor).stripe_account.stripe_customer_id.should_not be_nil
 end

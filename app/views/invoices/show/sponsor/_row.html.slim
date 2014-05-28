@@ -6,21 +6,20 @@ tr.invoice
   td = invoice.status
   - unless invoice.paid?
     td
-      = link_to "Pay", nil, class:'btn btn-primary pay_button', id:(invoice.id)
+      = invoice_pay_button(invoice)
       = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button'
 
-javascript:
-  $(".pay_button##{invoice.id}").unbind("click").click(function(e) {
-    e.preventDefault();
-    
-    Cake.invoice_payment_handler.open({
-      image: '#{invoice.campaign.avatar.url(:square)}',
-      name: "Invoice ##{invoice.id} Payment",
-      description: 'From #{invoice.campaign}',
-      amount: "#{invoice.due_cents}"
-    });
+- unless current_sponsor.decorate.stripe_customer?
+  javascript:
+    $(".pay_button##{invoice.id}").unbind("click").click(function(e) {
+      e.preventDefault();
+      
+      Cake.invoice_payment_handler.open({
+        image: '#{invoice.campaign.avatar.url(:square)}',
+        name: "Invoice ##{invoice.id} Payment",
+        description: 'From #{invoice.campaign}',
+        amount: "#{invoice.due_cents}"
+      });
 
-    $('#payment_item_type').val('Invoice');
-    $('#payment_item_id').val('#{invoice.id}');
-    $('#payment_total_cents').val('#{invoice.due_cents}');
-  });
+      $('#payment_item_id').val('#{invoice.id}');
+    });

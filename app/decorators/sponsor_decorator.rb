@@ -12,4 +12,8 @@ class SponsorDecorator < ApplicationDecorator
   def to_s
     object.name
   end
+
+  def stripe_customer?
+    stripe_account.present? and stripe_account.customer?
+  end
 end

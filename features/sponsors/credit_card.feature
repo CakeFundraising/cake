@@ -7,6 +7,7 @@ Feature: Credit Card
   @javascript @real_http
   Scenario Outline: Create Credit Card
     Given a sponsor exists
+    And a stripe account for that sponsor exists
     And that sponsor is logged in
     When he visits the sponsor credit card page
     And he fills in the "Number" field with <number>

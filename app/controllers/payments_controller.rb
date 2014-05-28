@@ -1,9 +1,6 @@
 class PaymentsController < ApplicationController
   def invoice_payment
-    @payment = Payment.new(permitted_params[:payment])        
-    @payment.payer = current_sponsor
-    @payment.recipient = @payment.item.fundraiser
-    @payment.kind = 'invoice_payment'
+    @payment = Payment.new_invoice(permitted_params[:payment], current_sponsor)
 
     respond_to do |format|
       if @payment.save
@@ -15,6 +12,6 @@ class PaymentsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(payment: [:item_type, :item_id, :total_cents, :card_token])    
+    params.permit(payment: [:item_id, :card_token])    
   end  
 end

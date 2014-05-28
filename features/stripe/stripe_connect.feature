@@ -13,7 +13,7 @@ Feature: Stripe Connect
     And a stripe account should be created for that fundraiser
 
   Scenario: Sponsor Connect
-    Given a sponsor without stripe account exists
+    Given a sponsor exists
     And that sponsor is logged in
     When he visits the sponsor home page
     And he press the "Connect with Stripe" link

@@ -3,9 +3,7 @@ script src="https://checkout.stripe.com/checkout.js"
 / item = invoice
 = semantic_form_for Payment.new, url: invoice_payment_path do |f|
   = f.inputs nil do
-    = f.input :item_type, as: :hidden
     = f.input :item_id, as: :hidden
-    = f.input :total_cents, as: :hidden
     = f.input :card_token, as: :hidden
 
 javascript:
