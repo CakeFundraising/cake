@@ -51,6 +51,7 @@ en:
         name: Owner Name
         type: Account Type
         email: Contact Email
+        tax_id: Tax ID 
         routing_number: Routing Number
         account_number: Account Number
       credit_card:

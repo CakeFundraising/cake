@@ -1,5 +1,7 @@
 h1 Set your Bank Account
 
+.alert.alert-danger.alert-dismissable.hidden
+
 = semantic_form_for @bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
   = f.inputs do
     = f.input :name
@@ -19,7 +21,8 @@ javascript:
   Cake.bank_account = function(){
     var stripeResponseHandler = function(status, response){
       if(response.error){
-        alert(response.error.message);
+        $('.alert-danger').html(response.error.message);
+        $('.alert-danger').removeClass('hidden');
       }else{
         var token = response.id;
         $('#bank_account_token').val(token);

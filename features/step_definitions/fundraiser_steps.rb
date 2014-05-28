@@ -36,3 +36,12 @@ Then(/^he should see his sponsors$/) do
   @sponsors = model(:fundraiser).sponsors
   page.should have_selector('table#sponsors tr.sponsor', count: @sponsors.count)
 end
+
+#Bank Account steps
+Then(/^a bank account token should be stored in the fundraiser's stripe account$/) do
+  model(:fundraiser).stripe_account.stripe_recipient_id.should_not be_nil
+end
+
+Then(/^a bank account token should not be stored in the fundraiser's stripe account$/) do
+  model(:fundraiser).stripe_account.stripe_recipient_id.should be_nil
+end
