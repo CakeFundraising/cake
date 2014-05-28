@@ -53,6 +53,10 @@ en:
         email: Contact Email
         routing_number: Routing Number
         account_number: Account Number
+      credit_card:
+        cvc: CVC
+        exp_month: Expiration Month
+        exp_year: Expiration Year
   activerecord: # customize attribute names for models here
     models:
       campaign:

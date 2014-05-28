@@ -1,11 +1,13 @@
 h1 Set your Credit Card
 
+.alert.alert-danger.alert-dismissable.hidden
+
 = semantic_form_for @credit_card, url: set_credit_card_sponsor_path, method: :patch do |f|
   = f.inputs do
     = f.input :number
     = f.input :cvc
-    = f.input :exp_month
-    = f.input :exp_year
+    = f.input :exp_month, as: :select, collection: (1..12)
+    = f.input :exp_year, as: :select, collection: (Date.today.year..(Date.today.year+8))
     = f.input :token, as: :hidden
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
@@ -16,7 +18,8 @@ javascript:
   Cake.credit_card = function(){
     var stripeResponseHandler = function(status, response){
       if(response.error){
-        alert(response.error.message);
+        $('.alert-danger').html(response.error.message);
+        $('.alert-danger').removeClass('hidden');
       }else{
         var token = response.id;
         $('#credit_card_token').val(token);

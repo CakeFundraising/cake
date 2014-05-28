@@ -20,4 +20,21 @@ class StripeAccount < ActiveRecord::Base
   def recipient
     Stripe::Recipient.retrieve(stripe_recipient_id) if recipient?
   end
+
+  #Customer methods
+  def create_stripe_customer(credit_card)
+    customer = Stripe::Customer.create(
+      card: credit_card.token,
+      description: "Sponsor ##{account.id} customer"
+    )
+    update_attribute(:stripe_customer_id, customer.id)
+  end
+
+  def customer?
+    stripe_customer_id.present?
+  end
+
+  def customer
+    Stripe::Customer.retrieve(stripe_customer_id) if customer?
+  end
 end

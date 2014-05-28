@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20140528122943) do
     t.integer  "click_donation_cents",              default: 0,            null: false
     t.string   "click_donation_currency",           default: "USD",        null: false
     t.integer  "due_cents",               limit: 8
-    t.string   "due_currency"
+    t.string   "due_currency",                      default: "USD",        null: false
     t.string   "status",                            default: "due_to_pay"
     t.integer  "pledge_id"
     t.datetime "created_at"
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 20140528122943) do
     t.string   "stripe_recipient_id"
     t.string   "account_type"
     t.integer  "account_id"
-    t.string   "customer_id"
+    t.string   "stripe_customer_id"
   end
 
   add_index "stripe_accounts", ["uid"], name: "index_stripe_accounts_on_uid", unique: true, using: :btree

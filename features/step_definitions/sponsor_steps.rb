@@ -25,3 +25,12 @@ Then(/^he should see his fundraisers$/) do
   @fundraisers = model(:sponsor).fundraisers
   page.should have_selector('table#fundraisers tr.fundraiser', count: @fundraisers.count)
 end
+
+#Credit card steps
+Then(/^a credit card token should be stored in the sponsor's stripe account$/) do
+  model(:sponsor).stripe_account.stripe_customer_id.should_not be_nil
+end
+
+Then(/^a credit card token should not be stored in the sponsor's stripe account$/) do
+  model(:sponsor).stripe_account.stripe_customer_id.should be_nil
+end

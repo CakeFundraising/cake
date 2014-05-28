@@ -32,17 +32,22 @@ class SponsorsController < InheritedResources::Base
     @credit_card = CreditCard.new(permitted_params[:credit_card])
 
     if @credit_card.valid?
-      redirect_to fundraiser_home_path, notice: 'You have connected your Stripe account successfully.' if @stripe_account.create_stripe_customer(@credit_card)
+      redirect_to sponsor_home_path, notice: 'Your credit card information has been saved.' if @stripe_account.create_stripe_customer(@credit_card)
     else
       render 'credit_cards/new', alert: 'You credit card information is incorrect.'
     end
   end
 
   def permitted_params
-    params.permit(sponsor: [:name, :mission, :manager_name, :manager_title, :manager_email, :manager_phone, 
-      :customer_demographics, :phone, :email, :website,
-      cause_requirements: [], scopes: [], causes: [],
-      location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
-      picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache] ])
+    params.permit(
+      sponsor: [
+        :name, :mission, :manager_name, :manager_title, :manager_email, :manager_phone, 
+        :customer_demographics, :phone, :email, :website,
+        cause_requirements: [], scopes: [], causes: [],
+        location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
+        picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache] 
+      ],
+      credit_card: [:token]
+    )
   end
 end
