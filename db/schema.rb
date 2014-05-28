@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528122943) do
+ActiveRecord::Schema.define(version: 20140528211619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20140528122943) do
 
   create_table "payments", force: true do |t|
     t.integer  "total_cents",    limit: 8
-    t.string   "total_currency",           default: "USD", null: false
+    t.string   "total_currency",           default: "USD",     null: false
     t.string   "kind"
     t.string   "item_type"
     t.integer  "item_id"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20140528122943) do
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",                   default: "charged"
   end
 
   create_table "pictures", force: true do |t|
@@ -305,6 +306,21 @@ ActiveRecord::Schema.define(version: 20140528122943) do
     t.text     "terms_conditions"
     t.string   "avatar"
     t.integer  "pledge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transfers", force: true do |t|
+    t.string   "stripe_id"
+    t.string   "balance_transaction_id"
+    t.string   "kind"
+    t.integer  "amount_cents",           default: 0,     null: false
+    t.string   "amount_currency",        default: "USD", null: false
+    t.integer  "total_fee_cents",        default: 0,     null: false
+    t.string   "total_fee_currency",     default: "USD", null: false
+    t.string   "status"
+    t.string   "transferable_type"
+    t.integer  "transferable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -13,5 +13,11 @@ FactoryGirl.define do
         sa.create_stripe_customer( CreditCard.new(token: FactoryHelpers.stripe_card_token(Rails.configuration.stripe[:publishable_key])) )
       end
     end
+
+    factory :fundraiser_stripe_account do
+      after(:create) do |sa|
+        sa.create_stripe_recipient(FactoryGirl.build(:bank_account) )
+      end
+    end
   end
 end

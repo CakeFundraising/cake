@@ -1,4 +1,7 @@
 class Payment < ActiveRecord::Base
+  include Statusable
+  has_statuses :charged, :transferred
+
   attr_accessor :card_token, :customer_id
 
   belongs_to :item, polymorphic: true
@@ -6,12 +9,13 @@ class Payment < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
 
   has_many :charges, as: :chargeable
+  has_many :transfers, as: :transferable
 
   monetize :total_cents
 
   validates :total, :kind, :item, :payer, :recipient, presence: true
 
-  before_save :stripe_charge_card
+  before_create :stripe_charge_card
 
   def self.new_invoice(params, payer)
     payment = new(params)
@@ -24,8 +28,14 @@ class Payment < ActiveRecord::Base
     payment
   end
 
+  def transfer!
+    update_attribute(:status, :transferred)
+    stripe_trasfer
+  end
+
   private
 
+  #Charges
   def stripe_charge_card
     charge = Stripe::Charge.create(
       amount: self.total_cents,
@@ -34,10 +44,10 @@ class Payment < ActiveRecord::Base
       customer: self.customer_id,
       description: "#{item_type} ##{item_id} Payment"
     )
-    store_transaction(charge) 
+    store_charge(charge) 
   end
 
-  def store_transaction(stripe_charge) 
+  def store_charge(stripe_charge) 
     balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_charge.balance_transaction)
 
     self.charges.build(
@@ -51,5 +61,33 @@ class Payment < ActiveRecord::Base
       captured: stripe_charge.captured,
       fee_details: balance_transaction.fee_details.map(&:to_hash)
     )
+  end
+
+  #Transfers
+  def stripe_trasfer
+    amount = ((1-CakeConstants::APPLICATION_FEE)*self.total_cents).round
+
+    transfer = Stripe::Transfer.create(
+      amount: amount,
+      currency: self.total_currency.downcase,
+      recipient: self.recipient.stripe_account.stripe_recipient_id,
+      statement_description: "Cake Invoice #{item.id} Payment Transfer"
+    )
+
+    store_transfer(transfer)
+  end
+
+  def store_transfer(stripe_transfer)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transfer.balance_transaction)
+
+    self.transfers.build(
+      stripe_id: stripe_transfer.id,
+      balance_transaction_id: stripe_transfer.balance_transaction,
+      kind: stripe_transfer.object,
+      amount_cents: stripe_transfer.amount,
+      amount_currency: stripe_transfer.currency.upcase,
+      total_fee_cents: balance_transaction.fee + CakeConstants::APPLICATION_FEE*stripe_transfer.amount,
+      status: stripe_transfer.status
+    ).save
   end
 end

@@ -12,4 +12,11 @@ namespace :cake do
       campaign.missed_launch_date
     end
   end
+
+  desc "Transfers funds to fundraisers's Stripe accounts"
+  task transfer_payments: :environment do
+    Payment.charged.each do |payment|
+      payment.transfer!
+    end
+  end
 end
