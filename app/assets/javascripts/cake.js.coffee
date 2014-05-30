@@ -7,9 +7,10 @@ Cake.init = ->
   Cake.image_previewer()
   Cake.locations()
   Cake.extra_donation_pledges()
-  Cake.pledges.update_triggers()
-  Cake.bootstrap_switcher()
+  Cake.custom_pledges_switcher()
   Cake.pledges.click()
+  Cake.pledges.update_triggers()
+  Cake.pledges.coupons_switcher()
   return
 
 $(document).ready(Cake.init)

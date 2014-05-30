@@ -1,30 +1,55 @@
 = render partial:'pledges/form/actions'
 
-ul.nav.nav-tabs
+ul.nav.nav-pills
   li
-    = link_to "Your Pledge", edit_pledge_path(@pledge)
+    = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
   li.active 
-    a data-toggle="tab" href="#story" Tell your Story
+    a data-toggle="tab" href="#story" = t('links.wizards.pledge.tell_your_story')
   li
-    = link_to "Add Coupon", add_coupon_pledge_path(@pledge)
+    = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
   li
-    = link_to "Launch & Share", share_pledge_path(@pledge)
+    = link_to t('links.wizards.pledge.extra_donation'), nil
+  li
+    = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
     
 .tab-content
   #story.tab-pane.active
     br
+    .text-center
+      h1 Tell your Story
+      p.text-muted Tell us about your pledge. Don't worry, you can edit it whenever you want.
+      br
     = semantic_form_for @pledge do |f|
       = f.inputs do
-        = f.input :mission
-        .row
-          .col-md-6
-            = render partial:'pictures/banner_form', locals:{f: f}
-            = f.input :headline
-            = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
-          .col-md-6
-            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-            = render partial:'videos/form', locals:{f: f}
+        .text-center.tell-story-wrap 
+          h2 Your Pledge Banner Image
+          p.text-muted Choose an image that best represents your company and the spirit of your pledge.
+          .help-block.italic Suggested size: 1400x614 px
+          = render partial:'pictures/banner_form', locals:{f: f}
+          br
+          = f.input :mission, input_html: {rows: 2}
+          span.help-block.p25 Keep it simple, it is for your records only!
+        
+        hr.wizard-rule
+
+        .text-center.tell-story-wrap 
+          h2 Pledge Image
+          p.text-muted Choose a logo or image that best represents you.
+          .help-block.italic Suggested size: 305x240 px
+          = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+          span.help-block.p25 Include a caption to help others understand your image.
+
+        hr.wizard-rule 
+
+        .text-center.tell-story-wrap
+          h2 Tell your story in words.
+          p.text-muted Tell your story with a headline and a pledge message.
+          = f.input :headline
+          = f.input :description, input_html: {rows: 5}
+
+          = render partial:'videos/form', locals:{f: f}
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
-      = f.actions do
-        = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

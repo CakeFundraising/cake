@@ -22,13 +22,6 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
-  date:
-    datepicker:
-      default: "mm/dd/yyyy"
-      long: "MM dd, yyyy"
-    formats:
-      default: "%d/%m/%Y"
-      long: ! '%B %d, %Y'
   links:
     user:
       sign_in: Sign In
@@ -40,6 +33,12 @@ en:
         tell_your_story: 2. Tell your story
         pledge_levels: 3. Set Pledge Levels
         share: 4. Solicit Sponsors
+      pledge: 
+        your_pledge: 1. Your Pledge
+        tell_your_story: 2. Tell your story
+        add_coupon: 3. Add Coupon
+        extra_donation: 4. Extra Donation
+        share: 5. Confirm your Pledge
   information: 
     wizards:
       campaign:
@@ -124,6 +123,8 @@ en:
         pledge_rank: Pledge Rank
         causes: Cause
         scopes: Type
+        mission: Pledge mission statement
+        description: Your Story
       pledge_request: 
         start_end_dates: Launch/ End Date
       sponsor:

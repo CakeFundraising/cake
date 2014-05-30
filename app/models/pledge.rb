@@ -2,7 +2,7 @@ class Pledge < ActiveRecord::Base
   include Statusable
   has_statuses :pending, :accepted, :rejected
 
-  attr_accessor :step 
+  attr_accessor :step
   
   belongs_to :sponsor
   belongs_to :campaign
@@ -28,7 +28,7 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
   validates :total_amount, numericality: {greater_than: 0}
 
-  validates :amount_per_click, :total_amount, :donation_type, :campaign, :website_url, presence: true
+  validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount

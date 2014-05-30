@@ -6,6 +6,7 @@
     c.causes = Campaign::CAUSES.sample(5)
     c.scopes = Campaign::SCOPES.sample(2)
     c.headline = Faker::Lorem.sentence
+    c.mission = Faker::Lorem.paragraph
     c.story = Faker::Lorem.paragraph
     c.status = :live
 
@@ -27,6 +28,7 @@ end
     pc.causes = Campaign::CAUSES.sample(5)
     pc.scopes = Campaign::SCOPES.sample(2)
     pc.headline = Faker::Lorem.sentence
+    pc.mission = Faker::Lorem.paragraph
     pc.story = Faker::Lorem.paragraph
 
     build(2, pc.sponsor_categories) do |sc, i|

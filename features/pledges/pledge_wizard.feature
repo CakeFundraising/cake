@@ -15,7 +15,7 @@ Feature: Pledge Wizard
     | Other campaign |
     When he goes to new pledge page
     And he fills in the "pledge_amount_per_click" field with <click_amount>
-    And he selects <donation_type> in "pledge_donation_type"
+    #And he selects <donation_type> in "pledge_donation_type"
     And he selects <campaign> in "pledge_campaign_id"
     And he fills in the "pledge_total_amount" field with <total_amount>
     And he fills in the "pledge_website_url" field with <website>
@@ -38,9 +38,9 @@ Feature: Pledge Wizard
   Scenario Outline: Tell your Story
     And a pledge of that sponsor exists
     When he goes to pledge wizard tell your story page
-    And he fills in the "Mission" field with <mission>
+    And he fills in the "Pledge mission statement" field with <mission>
     And he fills in the "Headline" field with <headline>
-    And he fills in the "Description" field with <description>
+    And he fills in the "Your Story" field with <description>
     And he attachs an "avatar" image on the "pledge_picture_attributes_avatar" field
     And he attachs an "banner" image on the "pledge_picture_attributes_banner" field
     And he press the "Save & Continue" button
@@ -63,7 +63,7 @@ Feature: Pledge Wizard
     And he fills in the "Description" field with <description>
     And he attachs an "avatar" image on the "pledge_coupons_attributes_0_avatar" field
     And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_qrcode" field
-    And he press the "Save & Continue" button
+    And he press the "Continue" button
     Then he should see "<message>"
 
     Examples: Skip coupons
@@ -83,7 +83,7 @@ Feature: Pledge Wizard
   Scenario: Launch & Share
     And a pledge of that sponsor exists
     When he goes to pledge wizard share page
-    And he press the "Launch pledge" link
+    And he press the "Confirm your Pledge" link
     And he should see "Pledge was successfully launched."
     And the pledge should have a "pending" status
     And it should delete the related pledge request if the pledge had one 
