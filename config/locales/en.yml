@@ -22,6 +22,13 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
+  date:
+    datepicker:
+      default: "mm/dd/yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "%d/%m/%Y"
+      long: ! '%B %d, %Y'
   links:
     user:
       sign_in: Sign In
@@ -45,6 +52,19 @@ en:
     pending: pending
     accepted: accepted
     rejected: rejected
+  activemodel:
+    attributes:
+      bank_account:
+        name: Owner Name
+        type: Account Type
+        email: Contact Email
+        tax_id: Tax ID 
+        routing_number: Routing Number
+        account_number: Account Number
+      credit_card:
+        cvc: CVC
+        exp_month: Expiration Month
+        exp_year: Expiration Year
   activerecord: # customize attribute names for models here
     models:
       campaign:

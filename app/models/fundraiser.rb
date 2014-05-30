@@ -4,12 +4,14 @@ class Fundraiser < ActiveRecord::Base
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
   has_one :picture, as: :picturable, dependent: :destroy
-  has_one :stripe_account, dependent: :destroy
+  has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, through: :campaigns
   has_many :invoices, through: :pledges
+
+  has_many :received_payments, as: :recipient, class_name:'Payment', dependent: :destroy
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
@@ -53,6 +55,11 @@ class Fundraiser < ActiveRecord::Base
 
   def sponsors
     pledges.accepted.active.eager_load(:sponsor).map(&:sponsor)
+  end
+
+  #Stripe Account
+  def stripe_account?
+    stripe_account.present?
   end
 
   def create_stripe_account(auth)

@@ -60,9 +60,12 @@ module NavigationHelpers
       sponsor_pledge_requests_path
 
     #Fundraiser
+    when /^fundraiser bank account page$/
+      bank_account_fundraiser_path(model(:fundraiser))
+
     when /^fundraiser pending pledges page$/
       fundraiser_pending_pledges_path
-
+      
     # the following are examples using path_to_pickle
 
     when /^#{capture_model}(?:'s)? page$/                           # eg. the forum's page

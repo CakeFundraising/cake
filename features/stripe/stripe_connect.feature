@@ -9,5 +9,13 @@ Feature: Stripe Connect
     And that fundraiser is logged in
     When he visits the fundraiser home page
     And he press the "Connect with Stripe" link
-    Then he should see "You have connected your Stripe account successfully."
-    And he should see some information about his Stripe account
+    Then he should see "Please add your bank account information"
+    And a stripe account should be created for that fundraiser
+
+  Scenario: Sponsor Connect
+    Given a sponsor exists
+    And that sponsor is logged in
+    When he visits the sponsor home page
+    And he press the "Connect with Stripe" link
+    Then he should see "Please add your credit card information"
+    And a stripe account should be created for that sponsor

@@ -24,7 +24,7 @@ class DirectDonation < ActiveRecord::Base
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.campaign.fundraiser.stripe_account.token)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,

@@ -1,3 +1,5 @@
+= render partial:'invoices/checkout_form' if defined? checkout and not current_sponsor.decorate.stripe_customer?
+
 table.table.table-hover.table-bordered.data-table
   thead
     tr

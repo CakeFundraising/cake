@@ -1,0 +1,45 @@
+h1 Set your Bank Account
+
+.alert.alert-danger.alert-dismissable.hidden
+
+= semantic_form_for @bank_account, url: set_bank_account_fundraiser_path, method: :patch do |f|
+  = f.inputs do
+    = f.input :name
+    = f.input :email
+    = f.input :type, as: :select, collection: [:Individual, :Corporation]
+    = f.input :tax_id
+    span.help-block The full SSN or tax ID for an individual, or the full EIN for a corporation.
+    = f.input :routing_number
+    = f.input :account_number
+    = f.input :token, as: :hidden
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+
+= render :partial => 'stripe/js'
+
+javascript:
+  Cake.bank_account = function(){
+    var stripeResponseHandler = function(status, response){
+      if(response.error){
+        $('.alert-danger').html(response.error.message);
+        $('.alert-danger').removeClass('hidden');
+      }else{
+        var token = response.id;
+        $('#bank_account_token').val(token);
+        $('form.bank_account')[0].submit();
+      }
+    }
+
+    $('form.bank_account').submit(function(e){
+      e.preventDefault();
+      routing = $('#bank_account_routing_number').val();
+      account = $('#bank_account_account_number').val();
+
+      Stripe.bankAccount.createToken({
+        country: 'US',
+        routingNumber: routing,
+        accountNumber: account,
+      }, stripeResponseHandler);
+    });
+
+  }();

@@ -1,0 +1,18 @@
+script src="https://checkout.stripe.com/checkout.js" 
+
+/ item = invoice
+= semantic_form_for Payment.new, url: invoice_payment_path do |f|
+  = f.inputs nil do
+    = f.input :item_id, as: :hidden
+    = f.input :card_token, as: :hidden
+
+javascript:
+  Cake.invoice_payment = function(){
+    window.Cake.invoice_payment_handler = StripeCheckout.configure({
+      key: '#{Rails.configuration.stripe[:publishable_key]}',
+      token: function(token, args) {
+        $("#payment_card_token").val(token.id);
+        $("#new_payment")[0].submit();
+      }
+    });
+  }();

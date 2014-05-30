@@ -43,14 +43,29 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :fundraisers, except: :destroy
-  resources :sponsors, except: :destroy
+  resources :fundraisers, except: :destroy do
+    member do
+      get :bank_account
+      patch :set_bank_account
+    end  
+  end
+
+  resources :sponsors, except: :destroy do
+    member do
+      get :credit_card
+      patch :set_credit_card
+    end 
+  end
   
   resources :pledge_requests do
     member do
       patch :accept
       patch :reject
     end
+  end
+
+  scope :payments, controller: :payments do
+    post :invoice_payment
   end
   
   #FR Dashboard

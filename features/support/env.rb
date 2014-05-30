@@ -126,3 +126,11 @@ end
 Before('@truncateDB') do
   DatabaseCleaner.strategy = :truncation
 end
+
+Before('@real_http') do
+  WebMock.disable!
+end
+
+After('@real_http') do
+  WebMock.enable!
+end

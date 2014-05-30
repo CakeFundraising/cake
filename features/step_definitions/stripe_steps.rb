@@ -2,6 +2,15 @@ Then(/^he should see some information about his Stripe account$/) do
   page.should have_content(model(:fundraiser).stripe_account.uid)
 end
 
+Then(/^a stripe account should be created for that fundraiser$/) do
+  model(:fundraiser).stripe_account.should be_instance_of(StripeAccount)
+end
+
+Then(/^a stripe account should be created for that sponsor$/) do
+  model(:sponsor).stripe_account.should be_instance_of(StripeAccount)
+end
+
+#Direct Donation
 Given(/^a consumer user$/) do
 end
 
@@ -37,6 +46,11 @@ Then(/^a charge of (\d+) dollars should be done to the credit card$/) do |amount
 end
 
 #Invoice payment
-Given(/^an invoice for that pledge exists$/) do
-  @invoice = FactoryGirl.create(:pending_invoice, pledge: @past_pledge)
+Given(/^an invoice for (\d+) dollars for that pledge exists$/) do |amount|
+  @invoice = FactoryGirl.create(:pending_invoice, pledge: @past_pledge, due_cents: amount.to_i*100)
+end
+
+Then(/^a payment for (\d+) dollars should be created$/) do |amount|
+  @invoice.payment.total_cents.should == amount.to_i*100
+  @invoice.payment.charges.first.amount_cents.should == amount.to_i*100
 end

@@ -7,6 +7,7 @@
     c.scopes = Campaign::SCOPES.sample(2)
     c.headline = Faker::Lorem.sentence
     c.story = Faker::Lorem.paragraph
+    c.status = :live
 
     build(2, c.sponsor_categories) do |sc, i|
       i = i + 1

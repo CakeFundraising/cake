@@ -21,5 +21,9 @@ FactoryGirl.define do
     after(:create) do |sponsor|
       sponsor.manager.set_sponsor(sponsor)
     end
+
+    factory :sponsor_with_stripe_account do
+      association :stripe_account, factory: :sponsor_stripe_account
+    end
   end
 end
