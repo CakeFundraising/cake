@@ -12,6 +12,8 @@ nav.navbar.navbar-default role="navigation"
           = image_tag "cake_logo.png"
     /! Collect the nav links, forms, and other content for toggling
     - if current_user.present?
+      a.navbar-brand
+        = image_tag "cake_logo.png"
       - if current_fundraiser.present?
         = link_to fundraiser_home_path, class: 'navbar-brand' do
           = image_tag "cake_logo.png"
