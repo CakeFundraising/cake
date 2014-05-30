@@ -44,7 +44,8 @@
         .text-center
           hr.wizard-rule 
           h2 Choose the Cause Categories that best represent your fundraising goals.
-          p.text-muted You can choose more than one category.
+          p.text-muted You can choose more than one category. 
+          p.italic.text-muted Use the control (PC) or command key (Mac) to select multiple causes.
           = f.input :causes, as: :select, collection: Campaign::CAUSES, input_html:{multiple: true, size: 10}, include_blank: false, label: false
           
           hr.wizard-rule

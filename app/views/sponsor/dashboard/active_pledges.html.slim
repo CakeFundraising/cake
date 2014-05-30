@@ -1,4 +1,7 @@
-= link_to "Start new pledge", new_pledge_path, class:'btn btn-primary pull-right'
-h2 Active Pledges
-
-= render partial:'pledges/tables/active/table', locals:{pledges: @pledges}
+.row
+	.col-md-4.col-md-push-8.dash-head.active-campaigns
+		= link_to "Start new pledge", new_pledge_path, class:'btn btn-primary pull-right'
+	.col-md-8.col-md-pull-4.dash-head.active-campaigns
+		h1 Active Pledges
+	.row
+		= render partial:'pledges/tables/active/table', locals:{pledges: @pledges}

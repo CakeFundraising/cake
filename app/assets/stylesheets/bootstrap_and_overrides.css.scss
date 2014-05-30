@@ -262,7 +262,11 @@ p.signup-social {
 .inputs {
   text-align: left;
 }
-// Fundraiser Dashboard Styles -----------------------------------------------------------------------
+
+// Fundraiser & Sponsor Dashboard Styles --------------------------------------------------------
+// (note: all fr-xxx classes are also used for sponsor dash styles, 
+//  fr was just completed first,)
+
 .fr-dash {
   margin: 45px 0;
 }
@@ -288,7 +292,62 @@ p.signup-social {
 .fr-manager-email-edit {
   padding-left: 5px;
 }
-
+.dash-head {
+  padding: 25px 0;
+}
+.active-campaigns {
+  margin: 20px 0 10px;
+  h1 {
+    margin: 0;
+  }
+}
+// Account Page Styles ------------------------------------------------------------------
+.account-wrapper {
+  border-top: 1px dotted $gray-light;
+  padding: 35px 350px 30px;
+  @media (max-width: $screen-md-min) {
+    padding: 25px 50px 20px;
+  }
+}
+// Email Notifications Settings Styles ------------------------------------------------------------------
+.section-wrapper {
+  border-top: 1px dotted $gray-light;
+  padding: 35px 25px 30px;
+  @media (max-width: $screen-md-min) {
+    padding: 25px 50px 20px;
+  }
+}
+// Edit Profile Page Styles ------------------------------------------------------------------
+.pad-top {
+  margin-top: 40px;
+}
+.edit-profile-head {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  h1 {
+    margin: 0;
+  }
+}
+#fundraiser_picture_attributes_banner_input, #sponsor_picture_attributes_banner_input {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    .img-thumbnail {
+      width: 100%;
+    }
+  }
+}
+#fundraiser_picture_attributes_avatar_input, #sponsor_picture_attributes_avatar_input {
+  .avatar {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}
+.save-btn {
+  margin: 20px auto 40px;
+}
 // Profile Page Styles ------------------------------------------------------------------
 .hero {
   height:614px;
@@ -1099,6 +1158,9 @@ ul#share-block {
 }
 .campaign-name {
   padding: 0 350px 20px;
+  @media (max-width: $screen-md-min) {
+    padding: 0 50px 20px;
+  }
 }
 #campaign_launch_date_input {
   padding: 10px 0 0;

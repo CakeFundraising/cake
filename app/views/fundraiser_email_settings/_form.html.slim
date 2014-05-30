@@ -1,16 +1,22 @@
-h3.text-center Change your email notification settings.
+.row
+  .col-md-12
+    h1 Email Notifications
+    p.text-muted Change your email notification settings.
 
 = semantic_form_for @fundraiser_email_setting, url: fundraiser_email_settings_path do |f|
   = f.inputs nil do
-    .row 
-      .col-md-6
-        = f.input :new_pledge              
-        = f.input :pledge_increased        
-        = f.input :pledge_fully_subscribed 
-        = f.input :campaign_end            
-      .col-md-6
-        = f.input :missed_launch_campaign  
-        = f.input :account_change          
-        = f.input :public_profile_change   
-  = f.actions do
-    = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg btn-block'}
+    .row.section-wrapper
+      .row
+        .col-md-6
+          = f.input :new_pledge              
+          = f.input :pledge_increased        
+          = f.input :pledge_fully_subscribed 
+          = f.input :campaign_end            
+        .col-md-6
+          = f.input :missed_launch_campaign  
+          = f.input :account_change          
+          = f.input :public_profile_change
+      .row
+        .col-md-12.text-center
+          = f.actions do
+            = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg'}

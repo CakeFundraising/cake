@@ -1,10 +1,13 @@
 .media
+  = link_to "Find a Cause to Sponsor", root_path, class:'btn btn-primary pull-right'
   = link_to sponsor_path(@sponsor), class:'pull-left' do
-    = image_tag @sponsor.avatar.medium.url, class:'media-object' 
+    = image_tag @sponsor.avatar.medium.url, class:'media-object fr-dash-avatar' 
   .media-body
     h4.media-heading = @sponsor.name
     .data.help-block
-      div = @sponsor.manager_name
-      div = @sponsor.manager_email
-      div = link_to "Edit", public_profile_path
-    = stripe_buttons
+      div.fr-name = @sponsor.manager_name
+      div.fr-manager-email 
+      	span = @sponsor.manager_email
+      	span.fr-manager-email-edit = link_to "Edit", public_profile_path
+      = stripe_buttons
+

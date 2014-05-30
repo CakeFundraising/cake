@@ -1,16 +1,33 @@
-= link_to "Find a Cause to Sponsor", root_path, class:'btn btn-primary pull-right'
-= render partial:'sponsors/media'
-hr
-.analytics
-  h3 Clicks from Active Pledges 37,147
-  h4 Invoices Due $35,788 
+.row.fr-dash
+  = render partial:'sponsors/media'
   .row
-    .col-md-6
-      = basic_list_item("Total Clicks Lifetime", "15,898,154")
-      = basic_list_item("Overall Sponsor Ranking", "3")
-      = basic_list_item("Top Cause Rank", "3")
-      = basic_list_item("Ranking in Location", "2")
-    .col-md-6
-      = basic_list_item("Total No. of Pledges", "752")
-      = basic_list_item("Avg. Clicks/Pledge", "28,146")
-      = basic_list_item("Avg. Reach/Pledge", "2,228,146")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats $37,678
+            p Clicks from Active Pledges
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Total Clicks Lifetime", "48,378,962")
+            = basic_list_item("Invoice Due", "$34,000")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats 22
+            p Overall Sponsor Ranking
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Top Cause Rank", "#4")
+            = basic_list_item("Ranking in Location", "#2")
+    .col-md-4
+      .sidebar-bkg
+        .row
+          .col-xs-12.text-center
+            p.donation-stats $731
+            p Total No. of Pledges
+        .row
+          .col-xs-12.rank-rows
+            = basic_list_item("Avg. Clicks/Pledge", "32,146")
+            = basic_list_item("Avg. Reach/Pledge", "5,888,996")
