@@ -1,2 +1,24 @@
-= menu_item "Pledges", fundraiser_pending_pledges_path
-= menu_item "Active Campaigns", fundraiser_campaigns_path
+.logo
+  = link_to fundraiser_home_path, class: 'navbar-brand' do
+    = image_tag "cake_logo.png"
+#bs-example-navbar-collapse-1.collapse.navbar-collapse
+  ul.nav.navbar-nav
+	= menu_item "Pledges", fundraiser_pending_pledges_path
+	= menu_item "Active Campaigns", fundraiser_campaigns_path
+    = menu_item "Help", root_path
+  = render partial: 'layouts/nav/search_form'
+  ul.nav.navbar-nav.navbar-right
+    li.dropdown
+      a.dropdown-toggle data-toggle="dropdown" href="#" 
+        = image_tag current_fundraiser.avatar.ico.url
+        = current_user.full_name
+      ul.dropdown-menu
+      	= menu_item "Home", fundraiser_home_path
+      	= menu_item "Public Profile", fundraiser_path(current_fundraiser)
+      	= menu_item "Billing", fundraiser_billing_path
+      	= menu_item "History", fundraiser_history_path
+        = menu_item "Edit Profile", public_profile_path
+        = menu_item "Account Settings", account_path
+        = menu_item "Email Notifications", edit_fundraiser_email_settings_path
+        li.divider
+        = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete

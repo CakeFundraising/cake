@@ -7,50 +7,16 @@ nav.navbar.navbar-default role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      - unless current_user.present?
-        = link_to root_path, class: 'navbar-brand' do
-          = image_tag "cake_logo.png"
     /! Collect the nav links, forms, and other content for toggling
     - if current_user.present?
       - unless current_fundraiser or current_sponsor
         a.navbar-brand
           = image_tag "cake_logo.png" 
-      - if current_fundraiser.present?
-        = link_to fundraiser_home_path, class: 'navbar-brand' do
-          = image_tag "cake_logo.png"
-      - if current_sponsor.present?
-        = link_to sponsor_home_path, class: 'navbar-brand' do
-          = image_tag "cake_logo.png"
-      #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
-          = render partial:'layouts/nav/sponsor/main' if current_sponsor.present?
-          = menu_item "Help", root_path
-        = render partial: 'layouts/nav/search_form'
-        ul.nav.navbar-nav.navbar-right
-          / li.dropdown
-          /   a.dropdown-toggle data-toggle="dropdown" href="#" 
-          /     | Settings 
-          /     span.glyphicon.glyphicon-cog
-          /   ul.dropdown-menu
-          /     = menu_item "Edit Profile", public_profile_path
-          /     = menu_item "Account Settings", account_path
-          /     = menu_item "Email Notifications", edit_fundraiser_email_settings_path
-          li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#" 
-              = image_tag current_fundraiser.avatar.ico.url if current_fundraiser.present?
-              = image_tag current_sponsor.avatar.ico.url if current_sponsor.present?
-              = current_user.full_name
-            ul.dropdown-menu
-              = render partial:'layouts/nav/fundraiser/dropdown' if current_fundraiser.present?
-              = render partial:'layouts/nav/sponsor/dropdown' if current_sponsor.present?
-              = menu_item "Edit Profile", public_profile_path
-              = menu_item "Account Settings", account_path
-              = menu_item "Email Notifications", edit_fundraiser_email_settings_path if current_fundraiser.present?
-              = menu_item "Email Notifications", edit_sponsor_email_settings_path if current_sponsor.present?
-              li.divider
-              = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
+      = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
+      = render partial:'layouts/nav/sponsor/main' if current_sponsor.present?
     - else
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag "cake_logo.png"
       - if content_for?(:right_nav)
         ul.nav.navbar-nav.navbar-right
           = yield :right_nav
