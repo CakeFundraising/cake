@@ -15,6 +15,8 @@ FactoryGirl.define do
     end
 
     factory :fundraiser_stripe_account do
+      association :account, factory: :fundraiser
+      
       after(:create) do |sa|
         sa.create_stripe_recipient(FactoryGirl.build(:bank_account) )
       end

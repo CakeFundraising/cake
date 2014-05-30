@@ -19,7 +19,7 @@
 /public/uploads/**/*
 
 # Ignore configuration files
-/config/*.yml
+/config/database.yml
 
 # Ignore gitstats
 /gitstats
