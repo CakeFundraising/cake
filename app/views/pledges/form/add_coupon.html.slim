@@ -1,4 +1,4 @@
-= render partial:'pledges/form/actions'
+= preview_pledge_link
 
 ul.nav.nav-pills
   li
@@ -34,3 +34,4 @@ ul.nav.nav-pills
       .text-center
         = f.actions do
           = f.action :submit, label: 'Continue', button_html: {class: 'btn btn-success btn-lg'} 
+        = cancel_pledge_link
