@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
 
   def get_started
-    reset_session
+    session.delete(:new_user)
   end
 end

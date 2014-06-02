@@ -6,8 +6,6 @@ module Rolable
     scope :with_role, ->(role) do
       where "roles_mask & #{2 ** roles_list.index(role)} > 0"
     end
-
-    validates :roles, presence: true
   end
 
   module ClassMethods

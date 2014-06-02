@@ -12,8 +12,8 @@ nav.navbar.navbar-default role="navigation"
       - unless current_fundraiser or current_sponsor
         a.navbar-brand
           = image_tag "cake_logo.png" 
-      = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present?
-      = render partial:'layouts/nav/sponsor/main' if current_sponsor.present?
+      = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present? and current_fundraiser.persisted?
+      = render partial:'layouts/nav/sponsor/main' if current_sponsor.present? and current_sponsor.persisted?
     - else
       = link_to root_path, class: 'navbar-brand' do
         = image_tag "cake_logo.png"
@@ -23,4 +23,4 @@ nav.navbar.navbar-default role="navigation"
       - else
         ul.nav.navbar-nav.navbar-right
           = menu_item t("links.user.sign_in"), new_user_session_path
-          = menu_item t("links.user.sign_up"), home_get_started_path
+          = menu_item t("links.user.sign_up"), new_user_registration_path

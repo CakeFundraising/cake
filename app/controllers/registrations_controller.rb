@@ -48,12 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def build_resource(*args)
-    if params[:role].present?
-      session[:user_role] = params[:role].to_sym
-      super
-    else
-      @user = User.new_with(session[:omniauth], session[:user_role], args.first)
-    end
+    @user = User.new_with(session[:omniauth], args.first)
   end
 
   def after_sign_up_path_for(resource)

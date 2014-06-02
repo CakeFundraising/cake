@@ -19,6 +19,7 @@ FactoryGirl.define do
     location
 
     after(:create) do |sponsor|
+      sponsor.manager.create_sponsor_email_setting
       sponsor.manager.set_sponsor(sponsor)
     end
 

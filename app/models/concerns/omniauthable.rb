@@ -7,8 +7,8 @@ module Omniauthable
       where(provider: auth.provider, uid: auth.uid).first
     end
 
-    def new_with(auth, role, params)
-      u = if params.blank? #only auth present
+    def new_with(auth, params)
+      u = if params.blank? and auth.present?#only auth present
         new(full_name: auth.info.nickname, 
             email: auth.info.email,
             auth_token: auth.credentials.token,
@@ -25,8 +25,6 @@ module Omniauthable
       else #only params present
         new(params)
       end
-
-      u.roles = [role] #Add role
       u
     end
   end

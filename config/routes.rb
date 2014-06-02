@@ -99,5 +99,9 @@ Cake::Application.routes.draw do
     resource :sponsor_email_settings, only: [:edit, :update]
   end
 
-  resources :users, only: :index
+  resources :users, only: :index do
+    collection do
+      patch :roles
+    end
+  end
 end

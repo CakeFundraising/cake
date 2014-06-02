@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if session[:new_user]
-      current_user.has_role?[:fundraiser] ? new_fundraiser_path : new_sponsor_path
+      home_get_started_path
     elsif cookies[:pledge_campaign].present?
       new_pledge_path(campaign: cookies[:pledge_campaign])
     else

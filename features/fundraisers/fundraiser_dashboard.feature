@@ -29,7 +29,7 @@ Feature: Fundraiser Dashboard
     When he visits the fundraiser history page
     Then he should see his past campaigns
     Then he should see his sponsors
-
+    
   Scenario: Billing
     And 5 pending invoices from that fundraiser exist
     And 5 past invoices from that fundraiser exist
