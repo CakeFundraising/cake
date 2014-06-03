@@ -79,10 +79,8 @@ Cake::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.stripe.publishable_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
-  config.stripe.secret_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
 
-  #config.action_mailer.default_url_options = { host: 'staging-cakefundraising.herokuapp.com' }
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'staging-cakefundraising.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.mandrillapp.com',
