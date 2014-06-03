@@ -80,10 +80,11 @@ Feature: Pledge Wizard
     | My Coupon |            | Long text describing the coupon... | can't be blank |
     | My Coupon | 02/08/2015 |                                    | can't be blank |
 
-  Scenario: Launch & Share
+  Scenario: Confirm your Pledge
     And a pledge of that sponsor exists
+    And a pledge request related to that pledge exists
     When he goes to pledge wizard share page
     And he press the "Confirm your Pledge" link
-    And he should see "Pledge was successfully launched."
+    Then he should see "Pledge was successfully launched."
     And the pledge should have a "pending" status
-    And it should delete the related pledge request if the pledge had one 
+    And it should delete the related pledge request 

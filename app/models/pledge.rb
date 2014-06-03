@@ -51,7 +51,12 @@ class Pledge < ActiveRecord::Base
 
   #Actions
   def launch!
+    delete_pledge_requests
     notify_launch if self.pending!
+  end
+
+  def delete_pledge_requests
+    PledgeRequest.by_pledge(self).destroy_all
   end
 
   def notify_launch

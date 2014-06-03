@@ -47,6 +47,14 @@ Then(/^a rejected flag should be present in the sponsor pledge requests page$/) 
   page.should have_content('REJECTED')
 end
 
+Given(/^a pledge request related to that pledge exists$/) do
+  @pledge_request = FactoryGirl.create(:pledge_request, sponsor: @pledge.sponsor, fundraiser: @pledge.fundraiser, campaign: @pledge.campaign)
+end
+
+Then(/^it should delete the related pledge request$/) do
+  PledgeRequest.exists?(@pledge_request.id).should be_false
+end
+
 #Pledge Click
 When(/^he sees the click contribution modal$/) do
   within(:css, '#contribute_modal') do

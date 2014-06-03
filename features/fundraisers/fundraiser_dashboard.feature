@@ -17,8 +17,10 @@ Feature: Fundraiser Dashboard
     Then he should see his fundraiser home dashboard
 
   Scenario: Active Campaigns
+    And 3 inactive campaigns of that fundraiser exist
     When he visits the fundraiser campaigns page
     Then he should see his active campaigns
+    Then he should see his inactive campaigns
 
   Scenario: Pending Pledges
     When he visits the fundraiser pending pledges page

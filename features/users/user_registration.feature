@@ -47,6 +47,6 @@ Feature: User Registration
 
 	Examples:
 	| provider_link | message                                                                                                                | email          	   | password  			| password_confirmation | user_count |
-	| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
+	#| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
 	| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
 	| Linkedin      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"    | 1          |

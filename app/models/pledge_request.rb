@@ -11,6 +11,8 @@ class PledgeRequest < ActiveRecord::Base
 
   validates :sponsor, :campaign, :fundraiser, presence: true
 
+  scope :by_pledge, ->(pledge){ where(sponsor_id: pledge.sponsor.id, campaign_id: pledge.campaign.id, fundraiser_id: pledge.fundraiser.id) }
+
   after_create do
     sponsor.users.each do |user|
       PledgeNotification.new_pledge_request(self).deliver if user.sponsor_email_setting.new_pledge_request
