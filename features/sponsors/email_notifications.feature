@@ -105,3 +105,8 @@ Feature: Sponsor Email Notifications
     Examples: Disabled notification
     | wants?        | quantity |
     | doesn't want  | 0        |
+
+  Scenario: Invoice created
+    And a pledge of that sponsor exists
+    When the pledge campaign ends
+    Then 2 emails should be delivered with subject: "You have outstanding invoices."

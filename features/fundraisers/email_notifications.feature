@@ -78,3 +78,16 @@ Feature: Fundraiser Email Notifications
     Examples: Disabled notification
     | wants?        | quantity |
     | doesn't want  | 0        |
+
+  Scenario: Invoice created
+    And a campaign of that fundraiser exists
+    And a pledge of that campaign exists
+    When his campaign ends
+    Then 2 emails should be delivered with subject: "You have outstanding invoices."
+
+  Scenario: Invoice Paid
+    And a campaign of that fundraiser exists
+    And a pledge of that campaign exists
+    And a pending invoice of that pledge exists
+    When the sponsor pays the invoice
+    Then 1 email should be delivered with subject: "Your invoice has been paid."

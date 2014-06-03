@@ -96,7 +96,8 @@ class Pledge < ActiveRecord::Base
   end
 
   def notify_invoice(invoice)
-    sponsor.users.each do |user|
+    users = sponsor.users + fundraiser.users
+    users.each do |user|
       InvoiceNotification.new_invoice(invoice, user).deliver
     end
   end

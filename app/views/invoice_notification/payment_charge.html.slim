@@ -1,0 +1,3 @@
+h2 Hello #{@receiver}, 
+div Your invoice ##{@invoice.id} assigned to #{@invoice.sponsor} for the campaign: #{@invoice.campaign.title} has been paid.
+div You can check your invoices #{ link_to t('semantic.here').downcase, fundraiser_billing_url }.

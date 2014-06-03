@@ -58,3 +58,12 @@ end
 When(/^his campaign is launched$/) do
   @campaign.launch!
 end
+
+When(/^the pledge campaign ends$/) do
+  @pledge.campaign.end
+end
+
+When(/^the sponsor pays the invoice$/) do
+  @payment = Payment.new_invoice({item_id: @pending_invoice.id, card_token: FactoryHelpers.stripe_card_token(Rails.configuration.stripe[:publishable_key])}, @pledge.sponsor)
+  @payment.save
+end

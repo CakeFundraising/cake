@@ -9,4 +9,4 @@ Feature: Invoice Generation
     And a pledge of that campaign exists
     When the campaign ends
     Then an invoice should be generated for that pledge
-    And 1 email should be delivered with subject: "You have pending invoices."
+    And 1 email should be delivered with subject: "You have outstanding invoices."
