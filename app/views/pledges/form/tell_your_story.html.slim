@@ -1,18 +1,19 @@
-= preview_pledge_link
-
-ul.nav.nav-pills
-  li
-    = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
-  li.active 
-    a data-toggle="tab" href="#story" = t('links.wizards.pledge.tell_your_story')
-  li
-    = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-  li
-    = link_to t('links.wizards.pledge.extra_donation'), nil
-  li
-    = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
+.row
+  .col-xs-12.campaign-steps
+    = preview_pledge_link
+    ul.nav.nav-pills
+      li
+        = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
+      li.active 
+        a data-toggle="tab" href="#story" = t('links.wizards.pledge.tell_your_story')
+      li
+        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.extra_donation'), nil
+      li
+        = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
     
-.tab-content
+.tab-content.campaign-wizard-wrap
   #story.tab-pane.active
     br
     .text-center
@@ -25,7 +26,8 @@ ul.nav.nav-pills
           h2 Your Pledge Banner Image
           p.text-muted Choose an image that best represents your company and the spirit of your pledge.
           .help-block.italic Suggested size: 1400x614 px
-          = render partial:'pictures/banner_form', locals:{f: f}
+          .banner-upload
+            = render partial:'pictures/banner_form', locals:{f: f}
           br
           = f.input :mission, input_html: {rows: 2}
           span.help-block.p25 Keep it simple, it is for your records only!

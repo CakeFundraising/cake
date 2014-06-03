@@ -1,18 +1,19 @@
-= preview_pledge_link
+.row
+  .col-xs-12.campaign-steps
+    = preview_pledge_link
+    ul.nav.nav-pills
+      li
+        = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
+      li 
+        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.extra_donation'), nil
+      li.active 
+        a data-toggle="tab" href="#share" = t('links.wizards.pledge.share')
 
-ul.nav.nav-pills
-  li
-    = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
-  li 
-    = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
-  li
-    = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-  li
-    = link_to t('links.wizards.pledge.extra_donation'), nil
-  li.active 
-    a data-toggle="tab" href="#share" = t('links.wizards.pledge.share')
-
-.tab-content
+.tab-content.campaign-wizard-wrap
   #share.tab-pane.active
     br
     .text-center
@@ -39,7 +40,7 @@ ul.nav.nav-pills
       p.text-muted Your pledge will become active once it is accepted by the Fundraiser and the Campaign launches.
 
       h4 Copy code to paste into your website:
-      textarea#embedded_link.form-control disabled='' rows="5" 
+      textarea#embedded_link.form-control.pledge-badge disabled='' rows="5" 
         iframe width='300px' height='300px' src=badge_pledge_url(@pledge)
           p 
             | See this pledge here: 

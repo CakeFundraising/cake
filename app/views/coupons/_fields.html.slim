@@ -1,22 +1,28 @@
-.nested-fields
+.nested-fields.coupon-outer-wrap
   hr
   = f.inputs do
     .row
-      .col-md-6
-        = f.input :avatar, as: :uploader, removable: false
-        = f.input :qrcode, as: :uploader, removable: false
-      .col-md-6
+      .col-md-12.coupons-wrap
         = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
         / = render partial:'coupons/extra_donation_pledge_modal', locals:{f: f}
         = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
         = f.input :title
-        row
-          .col-md-6
-            = f.input :expires_at, as: :string, input_html:{class:'datepicker'}
-          .col-md-6
-            = f.input :promo_code
+        = f.input :expires_at, as: :string, input_html:{class:'datepicker'}
+        = f.input :promo_code
+    .row
+      .col-md-12
         = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
         = f.input :terms_conditions, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
         = f.input :standard_terms, as: :boolean, input_html:{checked: true}
-    
-    = link_to_remove_association "Remove", f, class:'pull-right'
+    .row.coupon-uploads
+      .col-sm-6
+        .coupon-images.pull-right
+          p UPLOAD COUPON PICTURE
+          = f.input :avatar, as: :uploader, removable: false
+      .col-sm-6
+        .coupon-images
+          p UPLOAD QR CODE (Optional)
+          = f.input :qrcode, as: :uploader, removable: false
+    .row
+      .col-sm-12.remove-coupon.text-center
+        = link_to_remove_association "Remove", f

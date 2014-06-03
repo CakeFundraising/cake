@@ -1,49 +1,47 @@
-- if @pledge.persisted?
-  = preview_pledge_link
-  
-  ul.nav.nav-pills
-    li.active
-      a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
-    li 
-      = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
-    li
-      = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-    li
-      = link_to t('links.wizards.pledge.extra_donation'), nil
-    li
-      = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
-- else
-  ul.nav.nav-pills
-    li.active
-      a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
-    li 
-      a href="" = t('links.wizards.pledge.tell_your_story')
-    li
-      a href="" = t('links.wizards.pledge.add_coupon')
-    li
-      a href="" = t('links.wizards.pledge.extra_donation')
-    li
-      a href="" = t('links.wizards.pledge.share')
+.row
+  .col-xs-12.campaign-steps
+    - if @pledge.persisted?
+    = preview_pledge_link
+    ul.nav.nav-pills
+      li.active
+        a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
+      li 
+        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.extra_donation'), nil
+      li
+        = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
+  - else
+    ul.nav.nav-pills
+      li.active
+        a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
+      li 
+        a href="" = t('links.wizards.pledge.tell_your_story')
+      li
+        a href="" = t('links.wizards.pledge.add_coupon')
+      li
+        a href="" = t('links.wizards.pledge.extra_donation')
+      li
+        a href="" = t('links.wizards.pledge.share')
 
-.tab-content
+.tab-content.campaign-wizard-wrap
   #main.tab-pane.active
     br
     h1.text-center Your Pledge
-    = semantic_form_for @pledge, html:{class:'form-inline'} do |f|
+    = semantic_form_for @pledge, html:{class:'form-inline tell-story-wrap'} do |f|
       = f.inputs do
-        .well
-          .help-block I agree to donate
-          .input-group
-            span.input-group-addon $
-            = f.input :amount_per_click, label: false
+        .well.text-center.your-pledge-well
+          .shakeicon
+          span.pledge-pad I agree to donate $ 
+          = f.input :amount_per_click, label: false
           / = f.input :donation_type, as: :select, collection: Pledge::DONATION_TYPES, include_blank: false, label: false
-          .help-block per unique click to 
+          span.pledge-pad  per unique click to 
           = f.input :campaign, as: :select, collection: Campaign.active, label: false, selected: params[:campaign]
-          .help-block up to an amount not to exceed
-          .input-group
-            span.input-group-addon $
-            = f.input :total_amount, label: false
-        .well
+          br
+          span.pledge-pad up to an amount not to exceed $ 
+          = f.input :total_amount, label: false
           .help-block Please direct click to:  
           = f.input :website_url, label: false, placeholder: 'Enter your URL here..'
 
@@ -52,5 +50,5 @@
       .text-center
         = f.input :terms, as: :boolean, label:'By clicking here I agree to...' if f.object.new_record?
         = f.actions do
-          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg'}
+          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn'}
         = cancel_pledge_link if @pledge.persisted?

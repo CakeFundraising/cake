@@ -309,7 +309,7 @@ p.signup-social {
     padding: 25px 50px 20px;
   }
 }
-// Email Notifications Settings Styles ------------------------------------------------------------------
+// Edit Profile, Email Settings Dividers ---------------------------------------------------------------
 .section-wrapper {
   border-top: 1px dotted $gray-light;
   padding: 35px 25px 30px;
@@ -1235,4 +1235,88 @@ ul#share-block {
   span {
     margin: 0 10px;
   }
+}
+// Pledge Wizard ---------------------------------------------------------
+.pledge-pad {
+  padding: 5px;
+}
+#pledge_amount_per_click_input, #pledge_total_amount_input {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.your-pledge-well {
+  padding: 25px;
+  background-color: #fff;
+  margin-top: 40px;
+}
+.shakeicon {
+  background-image: image-url('shake-lg.png');
+  width: 83px;
+  height: 82px;
+  margin: -60px auto 15px;
+}
+.agree-btn {
+  margin-bottom: 5px;
+}
+.banner-upload {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+#pledge_picture_attributes_avatar_input {
+  .avatar {
+  margin: 5px auto;
+  }
+  input {
+    margin: 0 auto 25px;
+  }
+}
+.coupons-wrap {
+  .form-group {
+    display: inline-block;
+    margin-right: 15px;
+  }
+}
+.coupon-uploads {
+  margin-top: 20px;
+}
+.coupon-images {
+  margin: 5px auto;
+  .avatar, .qrcode {
+    margin-bottom: 5px;
+  }
+  img {
+    height: 230px;
+    width: 300px;
+    @media (max-width: $screen-md-min) {
+
+      }
+    }
+  }
+  .coupon-outer-wrap {
+    @media (min-width: $screen-md-min) {
+    padding: 0 150px;
+    }
+  }
+.remove-coupon {
+    margin-bottom: 10px;
+}
+.share-embed {
+  h3 {
+    color: black;
+  }
+  h4 {
+    margin-top: 25px;
+    color: black;
+  }
+}
+.pledge-badge {
+    width: 50%;
+    margin: 5px auto 10px;
 }

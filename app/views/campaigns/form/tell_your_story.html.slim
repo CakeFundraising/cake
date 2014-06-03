@@ -35,7 +35,8 @@
           h2 Campaign Image
           p.text-muted Choose a logo or image that best represents your Cause or organization.
           .help-block.italic Suggested size: 305x240 px
-          = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+          .avatar-center
+            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
           span.help-block.p25 Include a caption to help others understand your image.
 
         hr.wizard-rule 
