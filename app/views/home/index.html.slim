@@ -21,8 +21,8 @@
 			.row.start
 				.col-xs-12
 					.button-wrap
-						a.start-fr href="#" START A CAMPAIGN
-						a.start-sp href="#" SPONSOR A CAMPAIGN
+						= link_to "START A CAMPAIGN", new_user_registration_path, class:'start-fr'
+						= link_to "SPONSOR A CAMPAIGN", new_user_registration_path, class:'start-sp'
 						.row
 							.col-xs-12
 								p.get-started.pull-right

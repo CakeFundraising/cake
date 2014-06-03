@@ -34,3 +34,7 @@
   f.website = Faker::Internet.domain_name
   f.email = Faker::Internet.safe_email
 end
+
+@fundraisers.map(&:users).flatten.each do |user|
+  user.create_fundraiser_email_setting
+end

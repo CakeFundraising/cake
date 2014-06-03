@@ -259,7 +259,7 @@ Devise.setup do |config|
     config.omniauth :facebook, '791527620880364', 'db2c185e03ec70dd3d899791b3d68102' #staging
     config.omniauth :twitter, 'l3WEnWa7V5fVPtsngAiiEq05N', '7wKsonylUgxKTehchG9hkft1pMIOGKM4HVutvSHc8vp0IoIVcD' #Cake staging
     config.omniauth :linkedin, '75v924eg4nzp96', 'IrJsoC1YgBy4AVos' #Cake Staging
-    config.omniauth :stripe_connect, 'ca_42Cxijos1IVAsQ4NKEraUUbHCdpy7O2n', ENV['STRIPE_SECRET_KEY'], :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
+    config.omniauth :stripe_connect, 'ca_42CxDvyNbYgal8JucbXyQATSYhHIUMbp', ENV['STRIPE_SECRET_KEY'], :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
   else
     config.omniauth :facebook, '791515824214877', 'e80c240e39b51d287671193db675c572' #dev
     config.omniauth :twitter, 'iBrgyZ3KHCdWSuiuu08qQ', '6Fy4KkYW7nM1PKmt8hxOgXgf7ygSPNx3HTicFPnHJGY' #CakeFundraising 
