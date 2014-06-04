@@ -26,10 +26,6 @@ module NavigationHelpers
     when /^account settings page$/
       account_path
 
-    when /^new #{capture_model}(?:'s)? page$/
-      path_components = $1.split(/\s+/)
-      send(path_components.unshift('new').push('path').join('_').to_sym)
-
     #pledges
     when /^pledge invitation page$/
       pledge_campaign_path(@campaign)
@@ -41,6 +37,14 @@ module NavigationHelpers
     when /^pledge's page$/
       pledge = @pledge || model(:pledge)
       pledge_path(pledge)
+
+    when /^new pledge page$/
+      campaign = @campaign || model(:campaign) || @pledge_request.campaign
+      new_pledge_path(campaign: campaign.id)
+
+    when /^new pledge request page$/
+      sponsor = @sponsor || model(:sponsor)
+      new_pledge_request_path(sponsor_id: sponsor.id)
     
     #campaign
     when /^campaign wizard (.*?) page$/
@@ -65,6 +69,10 @@ module NavigationHelpers
 
     when /^fundraiser pending pledges page$/
       fundraiser_pending_pledges_path
+
+    when /^new #{capture_model}(?:'s)? page$/
+      path_components = $1.split(/\s+/)
+      send(path_components.unshift('new').push('path').join('_').to_sym)
       
     # the following are examples using path_to_pickle
 

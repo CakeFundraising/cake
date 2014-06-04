@@ -14,7 +14,7 @@ Then(/^he should see the pledge request listed$/) do
 end
 
 Then(/^the page has the correct campaign selected for that pledge request$/) do
-  find("#pledge_campaign_id option[value='#{@pledge_request.campaign.id}']").should be_selected
+  find("#pledge_campaign_id", visible: false).value.to_i.should == @pledge_request.campaign.id
 end
 
 Then(/^a rejected flag should be present in the fundraiser pending pledges page$/) do

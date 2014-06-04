@@ -9,6 +9,15 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  def new
+    if params[:campaign].present?
+      @pledge = Pledge.new(campaign_id: params[:campaign])
+      render 'new'
+    else
+      redirect_to root_path, alert: 'Please review these campaigns to start a pledge.'
+    end
+  end
+
   def show
     @pledge = resource.decorate
   end
@@ -21,7 +30,6 @@ class PledgesController < InheritedResources::Base
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
-        params[:campaign] = params[:pledge][:campaign_id]
         step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:pledge][:step].to_sym)-1].to_s
         render 'pledges/form/' + step_action
       end

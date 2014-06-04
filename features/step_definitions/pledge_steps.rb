@@ -4,7 +4,7 @@ Then(/^he should see the invitation link and badge$/) do
 end
 
 Then(/^the page has the correct campaign selected$/) do
-  find("#pledge_campaign_id option[value='#{@campaign.id}']").should be_selected
+  find("#pledge_campaign_id", visible: false).value.to_i.should == @campaign.id
 end
 
 Then(/^he is taken to the new pledge page$/) do
