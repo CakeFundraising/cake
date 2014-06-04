@@ -13,6 +13,12 @@ namespace :cake do
     end
   end
 
+  task notify_pledges_fully_subscribed: :environment do
+    Pledge.fully_subscribed.each do |pledge|
+      pledge.notify_fully_subscribed
+    end
+  end
+
   desc "Transfers funds to fundraisers's Stripe accounts"
   task transfer_payments: :environment do
     Payment.charged.each do |payment|

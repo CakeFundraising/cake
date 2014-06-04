@@ -37,4 +37,17 @@ class PledgeNotification < ActionMailer::Base
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
   end
+
+  #clicks
+  def fr_pledge_fully_subscribed(pledge, user)
+    @p = pledge
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: 'Your campaign pledge has been 100% subscribed.')
+  end
+
+  def sp_pledge_fully_subscribed(pledge, user)
+    @p = pledge
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: 'Your pledge has been 100% subscribed.')
+  end
 end

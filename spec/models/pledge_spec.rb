@@ -39,6 +39,28 @@ describe Pledge do
     Pledge.statuses[:status].should == [:pending, :accepted, :rejected]
   end
 
+  describe "#max_clicks" do
+    before(:each) do
+      @pledge = FactoryGirl.create(:pledge)
+    end
+
+    it "should store the maximum quantity of clicks a pledge can ever have" do
+      @pledge.reload.max_clicks.should == @pledge.current_max_clicks
+    end
+
+    it "should be updated when the total_amount changes" do
+      expect{ 
+        @pledge.update_attribute(:total_amount_cents, "999.00")
+      }.to change{ @pledge.max_clicks }
+    end
+
+    it "should be updated when the amount_per_click changes" do
+      expect{ 
+        @pledge.update_attribute(:amount_per_click_cents, "7.00")
+      }.to change{ @pledge.max_clicks }
+    end
+  end
+
   context 'Activity status' do
     before(:each) do
       @sponsor = FactoryGirl.create(:sponsor)

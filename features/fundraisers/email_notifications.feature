@@ -79,6 +79,21 @@ Feature: Fundraiser Email Notifications
     | wants?        | quantity |
     | doesn't want  | 0        |
 
+  Scenario Outline: Pledge has been 100% subscribed
+    And a campaign of that fundraiser exists
+    And a pledge of that campaign exists
+    And the fundraiser user <wants?> to receive notifications for "Pledge has been 100% subscribed"
+    When the system identifies the pledge as fully subscribed
+    Then <quantity> email should be delivered with subject: "Your campaign pledge has been 100% subscribed."
+
+    Examples: Enabled notification
+    | wants? | quantity |
+    | wants  | 1        |
+    
+    Examples: Disabled notification
+    | wants?        | quantity |
+    | doesn't want  | 0        |
+
   Scenario: Invoice created
     And a campaign of that fundraiser exists
     And a pledge of that campaign exists

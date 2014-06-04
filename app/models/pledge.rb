@@ -44,10 +44,17 @@ class Pledge < ActiveRecord::Base
 
   scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
 
+  scope :fully_subscribed, ->{ where("clicks_count >= max_clicks") }
+  scope :not_fully_subscribed, ->{ where.not("clicks_count >= max_clicks") }
+
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
     end
+  end
+
+  before_save do
+    self.max_clicks = self.current_max_clicks
   end
 
   #Actions
@@ -91,12 +98,21 @@ class Pledge < ActiveRecord::Base
     clicks.exists?(request_ip: ip)
   end
 
-  def max_clicks
+  def current_max_clicks
     (self.total_amount_cents/self.amount_per_click_cents).floor
   end
 
   def fully_subscribed?
-    self.reload.clicks_count >= max_clicks
+    self.reload.clicks_count >= self.max_clicks
+  end
+
+  def notify_fully_subscribed
+    fundraiser.users.each do |user|
+      PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
+    end
+    sponsor.users.each do |user|
+      PledgeNotification.sp_pledge_fully_subscribed(self, user).deliver if user.sponsor_email_setting.reload.pledge_fully_subscribed
+    end
   end
 
   #Invoices

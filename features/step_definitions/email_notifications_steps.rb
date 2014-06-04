@@ -46,6 +46,10 @@ When(/^his campaign launch date is missed$/) do
   @campaign.missed_launch_date
 end
 
+When(/^the system identifies the pledge as fully subscribed$/) do
+  @pledge.notify_fully_subscribed
+end
+
 #Sponsor events
 When(/^a pledge request to that sponsor is made$/) do
   @pr = FactoryGirl.create(:pledge_request, sponsor: model(:sponsor) )
