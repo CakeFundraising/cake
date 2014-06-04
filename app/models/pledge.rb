@@ -32,6 +32,7 @@ class Pledge < ActiveRecord::Base
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount
+  validate :pledge_fully_subscribed, if: :persisted?
 
   DONATION_TYPES = ["Cash", "Goods & Services"]
 
@@ -90,6 +91,14 @@ class Pledge < ActiveRecord::Base
     clicks.exists?(request_ip: ip)
   end
 
+  def max_clicks
+    (self.total_amount_cents/self.amount_per_click_cents).floor
+  end
+
+  def fully_subscribed?
+    self.reload.clicks_count >= max_clicks
+  end
+
   #Invoices
   def generate_invoice
     create_invoice
@@ -113,6 +122,12 @@ class Pledge < ActiveRecord::Base
     if campaign and campaign.sponsor_categories.present?
       max = campaign.sponsor_categories.maximum(:max_value_cents)
       errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
+    end
+  end
+
+  def pledge_fully_subscribed
+    if clicks.any? and fully_subscribed?
+      errors.add(:clicks, "Pledge fully subscribed")
     end
   end
 end

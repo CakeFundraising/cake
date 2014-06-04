@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Pledge do
-  it { should validate_presence_of(:donation_type) }
   it { should validate_presence_of(:campaign) }
   it { should validate_presence_of(:website_url) }
   
@@ -108,8 +107,22 @@ describe Pledge do
       @pledge.should_not be_valid
     end
 
+    it "should store a click if the pledge is not fully subscribed" do
+      @clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
+
+      @pledge.clicks.build(request_ip: "253.187.158.63") 
+      @pledge.should be_valid
+    end
+
+    it "should not store a click if the pledge is fully subscribed" do
+      @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
+
+      @pledge.clicks.build(request_ip: "253.187.158.63") 
+      @pledge.should_not be_valid
+    end
+
     context 'Methods' do
-      describe "#have_donated" do
+      describe "#have_donated?" do
         it "should return false if ip is not present in the clicks" do
           @pledge.have_donated?("253.187.158.63").should be_false
         end
@@ -118,7 +131,20 @@ describe Pledge do
           @clicks = create_list(:click, 5, pledge: @pledge)
           ip = @clicks.first.request_ip
 
-          @pledge.have_donated?(ip).should be_true
+          @pledge.reload.have_donated?(ip).should be_true
+        end
+      end
+
+      describe "#fully_subscribed?" do
+        it "should return true when the pledge reaches the total amount" do
+          @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
+          @pledge.fully_subscribed?.should be_true
+        end
+
+        it "should return false when the pledge has not reached the total amount" do
+          total_clicks = @pledge.max_clicks - 1
+          @clicks = create_list(:click, total_clicks, pledge: @pledge)
+          @pledge.fully_subscribed?.should be_false
         end
       end
 

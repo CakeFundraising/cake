@@ -62,6 +62,10 @@ When(/^he sees the click contribution modal$/) do
   end
 end
 
+Given(/^the pledge is fully subscribed$/) do
+  FactoryGirl.create_list(:click, model(:pledge).max_clicks, pledge: model(:pledge) )
+end
+
 Then(/^he should see "(.*?)" in the click contribution modal$/) do |message|
   within(:css, '#contribute_modal') do
     page.should have_content(message)
@@ -74,7 +78,7 @@ end
 
 Then(/^a click should be added to the Pledge$/) do
   sleep 5
-  Pledge.first.clicks_count.should == 1
+  Pledge.first.clicks.count.should == 1
 end
 
 Given(/^the user has already donated to that pledge$/) do
