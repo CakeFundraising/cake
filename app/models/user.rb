@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:twitter, :facebook, :linkedin, :stripe_connect]
 
   validates :full_name, presence: true
+  validates :roles, presence: true, if: :persisted?
 
   has_roles [:sponsor, :fundraiser]
   
@@ -14,11 +15,6 @@ class User < ActiveRecord::Base
   belongs_to :sponsor
   has_one :fundraiser_email_setting, dependent: :destroy
   has_one :sponsor_email_setting, dependent: :destroy
-
-  after_create do
-    create_fundraiser_email_setting if has_role?(:fundraiser)
-    create_sponsor_email_setting if has_role?(:sponsor)
-  end
 
   def notify_account_update
     if fundraiser? and fundraiser_email_setting.account_change
@@ -39,6 +35,7 @@ class User < ActiveRecord::Base
 
   def set_fundraiser(fr)
     unless sponsor?
+      self.roles = [:fundraiser]
       self.fundraiser = fr 
       self.save
     end
@@ -46,6 +43,7 @@ class User < ActiveRecord::Base
 
   def set_sponsor(sp)
     unless fundraiser?
+      self.roles = [:sponsor]
       self.sponsor = sp
       self.save
     end

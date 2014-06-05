@@ -1,0 +1,3 @@
+h2 Hello #{@receiver}, 
+div Your pledge: #{ link_to @p.headline, pledge_url(@p) } for the campaign: #{ link_to @p.campaign.title, campaign_url(@p.campaign) } has been 100% subscribed.
+/ div You can increase your pledge #{ link_to t('semantic.here').downcase, nil }.

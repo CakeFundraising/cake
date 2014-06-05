@@ -20,6 +20,7 @@ FactoryGirl.define do
     stripe_account
 
     after(:create) do |fr|
+      fr.manager.create_fundraiser_email_setting
       fr.manager.set_fundraiser(fr)
     end
 

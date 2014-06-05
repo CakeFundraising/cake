@@ -33,7 +33,6 @@ class CampaignsController < InheritedResources::Base
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do
-        puts @campaign.errors.messages
         step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:campaign][:step].to_sym)-1].to_s
         render 'campaigns/form/' + step_action
       end

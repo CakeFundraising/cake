@@ -6,7 +6,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     amount_per_click "9.00"
     donation_type { Pledge::DONATION_TYPES.sample }
-    total_amount "99999.00"
+    total_amount "99.00"
     website_url { Faker::Internet.domain_name }
     status :accepted
     campaign

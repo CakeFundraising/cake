@@ -17,8 +17,10 @@ Feature: Fundraiser Dashboard
     Then he should see his fundraiser home dashboard
 
   Scenario: Active Campaigns
+    And 3 inactive campaigns of that fundraiser exist
     When he visits the fundraiser campaigns page
     Then he should see his active campaigns
+    Then he should see his inactive campaigns
 
   Scenario: Pending Pledges
     When he visits the fundraiser pending pledges page
@@ -29,7 +31,7 @@ Feature: Fundraiser Dashboard
     When he visits the fundraiser history page
     Then he should see his past campaigns
     Then he should see his sponsors
-
+    
   Scenario: Billing
     And 5 pending invoices from that fundraiser exist
     And 5 past invoices from that fundraiser exist

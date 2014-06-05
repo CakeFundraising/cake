@@ -4,7 +4,7 @@ Then(/^he should see the invitation link and badge$/) do
 end
 
 Then(/^the page has the correct campaign selected$/) do
-  find("#pledge_campaign_id option[value='#{@campaign.id}']").should be_selected
+  find("#pledge_campaign_id", visible: false).value.to_i.should == @campaign.id
 end
 
 Then(/^he is taken to the new pledge page$/) do
@@ -47,11 +47,23 @@ Then(/^a rejected flag should be present in the sponsor pledge requests page$/) 
   page.should have_content('REJECTED')
 end
 
+Given(/^a pledge request related to that pledge exists$/) do
+  @pledge_request = FactoryGirl.create(:pledge_request, sponsor: @pledge.sponsor, fundraiser: @pledge.fundraiser, campaign: @pledge.campaign)
+end
+
+Then(/^it should delete the related pledge request$/) do
+  PledgeRequest.exists?(@pledge_request.id).should be_false
+end
+
 #Pledge Click
 When(/^he sees the click contribution modal$/) do
   within(:css, '#contribute_modal') do
     page.should have_content("Thanks for your support!")
   end
+end
+
+Given(/^the pledge is fully subscribed$/) do
+  FactoryGirl.create_list(:click, model(:pledge).max_clicks, pledge: model(:pledge) )
 end
 
 Then(/^he should see "(.*?)" in the click contribution modal$/) do |message|
@@ -66,7 +78,7 @@ end
 
 Then(/^a click should be added to the Pledge$/) do
   sleep 5
-  Pledge.first.clicks_count.should == 1
+  Pledge.first.clicks.count.should == 1
 end
 
 Given(/^the user has already donated to that pledge$/) do

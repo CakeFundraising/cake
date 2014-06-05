@@ -9,6 +9,15 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  def new
+    if params[:campaign].present?
+      @pledge = Pledge.new(campaign_id: params[:campaign])
+      render 'new'
+    else
+      redirect_to root_path, alert: 'Please review these campaigns to start a pledge.'
+    end
+  end
+
   def show
     @pledge = resource.decorate
   end
@@ -21,7 +30,6 @@ class PledgesController < InheritedResources::Base
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
-        params[:campaign] = params[:pledge][:campaign_id]
         step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:pledge][:step].to_sym)-1].to_s
         render 'pledges/form/' + step_action
       end
@@ -89,8 +97,11 @@ class PledgesController < InheritedResources::Base
     if resource.have_donated?(request.remote_ip)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
     else
-      resource.clicks.build(request_ip: request.remote_ip)
-      redirect_to 'http://'+resource.website_url if resource.save!
+      if Click.create(request_ip: request.remote_ip, pledge: resource)
+        redirect_to 'http://'+resource.website_url 
+      else
+        redirect_to resource
+      end
     end
   end
 

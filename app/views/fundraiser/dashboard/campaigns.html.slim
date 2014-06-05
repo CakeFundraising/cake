@@ -1,8 +1,15 @@
-.row
-	.col-md-4.col-md-push-8.dash-head.active-campaigns
-		= link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
-	.col-md-8.col-md-pull-4.dash-head.active-campaigns
-		h1 Active Campaigns
-	.row
-	  = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
-	  / = render partial:'campaigns/show/grid', collection: @campaigns, as: :campaign
+.active-campaigns
+  = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
+
+h1.dash-head Campaigns
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#active" Active Campaigns
+  li 
+    a data-toggle="tab" href="#inactive" Inactive Campaigns
+
+.tab-content
+  #active.tab-pane.active
+    = render partial:'campaigns/show/table', locals:{campaigns: @active_campaigns}
+  #inactive.tab-pane
+	= render partial:'campaigns/show/table', locals:{campaigns: @inactive_campaigns}

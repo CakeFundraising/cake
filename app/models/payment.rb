@@ -16,6 +16,7 @@ class Payment < ActiveRecord::Base
   validates :total, :kind, :item, :payer, :recipient, presence: true
 
   before_create :stripe_charge_card
+  after_create :set_as_paid, :notify_charge
 
   def self.new_invoice(params, payer)
     payment = new(params)
@@ -31,6 +32,7 @@ class Payment < ActiveRecord::Base
   def transfer!
     update_attribute(:status, :transferred)
     stripe_trasfer
+    notify_transfer
   end
 
   private
@@ -63,6 +65,16 @@ class Payment < ActiveRecord::Base
     )
   end
 
+  def set_as_paid
+    item.update_attribute(:status, :paid) #set invoice as paid
+  end
+
+  def notify_charge
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.payment_charge(item, user).deliver
+    end
+  end
+
   #Transfers
   def stripe_trasfer
     amount = ((1-CakeConstants::APPLICATION_FEE)*self.total_cents).round
@@ -89,5 +101,8 @@ class Payment < ActiveRecord::Base
       total_fee_cents: balance_transaction.fee + CakeConstants::APPLICATION_FEE*stripe_transfer.amount,
       status: stripe_transfer.status
     ).save
+  end
+
+  def notify_transfer
   end
 end

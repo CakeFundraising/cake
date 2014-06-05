@@ -3,4 +3,5 @@ class Click < ActiveRecord::Base
 
   validates :request_ip, :pledge, presence: true
   validates :request_ip, uniqueness: true
+  validates_associated :pledge
 end

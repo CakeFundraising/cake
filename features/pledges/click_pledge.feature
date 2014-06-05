@@ -23,3 +23,9 @@ Feature: Click Donation to Pledge
     When he visits the pledge's page
     Then he should see "Thanks for your contribution"
     And the "Contribute" link should not be present
+
+  Scenario: Pledge fully subscribed
+    And the pledge is fully subscribed
+    When he visits the pledge's page
+    Then he should see "This pledge cannot accept more clicks. Thanks for your contribution!"
+    And the "Contribute" link should not be present

@@ -4,6 +4,12 @@ class InvoiceNotification < ActionMailer::Base
   def new_invoice(invoice, user)
     @invoice = invoice
     @receiver = user.decorate
-    mail(to: @receiver.email, subject: 'You have pending invoices.')  
+    mail(to: @receiver.email, subject: 'You have outstanding invoices.')  
+  end
+
+  def payment_charge(invoice, user)
+    @invoice = invoice
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: 'Your invoice has been paid.')
   end
 end

@@ -16,7 +16,9 @@ Then(/^(?:I|they|he) should be redirected to the new registration page as (.*?)$
 end
 
 Then(/^(?:I|the|that|a|he)(?:fundraiser|sponsor)? should be taken to the (.*?)$/) do |page_name|
-  current_path.should == path_to(page_name)
+  uri = URI.parse(current_url)
+  path = "#{uri.path}#{'?' if uri.query}#{uri.query}"
+  path.should == path_to(page_name)
 end
 
 #Oauth registration

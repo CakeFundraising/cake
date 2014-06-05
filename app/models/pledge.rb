@@ -32,6 +32,7 @@ class Pledge < ActiveRecord::Base
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount
+  validate :pledge_fully_subscribed, if: :persisted?
 
   DONATION_TYPES = ["Cash", "Goods & Services"]
 
@@ -43,15 +44,27 @@ class Pledge < ActiveRecord::Base
 
   scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
 
+  scope :fully_subscribed, ->{ where("clicks_count >= max_clicks") }
+  scope :not_fully_subscribed, ->{ where.not("clicks_count >= max_clicks") }
+
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
     end
   end
 
+  before_save do
+    self.max_clicks = self.current_max_clicks
+  end
+
   #Actions
   def launch!
+    delete_pledge_requests
     notify_launch if self.pending!
+  end
+
+  def delete_pledge_requests
+    PledgeRequest.by_pledge(self).destroy_all
   end
 
   def notify_launch
@@ -85,6 +98,23 @@ class Pledge < ActiveRecord::Base
     clicks.exists?(request_ip: ip)
   end
 
+  def current_max_clicks
+    (self.total_amount_cents/self.amount_per_click_cents).floor
+  end
+
+  def fully_subscribed?
+    self.reload.clicks_count >= self.max_clicks
+  end
+
+  def notify_fully_subscribed
+    fundraiser.users.each do |user|
+      PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
+    end
+    sponsor.users.each do |user|
+      PledgeNotification.sp_pledge_fully_subscribed(self, user).deliver if user.sponsor_email_setting.reload.pledge_fully_subscribed
+    end
+  end
+
   #Invoices
   def generate_invoice
     create_invoice
@@ -96,7 +126,8 @@ class Pledge < ActiveRecord::Base
   end
 
   def notify_invoice(invoice)
-    sponsor.users.each do |user|
+    users = sponsor.users + fundraiser.users
+    users.each do |user|
       InvoiceNotification.new_invoice(invoice, user).deliver
     end
   end
@@ -107,6 +138,12 @@ class Pledge < ActiveRecord::Base
     if campaign and campaign.sponsor_categories.present?
       max = campaign.sponsor_categories.maximum(:max_value_cents)
       errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
+    end
+  end
+
+  def pledge_fully_subscribed
+    if clicks.any? and fully_subscribed?
+      errors.add(:clicks, "Pledge fully subscribed")
     end
   end
 end

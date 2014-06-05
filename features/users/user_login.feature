@@ -35,6 +35,6 @@ Feature: User Sign In
 
     Examples: Succesful login
     | provider_link | message                                           |
-    | Facebook      | Successfully authenticated from Facebook account. |
+    #| Facebook      | Successfully authenticated from Facebook account. |
     | Twitter       | Successfully authenticated from Twitter account.  |
     | Linkedin      | Successfully authenticated from Linkedin account. |

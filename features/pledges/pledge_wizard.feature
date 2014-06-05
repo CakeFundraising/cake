@@ -8,15 +8,11 @@ Feature: Pledge Wizard
     Given a sponsor exists
     And that sponsor is logged in
 
+  #@javascript
   Scenario Outline: Your Pledge
-    And the following campaigns exist:
-    | title          |
-    | My campaign    |
-    | Other campaign |
-    When he goes to new pledge page
+    And a campaign exists
+    When he visits the new pledge page
     And he fills in the "pledge_amount_per_click" field with <click_amount>
-    #And he selects <donation_type> in "pledge_donation_type"
-    And he selects <campaign> in "pledge_campaign_id"
     And he fills in the "pledge_total_amount" field with <total_amount>
     And he fills in the "pledge_website_url" field with <website>
     And he checks the "By clicking here I agree to..." checkbox
@@ -24,16 +20,16 @@ Feature: Pledge Wizard
     Then he should see "<message>"
 
   Examples: Successful step
-  | click_amount | donation_type      | campaign     | total_amount | website             | message                          |
-  | 10.00        | Cash               | My campaign  | 100000.00    | example.com         | Pledge was successfully created. |
-  | 5.00         | Goods & Services   | My campaign  | 100000.00    | http://example.com/ | Pledge was successfully created. |
+  | click_amount | total_amount | website             | message                          |
+  | 10.00        | 100000.00    | example.com         | Pledge was successfully created. |
+  | 5.00         | 100000.00    | http://example.com/ | Pledge was successfully created. |
 
   Examples: Failed Step
-  | click_amount | donation_type      | campaign     | total_amount | website             | message                |
-  | 0.00         | Cash               | My campaign  | 100000.00    | example.com         | must be greater than 0 |
-  | 5.00         | Goods & Services   |              | 500.00       | http://example.com/ | can't be blank         |
-  | 5.00         | Cash               |              | 100000.00    |                     | can't be blank         |
-  | 5.00         | Goods & Services   |              | -1588.00     |                     | must be greater than 0 |
+  | click_amount | total_amount | website             | message                |
+  | 0.00         | 100000.00    | example.com         | must be greater than 0 |
+  | 5.00         |              | http://example.com/ | must be greater than 0 |
+  | 5.00         | 100000.00    |                     | can't be blank         |
+  | 5.00         | -1588.00     | http://example.com/ | must be greater than 0 |
 
   Scenario Outline: Tell your Story
     And a pledge of that sponsor exists
@@ -80,10 +76,11 @@ Feature: Pledge Wizard
     | My Coupon |            | Long text describing the coupon... | can't be blank |
     | My Coupon | 02/08/2015 |                                    | can't be blank |
 
-  Scenario: Launch & Share
+  Scenario: Confirm your Pledge
     And a pledge of that sponsor exists
+    And a pledge request related to that pledge exists
     When he goes to pledge wizard share page
     And he press the "Confirm your Pledge" link
-    And he should see "Pledge was successfully launched."
+    Then he should see "Pledge was successfully launched."
     And the pledge should have a "pending" status
-    And it should delete the related pledge request if the pledge had one 
+    And it should delete the related pledge request 
