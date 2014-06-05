@@ -11,7 +11,7 @@
               |  See video
         h1.name 
           span = @campaign.mission
-          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
+          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @cabootstrap_flashmpaign
         .share-links 
       .col-md-4
         .sidebar-bkg 
@@ -79,6 +79,6 @@ css:
   .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }
 
 javascript:
-  $(document).ready( Cake.campaign_countdown('#{@campaign.end_date}') );
-  $(document).on('page:load', Cake.campaign_countdown('#{@campaign.end_date}') );
+  $(document).ready( Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
+  $(document).on('page:load', Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
     

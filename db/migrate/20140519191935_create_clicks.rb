@@ -8,6 +8,6 @@ class CreateClicks < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :clicks, :request_ip, unique: true
+    add_index :clicks, :request_ip
   end
 end

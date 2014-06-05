@@ -18,24 +18,27 @@
           .row
             .col-xs-12
               p.timer-ital Campaign Ends in:
-          .row.text-center
+          .row.text-center#campaign_countdown
             .col-xs-4.border-right
-              span.campaign-timer 003 
+              span.campaign-timer.days
               span d.
             .col-xs-4.border-right
-              span.campaign-timer 15 
+              span.campaign-timer.hours
               span h.
             .col-xs-4
-              span.campaign-timer 47 
+              span.campaign-timer.mins
               span m.
           .row
            .col-md-12.click-btn
               = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
 
               p.timer-ital Our Pledge:
-              div
-              .help-block.donation_per_click
-                strong = humanized_money_with_symbol(@pledge.amount_per_click)
+              - if @pledge.max_clicks > 0
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@pledge.thermometer}%"
+                    span.sr-only #{@pledge.thermometer}% Complete (success)
+              .help-block.donation_per_click.text-center
+                strong = humanized_money_with_symbol(@pledge.amount_per_click) 
                 span donation per click up to 
                 strong = humanized_money_with_symbol(@pledge.total_amount)
   .white
@@ -75,3 +78,7 @@
 
 css:
   .hero { background-image: url("#{@pledge.banner.url(:large)}"); }
+
+javascript:
+  $(document).ready( Cake.campaign_countdown('#{@pledge.campaign.end_date_countdown}') );
+  $(document).on('page:load', Cake.campaign_countdown('#{@pledge.campaign.end_date_countdown}') );

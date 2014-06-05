@@ -104,6 +104,12 @@ class Pledge < ActiveRecord::Base
     self.reload.clicks_count >= self.max_clicks
   end
 
+  def thermometer
+    puts clicks_count
+    puts max_clicks
+    (clicks_count/max_clicks)*100
+  end
+
   def notify_fully_subscribed
     fundraiser.users.each do |user|
       PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
