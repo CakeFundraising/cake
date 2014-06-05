@@ -22,3 +22,11 @@ Feature: Increase Pledge
   | total_amount | message                                    |
   |              | is not a number and must be greater than 0 |
   | -15900       | must be greater than 0                     |
+
+
+  #Scenario: Pledge increase request
+  #  Given a fundraiser exists
+  #  And a campaign of that fundraiser exists
+  #  And a pledge of that campaign exists
+  #  And that fundraiser is logged in
+  #  When he visits the 
