@@ -9,8 +9,8 @@
         = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
       li
         = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-      li
-        = link_to t('links.wizards.pledge.extra_donation'), nil
+      / li
+      /   = link_to t('links.wizards.pledge.extra_donation'), nil 
       li
         = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
   - else
@@ -21,8 +21,8 @@
         a href="" = t('links.wizards.pledge.tell_your_story')
       li
         a href="" = t('links.wizards.pledge.add_coupon')
-      li
-        a href="" = t('links.wizards.pledge.extra_donation')
+      / li
+      /   a href="" = t('links.wizards.pledge.extra_donation')
       li
         a href="" = t('links.wizards.pledge.share')
 
@@ -30,7 +30,7 @@
   #main.tab-pane.active
     br
     h1.text-center Your Pledge
-    = semantic_form_for @pledge, html:{class:'form-inline tell-story-wrap'} do |f|
+    = semantic_form_for @pledge, html:{class:'form-inline pledge-first-step-wrap'} do |f|
       = f.inputs do
         .well.text-center.your-pledge-well
           .shakeicon
@@ -42,7 +42,8 @@
           br
           span.pledge-pad up to an amount not to exceed $ 
           = f.input :total_amount, label: false
-          .help-block Please direct click to:  
+        .well.direct-web-well.text-center
+          span Please direct click to:  
           = f.input :website_url, label: false, placeholder: 'Enter your URL here..'
 
         = f.input :step, as: :hidden, input_html:{value: :tell_your_story} 
@@ -50,5 +51,5 @@
       .text-center
         = f.input :terms, as: :boolean, label:'By clicking here I agree to...' if f.object.new_record?
         = f.actions do
-          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn'}
+          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn ten-t'}
         = cancel_pledge_link if @pledge.persisted?

@@ -8,8 +8,8 @@
         = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
       li
         = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-      li
-        = link_to t('links.wizards.pledge.extra_donation'), nil
+      / li
+      /   = link_to t('links.wizards.pledge.extra_donation'), nil
       li.active 
         a data-toggle="tab" href="#share" = t('links.wizards.pledge.share')
 
@@ -26,14 +26,16 @@
 
     br
     .example-badge.row
-      .col-md-4.col-md-offset-4
-        .shake-wrap
-          = image_tag @pledge.avatar.url(:medium)
-          = image_tag @pledge.campaign.avatar.url(:medium)
-          .shake
-        .text 
-          span We support 
-          div = @pledge.campaign
+      .col-md-12.center-block
+        .well.pledge-thankyou-well.clearfix
+          .pledge-thankyou
+            = image_tag @pledge.avatar.url(:medium)
+            = image_tag @pledge.campaign.avatar.url(:medium)
+            .shake
+          .we-support-text
+            span We support 
+            div = @pledge.campaign
+            = image_tag("cake_logo.png", class: "pledge-logo")
 
     .share-embed.row.text-center
       h3 Place a Pledge badge on your website that links to your Pledge!.
