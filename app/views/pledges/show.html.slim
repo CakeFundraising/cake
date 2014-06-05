@@ -4,6 +4,11 @@
   .container
     .content.row.pull-up
       .col-md-8
+        - if @pledge.video.present?
+          .video_button 
+            button.btn data-target="#video" data-toggle="modal"
+              span.glyphicon.glyphicon-play-circle
+              |  See video
         h1.name 
           span = @pledge.mission
           span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
@@ -49,7 +54,6 @@
         .col-md-8.col-md-pull-4
           h3 = @pledge.headline
           p = @pledge.description
-          p = @pledge.video.iframe if @pledge.video.present?
   .blue
     .container
       .row.pledgebluestripe
@@ -66,6 +70,8 @@
         .row
       .coupons
         = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
+
+= render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
 css:
   .hero { background-image: url("#{@pledge.banner.url(:large)}"); }

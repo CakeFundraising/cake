@@ -4,9 +4,14 @@
   .container
     .content.row.pull-up
       .col-md-8
+        - if @campaign.video.present?
+          .video_button 
+            button.btn data-target="#video" data-toggle="modal"
+              span.glyphicon.glyphicon-play-circle
+              |  See video
         h1.name 
           span = @campaign.mission
-          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign)
+          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
         .share-links 
       .col-md-4
         .sidebar-bkg 
@@ -56,7 +61,6 @@
         .col-md-8.col-md-pull-4
           h3 = @campaign.headline
           p = @campaign.story
-          p = @campaign.video.iframe if @campaign.video.present?
   .blue
     .container
       .row.pledgebluestripe
@@ -68,6 +72,8 @@
   .container
     = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+
+= render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
 css:
   .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }

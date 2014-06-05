@@ -34,8 +34,6 @@ class Pledge < ActiveRecord::Base
   validate :max_amount
   validate :pledge_fully_subscribed, if: :persisted?
 
-  DONATION_TYPES = ["Cash", "Goods & Services"]
-
   scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
   scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
   
