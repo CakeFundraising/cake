@@ -15,10 +15,3 @@ Feature: Campaign Launch
     Then he should see "Campaign is live now!"
     And he should be taken to the campaign's page
     And the inactive campaign should have a "live" status
-
-  Scenario: Launch campaign from Campaign's page
-    When he visits the campaign's page
-    And he press the "Launch Campaign" link
-    Then he should see "Campaign is live now!"
-    And he should be taken to the campaign's page
-    And the inactive campaign should have a "live" status

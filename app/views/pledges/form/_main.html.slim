@@ -36,9 +36,8 @@
           .shakeicon
           span.pledge-pad I agree to donate $ 
           = f.input :amount_per_click, label: false
-          / = f.input :donation_type, as: :select, collection: Pledge::DONATION_TYPES, include_blank: false, label: false
           span.pledge-pad  per unique click to 
-          h3 = link_to @pledge.campaign.title, @pledge.campaign
+          h3 = link_to @pledge.campaign.mission, @pledge.campaign
           = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
           br
           span.pledge-pad up to an amount not to exceed $ 

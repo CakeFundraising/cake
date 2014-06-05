@@ -11,6 +11,10 @@ class CampaignDecorator < ApplicationDecorator
     object.end_date.strftime("%m/%d/%Y")
   end
 
+  def end_days
+    object.end_date
+  end
+
   def start_end_dates
     "#{launch_date} to #{end_date}"
   end
@@ -25,5 +29,13 @@ class CampaignDecorator < ApplicationDecorator
 
   def scopes
     object.scopes.join(", ")
+  end
+
+  def raised
+    h.humanized_money_with_symbol object.raised
+  end
+
+  def goal
+    h.humanized_money_with_symbol object.goal
   end
 end

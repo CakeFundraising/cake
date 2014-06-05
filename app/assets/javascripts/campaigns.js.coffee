@@ -27,3 +27,16 @@ Cake.custom_pledges_switcher = ->
     pledge_levels_container.hide()
 
   return
+
+Cake.campaign_countdown = (end_date) ->
+  $("#campaign_countdown").countdown end_date, (event) ->
+    countdown_section = $(this)
+    # days
+    countdown_section.find("span.campaign-timer.days").html event.strftime("%-D")
+    # hours
+    countdown_section.find("span.campaign-timer.hours").html event.strftime("%H")
+    # minutes
+    countdown_section.find("span.campaign-timer.mins").html event.strftime("%M")
+    return
+
+  return
