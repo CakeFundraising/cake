@@ -40,6 +40,7 @@ class Campaign < ActiveRecord::Base
 
   scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
   scope :past, ->{ where("end_date < ?", Date.today) }
+  scope :current, ->{ where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
