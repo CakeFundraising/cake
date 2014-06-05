@@ -6,7 +6,7 @@
       .col-md-8
         h1.name 
           span = @campaign.title
-          span = link_to 'Edit Campaign', edit_campaign_path(@campaign)
+          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign)
         .share-links 
       .col-md-4
         .sidebar-bkg 

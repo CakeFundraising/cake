@@ -6,7 +6,7 @@
       .col-md-8
         h1.name 
           span = @pledge.mission
-          span = link_to 'Edit Pledge', edit_pledge_path(@pledge)
+          span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
         .share-links 
       .col-md-4
         .sidebar-bkg 

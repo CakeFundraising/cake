@@ -5,7 +5,7 @@
     .content.row.pull-up
       .col-md-8
         h1.name = @sponsor.name
-        span = link_to 'Edit Profile', public_profile_path if can? :update, @sponsor
+        span.edit = link_to 'Edit Profile', public_profile_path if can? :update, @sponsor
         .sponsor
           address
             span = @sponsor.location.address

@@ -1,4 +1,3 @@
-= link_to 'Edit Profile', public_profile_path
 
 = content_for :header do
   .banner.hero
@@ -6,7 +5,9 @@
   .container
     .content.row.pull-up
       .col-md-8
-        h1.name = @fundraiser.name
+        h1.name
+          span = @fundraiser.name
+          span.edit = link_to 'Edit Profile', public_profile_path
         .sponsor
           address
             strong = @fundraiser.name
@@ -37,7 +38,7 @@
             .col-md-12.rank-rows
               = basic_list_item("Top Cause Rank", "14")
               = basic_list_item("Location Rank", "2")
-            = link_to "Make a Pledge", new_pledge_path, class:'btn btn-success btn-block'
+              = link_to "Make a Pledge", new_pledge_path, class:'btn btn-success btn-block'
   .white
     .container
       .row.sponsor-profile

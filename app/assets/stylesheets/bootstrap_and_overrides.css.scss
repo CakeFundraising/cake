@@ -20,20 +20,28 @@ h3, h4 {
 .italic {
   font-style: italic;
 }
-
+//Helpers ----------------------------------------------------------------------------
+.ten-b {
+  margin-bottom: 10px;
+}
+.ten-t {
+  margin-top: 10px;
+}
 //Navbar --------------------------------------------------------------------------------
 .navbar {
   margin-bottom: 0;
 }
 .navbar-brand {
-  float: left;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-  height: 55px;
   padding-top: 6px;
 }
-
+.user-logged-in {
+  span {
+    margin-left: 5px;
+  }
+  .glyphicon {
+    top: 2px;
+  }
+}
 //Buttons -------------------------------------------------------------------------------
 
 .btn {
@@ -309,7 +317,7 @@ p.signup-social {
     padding: 25px 50px 20px;
   }
 }
-// Email Notifications Settings Styles ------------------------------------------------------------------
+// Edit Profile, Email Settings Dividers ---------------------------------------------------------------
 .section-wrapper {
   border-top: 1px dotted $gray-light;
   padding: 35px 25px 30px;
@@ -368,6 +376,10 @@ p.signup-social {
 }
 .name {
   color: #fff;
+  .edit {
+    font-size: 16px;
+    margin-left: 5px;
+  }
 }
 address {
   color: #fff;
@@ -826,11 +838,8 @@ ul.share-coupon {
   padding-left: 3px;
   padding-left: 4px \9;
   /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
   margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: $border-radius-small;
 }
 
 #custom-search-input button {
@@ -843,9 +852,7 @@ ul.share-coupon {
   left: -28px;
   /* IE7-8 doesn't have border-radius, so don't indent the padding */
   margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: $border-radius-small;
   color:$gray;
   z-index: 10;
 }
@@ -1146,7 +1153,7 @@ ul#share-block {
   padding: 11px 5px 0 0;
   font-size: 11px;
 }
-// Campaign Wizard Styles ------------------------------------------------------------------------
+// Campaign Wizard Styles (shared by pledge wizard) ------------------------------------------------------------------------
 .wizard-rule {
   border: 1px dotted $gray-light;
 }
@@ -1154,7 +1161,10 @@ ul#share-block {
   margin-bottom: 50px;
 }
 .campaign-steps {
+  padding: 50px 50px;
+  @media (min-width: $screen-lg-min) {
   padding: 50px 100px;
+  }
 }
 .campaign-name {
   padding: 0 350px 20px;
@@ -1192,6 +1202,17 @@ ul#share-block {
 #campaign_video_attributes_url {
   width: 50%;
 }
+#campaign_picture_attributes_banner_input {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
 #campaign_picture_attributes_avatar_input {
   .avatar {
     margin: 10px auto;
@@ -1199,6 +1220,9 @@ ul#share-block {
   .avatar_input {
     margin: 0 auto 35px;
   }
+}
+#campaign_mission_input {
+  margin: 25px auto;
 }
 .p25 {
   padding-bottom: 25px;
@@ -1235,4 +1259,133 @@ ul#share-block {
   span {
     margin: 0 10px;
   }
+}
+// Pledge Wizard ---------------------------------------------------------
+.pledge-pad {
+  padding: 5px;
+}
+#pledge_amount_per_click_input, #pledge_total_amount_input {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.pledge-first-step-wrap {
+  padding: 0 100px;
+  @media (min-width: $screen-md-min) {
+    padding: 0 200px;
+  }
+}
+.your-pledge-well {
+  padding: 25px;
+  background-color: #fff;
+  margin-top: 40px;
+}
+.direct-web-well {
+  padding: 25px;
+  margin-top: 0;
+  background-color: #fff;
+}
+.shakeicon {
+  background-image: image-url('shake-lg.png');
+  width: 83px;
+  height: 82px;
+  margin: -60px auto 15px;
+}
+.agree-btn {
+  margin-bottom: 5px;
+}
+.banner-upload {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+#pledge_picture_attributes_avatar_input {
+  .avatar {
+  margin: 5px auto;
+  }
+  input {
+    margin: 0 auto 25px;
+  }
+}
+.coupons-wrap {
+  .form-group {
+    display: inline-block;
+    margin-right: 15px;
+  }
+}
+.coupon-uploads {
+  margin-top: 20px;
+}
+.coupon-images {
+  margin: 5px auto;
+  .avatar, .qrcode {
+    margin-bottom: 5px;
+  }
+  img {
+    height: 230px;
+    width: 300px;
+    @media (max-width: $screen-md-min) {
+
+      }
+    }
+  }
+.coupon-outer-wrap {
+  @media (min-width: $screen-md-min) {
+  padding: 0 150px;
+  }
+}
+.remove-coupon {
+    margin-bottom: 10px;
+}
+.share-embed {
+  h3 {
+    color: black;
+  }
+  h4 {
+    margin-top: 25px;
+    color: black;
+  }
+}
+.pledge-badge {
+    width: 50%;
+    margin: 5px auto 10px;
+}
+.pledge-thankyou-well {
+  padding: 10px;
+  background-color: #fff;
+  margin: 30px;
+  @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+    margin: 30px 50px 30px;
+  }
+  @media (min-width: $screen-md-min) {
+    margin: 30px 160px 30px;
+  }
+}
+.we-support-outer-wrap {
+  @media (min-width: $screen-md-min) {
+  margin: 0 150px;
+  }
+}
+.pledge-thankyou {
+  width: 380px;
+  height: auto;
+  margin-bottom: 35px;
+  float: left;
+  img {
+    width: 50%;
+    border: 1px solid #fff;
+  }
+}
+.we-support-text {
+  float: left;
+  margin: 10px 0 0 10px;
+}
+.pledge-logo {
+  max-width: 65%;
+  margin-top: 10px;
 }
