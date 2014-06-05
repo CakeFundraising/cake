@@ -11,7 +11,7 @@ tr.pledge id=(pledge.id)
     - if pledge.rejected?
       strong.text-danger = t('semantic.rejected').upcase
   td
-    = link_to "Increase", nil, class:'btn btn-default'
+    = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-default' if can? :increase, pledge
 
     - if can? :edit, pledge
       = link_to edit_pledge_path(pledge), class:'edit_button' do

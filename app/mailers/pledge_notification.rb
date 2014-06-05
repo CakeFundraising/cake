@@ -42,12 +42,20 @@ class PledgeNotification < ActionMailer::Base
   def fr_pledge_fully_subscribed(pledge, user)
     @p = pledge
     @receiver = user.decorate
-    mail(to: @receiver.email, subject: 'Your campaign pledge has been 100% subscribed.')
+    mail(to: @receiver.email, subject: "Your campaign's pledge has been 100% subscribed.")
   end
 
   def sp_pledge_fully_subscribed(pledge, user)
     @p = pledge
     @receiver = user.decorate
     mail(to: @receiver.email, subject: 'Your pledge has been 100% subscribed.')
+  end
+
+  #increase
+  def pledge_increased(pledge, user)
+    @p = pledge
+    @changes = pledge.previous_changes
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: "Your campaign's pledge has been increased.")
   end
 end

@@ -84,7 +84,22 @@ Feature: Fundraiser Email Notifications
     And a pledge of that campaign exists
     And the fundraiser user <wants?> to receive notifications for "Pledge has been 100% subscribed"
     When the system identifies the pledge as fully subscribed
-    Then <quantity> email should be delivered with subject: "Your campaign pledge has been 100% subscribed."
+    Then <quantity> email should be delivered with subject: "Your campaign's pledge has been 100% subscribed."
+
+    Examples: Enabled notification
+    | wants? | quantity |
+    | wants  | 1        |
+    
+    Examples: Disabled notification
+    | wants?        | quantity |
+    | doesn't want  | 0        |
+
+  Scenario Outline: Pledge has been increased
+    And a campaign of that fundraiser exists
+    And a pledge of that campaign exists
+    And the fundraiser user <wants?> to receive notifications for "Pledge has been increased"
+    When the pledge is increased
+    Then <quantity> email should be delivered with subject: "Your campaign's pledge has been increased."
 
     Examples: Enabled notification
     | wants? | quantity |

@@ -105,6 +105,23 @@ class PledgesController < InheritedResources::Base
     end
   end
 
+  #Increase
+  def increase
+    @pledge = resource
+  end
+
+  def set_increase
+    update! do |success, failure|
+      success.html do
+        resource.notify_increase
+        redirect_to resource, notice: 'Pledge increased succesfully.'
+      end
+      failure.html do
+        render 'increase'
+      end
+    end
+  end
+
   def permitted_params
     params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],

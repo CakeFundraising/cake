@@ -45,6 +45,9 @@ module NavigationHelpers
     when /^new pledge request page$/
       sponsor = @sponsor || model(:sponsor)
       new_pledge_request_path(sponsor_id: sponsor.id)
+
+    when /^increase pledge page$/
+      increase_pledge_path(@pledge)
     
     #campaign
     when /^campaign wizard (.*?) page$/

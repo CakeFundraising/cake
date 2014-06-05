@@ -132,6 +132,13 @@ class Pledge < ActiveRecord::Base
     end
   end
 
+  #Increase
+  def notify_increase
+    fundraiser.users.each do |user|
+      PledgeNotification.pledge_increased(self, user).deliver if user.fundraiser_email_setting.reload.pledge_increased
+    end
+  end
+
   private
 
   def max_amount

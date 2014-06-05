@@ -103,14 +103,38 @@ describe Ability do
         let(:foreign_object) { FactoryGirl.create(:pledge) }
       end
 
-      it "can launch his own pledges" do
-        @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
-        @ability.should be_able_to(:launch, @pledge)
+      context 'launch' do
+        it "can launch his own pledges" do
+          @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+          @ability.should be_able_to(:launch, @pledge)
+        end
+
+        it "cannot launch someone else's pledges" do
+          @pledge = FactoryGirl.create(:pledge)
+          @ability.should_not be_able_to(:launch, @pledge)
+        end
       end
 
-      it "cannot launch someone else's pledges" do
-        @pledge = FactoryGirl.create(:pledge)
-        @ability.should_not be_able_to(:launch, @pledge)
+      context 'increase' do
+        it "can increase his own pledges" do
+          @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+          @ability.should be_able_to(:increase, @pledge)
+        end
+
+        it "cannot increase someone else's pledges" do
+          @pledge = FactoryGirl.create(:pledge)
+          @ability.should_not be_able_to(:increase, @pledge)
+        end
+
+        it "can set_increase his own pledges" do
+          @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+          @ability.should be_able_to(:set_increase, @pledge)
+        end
+
+        it "cannot set_increase someone else's pledges" do
+          @pledge = FactoryGirl.create(:pledge)
+          @ability.should_not be_able_to(:set_increase, @pledge)
+        end
       end
     end
 
