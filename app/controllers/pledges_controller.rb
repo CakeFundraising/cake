@@ -84,8 +84,14 @@ class PledgesController < InheritedResources::Base
   end
 
   def reject
-    resource.notify_rejection if resource.rejected!
+    message = params[:reject_message][:message]
+    resource.notify_rejection(message) if resource.rejected!
     redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.'
+  end
+
+  def add_reject_message
+    @pledge = resource
+    render 'pledges/form/reject_message'
   end
 
   def launch

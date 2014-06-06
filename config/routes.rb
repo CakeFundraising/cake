@@ -42,6 +42,7 @@ Cake::Application.routes.draw do
 
       patch :accept
       patch :reject
+      get :add_reject_message
 
       patch :click
     end

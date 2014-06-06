@@ -31,8 +31,9 @@ class PledgeNotification < ActionMailer::Base
     mail(to: @receiver.email, subject: 'Your Pledge has been accepted.')
   end
 
-  def rejected_pledge(pledge, user)
+  def rejected_pledge(pledge, user, message)
     @p = pledge
+    @message = message
     @receiver = user.decorate
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
