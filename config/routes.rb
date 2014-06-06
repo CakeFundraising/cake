@@ -36,6 +36,7 @@ Cake::Application.routes.draw do
 
       get :increase
       patch :set_increase
+      patch :increase_request
 
       get :badge
       patch :launch

@@ -8,6 +8,5 @@
         th = Pledge.human_attribute_name :end_date
         th = Pledge.model_name.human
         th = Pledge.human_attribute_name :donation_click
-        th = Pledge.human_attribute_name :status
     tbody
-      = render partial:'pledges/tables/active/row', collection: pledges, as: :pledge
+      = render partial:'pledges/tables/active/sponsor/row', collection: pledges, as: :pledge

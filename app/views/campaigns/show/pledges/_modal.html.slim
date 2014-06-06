@@ -8,7 +8,7 @@
         .row
           - if campaign.pledges.active.any?
             .lead Active Pledges
-          = render partial:'pledges/tables/active/table', locals: {pledges: campaign.pledges.active.decorate}
+          = render partial:'pledges/tables/active/fundraiser/table', locals: {pledges: campaign.pledges.active.decorate}
         .row
           - if campaign.pledges.pending.any?
             .lead Pending Pledges

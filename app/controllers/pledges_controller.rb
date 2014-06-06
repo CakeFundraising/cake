@@ -85,8 +85,7 @@ class PledgesController < InheritedResources::Base
 
   def reject
     message = params[:reject_message][:message]
-    resource.notify_rejection(message) if resource.rejected!
-    redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.'
+    redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
   end
 
   def add_reject_message
@@ -127,6 +126,10 @@ class PledgesController < InheritedResources::Base
         render 'increase'
       end
     end
+  end
+
+  def increase_request
+    redirect_to resource, notice: 'Increase requested.' if resource.increase_request!
   end
 
   def permitted_params

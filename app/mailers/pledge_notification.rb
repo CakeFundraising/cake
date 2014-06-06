@@ -59,4 +59,10 @@ class PledgeNotification < ActionMailer::Base
     @receiver = user.decorate
     mail(to: @receiver.email, subject: "Your campaign's pledge has been increased.")
   end
+
+  def pledge_increase_request(pledge, user)
+    @p = pledge
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: "Your pledge has a new increase request.")
+  end
 end

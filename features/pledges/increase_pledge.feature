@@ -24,9 +24,14 @@ Feature: Increase Pledge
   | -15900       | must be greater than 0                     |
 
 
-  #Scenario: Pledge increase request
-  #  Given a fundraiser exists
-  #  And a campaign of that fundraiser exists
-  #  And a pledge of that campaign exists
-  #  And that fundraiser is logged in
-  #  When he visits the 
+  #@javascript
+  Scenario: Pledge increase request
+    Given a fundraiser exists
+    And a campaign of that fundraiser exists
+    And a pledge of that campaign exists
+    And that fundraiser is logged in
+    When he visits the fundraiser campaigns page
+    And he finds and press the "tr.pledge .increase_request" button
+    Then he should see "Increase requested."
+    And 1 email should be delivered with subject: "Your pledge has a new increase request."
+    And an increase request should be stored in the pledge

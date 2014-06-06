@@ -56,7 +56,11 @@ When(/^a pledge request to that sponsor is made$/) do
 end
 
 When(/^the pledge is (.*?) by the fundraiser$/) do |action|
-  @pledge.send(action.gsub("ed", "!"))
+  if action == 'rejected'
+    @pledge.reject!("Some message")
+  else
+    @pledge.send(action.gsub("ed", "!"))
+  end
 end
 
 When(/^his campaign is launched$/) do
@@ -74,4 +78,8 @@ end
 When(/^the sponsor pays the invoice$/) do
   @payment = Payment.new_invoice({item_id: @pending_invoice.id, card_token: FactoryHelpers.stripe_card_token(Rails.configuration.stripe[:publishable_key])}, @pledge.sponsor)
   @payment.save
+end
+
+When(/^a fundraiser requests an increase for that pledge$/) do
+  @pledge.increase_request!
 end
