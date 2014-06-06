@@ -4,39 +4,45 @@
   .container
     .content.row.pull-up
       .col-md-8
+        - if @campaign.video.present?
+          .video_button 
+            button.btn data-target="#video" data-toggle="modal"
+              span.glyphicon.glyphicon-play-circle
+              |  See video
         h1.name 
-          span = @campaign.title
-          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign)
+          span = @campaign.mission
+          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @cabootstrap_flashmpaign
         .share-links 
       .col-md-4
         .sidebar-bkg 
           .row
             .col-xs-12
               p.timer-ital Campaign Ends in:
-          .row.text-center
+          .row.text-center#campaign_countdown
             .col-xs-4.border-right
-              span.campaign-timer 003 
+              span.campaign-timer.days
               span d.
             .col-xs-4.border-right
-              span.campaign-timer 15 
+              span.campaign-timer.hours
               span h.
             .col-xs-4
-              span.campaign-timer 47 
+              span.campaign-timer.mins
               span m.
           .row
             .col-md-12.click-btn
-              p.timer-ital Our Pledge:
+              p.timer-ital Total all sponsor pledges:
+              - if @campaign.object.goal > 0
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                    span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
               .campaign-stats
-                strong $7,430 
+                strong = @campaign.raised
                 span Raised
-                strong.pull-right $958.000
                 span.pull-right Goal
+                strong.pull-right = @campaign.goal
             .col-md-12.click-btn
               .make-pledge
                 = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
-              - if can?(:launch, @campaign) and @campaign.inactive?
-                .launch-campaign
-                  = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class:'btn btn-primary btn-block'
 
   .white
     .container
@@ -47,15 +53,14 @@
               = image_tag @campaign.avatar.url(:medium), class: 'img-responsive'
               .caption = @campaign.avatar_caption
               .fundraiser-info
-                h4 I'm not for Sale 
+                h4 = auto_link @campaign.fundraiser
                 span #3
-                p Global Initative
+                p = @campaign.fundraiser.causes
             .campaign_and_fundraiser
-              button.btn.btn-success View Profile
+              = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success'
         .col-md-8.col-md-pull-4
           h3 = @campaign.headline
           p = @campaign.story
-          p = @campaign.video.iframe if @campaign.video.present?
   .blue
     .container
       .row.pledgebluestripe
@@ -64,11 +69,16 @@
           p Please visit all our generous sponsors and share our campaign with friends!
           p working together, we can make a difference!
           span See how it works...
-          br
-          button.btn.btn-primary Click to help. It's free
   .container
     = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 
+= render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
+
 css:
-  .hero { background-image: url("#{@campaign.banner.url(:large)}"); }
+  .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }
+
+javascript:
+  $(document).ready( Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
+  $(document).on('page:load', Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
+    

@@ -33,6 +33,10 @@ Cake::Application.routes.draw do
         get :add_sweepstakes
         get :share
       end
+
+      get :increase
+      patch :set_increase
+
       get :badge
       patch :launch
 

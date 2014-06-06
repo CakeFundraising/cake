@@ -16,7 +16,7 @@ Then(/^he should see his fundraiser home dashboard$/) do
 end
 
 Then(/^he should see his active campaigns$/) do
-  page.should have_selector('#active table#campaigns tr.campaign', count: @campaigns.count)
+  page.should have_selector('table#campaigns tr.campaign', count: @campaigns.count)
   page.should have_link("Start New Campaign")
 end
 

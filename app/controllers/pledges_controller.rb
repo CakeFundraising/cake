@@ -97,10 +97,28 @@ class PledgesController < InheritedResources::Base
     if resource.have_donated?(request.remote_ip)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
     else
-      if Click.create(request_ip: request.remote_ip, pledge: resource)
+      click = Click.new(request_ip: request.remote_ip, pledge: resource)
+      if click.save
         redirect_to 'http://'+resource.website_url 
       else
-        redirect_to resource
+        redirect_to resource, alert: click.errors.messages
+      end
+    end
+  end
+
+  #Increase
+  def increase
+    @pledge = resource
+  end
+
+  def set_increase
+    update! do |success, failure|
+      success.html do
+        resource.notify_increase
+        redirect_to resource, notice: 'Pledge increased succesfully.'
+      end
+      failure.html do
+        render 'increase'
       end
     end
   end

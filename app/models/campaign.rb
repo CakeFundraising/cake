@@ -40,17 +40,16 @@ class Campaign < ActiveRecord::Base
 
   scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
   scope :past, ->{ where("end_date < ?", Date.today) }
+  scope :current, ->{ where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
 
   scope :with_paid_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
-    # past.select('DISTINCT "campaigns".*').joins('LEFT OUTER JOIN "pledges" ON "pledges"."campaign_id" = "campaigns"."id" LEFT OUTER JOIN "invoices" ON "invoices"."pledge_id" = "pledges"."id" AND "invoices"."status" = \'due_to_pay\' OR "invoices"."status" = \'in_arbitration\'').where('"invoices"."pledge_id" IS NULL')
   }
   scope :with_outstanding_invoices, ->{ 
     past.with_invoices.reject{|c| c.invoices.blank? || c.invoices.map(&:status).include?('paid') }
-    # past.select('DISTINCT "campaigns".*').joins('LEFT OUTER JOIN "pledges" ON "pledges"."campaign_id" = "campaigns"."id" INNER JOIN "invoices" ON "invoices"."pledge_id" = "pledges"."id" AND "invoices"."status" = \'paid\'').where('"invoices"."pledge_id" IS NULL')
   }
 
   after_initialize do
@@ -73,6 +72,18 @@ class Campaign < ActiveRecord::Base
 
   def accepted_pledges
     pledges.accepted.order('total_amount_cents DESC')
+  end
+
+  def raised
+    pledges.accepted.fully_subscribed.sum(:total_amount_cents)/100
+  end
+
+  def goal
+    pledges.accepted.sum(:total_amount_cents)/100
+  end
+
+  def pledges_thermometer
+    (raised/goal)*100
   end
 
   #Status

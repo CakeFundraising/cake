@@ -4,6 +4,7 @@ class PledgeDecorator < ApplicationDecorator
   decorates_association :sponsor
   decorates_association :coupons
   decorates_association :fundraiser
+  decorates_association :video
 
   def end_date
     campaign.end_date

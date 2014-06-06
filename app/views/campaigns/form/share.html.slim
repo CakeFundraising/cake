@@ -36,7 +36,7 @@
             iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
               p 
                 | See this campaign here: 
-                = link_to @campaign.title, campaign_url(@campaign), target: :_blank
+                = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
           button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
     .row.solicit-choose
       .col-md-12.text-center

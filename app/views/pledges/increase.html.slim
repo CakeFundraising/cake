@@ -1,0 +1,9 @@
+h1 Increase your pledge
+
+= semantic_form_for @pledge, url: set_increase_pledge_path do |f|
+  = f.inputs do
+    .input-group
+      span.input-group-addon $
+      = f.input :total_amount, label: false
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

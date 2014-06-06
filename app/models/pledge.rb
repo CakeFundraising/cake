@@ -34,8 +34,6 @@ class Pledge < ActiveRecord::Base
   validate :max_amount
   validate :pledge_fully_subscribed, if: :persisted?
 
-  DONATION_TYPES = ["Cash", "Goods & Services"]
-
   scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
   scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
   
@@ -106,6 +104,12 @@ class Pledge < ActiveRecord::Base
     self.reload.clicks_count >= self.max_clicks
   end
 
+  def thermometer
+    puts clicks_count
+    puts max_clicks
+    (clicks_count/max_clicks)*100
+  end
+
   def notify_fully_subscribed
     fundraiser.users.each do |user|
       PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
@@ -129,6 +133,13 @@ class Pledge < ActiveRecord::Base
     users = sponsor.users + fundraiser.users
     users.each do |user|
       InvoiceNotification.new_invoice(invoice, user).deliver
+    end
+  end
+
+  #Increase
+  def notify_increase
+    fundraiser.users.each do |user|
+      PledgeNotification.pledge_increased(self, user).deliver if user.fundraiser_email_setting.reload.pledge_increased
     end
   end
 

@@ -1,0 +1,3 @@
+h2 Hello #{@receiver}, 
+div The pledge: #{ link_to @p.headline, pledge_url(@p) } for your campaign: #{ link_to @p.campaign.title, campaign_url(@p.campaign) } has been increased from #{ humanized_money_with_symbol @changes[:total_amount_cents].first } to #{ humanized_money_with_symbol @changes[:total_amount_cents].last }.
+div Click #{ link_to t('semantic.here').downcase, pledge_url(@p) } to see the pledge.

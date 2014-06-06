@@ -6,7 +6,6 @@
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
     p.amount_per_click = rand(99) + 1
-    p.donation_type = Pledge::DONATION_TYPES.sample
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
@@ -44,7 +43,6 @@ end
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
     p.amount_per_click = rand(99) + 1
-    p.donation_type = Pledge::DONATION_TYPES.sample
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
