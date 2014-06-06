@@ -1,10 +1,11 @@
-table#unsolicited_pledges.table.table-hover.table-bordered.data-table
-  thead
-    tr
-      th = Sponsor.model_name.human
-      th = Campaign.model_name.human
-      th = Pledge.human_attribute_name :donation_click
-      th = Pledge.model_name.human
-      th
-  tbody
-    = render partial:'pledges/tables/pending/fundraiser/row', collection: pledges, as: :pledge
+- if pledges.any? 
+  table#unsolicited_pledges.table.table-hover.table-bordered.data-table
+    thead
+      tr
+        th = Sponsor.model_name.human
+        th = Campaign.model_name.human
+        th = Pledge.human_attribute_name :donation_click
+        th = Pledge.model_name.human
+        th
+    tbody
+      = render partial:'pledges/tables/pending/fundraiser/row', collection: pledges, as: :pledge

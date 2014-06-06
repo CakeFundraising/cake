@@ -13,6 +13,7 @@ table#campaigns.table.table-hover.table-bordered.data-table
       th = Campaign.human_attribute_name :clicks
       th = Campaign.human_attribute_name :reach
       th = Campaign.human_attribute_name :conv_rate
+      th = Campaign.human_attribute_name :status
       th
   tbody
     = render partial:'campaigns/show/table_row', collection: campaigns, as: :campaign
