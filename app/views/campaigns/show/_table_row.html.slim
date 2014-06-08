@@ -1,4 +1,4 @@
-tr.campaign data-target="#campaign-#{campaign.id}" data-toggle="modal"
+tr.campaign 
   td = campaign.title
   td = campaign.end_date
   td = campaign.causes
@@ -16,6 +16,7 @@ tr.campaign data-target="#campaign-#{campaign.id}" data-toggle="modal"
   td
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
 
-tr.pledges_modal.hidden-row
-  td
-    = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+- if campaign.pledges.any?
+  tr.pledges_modal.hidden-row
+    td
+      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
