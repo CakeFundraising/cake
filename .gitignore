@@ -29,3 +29,5 @@
 # Ignore sublime project files
 cake.sublime-project
 cake.sublime-workspace
+
+.DS_Store
