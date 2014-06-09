@@ -511,7 +511,40 @@ table.performance-summary {
   padding: 50px 200px;
   color: #fff;
 }
-
+.make-pledge {
+  h4 {
+    color: $gray-light;
+  }
+  b {
+    color: black;
+  }
+  .btn {
+    vertical-align: middle;
+  }
+}
+.wood {
+  height:650px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: image-url('purple_wood.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+  @media (max-width: $screen-md-min) {
+    height: 1000px;
+  }
+}
+.bottom-arrow {
+  background: image-url("bottom-arrow.png") no-repeat;
+  height: 96px;
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+.never-easier {
+  margin-top: 135px;
+  color: #fff;
+}
 // Campaign Page Styles -----------------------------------------------------------------
 
 .avatar {
@@ -1396,4 +1429,8 @@ ul#share-block {
 .pledge-logo {
   max-width: 65%;
   margin-top: 10px;
+}
+// Signup view -------------------------------------------------
+.first-of-all {
+  margin: 50px auto;
 }

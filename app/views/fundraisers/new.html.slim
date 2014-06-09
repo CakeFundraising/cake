@@ -4,22 +4,17 @@
 
 = semantic_form_for @fundraiser do |f|
     = f.inputs nil do
-      .row
-        .col-md-6
-          = f.input :name
-        .col-md-6
-          #claim_account
-      .row
-        .col-md-6
-          = render partial:'locations/form', locals:{f: f}
-        .col-md-6
-          br
-          br
-          = f.input :email
-          = f.input :phone
-          = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
-          = f.input :tax_exempt
-    .row
-      .col-md-3.col-md-offset-9
-        = f.actions do
-          = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg btn-block'}
+      .container.first-of-all
+        .row
+          .col-md-6
+            = f.input :name
+            = render partial:'locations/form', locals:{f: f}
+          .col-md-6
+            = f.input :email
+            = f.input :phone
+            = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
+            = f.input :tax_exempt
+        .row
+          .col-md-12.text-center
+            = f.actions do
+              = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
