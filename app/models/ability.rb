@@ -33,7 +33,7 @@ class Ability
       can [:update, :destroy], PledgeRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
-      can [:accept, :reject], Pledge, fundraiser: user.fundraiser
+      can [:accept, :reject, :add_reject_message, :increase_request], Pledge, fundraiser: user.fundraiser
     end
 
     can :read, :all

@@ -81,13 +81,13 @@ class Pledge < ActiveRecord::Base
     end
   end
 
-  def reject!
-    notify_rejection if self.rejected!
+  def reject!(message)
+    notify_rejection(message) if self.rejected!
   end
 
-  def notify_rejection
+  def notify_rejection(message)
     sponsor.users.each do |user|
-      PledgeNotification.rejected_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_rejected
+      PledgeNotification.rejected_pledge(self, user, message).deliver if user.sponsor_email_setting.reload.pledge_rejected
     end
   end
 
@@ -105,8 +105,6 @@ class Pledge < ActiveRecord::Base
   end
 
   def thermometer
-    puts clicks_count
-    puts max_clicks
     (clicks_count/max_clicks)*100
   end
 
@@ -140,6 +138,17 @@ class Pledge < ActiveRecord::Base
   def notify_increase
     fundraiser.users.each do |user|
       PledgeNotification.pledge_increased(self, user).deliver if user.fundraiser_email_setting.reload.pledge_increased
+    end
+  end
+
+  def increase_request!
+    notify_increase_request
+    update_attribute(:increase_requested, true)
+  end
+
+  def notify_increase_request
+    sponsor.users.each do |user|
+      PledgeNotification.pledge_increase_request(self, user).deliver if user.sponsor_email_setting.reload.pledge_increased
     end
   end
 

@@ -92,7 +92,7 @@ en:
         public_profile_change: Change to public profile
       sponsor_email_setting:
         new_pledge_request: New pledge request
-        pledge_increased: Pledge has been increased
+        pledge_increased: Request to increase a pledge
         pledge_fully_subscribed: Pledge has been 100% subscribed
         pledge_accepted: Offer to Pledge Accepted
         pledge_rejected: Offer to Pledge Rejected

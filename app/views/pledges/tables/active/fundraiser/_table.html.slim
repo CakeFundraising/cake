@@ -1,5 +1,5 @@
 - if pledges.any? 
-  table#sponsor_pledges.table.table-hover.table-bordered.data-table
+  table#active_pledges.table.table-hover.table-bordered.data-table
     thead
       tr
         th = Fundraiser.model_name.human
@@ -8,6 +8,5 @@
         th = Pledge.human_attribute_name :end_date
         th = Pledge.model_name.human
         th = Pledge.human_attribute_name :donation_click
-        th = Pledge.human_attribute_name :status
     tbody
-      = render partial:'pledges/tables/pending/sponsor/row', collection: pledges, as: :pledge
+      = render partial:'pledges/tables/active/fundraiser/row', collection: pledges, as: :pledge

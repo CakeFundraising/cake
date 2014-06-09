@@ -120,6 +120,20 @@ Feature: Sponsor Email Notifications
     | wants?        | quantity |
     | doesn't want  | 0        |
 
+  Scenario Outline: Request to increase a pledge
+    And a pledge of that sponsor exists
+    And the sponsor user <wants?> to receive notifications for "Request to increase a pledge"
+    When a fundraiser requests an increase for that pledge
+    Then <quantity> email should be delivered with subject: "Your pledge has a new increase request."
+
+    Examples: Enabled notification
+    | wants? | quantity |
+    | wants  | 1        |
+    
+    Examples: Disabled notification
+    | wants?        | quantity |
+    | doesn't want  | 0        |
+
   Scenario: Invoice created
     And a pledge of that sponsor exists
     When the pledge campaign ends

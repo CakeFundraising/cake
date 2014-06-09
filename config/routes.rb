@@ -36,12 +36,14 @@ Cake::Application.routes.draw do
 
       get :increase
       patch :set_increase
+      patch :increase_request
 
       get :badge
       patch :launch
 
       patch :accept
       patch :reject
+      get :add_reject_message
 
       patch :click
     end

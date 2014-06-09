@@ -31,8 +31,9 @@ class PledgeNotification < ActionMailer::Base
     mail(to: @receiver.email, subject: 'Your Pledge has been accepted.')
   end
 
-  def rejected_pledge(pledge, user)
+  def rejected_pledge(pledge, user, message)
     @p = pledge
+    @message = message
     @receiver = user.decorate
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
@@ -57,5 +58,11 @@ class PledgeNotification < ActionMailer::Base
     @changes = pledge.previous_changes
     @receiver = user.decorate
     mail(to: @receiver.email, subject: "Your campaign's pledge has been increased.")
+  end
+
+  def pledge_increase_request(pledge, user)
+    @p = pledge
+    @receiver = user.decorate
+    mail(to: @receiver.email, subject: "Your pledge has a new increase request.")
   end
 end

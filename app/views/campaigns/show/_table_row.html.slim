@@ -1,4 +1,4 @@
-tr.campaign
+tr.campaign 
   td = campaign.title
   td = campaign.end_date
   td = campaign.causes
@@ -12,4 +12,11 @@ tr.campaign
   td 9
   td 9
   td
+    strong = campaign.status
+  td
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+
+- if campaign.pledges.any?
+  tr.pledges_modal
+    td
+      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}

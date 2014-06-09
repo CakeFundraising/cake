@@ -1,0 +1,3 @@
+h2 Hello #{@receiver}, 
+div #{ link_to @p.fundraiser, fundraiser_url(@p.fundraiser) } is requesting you to increase your pledge: #{ link_to @p.headline, pledge_url(@p) }.
+div Click #{ link_to t('semantic.here').downcase, increase_pledge_url(@p) } to do that.

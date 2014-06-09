@@ -6,6 +6,10 @@ When(/^(?:I|they|he) press the "(.*?)" button$/) do |button|
   click_button(button)
 end
 
+When(/^he finds and press the "(.*?)" button$/) do |button|
+  first(button).click
+end
+
 When(/^(?:I|they|he) press the "(.*?)" link$/) do |link|
   click_link(link)
 end

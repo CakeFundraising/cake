@@ -232,19 +232,39 @@ describe Ability do
         @ability.should be_able_to(:accept, @pledge)
       end
 
-      it "can reject pledges" do
-        @pledge = FactoryGirl.create(:pending_pledge, fundraiser: @fundraiser)
-        @ability.should be_able_to(:reject, @pledge)
-      end
-
       it "cannot accept someone else's pledges" do
         @pledge = FactoryGirl.create(:pending_pledge)
         @ability.should_not be_able_to(:accept, @pledge)
       end
 
+      it "can reject pledges" do
+        @pledge = FactoryGirl.create(:pending_pledge, fundraiser: @fundraiser)
+        @ability.should be_able_to(:reject, @pledge)
+      end
+
       it "cannot reject someone else's pledges" do
         @pledge = FactoryGirl.create(:pending_pledge)
         @ability.should_not be_able_to(:reject, @pledge)
+      end
+
+      it "can add a message when rejecting own pledges" do
+        @pledge = FactoryGirl.create(:pending_pledge, fundraiser: @fundraiser)
+        @ability.should be_able_to(:add_reject_message, @pledge)
+      end
+
+      it "cannot add a message when rejecting someone else's pledges" do
+        @pledge = FactoryGirl.create(:pending_pledge)
+        @ability.should_not be_able_to(:add_reject_message, @pledge)
+      end
+
+      it "can create a pledge increase request" do
+        @pledge = FactoryGirl.create(:pledge, fundraiser: @fundraiser)
+        @ability.should be_able_to(:increase_request, @pledge)
+      end
+
+      it "cannot create a increase request in someone else's pledges" do
+        @pledge = FactoryGirl.create(:pledge)
+        @ability.should_not be_able_to(:increase_request, @pledge)
       end
     end
   end

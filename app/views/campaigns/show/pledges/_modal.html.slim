@@ -1,0 +1,24 @@
+.modal.fade id="campaign-#{campaign.id}"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h3.modal-title #{ auto_link campaign} Pledges.
+      .modal-body
+        .row
+          - if campaign.pledges.active.any?
+            .lead Active Pledges
+          = render partial:'pledges/tables/active/fundraiser/table', locals: {pledges: campaign.pledges.active.decorate}
+        .row
+          - if campaign.pledges.pending.any?
+            .lead Pending Pledges
+          = render partial:'pledges/tables/pending/fundraiser/table', locals: {pledges: campaign.pledges.pending.decorate}
+        .row
+          - if campaign.pledges.past.any?
+            .lead Past Pledges
+          = render partial:'pledges/tables/past/table', locals: {pledges: campaign.pledges.past.decorate}
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button" Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

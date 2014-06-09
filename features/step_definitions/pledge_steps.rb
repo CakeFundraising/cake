@@ -90,3 +90,8 @@ end
 Then(/^the "(.*?)" link should not be present$/) do |link|
   page.should_not have_link(link)
 end
+
+#Increase request
+Then(/^an increase request should be stored in the pledge$/) do
+  @pledge.reload.increase_requested.should be_true
+end

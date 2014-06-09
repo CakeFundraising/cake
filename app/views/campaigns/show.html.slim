@@ -11,7 +11,7 @@
               |  See video
         h1.name 
           span = @campaign.mission
-          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @cabootstrap_flashmpaign
+          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
         .share-links 
       .col-md-4
         .sidebar-bkg 
@@ -98,6 +98,13 @@
                   = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
 
   = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+
+    .row.make-pledge.white
+      .col-md-8
+        strong Business Owners:
+        span  Please support us and win new customers!
+      .col-md-4
+        = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
