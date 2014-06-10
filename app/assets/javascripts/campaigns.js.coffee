@@ -3,6 +3,8 @@ Cake.custom_pledges_switcher = ->
   label = $('#campaign_custom_pledge_levels_input label.control-label')
   pledge_levels_container = $('#sponsor_categories')
   checked = checkbox.prop('checked')
+  to_off_text = 'Click to have just one level ->'
+  to_on_text = '<- Click to set custom levels'
 
   checkbox.bootstrapSwitch({
     onText: 'Set custom pledge levels',
@@ -12,18 +14,18 @@ Cake.custom_pledges_switcher = ->
       pledge_levels_container.slideToggle()
 
       if state
-        $('label.bootstrap-switch-label').text('Click to have just one level ->')
+        $('label.bootstrap-switch-label').text(to_off_text)
       else
-        $('label.bootstrap-switch-label').text('<- Click to set custom levels')
+        $('label.bootstrap-switch-label').text(to_on_text)
       
       return
   });
 
   if checked
-    $('label.bootstrap-switch-label').text('Click to have just one level ->')
+    $('label.bootstrap-switch-label').text(to_off_text)
     pledge_levels_container.show()
   else
-    $('label.bootstrap-switch-label').text('<- Click to set custom levels')
+    $('label.bootstrap-switch-label').text(to_on_text)
     pledge_levels_container.hide()
 
   return

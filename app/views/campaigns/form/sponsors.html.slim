@@ -31,3 +31,8 @@
       = f.actions do
         .text-center
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+
+javascript:
+  $(document).ready(Cake.custom_pledges_switcher);
+  $(document).on('page:load', Cake.custom_pledges_switcher);
+  

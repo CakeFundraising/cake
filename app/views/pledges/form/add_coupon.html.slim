@@ -36,3 +36,7 @@
         = f.actions do
           = f.action :submit, label: 'Continue', button_html: {class: 'btn btn-success btn-lg'} 
         = cancel_pledge_link 
+
+javascript:
+  $(document).ready(Cake.pledges.coupons_switcher);
+  $(document).on('page:load', Cake.pledges.coupons_switcher);

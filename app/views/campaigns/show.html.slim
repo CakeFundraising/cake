@@ -40,6 +40,9 @@
                 span Raised
                 span.pull-right Goal
                 strong.pull-right = @campaign.goal
+            - if current_sponsor.present?
+              .col-md-12
+                = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
 
   .white
     .container

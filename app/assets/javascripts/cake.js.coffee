@@ -7,11 +7,13 @@ Cake.init = ->
   Cake.image_previewer()
   Cake.locations()
   Cake.extra_donation_pledges()
-  Cake.custom_pledges_switcher()
   Cake.pledges.click()
   Cake.pledges.update_triggers()
-  Cake.pledges.coupons_switcher()
   return
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)
+
+$(document).on "page:before-change", ->
+  ZeroClipboard.destroy()
+  return
