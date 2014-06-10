@@ -38,6 +38,7 @@ gem 'thin', group: :development
 #Image processing
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
+gem 'fog'
 gem 'jquery-fileupload-rails'
 
 #Cron & Asynchronous tasks
