@@ -2,8 +2,11 @@ h1 Increase your pledge
 
 = semantic_form_for @pledge, url: set_increase_pledge_path do |f|
   = f.inputs do
-    .input-group
-      span.input-group-addon $
-      = f.input :total_amount, label: false
+  	span.pledge-pad I agree to donate $ 
+  	= f.input :amount_per_click, label: false
+  	span.pledge-pad  per unique click to 
+    h3 = auto_link @pledge.campaign.decorate
+  	span.pledge-pad up to an amount not to exceed $ 
+  	= f.input :total_amount, label: false
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

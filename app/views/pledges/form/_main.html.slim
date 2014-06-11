@@ -37,7 +37,7 @@
           span.pledge-pad I agree to donate $ 
           = f.input :amount_per_click, label: false
           span.pledge-pad  per unique click to 
-          h3 = link_to @pledge.campaign.title, @pledge.campaign
+          h3 = auto_link @pledge.campaign.decorate
           = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
           br
           span.pledge-pad up to an amount not to exceed $ 
