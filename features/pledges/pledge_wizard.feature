@@ -10,7 +10,7 @@ Feature: Pledge Wizard
 
   #@javascript
   Scenario Outline: Your Pledge
-    And a campaign exists
+    And a campaign with pledge levels exists
     When he visits the new pledge page
     And he fills in the "pledge_amount_per_click" field with <click_amount>
     And he fills in the "pledge_total_amount" field with <total_amount>
@@ -21,8 +21,8 @@ Feature: Pledge Wizard
 
   Examples: Successful step
   | click_amount | total_amount | website             | message                          |
-  | 10.00        | 100000.00    | example.com         | Pledge was successfully created. |
-  | 5.00         | 100000.00    | http://example.com/ | Pledge was successfully created. |
+  | 10.00        | 1000.00    | example.com         | Pledge was successfully created. |
+  | 5.00         | 2000.00    | http://example.com/ | Pledge was successfully created. |
 
   Examples: Failed Step
   | click_amount | total_amount | website             | message                |

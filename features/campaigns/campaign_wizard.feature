@@ -48,7 +48,7 @@ Feature: Campaign Wizard
     |                    | Some story text | Some headline | 21/08/2014  | 21/12/2014 | can't be blank  |
   
   Scenario Outline: Pledge Levels
-    And a campaign of that fundraiser exists
+    And a campaign of that fundraiser exists with custom_pledge_levels: true
     When he goes to campaign wizard sponsors page
     And he fills in the "Name" field with <name>
     And he fills in the "campaign_sponsor_categories_attributes_0_min_value" field with <min_value>

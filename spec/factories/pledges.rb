@@ -23,5 +23,9 @@ FactoryGirl.define do
     factory :past_pledge do
       association :campaign, factory: :past_campaign
     end
+
+    factory :pledge_with_levels do
+      association :campaign, factory: :campaign_with_pledge_levels
+    end
   end
 end

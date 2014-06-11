@@ -155,7 +155,7 @@ class Pledge < ActiveRecord::Base
   private
 
   def max_amount
-    if campaign and campaign.sponsor_categories.present?
+    if campaign and campaign.custom_pledge_levels
       max = campaign.sponsor_categories.maximum(:max_value_cents)
       errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
     end

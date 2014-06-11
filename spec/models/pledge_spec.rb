@@ -111,6 +111,33 @@ describe Pledge do
     
   end
 
+  context 'validations' do
+    describe "#max_amount" do
+      context 'with pledge levels' do
+        it "should be valid if the total_amount is less than campaign pledge levels max amount" do
+          campaign = FactoryGirl.create(:campaign_with_pledge_levels)
+          max = campaign.sponsor_categories.maximum(:max_value_cents)
+          pledge = FactoryGirl.build(:pledge, campaign: campaign, total_amount_cents: max-20)
+          pledge.should be_valid
+        end
+
+        it "should not be valid if the total_amount is greater than campaign pledge levels max amount" do
+          campaign = FactoryGirl.create(:campaign_with_pledge_levels)
+          max = campaign.sponsor_categories.maximum(:max_value_cents)
+          pledge = FactoryGirl.build(:pledge, campaign: campaign, total_amount_cents: max+20)
+          pledge.should_not be_valid
+        end
+      end
+
+      context 'without pledge levels' do
+        it "should be valid when the total_amount has any value" do
+          pledge = FactoryGirl.build(:pledge, total_amount: '100000')
+          pledge.should be_valid
+        end
+      end
+    end
+  end
+
   describe "#clicks" do
     before(:each) do
       @pledge = FactoryGirl.create(:pledge)  
