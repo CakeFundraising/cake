@@ -32,7 +32,7 @@ class Pledge < ActiveRecord::Base
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount
-  validate :pledge_fully_subscribed, if: :persisted?
+  validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
   scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
   scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
@@ -165,5 +165,10 @@ class Pledge < ActiveRecord::Base
     if clicks.any? and fully_subscribed?
       errors.add(:clicks, "Pledge fully subscribed")
     end
+  end
+
+  def decreased_amounts
+    errors.add(:amount_per_click, "You can only increase this value after you create the pledge.") if self.changes.key?('amount_per_click_cents') and self.changes['amount_per_click_cents'].last < self.changes['amount_per_click_cents'].first 
+    errors.add(:total_amount, "You can only increase this value after you create the pledge.") if self.changes.key?('total_amount_cents') and self.changes['total_amount_cents'].last < self.changes['total_amount_cents'].first
   end
 end

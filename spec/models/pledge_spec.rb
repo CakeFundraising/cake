@@ -137,8 +137,42 @@ describe Pledge do
       end
     end
 
-    describe "#increase_amounts" do
-      
+    describe "#decreased_amounts" do
+      before(:each) do
+        @pledge = FactoryGirl.create(:pledge)
+        @amount_per_click_cents = @pledge.amount_per_click_cents  
+        @total_amount_cents = @pledge.total_amount_cents  
+      end
+
+      context 'increment' do
+        it "should be valid if the total_amount is increased" do
+          @pledge.total_amount_cents = @total_amount_cents + 200
+          @pledge.should be_valid
+        end
+
+        it "should be valid if the amount_per_click is increased" do
+          @pledge.amount_per_click_cents = @amount_per_click_cents + 200
+          @pledge.should be_valid
+        end
+
+        it "should be valid if the amount_per_click are increased" do
+          @pledge.total_amount_cents = @total_amount_cents + 200
+          @pledge.amount_per_click_cents = @amount_per_click_cents + 200
+          @pledge.should be_valid
+        end
+      end
+
+      context 'decrement' do
+        it "should not be valid if the total_amount is decreased" do
+          @pledge.total_amount_cents = @total_amount_cents - 200
+          @pledge.should_not be_valid
+        end
+
+        it "should not be valid if the amount_per_click is decreased" do
+          @pledge.amount_per_click_cents = @amount_per_click_cents - 200
+          @pledge.should_not be_valid
+        end
+      end
     end
   end
 
