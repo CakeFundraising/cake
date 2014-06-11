@@ -48,6 +48,14 @@ class PledgesController < InheritedResources::Base
     end
   end
 
+  def destroy
+    destroy! do |success, failure|
+      success.html do
+        redirect_to :back
+      end
+    end
+  end
+
   # Pledge wizard
   def tell_your_story
     @pledge = resource

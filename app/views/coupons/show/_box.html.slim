@@ -2,24 +2,30 @@
   .col-xs-11.coupon
     .row
       .col-md-4
+        - if coupon.extra_donation_pledge
+          div.label.label-info Extra Donation
         = image_tag coupon.avatar.url(:medium)
         .coupon-edge
       .col-md-6
-        h2 Save 20%
+        h2 = coupon
         p 
           |Ends: 
           span = coupon.expires_at
-        p No. of Prizes: <span> 20</span>
         p = coupon.description
         .row.terms
-          .col-xs-7
-            p 
-              em Terms & Conditions:
-              | Must be 18 or older and a legal resident of the United States.
-              / span = coupon.terms_conditions.html_safe
-          .col-xs-5      
+          .col-xs-12
+            a data-target="#coupon-#{coupon.id}" data-toggle="modal" Read terms & conditions
+        - if coupon.extra_donation_pledge
+          hr
+          .row
+            .col-xs-12
+              strong Extra donation pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
+          hr
       .col-md-2
         = image_tag coupon.qrcode.url(:medium), class: "qr"
+        .promo-code
+          strong Promo Code
+          span.pull-right = coupon.promo_code
         button.btn.btn-success.btn-block.pull-right Print Coupon
   .col-xs-1.share-coupon-block
     ul.share-coupon
@@ -31,3 +37,5 @@
         a.mail href="#"
       li
         a.share href="#" 
+
+  = render partial:'coupons/show/terms', locals:{coupon: coupon}
