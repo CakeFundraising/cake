@@ -1,3 +1,7 @@
 h2 Hello #{@receiver}, 
-div The pledge: #{ link_to @p.headline, pledge_url(@p) } for your campaign: #{ link_to @p.campaign.title, campaign_url(@p.campaign) } has been increased from #{ humanized_money_with_symbol @changes[:total_amount_cents].first } to #{ humanized_money_with_symbol @changes[:total_amount_cents].last }.
+div The pledge: #{ link_to @p.headline, pledge_url(@p) } for your campaign: #{ link_to @p.campaign.title, campaign_url(@p.campaign) } has been increased.
+- if @changes[:total_amount_cents].present?
+  div The total pledges has been increased from #{ humanized_money_with_symbol @changes[:total_amount_cents].first/100 } to #{ humanized_money_with_symbol @changes[:total_amount_cents].last/100 }.
+- if @changes[:amount_per_click_cents].present?
+  div The donation per click has been increased from #{ humanized_money_with_symbol @changes[:amount_per_click_cents].first/100 } to #{ humanized_money_with_symbol @changes[:amount_per_click_cents].last/100 }.
 div Click #{ link_to t('semantic.here').downcase, pledge_url(@p) } to see the pledge.
