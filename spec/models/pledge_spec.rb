@@ -136,6 +136,10 @@ describe Pledge do
         end
       end
     end
+
+    describe "#increase_amounts" do
+      
+    end
   end
 
   describe "#clicks" do

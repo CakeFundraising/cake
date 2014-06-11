@@ -1,5 +1,5 @@
 tr.pledge id=(pledge.id) 
-  td = link_to pledge.fundraiser, pledge.campaign 
+  td = link_to pledge.sponsor, pledge
   td = pledge.causes.first
   td = pledge.scopes.first
   td = pledge.end_date
@@ -7,6 +7,8 @@ tr.pledge id=(pledge.id)
   td = humanized_money_with_symbol pledge.amount_per_click
   td
     = link_to "Request Increase Pledge", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-default increase_request'
+    = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
+      span.glyphicon.glyphicon-trash
 
     = link_to nil do
       span.glyphicon.glyphicon-share
