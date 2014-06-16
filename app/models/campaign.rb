@@ -44,6 +44,7 @@ class Campaign < ActiveRecord::Base
   scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
+  scope :with_picture, ->{ eager_load(:picture) }
 
   scope :with_paid_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }

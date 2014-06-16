@@ -37,8 +37,15 @@ html lang="en"
         = yield :header
     .container#main-container
       .row
-        .col-md-12
-          = yield
+        - if content_for? :sidebar
+          #sidebar.col-md-3
+            .sidebar-nav
+              = yield :sidebar
+          .col-md-9.with-sidebar
+            = yield
+        - else
+          .col-md-12
+            = yield
       /! /row
     /! /container
     - if content_for? :bottom_section

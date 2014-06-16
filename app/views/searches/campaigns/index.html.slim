@@ -1,0 +1,14 @@
+= render partial: 'searches/campaigns/filters'
+
+h1 Search Campaigns
+
+= pagination(@campaigns)
+
+.campaigns-container.row-fluid.transitions-enabled
+  .campaigns
+    = render partial: "campaigns/show/grid", collection: CampaignDecorator.decorate_collection(@campaigns), as: :campaign
+
+= pagination(@campaigns)
+
+javascript:
+  Cake.search("#campaigns-search", ".campaigns");

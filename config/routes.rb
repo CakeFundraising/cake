@@ -12,6 +12,11 @@ Cake::Application.routes.draw do
 
   resources :direct_donations, only: :create
 
+  scope :search, controller: :searches do
+    get :search_campaigns, path:'campaigns'
+    get :search_sponsors, path:'sponsors'
+  end
+
   resources :campaigns do
     member do
       scope :edit do

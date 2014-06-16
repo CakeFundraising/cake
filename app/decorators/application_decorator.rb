@@ -12,4 +12,8 @@ class ApplicationDecorator < Draper::Decorator
   def prettify_boolean value
     value ? ("&#10003;").html_safe : ("&#10007;").html_safe
   end  
+
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
 end

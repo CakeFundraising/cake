@@ -21,6 +21,12 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
+  helpers:
+    titles:
+      search: Search
+    filters:
+      title: Filters
+      clear: Clear filters
   links:
     user:
       sign_in: Sign In

@@ -1,0 +1,6 @@
+.search-form
+  = form_tag send("search_#{collection}_path"), remote: true, :method => :get, id: "#{collection}-search", :class => "form-search" do
+    .input-append
+      = search_parameters_hidden_fields
+      = text_field_tag :search, params[:search], placeholder: "Search #{collection}...", :class => 'search-query span8'
+      = submit_tag t('helpers.titles.search'), :name => nil, :class => 'searchBtn'
