@@ -58,6 +58,20 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  #Solr
+  searchable do
+    text :title, :headline, :story, :mission
+    text :zip_code do
+      fundraiser.location.zip_code  
+    end
+
+    boolean :tax_exempt do
+      fundraiser.tax_exempt
+    end
+
+    integer :scopes_mask, :causes_mask, :fundraiser_id
+  end
+
   # Campaign pledges
   def rank_levels
     obj = self

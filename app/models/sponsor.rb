@@ -41,6 +41,11 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  searchable do
+    text :name, :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+    integer :scopes_mask, :causes_mask
+  end
+
   def accepted_pledges
     pledges.accepted.eager_load(:fundraiser)
   end

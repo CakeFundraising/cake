@@ -32,6 +32,10 @@ gem 'draper'
 #Storage
 gem 'pg'
 
+#Solr
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 #Server
 gem 'thin', group: :development
 

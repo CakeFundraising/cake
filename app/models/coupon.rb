@@ -26,4 +26,8 @@ class Coupon < ActiveRecord::Base
   after_initialize do
     self.terms_conditions = I18n.t('application.terms_and_conditions.standard') if self.terms_conditions.blank?
   end
+
+  searchable do
+    text :title, :promo_code, :description
+  end
 end
