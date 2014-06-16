@@ -1,4 +1,4 @@
-.campaign_grid.col-md-3
+.campaign_grid.col-md-4
   .thumbnail
     .avatar = image_tag campaign.avatar.url(:medium)
     .caption
@@ -6,8 +6,6 @@
       .cause = campaign.object.causes.first
       .type = campaign.object.scopes.first
       .dates = campaign.start_end_dates
-      - if campaign.inactive?
-        = link_to "Launch Campaign", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-block'
   .sponsors.pull-left 
     = link_to "View Sponsors", nil 
   .actions.pull-right

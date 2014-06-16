@@ -27,6 +27,25 @@ en:
     filters:
       title: Filters
       clear: Clear filters
+      scopes: Type
+  semantic:
+    buy:               Buy
+    add_resource:      "Add %{resource}"
+    add_to_resource:   "Add to %{resource}"
+    new_resource:      "New %{resource}"
+    merge_resources:   "Merge %{resources}"
+    listing_resources: "Listing %{resources}"
+    editing_resource:  "Editing %{resource}"
+    search_resources:  "Search %{resources}"
+    select_obj:        "Select %{obj}"
+    n_items:           "%{n} items"
+    finish:            Finish
+    cancel:            Cancel
+    yes:               Yes
+    no:                No
+    here:              Here
+    next:              Next
+    my_thing:          "My %{thing}"
   links:
     user:
       sign_in: Sign In

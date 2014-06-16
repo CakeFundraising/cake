@@ -1,17 +1,19 @@
 class SearchesController < ApplicationController
   def search_campaigns
-  	#facets = [:price, :weight, :quantity, :meat_type]
+  	facets = [:zip_code, :causes, :scopes]
 
-    @search = Campaign.with_picture.solr_search do
+    @search = Campaign.solr_search do
       fulltext params[:search]
       #with(:status, [:active, :locked])
       paginate page: params[:page], per_page: 20
 
-      # facets.each do |f|
-      #   send(:facet, f)
-      #   send(:with, f, params[f]) if params[f].present?
-      # end
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) if params[f].present?
+      end
     end
+
+    @facets = facets
 
     if params[:search].nil?
       @campaigns = CampaignDecorator.decorate_collection @search.results

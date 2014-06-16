@@ -70,7 +70,13 @@ class Campaign < ActiveRecord::Base
       fundraiser.tax_exempt
     end
 
-    integer :scopes_mask, :causes_mask, :fundraiser_id
+    string :scopes, multiple: true
+    string :causes, multiple: true
+    string :zip_code do
+      fundraiser.location.zip_code  
+    end
+
+    integer :fundraiser_id
   end
 
   # Campaign pledges
