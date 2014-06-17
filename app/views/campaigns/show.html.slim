@@ -93,12 +93,12 @@
                 .fundraisers-cir
                   h2 Fundraisers,
                   p create your free "donation-per-click" campaign today!
-                  = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
+                  = link_to "Start Now!", new_user_registration_path, class:'btn btn-success btn-lg start-now-btn'
               .col-md-6
                 .sponsors-cir
                   h2 Sponsors,
                   p support great causes on a risk free "donation-per-click" basis
-                  = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
+                  = link_to "Start Now!", new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
                   
   = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 

@@ -1,13 +1,28 @@
 .campaign_grid.col-md-4
   .thumbnail
-    .avatar = image_tag campaign.avatar.url(:medium)
+    .avatar 
+      = link_to campaign do
+        = image_tag campaign.avatar.url(:medium)
     .caption
-      h4 = campaign.title
+      h4 = auto_link campaign
       .cause = campaign.object.causes.first
       .type = campaign.object.scopes.first
+      hr
+      .thermometer
+        p.timer-ital Total all sponsor pledges:
+        - if campaign.object.goal > 0
+          .progress
+            .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
+              span.sr-only #{campaign.pledges_thermometer}% Complete (success)
+        .campaign-stats
+          strong = campaign.raised
+          span Raised
+          span.pull-right Goal
+          strong.pull-right = campaign.goal
+      hr
       .dates = campaign.start_end_dates
   .sponsors.pull-left 
-    = link_to "View Sponsors", nil 
+    = link_to "View Sponsors", campaign 
   .actions.pull-right
     = link_to nil do
       span.glyphicon.glyphicon-share

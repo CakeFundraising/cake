@@ -9,8 +9,10 @@ h1 Search Campaigns
   .col-md-3
   	= render 'layouts/search/search_form', collection: :campaigns
   	hr
-  	#filters.accordion
+  	#filters.panel-group
   	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+      hr
+      = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
   .col-md-9
 	.campaigns-container.row-fluid.transitions-enabled
 	  .campaigns

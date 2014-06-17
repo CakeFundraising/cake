@@ -1,9 +1,9 @@
 .solicit-wrap
-	.media.thumbnail.campaign-preview-box
-	  = link_to campaign_url(campaign), class:'pull-left' do
-	    = image_tag campaign.avatar.medium.url, class:'media-object' 
-	  .media-body
-	    h4.media-heading = link_to campaign.title, campaign_url(campaign), target: :_blank
-	    .cause.text-muted = campaign.object.causes.first
-	    .type.text-muted  = campaign.object.scopes.first
-	    .dates = campaign.start_end_dates
+  .media.thumbnail.campaign-preview-box
+    = link_to campaign_url(campaign), class:'pull-left' do
+      = image_tag campaign.avatar.medium.url, class:'media-object' 
+    .media-body
+      h4.media-heading = link_to campaign.title, campaign_url(campaign), target: :_blank
+      .cause.text-muted = campaign.object.causes.first
+      .type.text-muted  = campaign.object.scopes.first
+      .dates = campaign.start_end_dates

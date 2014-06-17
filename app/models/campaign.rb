@@ -61,7 +61,9 @@ class Campaign < ActiveRecord::Base
 
   #Solr
   searchable do
-    text :title, :headline, :story, :mission
+    text :title, :headline, boost: 2
+    text :story, :mission
+
     text :zip_code do
       fundraiser.location.zip_code  
     end
@@ -70,8 +72,11 @@ class Campaign < ActiveRecord::Base
       fundraiser.tax_exempt
     end
 
+    boolean :active, using: :active?
+
     string :scopes, multiple: true
     string :causes, multiple: true
+    
     string :zip_code do
       fundraiser.location.zip_code  
     end

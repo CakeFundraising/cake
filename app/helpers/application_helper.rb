@@ -17,6 +17,14 @@ module ApplicationHelper
     t(options[key], :scope => options[:scope], :locale => options[:locale])
   end
 
+  def to_boolean(string)
+    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(string)
+  end
+
+  def is_boolean?(string)
+    ['true', 'false'].include?(string)
+  end
+
   def basic_list_item(name, value)
     content_tag(:div, class: name) do
       content_tag(:span, name)+

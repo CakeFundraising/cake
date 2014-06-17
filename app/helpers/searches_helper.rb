@@ -11,6 +11,10 @@ module SearchesHelper
     paginate collection, opts.merge({theme: 'twitter-bootstrap-3'}) if collection.any?
   end
 
+  def active_facet?(facet)
+    filters.symbolize_keys.keys.include?(facet)
+  end
+
   #Filters helpers
   def filters
     request.query_parameters

@@ -1,8 +1,10 @@
-.accordion-group
-  .accordion-heading
-    a.accordion-toggle data-parent="#filters" data-toggle="collapse" href="#collapse1" = t('helpers.filters.'+facet.to_s)
-  #collapse1.accordion-body.collapse.in
-    .accordion-inner
+.panel.panel-default
+  .panel-heading
+    h4.panel-title
+      a data-parent="#accordion" data-toggle="collapse" href="##{facet}" = t('helpers.filters.'+facet.to_s)
+  / div class=('panel-collapse collapse ' + ('in' if active_facet?(facet) ).rstrip) id=(facet)
+  div class=( ['panel-collapse collapse ', ('in' if active_facet?(facet) )].compact.join(' ') ) id=(facet)
+    .panel-body
       ul
         - @search.facet(facet).rows.each do |row|
           li
