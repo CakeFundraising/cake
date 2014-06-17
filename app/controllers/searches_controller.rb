@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
     if params[:search].nil?
       render "searches/campaigns/index"
     else
-      render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
+      render "searches/campaigns/index", layout: false
     end
   end
 end

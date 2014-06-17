@@ -2,13 +2,12 @@
   .panel-heading
     h4.panel-title
       a data-parent="#accordion" data-toggle="collapse" href="##{facet}" = t('helpers.filters.'+facet.to_s)
-  / div class=('panel-collapse collapse ' + ('in' if active_facet?(facet) ).rstrip) id=(facet)
   div class=( ['panel-collapse collapse ', ('in' if active_facet?(facet) )].compact.join(' ') ) id=(facet)
     .panel-body
       ul
         - @search.facet(facet).rows.each do |row|
           li
             - if no_queries?
-              = filter_link(nil, facet, row, filters)
+              = filter_link(facet, row, filters)
             - else
-              = filter_row(nil, facet, row, filters)
+              = filter_row(facet, row, filters)

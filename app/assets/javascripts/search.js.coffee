@@ -4,19 +4,20 @@ Cake.search = (form, resultsDiv) ->
   $form = $(form)
   $input = $form.find("#search")
 
+  timer = null
+  delay = 500
   $input.on "keyup", ->
-    clearTimeout $.data(this, "timer")
-    $(this).data "timer", setTimeout(->
+    window.clearTimeout timer if timer
+    timer = window.setTimeout(->
+      timer = null
       $form.submit()
       return
-    , 100)
+    , delay)
     return
 
   $(document).on "ajax:success", form, (evt, data, status, xhr) ->
     $(resultsDiv).html data
-    $(".pagination").show()
-    $(".pagination").hide() if $("<div>" + data + "</div>").find(".score").size() <= 1
-    $("nav.pagination").hide() if form is "#meat-search"
+    $("#search").focus()
     return
 
   return

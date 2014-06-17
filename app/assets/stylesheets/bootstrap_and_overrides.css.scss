@@ -1434,3 +1434,12 @@ ul#share-block {
 .first-of-all {
   margin: 50px auto;
 }
+
+#filters{
+  ul{
+    padding-left: 0;
+    li{
+      list-style: none;
+    }
+  }
+}

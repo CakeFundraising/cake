@@ -29,8 +29,9 @@ module SearchesHelper
     params[facet] == value
   end
 
-  def filter_link_name(row, hash=nil)
-    (hash.nil? ? row.value.to_s.titleize : hash.key(row.value)).to_s
+  def filter_link_name(row)
+    value = row.value.to_s
+    is_boolean?(value) ? b(to_boolean(value)) : value.titleize
   end
 
   def remove_filter_button(facet, row, filters=nil)
@@ -38,22 +39,22 @@ module SearchesHelper
       param_filters = filters.nil? ? nil : filters.except(facet)
       return_path = Rails.application.routes.recognize_path(request.fullpath)
 
-      link_to return_path.merge(param_filters), :class => 'btn btn-danger btn-mini pull-right' do
+      link_to return_path.merge(param_filters), :class => 'pull-right' do
         content_tag(:span, nil, class: "glyphicon glyphicon-remove")
       end
     end
   end
 
-  def filter_link(hash, facet, row, filters=nil)
+  def filter_link(facet, row, filters=nil)
     content_tag(:div) do
       concat(
         content_tag(:span, class: "link") do
           if filters.nil?
-            link_to filter_link_name(row, hash), facet => row.value
+            link_to filter_link_name(row), facet => row.value
           else
             value = row.value.is_a?(Range) ? row.value.to_s_without_gsub : row.value
             filter_params = filters.merge({facet => value}).except(:page)
-            link_to filter_link_name(row, hash), filter_params 
+            link_to filter_link_name(row), filter_params 
           end
         end
       ) +
@@ -66,11 +67,11 @@ module SearchesHelper
     end
   end
 
-  def active_filter_link(hash, facet, row, filters=nil)
+  def active_filter_link(facet, row, filters=nil)
     content_tag(:div) do
       concat(
         content_tag(:span, class: "link") do
-          filter_link_name(row, hash)
+          filter_link_name(row)
         end
       ) +
       concat(
@@ -81,11 +82,11 @@ module SearchesHelper
     end
   end
 
-  def filter_row(hash, facet, row, filters=nil)
+  def filter_row(facet, row, filters=nil)
     if active_filter?(facet, row)
-      active_filter_link(hash, facet, row, filters)
+      active_filter_link(facet, row, filters)
     else
-      filter_link(hash, facet, row, filters)
+      filter_link(facet, row, filters)
     end
   end
 end

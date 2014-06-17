@@ -27,7 +27,11 @@ en:
     filters:
       title: Filters
       clear: Clear filters
-      scopes: Type
+      zip_code: Filter by Zip Code
+      causes: Filter by Cause
+      scopes: Filter by Type
+      tax_exempt: Tax Exempt Not-For-Profit
+      active: Active Campaigns
   semantic:
     buy:               Buy
     add_resource:      "Add %{resource}"

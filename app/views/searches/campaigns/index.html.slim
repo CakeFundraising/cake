@@ -1,23 +1,24 @@
-h1 Search Campaigns
+#search_campaigns
+  h1 Search Campaigns
+  
+  .controls
+    .counter 
+    	strong #{@campaigns.total_count} campaigns 
+    	span match the criteria
 
-.controls
-  .counter 
-  	strong #{@campaigns.total_count} campaigns 
-  	span match the criteria
-
-.row
-  .col-md-3
-  	= render 'layouts/search/search_form', collection: :campaigns
-  	hr
-  	#filters.panel-group
-  	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
-      hr
-      = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
-  .col-md-9
-	.campaigns-container.row-fluid.transitions-enabled
-	  .campaigns
-	    = render partial: "campaigns/show/grid", collection: CampaignDecorator.decorate_collection(@campaigns), as: :campaign
-	= pagination(@campaigns)
+  .row
+    .col-md-3
+    	= render 'layouts/search/search_form', collection: :campaigns
+    	hr
+    	#filters.panel-group
+    	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        hr
+        = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
+    .col-md-9
+      .campaigns-container.row-fluid.transitions-enabled
+        .campaigns
+          = render partial: "campaigns/show/grid", collection: CampaignDecorator.decorate_collection(@campaigns), as: :campaign
+  	= pagination(@campaigns)
 
 javascript:
-  Cake.search("#campaigns-search", ".campaigns");
+  Cake.search("#campaigns-search", "#search_campaigns");
