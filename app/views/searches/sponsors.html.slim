@@ -1,0 +1,25 @@
+#search_sponsors
+  h1 Search Sponsors
+  
+  .controls
+    .counter 
+    	strong #{@sponsors.total_count} sponsors 
+    	span match the criteria
+
+  .row
+    .col-md-3
+    	= render 'layouts/search/search_form', collection: :sponsors
+    	hr
+    	#filters.panel-group
+    	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        hr
+        = link_to t('helpers.filters.clear'), search_sponsors_path, class:'btn btn-primary'
+    .col-md-9
+      .sponsors-container.row-fluid.transitions-enabled
+        .sponsors
+          = render partial: "sponsors/show/grid", collection: @sponsors, as: :sponsor
+          
+  	= pagination(@sponsors)
+
+javascript:
+  Cake.search("#sponsors-search", "#search_sponsors");

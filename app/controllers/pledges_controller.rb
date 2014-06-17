@@ -14,7 +14,7 @@ class PledgesController < InheritedResources::Base
       @pledge = Pledge.new(campaign_id: params[:campaign])
       render 'new'
     else
-      redirect_to root_path, alert: 'Please review these campaigns to start a pledge.'
+      redirect_to search_campaigns_path, alert: 'Please review these campaigns to start a pledge.'
     end
   end
 

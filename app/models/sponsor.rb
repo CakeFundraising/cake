@@ -41,9 +41,17 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  #Solr
   searchable do
-    text :name, :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
-    integer :scopes_mask, :causes_mask
+    text :name, boost: 2
+    text :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+
+    string :scopes, multiple: true
+    string :causes, multiple: true
+
+    string :zip_code do
+      location.zip_code  
+    end
   end
 
   def accepted_pledges

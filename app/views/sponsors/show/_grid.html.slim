@@ -1,0 +1,9 @@
+.sponsor_grid.col-md-4
+  .thumbnail
+    .avatar 
+      = link_to sponsor do
+        = image_tag sponsor.avatar.url(:medium)
+    .caption
+      h4 = auto_link sponsor
+      .cause = campaign.object.causes.first
+      .type = campaign.object.scopes.first

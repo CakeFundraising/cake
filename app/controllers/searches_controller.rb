@@ -23,9 +23,32 @@ class SearchesController < ApplicationController
     @campaigns = CampaignDecorator.decorate_collection @search.results
 
     if params[:search].nil?
-      render "searches/campaigns/index"
+      render "searches/campaigns"
     else
-      render "searches/campaigns/index", layout: false
+      render "searches/campaigns", layout: false
+    end
+  end
+
+  def search_sponsors
+    facets = [:zip_code, :causes, :scopes]
+
+    @search = Sponsor.solr_search(include: [:picture]) do
+      fulltext params[:search]
+      paginate page: params[:page], per_page: 20
+
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) 
+      end
+    end
+
+    @facets = facets
+    @sponsors = SponsorDecorator.decorate_collection @search.results
+
+    if params[:search].nil?
+      render "searches/sponsors"
+    else
+      render "searches/sponsors", layout: false
     end
   end
 end
