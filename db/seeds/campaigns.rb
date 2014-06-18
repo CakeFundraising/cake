@@ -39,3 +39,5 @@ end
     end
   end
 end
+
+puts "#{@campaigns.count} Active Campaigns & #{@past_campaigns.count} Past Campaigns created."

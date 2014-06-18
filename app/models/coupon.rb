@@ -1,4 +1,5 @@
 class Coupon < ActiveRecord::Base
+  include MerchandiseCategories
   attr_accessor :standard_terms
 
   belongs_to :pledge
@@ -18,7 +19,7 @@ class Coupon < ActiveRecord::Base
   validates :unit_donation, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
   validates :total_donation, numericality: {greater_than: 0}, if: :extra_donation_pledge
 
-  validates :title, :avatar, :qrcode, :description, :expires_at, :pledge, presence: true
+  validates :title, :avatar, :qrcode, :description, :merchandise_categories, :expires_at, :pledge, presence: true
 
   scope :extra_donation_pledges, ->{ where(extra_donation_pledge: true) }
   scope :normal, ->{ where(extra_donation_pledge: false) }
@@ -33,7 +34,7 @@ class Coupon < ActiveRecord::Base
     text :sponsor do
       sponsor.name
     end
-
+    
     string :zip_code do
       sponsor.location.zip_code
     end

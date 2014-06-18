@@ -1,5 +1,5 @@
 @pledges = @sponsors.flat_map do |s|
-  create(5, s.pledges) do |p|
+  create(1, s.pledges) do |p|
     campaign = @campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -10,22 +10,23 @@
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
 
-    build(2, p.coupons) do |c|
+    build(1, p.coupons) do |c|
       c.title = Faker::Lorem.sentence
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-      c.qrcode.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg')))
+      c.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg'))
+      c.qrcode = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg'))
+      c.merchandise_categories = Coupon::CATEGORIES.sample(2)
     end
 
-    build(2, p.sweepstakes) do |sw|
-      sw.winners_quantity = rand(99)
-      sw.claim_prize_instructions = Faker::Lorem.paragraph
-      sw.title = Faker::Lorem.sentence
-      sw.description = Faker::Lorem.paragraph
-      sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-    end
+    # build(2, p.sweepstakes) do |sw|
+    #   sw.winners_quantity = rand(99)
+    #   sw.claim_prize_instructions = Faker::Lorem.paragraph
+    #   sw.title = Faker::Lorem.sentence
+    #   sw.description = Faker::Lorem.paragraph
+    #   sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
+    # end
 
     build(1, p.picture, {prebuild: true}) do |pic|
       pic.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg"))
@@ -36,7 +37,7 @@ end
 
 #Past Pledges
 @past_pledges = @sponsors.flat_map do |s|
-  create(2, s.pledges) do |p|
+  create(1, s.pledges) do |p|
     campaign = @past_campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -48,22 +49,23 @@ end
     p.campaign = campaign
     p.status = :accepted
 
-    build(2, p.coupons) do |c|
+    build(1, p.coupons) do |c|
       c.title = Faker::Lorem.sentence
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-      c.qrcode.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg')))
+      c.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg'))
+      c.qrcode = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg'))
+      c.merchandise_categories = Coupon::CATEGORIES.sample(2)
     end
 
-    build(2, p.sweepstakes) do |sw|
-      sw.winners_quantity = rand(99)
-      sw.claim_prize_instructions = Faker::Lorem.paragraph
-      sw.title = Faker::Lorem.sentence
-      sw.description = Faker::Lorem.paragraph
-      sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-    end
+    # build(2, p.sweepstakes) do |sw|
+    #   sw.winners_quantity = rand(99)
+    #   sw.claim_prize_instructions = Faker::Lorem.paragraph
+    #   sw.title = Faker::Lorem.sentence
+    #   sw.description = Faker::Lorem.paragraph
+    #   sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
+    # end
 
     build(1, p.picture, {prebuild: true}) do |pic|
       pic.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg"))
@@ -79,3 +81,5 @@ end
     end
   end
 end
+
+puts "#{@pledges.count} Active pledges & #{@past_pledges.count} Past pledges created."

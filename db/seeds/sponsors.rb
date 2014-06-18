@@ -38,3 +38,5 @@ end
 @sponsors.map(&:users).flatten.each do |user|
   user.create_sponsor_email_setting
 end
+
+puts "#{@sponsors.count} Sponsors created."

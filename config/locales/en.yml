@@ -98,6 +98,8 @@ en:
         one: Campaign
         other: Campaigns
     attributes:
+      coupon:
+        merchandise_categories: Categories
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Pledge

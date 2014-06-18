@@ -38,3 +38,5 @@ end
 @fundraisers.map(&:users).flatten.each do |user|
   user.create_fundraiser_email_setting
 end
+
+puts "#{@fundraisers.count} Fundraisers created."

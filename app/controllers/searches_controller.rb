@@ -65,9 +65,6 @@ class SearchesController < ApplicationController
       end
     end
 
-    puts @search.inspect
-    puts @search.results.inspect
-
     @facets = facets
     @coupons = CouponDecorator.decorate_collection @search.results
 
