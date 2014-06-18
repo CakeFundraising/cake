@@ -53,7 +53,7 @@ class SearchesController < ApplicationController
   end
 
   def search_coupons
-    facets = [:zip_code]
+    facets = [:zip_code, :merchandise_categories]
 
     @search = Coupon.solr_search do
       fulltext params[:search]

@@ -1,5 +1,5 @@
 @pledges = @sponsors.flat_map do |s|
-  create(1, s.pledges) do |p|
+  create(3, s.pledges) do |p|
     campaign = @campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -10,7 +10,7 @@
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
 
-    build(1, p.coupons) do |c|
+    build(2, p.coupons) do |c|
       c.title = Faker::Lorem.sentence
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
@@ -37,7 +37,7 @@ end
 
 #Past Pledges
 @past_pledges = @sponsors.flat_map do |s|
-  create(1, s.pledges) do |p|
+  create(2, s.pledges) do |p|
     campaign = @past_campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -49,7 +49,7 @@ end
     p.campaign = campaign
     p.status = :accepted
 
-    build(1, p.coupons) do |c|
+    build(2, p.coupons) do |c|
       c.title = Faker::Lorem.sentence
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)

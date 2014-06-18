@@ -32,6 +32,7 @@ en:
       scopes: Filter by Type
       tax_exempt: Tax Exempt Not-For-Profit
       active: Active Campaigns
+      merchandise_categories: Categories
   semantic:
     buy:               Buy
     add_resource:      "Add %{resource}"

@@ -34,6 +34,8 @@ class Coupon < ActiveRecord::Base
     text :sponsor do
       sponsor.name
     end
+
+    string :merchandise_categories, multiple: true
     
     string :zip_code do
       sponsor.location.zip_code
