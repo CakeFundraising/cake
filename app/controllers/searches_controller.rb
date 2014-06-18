@@ -38,7 +38,7 @@ class SearchesController < ApplicationController
 
       facets.each do |f|
         send(:facet, f)
-        send(:with, f, params[f]) 
+        send(:with, f, params[f]) if params[f].present?
       end
     end
 
@@ -49,6 +49,32 @@ class SearchesController < ApplicationController
       render "searches/sponsors"
     else
       render "searches/sponsors", layout: false
+    end
+  end
+
+  def search_coupons
+    facets = [:zip_code]
+
+    @search = Coupon.solr_search do
+      fulltext params[:search]
+      paginate page: params[:page], per_page: 20
+
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) if params[f].present?
+      end
+    end
+
+    puts @search.inspect
+    puts @search.results.inspect
+
+    @facets = facets
+    @coupons = CouponDecorator.decorate_collection @search.results
+
+    if params[:search].nil?
+      render "searches/coupons"
+    else
+      render "searches/coupons", layout: false
     end
   end
 end

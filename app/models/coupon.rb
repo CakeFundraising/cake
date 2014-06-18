@@ -28,6 +28,14 @@ class Coupon < ActiveRecord::Base
   end
 
   searchable do
-    text :title, :promo_code, :description
+    text :title, boost: 2
+    text :promo_code, :description
+    text :sponsor do
+      sponsor.name
+    end
+
+    string :zip_code do
+      sponsor.location.zip_code
+    end
   end
 end

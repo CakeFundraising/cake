@@ -1,0 +1,12 @@
+.coupon_grid.col-md-4
+  .thumbnail
+    .avatar 
+      = link_to coupon.pledge do
+        = image_tag coupon.avatar.url(:medium)
+    .caption
+      h4 = auto_link coupon.pledge
+      .description = coupon.trunc_description
+      .sponsor = auto_link coupon.sponsor
+      .promo-code
+        strong Promo Code
+        span.pull-right = coupon.promo_code

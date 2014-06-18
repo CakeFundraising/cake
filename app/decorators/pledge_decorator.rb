@@ -6,6 +6,10 @@ class PledgeDecorator < ApplicationDecorator
   decorates_association :fundraiser
   decorates_association :video
 
+  def to_s
+    object.headline
+  end
+
   def end_date
     campaign.end_date
   end

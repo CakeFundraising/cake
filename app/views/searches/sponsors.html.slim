@@ -17,7 +17,10 @@
     .col-md-9
       .sponsors-container.row-fluid.transitions-enabled
         .sponsors
-          = render partial: "sponsors/show/grid", collection: @sponsors, as: :sponsor
+          - if @sponsors.any?
+            = render partial: "sponsors/show/grid", collection: @sponsors, as: :sponsor
+          - else
+            .alert.alert-info No results found.
           
   	= pagination(@sponsors)
 

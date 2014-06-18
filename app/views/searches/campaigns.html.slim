@@ -17,7 +17,11 @@
     .col-md-9
       .campaigns-container.row-fluid.transitions-enabled
         .campaigns
-          = render partial: "campaigns/show/grid", collection: CampaignDecorator.decorate_collection(@campaigns), as: :campaign
+          - if @campaigns.any?
+            = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
+          - else
+            .alert.alert-info No results found.
+            
   	= pagination(@campaigns)
 
 javascript:
