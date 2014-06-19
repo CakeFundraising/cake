@@ -36,43 +36,14 @@
 				.col-md-12
 					ul.nav.nav-pills.popular
 						li.active
-							a data-toggle="tab" href="#pop-campaign" Popular Campaigns
+							a data-toggle="tab" href="#pop-campaigns" Popular Campaigns
 						li
 							a data-toggle="tab" href="#pop-sponsors" Popular Sponsors
 						li
-							a data-toggle="tab" href="#best-discounts" Best Discounts
+							a data-toggle="tab" href="#pop-coupons" Best Discounts
 /- main content							
 .container.main-home
-	.row
-		.col-md-3
-			.home-border
-				- 1.times do
-					= render partial:'search_filters/gigantic_list'
-		.tab-content
-			.col-md-9.tab-pane.active#pop-campaign
-				.row
-					- 9.times do
-						= render partial:'home/show/popular_campaigns'
-				.row
-					.col-xs-12.view-all
-						p.pull-right View all 542 Discounts
-						.view-all-border.clearfix
-			.col-md-9.tab-pane#pop-sponsors
-				.row
-					- 9.times do
-						= render partial:'home/show/popular_sponsors'
-				.row
-					.col-xs-12.view-all
-						p.pull-right View all 542 Sponsors
-						.view-all-border.clearfix
-			.col-md-9.tab-pane#best-discounts
-				.row
-					- 9.times do
-						= render partial:'home/show/best_discounts'
-				.row
-					.col-xs-12.view-all
-						p.pull-right View all 542 Discounts
-						.view-all-border.clearfix
+	= render partial:'home/search/section'
 
 = content_for :bottom_section do
 	.easy-band

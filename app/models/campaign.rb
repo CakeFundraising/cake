@@ -112,6 +112,10 @@ class Campaign < ActiveRecord::Base
     (raised/goal)*100
   end
 
+  def self.popular
+    first(12)
+  end
+
   #Status
   def active?
     (launch_date..end_date).cover?(Date.today)

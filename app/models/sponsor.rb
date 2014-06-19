@@ -54,6 +54,10 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  def self.popular
+    first(12)
+  end
+
   def accepted_pledges
     pledges.accepted.eager_load(:fundraiser)
   end

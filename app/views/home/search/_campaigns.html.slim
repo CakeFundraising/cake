@@ -1,0 +1,14 @@
+.row
+  .col-md-3
+    = render 'home/search/search_form', collection: :campaigns
+    #filters.panel-group
+      ul.cats
+        - Campaign::CAUSES.each do |cause|
+          li = link_to cause, search_campaigns_path(causes: cause)
+  .col-md-9
+    .campaigns-container.row-fluid.transitions-enabled
+      .campaigns
+        - if @campaigns.any?
+          = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
+        - else
+          .alert.alert-info No results found.

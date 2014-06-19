@@ -1,0 +1,14 @@
+.row
+  .col-md-3
+    = render 'home/search/search_form', collection: :sponsors
+    #filters.panel-group
+      ul.cats
+        - Sponsor::CAUSES.each do |cause|
+          li = link_to cause, search_sponsors_path(causes: cause)
+  .col-md-9
+    .sponsors-container.row-fluid.transitions-enabled
+      .sponsors
+        - if @sponsors.any?
+          = render partial: "sponsors/show/grid", collection: @sponsors, as: :sponsor
+        - else
+          .alert.alert-info No results found.

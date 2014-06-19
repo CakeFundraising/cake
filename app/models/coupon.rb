@@ -41,4 +41,8 @@ class Coupon < ActiveRecord::Base
       sponsor.location.zip_code
     end
   end
+
+  def self.popular
+    first(12)
+  end
 end

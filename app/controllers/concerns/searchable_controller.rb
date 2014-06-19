@@ -1,5 +1,7 @@
-class SearchesController < ApplicationController
-  def search_campaigns
+module SearchableController
+  extend ActiveSupport::Concern
+
+  def campaigns_search
     facets = [:zip_code, :causes, :scopes, :tax_exempt, :active]
 
     @search = Campaign.solr_search(include: [:picture]) do
@@ -23,14 +25,14 @@ class SearchesController < ApplicationController
     @facets = facets
     @campaigns = CampaignDecorator.decorate_collection @search.results
 
-    if request.xhr?
-      render "searches/campaigns", layout: false
-    else
+    if params[:search].nil?
       render "searches/campaigns"
+    else
+      render "searches/campaigns", layout: false
     end
   end
 
-  def search_sponsors
+  def sponsors_search
     facets = [:zip_code, :causes, :scopes]
 
     @search = Sponsor.solr_search(include: [:picture]) do
@@ -46,14 +48,14 @@ class SearchesController < ApplicationController
     @facets = facets
     @sponsors = SponsorDecorator.decorate_collection @search.results
 
-    if request.xhr?
-      render "searches/sponsors", layout: false
-    else
+    if params[:search].nil?
       render "searches/sponsors"
+    else
+      render "searches/sponsors", layout: false
     end
   end
 
-  def search_coupons
+  def coupons_search
     facets = [:zip_code, :merchandise_categories]
 
     @search = Coupon.solr_search do
@@ -69,10 +71,10 @@ class SearchesController < ApplicationController
     @facets = facets
     @coupons = CouponDecorator.decorate_collection @search.results
 
-    if request.xhr?
-      render "searches/coupons", layout: false
-    else
+    if params[:search].nil?
       render "searches/coupons"
+    else
+      render "searches/coupons", layout: false
     end
   end
 end
