@@ -38,6 +38,7 @@ module Cause
   CAUSES = CAUSES_HIERARCHY.values.flatten
 
   def causes=(causes)
+    causes = causes.split(",") if causes.is_a?(String)
     self.causes_mask = (causes & CAUSES).map { |r| 2**CAUSES.index(r) }.inject(0, :+)
   end
 

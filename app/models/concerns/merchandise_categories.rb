@@ -39,6 +39,7 @@ module MerchandiseCategories
   ]
 
   def merchandise_categories=(merchandise_categories)
+    merchandise_categories = merchandise_categories.split(",") if merchandise_categories.is_a?(String)
     self.merchandise_categories_mask = (merchandise_categories & CATEGORIES).map { |r| 2**CATEGORIES.index(r) }.inject(0, :+)
   end
 

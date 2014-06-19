@@ -3,7 +3,7 @@ When(/^(?:I|they|he) (?:go|goes) to (.*?)$/) do |page_name|
   visit path_to(page_name)
 end
 
-When(/^(?:I|they|he) (?:visit|visits) the (.*?)$/) do |page_name|
+When(/^(?:I|they|he|a user) (?:visit|visits) the (.*?)$/) do |page_name|
   visit path_to(page_name)
 end
 

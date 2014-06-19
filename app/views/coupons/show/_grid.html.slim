@@ -4,7 +4,7 @@
       = link_to coupon.pledge do
         = image_tag coupon.avatar.url(:medium)
     .caption
-      h4 = auto_link coupon.pledge
+      h4 = link_to coupon, coupon.pledge
       .description = coupon.trunc_description
       .sponsor = auto_link coupon.sponsor
       .promo-code
