@@ -384,6 +384,8 @@ GEM
       rails (>= 3)
       sunspot (= 2.1.1)
     sunspot_solr (2.1.1)
+    sunspot_test (0.4.0)
+      sunspot_rails (>= 1.2.1)
     temple (0.6.7)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -482,6 +484,7 @@ DEPENDENCIES
   stripe-rails
   sunspot_rails
   sunspot_solr
+  sunspot_test
   therubyracer
   thin
   turbolinks

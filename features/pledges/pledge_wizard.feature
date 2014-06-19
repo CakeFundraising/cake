@@ -57,24 +57,25 @@ Feature: Pledge Wizard
     And he fills in the "Title" field with <title>
     And he fills in the "Expires at" field with <expires_at>
     And he fills in the "Description" field with <description>
+    And he selects <categories> in "Categories"
     And he attachs an "avatar" image on the "pledge_coupons_attributes_0_avatar" field
     And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_qrcode" field
     And he press the "Continue" button
     Then he should see "<message>"
 
     Examples: Skip coupons
-    | title     | expires_at | description                        | message                          |
-    |           |            |                                    | Pledge was successfully updated. |
-    |           | 02/09/2014 | Long text describing the coupon... | Pledge was successfully updated. |
+    | title     | expires_at | description                        | categories     | message                          |
+    |           |            |                                    | Cash & Credits | Pledge was successfully updated. |
+    |           | 02/09/2014 | Long text describing the coupon... | Cash & Credits | Pledge was successfully updated. |
     
     Examples: Successful step
-    | title     | expires_at | description                        | message                          |
-    | My Coupon | 02/08/2015 | Long text describing the coupon... | Pledge was successfully updated. |
+    | title     | expires_at | description                        | categories     | message                          |
+    | My Coupon | 02/08/2015 | Long text describing the coupon... | Cash & Credits | Pledge was successfully updated. |
 
     Examples: Failed step
-    | title     | expires_at | description                        | message        |
-    | My Coupon |            | Long text describing the coupon... | can't be blank |
-    | My Coupon | 02/08/2015 |                                    | can't be blank |
+    | title     | expires_at | description                        | categories     | message        |
+    | My Coupon |            | Long text describing the coupon... | Cash & Credits | can't be blank |
+    | My Coupon | 02/08/2015 |                                    | Cash & Credits | can't be blank |
 
   Scenario: Confirm your Pledge
     And a pledge of that sponsor exists

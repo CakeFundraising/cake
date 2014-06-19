@@ -96,6 +96,7 @@ end
 
 group :test do
   gem 'cucumber-rails', require: false
+  gem 'sunspot_test'
   gem 'pickle'
   gem 'capybara'
   gem 'webmock'
