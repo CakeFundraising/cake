@@ -1,3 +1,5 @@
+Cake.campaigns ?= {}
+
 Cake.custom_pledges_switcher = ->
   checkbox = $('#campaign_custom_pledge_levels')
   label = $('#campaign_custom_pledge_levels_input label.control-label')
@@ -41,4 +43,9 @@ Cake.campaign_countdown = (end_date) ->
     countdown_section.find("span.campaign-timer.mins").html event.strftime("%M")
     return
 
+  return
+
+Cake.campaigns.show = (end_date)->
+  Cake.campaign_countdown(end_date)
+  Cake.facebook.sdk('791515824214877')
   return

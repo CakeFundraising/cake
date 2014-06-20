@@ -12,7 +12,11 @@
         h1.name 
           span = @campaign.mission
           span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
-        .share-links 
+        .share-links
+          = facebook_button campaign_url(@campaign)
+          = twitter_button 'Check out this CakeFundraising campaign:'
+          = email_button('Check out this CakeFundraising campaign', 'Check out this campaign on CakeFundraising: '+campaign_url(@campaign))
+          = others_share_button
       .col-md-4
         .sidebar-bkg 
           .row
@@ -108,6 +112,6 @@ css:
   .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }
 
 javascript:
-  $(document).ready( Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
-  $(document).on('page:load', Cake.campaign_countdown('#{@campaign.end_date_countdown}') );
+  $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}') );
+  $(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}') );
     
