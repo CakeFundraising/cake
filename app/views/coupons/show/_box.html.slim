@@ -30,12 +30,12 @@
   .col-xs-1.share-coupon-block
     ul.share-coupon
       li
-        a.fb href="#"
+        = facebook_button pledge_url(@pledge)
       li
-        a.twitter href="#"
+        = twitter_button 'Check out this CakeFundraising pledge:'
       li
-        a.mail href="#"
+        = email_button('Check out this CakeFundraising pledge', 'Check out this pledge on CakeFundraising: '+pledge_url(@pledge))
       li
-        a.share href="#" 
+        = others_share_button("pledge_url", pledge_url(@pledge))
 
   = render partial:'coupons/show/terms', locals:{coupon: coupon}
