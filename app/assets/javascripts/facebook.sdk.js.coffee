@@ -1,20 +1,41 @@
 Cake.facebook ?= {}
 
 Cake.facebook.sdk = (app_id)->
-  window.fbAsyncInit = ->
-    FB.init
-      appId: app_id
-      xfbml: true
-      version: "v2.0"
-    return
+  fb_root = null
+  fb_events_bound = false
 
-  ((d, s, id) ->
-    js = undefined
-    fjs = d.getElementsByTagName(s)[0]
-    return  if d.getElementById(id)
-    js = d.createElement(s)
-    js.id = id
-    js.src = "//connect.facebook.net/en_US/sdk.js"
-    fjs.parentNode.insertBefore js, fjs
-    return
-  ) document, "script", "facebook-jssdk"
+  $ ->
+    loadFacebookSDK()
+    bindFacebookEvents() unless fb_events_bound
+
+  bindFacebookEvents = ->
+    $(document)
+      .on('page:fetch', saveFacebookRoot)
+      .on('page:change', restoreFacebookRoot)
+      .on('page:load', ->
+        FB?.XFBML.parse()
+      )
+    fb_events_bound = true
+
+  saveFacebookRoot = ->
+    fb_root = $('#fb-root').detach()
+
+  restoreFacebookRoot = ->
+    if $('#fb-root').length > 0
+      $('#fb-root').replaceWith fb_root
+    else
+      $('body').append fb_root
+
+  loadFacebookSDK = ->
+    window.fbAsyncInit = initializeFacebookSDK
+    $.getScript("//connect.facebook.net/en_US/sdk.js#xfbml=1")
+
+  initializeFacebookSDK = ->
+    FB.init
+      appId     : app_id
+      status    : true
+      cookie    : true
+      xfbml     : true
+      version   : "v2.0"
+
+  return

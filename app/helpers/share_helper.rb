@@ -1,5 +1,6 @@
 module ShareHelper
   def facebook_button(url)
+    content_tag(:div, nil, id:'fb-root')+
     content_tag(:div, nil, class:'fb-share-button', data: {href: url, type: "button_count"})
   end
 
