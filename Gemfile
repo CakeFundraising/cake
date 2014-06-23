@@ -60,6 +60,7 @@ end
 gem 'money-rails'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
+gem 'shareable'
 
 #User registration
 gem "devise"

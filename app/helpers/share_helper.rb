@@ -20,8 +20,24 @@ module ShareHelper
     end
   end
 
-  def others_share_button
-    content_tag(:button, class:'btn btn-default popover_button', data:{toggle:'popover', content: 'Some content here...'}) do
+  def other_social_buttons
+    buttons = content_tag(:div) do
+      render_shareable buttons: ['google_plus', 'pinterest', 'linkedin', 'reddit']
+    end.html_safe
+    "#{buttons}"
+  end
+
+  def copy_url(id, value)
+    copy = content_tag(:div) do
+      content_tag(:input, nil, id: id, disabled:'', class:'form-control', type:'text', value: value)+
+      content_tag(:button, 'Copy', class:'clipboard btn btn-default', data:{:'clipboard-target' => id })
+    end.html_safe
+    "#{copy}"
+  end
+
+  def others_share_button(id, value)
+    content = other_social_buttons + copy_url(id, value)
+    content_tag(:button, class:'btn btn-default popover_button', data:{toggle:'popover', content: content }) do
       content_tag(:span, nil, class:'glyphicon glyphicon-transfer')
     end
   end

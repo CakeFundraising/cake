@@ -16,7 +16,7 @@
           = facebook_button campaign_url(@campaign)
           = twitter_button 'Check out this CakeFundraising campaign:'
           = email_button('Check out this CakeFundraising campaign', 'Check out this campaign on CakeFundraising: '+campaign_url(@campaign))
-          = others_share_button
+          = others_share_button("campaign_url", campaign_url(@campaign))
       .col-md-4
         .sidebar-bkg 
           .row
