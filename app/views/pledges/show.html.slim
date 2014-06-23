@@ -12,7 +12,7 @@
         h1.name 
           span = @pledge.mission
           span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
-        .share-links 
+        = render partial:'pledges/show/share_section'
       .col-md-4
         .sidebar-bkg 
           .row
@@ -66,6 +66,7 @@
           span See how it works...
           br
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
+      = render partial:'pledges/show/share_section'
   .container
     .row.win-with
       .col-md-12
@@ -80,5 +81,5 @@ css:
   .hero { background-image: url("#{@pledge.banner.url(:large)}"); }
 
 javascript:
-  $(document).ready( Cake.campaign_countdown('#{@pledge.campaign.end_date_countdown}') );
-  $(document).on('page:load', Cake.campaign_countdown('#{@pledge.campaign.end_date_countdown}') );
+  $(document).ready( Cake.campaigns.show('#{@pledge.campaign.end_date_countdown}') );
+  $(document).on('page:load', Cake.campaigns.show('#{@pledge.campaign.end_date_countdown}') );

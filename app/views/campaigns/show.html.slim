@@ -12,11 +12,7 @@
         h1.name 
           span = @campaign.mission
           span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
-        .share-links
-          = facebook_button campaign_url(@campaign)
-          = twitter_button 'Check out this CakeFundraising campaign:'
-          = email_button('Check out this CakeFundraising campaign', 'Check out this campaign on CakeFundraising: '+campaign_url(@campaign))
-          = others_share_button("campaign_url", campaign_url(@campaign))
+        = render partial:'campaigns/show/share_section'
       .col-md-4
         .sidebar-bkg 
           .row
@@ -85,6 +81,10 @@
                 | Please support us and win new customers! 
             .col-md-3
               = link_to "Make a Pledge Today", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
+  
+    = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+    = render partial:'campaigns/show/share_section'
+
   .wood
     .bottom-arrow
       .container
@@ -103,8 +103,6 @@
                   h2 Sponsors,
                   p support great causes on a risk free "donation-per-click" basis
                   = link_to "Start Now!", new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
-                  
-  = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 

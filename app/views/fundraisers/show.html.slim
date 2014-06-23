@@ -1,4 +1,3 @@
-
 = content_for :header do
   .banner.hero
     .hero-screen
@@ -24,7 +23,7 @@
             span Email: 
             a href="mailto:#" #{@fundraiser.email}
             br
-        .share-links 
+        = render partial:'fundraisers/show/share_section'
       .col-md-4
         .sidebar-bkg 
           .row.text-center

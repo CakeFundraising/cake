@@ -1,0 +1,5 @@
+.share-links
+  = facebook_button pledge_url(@pledge)
+  = twitter_button 'Check out this CakeFundraising pledge:'
+  = email_button('Check out this CakeFundraising pledge', 'Check out this pledge on CakeFundraising: '+pledge_url(@pledge))
+  = others_share_button("pledge_url", pledge_url(@pledge))

@@ -1,0 +1,8 @@
+.share-links 
+  = facebook_button sponsor_url(@sponsor)
+  = twitter_button 'Check out this CakeFundraising sponsor:'
+  = email_button('Check out this CakeFundraising sponsor', 'Check out this sponsor on CakeFundraising: '+sponsor_url(@sponsor))
+  = others_share_button("sponsor_url", sponsor_url(@sponsor))
+
+javascript:
+  Cake.facebook.sdk('791515824214877');
