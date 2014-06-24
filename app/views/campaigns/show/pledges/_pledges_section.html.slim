@@ -1,4 +1,4 @@
-- if @campaign.custom_pledge_levels
+- if @campaign.custom_pledge_levels and @campaign.pledges.any?
   - @sponsor_categories.each do |sc|
     .row.win-with
       .col-md-12

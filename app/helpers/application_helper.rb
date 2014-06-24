@@ -35,4 +35,8 @@ module ApplicationHelper
   def auto_link(object)
     link_to object.to_s, object
   end
+
+  def auto_mail(object)
+    mail_to object.email, object.email
+  end
 end

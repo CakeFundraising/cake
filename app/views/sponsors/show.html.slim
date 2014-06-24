@@ -16,9 +16,9 @@
               | Phone: 
               | (123) #{@sponsor.phone}
             span Website: 
-            span.sponsorinfo = link_to @sponsor.object.website, @sponsor.website, target: :_blank
+            span.sponsorinfo = link_to @sponsor.object.website, @sponsor.object.website, target: :_blank
             span Email: 
-            a href="mailto:#" #{@sponsor.email}
+            = auto_mail @sponsor
             br
         = render partial:'sponsors/show/share_section'
       .col-md-4
