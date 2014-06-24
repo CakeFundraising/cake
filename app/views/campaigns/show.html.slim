@@ -1,5 +1,8 @@
 = content_for :header do
   .banner.hero
+    .alert.alert-transparent.alert-dismissable.text-center
+      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
+      = t('information.campaign.banner')
     .hero-screen
   .container
     .content.row.pull-up
@@ -77,8 +80,8 @@
           .row
             .col-md-9
               h4
-                b> Business Owners:
-                | Please support us and win new customers! 
+                b> Attention Business Owners!
+                | Please support us and reach new customers! 
             .col-md-3
               = link_to "Make a Pledge Today", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
   
