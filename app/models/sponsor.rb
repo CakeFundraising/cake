@@ -55,7 +55,7 @@ class Sponsor < ActiveRecord::Base
   end
 
   def self.popular
-    last(12)
+    self.order(created_at: :desc).first(12)
   end
 
   def accepted_pledges

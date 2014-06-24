@@ -20,8 +20,8 @@
               | (123) #{@fundraiser.phone}
             span Website: 
             span.sponsorinfo #{@fundraiser.website}
-            span Email: 
-            a href="mailto:#" #{@fundraiser.email}
+            span Email:
+            = auto_mail @fundraiser
             br
         = render partial:'fundraisers/show/share_section'
       .col-md-4

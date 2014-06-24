@@ -105,7 +105,7 @@ class Pledge < ActiveRecord::Base
   end
 
   def thermometer
-    (clicks_count/max_clicks)*100
+    (clicks_count.to_f/max_clicks)*100
   end
 
   def notify_fully_subscribed
