@@ -4,8 +4,7 @@
       .col-md-12
         .level-divide
           .center
-            h2 Your click will make a difference!
-            p Every Dollar Helps! Please donate if you can!
+            h2 Every Dollar Helps! Please donate if you can!
             = render partial:'direct_donations/form', locals:{campaign: campaign}
             
   - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser

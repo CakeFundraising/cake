@@ -100,17 +100,30 @@ describe Campaign do
         @campaign.sponsor_categories.reload
         @campaign.rank_levels
       end
-      
-      it "should return the pledges ranked according to the pledge levels" do
-        @campaign.top_pledges.should  match_array(@top_pledges)
-        @campaign.medium_pledges.should match_array(@medium_pledges)
-        @campaign.low_pledges.should match_array(@low_pledges)
+
+      context 'pledge levels' do
+        it "should return the pledges ranked according to the pledge levels" do
+          @campaign.top_pledges.should  match_array(@top_pledges)
+          @campaign.medium_pledges.should match_array(@medium_pledges)
+          @campaign.low_pledges.should match_array(@low_pledges)
+        end
       end
 
-      it "should order the pledges inside the same sponshoship level" do
-        @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.total_amount_cents }
-        @campaign.medium_pledges.should == @medium_pledges.sort_by{|p| -p.total_amount_cents }
-        @campaign.low_pledges.should == @low_pledges.sort_by{|p| -p.total_amount_cents }
+      context 'same pledge level' do
+        it "should order the pledges based upon the total_amount" do
+          @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.total_amount_cents }
+          @campaign.medium_pledges.should == @medium_pledges.sort_by{|p| -p.total_amount_cents }
+          @campaign.low_pledges.should == @low_pledges.sort_by{|p| -p.total_amount_cents }
+        end
+
+        it "should order the pledges based upon the amount_per_click when 2 pledges have the same total_amount" do
+          @top_pledges = []
+          @campaign.pledges.delete_all
+          @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: 60000, amount_per_click: '2.5')
+          @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: 60000, amount_per_click: '2.7')
+
+          @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.amount_per_click_cents }
+        end
       end
     end
 

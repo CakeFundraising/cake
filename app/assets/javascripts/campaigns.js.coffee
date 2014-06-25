@@ -47,5 +47,4 @@ Cake.campaign_countdown = (end_date) ->
 
 Cake.campaigns.show = (end_date)->
   Cake.campaign_countdown(end_date)
-  Cake.facebook.sdk('791515824214877')
   return

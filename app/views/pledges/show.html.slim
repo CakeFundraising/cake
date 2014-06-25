@@ -1,5 +1,9 @@
 = content_for :header do
   .banner.hero
+    .alert.alert-transparent.alert-dismissable.text-center
+      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
+      = t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click),
+      total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser)
     .hero-screen
   .container
     .content.row.pull-up
@@ -12,7 +16,7 @@
         h1.name 
           span = @pledge.mission
           span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
-        = render partial:'pledges/show/share_section'
+        = render partial:'layouts/share_buttons'
       .col-md-4
         .sidebar-bkg 
           .row
@@ -61,12 +65,10 @@
     .container
       .row.pledgebluestripe
         .col-md-12
-          h2 We will donate $3 for each person who clicks up to $3,000,000
+          h2 We will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
           span Please share our pledge with your friends! 
           span See how it works...
-          br
-          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
-      = render partial:'pledges/show/share_section'
+          = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
   .container
     .row.win-with
       .col-md-12
@@ -74,6 +76,11 @@
         .row
       .coupons
         = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
+    hr
+    .row
+      = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
+      br
+      .text-center = render partial:'layouts/share_buttons'
 
 = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 

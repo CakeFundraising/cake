@@ -68,7 +68,11 @@ en:
         add_coupon: 3. Add Coupon
         extra_donation: 4. Extra Donation
         share: 4. Confirm your Pledge
-  information: 
+  information:
+    campaign:
+      banner: Every click counts! Visit our generous sponsors below and they will donate for you!
+    pledge:
+      banner: "Click below and %{sponsor} will donate %{donation_per_click} up to %{total_donation} to %{fundraiser}. Every click counts!"
     wizards:
       campaign:
 

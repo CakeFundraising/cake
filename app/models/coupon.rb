@@ -40,6 +40,8 @@ class Coupon < ActiveRecord::Base
     string :zip_code do
       sponsor.location.zip_code
     end
+    
+    time :created_at
   end
 
   def self.popular

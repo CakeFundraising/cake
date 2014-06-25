@@ -81,6 +81,8 @@ class Campaign < ActiveRecord::Base
       fundraiser.location.zip_code  
     end
 
+    time :created_at
+
     integer :fundraiser_id
   end
 
@@ -90,7 +92,7 @@ class Campaign < ActiveRecord::Base
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.accepted.total_amount_in(range).order('total_amount_cents DESC')
+          obj.pledges.accepted.total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
         end 
       end
     end

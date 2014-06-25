@@ -7,6 +7,7 @@ require 'capybara/rspec'
 require 'simplecov'
 require "cancan/matchers"
 require "money-rails/test_helpers" 
+require 'sunspot_test/rspec'
 SimpleCov.start 'rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,

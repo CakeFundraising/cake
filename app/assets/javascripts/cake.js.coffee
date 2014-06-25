@@ -10,6 +10,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.click()
   Cake.pledges.update_triggers()
+  Cake.share()
   return
 
 $(document).ready(Cake.init)

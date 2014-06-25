@@ -3,7 +3,7 @@ When(/^(?:I|they|he) (?:fill|fills) in the "(.*?)" field with (.*?)$/) do |field
 end
 
 When(/^(?:I|they|he) press the "(.*?)" button$/) do |button|
-  click_button(button)
+  first(:button, button).click
 end
 
 When(/^he finds and press the "(.*?)" button$/) do |button|
