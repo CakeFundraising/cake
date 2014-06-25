@@ -1,5 +1,9 @@
-.share-links
-  = facebook_button campaign_url(@campaign)
-  = twitter_button 'Check out this CakeFundraising campaign:'
-  = email_button('Check out this CakeFundraising campaign', 'Check out this campaign on CakeFundraising: '+campaign_url(@campaign))
-  = others_share_button("campaign_url", campaign_url(@campaign))
+ul#share-block
+	li.faceb 
+		= facebook_button campaign_url(@campaign)
+	li
+		= twitter_button 'Check out this CakeFundraising campaign:'
+	li
+		= email_button('Check out this CakeFundraising campaign', 'Check out this campaign on CakeFundraising: '+campaign_url(@campaign))
+	li
+		= others_share_button("campaign_url", campaign_url(@campaign))
