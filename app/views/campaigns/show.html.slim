@@ -15,7 +15,7 @@
         h1.name 
           span = @campaign.mission
           span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
-        = render partial:'campaigns/show/share_section'
+        = render partial:'layouts/share_buttons'
       .col-md-4
         .sidebar-bkg 
           .row
@@ -86,7 +86,7 @@
               = link_to "Make a Pledge Today", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
   
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-    = render partial:'campaigns/show/share_section'
+    .text-center = render partial:'layouts/share_buttons'
 
   .wood
     .bottom-arrow

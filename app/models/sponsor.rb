@@ -52,6 +52,8 @@ class Sponsor < ActiveRecord::Base
     string :zip_code do
       location.zip_code  
     end
+
+    time :created_at
   end
 
   def self.popular

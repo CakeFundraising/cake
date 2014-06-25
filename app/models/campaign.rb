@@ -81,6 +81,8 @@ class Campaign < ActiveRecord::Base
       fundraiser.location.zip_code  
     end
 
+    time :created_at
+
     integer :fundraiser_id
   end
 

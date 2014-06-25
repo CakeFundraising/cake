@@ -27,15 +27,7 @@
           strong Promo Code
           span.pull-right = coupon.promo_code
         button.btn.btn-success.btn-block.pull-right Print Coupon
-  .col-xs-1.share-coupon-block
-    ul.share-coupon
-      li
-        = facebook_button pledge_url(@pledge)
-      li
-        = twitter_button 'Check out this CakeFundraising pledge:'
-      li
-        = email_button('Check out this CakeFundraising pledge', 'Check out this pledge on CakeFundraising: '+pledge_url(@pledge))
-      li
-        = others_share_button("pledge_url", pledge_url(@pledge))
+  .col-xs-1
+    .shareaholic-canvas data-app='share_buttons' data-app-id='6963788'
 
   = render partial:'coupons/show/terms', locals:{coupon: coupon}

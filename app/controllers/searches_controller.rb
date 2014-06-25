@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
 
     @search = Campaign.solr_search(include: [:picture]) do
       fulltext params[:search]
+      order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
 
       facets.each do |f|
@@ -35,6 +36,7 @@ class SearchesController < ApplicationController
 
     @search = Sponsor.solr_search(include: [:picture]) do
       fulltext params[:search]
+      order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
 
       facets.each do |f|
@@ -58,6 +60,7 @@ class SearchesController < ApplicationController
 
     @search = Coupon.solr_search do
       fulltext params[:search]
+      order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
 
       facets.each do |f|
