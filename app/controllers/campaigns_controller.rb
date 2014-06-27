@@ -12,6 +12,8 @@ class CampaignsController < InheritedResources::Base
     @campaign = resource.decorate
     @sponsor_categories = @campaign.sponsor_categories.decorate
     @campaign.rank_levels
+
+    reload_page_if_turbolinks_to(@campaign)
   end
 
   def create
