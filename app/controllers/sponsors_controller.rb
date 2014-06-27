@@ -5,7 +5,7 @@ class SponsorsController < InheritedResources::Base
     @past_pledges = @sponsor.pledges.past
     @accepted_pledges = @sponsor.accepted_pledges
 
-    reload_page_if_turbolinks_to(@sponsor)
+    redirect_if_turbolinks_to(@sponsor)
   end
 
   def create
