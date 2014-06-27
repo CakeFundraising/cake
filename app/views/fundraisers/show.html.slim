@@ -119,75 +119,19 @@
       .col-md-12
         ul.nav.nav-tabs
           li.active
-            a data-toggle="tab" href="#active-pledges" Active Campaigns
+            a data-toggle="tab" href="#active-campaigns" Active Campaigns
           li
             a data-toggle="tab" href="#past" Past Campaigns
           li
             a data-toggle="tab" href="#top" Top Sponsors
 
         .tab-content
-          #active-pledges.tab-pane.active
-            table.table.data-table
-              thead
-                tr
-                  th Campaign
-                  th Cause
-                  th Launch/End Date
-                  th No. of Sponsors
-                  th Avg. Pledge
-                  th Avg. Donation/Click
-              tbody
-                tr
-                  td Lorem ipsum
-                  td Hunger
-                  td 20/20/2014 - 02/03/2014
-                  td 15
-                  td $10,000
-                  td $2.05
+          #active-campaigns.tab-pane.active
+            = render partial:'fundraisers/public_profile/campaigns_table', locals: {campaigns: @active_campaigns}
           #past.tab-pane
-            table.table.data-table
-              thead
-                tr
-                  th Fundraiser
-                  th Cause
-                  th Type
-                  th Pledge
-                  th Donation/Click
-                  th Prize
-                  th Coupon
-                  th Pledge Rank
-              tbody
-                tr
-                  td Feeding America
-                  td Hunger
-                  td National
-                  td 100k
-                  td $3
-                  td Yes
-                  td Yes
-                  td 78
+            = render partial:'fundraisers/public_profile/campaigns_table', locals: {campaigns: @past_campaigns}
           #top.tab-pane
-            table.table.data-table
-              thead
-                tr
-                  th Fundraiser
-                  th No. of Pledges
-                  th Cause
-                  th Type
-                  th Pledge
-                  th Donation
-                  th Donation/Click
-                  th Avg. Pledge Rank
-              tbody
-                tr
-                  td Feeding America
-                  td 30
-                  td Hunger
-                  td National
-                  td 50,000
-                  td $34,500
-                  td $3.00
-                  td 28
+            = render partial:'sponsors/show/table', locals: {sponsors: @top_sponsors}
 
 css:
   .hero { background-image: url("#{@fundraiser.banner.url(:large)}"); }
