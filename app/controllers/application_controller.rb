@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     current_user.sponsor if current_user.present?
   end
 
+  def reload_page_if_turbolinks_to(path)
+    redirect_to path unless request.env['HTTP_X_XHR_REFERER'].nil?
+  end
+
   protected 
 
   def after_sign_in_path_for(resource)

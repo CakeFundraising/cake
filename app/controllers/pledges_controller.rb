@@ -20,6 +20,7 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
+    reload_page_if_turbolinks_to(@pledge)
   end
 
   def create

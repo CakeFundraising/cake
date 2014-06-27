@@ -3,6 +3,7 @@ class FundraisersController < InheritedResources::Base
 
   def show
     @fundraiser = resource.decorate
+    reload_page_if_turbolinks_to(@fundraiser)
   end
 
   def create
