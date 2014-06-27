@@ -65,23 +65,28 @@
     .container
       .row.pledgebluestripe
         .col-md-12
-          h2 We will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
-          span Please share our pledge with your friends! 
-          span See how it works...
+          h1 We will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
+          p
+            | Please share our pledge with your friends! 
+            a href="#" see how it works...
+            p/
           = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
   .container
-    .row.win-with
-      .col-md-12
-        h2 Big Savings Sponsor Info
-        .row
+    .row
+      .col-md-12.special-offers
+        h1 Special Offers from #{@pledge.sponsor}
+    .row
       .coupons
         = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
     hr
     .row
       = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
       br
+      .text-center
+        h2 PLease share our pledge with your family and friends!
+        p.text-muted Working together, we can make a difference.
       .text-center = render partial:'layouts/share_buttons'
-
+  = render partial: 'layouts/choose_path'
 = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
 css:

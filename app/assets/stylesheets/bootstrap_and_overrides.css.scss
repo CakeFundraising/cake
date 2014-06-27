@@ -372,6 +372,9 @@ p.signup-social {
   background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
+  .alert-dismissable {
+    font-size: 3em;
+  }
 }
 
 .hero-screen {
@@ -455,7 +458,7 @@ table.performance-summary {
   margin-bottom: 50px;
 }
 
-// Tables --------------------------------------------------------------------------
+// Tables -----------------------------------------------------------------------------
 .data-table {
   margin: 40px 0;
   thead {
@@ -508,8 +511,19 @@ table.performance-summary {
 }
 .pledgebluestripe {
   text-align: center;
-  padding: 50px 200px;
+  padding-bottom: 20px;
+  @media (min-width: $screen-md-min) {
+    padding: 25px 175px;
+  }
   color: #fff;
+  p {
+    font-size: 18px;
+    a {
+      font-size: 14px;
+      color: $brand-info;
+      font-style: italic;
+    }
+  }
 }
 .make-pledge {
   h4 {
@@ -545,6 +559,13 @@ table.performance-summary {
   margin-top: 135px;
   color: #fff;
 }
+.special-offers {
+  margin: 25px auto;
+  h1 {
+    text-align: center;
+  }
+}
+
 // Campaign Page Styles -----------------------------------------------------------------
 
 .avatar {
@@ -647,6 +668,10 @@ ul.share-coupon {
   margin-bottom: 10px;
   border: 1px solid $gray-lighter;
 }
+.coupon_box {
+  margin-bottom: 20px;
+}
+
 // Coupon Edge experimental ---------------------------------------
 
 .coupon-edge {
@@ -762,8 +787,14 @@ ul.share-coupon {
     text-decoration: none;
   }
 }
-// home box views --------------------------------------------------------
+// home box views (temp?) --------------------------------------------------------
+.campaign_grid, .sponsor_grid {
+  .thumbnail {
+    background-color: #fff;
+  }
+}
 
+// home box views --------------------------------------------------------
 .home-border {
   border-right: 1px dotted $gray-light;
 }
@@ -1449,3 +1480,14 @@ ul#share-block {
   font-size: 1.5em;
   border-radius: 0;
 }
+
+// Search -------------------------------------------------------
+
+.controls {
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+
+

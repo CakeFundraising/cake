@@ -68,10 +68,12 @@
     .container
       .row.pledgebluestripe
         .col-md-12
-          h2 Your clicks help us.
-          p Please visit all our generous sponsors and share our campaign with friends!
-          p working together, we can make a difference!
-          span See how it works...
+          h1 Please visit all our generous sponsors and share our campaign with friends!
+          p
+            | working together, we can make a difference! 
+            a href="#" see how it works...
+            p/
+
   .container
     = render partial:'campaigns/show/pledges/pledges_section' unless @sponsor_categories.blank?
     .row
@@ -88,24 +90,7 @@
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
     .text-center = render partial:'layouts/share_buttons'
 
-  .wood
-    .bottom-arrow
-      .container
-        .row
-          .col-md-12
-            .header.text-center.never-easier
-              h1 Online Fundraising Has Never Been Easier
-            .row.choose-role 
-              .col-md-6
-                .fundraisers-cir
-                  h2 Fundraisers,
-                  p create your free "donation-per-click" campaign today!
-                  = link_to "Start Now!", new_user_registration_path, class:'btn btn-success btn-lg start-now-btn'
-              .col-md-6
-                .sponsors-cir
-                  h2 Sponsors,
-                  p support great causes on a risk free "donation-per-click" basis
-                  = link_to "Start Now!", new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
+  = render partial: 'layouts/choose_path'
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
