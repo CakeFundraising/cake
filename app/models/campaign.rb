@@ -156,6 +156,11 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  # Resque Jobs
+  def perform
+    
+  end
+
   private
 
   def sponsor_categories_max_min_value

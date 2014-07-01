@@ -33,6 +33,9 @@ gem 'draper'
 #Storage
 gem 'pg'
 
+gem 'resque', '~> 1.25.2', require: 'resque/server'
+gem 'resque-retry'
+
 #Solr
 gem 'sunspot_rails'
 gem 'sunspot_solr'
