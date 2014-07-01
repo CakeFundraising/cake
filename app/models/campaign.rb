@@ -103,7 +103,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def raised
-    pledges.accepted.fully_subscribed.sum(:total_amount_cents)/100
+    pledges.accepted.map(&:current_amount).sum/100
   end
 
   def goal

@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_turbolinks_to(path)
-    redirect_to path unless request.env['HTTP_X_XHR_REFERER'].nil?
+    if request.env['HTTP_X_XHR_REFERER'].nil?
+      render 'show'
+    else
+      redirect_to path 
+    end
   end
 
   protected 

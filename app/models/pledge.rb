@@ -108,6 +108,10 @@ class Pledge < ActiveRecord::Base
     (clicks_count.to_f/max_clicks)*100
   end
 
+  def current_amount
+    clicks_count*amount_per_click_cents
+  end
+
   def notify_fully_subscribed
     fundraiser.users.each do |user|
       PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
