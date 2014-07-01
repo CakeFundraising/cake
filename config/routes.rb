@@ -6,11 +6,8 @@ Cake::Application.routes.draw do
 
   root to: "home#index"
 
-  resque_web_constraint = lambda { |request| request.remote_ip == '127.0.0.1' }
   authenticated :user do
-    constraints resque_web_constraint do
-      mount Resque::Server, at: "/resque"
-    end
+    mount Resque::Server, at: "/resque"
   end
 
   namespace :home, path:'/' do

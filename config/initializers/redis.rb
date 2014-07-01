@@ -8,3 +8,8 @@ else
 end 
 
 Resque.schedule = YAML.load_file(Rails.root.join('config/schedule.yml'))
+
+Resque::Server.use(Rack::Auth::Basic) do |user, password|
+  user == ENV["CAKE_RESQUE_SERVER_USER"]
+  password == ENV["CAKE_RESQUE_SERVER_PASS"]
+end
