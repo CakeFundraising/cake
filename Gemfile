@@ -33,9 +33,6 @@ gem 'draper'
 #Storage
 gem 'pg'
 
-gem 'resque', '~> 1.25.2', require: 'resque/server'
-gem 'resque-retry'
-
 #Solr
 gem 'sunspot_rails'
 gem 'sunspot_solr'
@@ -47,10 +44,10 @@ gem 'thin', group: :development
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
-gem 'jquery-fileupload-rails'
 
 #Cron & Asynchronous tasks
-gem 'whenever', require: false
+gem 'resque', '~> 1.25.2', require: 'resque/server'
+gem 'resque-retry'
 
 #CLI
 gem 'pry-rails'

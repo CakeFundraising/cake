@@ -1,6 +1,0 @@
-campaign_end:
-  every:
-    - "1m"
-  class: "ResqueSchedule::CampaignEnd"
-  queue: high
-  description: "Triggers the @campaign.end method on campaigns that have reach their end_date"
