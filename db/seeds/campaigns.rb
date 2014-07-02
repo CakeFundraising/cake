@@ -30,6 +30,7 @@ end
     pc.headline = Faker::Lorem.sentence
     pc.mission = Faker::Lorem.paragraph
     pc.story = Faker::Lorem.paragraph
+    pc.status = :past
 
     build(2, pc.sponsor_categories) do |sc, i|
       i = i + 1

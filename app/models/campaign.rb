@@ -40,7 +40,7 @@ class Campaign < ActiveRecord::Base
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
-  scope :to_end, ->{ live.where("end_date < ?", Date.today) }
+  scope :to_end, ->{ live.where("end_date <= ?", Date.today) }
   scope :current, ->{ where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ inactive.not_missed_launch.where("launch_date < ?", Date.today) }
 
