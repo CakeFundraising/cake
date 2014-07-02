@@ -3,7 +3,8 @@ class Campaign < ActiveRecord::Base
   include Scope
   include Statusable
 
-  has_statuses :inactive, :live
+  has_statuses :inactive, :live, :past
+  has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
 
@@ -39,9 +40,9 @@ class Campaign < ActiveRecord::Base
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
-  scope :past, ->{ where("end_date < ?", Date.today) }
+  scope :to_end, ->{ live.where("end_date < ?", Date.today) }
   scope :current, ->{ where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
+  scope :unlaunched, ->{ inactive.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_picture, ->{ eager_load(:picture) }
@@ -134,6 +135,7 @@ class Campaign < ActiveRecord::Base
     end
     #generate invoice
     pledges.accepted.each(&:generate_invoice)
+    update_attribute(:status, :past)
   end
 
   def launch!
@@ -154,11 +156,8 @@ class Campaign < ActiveRecord::Base
     sponsors.map(&:users).flatten.each do |user|
       CampaignNotification.sponsor_missed_launch_date(self, user).deliver if user.sponsor_email_setting.missed_launch_campaign
     end
-  end
 
-  # Resque Jobs
-  def perform
-    
+    update_attribute(:processed_status, :missed_launch)
   end
 
   private

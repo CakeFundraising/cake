@@ -1,6 +1,7 @@
 class Pledge < ActiveRecord::Base
   include Statusable
   has_statuses :pending, :accepted, :rejected
+  has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
   attr_accessor :step
   
@@ -42,7 +43,7 @@ class Pledge < ActiveRecord::Base
 
   scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
 
-  scope :fully_subscribed, ->{ where("clicks_count >= max_clicks") }
+  scope :fully_subscribed, ->{ not_notified_fully_subscribed.where("clicks_count >= max_clicks") }
   scope :not_fully_subscribed, ->{ where.not("clicks_count >= max_clicks") }
 
   after_initialize do
@@ -119,6 +120,7 @@ class Pledge < ActiveRecord::Base
     sponsor.users.each do |user|
       PledgeNotification.sp_pledge_fully_subscribed(self, user).deliver if user.sponsor_email_setting.reload.pledge_fully_subscribed
     end
+    update_attribute(:processed_status, :notified_fully_subscribed)
   end
 
   #Invoices

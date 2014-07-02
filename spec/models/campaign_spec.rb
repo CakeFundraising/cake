@@ -38,7 +38,7 @@ describe Campaign do
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:inactive, :live]
+    Campaign.statuses[:status].should == [:inactive, :live, :past]
   end
 
   context 'Actions' do

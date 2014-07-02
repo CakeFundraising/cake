@@ -8,6 +8,6 @@ class Click < ActiveRecord::Base
   private
 
   def unique_click
-    errors.add(:clicks, "You can click in a pledge only once.") if pledge.have_donated?(self.request_ip)
+    errors.add(:clicks, "You can click in a pledge only once.") if pledge.present? and pledge.have_donated?(self.request_ip)
   end
 end

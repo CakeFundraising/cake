@@ -7,7 +7,7 @@ module ResqueSchedule
     @retry_delay = 60
 
     def self.perform
-      Campaign.past.each do |campaign|
+      Campaign.to_end.each do |campaign|
         campaign.end
       end
     end
