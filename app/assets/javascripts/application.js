@@ -19,6 +19,6 @@
 //= require bootstrap-switch
 //= require chosen-jquery
 //= require rails-timeago
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 //= require zeroclipboard
 //= require_tree .

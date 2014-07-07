@@ -6,7 +6,7 @@
         = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
         = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
         = f.input :title
-        = f.input :expires_at, as: :string, input_html:{class:'datepicker'}
+        = f.input :expires_at, as: :string, input_html:{class:'datepicker', value: f.object.decorate.expires_at_american}
         = f.input :promo_code
     .row
       .col-md-12

@@ -15,7 +15,7 @@ gem 'therubyracer', platforms: :ruby
 #JS
 gem 'rails-timeago'
 gem 'chosen-rails'
-gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem 'zeroclipboard-rails'
 
 #Views
@@ -61,6 +61,7 @@ gem 'money-rails'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
+gem 'american_date'
 
 #User registration
 gem "devise"
