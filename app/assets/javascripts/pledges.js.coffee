@@ -19,33 +19,43 @@ Cake.pledges.update_triggers = ->
     Cake.image_previewer()
   return
 
-Cake.pledges.coupons_switcher = ->
+
+# Coupons switcher
+Cake.show_coupons = ->
   checkbox = $('#pledge_show_coupons')
-  checked = checkbox.prop('checked')
   coupons_container = $('#coupons')
-  to_off_text = 'Click to skip this step ->'
-  to_on_text = '<- Click to add coupons'
+  add_coupons = $('.buttons #add_coupons')
+  no_coupons = $('.buttons #no_coupons')
 
-  checkbox.bootstrapSwitch({
-    onText: 'Yes I want to add coupons',
-    offText: 'No! Skip this step',
-    offColor: 'primary',
-    size: 'large',
-    onSwitchChange: (event, state) ->
-      coupons_container.slideToggle()
-
-      if state
-        $('label.bootstrap-switch-label').text(to_off_text)
-      else
-        $('label.bootstrap-switch-label').text(to_on_text)
-      return
-  });
+  checked = checkbox.prop('checked')
 
   if checked
-    $('label.bootstrap-switch-label').text(to_off_text)
+    no_coupons.removeClass('btn-primary')
+    add_coupons.addClass('btn-primary')
     coupons_container.show()
   else
-    $('label.bootstrap-switch-label').text(to_on_text)
+    add_coupons.removeClass('btn-primary')
+    no_coupons.addClass('btn-primary')
     coupons_container.hide()
+  return
+
+Cake.pledges.coupons_switcher = ->
+  checkbox = $('#pledge_show_coupons')
+  add_coupons = $('.buttons #add_coupons')
+  no_coupons = $('.buttons #no_coupons')
+
+  Cake.show_coupons()
+
+  no_coupons.click (e)->
+    e.preventDefault()
+    checkbox.prop('checked', false);
+    Cake.show_coupons()
+    return
+    
+  add_coupons.click (e)->
+    e.preventDefault()
+    checkbox.prop('checked', true);
+    Cake.show_coupons()
+    return  
 
   return

@@ -5,6 +5,6 @@
     .lead Pledge Levels dollar amounts must be mutually exclusive and cannot overlap. 
   = f.semantic_fields_for :sponsor_categories do |sc|
     = render partial:'sponsor_categories/fields', locals:{f: sc}
-  hr
   .links
     = link_to_add_association 'Add Another Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary pull-right', data: {:'cocoon-limit' => 3 }
+  hr
