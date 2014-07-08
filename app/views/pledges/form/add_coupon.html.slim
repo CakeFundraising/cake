@@ -23,7 +23,10 @@
     = semantic_form_for @pledge do |f|
       = f.inputs do
         .buttons.text-center
-          = f.input :show_coupons, label:''
+          button.btn#add_coupons Yes! I want to add coupons
+          span or
+          button.btn#no_coupons No! Skip this step
+          = f.input :show_coupons, as: :boolean
         br
 
         .coupons_section

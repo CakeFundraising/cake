@@ -6,6 +6,10 @@ Cake::Application.routes.draw do
 
   root to: "home#index"
 
+  authenticated :user do
+    mount Resque::Server, at: "/resque"
+  end
+
   namespace :home, path:'/' do
     get :get_started
   end

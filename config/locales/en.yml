@@ -84,6 +84,8 @@ en:
     pending: pending
     accepted: accepted
     rejected: rejected
+    number_of: "No. of %{model}"
+    average: "Avg. %{model}"
   activemodel:
     attributes:
       bank_account:

@@ -1,36 +1,58 @@
 Cake.campaigns ?= {}
 
-Cake.custom_pledges_switcher = ->
+Cake.show_custom_pledge_levels = ->
   checkbox = $('#campaign_custom_pledge_levels')
-  label = $('#campaign_custom_pledge_levels_input label.control-label')
   pledge_levels_container = $('#sponsor_categories')
+  custom_levels_button = $('.buttons #custom_levels')
+  one_level_button = $('.buttons #one_level')
+
   checked = checkbox.prop('checked')
-  to_off_text = 'Click to have just one level ->'
-  to_on_text = '<- Click to set custom levels'
-
-  checkbox.bootstrapSwitch({
-    onText: 'Set custom pledge levels',
-    offText: 'Display all Sponsors together in one level',
-    size: 'large',
-    onSwitchChange: (event, state) ->
-      pledge_levels_container.slideToggle()
-
-      if state
-        $('label.bootstrap-switch-label').text(to_off_text)
-      else
-        $('label.bootstrap-switch-label').text(to_on_text)
-      
-      return
-  });
 
   if checked
-    $('label.bootstrap-switch-label').text(to_off_text)
+    one_level_button.removeClass('btn-primary')
+    custom_levels_button.addClass('btn-primary')
     pledge_levels_container.show()
   else
-    $('label.bootstrap-switch-label').text(to_on_text)
+    custom_levels_button.removeClass('btn-primary')
+    one_level_button.addClass('btn-primary')
     pledge_levels_container.hide()
+  return
+
+Cake.custom_pledges_switcher = ->
+  checkbox = $('#campaign_custom_pledge_levels')
+  custom_levels_button = $('.buttons #custom_levels')
+  one_level_button = $('.buttons #one_level')
+
+  Cake.show_custom_pledge_levels()
+
+  one_level_button.click (e)->
+    e.preventDefault()
+    checkbox.prop('checked', false);
+    Cake.show_custom_pledge_levels()
+    return
+    
+  custom_levels_button.click (e)->
+    e.preventDefault()
+    checkbox.prop('checked', true);
+    Cake.show_custom_pledge_levels()
+    return  
 
   return
+
+Cake.campaigns.set_min_values = ->
+  container = $('#sponsor_categories .nested-fields .pledge_level')
+  max_value = container.find('.max_value')
+
+  max_value.change ->
+    self.closest('.pledge_level').find('.min_value').html(self.val())
+    return
+  return
+
+Cake.campaigns.pledge_levels = ->
+  Cake.custom_pledges_switcher()
+  Cake.campaigns.set_min_values()
+
+
 
 Cake.campaign_countdown = (end_date) ->
   $("#campaign_countdown").countdown end_date, (event) ->

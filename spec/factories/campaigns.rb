@@ -28,6 +28,7 @@ FactoryGirl.define do
     end
 
     factory :past_campaign do
+      status :past
       launch_date { Time.now - 4.months }
       end_date { Time.now - 2.months }
     end

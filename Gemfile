@@ -15,7 +15,7 @@ gem 'therubyracer', platforms: :ruby
 #JS
 gem 'rails-timeago'
 gem 'chosen-rails'
-gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem 'zeroclipboard-rails'
 
 #Views
@@ -44,10 +44,10 @@ gem 'thin', group: :development
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
-gem 'jquery-fileupload-rails'
 
 #Cron & Asynchronous tasks
-gem 'whenever', require: false
+gem 'resque', '~> 1.25.2', require: 'resque/server'
+gem 'resque-retry'
 
 #CLI
 gem 'pry-rails'
@@ -61,6 +61,7 @@ gem 'money-rails'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
+gem 'american_date'
 
 #User registration
 gem "devise"

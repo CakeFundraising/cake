@@ -3,7 +3,11 @@ class FundraisersController < InheritedResources::Base
 
   def show
     @fundraiser = resource.decorate
-    reload_page_if_turbolinks_to(@fundraiser)
+    @active_campaigns = @fundraiser.campaigns.active.decorate
+    @past_campaigns = @fundraiser.campaigns.past.decorate
+    @top_sponsors = SponsorDecorator.decorate_collection @fundraiser.sponsors.first(5)
+
+    redirect_if_turbolinks_to(@fundraiser)
   end
 
   def create

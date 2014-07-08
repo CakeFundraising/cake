@@ -186,7 +186,16 @@ describe Pledge do
       @pledge.should be_valid
     end
 
-    it "should not store a click if the user has clicked before" do
+    it "should store a click when the click is in another pledge" do
+      @clicks = create_list(:click, 5, pledge: @pledge)
+      ip = @clicks.first.request_ip
+
+      pledge = FactoryGirl.create(:pledge)  
+      click = pledge.clicks.build(request_ip: ip)
+      pledge.should be_valid
+    end
+
+    it "should not store a click if the user has clicked before in that pledge" do
       @clicks = create_list(:click, 5, pledge: @pledge)
       ip = @clicks.first.request_ip
 

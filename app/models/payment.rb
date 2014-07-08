@@ -30,9 +30,9 @@ class Payment < ActiveRecord::Base
   end
 
   def transfer!
-    update_attribute(:status, :transferred)
     stripe_trasfer
     notify_transfer
+    update_attribute(:status, :transferred)
   end
 
   private

@@ -13,7 +13,7 @@ class CampaignsController < InheritedResources::Base
     @sponsor_categories = @campaign.sponsor_categories.decorate
     @campaign.rank_levels
 
-    reload_page_if_turbolinks_to(@campaign)
+    redirect_if_turbolinks_to(@campaign)
   end
 
   def create
@@ -53,8 +53,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def sponsors
-    @campaign = resource
-    @campaign.sponsor_categories.build unless @campaign.sponsor_categories.any?
+    @campaign = resource.decorate
     render 'campaigns/form/sponsors'
   end
 

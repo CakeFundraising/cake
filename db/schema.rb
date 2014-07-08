@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618155026) do
+ActiveRecord::Schema.define(version: 20140702143049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140618155026) do
     t.integer  "scopes_mask"
     t.string   "status",               default: "inactive"
     t.text     "mission"
+    t.string   "processed_status",     default: "unprocessed"
   end
 
   create_table "charges", force: true do |t|
@@ -93,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140618155026) do
     t.datetime "updated_at"
   end
 
-  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree
+  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", using: :btree
 
   create_table "coupons", force: true do |t|
     t.string   "title"
@@ -225,11 +226,11 @@ ActiveRecord::Schema.define(version: 20140618155026) do
     t.string   "mission"
     t.string   "headline"
     t.text     "description"
-    t.integer  "amount_per_click_cents",              default: 0,         null: false
-    t.string   "amount_per_click_currency",           default: "USD",     null: false
+    t.integer  "amount_per_click_cents",              default: 0,             null: false
+    t.string   "amount_per_click_currency",           default: "USD",         null: false
     t.string   "donation_type"
-    t.integer  "total_amount_cents",                  default: 0,         null: false
-    t.string   "total_amount_currency",               default: "USD",     null: false
+    t.integer  "total_amount_cents",                  default: 0,             null: false
+    t.string   "total_amount_currency",               default: "USD",         null: false
     t.string   "website_url"
     t.integer  "campaign_id"
     t.integer  "sponsor_id"
@@ -240,6 +241,7 @@ ActiveRecord::Schema.define(version: 20140618155026) do
     t.boolean  "show_coupons",                        default: false
     t.integer  "max_clicks",                          default: 0
     t.boolean  "increase_requested",                  default: false
+    t.string   "processed_status",                    default: "unprocessed"
   end
 
   create_table "sponsor_categories", force: true do |t|

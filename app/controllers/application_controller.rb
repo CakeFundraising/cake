@@ -23,8 +23,12 @@ class ApplicationController < ActionController::Base
     current_user.sponsor if current_user.present?
   end
 
-  def reload_page_if_turbolinks_to(path)
-    redirect_to path unless request.env['HTTP_X_XHR_REFERER'].nil?
+  def redirect_if_turbolinks_to(path)
+    if request.env['HTTP_X_XHR_REFERER'].nil?
+      render 'show'
+    else
+      redirect_to path 
+    end
   end
 
   protected 

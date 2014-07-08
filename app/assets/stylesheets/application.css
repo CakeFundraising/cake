@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require formtastic-bootstrap
- *= require bootstrap-datepicker
+ *= require bootstrap-datepicker3
  *= require bootstrap3-switch
  *= require chosen
  *= require_self

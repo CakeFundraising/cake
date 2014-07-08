@@ -3,7 +3,8 @@ class Campaign < ActiveRecord::Base
   include Scope
   include Statusable
 
-  has_statuses :inactive, :live
+  has_statuses :inactive, :live, :past
+  has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
 
@@ -34,14 +35,16 @@ class Campaign < ActiveRecord::Base
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validates_associated :picture
+
+  validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: :custom_pledge_levels
   validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
-  scope :past, ->{ where("end_date < ?", Date.today) }
+  scope :to_end, ->{ live.where("end_date <= ?", Date.today) }
   scope :current, ->{ where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ inactive.where("launch_date < ?", Date.today) }
+  scope :unlaunched, ->{ inactive.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_picture, ->{ eager_load(:picture) }
@@ -56,6 +59,14 @@ class Campaign < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
+    end
+  end
+
+  after_save do
+    unless self.sponsor_categories.any?
+      self.sponsor_categories.create(name: 'Highest Sponsor')
+      self.sponsor_categories.create(name: 'Medium Sponsor')
+      self.sponsor_categories.create(name: 'Lowest Sponsor', min_value_cents: 5000)
     end
   end
 
@@ -103,7 +114,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def raised
-    pledges.accepted.fully_subscribed.sum(:total_amount_cents)/100
+    pledges.accepted.map(&:current_amount).sum.to_f/100
   end
 
   def goal
@@ -134,6 +145,7 @@ class Campaign < ActiveRecord::Base
     end
     #generate invoice
     pledges.accepted.each(&:generate_invoice)
+    update_attribute(:status, :past)
   end
 
   def launch!
@@ -154,6 +166,8 @@ class Campaign < ActiveRecord::Base
     sponsors.map(&:users).flatten.each do |user|
       CampaignNotification.sponsor_missed_launch_date(self, user).deliver if user.sponsor_email_setting.missed_launch_campaign
     end
+
+    update_attribute(:processed_status, :missed_launch)
   end
 
   private

@@ -22,7 +22,10 @@
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .buttons.text-center
-          = f.input :custom_pledge_levels, label:''
+          button.btn#one_level Display all Sponsors together in one level
+          span or
+          button.btn#custom_levels Set custom pledge levels
+          = f.input :custom_pledge_levels, as: :boolean
         br
         .pledge_levels
           = render partial:'sponsor_categories/form', locals:{f: f}
@@ -33,6 +36,6 @@
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
-  $(document).ready(Cake.custom_pledges_switcher);
-  $(document).on('page:load', Cake.custom_pledges_switcher);
+  $(document).ready(Cake.campaigns.pledge_levels);
+  $(document).on('page:load', Cake.campaigns.pledge_levels);
   
