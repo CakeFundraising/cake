@@ -1,12 +1,11 @@
-.logo
-  = link_to fundraiser_home_path, class: 'navbar-brand' do
-    = image_tag "cake_logo.png"
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-	= menu_item "Pledges", fundraiser_pending_pledges_path
-	= menu_item "Active Campaigns", fundraiser_campaigns_path
-    = menu_item "Help", root_path
-  = render partial: 'layouts/nav/search_form'
+  	= menu_item "Pledges", fundraiser_pending_pledges_path
+  	= menu_item "Active Campaigns", fundraiser_campaigns_path
+    = menu_item "Help"
+    = render partial: 'layouts/nav/search_form', locals:{collection: :campaigns}
+    li.divider
+    = menu_item 'New Campaign', new_campaign_path
   ul.nav.navbar-nav.navbar-right
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 

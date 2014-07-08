@@ -20,13 +20,13 @@ Feature: Campaign Wizard
 
     Examples: Succesful step
     | name            | causes         | scopes  | launch_date | end_date   | message                            |
-    | My new campaign | Arts & Culture | National| 12/04/2015  | 21/06/2015 | Campaign was successfully created. |
-    | Other campaign  | US Relief      |  Global | 21/08/2014  | 21/12/2014 | Campaign was successfully created. |
+    | My new campaign | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
+    | Other campaign  | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
 
     Examples: Failed step
     | name            | causes         | scopes  | launch_date | end_date   | message         |
-    | My new campaign | Arts & Culture | Local   |             | 21/06/2015 | can't be blank  |
-    |                 | US Relief      | Global  | 21/08/2014  | 21/12/2014 | can't be blank  |
+    | My new campaign | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
+    |                 | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
 
   Scenario Outline: Tell your Story
     And a campaign of that fundraiser exists
@@ -39,13 +39,13 @@ Feature: Campaign Wizard
 
     Examples: Succesful step
     | mission            | story           | headline      | launch_date | end_date   | message                            |
-    | Some mission text  | Some story text | Some headline | 12/04/2015  | 21/06/2015 | Campaign was successfully updated. |
-    | Other mission text | Some story text | Some headline | 21/08/2014  | 21/12/2014 | Campaign was successfully updated. |
+    | Some mission text  | Some story text | Some headline | 04/12/2015  | 06/21/2015 | Campaign was successfully updated. |
+    | Other mission text | Some story text | Some headline | 08/21/2014  | 12/21/2014 | Campaign was successfully updated. |
 
     Examples: Failed step
     | mission            | story           | headline      | launch_date | end_date   | message         |
-    | Some mission text  | Some story text |               | 12/04/2015  | 21/06/2015 | can't be blank  |
-    |                    | Some story text | Some headline | 21/08/2014  | 21/12/2014 | can't be blank  |
+    | Some mission text  | Some story text |               | 04/12/2015  | 06/21/2015 | can't be blank  |
+    |                    | Some story text | Some headline | 08/21/2014  | 12/21/2014 | can't be blank  |
   
   Scenario Outline: Pledge Levels
     And a campaign of that fundraiser exists with custom_pledge_levels: true
@@ -60,6 +60,7 @@ Feature: Campaign Wizard
     | name             | min_value | max_value  | message                            |
     | Platinum Sponsor | 100000    | 10000000   | Campaign was successfully updated. |
     | Gold Sponsor     | 10000     | 100000     | Campaign was successfully updated. |
+    | Silver Sponsor   | 1000      | 9999       | Campaign was successfully updated. |
 
     Examples: Failed step
     | name             | min_value | max_value  | message                |

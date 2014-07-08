@@ -1,12 +1,9 @@
-.logo
-  = link_to sponsor_home_path, class: 'navbar-brand' do
-    = image_tag "cake_logo.png"
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
 	= menu_item "Pledge Requests", sponsor_pledge_requests_path
 	= menu_item "Active Pledges", sponsor_active_pledges_path
     = menu_item "Help", root_path
-  = render partial: 'layouts/nav/search_form'
+  = render partial: 'layouts/nav/search_form', locals:{collection: :campaigns}
   ul.nav.navbar-nav.navbar-right
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 

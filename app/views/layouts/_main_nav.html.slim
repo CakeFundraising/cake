@@ -11,7 +11,11 @@ nav.navbar.navbar-default role="navigation"
     - if current_user.present?
       - unless current_fundraiser or current_sponsor
         a.navbar-brand
-          = image_tag "cake_logo.png" 
+          = image_tag "cake_logo.png"
+      - else
+        .logo
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag "cake_logo.png"
       = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present? and current_fundraiser.persisted?
       = render partial:'layouts/nav/sponsor/main' if current_sponsor.present? and current_sponsor.persisted?
     - else
