@@ -5,7 +5,7 @@
         = f.input :name, placeholder: 'i.e. Platinum'
       .col-md-6
         .input-group
-          strong.min_value = f.object.min
+          strong.min_value = f.object.decorate.min
           = f.input :min_value, as: :hidden
           span  to 
           strong $

@@ -10,7 +10,7 @@ class CampaignsController < InheritedResources::Base
 
   def show
     @campaign = resource.decorate
-    @sponsor_categories = @campaign.sponsor_categories.decorate
+    @sponsor_categories = @campaign.sponsor_categories
     @campaign.rank_levels
 
     redirect_if_turbolinks_to(@campaign)
