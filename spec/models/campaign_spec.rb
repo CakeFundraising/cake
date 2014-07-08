@@ -85,6 +85,7 @@ describe Campaign do
     context 'collection' do
       before(:each) do
         @campaign = FactoryGirl.create(:campaign)
+        @campaign.sponsor_categories.destroy_all
 
         @top_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "top", min_value_cents: 50000, max_value_cents: 100000)
         @medium_sponsor_category = FactoryGirl.create(:sponsor_category, campaign: @campaign, name: "medium", min_value_cents: 25000, max_value_cents: 50000)

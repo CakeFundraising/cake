@@ -2,13 +2,14 @@ class CampaignDecorator < ApplicationDecorator
   delegate_all
   decorates_association :video
   decorates_association :fundraiser
+  decorates_association :sponsor_categories
 
   def launch_date
-    object.launch_date.strftime("%m/%d/%Y")
+    object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
   end
 
   def end_date
-    object.end_date.strftime("%m/%d/%Y")
+    object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
   end
 
   def end_date_countdown

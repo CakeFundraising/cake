@@ -35,6 +35,8 @@ class Campaign < ActiveRecord::Base
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validates_associated :picture
+
+  validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: :custom_pledge_levels
   validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
@@ -57,6 +59,14 @@ class Campaign < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
+    end
+  end
+
+  after_save do
+    unless self.sponsor_categories.any?
+      self.sponsor_categories.create(name: 'Highest Sponsor')
+      self.sponsor_categories.create(name: 'Medium Sponsor')
+      self.sponsor_categories.create(name: 'Lowest Sponsor', min_value_cents: 5000)
     end
   end
 

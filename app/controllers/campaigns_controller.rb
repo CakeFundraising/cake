@@ -53,8 +53,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def sponsors
-    @campaign = resource
-    @campaign.sponsor_categories.build unless @campaign.sponsor_categories.any?
+    @campaign = resource.decorate
     render 'campaigns/form/sponsors'
   end
 

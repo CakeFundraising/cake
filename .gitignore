@@ -18,7 +18,7 @@
 *~
 
 # Ignore carrierwave uploads
-/public/uploads/**/*
+/public/**/*
 
 # Ignore configuration files
 /config/database.yml

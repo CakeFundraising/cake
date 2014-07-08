@@ -10,7 +10,7 @@
     c.story = Faker::Lorem.paragraph
     c.status = :live
 
-    build(2, c.sponsor_categories) do |sc, i|
+    build(3, c.sponsor_categories) do |sc, i|
       i = i + 1
       sc.name = Faker::Lorem.sentence
       sc.min_value_cents = i * 1000
@@ -32,7 +32,7 @@ end
     pc.story = Faker::Lorem.paragraph
     pc.status = :past
 
-    build(2, pc.sponsor_categories) do |sc, i|
+    build(3, pc.sponsor_categories) do |sc, i|
       i = i + 1
       sc.name = Faker::Lorem.sentence
       sc.min_value_cents = i * 1000
