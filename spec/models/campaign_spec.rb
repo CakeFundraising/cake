@@ -38,19 +38,19 @@ describe Campaign do
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:inactive, :live, :past]
+    Campaign.statuses[:status].should == [:not_launched, :launched, :past]
   end
 
   context 'Actions' do
     describe "#launch" do
       before(:each) do
-        @campaign = FactoryGirl.create(:inactive_campaign)
+        @campaign = FactoryGirl.create(:not_launched_campaign)
       end
 
-      it "should set a live status" do
-        @campaign.status.should == :inactive
+      it "should set a launched status" do
+        @campaign.status.should == :not_launched
         @campaign.launch!
-        @campaign.status.should == :live
+        @campaign.status.should == :launched
       end
     end
   end

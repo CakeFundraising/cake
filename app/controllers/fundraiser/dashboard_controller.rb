@@ -17,7 +17,7 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def campaigns
-    @campaigns = current_fundraiser.campaigns.current.decorate
+    @campaigns = current_fundraiser.campaigns.active.decorate
   end
 
   def history

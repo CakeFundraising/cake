@@ -80,7 +80,7 @@ class CampaignsController < InheritedResources::Base
 
   def launch
     resource.launch!
-    redirect_to resource, notice: 'Campaign is live now!'
+    redirect_to resource, notice: 'Campaign is launched now!'
   end
 
   protected

@@ -12,7 +12,7 @@ FactoryGirl.define do
     mission { Faker::Lorem.paragraph }
     custom_pledge_levels false
     fundraiser
-    status :live
+    status :launched
 
     factory :campaign_with_pledge_levels do
       custom_pledge_levels true
@@ -24,8 +24,8 @@ FactoryGirl.define do
       end
     end
 
-    factory :inactive_campaign do
-      status :inactive
+    factory :not_launched_campaign do
+      status :not_launched
     end
 
     factory :past_campaign do

@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140702143049) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               default: "inactive"
+    t.string   "status",               default: "not_launched"
     t.text     "mission"
     t.string   "processed_status",     default: "unprocessed"
   end

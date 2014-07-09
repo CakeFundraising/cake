@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   include Scope
   include Statusable
 
-  has_statuses :inactive, :live, :past
+  has_statuses :not_launched, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
@@ -41,10 +41,9 @@ class Campaign < ActiveRecord::Base
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
-  scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
-  scope :to_end, ->{ live.where("end_date <= ?", Date.today) }
-  scope :current, ->{ where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ inactive.not_missed_launch.where("launch_date < ?", Date.today) }
+  scope :to_end, ->{ where("end_date <= ?", Date.today) }
+  scope :active, ->{ where("end_date >= ?", Date.today) }
+  scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_picture, ->{ eager_load(:picture) }
@@ -149,7 +148,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def launch!
-    notify_launch if update_attribute(:status, :live)
+    notify_launch if update_attribute(:status, :launched)
   end
 
   def notify_launch

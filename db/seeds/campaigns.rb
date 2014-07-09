@@ -8,7 +8,7 @@
     c.headline = Faker::Lorem.sentence
     c.mission = Faker::Lorem.paragraph
     c.story = Faker::Lorem.paragraph
-    c.status = :live
+    c.status = :launched
 
     build(3, c.sponsor_categories) do |sc, i|
       i = i + 1

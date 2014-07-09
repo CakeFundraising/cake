@@ -20,8 +20,8 @@ Then(/^he should see his active campaigns$/) do
   page.should have_link("Start New Campaign")
 end
 
-Then(/^he should see his inactive campaigns$/) do
-  page.should have_selector('#inactive table#campaigns tr.campaign', count: @inactive_campaigns.count)
+Then(/^he should see his not launched campaigns$/) do
+  page.should have_selector('#inactive table#campaigns tr.campaign', count: @not_launched_campaigns.count)
 end
 
 Then(/^he should see his unsolicited pledges$/) do
