@@ -47,25 +47,29 @@ Feature: Campaign Wizard
     | Some mission text  | Some story text |               | 04/12/2015  | 06/21/2015 | can't be blank  |
     |                    | Some story text | Some headline | 08/21/2014  | 12/21/2014 | can't be blank  |
   
+  @javascript
   Scenario Outline: Pledge Levels
     And a campaign of that fundraiser exists with custom_pledge_levels: true
     When he goes to campaign wizard sponsors page
-    And he fills in the "Name" field with <name>
-    And he fills in the "campaign_sponsor_categories_attributes_0_min_value" field with <min_value>
-    And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <max_value>
+    And he fills in the "Lowest Pledge Level" field with <lowest_name>
+    And he fills in the "campaign_sponsor_categories_attributes_2_max_value" field with <lowest_max_value>
+    And he fills in the "Medium Pledge Level" field with <medium_name>
+    And he fills in the "campaign_sponsor_categories_attributes_1_max_value" field with <medium_max_value>
+    And he fills in the "Highest Pledge Level" field with <highest_name>
+    And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <highest_max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
     
     Examples: Succesful step
-    | name             | min_value | max_value  | message                            |
-    | Platinum Sponsor | 100000    | 10000000   | Campaign was successfully updated. |
-    | Gold Sponsor     | 10000     | 100000     | Campaign was successfully updated. |
-    | Silver Sponsor   | 1000      | 9999       | Campaign was successfully updated. |
+    | lowest_name      | lowest_max_value | medium_name  | medium_max_value | highest_name     | highest_max_value | message                            |
+    | Silver Sponsor   | 100000           | Gold Sponsor | 1000000          | Platinum Sponsor | 10000000          | Campaign was successfully updated. |
+    | Minor            | 10000            | Medium       | 100000           | Major            | 1000000           | Campaign was successfully updated. |
 
     Examples: Failed step
-    | name             | min_value | max_value  | message                |
-    |                  | 100000    | 10000000   | can't be blank         |
-    | Gold Sponsor     |           | 100000     | must be greater than 0 |
+    | lowest_name      | lowest_max_value | medium_name  | medium_max_value | highest_name     | highest_max_value | message                                                                                               |
+    |                  | 100000           | Gold Sponsor | 1000000          | Platinum Sponsor | 10000000          | can't be blank                                                                                        |
+    | Minor            | 45               | Medium       | 100000           | Major            | 1000000           | Sponsor categories The max and min values must not overlap. Max value must be greater than Min value. |
+    | Minor            | 10000            | Medium       | 10000            | Major            | 1000000           | Sponsor categories The max and min values must not overlap. Max value must be greater than Min value. |
 
   Scenario: Solicit Sponsors
     And a campaign of that fundraiser exists
