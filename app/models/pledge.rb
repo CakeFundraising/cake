@@ -32,7 +32,7 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
-  validate :max_amount
+  validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status = 'launched'", Date.today).references(:campaign) }
@@ -164,6 +164,10 @@ class Pledge < ActiveRecord::Base
       max = campaign.sponsor_categories.maximum(:max_value_cents)
       errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
     end
+  end
+
+  def total_amount_greater_than_amount_per_click
+    errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
   end
 
   def pledge_fully_subscribed
