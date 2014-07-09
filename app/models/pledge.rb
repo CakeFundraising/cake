@@ -1,6 +1,6 @@
 class Pledge < ActiveRecord::Base
   include Statusable
-  has_statuses :pending, :accepted, :rejected
+  has_statuses :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
   attr_accessor :step
@@ -35,8 +35,8 @@ class Pledge < ActiveRecord::Base
   validate :max_amount
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
-  scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
-  scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
+  scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status = 'launched'", Date.today).references(:campaign) }
+  #scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
   
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }

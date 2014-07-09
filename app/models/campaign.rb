@@ -139,12 +139,16 @@ class Campaign < ActiveRecord::Base
 
   #Actions
   def end
+    pledges.accepted.each(&:generate_invoice)
+    pledges.each(&:past!)
+    update_attribute(:status, :past)
+    notify_end
+  end
+
+  def notify_end
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
-    #generate invoice
-    pledges.accepted.each(&:generate_invoice)
-    update_attribute(:status, :past)
   end
 
   def launch!
