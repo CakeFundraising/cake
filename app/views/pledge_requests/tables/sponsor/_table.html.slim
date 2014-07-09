@@ -1,6 +1,7 @@
 table#requested_pledges.table.table-hover.table-bordered.data-table
   thead
     tr
+      th = PledgeRequest.human_attribute_name :fundraiser 
       th = PledgeRequest.human_attribute_name :campaign 
       th = PledgeRequest.human_attribute_name :causes
       th = PledgeRequest.human_attribute_name :scopes

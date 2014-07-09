@@ -11,6 +11,7 @@ Cake.init = ->
   Cake.pledges.click()
   Cake.pledges.update_triggers()
   Cake.shareaholic.load()
+  return
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)
