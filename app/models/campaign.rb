@@ -42,7 +42,7 @@ class Campaign < ActiveRecord::Base
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   scope :to_end, ->{ where("end_date <= ?", Date.today) }
-  scope :active, ->{ where("end_date >= ?", Date.today) }
+  scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
@@ -130,7 +130,7 @@ class Campaign < ActiveRecord::Base
 
   #Status
   def active?
-    (launch_date..end_date).cover?(Date.today)
+    end_date >= Date.today and status != :past
   end
 
   def past?

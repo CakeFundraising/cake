@@ -8,11 +8,7 @@
   .container
     .content.row.pull-up
       .col-md-8
-        - if @pledge.video.present?
-          .video_button 
-            button.btn data-target="#video" data-toggle="modal"
-              span.glyphicon.glyphicon-play-circle
-              |  See video
+        = render partial:'videos/button', locals:{object: @pledge}
         h1.name 
           span = @pledge.mission
           span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)

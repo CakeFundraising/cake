@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702143049) do
+ActiveRecord::Schema.define(version: 20140710152653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,11 +139,9 @@ ActiveRecord::Schema.define(version: 20140702143049) do
   end
 
   create_table "fundraisers", force: true do |t|
-    t.integer  "min_pledge"
-    t.integer  "min_click_donation"
-    t.boolean  "donations_kind",         default: false
-    t.boolean  "tax_exempt",             default: false
-    t.boolean  "unsolicited_pledges",    default: false
+    t.boolean  "donations_kind",              default: false
+    t.boolean  "tax_exempt",                  default: false
+    t.boolean  "unsolicited_pledges",         default: false
     t.string   "manager_name"
     t.string   "manager_title"
     t.string   "manager_email"
@@ -158,6 +156,10 @@ ActiveRecord::Schema.define(version: 20140702143049) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
+    t.integer  "min_pledge_cents",            default: 0,     null: false
+    t.string   "min_pledge_currency",         default: "USD", null: false
+    t.integer  "min_click_donation_cents",    default: 0,     null: false
+    t.string   "min_click_donation_currency", default: "USD", null: false
   end
 
   create_table "invoices", force: true do |t|

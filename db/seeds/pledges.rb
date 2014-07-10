@@ -5,7 +5,7 @@
     p.mission = Faker::Lorem.sentence
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
-    p.amount_per_click = rand(99) + 1
+    p.amount_per_click = rand(9) + 1
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
@@ -43,11 +43,11 @@ end
     p.mission = Faker::Lorem.sentence
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
-    p.amount_per_click = rand(99) + 1
+    p.amount_per_click = rand(9) + 1
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
     p.website_url = Faker::Internet.domain_name
     p.campaign = campaign
-    p.status = :accepted
+    p.status = :past
 
     build(2, p.coupons) do |c|
       c.title = Faker::Lorem.sentence

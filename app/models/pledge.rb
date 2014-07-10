@@ -16,7 +16,7 @@ class Pledge < ActiveRecord::Base
   has_many :clicks, dependent: :destroy
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
-  delegate :past?, :active?, to: :campaign
+  delegate :active?, to: :campaign
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }

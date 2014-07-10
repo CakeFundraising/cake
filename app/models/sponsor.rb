@@ -65,7 +65,7 @@ class Sponsor < ActiveRecord::Base
   end
 
   def fundraisers
-    accepted_pledges.map(&:fundraiser)
+    accepted_pledges.map(&:fundraiser).uniq
   end
 
   #Statistic methods
