@@ -73,7 +73,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def input_html_options
-    {class: "#{method}_input"}
+    {class: "#{method}_input", wrapper_tag: :div}
   end
 
   def existing_html_options
@@ -141,7 +141,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
   def to_html
     input_wrapping do
       remove_html <<
-      label_html <<
+      #label_html <<
       errors_html <<
       cache_html <<
       if method_was_present?
@@ -150,7 +150,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
       else
         existing_html <<
         file_html
-      end
+      end  
     end
   end
 
