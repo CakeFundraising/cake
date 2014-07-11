@@ -68,13 +68,14 @@
             p/
           = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
   .container
-    .row
-      .col-md-12.special-offers
-        h1 Special Offers from #{@pledge.sponsor}
-    .row
-      .coupons
-        = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
-    hr
+    - if @pledge.coupons.any?
+      .row
+        .col-md-12.special-offers
+          h1 Special Offers from #{@pledge.sponsor}
+      .row
+        .coupons
+          = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
+      hr
     .row
       = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
       br

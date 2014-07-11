@@ -21,6 +21,17 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
+  titles:
+    dashboard:
+      fundraiser:
+        pledges:
+          from_sponsors: offers from sponsors
+          my_pledge_requests: my pledge requests
+        campaigns: campaigns
+        invoices:
+          outstanding: outstanding invoices
+          past: past invoices
+        history: sponsors
   helpers:
     titles:
       search: Search

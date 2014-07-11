@@ -2,6 +2,7 @@
   table#active_pledges.table.table-hover.table-bordered.data-table
     thead
       tr
+        th = Campaign.model_name.human
         th = Fundraiser.model_name.human
         th = Pledge.human_attribute_name :causes
         th = Pledge.human_attribute_name :scopes
