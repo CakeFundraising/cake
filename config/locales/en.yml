@@ -106,19 +106,21 @@ en:
         other: Campaigns
     attributes:
       coupon:
-        merchandise_categories: Categories
+        merchandise_categories: Offer or Product Category - choose all that apply - use ctrl to select additional categories
       fundraiser:
         banner: Banner photo upload
-        min_pledge: Min. Pledge
+        min_pledge: Min. Acceptable Pledge
         min_click_donation: Min. Click/Donation
-        unsolicited_pledges: Welcoms Unsolicited Pledges
+        unsolicited_pledges: We welcome Unsolicited Pledges
         donations_kind: Accept Donations in Kind
         tax_exempt: 503c Tax Exempt
-        name: Name of Fundraiser
-        mission: Fundraiser's Mission 
-        supporter_demographic: Supporter Demographics
-        manager_name: Fundraising Manager
+        name: Organization Name
+        mission: Organization Mission Statement
+        supporter_demographics: Demographic profile of our supporters
+        manager_name: Campaign Manager
         pledges_quantity: No. of Pledges
+        email: Organization public email
+        causes: Organization Cause Categories - use ctrl to choose more than one
       fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased
@@ -165,10 +167,14 @@ en:
       pledge_request: 
         start_end_dates: Launch/ End Date
       sponsor:
+        name: Company Name
+        phone: Company Phone Number
         causes: We Support
-        scopes: Types of Campaigns
-        mission: Sponsor Mission
+        scopes: Types of Campaigns we sponsor
+        mission: Company Social Responsibility Mission Statement
+        email: Company Email
         customer_demographics: Our Customer Demographics
+        cause_requirements: Fundraising Organization Requirements
       video:
         url: Video Url
       picture: 

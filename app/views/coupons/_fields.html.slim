@@ -5,12 +5,12 @@
       .col-md-12.coupons-wrap
         = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
         = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
-        = f.input :title
+        = f.input :title, {placeholder: '60 characters or less'}
         = f.input :expires_at, as: :string, input_html:{class:'datepicker', value: f.object.decorate.expires_at_american}
-        = f.input :promo_code
+        = f.input :promo_code, {placeholder: '20 characters or less'}
     .row
       .col-md-12
-        = f.input :description, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :description, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, placeholder: '300 words or less' }
         = f.input :merchandise_categories, as: :select, collection: Coupon::CATEGORIES, input_html:{multiple: true, size: 10}
         = f.input :terms_conditions, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
         = f.input :standard_terms, as: :boolean, input_html:{checked: true}

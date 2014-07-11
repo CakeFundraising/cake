@@ -1,3 +1,3 @@
 = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
   = p.input :banner, as: :uploader, removable: false, parent: f
-  = p.input :banner_caption if defined? caption
+  = p.input :banner_caption, input_html: {placeholder: '65 characters or less'} if defined? caption

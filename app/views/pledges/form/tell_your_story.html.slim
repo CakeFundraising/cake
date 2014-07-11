@@ -17,9 +17,7 @@
   #story.tab-pane.active
     br
     .text-center
-      h1 Tell your Story
-      p.text-muted Tell us about your pledge. Don't worry, you can edit it whenever you want.
-      br
+
     = semantic_form_for @pledge do |f|
       = f.inputs do
         .text-center.tell-story-wrap 
@@ -29,14 +27,13 @@
           .banner-upload
             = render partial:'pictures/banner_form', locals:{f: f}
           br
-          = f.input :mission, input_html: {rows: 2}
-          span.help-block.p25 Keep it simple, it is for your records only!
+          = f.input :mission, input_html: {rows: 2, placeholder: '250 characters or less'}
         
         hr.wizard-rule
 
         .text-center.tell-story-wrap 
           h2 Pledge Image
-          p.text-muted Choose a logo or image that best represents you.
+          p.text-muted Choose a logo or image that best represents you and your company.
           .help-block.italic Suggested size: 305x240 px
           = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
           span.help-block.p25 Include a caption to help others understand your image.
@@ -46,8 +43,8 @@
         .text-center.tell-story-wrap
           h2 Tell your story in words.
           p.text-muted Tell your story with a headline and a pledge message.
-          = f.input :headline
-          = f.input :description, input_html: {rows: 5}
+          = f.input :headline, {placeholder: '250 characters or less'}
+          = f.input :description, input_html: {rows: 5, placeholder: '3,000 words or less'}
 
           = render partial:'videos/form', locals:{f: f}
             

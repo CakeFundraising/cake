@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140702143049) do
     t.datetime "updated_at"
   end
 
-  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", using: :btree
+  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree
 
   create_table "coupons", force: true do |t|
     t.string   "title"

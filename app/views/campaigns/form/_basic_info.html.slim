@@ -28,13 +28,13 @@
     = semantic_form_for @campaign do |f|
       = f.inputs do
         .text-center
-          h1 Basic Information Campaign
+          h1 Basic Campaign Information
           p.text-muted Tell us about your campaign. Don't worry, you can edit it whenever you want.
           br
         .row
           .col-xs-12.campaign-name
-            = f.input :title
-            span.help-block.italic Keep it simple, it is for your records only!
+            = f.input :title, {placeholder: '50 characters'}
+            span.help-block.italic Keep it simple.
 
             .input-daterange
               = f.input :launch_date, as: :string, input_html: {value: f.object.decorate.launch_date}
@@ -49,7 +49,7 @@
           = f.input :causes, as: :select, collection: Campaign::CAUSES, input_html:{multiple: true, size: 10}, include_blank: false, label: false
           
           hr.wizard-rule
-          h2 Type of Campaigns
+          h2 Type of Campaign
           p.text-muted Choose the geographic designation that best describes your organization's influence with supporters and consumers.
           p.text-muted You can choose more than one category.
         = f.input :scopes, as: :check_boxes, collection: Campaign::SCOPES, label: false

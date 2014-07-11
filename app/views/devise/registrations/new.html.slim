@@ -8,13 +8,13 @@
       | Sign up 
       strong for free 
       | today!
-    p.text-muted Let's Get Started. CakeFundraising is fast, easy and has no raise requirements.
+    
 
   .row.choose-role
     .col-md-6.signup-wrap.divider-vert
 
       = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-        = f.inputs 'Use your email' do
+        = f.inputs 'Sign Up' do
           = f.input :full_name
           = f.input :email
           = f.input :password
