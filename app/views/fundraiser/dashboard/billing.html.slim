@@ -12,7 +12,13 @@ ul.nav.nav-tabs
 .tab-content
   #outstanding.tab-pane.active
     #outstanding_invoices.panel-group
-      = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
+      - if @campaigns_with_outstanding_invoices.any?
+        = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
+      - else
+        = render partial:'layouts/no_results', locals:{object: t('titles.dashboard.fundraiser.invoices.outstanding')}
   #past.tab-pane
     #past_invoices.panel-group
-      = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_past_invoices, as: :campaign
+      - if @campaigns_with_past_invoices.any?
+        = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_past_invoices, as: :campaign
+      - else
+        = render partial:'layouts/no_results', locals:{object: t('titles.dashboard.fundraiser.invoices.past')}

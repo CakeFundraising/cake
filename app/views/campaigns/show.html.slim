@@ -7,11 +7,7 @@
   .container
     .content.row.pull-up
       .col-md-8
-        - if @campaign.video.present?
-          .video_button 
-            button.btn data-target="#video" data-toggle="modal"
-              span.glyphicon.glyphicon-play-circle
-              |  See video
+        = render partial:'videos/button', locals:{object: @campaign}
         h1.name 
           span = @campaign.mission
           span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign

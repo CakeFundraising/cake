@@ -38,19 +38,45 @@ describe Campaign do
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:inactive, :live, :past]
+    Campaign.statuses[:status].should == [:not_launched, :launched, :past]
   end
 
   context 'Actions' do
     describe "#launch" do
       before(:each) do
-        @campaign = FactoryGirl.create(:inactive_campaign)
+        @campaign = FactoryGirl.create(:not_launched_campaign)
       end
 
-      it "should set a live status" do
-        @campaign.status.should == :inactive
+      it "should set a launched status" do
+        @campaign.status.should == :not_launched
         @campaign.launch!
-        @campaign.status.should == :live
+        @campaign.status.should == :launched
+      end
+    end
+
+    describe "#end" do
+      before(:each) do
+        @campaign = FactoryGirl.create(:campaign)
+        @active_pledges = create_list(:pledge, 3, campaign: @campaign)
+        @pending_pledges = create_list(:pending_pledge, 3, campaign: @campaign)
+      end
+
+      it "should generate invoices for accepted pledges" do
+        expect{
+          @campaign.end
+        }.to change{Invoice.count}.by(@active_pledges.count)
+      end
+
+      it "should set all pledges as past" do
+        @campaign.end
+        @campaign.pledges.sort.should == @campaign.pledges.past.sort
+        @campaign.pledges.past.count.should == (@active_pledges+@pending_pledges).count
+      end
+
+      it "should set the campaign as past" do
+        expect{
+          @campaign.end
+        }.to change{@campaign.status}.to :past
       end
     end
   end

@@ -91,10 +91,10 @@
           h4 Min Pledge Requirements
           div
             span = Fundraiser.human_attribute_name :min_pledge
-            strong.pull-right = @fundraiser.min_pledge
+            strong.pull-right = humanized_money_with_symbol @fundraiser.min_pledge
           div
             span = Fundraiser.human_attribute_name :min_click_donation
-            strong.pull-right = @fundraiser.min_click_donation        
+            strong.pull-right = humanized_money_with_symbol @fundraiser.min_click_donation        
           div
             span = Fundraiser.human_attribute_name :unsolicited_pledges
             strong.pull-right = b @fundraiser.unsolicited_pledges

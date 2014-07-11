@@ -21,8 +21,8 @@ Feature: Pledge Wizard
 
   Examples: Successful step
   | click_amount | total_amount | website             | message                          |
-  | 10.00        | 1000.00    | example.com         | Pledge was successfully created. |
-  | 5.00         | 2000.00    | http://example.com/ | Pledge was successfully created. |
+  | 10.00        | 100.00       | example.com         | Pledge was successfully created. |
+  | 5.00         | 200.00       | http://example.com/ | Pledge was successfully created. |
 
   Examples: Failed Step
   | click_amount | total_amount | website             | message                |

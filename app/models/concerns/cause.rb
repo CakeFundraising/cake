@@ -31,7 +31,10 @@ module Cause
       "Business & Entrepeneurs",
       "Group & Individual Projects",
       "Military & Veterans",
-      "Memorials, Tributes & Awards"
+      "Memorials, Tributes & Awards",
+      "Science & Research",
+      "Inventions & Technology",
+      "Rehab & Social Services"
     ]
   }
 

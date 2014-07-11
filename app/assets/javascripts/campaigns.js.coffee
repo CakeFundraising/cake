@@ -43,8 +43,15 @@ Cake.campaigns.set_min_values = ->
   container = $('#sponsor_categories .nested-fields .pledge_level')
   max_value = container.find('.max_value')
 
-  max_value.change ->
-    self.closest('.pledge_level').find('.min_value').html(self.val())
+  $('#sponsor_categories .nested-fields .pledge_level .max_value').change ->
+    self_index = $(this).attr('id').match(/\d+/)[0]
+    if self_index != "0"
+      val = parseInt($(this).val()) + 1
+      next_min_value_input = $('#campaign_sponsor_categories_attributes_' + (self_index - 1) + '_min_value') 
+      next_min_value_span = next_min_value_input.closest('.input-group').find('.min_value')
+
+      next_min_value_input.val(val)
+      next_min_value_span.html('$'+val)
     return
   return
 
@@ -52,8 +59,7 @@ Cake.campaigns.pledge_levels = ->
   Cake.custom_pledges_switcher()
   Cake.campaigns.set_min_values()
 
-
-
+#Campaign Show Functions
 Cake.campaign_countdown = (end_date) ->
   $("#campaign_countdown").countdown end_date, (event) ->
     countdown_section = $(this)

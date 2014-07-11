@@ -2,6 +2,7 @@ window.Cake ?= {}
 
 Cake.init = ->
   Cake.clipboard()
+  Cake.videos()
   Cake.popover()
   Cake.datepicker()
   Cake.limit_cocoon()
@@ -10,7 +11,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.click()
   Cake.pledges.update_triggers()
-  Cake.shareaholic.load()
+  return
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)

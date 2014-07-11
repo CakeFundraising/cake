@@ -26,6 +26,9 @@ class Fundraiser < ActiveRecord::Base
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
+  monetize :min_pledge_cents
+  monetize :min_click_donation_cents
+
   after_initialize do
     if self.new_record?
       self.build_location
@@ -39,22 +42,12 @@ class Fundraiser < ActiveRecord::Base
     end
   end
 
-  MIN_PLEDGES = [
-    10000,
-    25000,
-    50000,
-    100000
-  ]
+  MIN_PLEDGES = %w{20.00 50.00 100.00 200.00 500.00 750.00 1000.00 1500.00 2000.00 2500.00 3000.00 4000.00 5000.00 7500.00 10000.00 15000.00 20000.00 25000.00 50000.00 100000.00}
 
-  MIN_CLICK_DONATIONS = [
-    3,
-    5,
-    7,
-    10
-  ]
+  MIN_CLICK_DONATIONS = %w{0.10 0.25 0.50 1.00 1.50 2.00 3.00 5.00 10.00}
 
   def sponsors
-    pledges.accepted.active.eager_load(:sponsor).map(&:sponsor)
+    pledges.accepted.active.eager_load(:sponsor).map(&:sponsor).uniq
   end
 
   #Stripe Account

@@ -1,5 +1,6 @@
 tr.pledge id=(pledge.id) 
-  td = link_to pledge.sponsor, pledge
+  td = auto_link pledge
+  td = auto_link pledge.sponsor
   td = pledge.causes.first
   td = pledge.scopes.first
   td = pledge.end_date

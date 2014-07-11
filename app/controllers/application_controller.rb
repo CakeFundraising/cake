@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     if request.env['HTTP_X_XHR_REFERER'].nil?
       render 'show'
     else
+      request.env.reject!('HTTP_X_XHR_REFERER')
       redirect_to path 
     end
   end

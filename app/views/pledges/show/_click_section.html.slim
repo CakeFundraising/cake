@@ -1,4 +1,4 @@
-- if pledge.campaign.live?
+- if pledge.campaign.launched? and pledge.accepted?
   - if pledge.have_donated?(request.remote_ip)
     button.btn.btn-primary.btn-block.disabled Thanks for your contribution
   - elsif pledge.fully_subscribed?

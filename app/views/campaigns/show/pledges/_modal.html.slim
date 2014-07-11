@@ -5,18 +5,18 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h3.modal-title #{ auto_link campaign} Pledges.
       .modal-body
-        .row
-          - if campaign.pledges.active.any?
+        - if campaign.pledges.active.any?
+          .row
             .lead Active Pledges
-          = render partial:'pledges/tables/active/fundraiser/table', locals: {pledges: campaign.pledges.active.decorate}
-        .row
-          - if campaign.pledges.pending.any?
+            = render partial:'pledges/tables/active/fundraiser/table', locals: {pledges: campaign.pledges.active.decorate}
+        - if campaign.pledges.pending.any?
+          .row
             .lead Pending Pledges
-          = render partial:'pledges/tables/pending/fundraiser/table', locals: {pledges: campaign.pledges.pending.decorate}
-        .row
-          - if campaign.pledges.past.any?
+            = render partial:'pledges/tables/pending/fundraiser/table', locals: {pledges: campaign.pledges.pending.decorate}
+        - if campaign.pledges.past.any?
+          .row
             .lead Past Pledges
-          = render partial:'pledges/tables/past/table', locals: {pledges: campaign.pledges.past.decorate}
+            = render partial:'pledges/tables/past/table', locals: {pledges: campaign.pledges.past.decorate}
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close
     /! /.modal-content

@@ -1,11 +1,13 @@
+- index = f.options[:child_index]
+
 .nested-fields
   = f.inputs do
     .row.pledge_level
       .col-md-6
-        = f.input :name, placeholder: 'i.e. Platinum'
+        = f.input :name, placeholder: 'i.e. Platinum', label: t("activerecord.attributes.sponsor_category.name_#{index}")
       .col-md-6
         .input-group
-          strong.min_value = f.object.min
+          strong.min_value = f.object.decorate.min
           = f.input :min_value, as: :hidden
           span  to 
           strong $

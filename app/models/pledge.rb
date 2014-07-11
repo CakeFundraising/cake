@@ -1,6 +1,6 @@
 class Pledge < ActiveRecord::Base
   include Statusable
-  has_statuses :pending, :accepted, :rejected
+  has_statuses :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
   attr_accessor :step
@@ -16,7 +16,7 @@ class Pledge < ActiveRecord::Base
   has_many :clicks, dependent: :destroy
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
-  delegate :past?, :active?, to: :campaign
+  delegate :active?, to: :campaign
 
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
@@ -32,11 +32,11 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
-  validate :max_amount
+  validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
-  scope :active, ->{ accepted.includes(:campaign).where("? BETWEEN campaigns.launch_date AND campaigns.end_date", Date.today).references(:campaign) }
-  scope :past, ->{ accepted.includes(:campaign).where("campaigns.end_date < ?", Date.today).references(:campaign) }
+  #scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status = 'launched'", Date.today).references(:campaign) }
+  scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }
@@ -165,6 +165,10 @@ class Pledge < ActiveRecord::Base
       max = campaign.sponsor_categories.maximum(:max_value_cents)
       errors.add(:total_amount, "This campaign allows offers up to $#{max/100}") if max < total_amount_cents
     end
+  end
+
+  def total_amount_greater_than_amount_per_click
+    errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
   end
 
   def pledge_fully_subscribed

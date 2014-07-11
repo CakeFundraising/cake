@@ -1,11 +1,5 @@
 h2 Hello #{@receiver}, 
+br
 div Recently your account information have changed in CakeFundraising.
-div These are the data that were changed:
-ul
-  - @attributes_changed.each do |attr|
-    li
-      strong #{attr.first}: 
-      span from #{attr.last.first} 
-      span to #{attr.last.last}
-
+br
 div Please click #{ link_to t('semantic.here').downcase, account_url } if you want to see your actual account information.

@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   include Scope
   include Statusable
 
-  has_statuses :inactive, :live, :past
+  has_statuses :not_launched, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
@@ -36,15 +36,14 @@ class Campaign < ActiveRecord::Base
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validates_associated :picture
 
-  validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: :custom_pledge_levels
+  validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: ->{ self.custom_pledge_levels and self.persisted? }
   validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
-  scope :active, ->{ live.where("? BETWEEN launch_date AND end_date", Date.today) }
-  scope :to_end, ->{ live.where("end_date <= ?", Date.today) }
-  scope :current, ->{ where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ inactive.not_missed_launch.where("launch_date < ?", Date.today) }
+  scope :to_end, ->{ where("end_date <= ?", Date.today) }
+  scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
+  scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_picture, ->{ eager_load(:picture) }
@@ -62,7 +61,7 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  after_save do
+  after_create do
     unless self.sponsor_categories.any?
       self.sponsor_categories.create(name: 'Highest Sponsor')
       self.sponsor_categories.create(name: 'Medium Sponsor')
@@ -131,7 +130,7 @@ class Campaign < ActiveRecord::Base
 
   #Status
   def active?
-    (launch_date..end_date).cover?(Date.today)
+    end_date >= Date.today and status != :past
   end
 
   def past?
@@ -140,16 +139,20 @@ class Campaign < ActiveRecord::Base
 
   #Actions
   def end
+    pledges.accepted.each(&:generate_invoice)
+    pledges.each(&:past!)
+    update_attribute(:status, :past)
+    notify_end
+  end
+
+  def notify_end
     fundraiser.users.each do |user|
       CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
     end
-    #generate invoice
-    pledges.accepted.each(&:generate_invoice)
-    update_attribute(:status, :past)
   end
 
   def launch!
-    notify_launch if update_attribute(:status, :live)
+    notify_launch if update_attribute(:status, :launched)
   end
 
   def notify_launch

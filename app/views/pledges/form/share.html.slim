@@ -15,14 +15,15 @@
 
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    br
-    .text-center
-      h1 Thank you for your Pledge!
-      p.text-muted Confirm your pledge to #{ auto_link @pledge.campaign }.
-      p.text-muted They will share your pledge with their many supporters and friends and drive traffic to your website.
+    - if @pledge.pending? or @pledge.rejected?
       br
-      
-      = link_to "Confirm your Pledge", launch_pledge_path(@pledge), method: :patch, class:'btn btn-success'
+      .text-center
+        h1 Thank you for your Pledge!
+        p.text-muted Confirm your pledge to #{ auto_link @pledge.campaign }.
+        p.text-muted They will share your pledge with their many supporters and friends and drive traffic to your website.
+        br
+        
+        = link_to "Confirm your Pledge", launch_pledge_path(@pledge), method: :patch, class:'btn btn-success'
 
     br
     .example-badge.row

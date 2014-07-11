@@ -1,8 +1,9 @@
-#video.modal.fade
+#video_modal.modal.fade
   .modal-dialog
     .modal-content
       .modal-header 
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h4.modal-title #{object} Video
       .modal-body
         = object.video.iframe
     /! /.modal-content
