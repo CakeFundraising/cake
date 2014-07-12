@@ -22,18 +22,14 @@
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .buttons.text-center
-          button.btn#one_level Display all Sponsors together in one level
-          span or
           button.btn#custom_levels Set custom pledge levels
+          span or
+          = link_to 'Skip this step', share_campaign_path(@campaign), class:'btn', id:'one_level'
           = f.input :custom_pledge_levels, as: :boolean
         br
         .pledge_levels
           = render partial:'sponsor_categories/form', locals:{f: f}
-
         = f.input :step, as: :hidden, input_html:{value: :share} 
-      = f.actions do
-        .text-center
-          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
   $(document).ready(Cake.campaigns.pledge_levels);

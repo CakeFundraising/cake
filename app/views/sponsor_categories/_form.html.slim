@@ -5,3 +5,6 @@
     .lead Pledge Levels dollar amounts must be mutually exclusive and cannot overlap. 
   = f.semantic_fields_for :sponsor_categories do |sc|
     = render partial:'sponsor_categories/fields', locals:{f: sc}
+  = f.actions do
+    .text-center
+      = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

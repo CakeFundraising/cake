@@ -26,14 +26,12 @@ Cake.custom_pledges_switcher = ->
   Cake.show_custom_pledge_levels()
 
   one_level_button.click (e)->
-    e.preventDefault()
-    checkbox.prop('checked', false);
-    Cake.show_custom_pledge_levels()
+    checkbox.prop('checked', false)
     return
     
   custom_levels_button.click (e)->
     e.preventDefault()
-    checkbox.prop('checked', true);
+    checkbox.prop('checked', true)
     Cake.show_custom_pledge_levels()
     return  
 
