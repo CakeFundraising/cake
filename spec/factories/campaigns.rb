@@ -17,7 +17,6 @@ FactoryGirl.define do
     factory :campaign_with_pledge_levels do
       custom_pledge_levels true
       after(:create) do |campaign|
-        campaign.sponsor_categories.destroy_all
         campaign.sponsor_categories << create(:sponsor_category, name: 'Highest Sponsor', campaign: campaign, min_value_cents: 20100, max_value_cents: 100000)
         campaign.sponsor_categories << create(:sponsor_category, name: 'Medium Sponsor' , campaign: campaign, min_value_cents: 10100, max_value_cents: 20000)
         campaign.sponsor_categories << create(:sponsor_category, name: 'Lowest Sponsor' , campaign: campaign, min_value_cents: 5000, max_value_cents: 10000)

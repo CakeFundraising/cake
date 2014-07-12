@@ -2,6 +2,7 @@ window.Cake ?= {}
 
 Cake.init = ->
   Cake.clipboard()
+  Cake.jquery_validator()
   Cake.videos()
   Cake.popover()
   Cake.datepicker()

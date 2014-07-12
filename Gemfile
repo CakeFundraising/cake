@@ -62,6 +62,7 @@ gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
 gem 'american_date'
+gem "jquery-validation-rails"
 
 #User registration
 gem "devise"

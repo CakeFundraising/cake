@@ -4,7 +4,7 @@
     .lead Name each Sponsorship Pledge Level and set the minimum and maximum pledge amount for each one.
     .lead Pledge Levels dollar amounts must be mutually exclusive and cannot overlap. 
   = f.semantic_fields_for :sponsor_categories do |sc|
-    = render partial:'sponsor_categories/fields', locals:{f: sc}
-  = f.actions do
-    .text-center
-      = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+    .links
+      = render partial:'sponsor_categories/fields', locals:{f: sc}
+      hr
+      = link_to_add_association 'Add a superior Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary pull-right', data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend}

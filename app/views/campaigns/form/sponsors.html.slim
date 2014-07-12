@@ -18,20 +18,23 @@
       h1 Set pledge Levels
       p.text-muted Would you like to create and name custom pledge levels to recognize and reward your biggest sponsors?
     br
-    = semantic_form_for @campaign do |f|
+    = semantic_form_for @campaign, html: {class:'form-inline'} do |f|
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .buttons.text-center
           button.btn#custom_levels Set custom pledge levels
           span or
-          = link_to 'Skip this step', share_campaign_path(@campaign), class:'btn', id:'one_level'
+          button.btn#one_level Skip this step
           = f.input :custom_pledge_levels, as: :boolean
         br
         .pledge_levels
           = render partial:'sponsor_categories/form', locals:{f: f}
         = f.input :step, as: :hidden, input_html:{value: :share} 
+      = f.actions do
+        .text-center
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
-  $(document).ready(Cake.campaigns.pledge_levels);
-  $(document).on('page:load', Cake.campaigns.pledge_levels);
+  $(document).ready(Cake.pledge_levels.init);
+  $(document).on('page:load', Cake.pledge_levels.init);
   

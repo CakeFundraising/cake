@@ -41,6 +41,14 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def destroy
+    destroy! do |success, failure|
+      success.html do
+        redirect_to fundraiser_campaigns_path, notice: 'Campaign was successfully destroyed.'
+      end
+    end
+  end
+
   #Non restful actions
   def basic_info
     @campaign = resource
@@ -54,6 +62,7 @@ class CampaignsController < InheritedResources::Base
 
   def sponsors
     @campaign = resource.decorate
+    @campaign.sponsor_categories.build(name: '', min_value_cents: 5000) if @campaign.sponsor_categories.blank?
     render 'campaigns/form/sponsors'
   end
 

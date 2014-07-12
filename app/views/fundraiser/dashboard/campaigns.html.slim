@@ -4,5 +4,6 @@
   .col-md-8.col-md-pull-4.dash-head.active-campaigns
     h1 Active Campaigns
   .row
-    = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+    .col-md-12
+      = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
 

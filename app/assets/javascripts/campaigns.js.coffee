@@ -1,64 +1,7 @@
 Cake.campaigns ?= {}
 
-Cake.show_custom_pledge_levels = ->
-  checkbox = $('#campaign_custom_pledge_levels')
-  pledge_levels_container = $('#sponsor_categories')
-  custom_levels_button = $('.buttons #custom_levels')
-  one_level_button = $('.buttons #one_level')
-
-  checked = checkbox.prop('checked')
-
-  if checked
-    one_level_button.removeClass('btn-primary')
-    custom_levels_button.addClass('btn-primary')
-    pledge_levels_container.show()
-  else
-    custom_levels_button.removeClass('btn-primary')
-    one_level_button.addClass('btn-primary')
-    pledge_levels_container.hide()
-  return
-
-Cake.custom_pledges_switcher = ->
-  checkbox = $('#campaign_custom_pledge_levels')
-  custom_levels_button = $('.buttons #custom_levels')
-  one_level_button = $('.buttons #one_level')
-
-  Cake.show_custom_pledge_levels()
-
-  one_level_button.click (e)->
-    checkbox.prop('checked', false)
-    return
-    
-  custom_levels_button.click (e)->
-    e.preventDefault()
-    checkbox.prop('checked', true)
-    Cake.show_custom_pledge_levels()
-    return  
-
-  return
-
-Cake.campaigns.set_min_values = ->
-  container = $('#sponsor_categories .nested-fields .pledge_level')
-  max_value = container.find('.max_value')
-
-  $('#sponsor_categories .nested-fields .pledge_level .max_value').change ->
-    self_index = $(this).attr('id').match(/\d+/)[0]
-    if self_index != "0"
-      val = parseInt($(this).val()) + 1
-      next_min_value_input = $('#campaign_sponsor_categories_attributes_' + (self_index - 1) + '_min_value') 
-      next_min_value_span = next_min_value_input.closest('.input-group').find('.min_value')
-
-      next_min_value_input.val(val)
-      next_min_value_span.html('$'+val)
-    return
-  return
-
-Cake.campaigns.pledge_levels = ->
-  Cake.custom_pledges_switcher()
-  Cake.campaigns.set_min_values()
-
 #Campaign Show Functions
-Cake.campaign_countdown = (end_date) ->
+Cake.campaigns.countdown = (end_date) ->
   $("#campaign_countdown").countdown end_date, (event) ->
     countdown_section = $(this)
     # days
@@ -72,5 +15,5 @@ Cake.campaign_countdown = (end_date) ->
   return
 
 Cake.campaigns.show = (end_date)->
-  Cake.campaign_countdown(end_date)
+  Cake.campaigns.countdown(end_date)
   return

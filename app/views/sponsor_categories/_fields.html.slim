@@ -1,14 +1,19 @@
 - index = f.options[:child_index]
-
 .nested-fields
+  hr
   = f.inputs do
+    - unless index == 0
+      = link_to_remove_association "Remove", f, class:'pull-right'
     .row.pledge_level
       .col-md-6
-        = f.input :name, placeholder: 'i.e. Platinum', label: t("activerecord.attributes.sponsor_category.name_#{index}")
+        - if index == 0
+          = f.input :name, placeholder: 'i.e. Silver Sponsor', label: t("activerecord.attributes.sponsor_category.name_0"), input_html: {class:'pledge_name'}
+        - else
+          = f.input :name, placeholder: 'Pledge Level Name', label: 'Superior Pledge Level', input_html: {class:'pledge_name'}
       .col-md-6
-        .input-group
-          strong.min_value = f.object.decorate.min
-          = f.input :min_value, as: :hidden
-          span  to 
-          strong $
+        .form-group
+          span.pledge-pad.min_value = f.object.decorate.min
+          = f.input :min_value, as: :hidden, input_html: {class:'input_min_value'}
+          span.pledge-pad to $
+        .form-group
           = f.input :max_value, label: false, input_html: {class:'max_value'}
