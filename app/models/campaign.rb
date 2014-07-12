@@ -109,7 +109,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def accepted_pledges
-    pledges.accepted.order('total_amount_cents DESC')
+    pledges.accepted.order(total_amount_cents: :desc, amount_per_click_cents: :desc)
   end
 
   def raised

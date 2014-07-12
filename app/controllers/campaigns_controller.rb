@@ -9,8 +9,8 @@ class CampaignsController < InheritedResources::Base
   ]
 
   def show
+    @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
     @campaign = resource.decorate
-    @sponsor_categories = @campaign.sponsor_categories
     @campaign.rank_levels
 
     redirect_if_turbolinks_to(@campaign)
@@ -61,8 +61,8 @@ class CampaignsController < InheritedResources::Base
   end
 
   def sponsors
+    @sponsor_categories = resource.sponsor_categories.order(created_at: :desc) || resource.sponsor_categories.build(name: '', min_value_cents: 5000)
     @campaign = resource.decorate
-    @campaign.sponsor_categories.build(name: '', min_value_cents: 5000) if @campaign.sponsor_categories.blank?
     render 'campaigns/form/sponsors'
   end
 

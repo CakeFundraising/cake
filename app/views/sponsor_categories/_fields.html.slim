@@ -2,14 +2,11 @@
 .nested-fields
   hr
   = f.inputs do
-    - unless index == 0
+    - unless f.object.min_value == '50'
       = link_to_remove_association "Remove", f, class:'pull-right'
     .row.pledge_level
       .col-md-6
-        - if index == 0
-          = f.input :name, placeholder: 'i.e. Silver Sponsor', label: t("activerecord.attributes.sponsor_category.name_0"), input_html: {class:'pledge_name'}
-        - else
-          = f.input :name, placeholder: 'Pledge Level Name', label: 'Superior Pledge Level', input_html: {class:'pledge_name'}
+        = f.input :name, placeholder: 'i.e. Silver Sponsor', label: 'Pledge Level Name', input_html: {class:'pledge_name'}
       .col-md-6
         .form-group
           span.pledge-pad.min_value = f.object.decorate.min
