@@ -61,7 +61,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def sponsors
-    @sponsor_categories = resource.sponsor_categories.order(created_at: :desc) || resource.sponsor_categories.build(name: '', min_value_cents: 5000)
+    @sponsor_categories = resource.sponsor_categories.any? ? resource.sponsor_categories.order(min_value_cents: :desc) : resource.sponsor_categories.build(name: '', min_value_cents: 5000)
     @campaign = resource.decorate
     render 'campaigns/form/sponsors'
   end

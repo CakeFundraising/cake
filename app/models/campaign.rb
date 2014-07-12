@@ -61,14 +61,6 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  # after_create do
-  #   unless self.sponsor_categories.any?
-  #     self.sponsor_categories.create(name: 'Highest Sponsor')
-  #     self.sponsor_categories.create(name: 'Medium Sponsor')
-  #     self.sponsor_categories.create(name: 'Lowest Sponsor', min_value_cents: 5000)
-  #   end
-  # end
-
   #Solr
   searchable do
     text :title, :headline, boost: 2
