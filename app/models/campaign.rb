@@ -41,7 +41,7 @@ class Campaign < ActiveRecord::Base
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
-  scope :to_end, ->{ where("end_date <= ?", Date.today) }
+  scope :to_end, ->{ not_past.where("end_date <= ?", Date.today) }
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
