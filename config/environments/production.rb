@@ -86,8 +86,8 @@ Cake::Application.configure do
     address:              'smtp.mandrillapp.com',
     port:                 587,
     enable_starttls_auto: true,
-    user_name:            'bismark64@gmail.com',
-    password:             'gZRtnGFBlFpZl94j9BcvTg',
+    user_name:            'emiliano@bytelion.com',
+    password:             'Iec7U1YW1JnYe3LYdCk7cg',
     authentication:       'plain'
   }
 end
