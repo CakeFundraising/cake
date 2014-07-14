@@ -1,13 +1,16 @@
-table.table.data-table
-  thead
-    tr
-      th = Pledge.model_name.human
-      th = Pledge.human_attribute_name :causes
-      th = Pledge.human_attribute_name :scopes
-      th = Pledge.model_name.human
-      th = Pledge.human_attribute_name :donation_click
-      th = Pledge.human_attribute_name :prize
-      th = Coupon.model_name.human 
-      th = Pledge.human_attribute_name :pledge_rank
-  tbody 
-    = render partial:'sponsors/public_profile/pledge_row', collection: pledges, as: :pledge
+- if pledges.any? 
+  table.table.data-table
+    thead
+      tr
+        th = Pledge.model_name.human
+        th = Pledge.human_attribute_name :causes
+        th = Pledge.human_attribute_name :scopes
+        th = Pledge.model_name.human
+        th = Pledge.human_attribute_name :donation_click
+        th = Pledge.human_attribute_name :prize
+        th = Coupon.model_name.human 
+        th = Pledge.human_attribute_name :pledge_rank
+    tbody 
+      = render partial:'sponsors/public_profile/pledge_row', collection: pledges, as: :pledge
+- else
+  = render partial:'layouts/no_results', locals:{object: t("titles.empty_results.pledges.#{kind}"), in_profile: true}

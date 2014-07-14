@@ -1,11 +1,14 @@
-table.table.data-table
-  thead
-    tr
-      th = Campaign.model_name.human
-      th = Campaign.human_attribute_name :causes
-      th Launch/End Date
-      th = t('semantic.number_of', model: 'Sponsors')
-      th = t('semantic.average', model: 'Pledge')
-      th = t('semantic.average', model: 'Donation/Click')
-  tbody
-    = render partial:'fundraisers/public_profile/campaign_row', collection: campaigns, as: :campaign
+- if campaigns.any?
+  table.table.data-table
+    thead
+      tr
+        th = Campaign.model_name.human
+        th = Campaign.human_attribute_name :causes
+        th Launch/End Date
+        th = t('semantic.number_of', model: 'Sponsors')
+        th = t('semantic.average', model: 'Pledge')
+        th = t('semantic.average', model: 'Donation/Click')
+    tbody
+      = render partial:'fundraisers/public_profile/campaign_row', collection: campaigns, as: :campaign
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.campaigns'), in_profile: true}

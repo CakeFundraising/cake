@@ -3,7 +3,8 @@ class SponsorsController < InheritedResources::Base
     @sponsor = resource.decorate
     @active_pledges = @sponsor.pledges.active  
     @past_pledges = @sponsor.pledges.past
-    @accepted_pledges = @sponsor.accepted_pledges
+    @fundraisers = FundraiserDecorator.decorate_collection @sponsor.fundraisers
+    #@accepted_pledges = @sponsor.accepted_pledges
 
     redirect_if_turbolinks_to(@sponsor)
   end

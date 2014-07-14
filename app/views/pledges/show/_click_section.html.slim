@@ -16,8 +16,9 @@
           .modal-body
             p Your click helps!
           .modal-footer
+            = link_to 'Visit our Sponsor again', pledge.website_url, target: :_blank, class:'btn btn-primary', id:'visit_sponsor_link'
             button.btn.btn-default data-dismiss="modal" type="button" Close
-            = link_to "Contribute", click_pledge_path(pledge), method: :patch, target: :_blank, class:'btn btn-primary', id:'contribute_link'
+            = link_to "Click Here!", click_pledge_path(pledge), method: :patch, target: :_blank, class:'btn btn-primary', id:'contribute_link'
         /! /.modal-content
       /! /.modal-dialog
     /! /.modal

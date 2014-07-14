@@ -114,7 +114,7 @@ class PledgesController < InheritedResources::Base
       click = Click.new(request_ip: request.remote_ip, pledge: resource)
       
       if click.save
-        redirect_to 'http://'+resource.website_url 
+        redirect_to resource.website_url 
       else
         redirect_to resource, alert: click.errors.messages
       end

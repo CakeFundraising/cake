@@ -5,11 +5,11 @@
     .content.row.pull-up
       .col-md-8
         h1.name = @sponsor.name
-        span.edit = link_to 'Edit Profile', public_profile_path if can? :update, @sponsor
+        - if can? :update, @sponsor
+          span.edit = link_to 'Edit Profile', public_profile_path 
         .sponsor
           address
-            span = @sponsor.location.address
-            span #{@sponsor.location.city}, #{@sponsor.location.state_code}, #{@sponsor.location.zip_code}
+            span = @sponsor.location
             br
           address
             span.sponsorinfo 
@@ -118,9 +118,9 @@
 
         .tab-content
           #active-pledges.tab-pane.active
-            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @active_pledges}
+            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @active_pledges, kind: :active}
           #past.tab-pane
-            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @past_pledges}
+            = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @past_pledges, kind: :past}
           #top.tab-pane
             = render partial:'sponsors/public_profile/fundraisers_table'
 css:

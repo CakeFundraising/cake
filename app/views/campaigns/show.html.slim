@@ -10,7 +10,8 @@
         = render partial:'videos/button', locals:{object: @campaign}
         h1.name 
           span = @campaign.mission
-          span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) if can? :edit, @campaign
+          - if can? :edit, @campaign and not @campaign.past?
+            span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
         = render partial:'layouts/share_buttons'
       .col-md-4
         .sidebar-bkg 
@@ -39,7 +40,7 @@
                 span Raised
                 span.pull-right Goal
                 strong.pull-right = @campaign.goal
-            - if current_sponsor.present?
+            - if current_sponsor.present? and not @campaign.past?
               .col-md-12
                 = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
 

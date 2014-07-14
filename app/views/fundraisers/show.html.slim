@@ -6,14 +6,13 @@
       .col-md-8
         h1.name
           span = @fundraiser.name
-          span.edit = link_to 'Edit Profile', public_profile_path
+          - if can? :edit, @fundraiser
+            span.edit = link_to 'Edit Profile', public_profile_path
         .sponsor
           address
             strong = @fundraiser.name
             br
-            span = @fundraiser.location.address
-            span #{@fundraiser.location.city}, #{@fundraiser.location.state_code}, #{@fundraiser.location.zip_code}
-            br
+            span = @fundraiser.location
           address
             span.sponsorinfo 
               span Phone: 

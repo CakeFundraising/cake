@@ -1,5 +1,6 @@
 class Pledge < ActiveRecord::Base
   include Statusable
+  include Formats
   has_statuses :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
@@ -30,6 +31,7 @@ class Pledge < ActiveRecord::Base
   validates :total_amount, numericality: {greater_than: 0}
 
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
+  validates :website_url, format: {with: DOMAIN_NAME_REGEX}
   validates :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount, :total_amount_greater_than_amount_per_click

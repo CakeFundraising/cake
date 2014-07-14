@@ -19,7 +19,7 @@ class Coupon < ActiveRecord::Base
   validates :unit_donation, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
   validates :total_donation, numericality: {greater_than: 0}, if: :extra_donation_pledge
 
-  validates :title, :avatar, :qrcode, :description, :merchandise_categories, :expires_at, :pledge, presence: true
+  validates :title, :avatar, :description, :merchandise_categories, :expires_at, :pledge, presence: true
 
   scope :extra_donation_pledges, ->{ where(extra_donation_pledge: true) }
   scope :normal, ->{ where(extra_donation_pledge: false) }

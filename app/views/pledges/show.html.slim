@@ -11,7 +11,8 @@
         = render partial:'videos/button', locals:{object: @pledge}
         h1.name 
           span = @pledge.mission
-          span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
+          - if can? :edit, @pledge and not @pledge.past?
+            span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
         = render partial:'layouts/share_buttons'
       .col-md-4
         .sidebar-bkg 

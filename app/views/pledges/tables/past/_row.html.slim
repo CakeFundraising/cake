@@ -1,5 +1,6 @@
 tr.pledge
-  td = link_to pledge.sponsor, pledge
+  td = auto_link pledge
+  td = auto_link pledge.sponsor
   td = pledge.campaign.object.causes.first
   td = pledge.fundraiser.location
   td = pledge.end_date
