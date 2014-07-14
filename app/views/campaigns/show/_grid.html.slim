@@ -8,6 +8,8 @@
       .cause = campaign.object.causes.first
       .type = campaign.object.scopes.first
       hr
+      .fundraiser_name = auto_link campaign.fundraiser
+      hr
       .thermometer
         p.timer-ital Total all sponsor pledges:
         - if campaign.object.goal > 0

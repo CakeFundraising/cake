@@ -52,7 +52,11 @@ class PledgesController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to sponsor_home_path, notice: 'Pledge canceled.'
+        if current_sponsor.present?
+          redirect_to sponsor_home_path, notice: 'Pledge canceled.'
+        else
+          redirect_to fundraiser_home_path, notice: 'Pledge canceled.'
+        end
       end
     end
   end

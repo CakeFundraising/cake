@@ -1,5 +1,5 @@
 = form_tag send("search_#{collection}_path"), :method => :get, id: "#{collection}-search", :class => "form-search navbar-form navbar-left" do
   .form-group
     = search_parameters_hidden_fields
-    = text_field_tag :search, params[:search], placeholder: "Search campaigns", :class => 'search-query form-control'
+    = text_field_tag :search, params[:search], placeholder: "Search #{collection}", :class => 'search-query form-control'
     = submit_tag t('helpers.titles.search'), :name => nil, :class => 'btn btn-default'

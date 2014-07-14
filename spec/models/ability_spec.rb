@@ -266,6 +266,16 @@ describe Ability do
         @pledge = FactoryGirl.create(:pledge)
         @ability.should_not be_able_to(:increase_request, @pledge)
       end
+
+      it "can delete own pledges" do
+        @pledge = FactoryGirl.create(:pledge, fundraiser: @fundraiser)
+        @ability.should be_able_to(:destroy, @pledge)
+      end
+
+      it "cannot delete someone else's pledges" do
+        @pledge = FactoryGirl.create(:pledge)
+        @ability.should_not be_able_to(:destroy, @pledge)
+      end
     end
   end
 

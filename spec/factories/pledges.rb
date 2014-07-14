@@ -6,7 +6,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     amount_per_click "9.00"
     total_amount "99.00"
-    website_url { Faker::Internet.domain_name }
+    website_url { "http://#{Faker::Internet.domain_name}" }
     status :accepted
     campaign
     sponsor
