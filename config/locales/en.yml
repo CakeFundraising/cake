@@ -22,16 +22,21 @@ en:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
   titles:
-    dashboard:
-      fundraiser:
-        pledges:
-          from_sponsors: offers from sponsors
-          my_pledge_requests: my pledge requests
-        campaigns: campaigns
-        invoices:
-          outstanding: outstanding invoices
-          past: past invoices
-        history: sponsors
+    empty_results:
+      pledges:
+        from_sponsors: offers from sponsors
+        my_pledge_requests: my pledge requests
+        fr_requests: fundraiser requests
+        my_offers: my offers to pledge
+        active: active pledges
+        past: past pledges
+        pending: pending pledges
+      campaigns: campaigns
+      invoices:
+        outstanding: outstanding invoices
+        past: past invoices
+      sponsors: sponsors
+      fundraisers: fundraisers
   helpers:
     titles:
       search: Search

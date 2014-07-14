@@ -9,7 +9,7 @@ ul.nav.nav-tabs
 .tab-content
   #outstanding.tab-pane.active
     #outstanding_invoices.panel-group
-      = render partial:'invoices/show/sponsor/table', locals:{invoices: @outstanding_invoices, checkout: true}
+      = render partial:'invoices/show/sponsor/table', locals:{invoices: @outstanding_invoices, checkout: true, kind: :outstanding}
   #past.tab-pane
     #past_invoices.panel-group
-      = render partial:'invoices/show/sponsor/table', locals:{invoices: @past_invoices}
+      = render partial:'invoices/show/sponsor/table', locals:{invoices: @past_invoices, kind: :past}

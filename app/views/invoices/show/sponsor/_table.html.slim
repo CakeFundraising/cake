@@ -1,13 +1,16 @@
-= render partial:'invoices/checkout_form' if defined? checkout and not current_sponsor.decorate.stripe_customer?
+- if invoices.any?
+  = render partial:'invoices/checkout_form' if defined? checkout and not current_sponsor.decorate.stripe_customer?
 
-table.table.table-hover.table-bordered.data-table
-  thead
-    tr
-      th = Fundraiser.model_name.human
-      th = Invoice.human_attribute_name :clicks
-      th = Invoice.human_attribute_name :donation_click
-      th = Invoice.human_attribute_name :due
-      th = Invoice.human_attribute_name :status
-      th
-  tbody
-    = render partial:'invoices/show/sponsor/row', collection: invoices, as: :invoice
+  table.table.table-hover.table-bordered.data-table
+    thead
+      tr
+        th = Fundraiser.model_name.human
+        th = Invoice.human_attribute_name :clicks
+        th = Invoice.human_attribute_name :donation_click
+        th = Invoice.human_attribute_name :due
+        th = Invoice.human_attribute_name :status
+        th
+    tbody
+      = render partial:'invoices/show/sponsor/row', collection: invoices, as: :invoice
+- else
+  = render partial:'layouts/no_results', locals:{object: t("titles.empty_results.invoices.#{kind}")}

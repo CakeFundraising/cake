@@ -4,4 +4,5 @@
   .col-md-8.col-md-pull-4.dash-head.active-campaigns
     h1 Active Pledges
   .row
-    = render partial:'pledges/tables/active/sponsor/table', locals:{pledges: @pledges}
+    .col-md-12
+      = render partial:'pledges/tables/active/sponsor/table', locals:{pledges: @pledges}

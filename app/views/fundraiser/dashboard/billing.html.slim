@@ -15,10 +15,10 @@ ul.nav.nav-tabs
       - if @campaigns_with_outstanding_invoices.any?
         = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
       - else
-        = render partial:'layouts/no_results', locals:{object: t('titles.dashboard.fundraiser.invoices.outstanding')}
+        = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.outstanding')}
   #past.tab-pane
     #past_invoices.panel-group
       - if @campaigns_with_past_invoices.any?
         = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_past_invoices, as: :campaign
       - else
-        = render partial:'layouts/no_results', locals:{object: t('titles.dashboard.fundraiser.invoices.past')}
+        = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.past')}
