@@ -21,6 +21,9 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
+  errors:
+    stripe_account:
+      account_taken: Stripe Account has already been used. Please use another Stripe Account.
   titles:
     empty_results:
       pledges:
