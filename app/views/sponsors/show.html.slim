@@ -13,8 +13,8 @@
             br
           address
             span.sponsorinfo 
-              | Phone: 
-              | (123) #{@sponsor.phone}
+              span Phone: 
+              span = @sponsor.phone
             span Website: 
             span.sponsorinfo = link_to @sponsor.object.website, @sponsor.object.website, target: :_blank
             span Email: 

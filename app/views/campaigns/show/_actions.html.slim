@@ -1,5 +1,5 @@
+span = link_to "View", campaign, class:'btn btn-primary'
 - unless campaign.past?
-  span = link_to "View", campaign, class:'btn btn-primary'
   span = link_to "Edit", edit_campaign_path(campaign), class:'btn btn-warning'
 - unless campaign.launched? or campaign.past?
   span = link_to "Launch Campaign", launch_campaign_path(campaign), method: :patch, class:'btn btn-success'

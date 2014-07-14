@@ -125,10 +125,6 @@ class Campaign < ActiveRecord::Base
     end_date >= Date.today and status != :past
   end
 
-  def past?
-    end_date < Date.today
-  end
-
   #Actions
   def end
     pledges.accepted.each(&:generate_invoice)
