@@ -31,8 +31,9 @@ module NavigationHelpers
       pledge_campaign_path(@campaign)
 
     when /^pledge wizard (.*?) page$/
+      pledge = @pledge || @pending_pledge
       path_components = $1.split(/\s+/)
-      send(path_components.push('pledge').push('path').join('_').to_sym, @pledge)
+      send(path_components.push('pledge').push('path').join('_').to_sym, pledge)
 
     when /^pledge's page$/
       pledge = @pledge || model(:pledge)

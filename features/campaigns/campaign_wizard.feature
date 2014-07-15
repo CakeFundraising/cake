@@ -49,14 +49,17 @@ Feature: Campaign Wizard
   
   @javascript
   Scenario Outline: Pledge Levels
-    And a campaign of that fundraiser exists with custom_pledge_levels: true
+    And a campaign of that fundraiser exists
     When he goes to campaign wizard sponsors page
-    And he fills in the "Lowest Pledge Level" field with <lowest_name>
-    And he fills in the "campaign_sponsor_categories_attributes_2_max_value" field with <lowest_max_value>
-    And he fills in the "Medium Pledge Level" field with <medium_name>
-    And he fills in the "campaign_sponsor_categories_attributes_1_max_value" field with <medium_max_value>
-    And he fills in the "Highest Pledge Level" field with <highest_name>
-    And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <highest_max_value>
+    And he press the "Set custom pledge levels" button
+    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
+    And he press the "Add a superior Pledge Level" link
+    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Max value" field with <medium_max_value>
+    And he press the "Add a superior Pledge Level" link
+    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
     
@@ -66,10 +69,10 @@ Feature: Campaign Wizard
     | Minor            | 10000            | Medium       | 100000           | Major            | 1000000           | Campaign was successfully updated. |
 
     Examples: Failed step
-    | lowest_name      | lowest_max_value | medium_name  | medium_max_value | highest_name     | highest_max_value | message                                                                                               |
-    |                  | 100000           | Gold Sponsor | 1000000          | Platinum Sponsor | 10000000          | can't be blank                                                                                        |
-    | Minor            | 45               | Medium       | 100000           | Major            | 1000000           | Sponsor categories The max and min values must not overlap. Max value must be greater than Min value. |
-    | Minor            | 10000            | Medium       | 10000            | Major            | 1000000           | Sponsor categories The max and min values must not overlap. Max value must be greater than Min value. |
+    | lowest_name      | lowest_max_value | medium_name  | medium_max_value | highest_name     | highest_max_value | message                                  |
+    |                  | 100000           | Gold Sponsor | 1000000          | Platinum Sponsor | 10000000          | This field is required.                  |
+    | Minor            | 45               | Medium       | 100000           | Major            | 1000000           | Please enter a value greater than $50    |
+    | Minor            | 10000            | Medium       | 10000            | Major            | 1000000           | Please enter a value greater than $10001 |
 
   Scenario: Solicit Sponsors
     And a campaign of that fundraiser exists

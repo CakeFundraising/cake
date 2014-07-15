@@ -2,6 +2,14 @@ When(/^(?:I|they|he) (?:fill|fills) in the "(.*?)" field with (.*?)$/) do |field
   fill_in field, with: value
 end
 
+When(/^(?:I|they|he) (?:fill|fills) in the appearing "(.*?)" field with (.*?)$/) do |field, value|
+  if field == "Max value"
+    first('.nested-fields .max_value').set(value)
+  else
+    first(:field, field).set(value) 
+  end
+end
+
 When(/^(?:I|they|he) press the "(.*?)" button$/) do |button|
   first(:button, button).click
 end

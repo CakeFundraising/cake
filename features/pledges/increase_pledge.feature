@@ -19,9 +19,9 @@ Feature: Increase Pledge
   | 123400       | Pledge increased succesfully. |
 
   Examples: Failed Increase
-  | total_amount | message                                                                                                    |
-  |              | is not a number, must be greater than 0, and You can only increase this value after you create the pledge. |
-  | -15900       | must be greater than 0                                                                                     |
+  | total_amount | message                                                                                                                                            |
+  |              | is not a number, must be greater than 0, Must be greater than amount per click., and You can only increase this value after you create the pledge. |
+  | -15900       | must be greater than 0                                                                                                                             |
 
 
   #@javascript

@@ -59,10 +59,11 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 require 'sunspot_test/cucumber'
-
+#Webmock
 require 'webmock/cucumber'
 WebMock.disable_net_connect!(:allow_localhost => true)
 
+#Omniauth stubs
 Before do
   OmniAuth.config.test_mode = true
   OmniAuth.config.add_mock(:twitter, {

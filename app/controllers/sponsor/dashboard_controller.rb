@@ -12,7 +12,7 @@ class Sponsor::DashboardController < ApplicationController
 
   def pledge_requests
     @fundraiser_requests = current_sponsor.pledge_requests.pending.decorate
-    @sponsor_requests = current_sponsor.pledges.pending.decorate
+    @sponsor_requests = current_sponsor.pledges.pending_or_rejected.decorate
   end
 
   def active_pledges

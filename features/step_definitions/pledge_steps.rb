@@ -48,7 +48,7 @@ Then(/^a rejected flag should be present in the sponsor pledge requests page$/) 
 end
 
 Given(/^a pledge request related to that pledge exists$/) do
-  @pledge_request = FactoryGirl.create(:pledge_request, sponsor: @pledge.sponsor, fundraiser: @pledge.fundraiser, campaign: @pledge.campaign)
+  @pledge_request = FactoryGirl.create(:pledge_request, sponsor: @pending_pledge.sponsor, fundraiser: @pending_pledge.fundraiser, campaign: @pending_pledge.campaign)
 end
 
 Then(/^it should delete the related pledge request$/) do
@@ -79,6 +79,7 @@ end
 Then(/^a click should be added to the Pledge$/) do
   sleep 5
   Pledge.first.clicks.count.should == 1
+  sleep 25
 end
 
 Given(/^the user has already donated to that pledge$/) do
