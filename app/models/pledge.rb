@@ -37,7 +37,6 @@ class Pledge < ActiveRecord::Base
   validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
-  #scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status = 'launched'", Date.today).references(:campaign) }
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
