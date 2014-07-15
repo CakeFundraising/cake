@@ -127,8 +127,10 @@ class Pledge < ActiveRecord::Base
 
   #Invoices
   def generate_invoice
-    create_invoice
-    notify_invoice(invoice)    
+    unless clicks_count.zero?
+      create_invoice
+      notify_invoice(invoice)
+    end     
   end
 
   def create_invoice

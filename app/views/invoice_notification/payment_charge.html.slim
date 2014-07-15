@@ -1,3 +1,4 @@
 h2 Hello #{@receiver}, 
-div Your invoice ##{@invoice.id} assigned to #{@invoice.sponsor} for the campaign: #{@invoice.campaign.title} has been paid.
+div Your invoice ##{@invoice.id} assigned to #{ link_to @invoice.sponsor, sponsor_url(@invoice.sponsor) } for the campaign: #{ link_to @invoice.campaign.title, campaign_url(@invoice.campaign)} has been paid.
 div You can check your invoices #{ link_to t('semantic.here').downcase, fundraiser_billing_url }.
+div Your money will be transferred to your bank account within 4 business days from now.
