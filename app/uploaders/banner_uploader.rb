@@ -52,7 +52,7 @@ class BannerUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "http://placehold.it/#{VERSION_SIZES[version_name.to_sym].join("x")}"
+    "http://placehold.it/1400x614"
   end
 
   # Override the filename of the uploaded files:

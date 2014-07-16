@@ -97,8 +97,8 @@
           div
             span = Fundraiser.human_attribute_name :unsolicited_pledges
             strong.pull-right = b @fundraiser.unsolicited_pledges
-            p.profile-message 
-            h3 = Fundraiser.human_attribute_name :mission
+            .profile-message 
+              h3 = Fundraiser.human_attribute_name :mission
               p = @fundraiser.mission
             .demographics
               h3 = Fundraiser.human_attribute_name :supporter_demographics

@@ -7,6 +7,7 @@ FactoryGirl.define do
     amount_per_click "9.00"
     total_amount "99.00"
     website_url { "http://#{Faker::Internet.domain_name}" }
+    clicks_count 25
     status :accepted
     campaign
     sponsor

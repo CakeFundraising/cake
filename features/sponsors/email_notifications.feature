@@ -39,7 +39,10 @@ Feature: Sponsor Email Notifications
 
   Scenario Outline: Change to public profile
     And the sponsor user <wants?> to receive notifications for "Change to public profile"
-    When the sponsor's public profile is changed 
+    And that sponsor is logged in
+    When he visits the public profile page
+    And he fills in the "Website" field with http://coke.com
+    And he press the "Save Changes" button
     Then <quantity> email should be delivered with subject: "Your public profile has been modified."
 
     Examples: Enabled notification

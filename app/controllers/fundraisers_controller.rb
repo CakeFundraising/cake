@@ -1,5 +1,6 @@
 class FundraisersController < InheritedResources::Base
   respond_to :html
+  after_action :send_notification, only: :update
 
   def show
     @fundraiser = resource.decorate
@@ -53,5 +54,11 @@ class FundraisersController < InheritedResources::Base
       ],
       bank_account: [:name, :type, :email, :token, :tax_id]
     )
+  end
+
+  private
+
+  def send_notification
+    resource.notify_update
   end
 end

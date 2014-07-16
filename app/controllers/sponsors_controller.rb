@@ -1,10 +1,11 @@
 class SponsorsController < InheritedResources::Base
+  after_action :send_notification, only: :update
+
   def show
     @sponsor = resource.decorate
     @active_pledges = @sponsor.pledges.active  
     @past_pledges = @sponsor.pledges.past
     @fundraisers = FundraiserDecorator.decorate_collection @sponsor.fundraisers
-    #@accepted_pledges = @sponsor.accepted_pledges
 
     redirect_if_turbolinks_to(@sponsor)
   end
@@ -19,7 +20,6 @@ class SponsorsController < InheritedResources::Base
       session[:new_user] = nil if session[:new_user]
 
       success.html do
-        # redirect_to new_campaign_path, notice: 'Now you can start creating a new campaign!'  
         redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
       end
     end
@@ -52,5 +52,11 @@ class SponsorsController < InheritedResources::Base
       ],
       credit_card: [:token]
     )
+  end
+
+  private
+
+  def send_notification
+    resource.notify_update
   end
 end

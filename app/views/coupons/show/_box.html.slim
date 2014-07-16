@@ -22,7 +22,7 @@
               strong Extra donation pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
           hr
       .col-md-2
-        = image_tag coupon.qrcode.url(:medium), class: "qr"
+        = image_tag coupon.qrcode.url(:medium), class: "qr" if coupon.qrcode.present?
         .promo-code
           strong Promo Code
           span.pull-right = coupon.promo_code

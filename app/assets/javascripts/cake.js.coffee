@@ -12,6 +12,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.click()
   Cake.pledges.update_triggers()
+  Cake.coupons.tos()
   return
 
 $(document).ready(Cake.init)

@@ -40,7 +40,10 @@ Feature: Fundraiser Email Notifications
 
   Scenario Outline: Change to public profile
     And the fundraiser user <wants?> to receive notifications for "Change to public profile"
-    When the fundraiser's public profile is changed 
+    And that fundraiser is logged in
+    When he visits the public profile page
+    And he fills in the "Website" field with http://cakefundraising.com
+    And he press the "Save Changes" button
     Then <quantity> email should be delivered with subject: "Your public profile has been modified."
 
     Examples: Enabled notification
@@ -112,6 +115,7 @@ Feature: Fundraiser Email Notifications
   Scenario: Invoice created
     And a campaign of that fundraiser exists
     And a pledge of that campaign exists
+    And an invoice of that pledge exists
     When his campaign ends
     Then 2 emails should be delivered with subject: "You have outstanding invoices."
 

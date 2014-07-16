@@ -35,12 +35,6 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
-  after_update do
-    users.each do |user|
-      UserNotification.sponsor_profile_updated(self, user).deliver if user.sponsor_email_setting.public_profile_change
-    end
-  end
-
   #Solr
   searchable do
     text :name, boost: 2
@@ -96,5 +90,12 @@ class Sponsor < ActiveRecord::Base
       stripe_publishable_key: auth.info.stripe_publishable_key,
       token: auth.credentials.token
     ).save
+  end
+
+  #Notify profile update
+  def notify_update
+    users.each do |user|
+      UserNotification.sponsor_profile_updated(self, user).deliver if user.sponsor_email_setting.public_profile_change
+    end
   end
 end
