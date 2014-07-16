@@ -130,7 +130,7 @@
           #past.tab-pane
             = render partial:'fundraisers/public_profile/campaigns_table', locals: {campaigns: @past_campaigns}
           #top.tab-pane
-            = render partial:'sponsors/show/table', locals: {sponsors: @top_sponsors}
+            = render partial:'sponsors/show/table', locals: {sponsors: @top_sponsors, fr: @fundraiser}
 
 css:
   .hero { background-image: url("#{@fundraiser.banner.url(:large)}"); }

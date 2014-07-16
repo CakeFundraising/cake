@@ -12,6 +12,6 @@
         th = Sponsor.human_attribute_name :avg_conv_rate
         th = Sponsor.human_attribute_name :avg_pledge_rank
     tbody
-      = render partial:'sponsors/show/table_row', collection: sponsors, as: :sponsor
+      = render partial:'sponsors/show/table_row', collection: sponsors, as: :sponsor, locals:{fr: fr}
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.sponsors')}

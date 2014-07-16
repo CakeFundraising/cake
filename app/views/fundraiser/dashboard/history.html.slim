@@ -9,4 +9,4 @@ ul.nav.nav-tabs
   #campaigns-tab.tab-pane.active
     = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
   #sponsors.tab-pane
-    = render partial:'sponsors/show/table', locals:{sponsors: @sponsors}
+    = render partial:'sponsors/show/table', locals:{sponsors: @sponsors, fr: current_fundraiser}
