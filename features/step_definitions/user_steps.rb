@@ -12,7 +12,7 @@ When(/^(?:the|that|a) (?:fundraiser|sponsor) visits the (.*?)$/) do |page_name|
 end
 
 Then(/^(?:I|they|he) should be redirected to the new registration page as (.*?)$/) do |role|
-  current_url.should == new_user_registration_url(role: role)
+  current_url.should == new_user_registration_url
 end
 
 Then(/^(?:I|the|that|a|he)(?:fundraiser|sponsor)? should be taken to the (.*?)$/) do |page_name|

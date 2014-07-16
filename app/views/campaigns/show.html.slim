@@ -40,9 +40,9 @@
                 span Raised
                 span.pull-right Goal
                 strong.pull-right = @campaign.goal
-            - if current_sponsor.present? and not @campaign.past?
+            - unless @campaign.past?
               .col-md-12
-                = link_to "Make a Pledge", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
+                = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
 
   .white
     .container
@@ -82,7 +82,7 @@
                 b> Attention Business Owners!
                 | Please support us and reach new customers! 
             .col-md-3
-              = link_to "Make a Pledge Today", pledge_campaign_path(@campaign), class:'btn btn-primary btn-block'
+              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
   
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
     .text-center = render partial:'layouts/share_buttons'

@@ -7,6 +7,6 @@ ul.nav.nav-tabs
 
 .tab-content
   #pledges.tab-pane.active
-    = render partial:'pledges/tables/past/table', locals:{pledges: @pledges}
+    = render partial:'pledges/tables/past/sponsor/table', locals:{pledges: @pledges}
   #fundraisers.tab-pane
     = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers}

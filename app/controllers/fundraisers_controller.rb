@@ -1,6 +1,5 @@
 class FundraisersController < InheritedResources::Base
   respond_to :html
-  after_action :send_notification, only: :update
 
   def show
     @fundraiser = resource.decorate
@@ -22,6 +21,15 @@ class FundraisersController < InheritedResources::Base
 
       success.html do
         redirect_to new_campaign_path, notice: 'Now you can start creating a new campaign!'  
+      end
+    end
+  end
+
+  def update
+    update! do |success, failure|
+      success.html do
+        send_notification
+        redirect_to resource, notice: 'Profile saved.'
       end
     end
   end

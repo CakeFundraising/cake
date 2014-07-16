@@ -16,7 +16,7 @@
         - if campaign.pledges.past.any?
           .row
             .lead Past Pledges
-            = render partial:'pledges/tables/past/table', locals: {pledges: campaign.pledges.past.decorate}
+            = render partial:'pledges/tables/past/fundraiser/table', locals: {pledges: campaign.pledges.past.decorate}
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close
     /! /.modal-content

@@ -13,7 +13,7 @@ FactoryGirl.define do
     mission { Faker::Lorem.paragraph }
     supporter_demographics { Faker::Lorem.paragraph }
     phone { Faker::PhoneNumber.phone_number }
-    website { Faker::Internet.domain_name }
+    website { "http://#{Faker::Internet.domain_name}" }
     email { Faker::Internet.safe_email }
     association :manager, factory: :fundraiser_user
     location

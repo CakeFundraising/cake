@@ -1,0 +1,19 @@
+tr.pledge
+  td = auto_link pledge
+  td = auto_link pledge.fundraiser
+  td = pledge.campaign.object.causes.first
+  td = pledge.fundraiser.location
+  td = pledge.end_date
+  td $55,555
+  td $55,555
+  td 156,897
+  td $5,9
+  td 5,899,357
+  td 16%
+  td 6
+  td
+    button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
+      span.glyphicon.glyphicon-plus
+
+tr.modal 
+  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}

@@ -101,9 +101,9 @@
 
           h4 Contact:
           strong = Sponsor.human_attribute_name :manager_name
-          div = @sponsor.manager_name
+          div #{@sponsor.manager_title} #{@sponsor.manager_name} 
           strong = Sponsor.human_attribute_name :manager_email
-          div = @sponsor.manager_email
+          div = mail_to @sponsor.manager_email, @sponsor.manager_email
           strong = Sponsor.human_attribute_name :manager_phone
           div = @sponsor.manager_phone
     .row

@@ -18,7 +18,7 @@
               span Phone: 
               span = @fundraiser.phone
             span Website: 
-            span.sponsorinfo #{@fundraiser.website}
+            span.sponsorinfo = link_to @fundraiser.object.website, @fundraiser.object.website, target: :_blank
             span Email:
             = auto_mail @fundraiser
             br
@@ -109,9 +109,9 @@
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
           strong = Fundraiser.human_attribute_name :manager_name
-          div = @fundraiser.manager_name
+          div #{@fundraiser.manager_title} #{@fundraiser.manager_name} 
           strong = Fundraiser.human_attribute_name :manager_email
-          div = @fundraiser.manager_email
+          div = mail_to @fundraiser.manager_email, @fundraiser.manager_email
           strong = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
     .row

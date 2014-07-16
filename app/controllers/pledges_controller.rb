@@ -1,5 +1,6 @@
 class PledgesController < InheritedResources::Base
   authorize_resource
+  before_action :allow_only_sponsors, only: :new
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -155,5 +156,16 @@ class PledgesController < InheritedResources::Base
       sweepstakes_attributes: [:id, :title, :description, :terms_conditions, :avatar, :winners_quantity,
       :claim_prize_instructions, :standard_terms, :_destroy, :avatar_cache]
     ])
+  end
+
+  protected
+
+  def allow_only_sponsors
+    unless current_sponsor.present?
+      cookies[:pledge_campaign] = params[:campaign]
+      sign_out current_user if current_user.present?
+      alert_message = params[:campaign].present? ? "To pledge this campaign first you have to register as a Sponsor." : "To pledge this fundraiser first you have to register as a Sponsor."
+      redirect_to new_user_registration_path, alert: alert_message
+    end
   end
 end

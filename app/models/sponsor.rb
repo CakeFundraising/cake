@@ -2,6 +2,7 @@ class Sponsor < ActiveRecord::Base
   include Cause
   include Scope
   include CauseRequirement
+  include Formats
 
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
@@ -20,6 +21,7 @@ class Sponsor < ActiveRecord::Base
   
   validates :mission, :manager_name, :manager_phone, :manager_title, :customer_demographics, :manager_email, presence: true, unless: :new_record?
   validates :manager_email, email: true, unless: :new_record?
+  validates :website, format: {with: DOMAIN_NAME_REGEX, message: 'should include http:// or https://'}
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank

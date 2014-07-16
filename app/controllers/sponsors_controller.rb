@@ -1,6 +1,4 @@
 class SponsorsController < InheritedResources::Base
-  after_action :send_notification, only: :update
-
   def show
     @sponsor = resource.decorate
     @active_pledges = @sponsor.pledges.active  
@@ -21,6 +19,15 @@ class SponsorsController < InheritedResources::Base
 
       success.html do
         redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
+      end
+    end
+  end
+
+  def update
+    update! do |success, failure|
+      success.html do
+        send_notification
+        redirect_to resource, notice: 'Profile saved.'
       end
     end
   end

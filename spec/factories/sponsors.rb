@@ -10,7 +10,7 @@ FactoryGirl.define do
     manager_phone{ Faker::PhoneNumber.phone_number }
     name { Faker::Lorem.sentence }
     phone { Faker::PhoneNumber.phone_number }
-    website { Faker::Internet.domain_name }
+    website { "http://#{Faker::Internet.domain_name}" }
     email { Faker::Internet.safe_email }
     cause_requirements { [Sponsor::CAUSE_REQUIREMENTS.sample] }
     scopes { Sponsor::SCOPES.sample(2) }

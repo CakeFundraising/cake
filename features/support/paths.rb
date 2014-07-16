@@ -28,7 +28,7 @@ module NavigationHelpers
 
     #pledges
     when /^pledge invitation page$/
-      pledge_campaign_path(@campaign)
+      new_pledge_path(campaign: @campaign)
 
     when /^pledge wizard (.*?) page$/
       pledge = @pledge || @pending_pledge
