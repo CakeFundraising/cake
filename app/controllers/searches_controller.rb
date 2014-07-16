@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
 
     @search = Campaign.solr_search(include: [:picture]) do
       fulltext params[:search]
+      without :status, :past
       order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
 

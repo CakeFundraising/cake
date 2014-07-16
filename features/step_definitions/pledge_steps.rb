@@ -79,7 +79,6 @@ end
 Then(/^a click should be added to the Pledge$/) do
   sleep 5
   Pledge.first.clicks.count.should == 1
-  sleep 25
 end
 
 Given(/^the user has already donated to that pledge$/) do

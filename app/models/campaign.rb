@@ -32,6 +32,7 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
 
   validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, presence: true
+  #validates :mission, :headline, :story, :avatar, :banner, presence: true, if: :persisted?
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validates_associated :picture
@@ -83,6 +84,8 @@ class Campaign < ActiveRecord::Base
       fundraiser.location.zip_code  
     end
 
+    string :status
+
     time :created_at
 
     integer :fundraiser_id
@@ -117,7 +120,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def self.popular
-    self.order(created_at: :desc).first(12)
+    self.not_past.order(created_at: :desc).first(12)
   end
 
   #Status
