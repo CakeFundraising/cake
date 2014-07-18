@@ -14,6 +14,10 @@ Cake::Application.routes.draw do
     get :get_started
   end
 
+  #Static pages
+  get "/about/*id" => 'about#show', as: :about_page, format: false
+  get "/help/*id" => 'help#show', as: :help_page, format: false
+
   resources :direct_donations, only: :create
 
   scope :search, controller: :searches do

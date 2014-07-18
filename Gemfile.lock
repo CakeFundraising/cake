@@ -181,6 +181,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (2.0.5)
+    high_voltage (2.2.0)
     hike (1.2.3)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -483,6 +484,7 @@ DEPENDENCIES
   faker
   fog
   formtastic-bootstrap
+  high_voltage
   jquery-rails
   jquery-validation-rails
   kaminari
