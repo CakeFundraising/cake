@@ -64,6 +64,7 @@ gem 'shareable'
 gem 'american_date'
 gem "jquery-validation-rails"
 gem 'high_voltage'
+gem 'roadie-rails'
 
 #User registration
 gem "devise"

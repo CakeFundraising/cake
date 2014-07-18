@@ -1,0 +1,81 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    title = content_for?(:title) ? yield(:title) : t('application.name')
+
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      | <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+
+    = stylesheet_link_tag "email", :media => "all"
+    /! For third-generation iPad with high-resolution Retina display:
+    /! Size should be 144 x 144 pixels
+    = favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    /! For iPhone with high-resolution Retina display:
+    /! Size should be 114 x 114 pixels
+    = favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    /! For first- and second-generation iPad:
+    /! Size should be 72 x 72 pixels
+    = favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    /! For non-Retina iPhone, iPod Touch, and Android 2.1+ devices:
+    /! Size should be 57 x 57 pixels
+    = favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    /! For all other devices
+    /! Size should be 32 x 32 pixels
+    = favicon_link_tag '/favicon.ico', :rel => 'shortcut icon'
+
+  body.fixed
+    /= render partial: 'layouts/main_nav'
+    /= bootstrap_flash
+    - if content_for? :header
+      header
+        = yield :header
+    .container#main-container
+      .row
+        .col-md-12
+          = yield
+      /! /row
+    /! /container
+  footer
+    .container
+      .row
+        .col-md-3
+          h4 Company
+          ul
+            li
+              = link_to "About Cake", about_page_path('cake')
+            li
+              = link_to "Press", about_page_path('press')
+            li
+              = link_to "Contact", about_page_path('contact')
+            li
+              = link_to "Privacy", about_page_path('privacy')
+            li
+              = link_to "Terms of Use", about_page_path('terms_of_use')
+        .col-md-3
+          h4 Learn
+          ul
+            li
+              = link_to "FAQs", help_page_path('faq')
+            li
+              = link_to "How to find Sponsors", help_page_path('find_sponsors')
+            li
+              = link_to "Sponsors Help & Training", help_page_path('sp_help')
+            li
+              = link_to "Fundraising Help & Training", help_page_path('fr_help')
+        .col-md-3
+           h4 Follow Us   
+        .col-md-3
+          h4 Subscribe to our newsletter
+          p Quarterly news and updates. No Spam.
+          .form-group
+            input.form-control type="text" placeholder="Enter your email..."
+      .row.Colophon
+        .col-md-9
+          p cakefundraising.com makes it easy to launch and manage exciting “donation-per-click” fundraising campaigns that produce great results for your organizations and your corporate sponsors.
+        .col-md-3
+          .hidden#today = Date.today
+          p.pull-right &copy;#{Time.now.year} #{t('application.name')}, Inc.

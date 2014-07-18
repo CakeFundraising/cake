@@ -1,4 +1,8 @@
 class CampaignNotification < ActionMailer::Base
+  #include Roadie::Rails::Automatic
+
+  #layout 'layouts/emails/application'
+
   default from: "no-reply@cakefundraising.com"
 
   def campaign_ended(campaign, user)

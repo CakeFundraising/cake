@@ -6,7 +6,7 @@ module HighVoltage
   # A command for finding pages by id. This encapsulates the concepts of
   # mapping page names to file names.
   class PageFinder
-    VALID_CHARACTERS = "a-zA-Z0-9~!@$%^&*()#`_+-=<>\"{}|[];',?".freeze
+    #VALID_CHARACTERS = "a-zA-Z0-9~!@$%^&*()#`_+-=<>\"{}|[];',?".freeze
 
     def initialize(page_id, content_path)
       @page_id = page_id

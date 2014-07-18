@@ -1,0 +1,95 @@
+= content_for :header do
+  .banner.hero
+    .alert.alert-transparent.alert-dismissable.text-center
+      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
+      = t('information.campaign.banner')
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        h1.name 
+          span = @campaign.mission
+          / - if can? :edit, @campaign and not @campaign.past?
+          /   span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
+        = render partial:'layouts/share_buttons'
+      .col-md-4
+        .sidebar-bkg 
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends in:
+          .row.text-center#campaign_countdown
+            .col-xs-4.border-right
+              span.campaign-timer.days
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer.hours
+              span h.
+            .col-xs-4
+              span.campaign-timer.mins
+              span m.
+          hr
+          .row
+            .col-md-12.pledges_total
+              span Pledges to date: 
+              strong = @campaign.current_pledges_total
+          .row
+            .col-md-12.click-btn
+              p.timer-ital Total all sponsor pledges:
+              .progress
+                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)                
+              .campaign-stats
+                strong = @campaign.raised
+                span Raised
+                span.pull-right Goal
+                strong.pull-right = @campaign.goal
+            - unless @campaign.past?
+              .col-md-12
+                = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+
+  .white
+    .container
+      .row.sponsor-profile
+        .col-md-4.col-md-push-8
+          .sidebar-bkg-2
+            .avatar 
+              = image_tag @campaign.avatar.url(:medium), class: 'img-responsive'
+              .caption = @campaign.avatar_caption
+              .fundraiser-info
+                h4 = link_to @campaign.fundraiser, @campaign.fundraiser
+                span #3
+                p = @campaign.fundraiser.causes
+            .campaign_and_fundraiser
+              = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success'
+        .col-md-8.col-md-pull-4
+          h3 = @campaign.headline
+          p = @campaign.story
+  .blue
+    .container
+      .row.pledgebluestripe
+        .col-md-12
+          h1 Please visit all our generous sponsors and share our campaign with friends!
+          p
+            | working together, we can make a difference! 
+            a href="#" see how it works...
+            p/
+
+  .container
+    = render partial:'campaigns/show/pledges/pledges_section'
+    .row
+      .col-md-12
+        .make-pledge.well
+          .row
+            .col-md-9
+              h4
+                b> Attention Business Owners!
+                | Please support us and reach new customers! 
+            .col-md-3
+              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+  
+    .text-center = render partial:'layouts/share_buttons'
+
+  = render partial: 'layouts/choose_path'
+
+css:
+  .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }
