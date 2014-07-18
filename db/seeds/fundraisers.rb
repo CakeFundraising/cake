@@ -31,7 +31,7 @@
   f.mission = Faker::Lorem.paragraph
   f.supporter_demographics = Faker::Lorem.paragraph
   f.phone = Faker::PhoneNumber.phone_number
-  f.website = Faker::Internet.domain_name
+  f.website = "http://#{Faker::Internet.domain_name}"
   f.email = Faker::Internet.safe_email
 end
 

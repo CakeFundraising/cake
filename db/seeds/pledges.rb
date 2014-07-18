@@ -7,7 +7,7 @@
     p.description = Faker::Lorem.paragraph
     p.amount_per_click = rand(9) + 1
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
-    p.website_url = Faker::Internet.domain_name
+    p.website_url = "http://#{Faker::Internet.domain_name}"
     p.campaign = campaign
 
     build(2, p.coupons) do |c|
@@ -45,7 +45,7 @@ end
     p.description = Faker::Lorem.paragraph
     p.amount_per_click = rand(9) + 1
     p.total_amount = campaign.sponsor_categories.maximum(:max_value_cents)/100 - 1
-    p.website_url = Faker::Internet.domain_name
+    p.website_url = "http://#{Faker::Internet.domain_name}"
     p.campaign = campaign
     p.status = :past
 

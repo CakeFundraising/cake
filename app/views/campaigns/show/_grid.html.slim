@@ -12,10 +12,9 @@
       hr
       .thermometer
         p.timer-ital Total all sponsor pledges:
-        - if campaign.object.goal > 0
-          .progress
-            .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
-              span.sr-only #{campaign.pledges_thermometer}% Complete (success)
+        .progress
+          .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
+            span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
         .campaign-stats
           strong = campaign.raised
           span Raised

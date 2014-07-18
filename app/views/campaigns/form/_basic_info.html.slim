@@ -36,6 +36,8 @@
             = f.input :title, {placeholder: '50 characters'}
             span.help-block.italic Keep it simple.
 
+            = f.input :goal
+
             .input-daterange
               = f.input :launch_date, as: :string, input_html: {value: f.object.decorate.launch_date}
               span.help-block.italic This date is for planning purposes only. The target launch date tells your Sponsors when their pledges are due. You launch your Campaign only when you decide.

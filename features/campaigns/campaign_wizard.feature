@@ -11,6 +11,7 @@ Feature: Campaign Wizard
   Scenario Outline: Basic Information
     When he goes to new campaign page
     And he fills in the "Campaign Name" field with <name>
+    And he fills in the "How much do you want to raise?" field with <goal>
     And he fills in the "campaign_launch_date" field with <launch_date>
     And he fills in the "campaign_end_date" field with <end_date>
     And he selects <causes> in "campaign_causes"
@@ -19,14 +20,14 @@ Feature: Campaign Wizard
     Then he should see "<message>"
 
     Examples: Succesful step
-    | name            | causes         | scopes  | launch_date | end_date   | message                            |
-    | My new campaign | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
-    | Other campaign  | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
+    | name            | goal  | causes         | scopes  | launch_date | end_date   | message                            |
+    | My new campaign | 25000 | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
+    | Other campaign  | 25000 | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
 
     Examples: Failed step
-    | name            | causes         | scopes  | launch_date | end_date   | message         |
-    | My new campaign | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
-    |                 | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
+    | name            | goal  | causes         | scopes  | launch_date | end_date   | message         |
+    | My new campaign | 25000 | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
+    |                 | 25000 | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
 
   Scenario Outline: Tell your Story
     And a campaign of that fundraiser exists

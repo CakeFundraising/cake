@@ -32,6 +32,10 @@ class CampaignDecorator < ApplicationDecorator
     object.scopes.join(", ")
   end
 
+  def current_pledges_total
+    h.humanized_money_with_symbol object.current_pledges_total
+  end
+
   def raised
     h.humanized_money_with_symbol object.raised
   end

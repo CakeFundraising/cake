@@ -30,8 +30,12 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
+  
+  monetize :goal_cents
 
-  validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, presence: true
+  validates :goal, numericality: {greater_than: 0}
+
+  validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, :goal, presence: true
   #validates :mission, :headline, :story, :avatar, :banner, presence: true, if: :persisted?
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
@@ -108,15 +112,15 @@ class Campaign < ActiveRecord::Base
   end
 
   def raised
-    pledges.accepted.map(&:current_amount).sum.to_f/100
+    pledges.accepted.map(&:total_charge).sum.to_f
   end
 
-  def goal
+  def current_pledges_total
     pledges.accepted.sum(:total_amount_cents)/100
   end
 
   def pledges_thermometer
-    (raised/goal)*100
+    (raised/goal.amount)*100 unless goal.amount == 0.0
   end
 
   def self.popular
