@@ -1,4 +1,9 @@
 .coupon_box.clearfix
+  - if coupon.extra_donation_pledge
+    hr
+    .row
+      .col-xs-12.text-center.extra-donation
+        h2 Extra donation pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
   .col-xs-11.coupon
     .row
       .col-md-4
@@ -15,12 +20,6 @@
         .row.terms
           .col-xs-12
             a data-target="#coupon-#{coupon.id}" data-toggle="modal" Read terms & conditions
-        - if coupon.extra_donation_pledge
-          hr
-          .row
-            .col-xs-12
-              strong Extra donation pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
-          hr
       .col-md-2
         = image_tag coupon.qrcode.url(:medium), class: "qr" if coupon.qrcode.present?
         .promo-code

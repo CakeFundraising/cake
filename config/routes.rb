@@ -35,6 +35,10 @@ Cake::Application.routes.draw do
   end
 
   resources :pledges do
+    collection do
+      get :select_campaign
+    end
+
     member do
       scope :edit do
         get :tell_your_story

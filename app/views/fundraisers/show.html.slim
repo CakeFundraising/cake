@@ -36,7 +36,7 @@
             .col-md-12.rank-rows
               = basic_list_item("Top Cause Rank", "14")
               = basic_list_item("Location Rank", "2")
-              = link_to "Make a Pledge", new_pledge_path, class:'btn btn-success btn-block'
+              = link_to "Make a Pledge", new_pledge_path(fundraiser: @fundraiser), class:'btn btn-success btn-block'
   .white
     .container
       .row.sponsor-profile

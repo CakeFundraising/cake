@@ -103,6 +103,13 @@ describe Ability do
         let(:foreign_object) { FactoryGirl.create(:pledge) }
       end
 
+      context 'select_campaign' do
+        it "can select a campaign to start a pledge" do
+          @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+          @ability.should be_able_to(:launch, @pledge)
+        end
+      end
+
       context 'launch' do
         it "can launch his own pledges" do
           @pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)

@@ -12,7 +12,7 @@ class Ability
 
       #Pledge
       can :create, Pledge
-      can [:update, :destroy, :launch, :increase, :set_increase] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
+      can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       #PledgeRequest
       can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id    

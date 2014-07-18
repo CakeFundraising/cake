@@ -1,0 +1,10 @@
+h1 #{auto_link @fundraiser} active campaigns.
+
+= semantic_form_for :campaign, url: new_pledge_path, method: :get do |f|
+  = f.inputs do
+    = f.input :id, as: :select, collection: @campaigns, label: false, input_html: {name: :campaign}
+  = f.actions do
+    = f.action :submit, label: 'Select Campaign', button_html: {class: 'btn btn-success btn-lg', name: nil}
+
+javascript:
+  Cake.pledges.select_campaign_validator('.formtastic.campaign');

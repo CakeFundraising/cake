@@ -62,3 +62,12 @@ Cake.pledges.coupons_switcher = ->
     return  
 
   return
+
+Cake.pledges.select_campaign_validator = (form_selector)->
+  $(form_selector).validate(
+    errorElement: "span"
+    rules:
+      campaign: 
+        required: true
+  ).form()
+  return

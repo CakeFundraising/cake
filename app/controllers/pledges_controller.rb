@@ -10,12 +10,17 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  def select_campaign
+    @fundraiser = Fundraiser.find(params[:fundraiser]).decorate
+    @campaigns = @fundraiser.campaigns.active
+  end
+
   def new
     if params[:campaign].present?
       @pledge = Pledge.new(campaign_id: params[:campaign])
       render 'new'
     else
-      redirect_to search_campaigns_path, alert: 'Please review these campaigns to start a pledge.'
+      redirect_to select_campaign_pledges_path(fundraiser: params[:fundraiser]), notice: 'Please select one of these campaigns to start a pledge.'
     end
   end
 

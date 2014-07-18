@@ -14,10 +14,9 @@ class SponsorsController < InheritedResources::Base
     @sponsor.manager = current_user
 
     create! do |success, failure|
-      current_user.set_sponsor(@sponsor)
-      session[:new_user] = nil if session[:new_user]
-
       success.html do
+        current_user.set_sponsor(@sponsor)
+        session[:new_user] = nil if session[:new_user]
         redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
       end
     end
