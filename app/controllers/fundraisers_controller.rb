@@ -16,10 +16,10 @@ class FundraisersController < InheritedResources::Base
     @fundraiser.manager = current_user
 
     create! do |success, failure|
-      current_user.set_fundraiser(@fundraiser)
-      session[:new_user] = nil if session[:new_user]
-
+      puts resource.errors.messages
       success.html do
+        current_user.set_fundraiser(@fundraiser)
+        session[:new_user] = nil if session[:new_user]
         redirect_to new_campaign_path, notice: 'Now you can start creating a new campaign!'  
       end
     end
