@@ -16,7 +16,6 @@ class FundraisersController < InheritedResources::Base
     @fundraiser.manager = current_user
 
     create! do |success, failure|
-      puts resource.errors.messages
       success.html do
         current_user.set_fundraiser(@fundraiser)
         session[:new_user] = nil if session[:new_user]

@@ -9,8 +9,6 @@
       .col-md-8
         h1.name 
           span = @campaign.mission
-          / - if can? :edit, @campaign and not @campaign.past?
-          /   span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
         = render partial:'layouts/share_buttons'
       .col-md-4
         .sidebar-bkg 
