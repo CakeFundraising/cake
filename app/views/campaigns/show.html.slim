@@ -2,7 +2,7 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      = t('information.campaign.banner')
+      = t('information.campaign.banner', fr: @campaign.fundraiser)
     .hero-screen
   .container
     .content.row.pull-up
@@ -44,9 +44,13 @@
                 span Raised
                 span.pull-right Goal
                 strong.pull-right = @campaign.goal
-            - unless @campaign.past?
+            - if current_user.present?
+              - unless @campaign.past? 
+                .col-md-12
+                  = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+            - else
               .col-md-12
-                = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+                a.btn.btn-success.btn-block href='#pledges_section' Visit our Sponsors
 
   .white
     .container
@@ -75,7 +79,7 @@
             a href="#" see how it works...
             p/
 
-  .container
+  .container#pledges_section
     = render partial:'campaigns/show/pledges/pledges_section'
     .row
       .col-md-12

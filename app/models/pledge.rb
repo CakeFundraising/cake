@@ -145,6 +145,11 @@ class Pledge < ActiveRecord::Base
   end
 
   #Increase
+  def increase!
+    update_attribute(:increase_requested, false)
+    notify_increase
+  end
+
   def notify_increase
     fundraiser.users.each do |user|
       PledgeNotification.pledge_increased(self, user).deliver if user.fundraiser_email_setting.reload.pledge_increased
