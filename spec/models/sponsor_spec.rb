@@ -109,7 +109,7 @@ describe Sponsor do
         pending_pledges = create_list(:pending_pledge, 10, sponsor: @sponsor)
         rejected_pledges = create_list(:rejected_pledge, 10, sponsor: @sponsor)
 
-        @sponsor.fundraisers.should == accepted_pledges.map(&:fundraiser)
+        @sponsor.fundraisers.should == accepted_pledges.map(&:fundraiser).uniq
         @sponsor.fundraisers.should_not include(pending_pledges.map(&:fundraiser))
         @sponsor.fundraisers.should_not include(rejected_pledges.map(&:fundraiser))
       end
@@ -133,7 +133,6 @@ describe Sponsor do
 
         it "should list invoices of past accepted pledges" do
           @sponsor.outstanding_invoices.each do |invoice|
-            invoice.pledge.status.should == 'accepted'
             invoice.pledge.should be_past
             invoice.pledge.should_not be_active
           end
@@ -157,7 +156,6 @@ describe Sponsor do
 
         it "should list invoices of past accepted pledges" do
           @sponsor.past_invoices.each do |invoice|
-            invoice.pledge.status.should == 'accepted'
             invoice.pledge.should be_past
             invoice.pledge.should_not be_active
           end

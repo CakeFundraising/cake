@@ -19,8 +19,10 @@ class PledgesController < InheritedResources::Base
     if params[:campaign].present?
       @pledge = Pledge.new(campaign_id: params[:campaign])
       render 'new'
-    else
+    elsif params[:fundraiser].present?
       redirect_to select_campaign_pledges_path(fundraiser: params[:fundraiser]), notice: 'Please select one of these campaigns to start a pledge.'
+    else
+      redirect_to search_campaigns_path, alert: 'Please select one of these campaigns to start a pledge.'
     end
   end
 
@@ -138,8 +140,10 @@ class PledgesController < InheritedResources::Base
 
   def set_increase
     update! do |success, failure|
+      puts resource.changes
+      puts resource.changes.blank?
       success.html do
-        resource.increase! unless resource.previous_changes.blank?
+        resource.increase! unless resource.changes.blank?
         redirect_to resource, notice: 'Pledge increased succesfully.'
       end
       failure.html do

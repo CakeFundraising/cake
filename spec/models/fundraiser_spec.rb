@@ -138,23 +138,22 @@ describe Fundraiser do
           let!(:paid_invoice){ FactoryGirl.create(:invoice, pledge: not_included_pledge, status: :paid) }
           let!(:arbitration_invoice){ FactoryGirl.create(:invoice, pledge: included_pledge, status: :in_arbitration) }
 
-          it "should only include not paid invoices" do
-            # puts fundraiser.campaigns.past.eager_load(:invoices).map{|c| c.invoices.map(&:status); puts c.invoices.map(&:paid?); puts; }
+          it "should include paid and not paid invoices" do
             fundraiser.campaigns.with_outstanding_invoices.should == [included_campaign]
           end
 
-          it "should not include paid invoices" do
+          it "should not include only paid invoices" do
             fundraiser.campaigns.with_outstanding_invoices.should_not include(not_included_campaign)
           end
 
-          it "should not include a campaign with both paid and unpaid invoices" do
-            not_included_invoice = FactoryGirl.create(:invoice, pledge: included_pledge, status: :paid)
+          # it "should not include a campaign with both paid and unpaid invoices" do
+          #   not_included_invoice = FactoryGirl.create(:invoice, pledge: included_pledge, status: :paid)
 
-            included_campaign.invoices.should include(not_paid_invoice)
-            included_campaign.invoices.should include(arbitration_invoice)
-            included_campaign.invoices.should include(not_included_invoice)
-            fundraiser.campaigns.with_outstanding_invoices.should_not include(included_campaign)
-          end
+          #   included_campaign.invoices.should include(not_paid_invoice)
+          #   included_campaign.invoices.should include(arbitration_invoice)
+          #   included_campaign.invoices.should include(not_included_invoice)
+          #   fundraiser.campaigns.with_outstanding_invoices.should_not include(included_campaign)
+          # end
         end
       end
     end

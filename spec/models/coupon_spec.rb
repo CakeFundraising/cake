@@ -6,7 +6,6 @@ describe Coupon do
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:avatar) }
-  it { should validate_presence_of(:qrcode) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:expires_at) }
   it { should validate_presence_of(:pledge) }

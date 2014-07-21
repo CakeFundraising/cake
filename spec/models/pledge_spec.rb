@@ -36,7 +36,7 @@ describe Pledge do
   end
 
   it "should have statuses" do
-    Pledge.statuses[:status].should == [:pending, :accepted, :rejected]
+    Pledge.statuses[:status].should == [:pending, :accepted, :rejected, :past]
   end
 
   describe "#max_clicks" do
@@ -178,7 +178,7 @@ describe Pledge do
 
   describe "#clicks" do
     before(:each) do
-      @pledge = FactoryGirl.create(:pledge)  
+      @pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
     end
 
     it "should store the click if the user has not clicked before" do
