@@ -38,6 +38,6 @@ class Ability
 
     can :read, :all
     can :badge, Campaign
-    can [:badge, :click, :new], Pledge
+    can [:badge, :solicit_click, :click, :new], Pledge
   end
 end

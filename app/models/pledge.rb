@@ -95,9 +95,13 @@ class Pledge < ActiveRecord::Base
   end
 
   #Clicks association
-  def have_donated?(ip)
-    #clicks.exists?(request_ip: ip)
-    false
+  def have_donated?(request, plugins=nil)
+    click = Click.build_with(self, request, plugins)
+    click_exists?(click)
+  end
+
+  def click_exists?(click)
+    clicks.equal_to(click).any?
   end
 
   def current_max_clicks

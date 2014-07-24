@@ -31,7 +31,7 @@
               span m.
           .row
            .col-md-12.click-btn
-              = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
+              = render partial:'clicks/pledge', locals:{pledge: @pledge}
 
               p.timer-ital Our Pledge:
               - if @pledge.max_clicks > 0
@@ -67,7 +67,7 @@
             | Please share our pledge with your friends! 
             a href="#" see how it works...
             p/
-          = render partial:'pledges/show/click_section', locals:{pledge: @pledge}
+          = render partial:'clicks/pledge', locals:{pledge: @pledge}
   .container
     - if @pledge.coupons.any?
       .row

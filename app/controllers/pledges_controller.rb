@@ -10,6 +10,7 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  #CRUD
   def select_campaign
     @fundraiser = Fundraiser.find(params[:fundraiser]).decorate
     @campaigns = @fundraiser.campaigns.active
@@ -119,11 +120,22 @@ class PledgesController < InheritedResources::Base
     redirect_to resource, notice: 'Pledge was successfully launched.'
   end
 
+  #Clicks
+  def solicit_click
+    @plugins = permitted_params[:click][:browser_plugins]
+    @pledge = resource
+    @clicked_before = @pledge.have_donated?(request, @plugins)
+
+    render partial:'clicks/modal_content'
+  end
+
   def click
-    if resource.have_donated?(request.remote_ip)
+    plugins = permitted_params[:click][:browser_plugins]
+
+    if resource.have_donated?(request, plugins)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
     else
-      click = Click.new(request_ip: request.remote_ip, pledge: resource)
+      click = Click.build_with(resource, request, plugins)
       
       if click.save
         redirect_to resource.website_url 
@@ -164,7 +176,9 @@ class PledgesController < InheritedResources::Base
       :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache, merchandise_categories: [] ],
       sweepstakes_attributes: [:id, :title, :description, :terms_conditions, :avatar, :winners_quantity,
       :claim_prize_instructions, :standard_terms, :_destroy, :avatar_cache]
-    ])
+    ],
+    click: [:browser_plugins]
+    )
   end
 
   protected
