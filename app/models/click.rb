@@ -25,7 +25,7 @@ class Click < ActiveRecord::Base
       user_agent: request.headers['HTTP_USER_AGENT'],
       http_encoding: request.headers['HTTP_ACCEPT_ENCODING'],
       http_language: request.headers['HTTP_ACCEPT_LANGUAGE'],
-      browser_plugins: plugins,
+      browser_plugins: plugins.blank? ? nil : plugins, #set as nil not as ""
       pledge: pledge
     )
   end

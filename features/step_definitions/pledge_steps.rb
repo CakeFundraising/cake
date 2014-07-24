@@ -63,7 +63,7 @@ When(/^he sees the click contribution modal$/) do
 end
 
 Given(/^the pledge is fully subscribed$/) do
-  FactoryGirl.create_list(:click, model(:pledge).max_clicks, pledge: model(:pledge) )
+  FactoryGirl.create_list(:click, model(:pledge).max_clicks - 1, pledge: model(:pledge) )
 end
 
 Then(/^he should see "(.*?)" in the click contribution modal$/) do |message|
@@ -82,9 +82,9 @@ Then(/^a click should be added to the Pledge$/) do
 end
 
 Given(/^the user has already donated to that pledge$/) do
-  ip_address = "253.187.158.63"
-  @click = FactoryGirl.create(:click, pledge: model(:pledge), request_ip: ip_address)
-  page.driver.options[:headers] = {'REMOTE_ADDR' => ip_address}
+  ip_address = "127.0.0.1"
+  @click = FactoryGirl.create(:mozilla_click, pledge: model(:pledge), request_ip: ip_address)
+  #page.driver.options[:headers] = {'REMOTE_ADDR' => ip_address}
 end
 
 Then(/^the "(.*?)" link should not be present$/) do |link|

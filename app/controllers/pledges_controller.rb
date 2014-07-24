@@ -122,7 +122,7 @@ class PledgesController < InheritedResources::Base
 
   #Clicks
   def solicit_click
-    @plugins = permitted_params[:click][:browser_plugins]
+    @plugins = permitted_params[:click][:browser_plugins] if permitted_params[:click].present?
     @pledge = resource
     @clicked_before = @pledge.have_donated?(request, @plugins)
 
@@ -130,7 +130,7 @@ class PledgesController < InheritedResources::Base
   end
 
   def click
-    plugins = permitted_params[:click][:browser_plugins]
+    plugins = permitted_params[:click][:browser_plugins] if permitted_params[:click].present?
 
     if resource.have_donated?(request, plugins)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
