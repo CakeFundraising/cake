@@ -181,27 +181,27 @@ describe Pledge do
       @pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
     end
 
-    context 'different IP address' do
-      it "should store the click if the user has not clicked before" do
-        @click = @pledge.clicks.build(request_ip: "253.187.158.63")
-        @pledge.should be_valid
-      end
+    it "should store the click if the user has not clicked before" do
+      click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge)
+      expect( click.save ).to be_true
+    end
 
+    context 'different IP address' do
       it "should store a click when the click is in another pledge" do
         @clicks = create_list(:click, 5, pledge: @pledge)
         ip = @clicks.first.request_ip
 
-        pledge = FactoryGirl.create(:pledge)  
-        click = pledge.clicks.build(request_ip: ip)
-        pledge.should be_valid
+        pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
+        click = FactoryGirl.build(:click, request_ip: ip, pledge: pledge)
+        expect( click.save ).to be_true
       end
 
       it "should not store a click if the user has clicked before in that pledge" do
         @clicks = create_list(:click, 5, pledge: @pledge)
         ip = @clicks.first.request_ip
 
-        @click = @pledge.clicks.build(request_ip: ip)
-        @pledge.should_not be_valid
+        @click = FactoryGirl.build(:click, request_ip: ip, pledge: @pledge)
+        expect( @click.save ).to be_false
       end
     end
 
@@ -209,14 +209,14 @@ describe Pledge do
       it "should store a click if the pledge is not fully subscribed" do
         @clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
 
-        @pledge.clicks.build(request_ip: "253.187.158.63") 
+        @click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge) 
         @pledge.should be_valid
       end
 
       it "should not store a click if the pledge is fully subscribed" do
         @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
 
-        @pledge.clicks.build(request_ip: "253.187.158.63") 
+        @click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge)
         @pledge.should_not be_valid
       end
     end
