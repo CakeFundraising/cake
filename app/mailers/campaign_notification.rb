@@ -1,7 +1,7 @@
 class CampaignNotification < ActionMailer::Base
-  #include Roadie::Rails::Automatic
+  include Roadie::Rails::Automatic
 
-  #layout 'layouts/emails/application'
+  layout 'layouts/emails/application'
 
   default from: "no-reply@cakefundraising.com"
 
@@ -14,7 +14,7 @@ class CampaignNotification < ActionMailer::Base
   def campaign_launched(campaign, user)
     @campaign = campaign.decorate
     @receiver = user.decorate
-    mail(to: @receiver.email, subject: 'Your pledged campaign has been launched!')
+    mail(to: 'jamie@bytelion.com', subject: 'Your pledged campaign has been launched!')
   end
 
   def fundraiser_missed_launch_date(campaign, user)
