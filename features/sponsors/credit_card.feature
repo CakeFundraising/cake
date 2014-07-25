@@ -24,8 +24,8 @@ Feature: Credit Card
     | 5555555555554444  | 897 | 1         | 2020     | Your credit card information has been saved. | should  |
 
     Examples: Incorrect Data
-    | number            | cvc | exp_month | exp_year | message                                  | should?     |
-    |                   | 123 | 8         | 2018     | This card number looks invalid           | should not  |
-    | 4678977797998879  | 123 | 8         | 2018     | Your card number is incorrect.           | should not  |
-    | 5555555555554444  |     | 8         | 2018     | Your card's security code is invalid.    | should not  | 
-    | 4242424242424242  | 897 | 1         |          | Your card's expiration year is invalid.  | should not  | 
+    | number            | cvc | exp_month | exp_year | message                        | should?     |
+    |                   | 123 | 8         | 2018     | This field is required.        | should not  |
+    | 4678977797998879  | 123 | 8         | 2018     | Your card number is incorrect. | should not  |
+    | 5555555555554444  |     | 8         | 2018     | This field is required.        | should not  | 
+    | 4242424242424242  | 897 | 1         |          | This field is required.        | should not  | 

@@ -25,9 +25,9 @@ Feature: Bank Account
     | Coke        | Corporation  | example@coke.com    | 000000000  | 110000000 | 000123456789 | You have connected your Stripe account successfully. | should  |
 
     Examples: Incorrect data
-    | name       | type         | email               | tax_id    | routing   | account      | message                                                                     | should?    |
-    | Myself     | Individual   | example@example.com | 000000000 |           | 4978979      | Routing number must have 9 digits                                           | should not |
-    | Myself     | Individual   | example@example.com | 000000000 | 011401533 |              | Must only use a test bank account number when making transfers in test mode | should not |
-    |            | Individual   | example@example.com | 000000000 | 110000000 | 000123456789 | can't be blank                                                              | should not |
-    | Myself     |              | example@example.com | 000000000 | 110000000 | 000123456789 | can't be blank                                                              | should not |
-    | Myself     | Individual   |                     | 000000000 | 110000000 | 000123456789 | can't be blank                                                              | should not |
+    | name       | type         | email               | tax_id    | routing   | account      | message                 | should?    |
+    | Myself     | Individual   | example@example.com | 000000000 |           | 4978979      | This field is required. | should not |
+    | Myself     | Individual   | example@example.com | 000000000 | 011401533 |              | This field is required. | should not |
+    |            | Individual   | example@example.com | 000000000 | 110000000 | 000123456789 | This field is required. | should not |
+    | Myself     |              | example@example.com | 000000000 | 110000000 | 000123456789 | This field is required. | should not |
+    | Myself     | Individual   |                     | 000000000 | 110000000 | 000123456789 | This field is required. | should not |
