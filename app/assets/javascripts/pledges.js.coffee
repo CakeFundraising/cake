@@ -1,19 +1,5 @@
 Cake.pledges ?= {}
 
-Cake.pledges.click = ->
-  click_modal = $('#contribute_modal')
-  contribute_button = click_modal.find("#contribute_link")
-  visit_sponsor_button = click_modal.find('#visit_sponsor_link')
-
-  visit_sponsor_button.hide()
-
-  contribute_button.click ->
-    click_modal.find(".modal-body").html("<div class='lead'>Your click has already been counted, but please visit our sponsor again!</div>")
-    $(this).remove()
-    visit_sponsor_button.show()
-    return
-  return
-
 Cake.pledges.update_triggers = ->
   $('#coupons').on 'cocoon:after-insert', ->
     Cake.extra_donation_pledges()

@@ -182,54 +182,66 @@ describe Pledge do
     end
 
     it "should store the click if the user has not clicked before" do
-      @click = @pledge.clicks.build(request_ip: "253.187.158.63")
-      @pledge.should be_valid
+      click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge)
+      expect( click.save ).to be_true
     end
 
-    it "should store a click when the click is in another pledge" do
-      @clicks = create_list(:click, 5, pledge: @pledge)
-      ip = @clicks.first.request_ip
+    context 'different IP address' do
+      it "should store a click when the click is in another pledge" do
+        @clicks = create_list(:click, 5, pledge: @pledge)
+        ip = @clicks.first.request_ip
 
-      pledge = FactoryGirl.create(:pledge)  
-      click = pledge.clicks.build(request_ip: ip)
-      pledge.should be_valid
+        pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
+        click = FactoryGirl.build(:click, request_ip: ip, pledge: pledge)
+        expect( click.save ).to be_true
+      end
+
+      it "should not store a click if the user has clicked before in that pledge" do
+        @clicks = create_list(:click, 5, pledge: @pledge)
+        ip = @clicks.first.request_ip
+
+        @click = FactoryGirl.build(:click, request_ip: ip, pledge: @pledge)
+        expect( @click.save ).to be_false
+      end
     end
 
-    it "should not store a click if the user has clicked before in that pledge" do
-      @clicks = create_list(:click, 5, pledge: @pledge)
-      ip = @clicks.first.request_ip
+    context 'Pledge fully subscribed' do
+      it "should store a click if the pledge is not fully subscribed" do
+        @clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
 
-      @click = @pledge.clicks.build(request_ip: ip)
-      @pledge.should_not be_valid
-    end
+        @click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge) 
+        @pledge.should be_valid
+      end
 
-    it "should store a click if the pledge is not fully subscribed" do
-      @clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
+      it "should not store a click if the pledge is fully subscribed" do
+        @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
 
-      @pledge.clicks.build(request_ip: "253.187.158.63") 
-      @pledge.should be_valid
-    end
-
-    it "should not store a click if the pledge is fully subscribed" do
-      @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
-
-      @pledge.clicks.build(request_ip: "253.187.158.63") 
-      @pledge.should_not be_valid
+        @click = FactoryGirl.build(:click, request_ip: "253.187.158.63", pledge: @pledge)
+        @pledge.should_not be_valid
+      end
     end
 
     context 'Methods' do
-      describe "#have_donated?" do
-        it "should return false if ip is not present in the clicks" do
-          @pledge.have_donated?("253.187.158.63").should be_false
-        end
+      # SAME THAN click_exists?
+      # describe "#have_donated?" do
+      #   it "should return false if IP is not present in the clicks" do
+      #     click = FactoryGirl.build(:click)
+      #     @pledge.have_donated?("253.187.158.63").should be_false
+      #   end
 
-        it "should return true if ip is present in the clicks" do
-          @clicks = create_list(:click, 5, pledge: @pledge)
-          ip = @clicks.first.request_ip
+      #   context 'IP already stored in clicks' do
+      #     it "should return false if browser properties are different for that IP" do
+            
+      #     end
 
-          @pledge.reload.have_donated?(ip).should be_true
-        end
-      end
+      #     it "should return true if browser properties are equal to another click of that IP" do
+      #       @clicks = create_list(:click, 5, pledge: @pledge)
+      #       ip = @clicks.first.request_ip
+
+      #       @pledge.reload.have_donated?(ip).should be_true
+      #     end
+      #   end
+      # end
 
       describe "#fully_subscribed?" do
         it "should return true when the pledge reaches the total amount" do
@@ -241,6 +253,22 @@ describe Pledge do
           total_clicks = @pledge.max_clicks - 1
           @clicks = create_list(:click, total_clicks, pledge: @pledge)
           @pledge.fully_subscribed?.should be_false
+        end
+      end
+
+      describe "#click_exists?" do
+        it "should return false if pledge doesn't have an equal click to the given one" do
+          @click = FactoryGirl.create(:click, pledge: @pledge)
+          @another_click = FactoryGirl.build(:click, request_ip: '8.8.8.8')
+
+          expect( @pledge.click_exists?(@another_click) ).to be_false
+        end
+
+        it "should return true if the pledge has the same click than the given one" do
+          @click = FactoryGirl.create(:click, pledge: @pledge)
+          @another_click = FactoryGirl.build(:click, request_ip: @click.request_ip)
+
+          expect( @pledge.click_exists?(@another_click) ).to be_true
         end
       end
 

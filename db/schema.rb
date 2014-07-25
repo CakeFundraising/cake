@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718170157) do
+ActiveRecord::Schema.define(version: 20140723213658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,10 @@ ActiveRecord::Schema.define(version: 20140718170157) do
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_agent"
+    t.string   "http_encoding"
+    t.string   "http_language"
+    t.string   "browser_plugins"
   end
 
   add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree

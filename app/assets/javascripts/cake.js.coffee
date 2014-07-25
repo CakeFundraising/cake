@@ -10,9 +10,9 @@ Cake.init = ->
   Cake.image_previewer()
   Cake.locations()
   Cake.extra_donation_pledges()
-  Cake.pledges.click()
   Cake.pledges.update_triggers()
   Cake.coupons.tos()
+  Cake.clicks.get_plugins()
   return
 
 $(document).ready(Cake.init)

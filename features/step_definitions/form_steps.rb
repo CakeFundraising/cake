@@ -22,6 +22,10 @@ When(/^(?:I|they|he) press the "(.*?)" link$/) do |link|
   click_link(link)
 end
 
+When(/^(?:I|they|he) press the first "(.*?)" link$/) do |link|
+  first(:link, link).click
+end
+
 When(/^(?:I|they|he) (?:select|selects) (.*?) in "(.*?)"$/) do |option, select_field|
   select(option, from: select_field)
 end
