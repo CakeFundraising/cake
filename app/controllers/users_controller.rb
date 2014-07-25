@@ -7,12 +7,10 @@ class UsersController < ApplicationController
 
   	if role == 'fundraiser'
   	  current_user.create_fundraiser_email_setting
-  	  current_user.roles = [:fundraiser]
-  	  redirect_to new_fundraiser_path if current_user.save
+  	  redirect_to new_fundraiser_path
   	else
   	  current_user.create_sponsor_email_setting
-  	  current_user.roles = [:sponsor]
-  	  redirect_to new_sponsor_path if current_user.save
+  	  redirect_to new_sponsor_path
   	end
   end
 end

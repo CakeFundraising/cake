@@ -1,4 +1,6 @@
 class SponsorsController < InheritedResources::Base
+  before_action :check_if_account_created, only: [:new, :create]
+
   def show
     @sponsor = resource.decorate
     @active_pledges = @sponsor.pledges.active  
@@ -16,7 +18,6 @@ class SponsorsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_sponsor(@sponsor)
-        session[:new_user] = nil if session[:new_user]
         redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
       end
     end
@@ -64,5 +65,9 @@ class SponsorsController < InheritedResources::Base
 
   def send_notification
     resource.notify_update
+  end
+
+  def check_if_account_created
+    redirect_to root_path, alert:'Please sign out and create a new account if you want to create a new Sponsor account.' if current_user.nil? or current_sponsor.present?
   end
 end

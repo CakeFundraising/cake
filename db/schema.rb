@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723213658) do
+ActiveRecord::Schema.define(version: 20140725224746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 20140723213658) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               default: "inactive"
+    t.string   "status",               default: "not_launched"
     t.text     "mission"
     t.string   "processed_status",     default: "unprocessed"
-    t.integer  "goal_cents",           default: 0,             null: false
-    t.string   "goal_currency",        default: "USD",         null: false
+    t.integer  "goal_cents",           default: 0,              null: false
+    t.string   "goal_currency",        default: "USD",          null: false
   end
 
   create_table "charges", force: true do |t|
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20140723213658) do
     t.string   "browser_plugins"
   end
 
-  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree
+  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", using: :btree
 
   create_table "coupons", force: true do |t|
     t.string   "title"
@@ -341,12 +341,12 @@ ActiveRecord::Schema.define(version: 20140723213658) do
 
   create_table "users", force: true do |t|
     t.string   "full_name"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -363,6 +363,7 @@ ActiveRecord::Schema.define(version: 20140723213658) do
     t.integer  "roles_mask"
     t.integer  "fundraiser_id"
     t.integer  "sponsor_id"
+    t.boolean  "registered",             default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

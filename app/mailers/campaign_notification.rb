@@ -1,7 +1,7 @@
 class CampaignNotification < ActionMailer::Base
-  include Roadie::Rails::Automatic
+  #include Roadie::Rails::Automatic
 
-  layout 'layouts/emails/application'
+  #layout 'layouts/emails/application'
 
   default from: "no-reply@cakefundraising.com"
 

@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
     unless sponsor?
       self.roles = [:fundraiser]
       self.fundraiser = fr 
+      self.registered = true
       self.save
     end
   end
@@ -45,6 +46,7 @@ class User < ActiveRecord::Base
     unless fundraiser?
       self.roles = [:sponsor]
       self.sponsor = sp
+      self.registered = true
       self.save
     end
   end

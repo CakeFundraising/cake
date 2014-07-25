@@ -1,5 +1,5 @@
 class FundraisersController < InheritedResources::Base
-  respond_to :html
+  before_action :check_if_account_created, only: [:new, :create]
 
   def show
     @fundraiser = resource.decorate
@@ -18,7 +18,6 @@ class FundraisersController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_fundraiser(@fundraiser)
-        session[:new_user] = nil if session[:new_user]
         redirect_to new_campaign_path, notice: 'Now you can start creating a new campaign!'  
       end
     end
@@ -67,5 +66,9 @@ class FundraisersController < InheritedResources::Base
 
   def send_notification
     resource.notify_update
+  end
+
+  def check_if_account_created
+    redirect_to root_path, alert:'Please sign out and create a new account if you want to create a new Fundraiser account.' if current_user.nil? or current_fundraiser.present?
   end
 end

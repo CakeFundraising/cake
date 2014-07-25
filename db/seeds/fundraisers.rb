@@ -16,6 +16,7 @@
     u.confirmed_at = Time.now
     u.provider = User.omniauth_providers.sample
     u.uid = SecureRandom.hex(8)
+    u.registered = true
   end
 
   f.manager = f.users.first
