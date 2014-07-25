@@ -89,7 +89,7 @@ en:
         share: 4. Confirm your Pledge
   information:
     campaign:
-      banner: "Help the %{fr}! Click on our business sponsors at the bottom of this page and they will each make a donation to %{fr} for you! It is 100% free to help! Every click counts!"
+      banner: "Help %{fr}! Click on our business sponsors at the bottom of this page and they will each make a donation to %{fr} for you! It is 100% free to help! Every click counts!"
     pledge:
       banner: "Click below and %{sponsor} will donate %{donation_per_click} up to %{total_donation} to %{fundraiser}. Every click counts!"
     wizards:

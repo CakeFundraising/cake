@@ -9,7 +9,7 @@ Cake.pledge_levels.validation.set_rules = ->
     max_value:
       required: true
       number: true
-      minStrict: true
+      minStrictPledgeLevels: true
   return
 
 Cake.pledge_levels.validation.validate = ->

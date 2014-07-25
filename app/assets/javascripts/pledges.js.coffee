@@ -57,3 +57,33 @@ Cake.pledges.select_campaign_validator = (form_selector)->
         required: true
   ).form()
   return
+
+Cake.pledges.validation = ->
+  $('.formtastic.pledge').validate(
+    errorElement: "span"
+    rules:
+      'pledge[amount_per_click]': 
+        required: true
+        currency: ["$", false]
+        minStrict: 1
+      'pledge[total_amount]':
+        required: true
+        currency: ["$", false]
+        minStrict: 2
+      'pledge[website_url]':
+        required: true
+        url: true
+      'pledge[terms]':
+        required: true
+      'pledge[mission]':
+        required: true
+      'pledge[picture_attributes][banner]':
+        required: true
+      'pledge[picture_attributes][avatar]':
+        required: true
+      'pledge[headline]':
+        required: true
+      'pledge[description]':
+        required: true
+  )
+  return

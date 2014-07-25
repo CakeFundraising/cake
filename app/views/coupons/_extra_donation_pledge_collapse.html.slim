@@ -3,7 +3,7 @@
     .panel-collapse.collapse
       .panel-body
         span.pledge-pad I agree to donate an extra $
-        = f.input :unit_donation, label: false
+        = f.input :unit_donation, label: false, input_html:{class: 'coupon_unit_donation'}
         span.pledge-pad throught the CakeFundraising platform up to a total amount not to exceed $ 
-        = f.input :total_donation, label: false
+        = f.input :total_donation, label: false, input_html:{class: 'coupon_total_donation'}
         span.pledge-pad each time a consumer fullfills the terms described in this coupon.

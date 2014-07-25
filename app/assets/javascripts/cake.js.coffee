@@ -2,7 +2,6 @@ window.Cake ?= {}
 
 Cake.init = ->
   Cake.clipboard()
-  Cake.jquery_validator()
   Cake.videos()
   Cake.popover()
   Cake.datepicker()
@@ -13,6 +12,8 @@ Cake.init = ->
   Cake.pledges.update_triggers()
   Cake.coupons.tos()
   Cake.clicks.get_plugins()
+
+  Cake.validations.init()
   return
 
 $(document).ready(Cake.init)

@@ -23,4 +23,5 @@
 //= require rails-timeago
 //= require bootstrap-datepicker/core
 //= require zeroclipboard
+//= require cake
 //= require_tree .

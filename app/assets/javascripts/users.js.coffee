@@ -1,3 +1,21 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+Cake.users ?= {}
+
+Cake.users.validation = ->
+  $('.formtastic.user').validate(
+    errorElement: "span"
+    rules:
+      'user[full_name]': 
+        required: true
+      'user[email]':
+        required: true
+        email: true
+      'user[password]':
+        minlength: 5
+      'user[password_confirmation]':
+        minlength: 5
+        equalTo: "#user_password"
+      'user[current_password]':
+        minlength: 5
+        required: true
+  )
+  return

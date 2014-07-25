@@ -22,3 +22,25 @@ Cake.coupons.tos = ->
       Cake.coupons.tos_toggle()
     return
   return
+
+Cake.coupons.validation = ->
+  jQuery.validator.addClassRules
+    coupon_title:
+      required: true
+    coupon_expires_at:
+      required: true
+    coupon_description:
+      required: true
+    coupon_merchandise_categories:
+      required: true
+    coupon_terms_conditions:
+      required: true      
+    max_value:
+      required: true
+      number: true
+      minStrictPledgeLevels: true
+
+  $('.formtastic.pledge').validate(
+    errorElement: "span"
+  )
+  return

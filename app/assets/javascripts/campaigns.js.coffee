@@ -17,3 +17,33 @@ Cake.campaigns.countdown = (end_date) ->
 Cake.campaigns.show = (end_date)->
   Cake.campaigns.countdown(end_date)
   return
+
+Cake.campaigns.validation = ->
+  $('.formtastic.campaign').validate(
+    errorElement: "span"
+    rules:
+      'campaign[title]': 
+        required: true
+      'campaign[goal]':
+        required: true
+        currency: ["$", false]
+      'campaign[launch_date]':
+        required: true
+      'campaign[end_date]':
+        required: true
+      'campaign[scopes][]':
+        required: true
+      'campaign[causes][]':
+        required: true
+      'campaign[mission]':
+        required: true
+      'campaign[picture_attributes][banner]':
+        required: true
+      'campaign[picture_attributes][avatar]':
+        required: true
+      'campaign[headline]':
+        required: true
+      'campaign[story]':
+        required: true
+  )
+  return

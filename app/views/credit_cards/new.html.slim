@@ -15,27 +15,4 @@ h1 Set your Credit Card
 = render :partial => 'stripe/js'
 
 javascript:
-  Cake.credit_card = function(){
-    var stripeResponseHandler = function(status, response){
-      if(response.error){
-        $('.alert-danger').html(response.error.message);
-        $('.alert-danger').removeClass('hidden');
-      }else{
-        var token = response.id;
-        $('#credit_card_token').val(token);
-        $('form.credit_card')[0].submit();
-      }
-    }
-
-    $('form.credit_card').submit(function(e){
-      e.preventDefault();
-
-      Stripe.card.createToken({
-        number: $('#credit_card_number').val(),
-        cvc: $('#credit_card_cvc').val(),
-        exp_month: $('#credit_card_exp_month').val(),
-        exp_year: $('#credit_card_exp_year').val()
-      }, stripeResponseHandler);
-    });
-
-  }();
+  Cake.credit_cards.send_to_stripe();

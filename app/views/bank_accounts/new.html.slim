@@ -18,28 +18,4 @@ h1 Set your Bank Account
 = render :partial => 'stripe/js'
 
 javascript:
-  Cake.bank_account = function(){
-    var stripeResponseHandler = function(status, response){
-      if(response.error){
-        $('.alert-danger').html(response.error.message);
-        $('.alert-danger').removeClass('hidden');
-      }else{
-        var token = response.id;
-        $('#bank_account_token').val(token);
-        $('form.bank_account')[0].submit();
-      }
-    }
-
-    $('form.bank_account').submit(function(e){
-      e.preventDefault();
-      routing = $('#bank_account_routing_number').val();
-      account = $('#bank_account_account_number').val();
-
-      Stripe.bankAccount.createToken({
-        country: 'US',
-        routingNumber: routing,
-        accountNumber: account,
-      }, stripeResponseHandler);
-    });
-
-  }();
+  Cake.bank_accounts.send_to_stripe();
