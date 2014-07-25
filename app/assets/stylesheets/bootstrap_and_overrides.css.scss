@@ -530,14 +530,22 @@ table.performance-summary {
 }
 .make-pledge {
   margin-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   h4 {
     color: $gray-light;
+    font-size: 20px;
+    @media (max-width: $screen-md-min) {
+      text-align: center;
+    }
   }
   b {
     color: black;
   }
   .btn {
-    vertical-align: middle;
+    @media (min-width: $screen-sm-min) {
+    font-size: 20px;
+    }
   }
 }
 .wood {
@@ -604,6 +612,22 @@ table.performance-summary {
 .center {
   text-align: center;
   padding: 25px;
+}
+.sponsor-levs {
+  .sponsor-pledge {
+    margin-left: 5px;
+    color: $brand-primary;
+  }
+  @media (max-width: $screen-md-min) {
+    font-size: 18px;
+  }
+}
+.campaign-story {
+  h3, p {
+    @media (max-width: $screen-sm-min) {
+      padding: 0 15px;
+    }
+  }
 }
 
 // Coupon Styles ---------------------------------------

@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 20140718170157) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               default: "not_launched"
+    t.string   "status",               default: "inactive"
     t.text     "mission"
     t.string   "processed_status",     default: "unprocessed"
-    t.integer  "goal_cents",           default: 0,              null: false
-    t.string   "goal_currency",        default: "USD",          null: false
+    t.integer  "goal_cents",           default: 0,             null: false
+    t.string   "goal_currency",        default: "USD",         null: false
   end
 
   create_table "charges", force: true do |t|
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20140718170157) do
     t.datetime "updated_at"
   end
 
-  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", using: :btree
+  add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", unique: true, using: :btree
 
   create_table "coupons", force: true do |t|
     t.string   "title"

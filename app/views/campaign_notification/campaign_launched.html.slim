@@ -2,4 +2,4 @@ h2 Hello #{@receiver},
 div Your pledged campaign: #{ link_to @campaign, campaign_url(@campaign) } has been launched!
 div Click #{ link_to t('semantic.here').downcase, campaign_url(@campaign) } to see the campaign.
 
-/= render template:'emails/campaigns/show'
+= render template:'emails/campaigns/show'
