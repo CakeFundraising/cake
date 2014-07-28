@@ -32,7 +32,6 @@
               strong = @campaign.current_pledges_total
           .row
             .col-md-12.click-btn
-              p.timer-ital Total all sponsor pledges:
               .progress
                 .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)                

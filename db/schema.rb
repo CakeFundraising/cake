@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140725224746) do
     t.string   "user_agent"
     t.string   "http_encoding"
     t.string   "http_language"
-    t.string   "browser_plugins"
+    t.text     "browser_plugins"
   end
 
   add_index "clicks", ["request_ip"], name: "index_clicks_on_request_ip", using: :btree

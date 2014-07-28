@@ -28,7 +28,7 @@ class Pledge < ActiveRecord::Base
   monetize :total_amount_cents
 
   validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
-  validates :total_amount, numericality: {greater_than: 0}
+  validates :total_amount, numericality: {greater_than_or_equal_to: 50}
 
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: 'should include http:// or https://'}

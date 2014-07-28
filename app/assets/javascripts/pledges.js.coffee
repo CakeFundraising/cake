@@ -69,7 +69,7 @@ Cake.pledges.validation = ->
       'pledge[total_amount]':
         required: true
         currency: ["$", false]
-        minStrict: 2
+        min: 50
       'pledge[website_url]':
         required: true
         url: true
