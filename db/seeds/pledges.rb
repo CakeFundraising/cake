@@ -1,5 +1,5 @@
 @pledges = @sponsors.flat_map do |s|
-  create(3, s.pledges) do |p|
+  create(8, s.pledges) do |p|
     campaign = @campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -15,29 +15,21 @@
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg'))
-      c.qrcode = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg'))
+      c.remote_avatar_url = "http://1.bp.blogspot.com/_HqHzY-Dpn9g/Sjx7Pn5s6hI/AAAAAAAAFkY/ax9E_Vf1sMQ/s400/bogocokecoupon.jpg"
+      c.remote_qrcode_url = "http://www.qrstuff.com/images/default_qrcode.png"
       c.merchandise_categories = Coupon::CATEGORIES.sample(2)
     end
 
-    # build(2, p.sweepstakes) do |sw|
-    #   sw.winners_quantity = rand(99)
-    #   sw.claim_prize_instructions = Faker::Lorem.paragraph
-    #   sw.title = Faker::Lorem.sentence
-    #   sw.description = Faker::Lorem.paragraph
-    #   sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-    # end
-
     build(1, p.picture, {prebuild: true}) do |pic|
-      pic.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg"))
-      pic.banner = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/banner.jpg"))
+      pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
+      pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
     end
   end
 end
 
 #Past Pledges
 @past_pledges = @sponsors.flat_map do |s|
-  create(2, s.pledges) do |p|
+  create(6, s.pledges) do |p|
     campaign = @past_campaigns.sample
 
     p.mission = Faker::Lorem.sentence
@@ -54,22 +46,14 @@ end
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg'))
-      c.qrcode = Rack::Test::UploadedFile.new(File.join(Rails.root, 'db/seeds/support/images/qrcode.jpg'))
+      c.remote_avatar_url = "http://1.bp.blogspot.com/_HqHzY-Dpn9g/Sjx7Pn5s6hI/AAAAAAAAFkY/ax9E_Vf1sMQ/s400/bogocokecoupon.jpg"
+      c.remote_qrcode_url = "http://www.qrstuff.com/images/default_qrcode.png"
       c.merchandise_categories = Coupon::CATEGORIES.sample(2)
     end
 
-    # build(2, p.sweepstakes) do |sw|
-    #   sw.winners_quantity = rand(99)
-    #   sw.claim_prize_instructions = Faker::Lorem.paragraph
-    #   sw.title = Faker::Lorem.sentence
-    #   sw.description = Faker::Lorem.paragraph
-    #   sw.avatar.store!(File.open(File.join(Rails.root, 'db/seeds/support/images/coupon.jpg')))
-    # end
-
     build(1, p.picture, {prebuild: true}) do |pic|
-      pic.avatar = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/avatar.jpg"))
-      pic.banner = Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/banner.jpg"))
+      pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
+      pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
     end
 
     build(1, p.build_invoice, {prebuild: true}) do |inv|

@@ -33,12 +33,6 @@ def update(collection)
   end
 end
 
-CarrierWave.configure do |config|
-  config.storage = :file
-  config.enable_processing = false
-  config.root = "#{Rails.root}/tmp"
-end
-
 DatabaseCleaner.clean_with :truncation if options[:cd]
 ActionMailer::Base.perform_deliveries = false
 
@@ -46,5 +40,6 @@ require_relative 'seeds/fundraisers.rb'
 require_relative 'seeds/sponsors.rb'
 require_relative 'seeds/campaigns.rb'
 require_relative 'seeds/pledges.rb'
+require_relative 'seeds/pledge_requests.rb'
 
 ActionMailer::Base.perform_deliveries = true
