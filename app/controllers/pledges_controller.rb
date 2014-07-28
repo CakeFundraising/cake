@@ -10,6 +10,8 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  include PastResource
+
   #CRUD
   def select_campaign
     @fundraiser = Fundraiser.find(params[:fundraiser]).decorate

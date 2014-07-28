@@ -8,6 +8,8 @@ class CampaignsController < InheritedResources::Base
     :share
   ]
 
+  include PastResource
+
   def show
     @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
     @campaign = resource.decorate

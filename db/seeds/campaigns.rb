@@ -14,8 +14,8 @@
     build(3, c.sponsor_categories) do |sc, i|
       i = i + 1
       sc.name = Faker::Lorem.sentence
-      sc.min_value_cents = i * 1000
-      sc.max_value_cents = (i+0.5) * 1000 
+      sc.min_value_cents = i * 10000
+      sc.max_value_cents = (i+0.5) * 10000 
     end
   end
 end
@@ -37,8 +37,8 @@ end
     build(3, pc.sponsor_categories) do |sc, i|
       i = i + 1
       sc.name = Faker::Lorem.sentence
-      sc.min_value_cents = i * 1000
-      sc.max_value_cents = (i+0.5) * 1000 
+      sc.min_value_cents = i * 10000
+      sc.max_value_cents = (i+0.5) * 10000 
     end
   end
 end
