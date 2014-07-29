@@ -14,10 +14,10 @@ class HomeController < ApplicationController
   protected
 
   def go_to_registration
-    unless current_user.nil? or current_user.registered
-      if current_user.fundraiser_email_setting.present?
+    unless current_user.nil? || current_user.registered
+      if current_user.fundraiser_email_setting.present? and current_fundraiser.nil?
         route = new_fundraiser_path
-      elsif current_user.sponsor_email_setting.present?
+      elsif current_user.sponsor_email_setting.present? and current_sponsor.nil?
         route = new_sponsor_path
       else
         route = home_get_started_path
