@@ -1,8 +1,6 @@
 tr
   td = auto_link fr
   td = fr.pledges.count
-  td = fr.causes.first
-  td = fr.campaigns.first.scopes.first
   td = humanized_money_with_symbol fr.pledges.not_pending.not_rejected.sponsor(@sponsor).sum(:total_amount_cents)/100
   td $34,500
   td = humanized_money_with_symbol fr.pledges.not_pending.not_rejected.sponsor(@sponsor).sum(:amount_per_click_cents)/100

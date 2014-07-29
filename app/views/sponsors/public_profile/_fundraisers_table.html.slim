@@ -4,11 +4,9 @@
       tr
         th = Fundraiser.model_name.human
         th = Fundraiser.human_attribute_name :pledges_quantity
-        th = Fundraiser.human_attribute_name :causes
-        th = Fundraiser.human_attribute_name :scopes
         th = Pledge.model_name.human
-        th Donation
-        th = Pledge.human_attribute_name :donation_click
+        th Avg. Donation
+        th = t('semantic.average', model: )
         th = Campaign.human_attribute_name :avg_pledge_rank
     tbody
       = render partial:'sponsors/public_profile/fundraiser_row', collection: @fundraisers, as: :fr

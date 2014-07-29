@@ -85,5 +85,8 @@ Cake.pledges.validation = ->
         required: true
       'pledge[description]':
         required: true
+    messages:
+      'pledge[website_url]':
+        url: 'Please enter a valid url. It should include http:// or https://'
   )
   return
