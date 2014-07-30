@@ -37,6 +37,9 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  scope :rank, ->{ eager_load(:invoices).where(invoices: {status: "paid"}).order("invoices.due_cents DESC") }
+  scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") } 
+
   #Solr
   searchable do
     text :name, boost: 2
@@ -64,15 +67,49 @@ class Sponsor < ActiveRecord::Base
     accepted_pledges.map(&:fundraiser).uniq
   end
 
-  #Statistic methods
+  #### Statistic methods #####
   def total_donation
-    (pledges.accepted.sum(:total_amount_cents)/100).to_money
+    invoices.paid.sum(:due_cents).to_i
+  end
+
+  def total_clicks
+    pledges.accepted_or_past.sum(:clicks_count).to_i
   end
 
   def rank
+    Sponsor.rank.find_index(self) + 1
   end
 
-  #Invoices
+  def local_rank
+    Sponsor.local_rank(self.location.zip_code).find_index(self) + 1
+  end
+
+  def pledges_count
+    pledges.accepted_or_past.count
+  end
+
+  def any_pledges?
+    pledges.accepted_or_past.any?
+  end
+
+  # Averages
+  def average_pledge
+    (pledges.accepted_or_past.sum(:total_amount_cents)/pledges_count) if any_pledges?
+  end
+
+  def average_donation
+    (total_donation/invoices.paid.count) if invoices.paid.any? 
+  end
+
+  def average_donation_per_click
+    (pledges.accepted_or_past.sum(:amount_per_click_cents)/pledges_count) if any_pledges?
+  end
+
+  def average_clicks_per_pledge
+    (total_clicks/pledges_count).floor if any_pledges?
+  end
+
+  #### Invoices
   def outstanding_invoices
     invoices.outstanding.merge(pledges.past)
   end
@@ -81,7 +118,7 @@ class Sponsor < ActiveRecord::Base
     invoices.paid.merge(pledges.past)
   end
 
-  #Stripe Account
+  #### Stripe Account
   def stripe_account?
     stripe_account.present?
   end
