@@ -46,4 +46,20 @@ class SponsorDecorator < ApplicationDecorator
   def local_rank
     "##{object.local_rank}"
   end
+
+  #Top causes
+  def top_cause_name(index)
+    object.top_causes.keys[index]
+  end
+
+  def top_cause_amount(index)
+    object.top_causes.values[index]
+  end
+
+  def top_cause_amount_percentile(index)
+    value = top_cause_amount(index)
+    top_value = top_cause_amount(0)
+
+    (value/top_value)*100 unless value.nil? or top_value.nil?
+  end
 end

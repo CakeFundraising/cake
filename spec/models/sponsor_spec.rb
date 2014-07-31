@@ -323,12 +323,26 @@ describe Sponsor do
       end
 
       describe "Top Causes" do
+        before(:each) do
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)   
+        end
+
         it "should return a hash" do
           expect( @sponsor.top_causes ).to be_instance_of(Hash)
         end
 
         it "should list the top 3 causes" do
-          pending 'Define which causes should it list'
+          expect( @sponsor.top_causes.keys.count ).to eql(3)
+        end
+
+        it "should list the causes from SP's top 3 pledges" do
+          @pledges = @accepted_pledges.sort_by &:total_amount
+          expect( @sponsor.top_causes.keys ).to eql(@pledges.first(3).map(&:main_cause))
+        end
+
+        it "should list the total_amount from SP's top 3 pledges" do
+          @pledges = @accepted_pledges.sort_by &:total_amount
+          expect( @sponsor.top_causes.values ).to eql(@pledges.first(3).map(&:total_amount))
         end
       end
       

@@ -109,8 +109,16 @@ class Sponsor < ActiveRecord::Base
     (total_clicks/pledges_count).floor if any_pledges?
   end
 
-  def top_causes
-    {}
+  def top_pledges(limiter)
+    pledges.accepted_or_past.highest.first(limiter)
+  end
+
+  def top_causes # {cause_name: pledge_amount}
+    top_causes = {}
+    top_pledges(3).each do |pledge|
+      top_causes.store(pledge.main_cause, pledge.total_amount) unless top_causes.has_key?(pledge.main_cause)
+    end
+    top_causes
   end
 
   #### SP dashboard home

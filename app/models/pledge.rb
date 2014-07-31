@@ -49,6 +49,10 @@ class Pledge < ActiveRecord::Base
   scope :fully_subscribed, ->{ not_notified_fully_subscribed.where("clicks_count >= max_clicks") }
   scope :not_fully_subscribed, ->{ where.not("clicks_count >= max_clicks") }
 
+  scope :highest, ->{ order(total_amount_cents: :desc, amount_per_click_cents: :desc) }
+
+  delegate :main_cause, to: :campaign
+
   after_initialize do
     if self.new_record?
       self.build_picture if picture.blank?
