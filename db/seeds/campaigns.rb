@@ -4,6 +4,7 @@
     c.launch_date = Time.now - 2.weeks
     c.end_date = Time.now + 4.months
     c.goal = rand(999) + 1
+    c.main_cause = Campaign::CAUSES.sample
     c.causes = Campaign::CAUSES.sample(5)
     c.scopes = Campaign::SCOPES.sample(2)
     c.headline = Faker::Lorem.sentence
@@ -27,6 +28,7 @@ end
     pc.launch_date = Time.now - 4.months
     pc.end_date = Time.now - 2.months
     pc.goal = rand(999) + 1
+    pc.main_cause = Campaign::CAUSES.sample
     pc.causes = Campaign::CAUSES.sample(5)
     pc.scopes = Campaign::SCOPES.sample(2)
     pc.headline = Faker::Lorem.sentence

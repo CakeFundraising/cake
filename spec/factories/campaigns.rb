@@ -7,6 +7,7 @@ FactoryGirl.define do
     end_date { Time.now + 4.months }
     goal {rand(999) + 1 }
     causes { Campaign::CAUSES.sample(5) }
+    main_cause { Campaign::CAUSES.sample }
     scopes { Campaign::SCOPES.sample(2) }
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }

@@ -15,19 +15,20 @@ Feature: Campaign Wizard
     And he fills in the "campaign_launch_date" field with <launch_date>
     And he fills in the "campaign_end_date" field with <end_date>
     And he selects <causes> in "campaign_causes"
+    And he selects <main_cause> in "campaign_main_cause"
     And he checks <scopes> from the Types of Campaigns options
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
     Examples: Succesful step
-    | name            | goal  | causes         | scopes  | launch_date | end_date   | message                            |
-    | My new campaign | 25000 | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
-    | Other campaign  | 25000 | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
+    | name            | goal  | main_cause        | causes         | scopes  | launch_date | end_date   | message                            |
+    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
+    | Other campaign  | 25000 | Freedom & Liberty | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
 
     Examples: Failed step
-    | name            | goal  | causes         | scopes  | launch_date | end_date   | message         |
-    | My new campaign | 25000 | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
-    |                 | 25000 | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
+    | name            | goal  | main_cause        | causes         | scopes  | launch_date | end_date   | message         |
+    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
+    |                 | 25000 | Freedom & Liberty | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
 
   Scenario Outline: Tell your Story
     And a campaign of that fundraiser exists

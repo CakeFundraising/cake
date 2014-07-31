@@ -35,6 +35,8 @@ Cake.campaigns.validation = ->
         required: true
       'campaign[causes][]':
         required: true
+      'campaign[main_cause]':
+        required: true
       'campaign[mission]':
         required: true
       'campaign[picture_attributes][banner]':

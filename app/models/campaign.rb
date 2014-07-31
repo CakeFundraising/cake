@@ -35,7 +35,7 @@ class Campaign < ActiveRecord::Base
 
   validates :goal, numericality: {greater_than: 0}
 
-  validates :title, :launch_date, :end_date, :causes, :scopes, :fundraiser, :goal, presence: true
+  validates :title, :launch_date, :end_date, :main_cause, :causes, :scopes, :fundraiser, :goal, presence: true
   #validates :mission, :headline, :story, :avatar, :banner, presence: true, if: :persisted?
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
