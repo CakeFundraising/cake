@@ -14,8 +14,8 @@ class PledgeDecorator < ApplicationDecorator
     campaign.end_date
   end
 
-  def causes
-    object.campaign.causes
+  def cause
+    object.campaign.main_cause
   end
 
   def scopes

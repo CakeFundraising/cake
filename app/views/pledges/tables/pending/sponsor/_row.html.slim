@@ -1,7 +1,7 @@
 tr.pledge id=(pledge.id) 
   td = auto_link pledge.fundraiser
   td = auto_link pledge.campaign 
-  td = pledge.causes.first
+  td = pledge.cause
   td = pledge.scopes.first
   td = pledge.end_date
   td = humanized_money_with_symbol pledge.total_amount

@@ -121,7 +121,7 @@ describe Campaign do
         3.times do
           @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(50000..100000) )
           @medium_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(25000...50000) )
-          @low_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(1000...25000)   )
+          @low_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: rand(10000...25000)   )
         end
 
         @campaign.sponsor_categories.reload

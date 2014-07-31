@@ -1,6 +1,6 @@
 tr
   td = auto_link pledge.decorate
-  td = pledge.campaign.causes.first
+  td = pledge.campaign.main_cause
   td = pledge.campaign.scopes.first
   td = humanized_money_with_symbol pledge.total_amount 
   td = humanized_money_with_symbol pledge.amount_per_click

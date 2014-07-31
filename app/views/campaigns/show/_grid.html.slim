@@ -5,7 +5,7 @@
         = image_tag campaign.avatar.url(:medium)
     .caption
       h4 = auto_link campaign
-      .cause = campaign.object.causes.first
+      .cause = campaign.object.main_cause
       .type = campaign.object.scopes.first
       hr
       .fundraiser_name = auto_link campaign.fundraiser

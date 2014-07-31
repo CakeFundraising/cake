@@ -4,6 +4,6 @@
       = image_tag campaign.avatar.medium.url, class:'media-object' 
     .media-body
       h4.media-heading = link_to campaign.title, campaign_url(campaign), target: :_blank
-      .cause.text-muted = campaign.object.causes.first
+      .cause.text-muted = campaign.object.main_cause
       .type.text-muted  = campaign.object.scopes.first
       .dates = campaign.start_end_dates
