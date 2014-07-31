@@ -19,7 +19,7 @@
             p = Sponsor.human_attribute_name :rank
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Top Cause Rank", "#4")
+            = basic_list_item(Sponsor.human_attribute_name(:top_cause), @sponsor.top_cause_name(0))
             = basic_list_item(Sponsor.human_attribute_name(:local_rank), @sponsor.local_rank)
     .col-md-4
       .sidebar-bkg
