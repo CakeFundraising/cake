@@ -25,15 +25,15 @@
         .sidebar-bkg 
           .row.text-center
            .col-xs-6.border-right
-              p.donation-stats $42M
-              p Total Donations
+              p.donation-stats = @sponsor.total_donation
+              p = Sponsor.human_attribute_name :total_donation
            .col-xs-6
-              p.donation-stats $42M
-              p Total Donations
+              p.donation-stats = @sponsor.total_clicks
+              p = Sponsor.human_attribute_name :total_clicks
           .row
            .col-md-12.rank-rows
-              = basic_list_item("Top Cause Rank", "14")
-              = basic_list_item("Location Rank", "2")
+              = basic_list_item(Sponsor.human_attribute_name(:sponsor_rank), @sponsor.rank)
+              = basic_list_item(Sponsor.human_attribute_name(:local_rank), @sponsor.local_rank)
           - if can? :create, PledgeRequest
             .request-pledge
               = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-block'
@@ -45,32 +45,32 @@
           table.table.table-bordered.performance-summary
             tr
               td 
-                p.summery-stats 182
-                p No. of Pledges
+                p.summery-stats = @sponsor.pledges_count
+                p = Sponsor.human_attribute_name :pledges_count
               td 
-                p.summery-stats $10,000
-                p Avg. Pledge
+                p.summery-stats = humanized_money_with_symbol @sponsor.average_pledge
+                p = t('semantic.average', model: 'Pledge')
               td 
-                p.summery-stats $9,980
-                p Avg. Donation
+                p.summery-stats = humanized_money_with_symbol @sponsor.average_donation
+                p = t('semantic.average', model: 'Donation')
               td 
-                p.summery-stats $2.81
-                p Avg. Donation/Click
+                p.summery-stats = humanized_money_with_symbol @sponsor.average_donation_per_click
+                p = t('semantic.average', model: 'Donation/Click')
             tr
               td
                 p.summery-stats 3
-                p Avg. Pledge
+                p = t('semantic.average', model: 'Pledge Views')
               td
-                p.summery-stats 3
-                p Avg. Clicks/Campaign
+                p.summery-stats = @sponsor.average_clicks_per_pledge
+                p = t('semantic.average', model: 'Clicks/Campaign')
               td
                 p.summery-stats 22,874
-                p Avg. Campaign Reach
+                p = t('semantic.average', model: 'Impressions/Campaign')
               td
                 p.summery-stats 11%
-                p Avg. Conv. Rate
+                p = t('semantic.average', model: 'Conversion Rate')
         .col-md-4
-          h3 Top Causes
+          h3 = Sponsor.human_attribute_name :top_causes
           .causes Environment
           .causes Community
           .causes Sport, Teams & Comp.

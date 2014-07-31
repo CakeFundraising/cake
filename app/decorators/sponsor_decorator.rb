@@ -16,4 +16,8 @@ class SponsorDecorator < ApplicationDecorator
   def stripe_customer?
     stripe_account.present? and stripe_account.customer?
   end
+
+  def total_donation
+    "#{h.currency_symbol}#{h.number_to_human(object.total_donation, units: :numbers, format: '%n%u')}".html_safe
+  end
 end

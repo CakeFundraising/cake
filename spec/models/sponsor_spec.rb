@@ -321,6 +321,12 @@ describe Sponsor do
       end
     end
 
+    describe "Top Causes" do
+      it "should" do
+        pending
+      end
+    end
+
   end
   
 end

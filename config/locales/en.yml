@@ -21,6 +21,22 @@ en:
         cause_requirements:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
+  numbers:
+    thousand:
+      one: K
+      other: K
+    million:
+      one: M 
+      other: M
+    billion:
+      one: B
+      other: B
+    trillion:
+      one: T
+      other: T
+    quadrillion:
+      one: Q
+      other: Q
   errors:
     stripe_account:
       account_taken: Stripe Account has already been used. Please use another Stripe Account.
@@ -197,6 +213,7 @@ en:
         email: Company Email
         customer_demographics: Our Customer Demographics
         cause_requirements: Fundraising Organization Requirements
+        pledges_count: No. of Pledges
       video:
         url: Video Url
       picture: 
