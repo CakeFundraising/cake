@@ -1,4 +1,4 @@
-@fundraisers = create(2, Fundraiser) do |f, fundraiser_index|
+@fundraisers = create(20, Fundraiser) do |f, fundraiser_index|
   build(1, f.location, {prebuild: true}) do |l|
     l.address = Faker::Address.street_address
     l.country_code = 'US'

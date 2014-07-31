@@ -1,4 +1,4 @@
-@sponsors = create(2, Sponsor) do |f, sponsor_index|
+@sponsors = create(20, Sponsor) do |f, sponsor_index|
   build(1, f.location, {prebuild: true}) do |l|
     l.address = Faker::Address.street_address
     l.country_code = 'US'
