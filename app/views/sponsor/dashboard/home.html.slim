@@ -5,29 +5,29 @@
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats $37,678
-            p Clicks from Active Pledges
+            p.donation-stats = @sponsor.active_pledges_clicks_count
+            p = Sponsor.human_attribute_name :active_pledges_clicks_count
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Total Clicks Lifetime", "48,378,962")
-            = basic_list_item("Invoice Due", "$34,000")
+            = basic_list_item(Sponsor.human_attribute_name(:total_clicks), @sponsor.total_clicks)
+            = basic_list_item(Sponsor.human_attribute_name(:invoices_due), @sponsor.invoices_due)
     .col-md-4
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats 22
-            p Overall Sponsor Ranking
+            p.donation-stats = @sponsor.rank
+            p = Sponsor.human_attribute_name :rank
         .row
           .col-xs-12.rank-rows
             = basic_list_item("Top Cause Rank", "#4")
-            = basic_list_item("Ranking in Location", "#2")
+            = basic_list_item(Sponsor.human_attribute_name(:local_rank), @sponsor.local_rank)
     .col-md-4
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats $731
-            p Total No. of Pledges
+            p.donation-stats = @sponsor.total_donation
+            p = Sponsor.human_attribute_name :total_donation
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Avg. Clicks/Pledge", "32,146")
-            = basic_list_item("Avg. Reach/Pledge", "5,888,996")
+            = basic_list_item(t('semantic.average', model: 'Clicks/Campaign'), @sponsor.average_clicks_per_pledge)
+            = basic_list_item(t('semantic.average', model: 'Impressions/Campaign'), "5,888,996")

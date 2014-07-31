@@ -109,6 +109,19 @@ class Sponsor < ActiveRecord::Base
     (total_clicks/pledges_count).floor if any_pledges?
   end
 
+  def top_causes
+    {}
+  end
+
+  #### SP dashboard home
+  def active_pledges_clicks_count
+    pledges.active.sum(:clicks_count).to_i
+  end
+
+  def invoices_due
+    outstanding_invoices.sum(:due_cents).to_i
+  end
+
   #### Invoices
   def outstanding_invoices
     invoices.outstanding.merge(pledges.past)

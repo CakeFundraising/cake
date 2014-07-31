@@ -32,7 +32,7 @@
               p = Sponsor.human_attribute_name :total_clicks
           .row
            .col-md-12.rank-rows
-              = basic_list_item(Sponsor.human_attribute_name(:sponsor_rank), @sponsor.rank)
+              = basic_list_item(Sponsor.human_attribute_name(:rank), @sponsor.rank)
               = basic_list_item(Sponsor.human_attribute_name(:local_rank), @sponsor.local_rank)
           - if can? :create, PledgeRequest
             .request-pledge
@@ -48,13 +48,13 @@
                 p.summery-stats = @sponsor.pledges_count
                 p = Sponsor.human_attribute_name :pledges_count
               td 
-                p.summery-stats = humanized_money_with_symbol @sponsor.average_pledge
+                p.summery-stats = @sponsor.average_pledge
                 p = t('semantic.average', model: 'Pledge')
               td 
-                p.summery-stats = humanized_money_with_symbol @sponsor.average_donation
+                p.summery-stats = @sponsor.average_donation
                 p = t('semantic.average', model: 'Donation')
               td 
-                p.summery-stats = humanized_money_with_symbol @sponsor.average_donation_per_click
+                p.summery-stats = @sponsor.average_donation_per_click
                 p = t('semantic.average', model: 'Donation/Click')
             tr
               td

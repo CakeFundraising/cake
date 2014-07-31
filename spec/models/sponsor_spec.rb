@@ -144,187 +144,252 @@ describe Sponsor do
       @sponsor = FactoryGirl.create(:sponsor)
     end
 
-    describe 'Total Donations' do
-      before(:each) do
-        @paid_invoices = create_list(:invoice, 12, sponsor: @sponsor)
-        @pending_invoices = create_list(:pending_invoice, 12, sponsor: @sponsor)
-      end
+    context 'SP public profile' do
+      describe 'Total Donations' do
+        before(:each) do
+          @paid_invoices = create_list(:invoice, 12, sponsor: @sponsor)
+          @pending_invoices = create_list(:pending_invoice, 12, sponsor: @sponsor)
+        end
 
-      it "should be the sum of all donations paid by SP" do
-        expect(@sponsor.total_donation).to eql(@paid_invoices.map(&:due_cents).sum)
-      end
+        it "should be the sum of all donations paid by SP" do
+          expect(@sponsor.total_donation).to eql(@paid_invoices.map(&:due_cents).sum)
+        end
 
-      it "should not be the sum of all pending invoices by SP" do
-        expect(@sponsor.total_donation).not_to eql(@pending_invoices.map(&:due_cents).sum)
-      end
-    end
-
-    describe 'Total Clicks' do
-      it "should be the sum of all clicks from accepted and past pledges to SP’s websites" do
-        @accepted_pledges = create_list(:pledge, 5, sponsor: @sponsor)
-        @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
-
-        pledges = @accepted_pledges + @past_pledges
-        expect(@sponsor.total_clicks).to eql(pledges.map(&:clicks_count).sum)        
-      end
-    end
-
-    describe 'Rank' do
-      #should return the position of the SP in the set of SPs ordered by descendent paid invoice's due_cents
-
-      before(:each) do
-        @sponsors = create_list(:sponsor, 5)
-
-        @sponsors.each do |sp|
-          FactoryGirl.create(:invoice, sponsor: sp)
+        it "should not be the sum of all pending invoices by SP" do
+          expect(@sponsor.total_donation).not_to eql(@pending_invoices.map(&:due_cents).sum)
         end
       end
 
-      it 'should return 1 when SP has the greatest paid due' do
-        FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(999999999))
+      describe 'Total Clicks' do
+        it "should be the sum of all clicks from accepted and past pledges to SP’s websites" do
+          @accepted_pledges = create_list(:pledge, 5, sponsor: @sponsor)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
 
-        expect( @sponsor.rank ).to eql(1)
-      end
-
-      it "should return 2 when SP has the second greatest paid due" do
-        invoice = FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(99999999))
-        FactoryGirl.create(:invoice, sponsor: @sponsors.last, due_cents: invoice.due_cents + 10 )
-
-        expect( @sponsor.rank ).to eql(2)
-      end
-
-      it "should return the position of the SP in the set of SP's ordered by descendent paid invoice's due_cents" do
-        FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
-
-        expect( @sponsor.rank ).to eql(6)
-      end
-    end
-
-    describe 'Local Rank' do
-      #should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents
-
-      before(:each) do
-        @sponsors = create_list(:sponsor, 5)
-
-        @sponsors.each do |sp|
-          sp.location.update_attribute(:zip_code, @sponsor.location.zip_code) #same zip code
-          FactoryGirl.create(:invoice, sponsor: sp)
+          pledges = @accepted_pledges + @past_pledges
+          expect(@sponsor.total_clicks).to eql(pledges.map(&:clicks_count).sum)        
         end
       end
 
-      it 'should return 1 when SP has the greatest paid due' do
-        FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(999999999))
+      describe 'Rank' do
+        #should return the position of the SP in the set of SPs ordered by descendent paid invoice's due_cents
 
-        expect( @sponsor.local_rank ).to eql(1)
+        before(:each) do
+          @sponsors = create_list(:sponsor, 5)
+
+          @sponsors.each do |sp|
+            FactoryGirl.create(:invoice, sponsor: sp)
+          end
+        end
+
+        it 'should return 1 when SP has the greatest paid due' do
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(999999999))
+
+          expect( @sponsor.rank ).to eql(1)
+        end
+
+        it "should return 2 when SP has the second greatest paid due" do
+          invoice = FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(99999999))
+          FactoryGirl.create(:invoice, sponsor: @sponsors.last, due_cents: invoice.due_cents + 10 )
+
+          expect( @sponsor.rank ).to eql(2)
+        end
+
+        it "should return the position of the SP in the set of SP's ordered by descendent paid invoice's due_cents" do
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
+
+          expect( @sponsor.rank ).to eql(6)
+        end
       end
 
-      it "should return 2 when SP has the second greatest paid due" do
-        invoice = FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(99999999))
-        FactoryGirl.create(:invoice, sponsor: @sponsors.last, due_cents: invoice.due_cents + 10 )
+      describe 'Local Rank' do
+        #should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents
 
-        expect( @sponsor.local_rank ).to eql(2)
+        before(:each) do
+          @sponsors = create_list(:sponsor, 5)
+
+          @sponsors.each do |sp|
+            sp.location.update_attribute(:zip_code, @sponsor.location.zip_code) #same zip code
+            FactoryGirl.create(:invoice, sponsor: sp)
+          end
+        end
+
+        it 'should return 1 when SP has the greatest paid due' do
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(999999999))
+
+          expect( @sponsor.local_rank ).to eql(1)
+        end
+
+        it "should return 2 when SP has the second greatest paid due" do
+          invoice = FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: rand(99999999))
+          FactoryGirl.create(:invoice, sponsor: @sponsors.last, due_cents: invoice.due_cents + 10 )
+
+          expect( @sponsor.local_rank ).to eql(2)
+        end
+
+        it "should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents" do
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
+
+          expect( @sponsor.local_rank ).to eql(6)
+        end
       end
 
-      it "should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents" do
-        FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
+      describe "Number of Pledges" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
+        end
 
-        expect( @sponsor.local_rank ).to eql(6)
+        it "should return the number of accepted or past pledges of the SP" do
+          expect( @sponsor.pledges_count ).to eql(9) # accepted + past
+        end
+
+        it "should not include pending pledges" do
+          expect( @sponsor.pledges_count ).not_to eql(6) # accepted + pending
+          expect( @sponsor.pledges_count ).not_to eql(7) # past + pending
+          expect( @sponsor.pledges_count ).not_to eql(11) # past + accepted + pending
+        end
+
+        it "should not include past pledges" do
+          expect( @sponsor.pledges_count ).not_to eql(7) # accepted + past
+          expect( @sponsor.pledges_count ).not_to eql(8) # past + past
+          expect( @sponsor.pledges_count ).not_to eql(12) # past + accepted + past
+        end
       end
+
+      describe "Average Pledge" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
+        end
+
+        it "should be the average of accepted and past pledges's total_amount" do
+          pledges = @accepted_pledges + @past_pledges
+          avg = pledges.map(&:total_amount_cents).sum/pledges.count
+          expect( @sponsor.average_pledge ).to eql(avg)
+        end
+      end
+
+      describe "Average Donation" do
+        before(:each) do
+          @paid_invoices = create_list(:invoice, 12, sponsor: @sponsor)
+          @pending_invoices = create_list(:pending_invoice, 12, sponsor: @sponsor)
+        end
+
+        it "should be the average of SP's paid invoices" do
+          avg = @paid_invoices.map(&:due_cents).sum/@paid_invoices.count
+          expect( @sponsor.average_donation ).to eql(avg)
+        end
+
+        it "should not be the average of SP's pending invoices" do
+          avg = @pending_invoices.map(&:due_cents).sum/@pending_invoices.count
+          expect( @sponsor.average_donation ).not_to eql(avg)
+        end
+      end
+
+      describe "Average Donation per Click" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
+        end
+
+        it "should be the average of accepted and past pledges's amount_per_click" do
+          pledges = @accepted_pledges + @past_pledges
+          avg = pledges.map(&:amount_per_click_cents).sum/pledges.count
+          expect( @sponsor.average_donation_per_click ).to eql(avg)
+        end
+      end
+
+      describe "Average Clicks per Pledge" do
+        before(:each) do
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, clicks_count: 0)
+          @pledges = @accepted_pledges + @past_pledges
+
+          @pledges.each do |p|
+            create_list(:click, 5, pledge: p)
+          end           
+        end
+
+        it "should be the total clicks divided total of accepted and past pledges" do
+          avg = @pledges.map(&:clicks).flatten.count/@pledges.count
+          expect( @sponsor.average_clicks_per_pledge ).to eql(avg)
+        end
+      end
+
+      describe "Top Causes" do
+        it "should return a hash" do
+          expect( @sponsor.top_causes ).to be_instance_of(Hash)
+        end
+
+        it "should list the top 3 causes" do
+          pending 'Define which causes should it list'
+        end
+      end
+      
     end
 
-    describe "Number of Pledges" do
-      before(:each) do
-        @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
-        @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
-        @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
-        @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
+    context 'SP dashboard home' do
+      describe "Total clicks from Active Pledges" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, clicks_count: 0)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, clicks_count: 0)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, clicks_count: 0)
+          @pledges = @pending_pledges + @rejected_pledges + @past_pledges + @accepted_pledges
+
+          @pledges.each do |pledge|
+            create_list(:click, 5, pledge: pledge)
+          end
+        end
+
+        it "should show the total of clicks from active pledges" do
+          expect( @sponsor.active_pledges_clicks_count ).to eql(20)
+        end
+
+        it "should not include clicks from pending pledges" do
+          expect( @sponsor.active_pledges_clicks_count ).not_to eql(10)
+        end
+
+        it "should not include clicks from rejected pledges" do
+          expect( @sponsor.active_pledges_clicks_count ).not_to eql(15)
+        end
+
+        it "should not include clicks from past pledges" do
+          expect( @sponsor.active_pledges_clicks_count ).not_to eql(25)
+        end
       end
 
-      it "should return the number of accepted or past pledges of the SP" do
-        expect( @sponsor.pledges_count ).to eql(9) # accepted + past
+      describe "Invoices Due" do
+        before(:each) do
+          @sponsor.invoices.destroy_all
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
+
+          @paid_invoices = []
+          @outstanding_invoices = []
+
+          @past_pledges.each do |pledge|
+            @paid_invoices << create_list(:invoice, 3, pledge: pledge)
+            @outstanding_invoices << create_list(:pending_invoice, 5, pledge: pledge)
+          end
+        end
+
+        it "should show total dollar amount of outstanding invoices" do
+          due = @outstanding_invoices.flatten.map(&:due_cents).sum
+          expect( @sponsor.invoices_due ).to eql(due)
+        end
+
+        it "should not include amounts from paid invoices" do
+          due = @paid_invoices.flatten.map(&:due_cents).sum
+          expect( @sponsor.invoices_due ).not_to eql(due)
+        end
       end
 
-      it "should not include pending pledges" do
-        expect( @sponsor.pledges_count ).not_to eql(6) # accepted + pending
-        expect( @sponsor.pledges_count ).not_to eql(7) # past + pending
-        expect( @sponsor.pledges_count ).not_to eql(11) # past + accepted + pending
-      end
-
-      it "should not include past pledges" do
-        expect( @sponsor.pledges_count ).not_to eql(7) # accepted + past
-        expect( @sponsor.pledges_count ).not_to eql(8) # past + past
-        expect( @sponsor.pledges_count ).not_to eql(12) # past + accepted + past
-      end
-    end
-
-    describe "Average Pledge" do
-      before(:each) do
-        @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
-        @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
-        @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
-        @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
-      end
-
-      it "should be the average of accepted and past pledges's total_amount" do
-        pledges = @accepted_pledges + @past_pledges
-        avg = pledges.map(&:total_amount_cents).sum/pledges.count
-        expect( @sponsor.average_pledge ).to eql(avg)
-      end
-    end
-
-    describe "Average Donation" do
-      before(:each) do
-        @paid_invoices = create_list(:invoice, 12, sponsor: @sponsor)
-        @pending_invoices = create_list(:pending_invoice, 12, sponsor: @sponsor)
-      end
-
-      it "should be the average of SP's paid invoices" do
-        avg = @paid_invoices.map(&:due_cents).sum/@paid_invoices.count
-        expect( @sponsor.average_donation ).to eql(avg)
-      end
-
-      it "should not be the average of SP's pending invoices" do
-        avg = @pending_invoices.map(&:due_cents).sum/@pending_invoices.count
-        expect( @sponsor.average_donation ).not_to eql(avg)
-      end
-    end
-
-    describe "Average Donation per Click" do
-      before(:each) do
-        @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor)
-        @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor)
-        @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor)
-        @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)           
-      end
-
-      it "should be the average of accepted and past pledges's amount_per_click" do
-        pledges = @accepted_pledges + @past_pledges
-        avg = pledges.map(&:amount_per_click_cents).sum/pledges.count
-        expect( @sponsor.average_donation_per_click ).to eql(avg)
-      end
-    end
-
-    describe "Average Clicks per Pledge" do
-      before(:each) do
-        @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, clicks_count: 0)
-        @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, clicks_count: 0)
-        @pledges = @accepted_pledges + @past_pledges
-
-        @pledges.each do |p|
-          create_list(:click, 5, pledge: p)
-        end           
-      end
-
-      it "should be the total clicks divided total of accepted and past pledges" do
-        avg = @pledges.map(&:clicks).flatten.count/@pledges.count
-        expect( @sponsor.average_clicks_per_pledge ).to eql(avg)
-      end
-    end
-
-    describe "Top Causes" do
-      it "should" do
-        pending
-      end
     end
 
   end

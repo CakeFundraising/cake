@@ -2,7 +2,7 @@ class Sponsor::DashboardController < ApplicationController
   before_action :authenticate_user!
   
   def home
-    @sponsor = current_sponsor
+    @sponsor = current_sponsor.decorate
   end
 
   def billing
