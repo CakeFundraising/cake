@@ -46,7 +46,7 @@ class Fundraiser < ActiveRecord::Base
 
   MIN_CLICK_DONATIONS = %w{0.10 0.25 0.50 1.00 1.50 2.00 3.00 5.00 10.00}
 
-  def sponsors(type) # type = :active || :past
+  def sponsors_of(type) # type = :active || :past
     pledges.accepted.send(type).eager_load(:sponsor).map(&:sponsor).uniq
   end
 
@@ -80,7 +80,8 @@ class Fundraiser < ActiveRecord::Base
   end
 
   def average_sponsors_per_campaign
-    (sponsors.count.to_f/campaigns.count.to_f).round(1) if campaigns.any?
+    return 0 if campaigns_count.zero?
+    (sponsors.count.to_f/campaigns.count.to_f).round(1)
   end
 
   def active_campaigns_donation
@@ -88,6 +89,7 @@ class Fundraiser < ActiveRecord::Base
   end
 
   def average_clicks_per_campaign
-    (total_clicks/campaigns_count).floor unless campaigns_count.zero?
+    return 0 if campaigns_count.zero?
+    (total_clicks/campaigns_count).floor
   end
 end

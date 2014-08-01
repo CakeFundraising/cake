@@ -22,6 +22,6 @@ class Fundraiser::DashboardController < ApplicationController
 
   def history
     @campaigns = current_fundraiser.campaigns.past.decorate
-    @sponsors = SponsorDecorator.decorate_collection(current_fundraiser.sponsors(:past))
+    @sponsors = SponsorDecorator.decorate_collection(current_fundraiser.sponsors_of(:past))
   end
 end

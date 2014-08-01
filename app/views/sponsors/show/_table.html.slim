@@ -4,13 +4,13 @@
       tr
         th = Sponsor.model_name.human
         th = Sponsor.human_attribute_name :pledges_quantity
-        th = Sponsor.human_attribute_name :avg_donation
-        th = Sponsor.human_attribute_name :avg_pledge
-        th = Sponsor.human_attribute_name :avg_donation_click
-        th = Sponsor.human_attribute_name :avg_clicks
-        th = Sponsor.human_attribute_name :avg_reach
-        th = Sponsor.human_attribute_name :avg_conv_rate
-        th = Sponsor.human_attribute_name :avg_pledge_rank
+        th = t('semantic.average', model:'Donation')
+        th = t('semantic.average', model:'Pledge')
+        th = t('semantic.average', model:'Donation/Click')
+        th = t('semantic.average', model:'Clicks')
+        th = t('semantic.average', model:'Reach')
+        th = t('semantic.average', model:'Conv. Rate')
+        th = t('semantic.average', model:'Pledge Rank')
     tbody
       = render partial:'sponsors/show/table_row', collection: sponsors, as: :sponsor, locals:{fr: fr}
 - else

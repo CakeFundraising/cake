@@ -22,6 +22,9 @@ en:
           tax_exempt: Must be 503c Tax Exempt
           donations_in_kind: Must accept donations in kind
   numbers:
+    unit: ""
+    ten: ""
+    hundred: ""
     thousand:
       one: K
       other: K

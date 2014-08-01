@@ -3,12 +3,12 @@
     thead
       tr
         th = Fundraiser.model_name.human
-        th = Campaign.human_attribute_name :number
-        th = Campaign.human_attribute_name :avg_donation
-        th = Campaign.human_attribute_name :avg_donation_click
-        th = Campaign.human_attribute_name :avg_clicks
-        th = Campaign.human_attribute_name :avg_reach
-        th = Campaign.human_attribute_name :avg_pledge_rank
+        th = Fundraiser.human_attribute_name :number
+        th = Fundraiser.human_attribute_name :avg_donation
+        th = Fundraiser.human_attribute_name :avg_donation_click
+        th = Fundraiser.human_attribute_name :avg_clicks
+        th = Fundraiser.human_attribute_name :avg_reach
+        th = Fundraiser.human_attribute_name :avg_pledge_rank
     tbody
       = render partial:'fundraisers/show/table_row', collection: fundraisers, as: :fundraiser
 - else
