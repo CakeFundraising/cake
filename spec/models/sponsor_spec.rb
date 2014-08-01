@@ -336,13 +336,13 @@ describe Sponsor do
         end
 
         it "should list the causes from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by &:total_amount
-          expect( @sponsor.top_causes.keys ).to eql(@pledges.first(3).map(&:main_cause))
+          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount, p.amount_per_click] }
+          expect( @sponsor.top_causes.keys ).to eql(@pledges.first(3).map(&:main_cause).uniq)
         end
 
         it "should list the total_amount from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by &:total_amount
-          expect( @sponsor.top_causes.values ).to eql(@pledges.first(3).map(&:total_amount))
+          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount, p.amount_per_click] }
+          expect( @sponsor.top_causes.values ).to eql(@pledges.first(3).uniq(&:main_cause).map(&:total_amount))
         end
       end
       

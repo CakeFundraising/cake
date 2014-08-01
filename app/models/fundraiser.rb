@@ -1,6 +1,7 @@
 class Fundraiser < ActiveRecord::Base
   include Cause
   include Formats
+  include Analytics
 
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
@@ -31,6 +32,9 @@ class Fundraiser < ActiveRecord::Base
   monetize :min_pledge_cents
   monetize :min_click_donation_cents
 
+  scope :rank, ->{ eager_load(:invoices).where(invoices: {status: "paid"}).order("invoices.due_cents DESC") }
+  scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") }
+
   after_initialize do
     if self.new_record?
       self.build_location
@@ -42,9 +46,12 @@ class Fundraiser < ActiveRecord::Base
 
   MIN_CLICK_DONATIONS = %w{0.10 0.25 0.50 1.00 1.50 2.00 3.00 5.00 10.00}
 
-  def sponsors(type=nil) # type = :active || :past
-    type = type || :active
+  def sponsors(type) # type = :active || :past
     pledges.accepted.send(type).eager_load(:sponsor).map(&:sponsor).uniq
+  end
+
+  def sponsors
+    pledges.accepted_or_past.eager_load(:sponsor).map(&:sponsor).uniq
   end
 
   #Stripe Account
@@ -65,5 +72,14 @@ class Fundraiser < ActiveRecord::Base
     users.each do |user|
       UserNotification.fundraiser_profile_updated(self, user).deliver if user.fundraiser_email_setting.public_profile_change
     end
+  end
+
+  ###### Analytics methods #######
+  def campaigns_count
+    campaigns.count
+  end
+
+  def average_sponsors_per_campaign
+    (sponsors.count.to_f/campaigns.count.to_f).round(1) if campaigns.any?
   end
 end

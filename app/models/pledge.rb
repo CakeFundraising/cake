@@ -38,8 +38,8 @@ class Pledge < ActiveRecord::Base
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
 
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
-  scope :pending_or_rejected, ->{ where("status = ? OR status = ?", :pending, :rejected) }
-  scope :accepted_or_past, ->{ where("status = ? OR status = ?", :accepted, :past) }
+  scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
+  scope :accepted_or_past, ->{ where("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
   
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }
