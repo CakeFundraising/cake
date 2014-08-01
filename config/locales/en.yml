@@ -68,6 +68,8 @@ en:
       tax_exempt: Tax Exempt Not-For-Profit
       active: Active Campaigns
       merchandise_categories: Categories
+  actions:
+    make_pledge: Make a Pledge
   semantic:
     buy:               Buy
     add_resource:      "Add %{resource}"
@@ -86,6 +88,11 @@ en:
     here:              Here
     next:              Next
     my_thing:          "My %{thing}"
+    pending:           pending
+    accepted:          accepted
+    rejected:          rejected
+    number_of:         "No. of %{model}"
+    average:           "Avg. %{model}"
   links:
     user:
       sign_in: Sign In
@@ -114,13 +121,6 @@ en:
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
-  semantic:
-    here: Here
-    pending: pending
-    accepted: accepted
-    rejected: rejected
-    number_of: "No. of %{model}"
-    average: "Avg. %{model}"
   activemodel:
     attributes:
       bank_account:
@@ -156,6 +156,7 @@ en:
         pledges_quantity: No. of Pledges
         email: Organization public email
         causes: Organization Cause Categories - use ctrl to choose more than one
+        rank: Fundraiser Rank
       fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased

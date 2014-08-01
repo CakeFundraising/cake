@@ -42,7 +42,7 @@
                 strong.pull-right = @campaign.goal
             - unless @campaign.past?
               .col-md-12
-                = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+                = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
 
   .white
     .container

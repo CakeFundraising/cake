@@ -46,7 +46,7 @@
             - if current_user.present?
               - unless @campaign.past? 
                 .col-md-12
-                  = link_to "Make a Pledge", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
             - else
               .col-md-12
                 a.btn.btn-success.btn-block href='#pledges_section' Visit our Sponsors
@@ -62,7 +62,7 @@
               .fundraiser-info
                 h4 = auto_link @campaign.fundraiser
                 span #3
-                p = @campaign.fundraiser.main_cause
+                p = @campaign.fundraiser.causes.first
             .campaign_and_fundraiser
               = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success btn-block'
         .col-md-8.col-md-pull-4.campaign-story

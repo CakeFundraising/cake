@@ -17,8 +17,7 @@ class SponsorDecorator < ApplicationDecorator
     stripe_account.present? and stripe_account.customer?
   end
 
-  #Performance methods
-
+  ### Performance methods
   def total_donation
     "#{h.currency_symbol}#{h.number_to_human(object.total_donation/100, units: :numbers, format: '%n%u')}".html_safe
   end
