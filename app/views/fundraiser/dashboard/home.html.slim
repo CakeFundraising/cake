@@ -6,30 +6,31 @@
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats $7,678
+            p.donation-stats = @fundraiser.active_campaigns_donation
             p Active Campaign Donations
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Total Fundraised Lifetime", "$128")
-            = basic_list_item("Invoice Due", "3")
+            = basic_list_item("Total Fundraised Lifetime", @fundraiser.total_raised)
+            = basic_list_item(Fundraiser.human_attribute_name(:invoices_due), @fundraiser.invoices_due)
     .col-md-4
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats $7,678
-            p Active Campaign Donations
+            p.donation-stats = @fundraiser.rank
+            p = Fundraiser.human_attribute_name(:rank)
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Top Cause Rank", "587,551,666")
-            = basic_list_item("Ranking in Location", "23%")
+            = basic_list_item("Top Cause Rank", @fundraiser.top_cause_name(0))
+            = basic_list_item(Fundraiser.human_attribute_name(:local_rank), @fundraiser.local_rank)
     .col-md-4
       .sidebar-bkg
         .row
           .col-xs-12.text-center
-            p.donation-stats $7,678
-            p Active Campaign Donations
+            p.donation-stats = @fundraiser.campaigns_count
+            p = Fundraiser.human_attribute_name(:campaigns_count)
         .row
           .col-xs-12.rank-rows
-            = basic_list_item("Avg. Clicks/Campaign", "3,588,146")
+            = basic_list_item(t('semantic.average', model: 'Clicks/Campaign'), @fundraiser.average_clicks_per_campaign)
+            = basic_list_item(t('semantic.average', model: 'Clicks/Pledge'), @fundraiser.average_clicks_per_pledge)
             = basic_list_item("Avg. Reach", "2,888,996")
-            = basic_list_item("Total Clicks for Sponsors", "42,888,996")
+            = basic_list_item(Fundraiser.human_attribute_name(:total_clicks), @fundraiser.total_clicks)

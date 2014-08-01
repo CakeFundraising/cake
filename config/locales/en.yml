@@ -157,6 +157,9 @@ en:
         email: Organization public email
         causes: Organization Cause Categories - use ctrl to choose more than one
         rank: Fundraiser Rank
+        invoices_due: Outstanding Invoices
+        campaigns_count: Total Number of Campaigns
+        total_clicks: Total Clicks for Sponsors
       fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased

@@ -26,6 +26,10 @@ class FundraiserDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.average_donation/100
   end
 
+  def invoices_due
+    h.humanized_money_with_symbol object.invoices_due/100
+  end
+
   def rank
     "##{object.rank}"
   end
@@ -48,5 +52,9 @@ class FundraiserDecorator < ApplicationDecorator
     top_value = top_cause_amount(0)
 
     (value/top_value)*100 unless value.nil? or top_value.nil?
+  end
+
+  def active_campaigns_donation
+    h.humanized_money_with_symbol object.active_campaigns_donation
   end
 end

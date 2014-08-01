@@ -2,7 +2,7 @@ class Fundraiser::DashboardController < ApplicationController
   before_action :authenticate_user!
   
   def home
-    @fundraiser = current_fundraiser
+    @fundraiser = current_fundraiser.decorate
   end
 
   def billing

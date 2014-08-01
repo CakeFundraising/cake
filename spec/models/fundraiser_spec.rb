@@ -393,8 +393,81 @@ describe Fundraiser do
           expect( fundraiser.top_causes.values ).to eql(@pledges.first(3).uniq(&:main_cause).map(&:total_amount))
         end
       end
-
     end
+
+    context 'FR Home Dashboard' do
+      describe "Active Campaign Donations" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, fundraiser: fundraiser)
+          @rejected_pledges = create_list(:rejected_pledge, 3, fundraiser: fundraiser)
+          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)
+          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+        end
+
+        it "should show sum of clicks_count*amount_per_click for all active pledges" do
+          donation = @accepted_pledges.map(&:total_charge).sum
+          expect( fundraiser.active_campaigns_donation ).to eql(donation)
+        end
+
+        it "should not consider the pending pledges" do
+          donation = @pending_pledges.map(&:total_charge).sum
+          expect( fundraiser.active_campaigns_donation ).not_to eql(donation)
+        end
+
+        it "should not consider the rejected pledges" do
+          donation = @rejected_pledges.map(&:total_charge).sum
+          expect( fundraiser.active_campaigns_donation ).not_to eql(donation)
+        end
+
+        it "should not consider the past pledges" do
+          donation = @past_pledges.map(&:total_charge).sum
+          expect( fundraiser.active_campaigns_donation ).not_to eql(donation)
+        end
+      end
+
+      describe "Average Clicks per Campaign" do
+        before(:each) do
+          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser, clicks_count: 0)
+          @pledges = @accepted_pledges + @past_pledges
+
+          @pledges.each do |p|
+            create_list(:click, 5, pledge: p)
+          end           
+        end
+
+        it "should be the total clicks divided total of accepted and past pledges" do
+          avg = @pledges.map(&:clicks).flatten.count/@pledges.count
+          expect( fundraiser.average_clicks_per_pledge ).to eql(avg)
+        end
+      end
+
+      describe "Outstanding Invoices" do
+        before(:each) do
+          fundraiser.invoices.destroy_all
+          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+
+          @paid_invoices = []
+          @outstanding_invoices = []
+
+          @past_pledges.each do |pledge|
+            @paid_invoices << create_list(:invoice, 3, pledge: pledge)
+            @outstanding_invoices << create_list(:pending_invoice, 5, pledge: pledge)
+          end
+        end
+
+        it "should show total dollar amount of outstanding invoices" do
+          due = @outstanding_invoices.flatten.map(&:due_cents).sum
+          expect( fundraiser.invoices_due ).to eql(due)
+        end
+
+        it "should not include amounts from paid invoices" do
+          due = @paid_invoices.flatten.map(&:due_cents).sum
+          expect( fundraiser.invoices_due ).not_to eql(due)
+        end
+      end
+    end
+
   end
 
 end

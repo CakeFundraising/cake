@@ -73,19 +73,6 @@ class Sponsor < ActiveRecord::Base
     pledges.active.sum(:clicks_count).to_i
   end
 
-  def invoices_due
-    outstanding_invoices.sum(:due_cents).to_i
-  end
-
-  #### Invoices
-  def outstanding_invoices
-    invoices.outstanding.merge(pledges.past)
-  end
-
-  def past_invoices
-    invoices.paid.merge(pledges.past)
-  end
-
   #### Stripe Account
   def stripe_account?
     stripe_account.present?

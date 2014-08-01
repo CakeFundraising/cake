@@ -57,4 +57,17 @@ module Analytics
     end
     top_causes
   end
+
+  def invoices_due
+    outstanding_invoices.sum(:due_cents).to_i
+  end
+
+  #### Invoices
+  def outstanding_invoices
+    invoices.outstanding.merge(pledges.past)
+  end
+
+  def past_invoices
+    invoices.paid.merge(pledges.past)
+  end
 end

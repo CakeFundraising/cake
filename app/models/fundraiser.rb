@@ -82,4 +82,12 @@ class Fundraiser < ActiveRecord::Base
   def average_sponsors_per_campaign
     (sponsors.count.to_f/campaigns.count.to_f).round(1) if campaigns.any?
   end
+
+  def active_campaigns_donation
+    pledges.active.map(&:total_charge).sum
+  end
+
+  def average_clicks_per_campaign
+    (total_clicks/campaigns_count).floor unless campaigns_count.zero?
+  end
 end
