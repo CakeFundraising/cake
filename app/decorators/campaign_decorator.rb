@@ -1,4 +1,6 @@
 class CampaignDecorator < ApplicationDecorator
+  include AnalyticsDecorator
+
   delegate_all
   decorates_association :video
   decorates_association :fundraiser
@@ -43,23 +45,5 @@ class CampaignDecorator < ApplicationDecorator
   def goal
     h.humanized_money_with_symbol object.goal
   end
-
-  ## Relations
-  # def sponsors
-  #   object.sponsors.merge(object.pledges.accepted_or_past)
-  # end
-
-  ## Analytics
-  def average_pledge
-    h.humanized_money_with_symbol object.average_pledge/100
-  end
-
-  def average_donation_per_click
-    h.humanized_money_with_symbol object.average_donation_per_click/100
-  end
-
-  def average_donation
-    h.humanized_money_with_symbol object.average_donation/100
-  end
-
+  
 end

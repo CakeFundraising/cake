@@ -172,6 +172,23 @@ describe Campaign do
       @campaign = FactoryGirl.create(:campaign)
     end
 
+    describe "Total Donation" do
+      before(:each) do
+        @invoices = create_list(:invoice, 5, campaign: @campaign)
+        @pending_invoices = create_list(:pending_invoice, 5, campaign: @campaign)
+      end
+
+      it "should show total dollars collected by all FR paid campaigns's invoices" do
+        total = @invoices.map(&:due_cents).sum
+        expect( @campaign.total_donation ).to eql(total)
+      end
+
+      it "should not include dollars coming from pending invoices" do
+        total = @pending_invoices.map(&:due_cents).sum
+        expect( @campaign.total_donation ).not_to eql(total)
+      end
+    end
+
     describe "Average Donation" do
       before(:each) do
         @past_pledges = create_list(:past_pledge, 5, campaign: @campaign)
@@ -225,6 +242,23 @@ describe Campaign do
         pledges = @accepted_pledges + @past_pledges
         avg = pledges.map(&:amount_per_click_cents).sum/pledges.count
         expect( @campaign.average_donation_per_click ).to eql(avg)
+      end
+    end
+
+    describe "Average Clicks per Pledge" do
+      before(:each) do
+        @accepted_pledges = create_list(:pledge, 4, campaign: @campaign, clicks_count: 0)
+        @past_pledges = create_list(:past_pledge, 5, campaign: @campaign, clicks_count: 0)
+        @pledges = @accepted_pledges + @past_pledges
+
+        @pledges.each do |p|
+          create_list(:click, 5, pledge: p)
+        end           
+      end
+
+      it "should be the total clicks divided total of accepted and past pledges" do
+        avg = @pledges.map(&:clicks).flatten.count/@pledges.count
+        expect( @campaign.average_clicks_per_pledge ).to eql(avg)
       end
     end
 
