@@ -154,8 +154,6 @@ class PledgesController < InheritedResources::Base
 
   def set_increase
     update! do |success, failure|
-      puts resource.changes
-      puts resource.changes.blank?
       success.html do
         resource.increase! unless resource.changes.blank?
         redirect_to resource, notice: 'Pledge increased succesfully.'

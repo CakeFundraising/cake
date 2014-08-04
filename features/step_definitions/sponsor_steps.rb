@@ -5,7 +5,7 @@ Then(/^he should see his sponsor home dashboard$/) do
   page.should have_link("Find a Cause to Sponsor")
   page.should have_link("Edit")
   page.should have_content("Clicks from Active Pledges")
-  page.should have_content("Overall Sponsor Ranking")
+  page.should have_content("Sponsor Rank")
   page.should have_content("Total No. of Pledges")
 end
 
