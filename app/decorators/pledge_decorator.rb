@@ -1,6 +1,7 @@
 class PledgeDecorator < ApplicationDecorator
   delegate_all
   decorates_association :campaign
+  decorates_association :invoice
   decorates_association :sponsor
   decorates_association :coupons
   decorates_association :fundraiser
@@ -20,5 +21,13 @@ class PledgeDecorator < ApplicationDecorator
 
   def scopes
     object.campaign.scopes
+  end
+
+  def total_amount
+    h.humanized_money_with_symbol object.total_amount
+  end
+
+  def amount_per_click
+    h.humanized_money_with_symbol object.amount_per_click
   end
 end

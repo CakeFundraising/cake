@@ -1,16 +1,15 @@
 tr.pledge
-  td = auto_link pledge
+  td = link_to pledge.campaign, pledge
   td = auto_link pledge.fundraiser
-  td = pledge.campaign.object.main_cause
-  td = pledge.fundraiser.location
+  td = pledge.main_cause
+  td = pledge.campaign.object.scopes.first
   td = pledge.end_date
-  td $55,555
-  td $55,555
-  td 156,897
-  td $5,9
-  td 5,899,357
-  td 16%
-  td 6
+  td = pledge.invoice.due
+  td = pledge.total_amount
+  td = pledge.amount_per_click
+  td = pledge.clicks_count
+  td 45467
+  td 17%
   td
     button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
       span.glyphicon.glyphicon-plus

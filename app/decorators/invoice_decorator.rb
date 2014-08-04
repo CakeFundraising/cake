@@ -7,4 +7,8 @@ class InvoiceDecorator < ApplicationDecorator
   def status
     object.status.titleize
   end
+
+  def due
+    h.humanized_money_with_symbol object.due
+  end
 end
