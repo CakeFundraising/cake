@@ -135,6 +135,6 @@
           #past.tab-pane
             = render partial:'sponsors/public_profile/pledges_table', locals: {pledges: @past_pledges, kind: :past}
           #top.tab-pane
-            = render partial:'sponsors/public_profile/fundraisers_table'
+            = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers, sponsor: @sponsor}
 css:
   .hero { background-image: url("#{@sponsor.banner.url(:large)}"); }

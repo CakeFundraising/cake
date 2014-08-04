@@ -1,8 +1,8 @@
 tr.fundraiser
   td = auto_link fundraiser
-  td = current_sponsor.pledges.accepted.fundraiser(fundraiser).count
-  td $899,899
-  td $5,59
-  td 12
+  td = sponsor.pledges.past.fundraiser(fundraiser).count
+  td = fundraiser.average_donation_with(sponsor)
+  td = fundraiser.average_donation_per_click_with(sponsor)
+  td = fundraiser.average_clicks_per_pledge_with(sponsor)
+  td 1989
   td 25%
-  td 19

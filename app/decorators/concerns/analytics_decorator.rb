@@ -50,15 +50,15 @@ module AnalyticsDecorator
   end
 
   # Analytics related to FR
-  def average_donation_with(fr)
-    h.humanized_money_with_symbol object.average_donation_with(fr)/100
+  def average_donation_with(user_role)
+    h.humanized_money_with_symbol object.average_donation_with(user_role)/100
   end
 
-  def average_pledge_with(fr)
-    h.humanized_money_with_symbol object.average_pledge_with(fr)/100
+  def average_pledge_with(user_role)
+    h.humanized_money_with_symbol object.average_pledge_with(user_role)/100
   end
 
-  def average_donation_per_click_with(fr)
-    h.humanized_money_with_symbol object.average_donation_per_click_with(fr)/100
+  def average_donation_per_click_with(user_role)
+    h.humanized_money_with_symbol object.average_donation_per_click_with(user_role)/100
   end
 end

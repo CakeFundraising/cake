@@ -70,6 +70,54 @@ module Analytics
     outstanding_invoices.sum(:due_cents).to_i
   end
 
+  #### Correlated analytics ####
+  ## Avg. Donation
+  def paid_invoices_to(user_role)
+    if self.is_a?(Sponsor)
+      invoices.paid.merge pledges.fundraiser(user_role)
+    else
+      invoices.paid.merge pledges.sponsor(user_role)
+    end
+  end
+
+  def total_donation_with(user_role)
+    paid_invoices_to(user_role).sum(:due_cents).to_i
+  end
+
+  def average_donation_with(user_role)
+    return 0 unless paid_invoices_to(user_role).any?
+    (total_donation_with(user_role)/paid_invoices_to(user_role).count)
+  end
+
+  ## Avg. Pledges
+  def pledges_related_to(user_role)
+    if self.is_a?(Sponsor)
+      pledges.accepted_or_past.fundraiser(user_role)
+    else
+      pledges.accepted_or_past.sponsor(user_role)
+    end
+  end
+
+  def average_pledge_with(user_role)
+    return 0 unless pledges_related_to(user_role).any?
+    (pledges_related_to(user_role).sum(&:total_amount_cents)/pledges_related_to(user_role).count) 
+  end
+
+  def average_donation_per_click_with(user_role)
+    return 0 unless pledges_related_to(user_role).any?
+    (pledges_related_to(user_role).sum(:amount_per_click_cents)/pledges_related_to(user_role).count)
+  end
+
+  ## Avg. Clicks
+  def total_clicks_with(user_role)
+    pledges_related_to(user_role).sum(:clicks_count).to_i
+  end
+
+  def average_clicks_per_pledge_with(user_role)
+    return 0 unless pledges_related_to(user_role).any?
+    (total_clicks_with(user_role)/pledges_related_to(user_role).count).floor
+  end
+
   #### Invoices
   def outstanding_invoices
     invoices.outstanding.merge(pledges.past)
