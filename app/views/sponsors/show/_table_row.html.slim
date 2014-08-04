@@ -1,12 +1,11 @@
 tr.sponsor
   td = auto_link sponsor
-  td = fr.pledges.sponsor(sponsor).count
-  td 98,855
-  td 36,877
-  td $5
-  td 78,899
+  td = sponsor.pledges_related_to(fr).count
+  td = sponsor.average_donation_with(fr)
+  td = sponsor.average_pledge_with(fr)
+  td = sponsor.average_donation_per_click_with(fr)
+  td = sponsor.average_clicks_per_pledge_with(fr)
   td 23%
   td 11%
-  td 14
   td
     span = link_to "View", sponsor, class:'btn btn-primary'

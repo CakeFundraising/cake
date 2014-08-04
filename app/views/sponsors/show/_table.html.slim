@@ -8,10 +8,9 @@
         th = t('semantic.average', model:'Pledge')
         th = t('semantic.average', model:'Donation/Click')
         th = t('semantic.average', model:'Clicks')
-        th = t('semantic.average', model:'Reach')
+        th = t('semantic.average', model:'Impressions/Pledge')
         th = t('semantic.average', model:'Conv. Rate')
-        th = t('semantic.average', model:'Pledge Rank')
     tbody
-      = render partial:'sponsors/show/table_row', collection: sponsors, as: :sponsor, locals:{fr: fr}
+      = render partial:'sponsors/show/table_row', collection: SponsorDecorator.decorate_collection(sponsors), as: :sponsor, locals:{fr: fr}
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.sponsors')}

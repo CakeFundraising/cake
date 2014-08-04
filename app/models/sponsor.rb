@@ -73,6 +73,46 @@ class Sponsor < ActiveRecord::Base
     pledges.active.sum(:clicks_count).to_i
   end
 
+  ##### Fr related analytics
+  ## Avg. Donation
+  def paid_invoices_to(fr)
+    invoices.paid.merge pledges.fundraiser(fr)
+  end
+
+  def total_donation_with(fr)
+    paid_invoices_to(fr).sum(:due_cents).to_i
+  end
+
+  def average_donation_with(fr)
+    return 0 unless paid_invoices_to(fr).any?
+    (total_donation_with(fr)/paid_invoices_to(fr).count)
+  end
+
+  ## Avg. Pledges
+  def pledges_related_to(fr)
+    pledges.accepted_or_past.fundraiser(fr)
+  end
+
+  def average_pledge_with(fr)
+    return 0 unless pledges_related_to(fr).any?
+    (pledges_related_to(fr).sum(&:total_amount_cents)/pledges_related_to(fr).count) 
+  end
+
+  def average_donation_per_click_with(fr)
+    return 0 unless pledges_related_to(fr).any?
+    (pledges_related_to(fr).sum(:amount_per_click_cents)/pledges_related_to(fr).count)
+  end
+
+  ## Avg. Clicks
+  def total_clicks_with(fr)
+    pledges_related_to(fr).sum(:clicks_count).to_i
+  end
+
+  def average_clicks_per_pledge_with(fr)
+    return 0 unless pledges_related_to(fr).any?
+    (total_clicks_with(fr)/pledges_related_to(fr).count).floor
+  end
+
   #### Stripe Account
   def stripe_account?
     stripe_account.present?

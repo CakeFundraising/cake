@@ -144,6 +144,87 @@ describe Sponsor do
       @sponsor = FactoryGirl.create(:sponsor)
     end
 
+    context 'related to particular FR (tables)' do
+      before(:each) do
+        @fundraiser = FactoryGirl.create(:fundraiser)  
+      end
+
+      describe "Average Donation" do
+        before(:each) do
+          @pledges = create_list(:past_pledge, 5, fundraiser: @fundraiser)
+
+          @paid_invoices = []
+          @pending_invoices = []
+
+          @pledges.each do |pledge|
+            @paid_invoices << create_list(:invoice, 2, pledge: pledge, sponsor: @sponsor)
+            @pending_invoices << create_list(:pending_invoice, 2, pledge: pledge, sponsor: @sponsor)
+          end
+
+          @paid_invoices = @paid_invoices.flatten
+          @pending_invoices = @pending_invoices.flatten
+        end
+
+        it "should be the average of SP's paid invoices to that FR" do
+          avg = @paid_invoices.map(&:due_cents).sum/@paid_invoices.count
+          expect( @sponsor.average_donation_with(@fundraiser) ).to eql(avg)
+        end
+
+        it "should not be the average of SP's pending invoices to that FR" do
+          avg = @pending_invoices.map(&:due_cents).sum/@pending_invoices.count
+          expect( @sponsor.average_donation_with(@fundraiser) ).not_to eql(avg)
+        end
+      end
+
+      describe "Average Pledge" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, fundraiser: @fundraiser)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, fundraiser: @fundraiser)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser)           
+        end
+
+        it "should be the average of accepted and past pledges's total_amount" do
+          pledges = @accepted_pledges + @past_pledges
+          avg = pledges.map(&:total_amount_cents).sum/pledges.count
+          expect( @sponsor.average_pledge_with(@fundraiser) ).to eql(avg)
+        end
+      end
+
+      describe "Average Donation per Click" do
+        before(:each) do
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, fundraiser: @fundraiser)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, fundraiser: @fundraiser)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser)           
+        end
+
+        it "should be the average of accepted and past pledges's amount_per_click" do
+          pledges = @accepted_pledges + @past_pledges
+          avg = pledges.map(&:amount_per_click_cents).sum/pledges.count
+          expect( @sponsor.average_donation_per_click_with(@fundraiser) ).to eql(avg)
+        end
+      end
+
+      describe "Average Clicks per Pledge" do
+        before(:each) do
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
+          @pledges = @accepted_pledges + @past_pledges
+
+          @pledges.each do |p|
+            create_list(:click, 5, pledge: p)
+          end           
+        end
+
+        it "should be the total clicks divided total of accepted and past pledges" do
+          avg = @pledges.map(&:clicks).flatten.count/@pledges.count
+          expect( @sponsor.average_clicks_per_pledge_with(@fundraiser) ).to eql(avg)
+        end
+      end
+
+    end
+
     context 'SP public profile' do
       describe 'Total Donations' do
         before(:each) do
