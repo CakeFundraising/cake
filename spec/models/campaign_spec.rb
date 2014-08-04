@@ -167,4 +167,67 @@ describe Campaign do
     # end
   end
 
+  context 'Analytics' do
+    before(:each) do
+      @campaign = FactoryGirl.create(:campaign)
+    end
+
+    describe "Average Donation" do
+      before(:each) do
+        @past_pledges = create_list(:past_pledge, 5, campaign: @campaign)
+
+        @paid_invoices = []
+        @outstanding_invoices = []
+
+        @past_pledges.each do |pledge|
+          @paid_invoices << create_list(:invoice, 3, pledge: pledge)
+          @outstanding_invoices << create_list(:pending_invoice, 5, pledge: pledge)
+        end
+        @paid_invoices = @paid_invoices.flatten
+        @outstanding_invoices = @outstanding_invoices.flatten
+      end
+
+      it "should sum up all paid invoices's donations given to campaign" do
+        avg = @paid_invoices.map(&:due_cents).sum/@paid_invoices.count
+        expect( @campaign.average_donation ).to eql(avg)
+      end
+
+      it "should not include outstanding invoices's donations" do
+        avg = @outstanding_invoices.map(&:due_cents).sum/@outstanding_invoices.count
+        expect( @campaign.average_donation ).not_to eql(avg)
+      end
+    end
+
+    describe "Average Pledge" do
+      before(:each) do
+        @pending_pledges = create_list(:pending_pledge, 2, campaign: @campaign)
+        @rejected_pledges = create_list(:rejected_pledge, 3, campaign: @campaign)
+        @accepted_pledges = create_list(:pledge, 4, campaign: @campaign)
+        @past_pledges = create_list(:past_pledge, 5, campaign: @campaign)
+      end
+
+      it "should be the sum of all pledges/number of pledges" do
+        pledges = @accepted_pledges + @past_pledges
+        avg = pledges.map(&:total_amount_cents).sum/pledges.count
+        expect( @campaign.average_pledge ).to eql(avg)
+      end
+    end
+
+    describe "Average Donation per Click" do
+      before(:each) do
+        @pending_pledges = create_list(:pending_pledge, 2, campaign: @campaign)
+        @rejected_pledges = create_list(:rejected_pledge, 3, campaign: @campaign)
+        @accepted_pledges = create_list(:pledge, 4, campaign: @campaign)
+        @past_pledges = create_list(:past_pledge, 5, campaign: @campaign)
+      end
+
+      it "should be the average of accepted and past pledges's amount_per_click" do
+        pledges = @accepted_pledges + @past_pledges
+        avg = pledges.map(&:amount_per_click_cents).sum/pledges.count
+        expect( @campaign.average_donation_per_click ).to eql(avg)
+      end
+    end
+
+  end
+
 end

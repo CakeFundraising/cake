@@ -2,6 +2,7 @@ class Campaign < ActiveRecord::Base
   include Cause
   include Scope
   include Statusable
+  include Analytics
 
   has_statuses :not_launched, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -93,6 +94,11 @@ class Campaign < ActiveRecord::Base
     time :created_at
 
     integer :fundraiser_id
+  end
+
+  #Relations
+  def relevant_sponsors
+    sponsors.merge(pledges.accepted_or_past)
   end
 
   # Campaign pledges
