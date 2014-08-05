@@ -120,6 +120,12 @@ form{
   }
 }
 
+.input-group{
+  .col-xs-3{
+    padding-left: 0;
+  }
+}
+
 // Progress Bar Styles ---------------------------------------------------------------
 
 .progress {
@@ -516,18 +522,18 @@ table.performance-summary {
   background-color: $brand-primary;
 }
 .pledgebluestripe {
-  text-align: center;
   padding-bottom: 20px;
   @media (min-width: $screen-md-min) {
     padding: 25px 175px;
   }
   color: #fff;
-  p {
+  div {
     font-size: 18px;
     a {
       font-size: 14px;
       color: $brand-info;
       font-style: italic;
+      float: right;
     }
   }
 }

@@ -71,6 +71,10 @@ en:
       tax_exempt: Tax Exempt Not-For-Profit
       active: Active Campaigns
       merchandise_categories: Categories
+    boolean:
+      tax_exempt:
+        yes: Exempt
+        no: Not Exempt
   actions:
     make_pledge: Make a Pledge
   semantic:
@@ -150,21 +154,23 @@ en:
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Acceptable Pledge
-        min_click_donation: Min. Click/Donation
+        min_click_donation: Min. Donation/Click
         unsolicited_pledges: We welcome Unsolicited Pledges
         donations_kind: Accept Donations in Kind
-        tax_exempt: 503c Tax Exempt
+        tax_exempt: Tax Exempt Status
         name: Organization Name
         mission: Organization Mission Statement
         supporter_demographics: Demographic profile of our supporters
         manager_name: Campaign Manager
         pledges_quantity: No. of Pledges
         email: Organization public email
-        causes: Organization Cause Categories - use ctrl to choose more than one
-        rank: Fundraiser Rank
+        causes: Our Causes
+        rank: Global Fundraiser Rank
+        local_rank: Location Rank
         invoices_due: Outstanding Invoices
         campaigns_count: Total Number of Campaigns
         total_clicks: Total Clicks for Sponsors
+        total_raised: Total Funds Raised
       fundraiser_email_setting:
         new_pledge: New pledge offers
         pledge_increased: Pledge has been increased
@@ -224,7 +230,9 @@ en:
         cause_requirements: Fundraising Organization Requirements
         pledges_count: No. of Pledges
         active_pledges_clicks_count: Clicks from Active Pledges
-        rank: Sponsor Rank
+        rank: Global Sponsor Rank
+        top_causes: Top Causes we sponsor
+        total_donation: Total Donations
       video:
         url: Video Url
       picture: 

@@ -7,15 +7,15 @@
             .navbar-header
               .navbar-brand = campaign.title
             ul.nav.navbar-nav.navbar-right
-              li
+              div
+                span End Date: 
                 strong = campaign.end_date
-                div = Campaign.human_attribute_name :end_date
-              li
-                strong = campaign.end_date
-                div = Campaign.human_attribute_name :raised
-              li
-                strong = campaign.end_date
-                div = Campaign.human_attribute_name :goal
+              div
+                span #{Campaign.human_attribute_name :raised}: 
+                strong = campaign.total_raised
+              div
+                span Goal: 
+                strong = campaign.goal
             /! /.navbar-collapse
           /! /.container-fluid
   .panel-collapse.collapse id=(campaign.id)

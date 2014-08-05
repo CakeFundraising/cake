@@ -95,10 +95,10 @@
         = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.tax_exempt'), b(@sponsor.has_cause_requirement?(:tax_exempt)) )
         = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
         .wesupport
-          strong = Sponsor.human_attribute_name :causes
+          h3 = Sponsor.human_attribute_name :causes
           div = @sponsor.causes.join(", ")
 
-        strong = Sponsor.human_attribute_name :scopes
+        h3 = Sponsor.human_attribute_name :scopes
         div = @sponsor.scopes
 
         .profile-message 
@@ -114,7 +114,7 @@
 
           h4 Contact:
           strong = Sponsor.human_attribute_name :manager_name
-          div #{@sponsor.manager_title} #{@sponsor.manager_name} 
+          div #{@sponsor.manager_name}, #{@sponsor.manager_title} 
           strong = Sponsor.human_attribute_name :manager_email
           div = mail_to @sponsor.manager_email, @sponsor.manager_email
           strong = Sponsor.human_attribute_name :manager_phone

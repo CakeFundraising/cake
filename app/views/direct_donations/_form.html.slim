@@ -4,11 +4,15 @@
     = f.input :email, as: :hidden
     = f.input :card_token, as: :hidden
 
-  #direct_donation_amount_input.input-group
-    span.input-group-addon $
-    input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
-
-  button#donate_button.btn.btn-success Make a Direct Donation
+  #direct_donation_amount_input
+    .row
+      .col-xs-9.col-md-offset-3
+        .row.input-group
+          span.input-group-addon $
+          .col-xs-3
+            input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+          .col-xs-3
+            button#donate_button.btn.btn-success Make a Direct Donation
 
   script src="https://checkout.stripe.com/checkout.js" 
 

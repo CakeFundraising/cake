@@ -64,11 +64,10 @@
     .container
       .row.pledgebluestripe
         .col-md-12
-          h1 We will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
-          p
-            | Please share our pledge with your friends! 
+          h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
+          div
+            .pull-right = render partial:'layouts/share_buttons'
             a href="#" see how it works...
-            p/
           = render partial:'clicks/pledge', locals:{pledge: @pledge}
   .container
     - if @pledge.coupons.any?

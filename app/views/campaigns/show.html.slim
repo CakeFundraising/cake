@@ -75,11 +75,10 @@
     .container
       .row.pledgebluestripe
         .col-md-12
-          h1 Please visit all our generous sponsors and share our campaign with friends!
-          p
-            | working together, we can make a difference! 
+          h1 Click on each of our Sponsors below and they will donate for you!
+          div
+            .pull-right = render partial:'layouts/share_buttons'
             a href="#" see how it works...
-            p/
 
   .container#pledges_section
     = render partial:'campaigns/show/pledges/pledges_section'

@@ -92,13 +92,14 @@
     .row.min-case
       .col-md-8
         .wesupport
-          strong = Fundraiser.human_attribute_name :causes
+          h4 = Fundraiser.human_attribute_name :causes
           div = @fundraiser.causes
-            span = Fundraiser.human_attribute_name :donations_kind
-            strong.pull-right = b @fundraiser.donations_kind
+          div 
+            h4 = Fundraiser.human_attribute_name :donations_kind
+            div = b @fundraiser.donations_kind
           div
-            span = Fundraiser.human_attribute_name :tax_exempt
-            strong.pull-right = b @fundraiser.tax_exempt
+            h4 = Fundraiser.human_attribute_name :tax_exempt
+            div = b @fundraiser.tax_exempt, true: 'Exempt', false: 'Not Exempt'
           
           h4 Min Pledge Requirements
           div
