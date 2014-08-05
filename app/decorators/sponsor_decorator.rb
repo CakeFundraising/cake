@@ -17,4 +17,12 @@ class SponsorDecorator < ApplicationDecorator
   def stripe_customer?
     stripe_account.present? and stripe_account.customer?
   end
+
+  def phone
+    h.number_to_phone(object.phone, area_code: true)
+  end
+
+  def manager_phone
+    h.number_to_phone(object.manager_phone, area_code: true)
+  end
 end

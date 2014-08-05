@@ -230,6 +230,7 @@ en:
         pledges_count: No. of Pledges
         active_pledges_clicks_count: Clicks from Active Pledges
         rank: Global Sponsor Rank
+        local_rank: Location Rank
         top_causes: Top Causes we sponsor
         total_donation: Total Donations
       video:
