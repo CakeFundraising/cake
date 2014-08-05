@@ -30,13 +30,28 @@
       .col-md-12.center-block
         .well.pledge-thankyou-well.clearfix
           .pledge-thankyou
-            = image_tag @pledge.avatar.url(:medium)
-            = image_tag @pledge.campaign.avatar.url(:medium)
+            span.pledge-avatar 
+              = image_tag @pledge.avatar.url(:medium)
+            span.campaign-avatar 
+              = image_tag @pledge.campaign.avatar.url(:medium)
             .shake
+            h5.pull-left = auto_link @pledge.sponsor, truncate: 36
+            h5.pull-right = auto_link @pledge.fundraiser, truncate: 36
           .we-support-text
-            span We support 
-            div = @pledge.campaign
             = image_tag("cake_logo.png", class: "pledge-logo")
+            h5 = auto_link @pledge.fundraiser, truncate: 50
+            h4 = auto_link @pledge.campaign
+            br
+            .cause
+              span #{Campaign.human_attribute_name :cause}: 
+              span = @pledge.campaign.main_cause
+            .dates 
+              .start 
+                span #{ t('semantic.starts') }:  
+                span = @pledge.campaign.launch_date
+              .end
+                span #{ t('semantic.ends') }: 
+                span = @pledge.campaign.end_date
 
     .share-embed.row.text-center
       h3 Place a Pledge Badge on your website that links to your Pledge!.

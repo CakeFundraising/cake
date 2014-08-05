@@ -33,8 +33,9 @@
             .col-md-12.pledges_total
               span Pledges to date: 
               strong = @campaign.current_pledges_total
+          br
           .row
-            .col-md-12.click-btn
+            .col-md-12
               .progress
                 .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
@@ -43,6 +44,7 @@
                 span Raised
                 span.pull-right Goal
                 strong.pull-right = @campaign.goal
+          br
             - if current_user.present?
               - unless @campaign.past? 
                 .col-md-12
@@ -61,8 +63,9 @@
               .caption = @campaign.avatar_caption
               .fundraiser-info
                 h4 = auto_link @campaign.fundraiser
-                span #3
-                p = @campaign.fundraiser.causes.first
+                span = @campaign.fundraiser.rank
+                span &nbsp;
+                span = @campaign.fundraiser.top_cause_name(0)
             .campaign_and_fundraiser
               = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success btn-block'
         .col-md-8.col-md-pull-4.campaign-story

@@ -33,8 +33,6 @@ Cake.campaigns.validation = ->
         required: true
       'campaign[scopes][]':
         required: true
-      'campaign[causes][]':
-        required: true
       'campaign[main_cause]':
         required: true
       'campaign[mission]':

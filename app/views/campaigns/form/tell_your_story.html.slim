@@ -23,8 +23,7 @@
             p.text-muted Choose an image that best represents your mission and campaign.
             .help-block.italic Suggested size: 1400x614 px
             = render partial:'pictures/banner_form', locals:{f: f}
-            = f.input :mission, input_html: {rows: 2, placeholder: '250 characters or less'}
-            
+            = f.input :mission, input_html: {rows: 2, placeholder: '100 characters or less', maxlength: 100}
 
         hr.wizard-rule
         .text-center.tell-story-wrap 
@@ -39,8 +38,8 @@
         .text-center.tell-story-wrap
           h2 Tell your story in words.
           p.text-muted Tell your story with a headline and a campaign message.
-          = f.input :headline, {placeholder: '250 characters or less'}
-          = f.input :story, input_html: {rows: 5, placeholder: '3,000 words or less'}
+          = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
+          = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
 
           = render partial:'videos/form', locals:{f: f}
 

@@ -32,8 +32,12 @@ module ApplicationHelper
     end
   end
 
-  def auto_link(object)
-    link_to object.to_s, object
+  def auto_link(object, opts={})
+    if opts.symbolize_keys![:truncate].present?
+      link_to truncate(object.to_s, length: opts[:truncate]), object
+    else
+      link_to object.to_s, object
+    end
   end
 
   def auto_mail(object)

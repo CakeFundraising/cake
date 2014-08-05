@@ -30,9 +30,9 @@
               span.campaign-timer.mins
               span m.
           .row
-           .col-md-12.click-btn
+            .col-md-12
               = render partial:'clicks/pledge', locals:{pledge: @pledge}
-
+              hr
               p.timer-ital Our Pledge:
               - if @pledge.max_clicks > 0
                 .progress
@@ -42,6 +42,7 @@
                 strong = humanized_money_with_symbol(@pledge.amount_per_click) 
                 span donation per click up to 
                 strong = humanized_money_with_symbol(@pledge.total_amount)
+          br
   .white
     .container
       .row.sponsor-profile
@@ -52,9 +53,10 @@
               = image_tag @pledge.campaign.avatar.url(:medium)
               .shake
             .campaign_and_fundraiser
-              p #{ auto_link @pledge.sponsor } is proud to support:
-              .fundraiser = auto_link @pledge.fundraiser
-              .campaign = link_to "View Campaign", @pledge.campaign, class:'btn btn-success'
+              h5.pull-left = auto_link @pledge.sponsor, truncate: 26
+              h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
+              .clear.campaign
+                = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-block'
         .col-md-8.col-md-pull-4
           h3 = @pledge.headline
           p = @pledge.description

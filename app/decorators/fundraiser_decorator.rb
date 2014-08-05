@@ -10,6 +10,10 @@ class FundraiserDecorator < ApplicationDecorator
     object.causes.join(", ")
   end
 
+  def cause
+    object.causes.first
+  end
+
   ### Performance methods
   def active_campaigns_donation
     h.humanized_money_with_symbol object.active_campaigns_donation

@@ -30,6 +30,9 @@ h3, h4 {
 .error{
   color: #a94442;
 }
+.clear{
+  clear: both;
+}
 //Navbar --------------------------------------------------------------------------------
 .navbar {
   margin-bottom: 0;
@@ -1472,6 +1475,9 @@ ul#share-block {
   @media (min-width: $screen-md-min) {
     margin: 30px 160px 30px;
   }
+  .shake{
+    margin: -105px auto 60px;
+  }
 }
 .we-support-outer-wrap {
   @media (min-width: $screen-md-min) {
@@ -1479,9 +1485,9 @@ ul#share-block {
   }
 }
 .pledge-thankyou {
-  width: 380px;
+  width: 450px;
   height: auto;
-  margin-bottom: 35px;
+  //margin-bottom: 35px;
   float: left;
   img {
     width: 50%;
@@ -1494,7 +1500,6 @@ ul#share-block {
 }
 .pledge-logo {
   max-width: 65%;
-  margin-top: 10px;
 }
 // Signup view -------------------------------------------------
 .first-of-all {

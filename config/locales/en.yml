@@ -96,6 +96,8 @@ en:
     rejected:          rejected
     number_of:         "No. of %{model}"
     average:           "Avg. %{model}"
+    starts:            Starts
+    Ends:              Ends
   links:
     user:
       sign_in: Sign In
