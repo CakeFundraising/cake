@@ -123,7 +123,7 @@
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
           strong = Fundraiser.human_attribute_name :manager_name
-          div #{@fundraiser.manager_title} #{@fundraiser.manager_name} 
+          div #{@fundraiser.manager_name}, #{@fundraiser.manager_title}
           strong = Fundraiser.human_attribute_name :manager_email
           div = mail_to @fundraiser.manager_email, @fundraiser.manager_email
           strong = Fundraiser.human_attribute_name :manager_phone

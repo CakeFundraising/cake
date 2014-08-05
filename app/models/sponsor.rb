@@ -64,6 +64,10 @@ class Sponsor < ActiveRecord::Base
     pledges.accepted.eager_load(:fundraiser)
   end
 
+  def fundraisers_of(type) # type = :active || :past
+    pledges.send(type).eager_load(:fundraiser).map(&:fundraiser).uniq
+  end
+
   def fundraisers
     accepted_pledges.map(&:fundraiser).uniq
   end

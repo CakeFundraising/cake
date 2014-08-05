@@ -15,8 +15,8 @@ module Cause
     ],
     causes_and_organizations: [
       "Food & Hunger",
-      "Wildlife & Environment",
-      "Religious & Faith Based",
+      "Environment & Conservation",
+      "Community Organizations",
       "Health & Medicine",
       "Education & Learning",
       "Economic Development",
@@ -34,7 +34,7 @@ module Cause
       "Memorials, Tributes & Awards",
       "Science & Research",
       "Inventions & Technology",
-      "Rehab & Social Services"
+      "Community & Social Services"
     ]
   }
 

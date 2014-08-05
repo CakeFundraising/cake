@@ -23,8 +23,6 @@ en:
           donations_in_kind: Must accept donations in kind
   numbers:
     unit: ""
-    ten: ""
-    hundred: ""
     thousand:
       one: K
       other: K
@@ -194,8 +192,8 @@ en:
         title: Campaign Name
         mission: Campaign Mission Statement
         launch_date: Target campaign launch date
-        end_date: Target campaign end date
-        total_donation: Total Donation
+        end_date: End Date
+        total_donation: Total All Donations
         total_pledges: Total Pledges
         avg_donation: Avg. Donation
         avg_donation_click: Avg. Donation/Click
@@ -206,6 +204,7 @@ en:
         number: No. of Campaigns
         goal: How much do you want to raise?
         scopes: Type
+        main_cause: Cause
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level

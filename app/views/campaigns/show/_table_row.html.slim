@@ -8,11 +8,13 @@ tr.campaign
   td = campaign.average_pledge
   td = campaign.average_donation
   td = campaign.average_donation_per_click
+  td = campaign.total_clicks
   td = campaign.average_clicks_per_pledge
   td 4567
   td 23%
-  td
-    strong = campaign.status
+  - unless campaign.past?
+    td
+      strong = campaign.status
   td
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
 

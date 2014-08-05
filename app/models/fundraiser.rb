@@ -47,7 +47,7 @@ class Fundraiser < ActiveRecord::Base
   MIN_CLICK_DONATIONS = %w{0.10 0.25 0.50 1.00 1.50 2.00 3.00 5.00 10.00}
 
   def sponsors_of(type) # type = :active || :past
-    pledges.accepted.send(type).eager_load(:sponsor).map(&:sponsor).uniq
+    pledges.send(type).eager_load(:sponsor).map(&:sponsor).uniq
   end
 
   def sponsors

@@ -7,6 +7,6 @@ ul.nav.nav-tabs
 
 .tab-content
   #campaigns-tab.tab-pane.active
-    = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
+    = render partial:'campaigns/show/table', locals:{campaigns: @campaigns, hide_status: true}
   #sponsors.tab-pane
     = render partial:'sponsors/show/table', locals:{sponsors: @sponsors, fr: current_fundraiser}
