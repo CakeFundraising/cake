@@ -40,7 +40,7 @@
           .we-support-text
             = image_tag("cake_logo.png", class: "pledge-logo")
             h5 = auto_link @pledge.fundraiser, truncate: 50
-            h4 = auto_link @pledge.campaign
+            h4 = auto_link @pledge.campaign, truncate: 40
             br
             .cause
               span #{Campaign.human_attribute_name :cause}: 

@@ -385,7 +385,7 @@ p.signup-social {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2em;
+    font-size: 2.3em;
   }
 }
 
@@ -412,7 +412,7 @@ address {
 }
 .sponsor-profile {
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   background-color:#fff;
 }
 table.performance-summary {
@@ -523,11 +523,8 @@ table.performance-summary {
 }
 .pledgebluestripe {
   padding-bottom: 20px;
-  @media (min-width: $screen-md-min) {
-    padding: 25px 175px;
-  }
   color: #fff;
-  div {
+  .share {
     font-size: 18px;
     a {
       font-size: 14px;
@@ -535,6 +532,18 @@ table.performance-summary {
       font-style: italic;
       float: right;
     }
+    @media (min-width: $screen-md-min) {
+      margin-top: 55px;
+    }
+  }
+  h1{
+    font-size: 3em;
+    float: left;
+    width: 85%;
+    margin-top: 0;
+  }
+  @media (min-width: $screen-md-min) {
+    padding: 25px 15px;
   }
 }
 .make-pledge {
@@ -586,6 +595,20 @@ table.performance-summary {
     text-align: center;
   }
 }
+.pledge-story{
+  letter-spacing: 0.5px;
+  h3{
+    margin-top: 0;
+  }
+  p{
+    font-size: 1.1em;
+  }
+  h3, p {
+    @media (max-width: $screen-sm-min) {
+      padding: 0 15px;
+    }
+  }
+}
 
 // Campaign Page Styles -----------------------------------------------------------------
 
@@ -595,6 +618,10 @@ table.performance-summary {
     width: 100%;
     height: auto;
     margin-right: 0;
+  }
+  .caption{
+    font-size: 1.1em;
+    text-align: center;
   }
 }
 .fundraiser-info{
@@ -632,6 +659,13 @@ table.performance-summary {
   }
 }
 .campaign-story {
+  letter-spacing: 0.5px;
+  h3{
+    margin-top: 0;
+  }
+  p{
+    font-size: 1.1em;
+  }
   h3, p {
     @media (max-width: $screen-sm-min) {
       padding: 0 15px;

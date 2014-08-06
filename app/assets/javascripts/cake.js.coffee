@@ -2,6 +2,7 @@ window.Cake ?= {}
 
 Cake.init = ->
   Cake.clipboard()
+  Cake.expander()
   Cake.videos()
   Cake.popover()
   Cake.datepicker()

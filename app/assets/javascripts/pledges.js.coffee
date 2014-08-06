@@ -77,10 +77,10 @@ Cake.pledges.validation = ->
         required: true
       'pledge[mission]':
         required: true
-      'pledge[picture_attributes][banner]':
-        required: true
-      'pledge[picture_attributes][avatar]':
-        required: true
+      # 'pledge[picture_attributes][banner]':
+      #   required: true
+      # 'pledge[picture_attributes][avatar]':
+      #   required: true
       'pledge[headline]':
         required: true
       'pledge[description]':

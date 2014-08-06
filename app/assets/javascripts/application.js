@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery.expander.min
 //= require turbolinks
 //= require cocoon
 //= require cocoon_limiter

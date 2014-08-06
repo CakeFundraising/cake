@@ -6,13 +6,12 @@
 
   #direct_donation_amount_input
     .row
-      .col-xs-9.col-md-offset-3
-        .row.input-group
+      .col-xs-3.col-md-offset-4
+        .input-group
           span.input-group-addon $
-          .col-xs-3
-            input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
-          .col-xs-3
-            button#donate_button.btn.btn-success Make a Direct Donation
+          input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+        br  
+        button#donate_button.btn.btn-success Make a Direct Donation
 
   script src="https://checkout.stripe.com/checkout.js" 
 

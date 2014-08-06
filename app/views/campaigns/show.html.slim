@@ -2,7 +2,7 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      = t('information.campaign.banner', fr: @campaign.fundraiser)
+      = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
     .hero-screen
   .container
     .content.row.pull-up
@@ -63,21 +63,18 @@
               .caption = @campaign.avatar_caption
               .fundraiser-info
                 h4 = auto_link @campaign.fundraiser
-                span = @campaign.fundraiser.rank
-                span &nbsp;
-                span = @campaign.fundraiser.top_cause_name(0)
             .campaign_and_fundraiser
               = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success btn-block'
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @campaign.headline
-          p = @campaign.story
+          p.story.expander = @campaign.story
   .blue
     .container
       .row.pledgebluestripe
         .col-md-12
           h1 Click on each of our Sponsors below and they will donate for you!
-          div
-            .pull-right = render partial:'layouts/share_buttons'
+          .share.pull-right
+            = render partial:'layouts/share_buttons'
             a href="#" see how it works...
 
   .container#pledges_section
