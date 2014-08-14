@@ -158,11 +158,11 @@ class PledgesController < InheritedResources::Base
 
     respond_to do |format|
       if resource.update(permitted_params[:pledge])
-        
+
         if resource.reload.amount_per_click_cents == old_amount_per_click_cents || resource.reload.total_amount_cents == old_total_amount_cents
           puts "Pledge increase failed."
-          resource.update_attribute(:amount_per_click_cents, permitted_params[:pledge][:amount_per_click].to_i*100)
-          resource.update_attribute(:total_amount_cents, permitted_params[:pledge][:total_amount].to_i*100)
+          resource.update_attribute :amount_per_click_cents, (permitted_params[:pledge][:amount_per_click].to_f*100).to_i
+          resource.update_attribute :total_amount_cents, (permitted_params[:pledge][:total_amount].to_f*100).to_i
         end
 
         format.html do
