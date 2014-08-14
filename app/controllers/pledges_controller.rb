@@ -158,12 +158,7 @@ class PledgesController < InheritedResources::Base
 
     respond_to do |format|
       if resource.update(permitted_params[:pledge])
-
-        if resource.reload.amount_per_click_cents == old_amount_per_click_cents || resource.reload.total_amount_cents == old_total_amount_cents
-          puts "Pledge increase failed."
-          resource.update_attribute :amount_per_click_cents, (permitted_params[:pledge][:amount_per_click].to_f*100).to_i
-          resource.update_attribute :total_amount_cents, (permitted_params[:pledge][:total_amount].to_f*100).to_i
-        end
+        force_save_amounts(old_amount_per_click_cents, old_total_amount_cents)
 
         format.html do
           resource.increase! unless resource.changes.blank?
@@ -181,6 +176,25 @@ class PledgesController < InheritedResources::Base
 
   def increase_request
     redirect_to resource, notice: 'Increase requested.' if resource.increase_request!
+  end
+
+  def force_save_amounts(old_amount_per_click_cents, old_total_amount_cents)
+    amount_per_click_cents = (permitted_params[:pledge][:amount_per_click].to_f*100).to_i
+    total_amount_cents = (permitted_params[:pledge][:total_amount].to_f*100).to_i
+
+    unless amount_per_click_cents.zero? #param no present
+      if resource.amount_per_click_cents != amount_per_click_cents and resource.amount_per_click_cents == old_amount_per_click_cents
+        puts "Pledge increase failed. Amount per click."
+        resource.update_attribute :amount_per_click_cents, amount_per_click_cents
+      end
+    end
+
+    unless total_amount_cents.zero? #param no present
+      if resource.total_amount_cents != total_amount_cents and resource.total_amount_cents == old_total_amount_cents
+        puts "Pledge increase failed. Total amount."
+        resource.update_attribute :total_amount_cents, total_amount_cents
+      end
+    end
   end
 
   def permitted_params
