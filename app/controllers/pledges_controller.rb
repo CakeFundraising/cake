@@ -153,13 +153,19 @@ class PledgesController < InheritedResources::Base
   end
 
   def set_increase
-    update! do |success, failure|
-      success.html do
+    respond_to do |format|
+      if resource.update(permitted_params[:pledge])
         resource.increase! unless resource.changes.blank?
-        redirect_to resource, notice: 'Pledge increased succesfully.'
-      end
-      failure.html do
-        render 'increase'
+
+        format.html do
+          redirect_to resource, notice: 'Pledge increased succesfully.'
+        end
+        format.json { head :no_content }
+      else
+        format.html do
+          render 'increase'
+        end
+        format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end
   end
