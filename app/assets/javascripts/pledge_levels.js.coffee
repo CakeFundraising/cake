@@ -1,5 +1,6 @@
 Cake.pledge_levels ?= {}
 Cake.pledge_levels.validation ?= {}
+Cake.pledge_levels.set_levels ?= {}
 
 # Validation
 Cake.pledge_levels.validation.set_rules = ->
@@ -59,33 +60,10 @@ Cake.pledge_levels.switcher = ->
 
   return
 
-## New pledge level
-Cake.pledge_levels.set_min_value = (current, previous)->
-  max_value = previous.find('.max_value')
-  current_min_value_input = current.find('.input_min_value')
-  current_min_value_span = current.find('.min_value')
-
-  new_val = parseInt(max_value.val()) + 1
-  current_min_value_input.val(new_val)
-  current_min_value_span.html('$'+new_val)
-
-  max_value.change ->
-    val = parseInt($(this).val()) + 1
-    current_min_value_input.val(val)
-    current_min_value_span.html('$'+val)
-    return
-  return
-
-Cake.pledge_levels.add_new = ->
-  $("#sponsor_categories").on "cocoon:after-insert", (e, insertedItem) ->
-    previous = insertedItem.siblings('.nested-fields').first()
-    Cake.pledge_levels.set_min_value(insertedItem, previous)
-    return
-  return
-
 # Init function
 Cake.pledge_levels.init = ->
   Cake.pledge_levels.switcher()
   Cake.pledge_levels.validation.set_rules()
   Cake.pledge_levels.validation.validate()
-  Cake.pledge_levels.add_new()
+  Cake.pledge_levels.levels_form.init()
+  return

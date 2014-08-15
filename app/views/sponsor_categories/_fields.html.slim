@@ -1,9 +1,10 @@
 - index = f.options[:child_index]
-.nested-fields
+
+.nested-fields data-position=(f.object.position)
   hr
   = f.inputs do
     - unless f.object.min_value == '50'
-      = link_to_remove_association "Remove", f, class:'pull-right'
+      = link_to_remove_association "Remove", f, class:'pull-right dynamic'
     .row.pledge_level
       .col-md-6
         = f.input :name, placeholder: 'i.e. Silver Sponsor', label: 'Pledge Level Name', input_html: {class:'pledge_name'}
@@ -11,6 +12,7 @@
         .form-group
           span.pledge-pad.min_value = f.object.decorate.min
           = f.input :min_value, as: :hidden, input_html: {class:'input_min_value'}
+          = f.input :position, as: :hidden, input_html: {class:'input_position'}
           span.pledge-pad to $
         .form-group
           = f.input :max_value, label: false, input_html: {class:'max_value'}

@@ -3,10 +3,10 @@
     h3 Create up to 3 custom Sponsorship Pledge Levels
     .lead Name each Sponsorship Pledge Level and set the minimum and maximum pledge amount for each one.
     .lead Begin with the lowest Sponsor pledge level and then add superior pledge levels one by one.
-  = f.semantic_fields_for :sponsor_categories, @sponsor_categories do |sc|
-    #pledge_levels
+  .fields-container
+    = f.semantic_fields_for :sponsor_categories, @sponsor_categories do |sc|
       = render partial:'sponsor_categories/fields', locals:{f: sc}
   .links
     hr
     = link_to_add_association 'Add a superior Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary pull-right', 
-    data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '#pledge_levels'}
+    data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
