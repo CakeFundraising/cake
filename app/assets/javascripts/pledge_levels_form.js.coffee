@@ -28,99 +28,88 @@ Cake.pledge_levels.levels_form.update_min_value = (insertedItem, previousItem)->
     min_value_input.val(val)
     min_value_span.html('$'+val)
     return
-
   return
 
-Cake.pledge_levels.levels_form.after_insert = (insertedItem, levels) ->
-  previous_position = $.inArray(insertedItem, levels.items)
-
-  if previous_position is 0
-    previousItem = levels.list.last.$object
-  if previous_position is 1
-    previousItem = levels.items[previous_position-1]
-  
-  #set inserted item position
-  Cake.pledge_levels.levels_form.set_position(insertedItem, (previous_position+1) )
-  #set inserted item min value
-  Cake.pledge_levels.levels_form.set_min_value(insertedItem, previousItem)
-  #update inserted item min value when previous max value updates
-  Cake.pledge_levels.levels_form.update_min_value(insertedItem, previousItem)
-  return
-
-Cake.pledge_levels.levels_form.after_remove = (removedItem, item, levels) ->
-  second_level = levels.items[0].attr('data-position') 
-  first_level = levels.items[1].attr('data-position') if levels.items[1] isnt undefined
-
-  if second_level isnt undefined and removedItem.attr('data-position') is second_level
-    if first_level isnt undefined and item.attr('data-position') is first_level
-      # set inserted item position
-      Cake.pledge_levels.levels_form.set_position(item, 1)
-      # set inserted item min value
-      Cake.pledge_levels.levels_form.set_min_value(item, levels.list.last.$object )
-      # update inserted item min value when previous max value updates
-      Cake.pledge_levels.levels_form.update_min_value(item, levels.list.last.$object )
-  
-  return
-
-#pledge levels object
 Cake.pledge_levels.levels_form.levels = ->
-  items = $("#sponsor_categories .nested-fields[data-position='1'], #sponsor_categories .nested-fields[data-position='2']") || new Array()
-  #items = items.map (item) -> $(item)
+  #HTML present elements
+  @container = $("#sponsor_categories")
+  base_level =
+    $object: $('[data-position="0"]')
+    position: -1
+    dataPosition: 0
 
-  if items.length > 0
-    items[0] = $(items[0])
-    items[1] = $(items[1])
+  #Items array
+  items = new Array()
+  items[0] = $("#sponsor_categories .nested-fields[data-position='1']") if $("#sponsor_categories .nested-fields[data-position='1']").length > 0
+  items[1] = $("#sponsor_categories .nested-fields[data-position='2']") if $("#sponsor_categories .nested-fields[data-position='2']").length > 0
 
-  levels =
-    items: items
+  # First item is middle level
+  first_item =
+    position: 0
+    dataPosition: 1
+    $object: ->
+      return items[0]
 
-  levels =
-    container: $("#sponsor_categories")
-    items: items
-    reload: ->
-      return this
-    increment_items: ->
-      this.container.on "cocoon:after-insert", (e, insertedItem) ->
-        #update items array
-        levels.items.push(insertedItem)
-        
-        Cake.pledge_levels.levels_form.after_insert(insertedItem, levels)
-        return
+  # Last item is top level
+  last_item =
+    position: 1
+    dataPosition: 2
+    $object: ->
+      return items[1]
+
+  # Main functions
+  @increment_items = ->
+    @container.on "cocoon:after-insert", (e, insertedItem) ->
+      items_last_item = items[items.length-1] || base_level.$object
+      #set inserted item position
+      Cake.pledge_levels.levels_form.set_position(insertedItem, (items.length+1) )
+      #set inserted item min value
+      Cake.pledge_levels.levels_form.set_min_value(insertedItem, items_last_item)
+      #update inserted item min value when previous max value updates
+      Cake.pledge_levels.levels_form.update_min_value(insertedItem, items_last_item)
+      
+      #update items array
+      items.push(insertedItem)
       return
-    decrement_items: ->
-      this.container.on "cocoon:after-remove", (e, removedItem) ->
-        #update remaining items's position
-        $.each levels.items, (i, v) ->
-          Cake.pledge_levels.levels_form.after_remove(removedItem, v, levels)
-          return
+    return
+  @decrement_items = ->
+    @container.on "cocoon:after-remove", (e, removedItem) ->
+      removedPosition = parseInt(removedItem.attr('data-position'))
 
-        #remove item from items
-        levels.items = levels.items.filter (item) -> $(item).attr('data-position') isnt removedItem.attr('data-position')
-        return
+      #update last item's position if removing first item (not needed when removing last item.. first item remains in same position :) )
+      if first_item.$object() and last_item.$object()
+        if first_item.$object().length > 0 and last_item.$object().length > 0
+          
+          if first_item.dataPosition is removedPosition
+            # set last item position
+            Cake.pledge_levels.levels_form.set_position(last_item.$object(), 1)
+            # set last item min value
+            Cake.pledge_levels.levels_form.set_min_value(last_item.$object(), base_level.$object )
+            # update last item min value when base item's max value updates
+            Cake.pledge_levels.levels_form.update_min_value(last_item.$object(), base_level.$object )
+      
+      #remove item from items
+      removedArrayPosition = removedPosition - 1
+      items.splice(removedArrayPosition, 1)
+      #remove data position in order to be re-added to items array      
+      removedItem.removeAttr('data-position')
       return
-    list:
-      last: 
-        $object: $('[data-position="0"]')
-        position: 0
-        next: this.second
-        previous: null
-      second:
-        $object: ->
-          return levels.items[0]
-        position: 1
-        next: this.first
-        previous: this.last
-      first:
-        $object: ->
-          return levels.items[1]
-        position: 2
-        next: null
-        previous: this.second
+    return
 
-  levels.increment_items()
-  levels.decrement_items()
+  #Public functions
+  @items = ->
+    return items
+  @base_level = ->
+    return base_level
+  @first_item = ->
+    return first_item
+  @last_item = ->
+    return last_item
 
-  return levels
+  @increment_items()
+  @decrement_items()
+
+  return
 
 Cake.pledge_levels.levels_form.init = ->
   Cake.pledge_levels.levels_form.levels()

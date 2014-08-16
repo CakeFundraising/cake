@@ -183,9 +183,18 @@ class Campaign < ActiveRecord::Base
   end
 
   def sponsor_categories_overlapping
-    values = sponsor_categories.map{|sc| (sc.min_value_cents..sc.max_value_cents) }
-    values.each_with_index do |v, i|
-      errors.add(:sponsor_categories, "The max and min values must not overlap.") if values[i+1].present? and values[i].overlaps?values[i+1]
+    range = Proc.new {|object| object.min_value_cents..object.max_value_cents }
+
+    sponsor_categories.each_with_index do |sc, i|
+      if sponsor_categories[i+1].present?
+        current_range = range.call sc
+        next_range = range.call(sponsor_categories[i+1])
+
+        if sc.persisted? and sponsor_categories[i+1].persisted?
+          errors.add(:sponsor_categories, "The max and min values must not overlap.") if current_range.overlaps?(next_range)
+        end
+      end
     end
   end
+
 end

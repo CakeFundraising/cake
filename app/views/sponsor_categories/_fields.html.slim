@@ -4,7 +4,7 @@
   hr
   = f.inputs do
     - unless f.object.min_value == '50'
-      = link_to_remove_association "Remove", f, class:'pull-right dynamic'
+      = link_to_remove_association "Remove", f, class:'pull-right'
     .row.pledge_level
       .col-md-6
         = f.input :name, placeholder: 'i.e. Silver Sponsor', label: 'Pledge Level Name', input_html: {class:'pledge_name'}

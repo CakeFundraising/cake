@@ -17,6 +17,7 @@
       sc.name = Faker::Lorem.sentence
       sc.min_value_cents = i * 10000
       sc.max_value_cents = (i+0.5) * 10000 
+      sc.position = i
     end
   end
 end
@@ -40,7 +41,8 @@ end
       i = i + 1
       sc.name = Faker::Lorem.sentence
       sc.min_value_cents = i * 10000
-      sc.max_value_cents = (i+0.5) * 10000 
+      sc.max_value_cents = (i+0.5) * 10000
+      sc.position = i
     end
   end
 end
