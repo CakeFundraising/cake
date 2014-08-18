@@ -23,8 +23,9 @@ Cake.pledge_levels.levels_form.update_min_value = (insertedItem, previousItem)->
   min_value_input = insertedItem.find('.input_min_value')
   min_value_span = insertedItem.find('.min_value')
 
-  max_value.change ->
+  max_value.keyup ->
     val = parseInt($(this).val()) + 1
+    val = 0 if isNaN(val)
     min_value_input.val(val)
     min_value_span.html('$'+val)
     return
@@ -43,21 +44,34 @@ Cake.pledge_levels.levels_form.levels = ->
   items[0] = $("#sponsor_categories .nested-fields[data-position='1']") if $("#sponsor_categories .nested-fields[data-position='1']").length > 0
   items[1] = $("#sponsor_categories .nested-fields[data-position='2']") if $("#sponsor_categories .nested-fields[data-position='2']").length > 0
 
-  # First item is middle level
+  # First item is the middle level
   first_item =
     position: 0
     dataPosition: 1
     $object: ->
       return items[0]
+    bind_previous: ->
+      Cake.pledge_levels.levels_form.update_min_value(items[0], base_level.$object)
+      return
 
-  # Last item is top level
+  # Last item is the top level
   last_item =
     position: 1
     dataPosition: 2
     $object: ->
       return items[1]
+    bind_previous: ->
+      Cake.pledge_levels.levels_form.update_min_value(items[1], items[0])
+      return
 
   # Main functions
+  @bind_levels = ->
+    if items[0] and base_level.$object
+      first_item.bind_previous()
+    if items[1] and items[0]
+      last_item.bind_previous()
+    return
+
   @increment_items = ->
     @container.on "cocoon:after-insert", (e, insertedItem) ->
       items_last_item = items[items.length-1] || base_level.$object
@@ -106,6 +120,7 @@ Cake.pledge_levels.levels_form.levels = ->
   @last_item = ->
     return last_item
 
+  @bind_levels()
   @increment_items()
   @decrement_items()
 
