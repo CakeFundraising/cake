@@ -43,7 +43,8 @@ class Campaign < ActiveRecord::Base
   validates_associated :picture
 
   #validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: ->{ self.custom_pledge_levels and self.persisted? }
-  validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
+  #validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
+  validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
