@@ -11,7 +11,7 @@ Cake.pledge_levels.levels_form.set_min_value = (insertedItem, previousItem)->
   min_value_input = insertedItem.find('.input_min_value')
   min_value_span = insertedItem.find('.min_value')
 
-  new_val = parseInt(max_value.val()) + 1
+  new_val = parseInt(max_value.val()) + 1 || 0
 
   min_value_input.val(new_val)
   min_value_span.html('$'+new_val)
@@ -24,8 +24,7 @@ Cake.pledge_levels.levels_form.update_min_value = (insertedItem, previousItem)->
   min_value_span = insertedItem.find('.min_value')
 
   max_value.keyup ->
-    val = parseInt($(this).val()) + 1
-    val = 0 if isNaN(val)
+    val = parseInt($(this).val()) + 1 || 0
     min_value_input.val(val)
     min_value_span.html('$'+val)
     return

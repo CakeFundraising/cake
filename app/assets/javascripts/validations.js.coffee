@@ -7,7 +7,7 @@ Cake.validations.custom_methods = ->
     "Please enter only letters."
 
   $.validator.addMethod "minStrictPledgeLevels", ((value, element, params) ->
-    min = $(element).closest('.pledge_level').find('.min_value').text().replace('$','')
+    min = $(element).closest('.pledge_level').find('.min_value').text().replace('$','').replace(',', '')
     this.optional(element) || parseInt(value) > parseInt(min)
   ), (params, element) ->
     min = $(element).closest('.pledge_level').find('.min_value').text().replace('$','')

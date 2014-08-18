@@ -1,11 +1,9 @@
 When(/^he removes the (.*?) level$/) do |level|
-  sleep 5
   if level == 'Middle'
     page.find(:css, '.nested-fields[data-position="1"] a.remove_fields').click
   else
     page.find(:css, '.nested-fields[data-position="2"] a.remove_fields').click
   end
-  sleep 5 
 end
 
 Then(/^(.*?) Level min value should be (\d+)$/) do |level, lowest_level_max_value|
