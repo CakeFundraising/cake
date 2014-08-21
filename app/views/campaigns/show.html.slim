@@ -12,7 +12,9 @@
           span = @campaign.mission
           - if can? :edit, @campaign and not @campaign.past?
             span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
-        = render partial:'layouts/share_buttons'
+        .pull-left 
+          = render partial:'layouts/share_buttons'
+        h4.share-info.pull-left Please share our Campaign!
       .col-md-4
         .sidebar-bkg 
           .row
@@ -51,7 +53,7 @@
                   = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
             - else
               .col-md-12
-                a.btn.btn-success.btn-block href='#pledges_section' Visit our Sponsors
+                a.btn.btn-success.btn-block href='#sponsors_banner' Visit our Sponsors
 
   .white
     .container
@@ -61,23 +63,21 @@
             .avatar 
               = image_tag @campaign.avatar.url(:medium), class: 'img-responsive'
               .caption = @campaign.avatar_caption
-              .fundraiser-info
+              .fundraiser-info.text-center
                 h4 = auto_link @campaign.fundraiser
-            .campaign_and_fundraiser
-              = link_to 'View Profile', @campaign.fundraiser, class:'btn btn-success btn-block'
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @campaign.headline
           p.story.expander = @campaign.story
   .blue
     .container
-      .row.pledgebluestripe
+      .row.pledgebluestripe.campaign#sponsors_banner
         .col-md-12
           h1 Click on each of our Sponsors below and they will donate for you!
           .share.pull-right
-            = render partial:'layouts/share_buttons'
-            a href="#" see how it works...
+            .pull-right = render partial:'layouts/share_buttons'
+            h4.share-info.pull-right Please share our Campaign!
 
-  .container#pledges_section
+  .container
     = render partial:'campaigns/show/pledges/pledges_section'
     .row
       .col-md-12

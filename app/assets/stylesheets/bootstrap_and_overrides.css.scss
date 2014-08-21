@@ -5,6 +5,17 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 
+//Grid Layout ----------------------------------------------------------------------------
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* inline-block space fix */
+  margin-right:-4px;
+}
 
 //Typography ----------------------------------------------------------------------------
 h3, h4 {
@@ -385,7 +396,7 @@ p.signup-social {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2.3em;
+    font-size: 2.5em;
   }
 }
 
@@ -481,7 +492,7 @@ table.performance-summary {
 // Pledge Page Styles -----------------------------------------------------------------
 
 .campaign-timer {
-  font-size: 2em;
+  font-size: 2.5em;
   color: $brand-primary;
   margin-bottom: 0;
 }
@@ -521,8 +532,38 @@ table.performance-summary {
 .blue {
   background-color: $brand-primary;
 }
+
+.share-info{
+  color: white;
+  padding-left: 5px;
+}
+
 .pledgebluestripe {
-  padding-bottom: 20px;
+  &.campaign{
+    padding: 0px 15px;
+    height: 140px;
+    h1{
+      position: absolute;
+      padding: 15px 0px;
+      margin-bottom: 0;
+      margin-top: 0px;
+      font-size: 3.6em;
+    }
+    .share{
+      margin-top: 80px;
+    }
+  }
+  &.pledge{
+    .share{
+      margin-top: -50px;
+      .share-buttons{
+        margin-right: 40px;
+      }
+    }
+    h1{
+      font-size: 3em;
+    }
+  }
   color: #fff;
   .share {
     font-size: 18px;
@@ -532,18 +573,13 @@ table.performance-summary {
       font-style: italic;
       float: right;
     }
-    @media (min-width: $screen-md-min) {
-      margin-top: 55px;
+    .share-info{
+      margin-right: 10px;
     }
   }
   h1{
-    font-size: 3em;
     float: left;
     width: 85%;
-    margin-top: 0;
-  }
-  @media (min-width: $screen-md-min) {
-    padding: 25px 15px;
   }
 }
 .make-pledge {
@@ -1250,7 +1286,6 @@ ul.share-coupon {
         z-index: 3;   
     }
 // Share Block Styles ---------------------------------------------------------------------
-
 .share-block-wrap {
   padding: 0 0 35px;
 }

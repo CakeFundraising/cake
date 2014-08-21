@@ -13,7 +13,9 @@
           span = @pledge.mission
           - if can? :edit, @pledge and not @pledge.past?
             span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
-        = render partial:'layouts/share_buttons'
+        .pull-left 
+          = render partial:'layouts/share_buttons'
+        h4.share-info Please share our Pledge!
       .col-md-4
         .sidebar-bkg 
           .row
@@ -62,12 +64,14 @@
           p.story.expander = @pledge.description
   .blue
     .container
-      .row.pledgebluestripe
+      .row.pledgebluestripe.pledge
         .col-md-12
-          h1 #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
+          h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
           .share.pull-right
             = render partial:'layouts/share_buttons'
-            a href="#" see how it works...
+            .clearfix
+            h4.share-info.pull-right Please share our Pledge!
+
           = render partial:'clicks/pledge', locals:{pledge: @pledge}
   .container
     - if @pledge.coupons.any?

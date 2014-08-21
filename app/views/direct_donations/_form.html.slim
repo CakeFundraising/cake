@@ -5,13 +5,14 @@
     = f.input :card_token, as: :hidden
 
   #direct_donation_amount_input
-    .row
-      .col-xs-3.col-md-offset-4
-        .input-group
-          span.input-group-addon $
-          input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
-        br  
-        button#donate_button.btn.btn-success Make a Direct Donation
+    .row.row-centered
+      .col-md-3.col-centered
+        .direct-donation-form
+          .input-group
+            span.input-group-addon $
+            input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+          br  
+          button#donate_button.btn.btn-success Make a Direct Donation
 
   script src="https://checkout.stripe.com/checkout.js" 
 
