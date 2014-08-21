@@ -12,10 +12,10 @@ Feature: Pledge Levels
   Scenario Outline: Linear Insertion
     And he fills in the "Pledge Level Name" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
@@ -36,10 +36,10 @@ Feature: Pledge Levels
   Scenario Outline: Linear Insertion and Middle level removal
     And he fills in the "Pledge Level Name" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he removes the Middle level
@@ -60,10 +60,10 @@ Feature: Pledge Levels
     And he press the "Save & Continue" button
     #returns to pledge levels page
     And he visits the campaign wizard sponsors page
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
@@ -87,10 +87,10 @@ Feature: Pledge Levels
     #store levels
     And he fills in the "Pledge Level Name" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
@@ -110,10 +110,10 @@ Feature: Pledge Levels
     #store levels
     And he fills in the "Pledge Level Name" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button

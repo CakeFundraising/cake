@@ -8,5 +8,7 @@
       = render partial:'sponsor_categories/fields', locals:{f: sc}
   .links
     hr
-    = link_to_add_association 'Add a superior Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary pull-right', 
-    data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
+    .text-center
+      = link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', 
+      data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
+    br

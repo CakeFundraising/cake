@@ -23,14 +23,14 @@
     .row
       .col-md-6
         .share-links
-          h3.solicit-invite Share this link to invite potential Sponsors to pledge your Campaign
+          h3.solicit-invite Share this link via email to invite businesses you know to make a Pledge to your new Campaign
             
           label Campaign Url: 
           input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
           button.clipboard.btn.btn-default data-clipboard-target="campaign_url" Copy
       .col-md-6
         .share-embed
-          h3.solicit-invite Invite potential Sponsors to pledge this campaign on your website
+          h3.solicit-invite Share this link via email to invite businesses you know to make a Pledge to your new Campaign
           label Copy code to paste into your website:  
           textarea#embedded_link.form-control disabled='' rows="5" 
             iframe width='300px' height='300px' src=badge_campaign_url(@campaign)

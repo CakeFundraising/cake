@@ -56,10 +56,10 @@ Feature: Campaign Wizard
     And he press the "Set custom pledge levels" button
     And he fills in the "Pledge Level Name" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
-    And he press the "Add a superior Pledge Level" link
+    And he press the "Add Next Pledge Level" link
     And he fills in the appearing "Pledge Level Name" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
@@ -80,3 +80,5 @@ Feature: Campaign Wizard
     And a campaign of that fundraiser exists
     When he goes to campaign wizard share page
     Then he should see the invitation link and badge
+
+    

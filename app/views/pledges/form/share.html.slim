@@ -35,8 +35,9 @@
             span.campaign-avatar 
               = image_tag @pledge.campaign.avatar.url(:medium)
             .shake
-            h5.pull-left = auto_link @pledge.sponsor, truncate: 36
-            h5.pull-right = auto_link @pledge.fundraiser, truncate: 36
+            .sp_fr_names
+              .sp = auto_link @pledge.sponsor, truncate: 36
+              .fr = auto_link @pledge.fundraiser, truncate: 36
           .we-support-text
             = image_tag("cake_logo.png", class: "pledge-logo")
             h5 = auto_link @pledge.fundraiser, truncate: 50

@@ -1428,9 +1428,9 @@ ul#share-block {
 }
 .media-body {
   position: relative;
-  height: 230px;
+  min-height: 230px;
   .dates {
-    position: absolute;
+    //position: absolute;
     bottom: 0;
     left: 0;
   }
@@ -1567,6 +1567,19 @@ ul#share-block {
   img {
     width: 50%;
     border: 1px solid #fff;
+  }
+  .sp_fr_names{
+    text-align: center;
+    font-size: 1em;
+    color: $brand-primary;
+    .sp{
+      width: 225px;
+      float: left;
+    }
+    .fr{
+      width: 225px;
+      float: right;
+    }
   }
 }
 .we-support-text {
