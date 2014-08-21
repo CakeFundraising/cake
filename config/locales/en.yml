@@ -15,6 +15,31 @@ en:
         <p><strong>Changes To This Agreement</strong><br />We reserve the right, at our sole discretion, to modify or replace these Terms and Conditions by posting the updated terms on the Site. Your continued use of the Site after any such changes constitutes your acceptance of the new Terms and Conditions.</p>
         <p>Please review this Agreement periodically for changes. If you do not agree to any of this Agreement or any changes to this Agreement, do not use, access or continue to access the Site or discontinue any use of the Site immediately.</p>
         <p><strong>Contact Us</strong><br />If you have any questions about this Agreement, please contact us.</p>
+      coupons: >
+        The following terms apply to all social campaigns coupons (each, a "coupon"), in addition to the specific terms on 
+        the face of the coupon and any requirements of applicable law: Unless 
+        otherwise stated on the face of the coupon or as required by applicable law, the following terms 
+        apply: after the coupon expiration date, the coupon may not be redeemed; coupons for specific 
+        events, such as concerts or sporting events, can no longer be redeemed once the event date passes 
+        and have no value; coupons cannot be refunded for cash; coupons cannot be combined with 
+        any other coupons or promotions and duplicate use of a coupon is prohibited; the coupon may 
+        not be applied toward shipping fees, tips or gratuities, taxes, or outstanding balances owed; the 
+        coupon may not be redeemed for products or services other than those specified on the coupon; 
+        and the coupon is freely transferable by the purchaser. Use of a coupon for alcohol is at the sole 
+        discretion of the merchant, which may be limited by applicable law. Coupons for alcohol may 
+        only be applied by individuals of legal drinking age.Purchasers under the age of 18 must obtain 
+        permission from their parents or guardians before using a coupon. Neither Cake Fundraising, 
+        Inc. nor the merchant is responsible for lost or stolen coupons or coupon reference numbers. 
+        The merchant reserves the right to withdraw and/or refuse payments for coupons due to fraud 
+        or errors. The coupon is in no way sponsored, endorsed or administered by, or associated with, 
+        Cake Fundraising, Inc. and you release Cake Fundraising, Inc. from claims arising from any 
+        coupon or act or omission of the merchant in connection with the coupon. All coupons are 
+        promotional in nature and are issued by the merchant through Cake Fundraising, Inc. as a service 
+        provider. The merchant is the holder and issuer of the coupon and under no circumstances shall 
+        Cake Fundraising, Inc. be deemed the holder, issuer or seller of the coupon. The applicability 
+        and compliance with any applicable law relating to any coupon is solely determined by and 
+        complied with by the merchant. Campaign participants acknowledge that the coupon is issued for 
+        loyalty, award, or promotional purposes.
   formtastic:
     labels:
       sponsor:

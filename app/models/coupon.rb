@@ -27,7 +27,7 @@ class Coupon < ActiveRecord::Base
   scope :not_past, ->{ eager_load(:pledge).where("pledges.status != 'past'") }
 
   after_initialize do
-    self.terms_conditions = I18n.t('application.terms_and_conditions.standard') if self.terms_conditions.blank?
+    self.terms_conditions = I18n.t('application.terms_and_conditions.coupons') if self.terms_conditions.blank?
   end
 
   searchable do

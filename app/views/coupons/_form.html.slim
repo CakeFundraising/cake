@@ -1,5 +1,5 @@
 #coupons
-  = hidden_field_tag(:std_tos_text, I18n.t('application.terms_and_conditions.standard'))
+  = hidden_field_tag(:std_tos_text, I18n.t('application.terms_and_conditions.coupons'))
   = f.semantic_fields_for :coupons do |c|
     = render partial:'coupons/fields', locals:{f: c}
   .links.text-center
