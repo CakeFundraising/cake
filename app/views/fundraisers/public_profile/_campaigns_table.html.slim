@@ -3,6 +3,7 @@
     thead
       tr
         th = Campaign.model_name.human
+        th = Campaign.human_attribute_name :total_donations
         th = Campaign.human_attribute_name :main_cause
         th = Campaign.human_attribute_name :end_date
         th = t('semantic.number_of', model: 'Sponsors')

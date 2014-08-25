@@ -4,8 +4,6 @@
       tr
         th = Campaign.model_name.human
         th = Campaign.human_attribute_name :end_date
-        th = Campaign.human_attribute_name :main_cause
-        th = Campaign.human_attribute_name :scopes
         th = Campaign.human_attribute_name :total_donation
         th = t('semantic.number_of', model: 'Pledges')
         th = t('semantic.average', model: 'Pledge')
@@ -13,8 +11,8 @@
         th = t('semantic.average', model: 'Don/Click')
         th = Campaign.human_attribute_name :total_clicks
         th = t('semantic.average', model: 'Clicks/Pledge')
-        th = t('semantic.average', model: 'Impressions/Pledge')
-        th = t('semantic.average', model: 'Conv. Rate')
+        th = t('semantic.average', model: 'Imp/Pledge')
+        th = Campaign.human_attribute_name :engagement
         - unless defined? hide_status and hide_status
           th = Campaign.human_attribute_name :status
         th

@@ -3,8 +3,10 @@
     = render 'home/search/search_form', collection: :campaigns
     #filters.panel-group
       ul.cats
-        - Campaign::CAUSES.each do |cause|
-          li = link_to cause, search_campaigns_path(causes: cause)
+        - Campaign::CAUSES_HIERARCHY.each do |group|
+          h4 = t("titles.causes.#{group.first}")
+          - group.last.each do |cause|
+            li = link_to cause, search_campaigns_path(causes: cause)
   .col-md-9
     .campaigns-container.row-fluid.transitions-enabled
       .campaigns

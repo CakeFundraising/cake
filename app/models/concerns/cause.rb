@@ -3,16 +3,7 @@ module Cause
 
   # DON'T CHANGE THE ORDER, IF YOU NEED TO ADD JUST APPEND TO THE LIST
   CAUSES_HIERARCHY = {
-    disaster_and_emergency_relief: ["International Relief", "US Relief"],
-    building_and_community_projects: [
-      "Education & Schools",
-      "Sports, Parks & Recreation",
-      "Medical, Hospitals & Clinics",
-      "Churches & Religion",
-      "Arts & Culture",
-      "Walks, Roads & Bridges",
-      "Infrastructure & Utility"
-    ],
+    disaster_and_emergency: ["International Relief", "US Relief"],
     causes_and_organizations: [
       "Food & Hunger",
       "Environment & Conservation",
@@ -35,6 +26,15 @@ module Cause
       "Science & Research",
       "Inventions & Technology",
       "Community & Social Services"
+    ],
+    building_and_capital_projects: [
+      "Education & Schools",
+      "Sports, Parks & Recreation",
+      "Medical, Hospitals & Clinics",
+      "Churches & Religion",
+      "Arts & Culture",
+      "Walks, Roads & Bridges",
+      "Infrastructure & Utility"
     ]
   }
 

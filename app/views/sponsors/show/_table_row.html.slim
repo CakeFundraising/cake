@@ -1,5 +1,6 @@
 tr.sponsor
   td = auto_link sponsor
+  td = sponsor.total_donation
   td = sponsor.pledges_related_to(fr).count
   td = sponsor.average_donation_with(fr)
   td = sponsor.average_pledge_with(fr)

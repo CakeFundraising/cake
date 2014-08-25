@@ -82,6 +82,10 @@ en:
         past: past invoices
       sponsors: sponsors
       fundraisers: fundraisers
+    causes:
+      disaster_and_emergency: Disaster & Emergencies
+      causes_and_organizations: Causes & Organizations
+      building_and_capital_projects: Building & Capital Projects
   helpers:
     titles:
       search: Search
@@ -230,6 +234,7 @@ en:
         goal: How much do you want to raise?
         scopes: Type
         main_cause: Cause
+        total_donations: Total Donations
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level
@@ -241,6 +246,7 @@ en:
         scopes: Type
         mission: Pledge mission statement
         description: Your Story
+        main_cause: Cause
       pledge_request: 
         start_end_dates: Launch/ End Date
       sponsor:
