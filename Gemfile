@@ -42,6 +42,7 @@ gem 'thin', group: :development
 
 #Image processing
 gem 'carrierwave'
+gem 'carrierwave-crop'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
 
