@@ -3,4 +3,7 @@
     = v.label :url do
       | Include a video - Optional
     span.help-block Copy link for video from Youtube
-    = v.input :url, label: false, input_html: {value: "https://www.youtube.com/watch?v=#{v.object.url}"}
+    - if v.object.url.present?
+      = v.input :url, label: false, input_html: {value: "https://www.youtube.com/watch?v=#{v.object.url}"}
+    - else
+      = v.input :url, label: false

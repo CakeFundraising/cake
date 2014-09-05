@@ -89,7 +89,7 @@ class CampaignsController < InheritedResources::Base
   def permitted_params
     params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
     :headline, :step, :main_cause, causes: [], scopes: [], video_attributes: [:id, :url],
-    picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache], 
+    picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache, :crop_x, :crop_y, :crop_w, :crop_h], 
     sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy]
     ])
   end

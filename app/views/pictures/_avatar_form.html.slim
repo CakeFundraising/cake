@@ -1,3 +1,22 @@
 = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
   = p.input :avatar, as: :uploader, removable: false, parent: f
   = p.input :avatar_caption, input_html: {placeholder: '40 characters or less', maxlength: 40} if defined? caption
+
+  /! Crop modal
+  #avatar_crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" type="button" 
+            span aria-hidden="true" &times;
+            span.sr-only Cancel
+          h3#use_label.modal-title Select a region to crop.
+        .modal-body
+          = p.input :crop_x, as: :hidden, input_html:{class: 'crop_x'}
+          = p.input :crop_y, as: :hidden, input_html:{class: 'crop_y'}
+          = p.input :crop_w, as: :hidden, input_html:{class: 'crop_w'}
+          = p.input :crop_h, as: :hidden, input_html:{class: 'crop_h'}
+          #image-container
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal" type="button" Cancel
+          button.btn.btn-primary#crop_button type="button" Crop

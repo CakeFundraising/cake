@@ -42,9 +42,9 @@ gem 'thin', group: :development
 
 #Image processing
 gem 'carrierwave'
-gem 'carrierwave-crop'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
+gem 'jcrop-rails-v2'
 
 #Cron & Asynchronous tasks
 gem 'resque', '~> 1.25.2', require: 'resque/server'

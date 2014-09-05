@@ -38,10 +38,12 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :large do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:large]
   end
 
   version :medium do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:medium]
   end
 
@@ -53,6 +55,19 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   def default_url
     "http://placehold.it/1400x614"
+  end
+
+  def crop
+    if model.crop_x.present?
+      manipulate! do |img|
+        x = model.crop_x.to_i
+        y = model.crop_y.to_i
+        w = model.crop_w.to_i
+        h = model.crop_h.to_i
+
+        img.crop!(x, y, w, h)
+      end
+    end
   end
 
   # Override the filename of the uploaded files:

@@ -40,18 +40,22 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :medium do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:medium]
   end
 
   version :square do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:square]
   end  
   
   version :thumb do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:thumb]
   end  
 
   version :ico do
+    process :crop
     process :resize_to_fill => VERSION_SIZES[:ico]
   end
 
@@ -63,6 +67,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   def default_url
     "http://placehold.it/#{VERSION_SIZES[version_name.to_sym].join("x")}"
+  end
+
+  def crop
+    if model.crop_x.present?
+      manipulate! do |img|
+        x = model.crop_x.to_i
+        y = model.crop_y.to_i
+        w = model.crop_w.to_i
+        h = model.crop_h.to_i
+
+        img.crop!(x, y, w, h)
+      end
+    end
   end
 
   # Override the filename of the uploaded files:

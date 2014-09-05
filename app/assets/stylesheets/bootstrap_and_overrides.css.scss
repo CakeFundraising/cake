@@ -1617,5 +1617,45 @@ ul#share-block {
   border-bottom: 1px solid $gray-lighter;
 }
 
+// Images Cropping -------------------------------------------------------
 
+#avatar_crop_modal, #banner_crop_modal{
+  .modal-body{
+    padding: 0;
+  }
+  .modal-footer{
+    margin-top: 0;
+  }
+  input[type="radio"]{
+    display: none;
+    visibility: hidden;
+  }
+}
 
+#avatar_crop_modal{
+  .modal-dialog{
+    width: 612px; 
+    max-height: 100%;
+  }
+  #image-container{
+    width: 610px; 
+    height: 460px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+}
+
+#banner_crop_modal{
+  .modal-dialog{
+    width: 702px; 
+    max-height: 100%;
+  }
+  #image-container{
+    width: 700px; 
+    height: 307px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+}

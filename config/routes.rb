@@ -35,6 +35,10 @@ Cake::Application.routes.draw do
       end
       get :badge
       patch :launch
+
+      scope :pictures, controller: :cropping do
+        post :campaign_crop
+      end
     end
   end
 

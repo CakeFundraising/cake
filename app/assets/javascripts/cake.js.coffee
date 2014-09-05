@@ -7,7 +7,6 @@ Cake.init = ->
   Cake.popover()
   Cake.datepicker()
   Cake.limit_cocoon()
-  Cake.image_previewer()
   Cake.locations()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
@@ -15,6 +14,7 @@ Cake.init = ->
   Cake.clicks.get_plugins()
 
   Cake.validations.init()
+  Cake.crop.init()
   return
 
 $(document).ready(Cake.init)
