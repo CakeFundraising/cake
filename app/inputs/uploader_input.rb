@@ -73,7 +73,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def input_html_options
-    {class: "#{method}_input", wrapper_tag: :div}
+    {class: "#{method}_input", wrapper_tag: :div, crop: (builder.object.persisted?)}
   end
 
   def existing_html_options

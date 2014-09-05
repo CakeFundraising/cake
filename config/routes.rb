@@ -134,6 +134,14 @@ Cake::Application.routes.draw do
     end
   end
 
+  resources :coupons do
+    member do
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
+  end
+
   namespace :locations do
     get :subregion_options
   end

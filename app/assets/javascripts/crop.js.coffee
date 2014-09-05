@@ -111,9 +111,11 @@ class Cropper
 class CropForm
   constructor: (button) ->
     @form = $(button).closest('form.formtastic')
-    @model = @form.attr('class').replace('formtastic ', '')
     @modal = $(button).closest('.modal')
     @input = @modal.siblings('.uploader.input').find('input[type="file"]')
+
+    @model = $(button).data('crop-model') || @form.attr('class').replace('formtastic ', '')
+    @model_id = $(button).data('crop-model-id') || @form.attr('action').split('/')[@form.attr('action').split('/').length - 1]
 
     @x = @modal.find('.crop_x').val()
     @y = @modal.find('.crop_y').val()
@@ -140,8 +142,7 @@ class CropForm
     return
 
   get_server_model_url: ->
-    model_id = @form.attr('action').split('/')[@form.attr('action').split('/').length - 1]
-    url = '/' + @model + 's/' + model_id + '/pictures/crop'
+    url = '/' + @model + 's/' + @model_id + '/pictures/crop'
     return url
 
   postToServer: ->
@@ -222,12 +223,13 @@ Cake.pictures.load_pic = ->
 
   inputs = [
     ".banner_input",
-    ".avatar_input",
-    ".qrcode_input"
+    ".avatar_input"
+    #".qrcode_input"
   ]
 
   $(inputs.toString()).change ->
-    readURL this
+    if $(this).attr('crop') is "true"
+      readURL this
     return
 
   return
