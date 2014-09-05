@@ -1,13 +1,11 @@
 class Coupon < ActiveRecord::Base
   include MerchandiseCategories
+  include Picturable
+  
   attr_accessor :standard_terms
 
   belongs_to :pledge
   has_one :sponsor, through: :pledge
-
-  mount_uploader :avatar, AvatarUploader
-  validates_integrity_of  :avatar
-  validates_processing_of :avatar
 
   mount_uploader :qrcode, QrCodeUploader
   validates_integrity_of  :qrcode
@@ -19,7 +17,7 @@ class Coupon < ActiveRecord::Base
   validates :unit_donation, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
   validates :total_donation, numericality: {greater_than: 0}, if: :extra_donation_pledge
 
-  validates :title, :avatar, :description, :merchandise_categories, :expires_at, :pledge, presence: true
+  validates :title, :description, :merchandise_categories, :expires_at, :pledge, presence: true
 
   scope :extra_donation_pledges, ->{ where(extra_donation_pledge: true) }
   scope :normal, ->{ where(extra_donation_pledge: false) }

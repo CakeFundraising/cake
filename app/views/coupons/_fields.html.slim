@@ -18,7 +18,7 @@
       .col-sm-6
         .coupon-images.pull-right
           p UPLOAD COUPON PICTURE
-          = f.input :avatar, as: :uploader, removable: false
+          = render partial:'pictures/avatar_form', locals:{f: f}
       .col-sm-6
         .coupon-images
           p UPLOAD QR CODE (Optional)

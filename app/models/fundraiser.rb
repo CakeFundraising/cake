@@ -2,10 +2,10 @@ class Fundraiser < ActiveRecord::Base
   include Cause
   include Formats
   include Analytics
+  include Picturable
 
   belongs_to :manager, class_name: "User"
   has_one :location, as: :locatable, dependent: :destroy
-  has_one :picture, as: :picturable, dependent: :destroy
   has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
@@ -23,11 +23,7 @@ class Fundraiser < ActiveRecord::Base
   validates :website, format: {with: DOMAIN_NAME_REGEX, message: 'Please enter a valid URL. (should include http:// or https://)'}, allow_blank: true
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
-  accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   validates_associated :location
-  validates_associated :picture
-
-  delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   monetize :min_pledge_cents
   monetize :min_click_donation_cents
@@ -38,7 +34,6 @@ class Fundraiser < ActiveRecord::Base
   after_initialize do
     if self.new_record?
       self.build_location
-      self.build_picture if picture.blank?
     end
   end
 

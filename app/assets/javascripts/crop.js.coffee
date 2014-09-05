@@ -80,6 +80,7 @@ class Cropper
     img_ratio = Cake.pictures.current.ratio
 
     @modal = modal
+    @input = @modal.siblings('.uploader.input').find('input[type="file"]')
 
     $(modal).find('#image-container').Jcrop
       aspectRatio: ratio
@@ -102,6 +103,7 @@ class Cropper
 
   destroy: ->
     Cake.crop.Jcrop.destroy()
+    Cake.pictures.clear_input(@input)
     @modal.find('.modal-body').append('<div id="image-container"></div>')
     return
 
@@ -112,7 +114,7 @@ class CropForm
     @model = @form.attr('class').replace('formtastic ', '')
     @modal = $(button).closest('.modal')
     @input = @modal.siblings('.uploader.input').find('input[type="file"]')
-    
+
     @x = @modal.find('.crop_x').val()
     @y = @modal.find('.crop_y').val()
     @w = @modal.find('.crop_w').val()
@@ -143,12 +145,9 @@ class CropForm
     return url
 
   postToServer: ->
-    #Ajax Call
-    if @w > 0 and @h > 0
-      modal = @modal
-      img_type = @img_type
-      input = @input
+    crop_form = this
 
+    if @w > 0 and @h > 0
       $.ajax(
         url: @get_server_model_url()
         type: "POST"
@@ -156,11 +155,24 @@ class CropForm
         processData: false
         contentType: false
       ).done (data) ->
-        Cake.crop.show_image(modal, img_type, data)
-        Cake.pictures.clear_input(input)
+        crop_form.show_image(data)
         return
     else
       alert 'Please select a region.'
+    return
+
+  show_image: (data)->
+    if data is 'There was a problem with your upload. Please try again.'
+      alert data
+      location.reload()
+    else
+      img_tag = "<img class=\"img-responsive img-thumbnail\" src=\"" + data + "\">"
+
+      image_container = $('.uploader .'+ @img_type)
+      image_container.html img_tag
+
+      Cake.crop.Cropper.destroy()
+      @modal.modal('hide')
     return
 
 ########### Functions =================================================================
@@ -266,20 +278,6 @@ Cake.crop.select_region = ->
     Cake.crop.Cropper.destroy()
     return
   
-  return
-
-Cake.crop.show_image = (modal, img_type, data)->
-  if data is 'There was a problem with your upload. Please try again.'
-    alert data
-    location.reload()
-  else
-    img_tag = "<img class=\"img-responsive img-thumbnail\" src=\"" + data + "\">"
-
-    image_container = $('.uploader .'+ img_type)
-    image_container.html img_tag
-
-    Cake.crop.Cropper.destroy()
-    modal.modal('hide')
   return
 
 Cake.crop.init = ->

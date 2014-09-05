@@ -1,6 +1,8 @@
 class Pledge < ActiveRecord::Base
   include Statusable
   include Formats
+  include Picturable
+  
   has_statuses :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
@@ -9,17 +11,15 @@ class Pledge < ActiveRecord::Base
   belongs_to :sponsor
   belongs_to :campaign
   has_one :fundraiser, through: :campaign
-  has_one :picture, as: :picturable, dependent: :destroy
+  
   has_one :video, as: :recordable, dependent: :destroy
   has_one :invoice
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
   has_many :clicks, dependent: :destroy
 
-  delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
   delegate :active?, to: :campaign
 
-  accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :coupons, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
   accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
@@ -52,12 +52,6 @@ class Pledge < ActiveRecord::Base
   scope :highest, ->{ order(total_amount_cents: :desc, amount_per_click_cents: :desc) }
 
   delegate :main_cause, to: :campaign
-
-  after_initialize do
-    if self.new_record?
-      self.build_picture if picture.blank?
-    end
-  end
 
   before_save do
     self.max_clicks = self.current_max_clicks

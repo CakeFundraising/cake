@@ -3,6 +3,7 @@ class Campaign < ActiveRecord::Base
   include Scope
   include Statusable
   include Analytics
+  include Picturable
 
   has_statuses :not_launched, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -10,7 +11,6 @@ class Campaign < ActiveRecord::Base
   attr_accessor :step 
 
   belongs_to :fundraiser
-  has_one :picture, as: :picturable, dependent: :destroy
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
@@ -28,7 +28,6 @@ class Campaign < ActiveRecord::Base
 
   has_many :direct_donations, dependent: :destroy
 
-  accepts_nested_attributes_for :picture, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
   
@@ -40,20 +39,16 @@ class Campaign < ActiveRecord::Base
   #validates :mission, :headline, :story, :avatar, :banner, presence: true, if: :persisted?
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
-  validates_associated :picture
 
   #validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: ->{ self.custom_pledge_levels and self.persisted? }
   #validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
-
-  delegate :avatar, :banner, :avatar_caption, :banner_caption, to: :picture
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Date.today) }
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
-  scope :with_picture, ->{ eager_load(:picture) }
 
   scope :with_paid_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
@@ -61,12 +56,6 @@ class Campaign < ActiveRecord::Base
   scope :with_outstanding_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
-
-  after_initialize do
-    if self.new_record?
-      self.build_picture if picture.blank?
-    end
-  end
 
   #Solr
   searchable do
