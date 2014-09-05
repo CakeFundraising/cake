@@ -3,18 +3,17 @@ class CroppingController < ApplicationController
     if permitted_params[:crop_x].present?
       campaign = Campaign.find params[:id]
 
+      campaign.picture.crop_x = permitted_params[:crop_x]
+      campaign.picture.crop_y = permitted_params[:crop_y]
+      campaign.picture.crop_w = permitted_params[:crop_w]
+      campaign.picture.crop_h = permitted_params[:crop_h]
+
       if permitted_params[:img_type] == 'avatar'
         campaign.picture.avatar = permitted_params[:image] #assign image to avatar
       elsif permitted_params[:img_type] == 'banner'
         campaign.picture.banner = permitted_params[:image] #assign image to banner
       end
 
-      campaign.picture.crop_x = permitted_params[:crop_x]
-      campaign.picture.crop_y = permitted_params[:crop_y]
-      campaign.picture.crop_w = permitted_params[:crop_w]
-      campaign.picture.crop_h = permitted_params[:crop_h]
-
-      #campaign.send(permitted_params[:img_type]).recreate_versions! 
       campaign.save
 
       render text: campaign.reload.send(permitted_params[:img_type]).url(:medium) #send image url

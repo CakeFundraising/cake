@@ -17,9 +17,6 @@ Cake.pictures.avatarConstants =
     ico:
       x: 25
       y: 19
-    modal:
-      x: 610
-      y: 460
 
 Cake.pictures.bannerConstants =
   ratio: 2.2801
@@ -30,9 +27,6 @@ Cake.pictures.bannerConstants =
     medium:
       x: 342
       y: 150
-    modal:
-      x: 700
-      y: 307
 
 ##### Load Picture #####
 Cake.pictures.get_pic_type_from_input = (input) ->
@@ -42,11 +36,13 @@ Cake.pictures.get_pic_type_from_modal = (modal) ->
   return modal.replace("#","").split("_")[0]
 
 Cake.pictures.load_pic = ->
-  open_modal = (input, img)->
-    modal = $('#'+ Cake.pictures.get_pic_type_from_input(input) + '_crop_modal')
-
+  open_modal = (modal, img)->
     modal.find('.modal-body #image-container').css
       "background-image": "url('" + img + "')"
+      width: Cake.pictures.current.modal_width + "px"
+      height: Cake.pictures.current.modal_height + "px"
+
+    modal.find('.modal-dialog').width(Cake.pictures.current.modal_width + 2)
 
     modal.modal('show')
     return
@@ -54,17 +50,19 @@ Cake.pictures.load_pic = ->
   readURL = (input) ->
     if input.files and input.files[0]
       reader = new FileReader()
+      modal = $('#'+ Cake.pictures.get_pic_type_from_input(input) + '_crop_modal')
 
       reader.onload = (e) ->
-        img = new Image()
-        img.src = reader.result
+        Cake.pictures.current = new UploadedImage(reader, modal)
 
-        Cake.crop.current_image_width = img.width
-        Cake.crop.current_image_height = img.height
+        if Cake.pictures.current.width < Cake.pictures.current.min_size
+          alert 'Please upload an image greater than ' + Cake.pictures.current.min_size + 'px width.'
 
-        img_tag = e.target.result
-
-        open_modal(input, img_tag)    
+          $(input).wrap("<form>").closest("form").get(0).reset()
+          $(input).unwrap()
+        else
+          img_tag = e.target.result
+          open_modal(modal, img_tag)    
         return
 
       reader.readAsDataURL input.files[0]
@@ -82,58 +80,128 @@ Cake.pictures.load_pic = ->
 
   return
 
+##### Image Class ####
+class UploadedImage
+  constructor: (reader, modal) ->
+    img = new Image()
+    img.src = reader.result
+
+    @width = img.width
+    @height = img.height
+    @ratio = @calculate_ratio()
+    @type = Cake.pictures.get_pic_type_from_modal(modal.attr('id'))
+
+    if @type is 'banner'
+      @min_size = 1400
+    else
+      @min_size = 305
+
+    @modal = modal
+    @modal_width = @calculate_modal_width()
+    @modal_height = @calculate_modal_height()
+
+  calculate_ratio: =>
+    if 305 <= @width <= 900
+      ratio = 1
+    else if 901 <= @width <= 1400
+      ratio = 2
+    else if 1401 <= @width <= 2000
+      ratio = 3
+    else if 2001 <= @width <= 3000
+      ratio = 4.5
+    else if 3001 <= @width <= 4000
+      ratio = 6
+    else if 4001 <= @width <= 5000
+      ratio = 8
+    else if 5001 <= @width <= 6000
+      ratio = 10
+    else
+      ratio = 12
+    return ratio
+
+  calculate_modal_width: =>
+    return @width/@ratio
+
+  calculate_modal_height: =>
+    return @height/@ratio
+
 ##### Crop Picture #####
 class Cropper
   constructor: (modal, ratio, minSize_x, minSize_y) ->
     img_type = Cake.pictures.get_pic_type_from_modal(modal.attr('id'))
+    img_ratio = Cake.pictures.current.ratio
 
-    x_ratio = Cake.crop.current_image_width/Cake.pictures[img_type + 'Constants'].versions.modal.x
-    y_ratio = Cake.crop.current_image_height/Cake.pictures[img_type + 'Constants'].versions.modal.y
+    @modal = modal
 
     $(modal).find('#image-container').Jcrop
       aspectRatio: ratio
       setSelect: [0, 0, minSize_x, minSize_y]
-      minSize: [minSize_x, minSize_y]
+      minSize: [minSize_x/ img_ratio, minSize_y/img_ratio]
       onSelect: (coords) =>
-        $(modal).find('.crop_x').val(coords.x*x_ratio)
-        $(modal).find('.crop_y').val(coords.y*y_ratio)
-        $(modal).find('.crop_w').val(coords.w*x_ratio)
-        $(modal).find('.crop_h').val(coords.h*y_ratio)
+        $(modal).find('.crop_x').val(coords.x*img_ratio)
+        $(modal).find('.crop_y').val(coords.y*img_ratio)
+        $(modal).find('.crop_w').val(coords.w*img_ratio)
+        $(modal).find('.crop_h').val(coords.h*img_ratio)
         return
       onChange: (coords) =>
-        $(modal).find('.crop_x').val(coords.x*x_ratio)
-        $(modal).find('.crop_y').val(coords.y*y_ratio)
-        $(modal).find('.crop_w').val(coords.w*x_ratio)
-        $(modal).find('.crop_h').val(coords.h*y_ratio)
+        $(modal).find('.crop_x').val(coords.x*img_ratio)
+        $(modal).find('.crop_y').val(coords.y*img_ratio)
+        $(modal).find('.crop_w').val(coords.w*img_ratio)
+        $(modal).find('.crop_h').val(coords.h*img_ratio)
+      , ->
+        Cake.crop.Jcrop = this
         return
+
+  destroy: ->
+    Cake.crop.Jcrop.destroy()
+    @modal.find('.modal-body').append('<div id="image-container"></div>')
+    return
 
 Cake.crop.select_region = ->
   avatar_crop_modal = $('#avatar_crop_modal')
   banner_crop_modal = $('#banner_crop_modal')
 
   avatar_crop_modal.on 'shown.bs.modal', ->
-    new Cropper($(this), Cake.pictures.avatarConstants.ratio, Cake.pictures.avatarConstants.versions.medium.x, Cake.pictures.avatarConstants.versions.medium.y)
+    ratio = Cake.pictures.avatarConstants.ratio
+    minSize_x = Cake.pictures.avatarConstants.versions.medium.x
+    minSize_y = Cake.pictures.avatarConstants.versions.medium.y
+
+    Cake.crop.Cropper = new Cropper($(this), ratio, minSize_x, minSize_y)
 
     crop_button = $(this).find('#crop_button')
     crop_button.click ->
+      $(this).text('Cropping Image ...')
+
       Cake.crop.post_to_cropping(this)
       return
     return
 
   banner_crop_modal.on 'shown.bs.modal', ->
-    new Cropper($(this), Cake.pictures.bannerConstants.ratio, Cake.pictures.bannerConstants.versions.medium.x, Cake.pictures.bannerConstants.versions.medium.y)
+    ratio = Cake.pictures.bannerConstants.ratio
+    minSize_x = Cake.pictures.bannerConstants.versions.medium.x
+    minSize_y = Cake.pictures.bannerConstants.versions.medium.y
+
+    Cake.crop.Cropper = new Cropper($(this), ratio, minSize_x, minSize_y)
 
     crop_button = $(this).find('#crop_button')
     crop_button.click ->
+      $(this).text('Cropping Image ...')
+
       Cake.crop.post_to_cropping(this)
       return
+    return
+
+  avatar_crop_modal.on 'hidden.bs.modal', ->
+    Cake.crop.Cropper.destroy()
+    return 
+
+  banner_crop_modal.on 'hidden.bs.modal', ->
+    Cake.crop.Cropper.destroy()
     return
   
   return
 
 Cake.crop.post_to_cropping = (button)->
-  #$(button).closest('form.formtastic').submit()
-
   form = $(button).closest('form.formtastic')
   modal = $(button).closest('.modal')
   
@@ -172,7 +240,6 @@ Cake.crop.post_to_cropping = (button)->
     ).done (data) ->
       Cake.crop.show_cropped_image(modal, img_type, data)
       return
-
   else
     alert 'Please select a region.'
   return
@@ -186,6 +253,8 @@ Cake.crop.show_cropped_image = (modal, img_type, data)->
   else
     img_tag = "<img class=\"img-responsive img-thumbnail\" src=\"" + data + "\">"
     image_container.html img_tag
+
+    Cake.crop.Cropper.destroy()
     $(modal).modal('hide')
 
   return
