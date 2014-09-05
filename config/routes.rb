@@ -37,7 +37,7 @@ Cake::Application.routes.draw do
       patch :launch
 
       scope :pictures, controller: :cropping do
-        post :campaign_crop
+        post :crop
       end
     end
   end
@@ -53,6 +53,10 @@ Cake::Application.routes.draw do
         get :add_coupon
         get :add_sweepstakes
         get :share
+      end
+
+      scope :pictures, controller: :cropping do
+        post :crop
       end
 
       get :increase
@@ -105,6 +109,14 @@ Cake::Application.routes.draw do
     get :history
   end
 
+  resources :fundraisers do
+    member do
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
+  end
+
   #Sponsor Dashboard
   namespace :sponsor, controller: :dashboard do
     get :home
@@ -112,6 +124,14 @@ Cake::Application.routes.draw do
     get :pledge_requests
     get :active_pledges
     get :history
+  end
+
+  resources :sponsors do
+    member do
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
   end
 
   namespace :locations do

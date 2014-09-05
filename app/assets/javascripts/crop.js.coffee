@@ -1,7 +1,7 @@
 Cake.pictures ?= {}
 Cake.crop ?= {}
 
-##### Pic Constants #####
+########### Functions =================================================================
 Cake.pictures.avatarConstants =
   ratio: 1.326087
   versions:
@@ -27,58 +27,6 @@ Cake.pictures.bannerConstants =
     medium:
       x: 342
       y: 150
-
-##### Load Picture #####
-Cake.pictures.get_pic_type_from_input = (input) ->
-  return $(input).attr("class").split("_")[0]
-
-Cake.pictures.get_pic_type_from_modal = (modal) ->
-  return modal.replace("#","").split("_")[0]
-
-Cake.pictures.load_pic = ->
-  open_modal = (modal, img)->
-    modal.find('.modal-body #image-container').css
-      "background-image": "url('" + img + "')"
-      width: Cake.pictures.current.modal_width + "px"
-      height: Cake.pictures.current.modal_height + "px"
-
-    modal.find('.modal-dialog').width(Cake.pictures.current.modal_width + 2)
-
-    modal.modal('show')
-    return
-
-  readURL = (input) ->
-    if input.files and input.files[0]
-      reader = new FileReader()
-      modal = $('#'+ Cake.pictures.get_pic_type_from_input(input) + '_crop_modal')
-
-      reader.onload = (e) ->
-        Cake.pictures.current = new UploadedImage(reader, modal)
-
-        if Cake.pictures.current.width < Cake.pictures.current.min_size
-          alert 'Please upload an image greater than ' + Cake.pictures.current.min_size + 'px width.'
-
-          $(input).wrap("<form>").closest("form").get(0).reset()
-          $(input).unwrap()
-        else
-          img_tag = e.target.result
-          open_modal(modal, img_tag)    
-        return
-
-      reader.readAsDataURL input.files[0]
-    return
-
-  inputs = [
-    ".banner_input",
-    ".avatar_input",
-    ".qrcode_input"
-  ]
-
-  $(inputs.toString()).change ->
-    readURL this
-    return
-
-  return
 
 ##### Image Class ####
 class UploadedImage
@@ -125,7 +73,7 @@ class UploadedImage
   calculate_modal_height: =>
     return @height/@ratio
 
-##### Crop Picture #####
+##### Cropper Picture #####
 class Cropper
   constructor: (modal, ratio, minSize_x, minSize_y) ->
     img_type = Cake.pictures.get_pic_type_from_modal(modal.attr('id'))
@@ -157,6 +105,121 @@ class Cropper
     @modal.find('.modal-body').append('<div id="image-container"></div>')
     return
 
+##### CropForm #####
+class CropForm
+  constructor: (button) ->
+    @form = $(button).closest('form.formtastic')
+    @model = @form.attr('class').replace('formtastic ', '')
+    @modal = $(button).closest('.modal')
+    @input = @modal.siblings('.uploader.input').find('input[type="file"]')
+    
+    @x = @modal.find('.crop_x').val()
+    @y = @modal.find('.crop_y').val()
+    @w = @modal.find('.crop_w').val()
+    @h = @modal.find('.crop_h').val()
+
+    @img_type = Cake.pictures.get_pic_type_from_modal(@modal.attr('id'))
+    @image = @input[0].files[0]
+
+    @data = new FormData()
+
+    ## Actions ##
+    @loadData()
+    return
+
+  loadData: ->
+    @data.append("crop_x", @x)
+    @data.append("crop_y", @y)
+    @data.append("crop_w", @w)
+    @data.append("crop_h", @h)
+    @data.append("img_type", @img_type)
+    @data.append("model", @model)
+    @data.append('image', @image)
+    return
+
+  get_server_model_url: ->
+    model_id = @form.attr('action').split('/')[@form.attr('action').split('/').length - 1]
+    url = '/' + @model + 's/' + model_id + '/pictures/crop'
+    return url
+
+  postToServer: ->
+    #Ajax Call
+    if @w > 0 and @h > 0
+      modal = @modal
+      img_type = @img_type
+      input = @input
+
+      $.ajax(
+        url: @get_server_model_url()
+        type: "POST"
+        data: @data
+        processData: false
+        contentType: false
+      ).done (data) ->
+        Cake.crop.show_image(modal, img_type, data)
+        Cake.pictures.clear_input(input)
+        return
+    else
+      alert 'Please select a region.'
+    return
+
+########### Functions =================================================================
+
+##### Load Picture #####
+Cake.pictures.get_pic_type_from_input = (input) ->
+  return $(input).attr("class").split("_")[0]
+
+Cake.pictures.get_pic_type_from_modal = (modal) ->
+  return modal.replace("#","").split("_")[0]
+
+Cake.pictures.clear_input = (input) ->
+  input.wrap("<form>").closest("form").get(0).reset()
+  input.unwrap()
+  return
+
+Cake.pictures.load_pic = ->
+  open_modal = (modal, img)->
+    modal.find('.modal-body #image-container').css
+      "background-image": "url('" + img + "')"
+      width: Cake.pictures.current.modal_width + "px"
+      height: Cake.pictures.current.modal_height + "px"
+
+    modal.find('.modal-dialog').width(Cake.pictures.current.modal_width + 2)
+
+    modal.modal('show')
+    return
+
+  readURL = (input) ->
+    if input.files and input.files[0]
+      reader = new FileReader()
+      modal = $('#'+ Cake.pictures.get_pic_type_from_input(input) + '_crop_modal')
+
+      reader.onload = (e) ->
+        Cake.pictures.current = new UploadedImage(reader, modal)
+
+        if Cake.pictures.current.width < Cake.pictures.current.min_size
+          alert 'Please upload an image greater than ' + Cake.pictures.current.min_size + 'px width.'
+          Cake.pictures.clear_input $(input)
+        else
+          img_tag = e.target.result
+          open_modal(modal, img_tag)    
+        return
+
+      reader.readAsDataURL input.files[0]
+    return
+
+  inputs = [
+    ".banner_input",
+    ".avatar_input",
+    ".qrcode_input"
+  ]
+
+  $(inputs.toString()).change ->
+    readURL this
+    return
+
+  return
+
 Cake.crop.select_region = ->
   avatar_crop_modal = $('#avatar_crop_modal')
   banner_crop_modal = $('#banner_crop_modal')
@@ -169,10 +232,12 @@ Cake.crop.select_region = ->
     Cake.crop.Cropper = new Cropper($(this), ratio, minSize_x, minSize_y)
 
     crop_button = $(this).find('#crop_button')
+
     crop_button.click ->
       $(this).text('Cropping Image ...')
 
-      Cake.crop.post_to_cropping(this)
+      crop_form = new CropForm(this)
+      crop_form.postToServer()
       return
     return
 
@@ -184,10 +249,12 @@ Cake.crop.select_region = ->
     Cake.crop.Cropper = new Cropper($(this), ratio, minSize_x, minSize_y)
 
     crop_button = $(this).find('#crop_button')
+
     crop_button.click ->
       $(this).text('Cropping Image ...')
 
-      Cake.crop.post_to_cropping(this)
+      crop_form = new CropForm(this)
+      crop_form.postToServer()
       return
     return
 
@@ -201,62 +268,18 @@ Cake.crop.select_region = ->
   
   return
 
-Cake.crop.post_to_cropping = (button)->
-  form = $(button).closest('form.formtastic')
-  modal = $(button).closest('.modal')
-  
-  x = modal.find('.crop_x').val()
-  y = modal.find('.crop_y').val()
-  w = modal.find('.crop_w').val()
-  h = modal.find('.crop_h').val()
-
-  #Append data
-  data = new FormData()
-
-  data.append("crop_x", x)
-  data.append("crop_y", y)
-  data.append("crop_w", w)
-  data.append("crop_h", h)
-
-  img_type = Cake.pictures.get_pic_type_from_modal(modal.attr('id'))
-  data.append("img_type", img_type)
-
-  image = modal.siblings('.uploader.input').find('input[type="file"]')[0].files[0]
-  data.append('image', image)
-
-  #Get campaign ID
-  campaign_id = form.attr('action').split('/')[form.attr('action').split('/').length - 1]
-
-  #Ajax Call
-  if w > 0 and h > 0
-    url = "/campaigns/" + campaign_id + "/pictures/campaign_crop"
-
-    $.ajax(
-      url: url
-      type: "POST"
-      data: data
-      processData: false
-      contentType: false
-    ).done (data) ->
-      Cake.crop.show_cropped_image(modal, img_type, data)
-      return
-  else
-    alert 'Please select a region.'
-  return
-
-Cake.crop.show_cropped_image = (modal, img_type, data)->
-  image_container = $('.uploader .'+ img_type)
-
+Cake.crop.show_image = (modal, img_type, data)->
   if data is 'There was a problem with your upload. Please try again.'
     alert data
     location.reload()
   else
     img_tag = "<img class=\"img-responsive img-thumbnail\" src=\"" + data + "\">"
+
+    image_container = $('.uploader .'+ img_type)
     image_container.html img_tag
 
     Cake.crop.Cropper.destroy()
-    $(modal).modal('hide')
-
+    modal.modal('hide')
   return
 
 Cake.crop.init = ->

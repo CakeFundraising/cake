@@ -1,25 +1,25 @@
 class CroppingController < ApplicationController
-  def campaign_crop
+  def crop
     if permitted_params[:crop_x].present?
-      campaign = Campaign.find params[:id]
+      model = permitted_params[:model].camelize.constantize.find params[:id]
 
-      campaign.picture.crop_x = permitted_params[:crop_x]
-      campaign.picture.crop_y = permitted_params[:crop_y]
-      campaign.picture.crop_w = permitted_params[:crop_w]
-      campaign.picture.crop_h = permitted_params[:crop_h]
+      model.picture.crop_x = permitted_params[:crop_x]
+      model.picture.crop_y = permitted_params[:crop_y]
+      model.picture.crop_w = permitted_params[:crop_w]
+      model.picture.crop_h = permitted_params[:crop_h]
 
       if permitted_params[:img_type] == 'avatar'
-        campaign.picture.avatar = permitted_params[:image] #assign image to avatar
+        model.picture.avatar = permitted_params[:image] #assign image to avatar
       elsif permitted_params[:img_type] == 'banner'
-        campaign.picture.banner = permitted_params[:image] #assign image to banner
+        model.picture.banner = permitted_params[:image] #assign image to banner
       end
 
-      campaign.save
+      model.save
 
-      render text: campaign.reload.send(permitted_params[:img_type]).url(:medium) #send image url
+      render text: model.reload.send(permitted_params[:img_type]).url(:medium) #send image url
     else
       render text: 'There was a problem with your upload. Please try again.'
-    end
+    end  
   end
 
   protected
@@ -32,6 +32,7 @@ class CroppingController < ApplicationController
       :crop_w,      
       :crop_h,
       :img_type,
+      :model,
       :image
     )
   end  
