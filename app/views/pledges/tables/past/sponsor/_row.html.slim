@@ -4,7 +4,7 @@ tr.pledge
   td = pledge.main_cause
   td = pledge.campaign.object.scopes.first
   td = pledge.end_date
-  td = pledge.invoice.due
+  td = pledge.invoice.due if pledge.invoice.present?
   td = pledge.total_amount
   td = pledge.amount_per_click
   td = pledge.clicks_count
