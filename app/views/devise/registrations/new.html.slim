@@ -1,6 +1,6 @@
 = content_for :right_nav do
-  .navbar-text Do you have an account?
-  = menu_item t("links.user.sign_in"), new_user_session_path
+  .navbar-text Already have an account?
+  = menu_item t("links.user.sign_in"), new_user_session_path, class:'btn-nav'
 
 .user-forms
   .text-center
@@ -15,20 +15,20 @@
 
       = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
         = f.inputs 'Sign Up' do
-          = f.input :full_name
-          = f.input :email
+          = f.input :full_name, label:'Full Name'
+          = f.input :email, label:'Email Address'
           = f.input :password
-          = f.input :password_confirmation
+          = f.input :password_confirmation, label:'Confirm Password'
           / = f.input :roles, as: :check_boxes, collection: User.roles_list
         = f.actions do
           = f.action :submit, label: 'Sign up', button_html: {class: 'btn btn-success btn-lg btn-block'}
+        .shared-links
+        	= render "devise/shared/links"
 
     .col-md-6.signup-wrap
       p.signup-social
-        span Or simply sign up with 
+        span Or Sign Up With 
       .providers.text-center
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
             = link_to "Sign up with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg' unless [:facebook, :stripe_connect].include?(provider)
-      
-  = render "devise/shared/links"

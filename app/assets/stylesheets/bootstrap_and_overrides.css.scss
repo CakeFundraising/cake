@@ -47,6 +47,7 @@ h3, h4 {
 //Navbar --------------------------------------------------------------------------------
 .navbar {
   margin-bottom: 0;
+  background-color: #FFFFFF;
 }
 .navbar-brand {
   padding-top: 6px;
@@ -61,8 +62,33 @@ h3, h4 {
 }
 //Buttons -------------------------------------------------------------------------------
 
+.btn-block {
+	width: auto !important;
+}
+
+.btn-nav {
+  
+}
+
+.search-query .form-control{
+	
+}
+
+.btn-search{
+	padding:6px 15px !important;
+	margin-left:4px;
+	background-color:#e7e7e7;
+	color:#555555;
+}
+
+.btn-lg{
+padding: 10px 60px !important;
+}
+
 .btn {
+  width: auto;
   display: inline-block;
+  margin-right:4px;
   margin-bottom: 0; // For input.btn
   font-weight: $btn-font-weight;
   text-align: center;
@@ -116,6 +142,16 @@ h3, h4 {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 
+.panel-group h4{
+	margin-top: 25px;
+	margin-bottom: 5px;
+}
+
+.shared-links{
+	text-align:left;
+	margin-top:20px;
+}
+
 // -------------------------------------------------------------------------------
 form{
   .banner{
@@ -129,6 +165,11 @@ form{
     width: 305px;
     height: 230px;
   }
+}
+
+.form-control{
+	/*height: 40px;
+	font-size: 16px;*/
 }
 
 .input-group{
@@ -147,6 +188,7 @@ form{
 
 footer {
   padding: 25px 0;
+  margin-top: 30px;
   background: $gray-darker;
   color: $gray-lighter;
   font-size: 12px;
@@ -210,7 +252,7 @@ footer {
 // Sign Up Styles ------------------------------------------------------------------
 
 .signup-wrap {
-  padding: 0 8%;
+  padding: 0 9%;
   color: $text-color-light;
   margin: auto;
   text-align: center;
@@ -445,18 +487,19 @@ table.performance-summary {
   margin-bottom: 0;
 }
 .border-right {
-  border-right: 1px solid #dddddd;
+  border-right: 1px solid #e7e7e7;
 }
 .rank-rows {
   margin: 15px 0;
-  border-top:  1px solid #dddddd;
+  border-top:  1px solid #e7e7e7;
+  text-transform: capitalize !important;
 }
 .rank-rows>div {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #e7e7e7;
   padding: 10px;
 }
 .causes {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #e7e7e7;
   padding: 10px 0;
 }
 .white {
@@ -483,7 +526,7 @@ table.performance-summary {
 
 // Tables -----------------------------------------------------------------------------
 .data-table {
-  margin: 40px 0;
+  margin: 30px 0;
   thead {
     background-color: $brand-primary;
   }
@@ -888,7 +931,7 @@ ul.share-coupon {
 }
  ul.cats {
   list-style: none;
-  padding: 25px 0;
+  padding: 0 !important;
   li {
   border-bottom: 1px dotted $gray-light;
   padding: 5px 0;
@@ -1428,7 +1471,7 @@ ul#share-block {
 }
 .media-body {
   position: relative;
-  min-height: 230px;
+  min-height: 180px;
   .dates {
     //position: absolute;
     bottom: 0;
@@ -1500,9 +1543,14 @@ ul#share-block {
 .coupons-wrap {
   .form-group {
     display: inline-block;
-    margin-right: 15px;
+    margin-right: 10px;
   }
 }
+
+.form-group label{
+margin-bottom: 5px;
+}
+
 .coupon-uploads {
   margin-top: 20px;
 }
@@ -1602,6 +1650,11 @@ ul#share-block {
     }
   }
 }
+
+.alert, .alert-transparent{
+  margin:20px;
+}
+
 .alert-transparent{
   color: white;
   background: rgba(0,0,0,0.3);
