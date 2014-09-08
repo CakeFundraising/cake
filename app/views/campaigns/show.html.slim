@@ -9,7 +9,7 @@
       .col-md-8
         = render partial:'videos/button', locals:{object: @campaign}
         h1.name 
-          span = @campaign.mission
+          span.mission = @campaign.mission
           - if can? :edit, @campaign and not @campaign.past?
             span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
         .pull-left 
@@ -19,7 +19,7 @@
         .sidebar-bkg 
           .row
             .col-xs-12
-              p.timer-ital Campaign Ends in:
+              p.timer-ital Campaign Ends In:
           .row.text-center#campaign_countdown
             .col-xs-4.border-right
               span.campaign-timer.days
@@ -33,27 +33,29 @@
           hr
           .row
             .col-md-12.pledges_total
-              span Pledges to date: 
-              strong = @campaign.current_pledges_total
-          br
+              span Pledges to Date: 
+              span.boldest = @campaign.current_pledges_total
+          /br
           .row
             .col-md-12
               .progress
                 .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
               .campaign-stats
-                strong = @campaign.raised
-                span Raised
-                span.pull-right Goal
-                strong.pull-right = @campaign.goal
+                span.boldest = @campaign.raised
+                span 
+                /Raised
+                span.pull-right 
+                /Goal
+                span.boldest.pull-right = @campaign.goal
           br
             - if current_user.present?
               - unless @campaign.past? 
-                .col-md-12
-                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+                .col-md-12.text-center
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-lg'
             - else
-              .col-md-12
-                a.btn.btn-success.btn-block href='#sponsors_banner' Visit our Sponsors
+              .col-md-12.text-center
+                a.btn.btn-success.btn-lg href='#sponsors_banner' Visit our Sponsors
 
   .white
     .container
@@ -71,16 +73,21 @@
   .blue
     .container
       .row.pledgebluestripe.campaign#sponsors_banner
-        .col-md-12
-          h1 Click on each of our Sponsors below and they will donate for you!
-          .share.pull-right
-            .pull-right = render partial:'layouts/share_buttons'
-            h4.share-info.pull-right Please share our Campaign!
-
+        .col-md-12.text-center
+          /h1 Click on each of our Sponsors below and they will donate for you!
+          /.share.pull-right
+          /  .pull-right = render partial:'layouts/share_buttons'
+          /  h4.share-info.pull-right Please share our Campaign!
+          span.h1 Your 
+          span.h1.boldest clicks 
+          span.h1 help us.
+          p Please visit all our generous sponsors and share our campaign with friends!
+          p Working together, we can make a difference!
+          /.pull-right = render partial:'layouts/share_buttons'
   .container
     = render partial:'campaigns/show/pledges/pledges_section'
     .row
-      .col-md-12
+      .col-md-12.text-center
         .make-pledge.well
           .row
             .col-md-8
@@ -88,12 +95,14 @@
                 b> Attention Business Owners!
                 | Support us and reach new customers! 
             .col-md-4
-              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-block'
+              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-lg'
   
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
     .text-center = render partial:'layouts/share_buttons'
-
-  = render partial: 'layouts/choose_path'
+    br
+  - if current_user.present?
+  - else
+    = render partial: 'layouts/choose_path'
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 

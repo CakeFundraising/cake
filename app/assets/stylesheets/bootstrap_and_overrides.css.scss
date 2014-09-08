@@ -76,7 +76,7 @@ h3, h4 {
 
 .btn-search{
 	padding:6px 15px !important;
-	margin-left:4px;
+	margin-left:4px !important;
 	background-color:#e7e7e7;
 	color:#555555;
 }
@@ -191,7 +191,7 @@ form{
 
 footer {
   padding: 25px 0;
-  margin-top: 30px;
+  margin-top: 0px;
   background: $gray-darker;
   color: $gray-lighter;
   font-size: 12px;
@@ -441,7 +441,8 @@ p.signup-social {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2.5em;
+    font-size: 1.5em;
+    padding: 20px 50px 20px 50px;
   }
 }
 
@@ -460,6 +461,17 @@ p.signup-social {
     margin-left: 5px;
   }
 }
+
+.mission{
+  display: -webkit-box;
+  max-width: 100%;
+  margin: 0 auto;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 address {
   color: #fff;
 }
@@ -467,7 +479,7 @@ address {
   padding-right: 15px;
 }
 .sponsor-profile {
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
   background-color:#fff;
 }
@@ -483,7 +495,17 @@ table.performance-summary {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
+  hr {
+    margin-top:5px;  
+    margin-bottom:10px;  
+  }
 }
+
+.boldest{
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+}
+
+
 .donation-stats {
   font-size: 3em;
   color: $brand-primary;
@@ -541,6 +563,11 @@ table.performance-summary {
   font-size: 2.5em;
   color: $brand-primary;
   margin-bottom: 0;
+  font-weight: 700;
+}
+
+.campaign-story h3{
+  font-weight: 700;
 }
 
 .click-btn {
@@ -577,6 +604,7 @@ table.performance-summary {
 }
 .blue {
   background-color: $brand-primary;
+  margin-bottom: 30px;
 }
 
 .share-info{
@@ -584,19 +612,40 @@ table.performance-summary {
   padding-left: 5px;
 }
 
+
+.blue:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-primary;
+  border-width: 30px;
+  margin-left: -30px;
+}
+
+
+
 .pledgebluestripe {
   &.campaign{
-    padding: 0px 15px;
-    height: 140px;
+    padding: 30px;
+    /*height: 140px;*/
     h1{
       position: absolute;
       padding: 15px 0px;
       margin-bottom: 0;
-      margin-top: 0px;
-      font-size: 3.6em;
+      padding-top: 20px;
+      font-size: 3em;
     }
     .share{
       margin-top: 80px;
+    }
+    p{
+      margin:0px;
+      font-size: 1.2em;
     }
   }
   &.pledge{
@@ -644,7 +693,8 @@ table.performance-summary {
   }
   .btn {
     @media (min-width: $screen-sm-min) {
-    font-size: 20px;
+      font-size: 20px;
+      padding: 6px 40px 6px 40px;
     }
   }
 }
@@ -696,6 +746,14 @@ table.performance-summary {
 
 .caption h4{
   margin:0px;
+  padding-right: 20px;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .caption h4 a{
@@ -925,33 +983,37 @@ ul.share-coupon {
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  height: 60px;
+  height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
 }
 .popular {
   list-style: none;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
   li > a:hover {
-    background: #fe6a52;
+    background: $brand-primary;
   }
 }
 .popular > li {
   display: inline-block;
   float: none;
   margin: 0 10px;
+  font-size:1em;
 }
+
 .popular > li > a {
-  border-radius: 25px;
-  background: $gray-light;
+  border-radius: 15px;
+  background: $gray-lighter;
   color: #fff;
+  padding: 10px 35px;
 }
 .popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: #fe6a52;
+  background-color: $brand-primary;
 }
 
 .main-home {
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
  ul.cats {
   list-style: none;
@@ -1169,14 +1231,29 @@ ul.share-coupon {
 .secondary-navbar {
   background-color: #fff;
   height: 60px;
-  @include box-shadow(0 0 3px $gray-darker);
+  @include box-shadow(0 0 3px $gray-light);
 }
+
+/*.popular > li:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $gray-light;
+  border-width: 6px;
+  margin-left: -6px;
+}*/
+
 .popular {
   list-style: none;
   text-align: center;
   margin-top: 10px;
   li > a:hover {
-    background: #fe6a52;
+    background: $brand-success;
   }
 }
 .popular > li {
@@ -1187,10 +1264,25 @@ ul.share-coupon {
 .popular > li > a {
   border-radius: 25px;
   background: $gray-light;
+  border-top-color: $gray-light;
   color: #fff;
 }
 .popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: #fe6a52;
+  background-color: $brand-success;
+}
+
+.popular > li.active:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-success;
+  border-width: 6px;
+  margin-left: -6px;
 }
 
 .main-home {
@@ -1677,6 +1769,10 @@ margin-bottom: 5px;
 
 .alert, .alert-transparent{
   margin:20px;
+}
+
+.banner .alert, .alert-transparent{
+  margin:0px;
 }
 
 .alert-transparent{
