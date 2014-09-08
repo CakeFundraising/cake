@@ -18,7 +18,14 @@ class SponsorsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_sponsor(@sponsor)
-        redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
+
+        if cookies[:pledge_campaign].present?
+          redirect_to new_pledge_path(campaign: cookies[:pledge_campaign])
+        elsif cookies[:pledge_fundraiser].present?
+          redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
+        else
+          redirect_to root_path, notice: 'Now you can start using CakeFundraising!'  
+        end
       end
     end
   end

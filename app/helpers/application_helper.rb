@@ -34,9 +34,9 @@ module ApplicationHelper
 
   def auto_link(object, opts={})
     if opts.symbolize_keys![:truncate].present?
-      link_to truncate(object.to_s, length: opts[:truncate]), object
+      link_to truncate(object.to_s, length: opts[:truncate]), object, opts
     else
-      link_to object.to_s, object
+      link_to object.to_s, object, opts
     end
   end
 

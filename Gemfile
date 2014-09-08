@@ -67,6 +67,9 @@ gem "jquery-validation-rails"
 gem 'high_voltage'
 gem 'roadie-rails'
 
+#App performance
+#gem 'newrelic_rpm'
+
 #User registration
 gem "devise"
 

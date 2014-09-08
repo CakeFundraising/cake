@@ -45,6 +45,12 @@ class ApplicationController < ActionController::Base
       end
     elsif cookies[:pledge_campaign].present?
       new_pledge_path(campaign: cookies[:pledge_campaign])
+    elsif cookies[:pledge_fundraiser].present?
+      new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
+    elsif current_sponsor.present?
+      sponsor_home_path
+    elsif current_fundraiser.present?
+      fundraiser_home_path
     else
       super
     end

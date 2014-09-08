@@ -6,7 +6,7 @@ h1 Increase your pledge
   	span.pledge-pad I agree to donate $ 
   	= f.input :amount_per_click, label: false
   	span.pledge-pad  per unique click to 
-    h3 = auto_link @pledge.campaign.decorate
+    h3 = auto_link @pledge.campaign.decorate, target: :_blank
   	span.pledge-pad up to an amount not to exceed $ 
   	= f.input :total_amount, label: false
   = f.actions do
