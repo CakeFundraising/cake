@@ -182,7 +182,10 @@ form{
 
 .progress {
   height: 6px;
+  margin: 10px 10px 5px 10px;
 }
+
+
 
 // Footer Styles ---------------------------------------------------------------
 
@@ -687,6 +690,27 @@ table.performance-summary {
       padding: 0 15px;
     }
   }
+}
+
+// Popular Cmapaigns Search Results
+
+.caption h4{
+  margin:0px;
+}
+
+.caption h4 a{
+  color:#363636;
+  text-decoration: none;
+}
+
+.caption .cause{
+  color:#999999;
+}
+
+
+.caption hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 // Campaign Page Styles -----------------------------------------------------------------
