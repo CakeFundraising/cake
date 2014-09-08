@@ -1,5 +1,6 @@
 tr.pledge
-  td = link_to pledge.campaign, pledge
+  td = auto_link pledge
+  td = auto_link pledge.campaign
   td = auto_link pledge.sponsor
   td = pledge.main_cause
   td = pledge.campaign.object.scopes.first

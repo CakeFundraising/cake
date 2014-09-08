@@ -1,6 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 FactoryGirl.define do
   factory :pledge do
+    name { Faker::Lorem.sentence }
     mission { Faker::Lorem.sentence }
     headline { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }

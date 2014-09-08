@@ -1,5 +1,6 @@
 tr.pledge
-  td = link_to pledge.sponsor, pledge
+  td = auto_link pledge
+  td = auto_link pledge.sponsor
   td = auto_link pledge.campaign
   td = humanized_money_with_symbol pledge.amount_per_click
   td = humanized_money_with_symbol pledge.total_amount

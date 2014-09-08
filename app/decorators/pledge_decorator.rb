@@ -8,7 +8,7 @@ class PledgeDecorator < ApplicationDecorator
   decorates_association :video
 
   def to_s
-    object.headline
+    object.name
   end
 
   def end_date

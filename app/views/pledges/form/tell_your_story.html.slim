@@ -42,7 +42,11 @@
 
         .text-center.tell-story-wrap
           h2 Tell your story in words.
-          p.text-muted Tell your story with a headline and a pledge message.
+          p.text-muted Tell your story with the pledge name, a headline and a message.
+
+          = f.input :name, input_html:{size: 40, placeholder: '40 characters'}
+          span.help-block.italic Keep it simple.
+
           = f.input :headline, {placeholder: '250 characters or less'}
           = f.input :description, input_html: {rows: 5, placeholder: '3,000 words or less'}
 

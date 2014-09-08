@@ -198,7 +198,7 @@ class PledgesController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(pledge: [:mission, :headline, :description, :amount_per_click, :donation_type, 
+    params.permit(pledge: [:name, :mission, :headline, :description, :amount_per_click, :donation_type, 
       :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],
       picture_attributes: [:id, :banner, :avatar, :avatar_caption, :banner_caption, :avatar_cache, :banner_cache],
       coupons_attributes: [:id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, 

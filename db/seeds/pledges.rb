@@ -2,6 +2,7 @@
   create(8, s.pledges) do |p|
     campaign = @campaigns.sample
 
+    p.name = Faker::Lorem.sentence
     p.mission = Faker::Lorem.sentence
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph
@@ -36,6 +37,7 @@ end
   create(6, s.pledges) do |p|
     campaign = @past_campaigns.sample
 
+    p.name = Faker::Lorem.sentence
     p.mission = Faker::Lorem.sentence
     p.headline = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraph

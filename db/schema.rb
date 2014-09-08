@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814211825) do
+ActiveRecord::Schema.define(version: 20140908160542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 20140814211825) do
     t.integer  "max_clicks",                          default: 0
     t.boolean  "increase_requested",                  default: false
     t.string   "processed_status",                    default: "unprocessed"
+    t.string   "name"
   end
 
   create_table "sponsor_categories", force: true do |t|
