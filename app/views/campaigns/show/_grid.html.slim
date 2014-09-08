@@ -1,12 +1,12 @@
 .campaign_grid.col-md-4
-  .thumbnail
+  .thumbnail 
     .avatar 
       = link_to campaign do
         = image_tag campaign.avatar.url(:medium)
     .caption
       h4 = auto_link campaign
       .cause = campaign.object.main_cause
-      .type = campaign.object.scopes.first
+      /.type = campaign.object.scopes.first
       hr
       .fundraiser_name = auto_link campaign.fundraiser
       hr
@@ -17,16 +17,18 @@
             span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
         .campaign-stats
           strong = campaign.raised
-          span Raised
-          span.pull-right Goal
+          span 
+          /Raised
+          span.pull-right 
+          /Goal
           strong.pull-right = campaign.goal
-      hr
-      .dates = campaign.start_end_dates
-  .sponsors.pull-left 
-    = link_to "View Sponsors", campaign 
-  .actions.pull-right
-    = link_to nil do
-      span.glyphicon.glyphicon-share
+      /hr
+      /.dates = campaign.start_end_dates
+  /.sponsors.pull-left 
+  /  = link_to "View Sponsors", campaign 
+  /.actions.pull-right
+  /  = link_to nil do
+  /    span.glyphicon.glyphicon-share
 
     - if can? :edit, campaign
       = link_to edit_campaign_path(campaign) do
