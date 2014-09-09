@@ -12,7 +12,7 @@
     	hr
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
-        hr
+        /hr
         = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
     .col-md-9
       .campaigns-container.row-fluid.transitions-enabled
