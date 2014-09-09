@@ -1,15 +1,21 @@
 #search_campaigns
   h1.dash-head Search Campaigns
   
-  .controls
-    .counter 
-    	strong #{@campaigns.total_count} campaigns 
-    	span match the criteria
+  /.controls
+  /  .counter 
+  /  	strong #{@campaigns.total_count} campaigns 
+  /  	span match the criteria
 
   .row
     .col-md-3
     	= render 'layouts/search/search_form', collection: :campaigns
-    	hr
+    	/hr
+    	
+    	.controls
+    		.counter 
+    			.boldest #{@campaigns.total_count} campaigns 
+    				span match the criteria
+    	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
         /hr

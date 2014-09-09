@@ -1,15 +1,21 @@
 #search_coupons
   h1.dash-head Search coupons
   
-  .controls
-    .counter 
-    	strong #{@coupons.total_count} coupons 
-    	span match the criteria
+  /.controls
+  /  .counter 
+  /  	strong #{@coupons.total_count} coupons 
+  /  	span match the criteria
 
   .row
     .col-md-3
     	= render 'layouts/search/search_form', collection: :coupons
-    	hr
+    	/hr
+    	
+    	.controls
+    		.counter 
+    			.boldest #{@coupons.total_count} coupons 
+    				span match the criteria
+    	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
         hr

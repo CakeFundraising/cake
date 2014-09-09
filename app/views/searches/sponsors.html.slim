@@ -1,18 +1,24 @@
 #search_sponsors
   h1.dash-head Search Sponsors
   
-  .controls
-    .counter 
-    	strong #{@sponsors.total_count} sponsors 
-    	span match the criteria
+  /.controls.clearfix
+  /  .counter 
+  /  	strong #{@sponsors.total_count} sponsors 
+  /  	span match the criteria
 
   .row
     .col-md-3
     	= render 'layouts/search/search_form', collection: :sponsors
-    	hr
+    	/hr
+    	
+    	.controls.clearfix
+		    .counter 
+    			.boldest #{@sponsors.total_count} sponsors 
+    				span match the criteria
+    	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
-        hr
+        /hr
         = link_to t('helpers.filters.clear'), search_sponsors_path, class:'btn btn-primary'
     .col-md-9
       .sponsors-container.row-fluid.transitions-enabled

@@ -150,6 +150,11 @@ padding: 10px 60px !important;
 }
 
 .panel-group h4{
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.panel-heading h4{
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
@@ -376,8 +381,17 @@ p.signup-social {
   padding-left: 5px;
 }
 .dash-head {
-  padding: 25px 0;
+  padding: 25px 0px 0px;
 }
+
+#search_sponsors{
+	margin-bottom:40px;
+}
+
+.counter {
+	margin: 25px 0px 5px 5px;
+}
+
 .active-campaigns {
   margin: 20px 0 10px;
   h1 {
@@ -1028,7 +1042,7 @@ ul.share-coupon {
 }
  ul.cats {
   list-style: none;
-  padding: 0 !important;
+  /*padding: 0 !important;*/
   li {
   border-bottom: 1px dotted $gray-light;
   padding: 5px 0;
@@ -1771,13 +1785,22 @@ margin-bottom: 5px;
 
 #filters{
   ul{
-    font-size: 12px;
+    font-size: 13px;
+    
     padding-left: 0;
     padding: 0px;
     margin-bottom: 0px;
     li{
       list-style: none;
       padding: 4px;
+     
+	  a{
+	  	width: 75%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: inline-block;
+	  }
     }
   }
 }
@@ -1801,7 +1824,7 @@ margin-bottom: 5px;
 
 .controls {
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 0px; /*20px*/
   border-bottom: 1px solid $gray-lighter;
 }
 
