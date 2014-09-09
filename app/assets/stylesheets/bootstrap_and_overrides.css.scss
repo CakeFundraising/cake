@@ -21,6 +21,7 @@
 h3, h4 {
   color: $brand-primary;
 }
+
 .nav-tabs {
   text-transform: uppercase;
 }
@@ -49,8 +50,12 @@ h3, h4 {
   margin-bottom: 0;
   background-color: #FFFFFF;
 }
+.navbar-collapse{
+  padding-right: 0px;
+  padding-left: 0px;
+}
 .navbar-brand {
-  padding-top: 6px;
+  padding-top: 8px;
 }
 .user-logged-in {
   span {
@@ -60,6 +65,118 @@ h3, h4 {
     top: 2px;
   }
 }
+.navbar-nav{
+    margin: 0px 0px 0px -1px !important
+  }
+.navbar-collapse{
+  max-height: 1000px;
+}
+
+//Media Responsive -------------------------------------------------------------------------------
+
+@media (max-width: 620px){
+    .secondary-navbar{
+      margin:0px !important;
+      .col-md-12 {
+       padding:0px !important;
+      }
+    }
+    .popular > li{
+      margin:2px !important;
+      font-size: .8em !important;
+      a {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+      }
+    }
+    .main-home{
+      margin-top: 20px;
+    }
+    .hero-home{
+      height:350px !important;
+      .cta h1{
+        font-size: 38px;
+      }
+    }
+    .button-wrap{
+      display:none;
+    }
+    .navbar-collapse{
+      /*margin-top: 10px !important;*/
+    }
+    #main-container{
+
+    }
+    .bottom_section{
+      
+      .container{
+        padding:0px !important;
+      }
+    }
+    .circle-campaign{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .circle-sp{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .circle-raised{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .easy-band{
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      .center{
+        padding:0px !important;
+        margin: 0px !important;
+      }
+    }
+    .rank-rows{
+      .boldest{
+        display:block !important;
+      }
+      .pull-right{
+        float:none !important;
+      }
+    }
+    .media{
+      img{
+        max-width: 305px;
+      }
+      .btn{
+        padding: 10px 20px !important;
+      }
+      .pull-right{
+        float:none !important;
+        margin:auto 0 !important;
+      }
+      .media-body{
+        float: left !important;
+        margin-top: 20px;
+      }
+    }
+    .nav-tabs{
+      font-size: 11px;
+      a{
+        padding: 9px 7px !important;
+      }
+    }
+    .active-campaigns{
+      .pull-right{
+        float:none !important;
+      }
+    }
+    .pad-top{
+      margin-top: 15px !important;
+    }
+}
+
+@media (max-width: 768px){
+    
+}
+
 //Buttons -------------------------------------------------------------------------------
 
 .btn-block {
@@ -229,7 +346,7 @@ footer {
 }
 // Register - Choose Styles ------------------------------------------------------------------
 .choose-role {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 .fundraisers-cir {
   background-image: image-url('fr-circle.png');
@@ -357,7 +474,7 @@ p.signup-social {
 //  fr was just completed first,)
 
 .fr-dash {
-  margin: 45px 0;
+  margin:20px 0;
 }
 .fr-dash-avatar {
   max-width: 160px;
@@ -469,7 +586,7 @@ p.signup-social {
   background-position: 50% 0px;
   .alert-dismissable {
     font-size: 1.5em;
-    padding: 20px 50px 20px 50px;
+    padding: 20px 100px 20px 100px;
   }
 }
 
@@ -522,6 +639,7 @@ table.performance-summary {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
+  margin-bottom: 20px;
   hr {
     margin-top:5px;  
     margin-bottom:10px;  
@@ -578,7 +696,7 @@ table.performance-summary {
 
 // Tables -----------------------------------------------------------------------------
 .data-table {
-  margin: 30px 0;
+  margin: 15px 0;
   thead {
     background-color: $brand-primary;
   }
@@ -711,6 +829,7 @@ table.performance-summary {
   h4 {
     color: $gray-light;
     font-size: 20px;
+    margin-top: 15px;
     @media (max-width: $screen-md-min) {
       text-align: center;
     }
@@ -1313,7 +1432,7 @@ ul.share-coupon {
 }
 
 .main-home {
-  margin-top: 50px;
+  margin-top: 30px;
 }
  ul.cats {
   list-style: none;
@@ -1614,12 +1733,15 @@ ul#share-block {
 }
 .media-body {
   position: relative;
-  min-height: 180px;
+  /*min-height: 180px;*/
   .dates {
     //position: absolute;
     bottom: 0;
     left: 0;
   }
+}
+.media-data{
+  margin-top: 20px;
 }
 .solicit-invite {
   color: black;
