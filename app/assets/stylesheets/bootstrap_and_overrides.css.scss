@@ -49,7 +49,9 @@ h3, h4 {
 .navbar {
   margin-bottom: 0;
   background-color: #FFFFFF;
+  /*float:right;*/
 }
+
 .navbar-collapse{
   padding-right: 0px;
   padding-left: 0px;
@@ -66,27 +68,130 @@ h3, h4 {
   }
 }
 .navbar-nav{
-    margin: 0px 0px 0px -1px !important
-  }
+  margin: 0px 0px 0px -1px !important;
+}
 .navbar-collapse{
   max-height: 1000px;
 }
 
 //Media Responsive -------------------------------------------------------------------------------
 
-@media (max-width: 620px){
-    .secondary-navbar{
-      margin:0px !important;
-      .col-md-12 {
-       padding:0px !important;
-      }
+.container{
+  width: 90% !important;
+  max-width: 1200px;
+  min-width: 260px;
+}
+
+.navbar-text{
+  padding: 0px 2px;
+  margin-top: 15px;
+}
+
+.nav-default{
+  /*position: absolute;*/
+}
+
+.logged-out {
+  .navbar-header {
+    float:left !important;
+  }
+  .navbar-brand{
+    padding: 8px 3px;
+  }
+  .navbar-right {
+    float: right !important;
+  }
+  .navbar-text{
+    float:left;
+  }
+  .navbar-nav li {
+    float:left;
+  }
+
+  .nav > li > a{
+    padding: 10px 5px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 570px){
+  .nav-tabs{
+    font-size: 11px;
+    a{
+      padding: 9px 7px !important;
+      min-width:115px !important;
     }
-    .popular > li{
+  }
+  .popular > li{
       margin:2px !important;
       font-size: .8em !important;
       a {
         padding-left: 5px !important;
         padding-right: 5px !important;
+        padding: 10px 0px !important;
+        min-width:115px !important;
+      }
+    }
+}
+
+@media (max-width: 420px){
+  /*#main-container, .hero-home{
+    margin-top:50px;
+  }
+  .alert{
+    position: absolute;
+    margin: 60px 20px;
+  }*/
+  .container{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .popular > li > a{
+    min-width:90px !important;
+  }
+  #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+    display: none;
+  }
+  #tab-campaigns:after{
+    content: "Campaigns";
+  }
+  #tab-sponsors:after{
+    content: "Sponsors";
+  }
+  #tab-coupons:after{
+    content: "Coupons";
+  }
+  .navbar{
+    /*position: fixed;
+    top: 0px;
+    z-index: 1000;*/
+    width: 100%;
+  }
+  .navbar-brand{
+    position: absolute;
+    padding-top: 11px !important;
+    padding: 12px 5px !important;
+    img {
+      width:75%; /* you can use % */
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 620px){
+    .navbar-default{
+      .container{
+        padding-left:0px;
+        padding-right:0px;
+      }
+    }
+    .navbar-text{
+      display:none;
+    }
+    .secondary-navbar{
+      margin:0px !important;
+      .col-md-12 {
+       padding:0px !important;
       }
     }
     .main-home{
@@ -157,12 +262,6 @@ h3, h4 {
         margin-top: 20px;
       }
     }
-    .nav-tabs{
-      font-size: 11px;
-      a{
-        padding: 9px 7px !important;
-      }
-    }
     .active-campaigns{
       .pull-right{
         float:none !important;
@@ -179,8 +278,15 @@ h3, h4 {
     }
 }
 
-@media (max-width: 768px){
-    
+@media (min-width: 766px){
+  .container{
+    padding-left:0px !important;
+    padding-right:0px !important;
+  }
+}
+
+p.signup-social span:before, p.signup-social span:after {
+  width: 70% !important;
 }
 
 //Buttons -------------------------------------------------------------------------------
@@ -209,6 +315,24 @@ margin: 20px 325px;
 	border-color: #dddddd !important;
 	border-width:1px;
 	color:#555555;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active {
+  color: white !important;
+  background-color: #9eb230 !important;
+  border-color: #7e8e27 !important;
+}
+
+.btn-signup{
+  /*padding:6px 15px !important;
+  margin-left:4px !important;
+  color: #fff;
+  background-color: whitesmoke;
+  border-color: #dddddd !important;
+  border-width:1px;*/
+  margin: 10px 0px 0px 5px !important;
+  padding: 5px 10px 5px 10px !important;
+  color: #fff !important;
 }
 
 .btn-lg{
@@ -418,34 +542,63 @@ footer {
   font-style: italic;
   text-align: center;
   border: none;
+  margin-bottom: 40px;
+  width:100%;
+
+  &:before {
+    border-top: 1px solid #dfdfdf;
+    content:"";
+    position: absolute;
+    top: 9px;
+    right: 15%;
+    bottom: 0;
+    width: 70%;
+  }
   span {
-    position: relative;
-    &:before, &:after {
-      border-top: 1px solid #dfdfdf;
-      content:"";
-      position: absolute;
-      top: 9px;
-      right: 8em;
-      bottom: 0;
-      width: 140%;
-    }
-    &:after {
-      position: absolute;
-      top: 9px;
-      left:8em;
-      right:0;
-      bottom: 0;
-    }
+      position: relative;
+      background-color: #f5f4ec;
+      padding: 15px;
   } 
 }
+
+
+
 p.signup-social {
   color: $text-color-light;
   font-size: 14px;
   font-style: italic;
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
+  width:100%;
+
   @media (max-width: $screen-md-min) {
-    margin-top: 45px;
+    margin-top: 40px;
+  }
+
+  &:before {
+      border-top: 1px solid #dfdfdf;
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 0%;
+      bottom: 0;
+      width: 100%;
+    }
+  span {
+    position: relative;
+    background-color: #f5f4ec;
+    padding: 15px;
+  } 
+}
+
+/*p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  @media (max-width: $screen-md-min) {
+    margin-top: 40px;
   }
   span {
     position: relative;
@@ -466,7 +619,36 @@ p.signup-social {
       bottom: 0;
     }
   } 
+}*/
+
+p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  width:100%;
+
+  @media (max-width: $screen-md-min) {
+    margin-top: 40px;
+  }
+
+  &:before {
+      border-top: 1px solid #dfdfdf;
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 0%;
+      bottom: 0;
+      width: 100%;
+    }
+  span {
+    position: relative;
+    background-color: #f5f4ec;
+    padding: 15px;
+  } 
 }
+
 // Sign In Styles ------------------------------------------------------------------
 .sign-in-social {
   margin-top: 25px;
@@ -592,7 +774,7 @@ p.signup-social {
   background-position: 50% 0px;
   .alert-dismissable {
     font-size: 1.5em;
-    padding: 20px 100px 20px 100px;
+    /*padding: 20px 100px 20px 100px;*/
   }
 }
 
@@ -1132,6 +1314,9 @@ ul.share-coupon {
   font-size: 11px;
   padding-left: 25px;
 }
+
+
+
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
@@ -1141,7 +1326,7 @@ ul.share-coupon {
 .popular {
   list-style: none;
   text-align: center;
-  margin-top: 15px;
+  margin: 10px auto;
   li > a:hover {
     background: $brand-primary;
   }
@@ -1157,7 +1342,9 @@ ul.share-coupon {
   border-radius: 15px;
   background: $gray-lighter;
   color: #fff;
-  padding: 10px 35px;
+  padding: 10px 20px;
+  /*width: 30%;*/
+  min-width: 140px;
 }
 .popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
   background-color: $brand-primary;

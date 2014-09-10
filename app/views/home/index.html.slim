@@ -36,11 +36,15 @@
 				.col-md-12
 					ul.nav.nav-pills.popular
 						li.active
-							a data-toggle="tab" href="#pop-campaigns" Popular Campaigns
+							a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
+								span Popular Campaigns
 						li
-							a data-toggle="tab" href="#pop-sponsors" Popular Sponsors
+							a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
+								span Popular Sponsors
 						li
-							a data-toggle="tab" href="#pop-coupons" Best Discounts
+							a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
+								span Best Discounts
+								
 /- main content							
 .container.main-home
 	= render partial:'home/search/section'

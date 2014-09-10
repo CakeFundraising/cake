@@ -1,44 +1,57 @@
 nav.navbar.navbar-default role="navigation" 
-  .container
-    /! Brand and toggle get grouped for better mobile display
-    
-    /! Collect the nav links, forms, and other content for toggling
-    - if current_user.present?
-      - unless current_fundraiser or current_sponsor
-        .navbar-header
-          a.navbar-brand
-            = image_tag "cake_logo.png"
-          button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+  div.default class=(('logged-out' if !current_user.present?))
+    .container
+      /! Brand and toggle get grouped for better mobile display
+      
+      /! Collect the nav links, forms, and other content for toggling
+      - if current_user.present?
+        - unless current_fundraiser or current_sponsor
+          .navbar-header
+            a.navbar-brand
+              = image_tag "cake_logo.png"
+            button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+        - else
+          .navbar-header
+            .logo
+              = link_to root_path, class: 'navbar-brand' do
+                = image_tag "cake_logo.png"
+            button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+        = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present? and current_fundraiser.persisted?
+        = render partial:'layouts/nav/sponsor/main' if current_sponsor.present? and current_sponsor.persisted?
       - else
         .navbar-header
           .logo
             = link_to root_path, class: 'navbar-brand' do
               = image_tag "cake_logo.png"
-          button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-            span.sr-only Toggle navigation
+        - if content_for?(:right_nav)
+          /button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+          /  span.sr-only Toggle navigation
+          /  span.icon-bar
             span.icon-bar
             span.icon-bar
-            span.icon-bar
-      = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present? and current_fundraiser.persisted?
-      = render partial:'layouts/nav/sponsor/main' if current_sponsor.present? and current_sponsor.persisted?
-    - else
-      .navbar-header
-        .logo
-          = link_to root_path, class: 'navbar-brand' do
-            = image_tag "cake_logo.png"
-        button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-      - if content_for?(:right_nav)
-        ul.nav.navbar-nav.navbar-right
-          = yield :right_nav
-      - else
-        ul.nav.navbar-nav.navbar-right
-          = menu_item t("links.user.sign_in"), new_user_session_path
-          = menu_item t("links.user.sign_up"), new_user_registration_path
+          .nav-default
+            ul.nav.navbar-nav.navbar-right
+              = yield :right_nav
+        - else
+          .nav-default
+            ul.nav.navbar-nav.navbar-right
+              = menu_item t("links.user.sign_in"), new_user_session_path
+              = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn btn-success btn-signup" }
+        /#bs-example-navbar-collapse-1.collapse.navbar-collapse
+        /  ul.nav.navbar-nav.navbar-right
+        /    = menu_item t("links.user.sign_in"), new_user_session_path
+        /    = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn btn-success btn-signup" }
+
+
+
+
+
+
