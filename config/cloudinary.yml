@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: cakefundraising
+  api_key: '124649185997152'
+  api_secret: E6RYNXCPywxU60fTdxyKYScacyA
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: cakefundraising
+  api_key: '124649185997152'
+  api_secret: E6RYNXCPywxU60fTdxyKYScacyA
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: cakefundraising
+  api_key: '124649185997152'
+  api_secret: E6RYNXCPywxU60fTdxyKYScacyA
+  enhance_image_tag: true
+  static_image_support: false

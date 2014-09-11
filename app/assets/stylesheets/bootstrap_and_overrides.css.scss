@@ -714,9 +714,42 @@ p.signup-social {
   }
 }
 
+$font-size: 14px;
+$line-height: 1.4;
+$lines-to-show: 2;
+
 .fundraiser_name {
-	height: 40px;
+	/*height: 60px;*/
+	display: block; /* Fallback for non-webkit */
+	display: -webkit-box;
+	max-width: 400px;
+	height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+	margin: 0 auto;
+	font-size: $font-size;
+ 	line-height: $line-height;
+	-webkit-line-clamp: $lines-to-show;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
+
+
+/*
+h2 {
+  display: block;
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show;
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+*/
+
 
 // Account Page Styles ------------------------------------------------------------------
 .account-wrapper {
@@ -1085,7 +1118,7 @@ table.performance-summary {
 }
 
 .truncate {
-  width: 250px;
+  /*width: 250px;*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1324,6 +1357,14 @@ ul.share-coupon {
   height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
 }
+
+header {
+	.row{
+		margin-left:0px !important;
+		margin-right:0px !important;
+	}
+}
+
 .popular {
   list-style: none;
   text-align: center;
