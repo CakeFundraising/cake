@@ -1,12 +1,13 @@
-table#requested_pledges.table.table-hover.table-bordered.data-table
-  thead
-    tr
-      - if current_fundraiser.present?
-        th = PledgeRequest.human_attribute_name :sponsor
-      - if current_sponsor.present?
-        th = PledgeRequest.human_attribute_name :campaign 
-      th = PledgeRequest.human_attribute_name :causes
-      th = PledgeRequest.human_attribute_name :scopes
-      th = PledgeRequest.human_attribute_name :start_end_dates
-  tbody
-    = render partial:'pledge_requests/show/table_row', collection: pledges, as: :pledge_request
+#no-more-tables
+  table#requested_pledges.table.table-hover.table-bordered.table-striped.data-table
+    thead.cf
+      tr
+        - if current_fundraiser.present?
+          th = PledgeRequest.human_attribute_name :sponsor
+        - if current_sponsor.present?
+          th = PledgeRequest.human_attribute_name :campaign 
+        th = PledgeRequest.human_attribute_name :causes
+        th = PledgeRequest.human_attribute_name :scopes
+        th = PledgeRequest.human_attribute_name :start_end_dates
+    tbody
+      = render partial:'pledge_requests/show/table_row', collection: pledges, as: :pledge_request

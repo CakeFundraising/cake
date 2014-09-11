@@ -1,13 +1,15 @@
 - if pledges.any?
-  table#requested_pledges.table.table-hover.table-bordered.data-table
-    thead
-      tr
-        th = PledgeRequest.human_attribute_name :fundraiser 
-        th = PledgeRequest.human_attribute_name :campaign 
-        th = PledgeRequest.human_attribute_name :causes
-        th = PledgeRequest.human_attribute_name :scopes
-        th = PledgeRequest.human_attribute_name :start_end_dates
-    tbody
-      = render partial:'pledge_requests/tables/sponsor/row', collection: pledges, as: :pledge_request
+  #no-more-tables
+    table#requested_pledges.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = PledgeRequest.human_attribute_name :fundraiser 
+          th = PledgeRequest.human_attribute_name :campaign 
+          th = PledgeRequest.human_attribute_name :causes
+          th = PledgeRequest.human_attribute_name :type
+          th = PledgeRequest.human_attribute_name :timing
+          th
+      tbody
+        = render partial:'pledge_requests/tables/sponsor/row', collection: pledges, as: :pledge_request
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pledges.fr_requests')}

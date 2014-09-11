@@ -1,7 +1,7 @@
-span = link_to "View", campaign, class:'btn btn-primary'
+span = link_to "View", campaign, class:'btn btn-primary btn-sm'
 - unless campaign.past?
-  span = link_to "Edit", edit_campaign_path(campaign), class:'btn btn-warning'
+  span = link_to "Edit", edit_campaign_path(campaign), class:'btn btn-warning btn-sm'
 - unless campaign.launched? or campaign.past?
-  span = link_to "Launch Campaign", launch_campaign_path(campaign), method: :patch, class:'btn btn-success'
-- if campaign.pledges.any?
-  button class="btn btn-default" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 
+  span = link_to "Launch", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-sm'
+/- if campaign.pledges.any?
+/  button class="btn btn-default" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 

@@ -1,12 +1,13 @@
 .user-forms
-  h2 Resend confirmation instructions
+  h1 Resend confirmation email
 
   = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
     = devise_error_messages!
-    .form-group
-      = f.label :email
-      = f.email_field :email, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.submit "Resend confirmation instructions", :class => 'btn btn-primary submit'
-      
-  = render "devise/shared/links"
+    .form-wrap
+	    .form-group
+	      = f.label "Email Address"
+	      = f.email_field :email, :autofocus => true, class: 'form-control'
+	    .form-group
+	      = f.submit "Resend confirmation email", :class => 'btn btn-primary submit'
+	      
+		= render "devise/shared/links"

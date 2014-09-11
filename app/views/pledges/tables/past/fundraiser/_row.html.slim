@@ -15,5 +15,7 @@ tr.pledge
     button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
       span.glyphicon.glyphicon-plus
 
-tr.modal 
-  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
+tr.empty-tr
+
+/tr.modal 
+/  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}

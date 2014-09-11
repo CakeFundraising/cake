@@ -1,13 +1,36 @@
 tr
-  td = auto_link pledge
-  td = auto_link pledge.campaign
-  td = auto_link pledge.fundraiser
-  td = pledge.main_cause
-  td = pledge.campaign.object.scopes.first
+  <td class="td-header" data-title="Pledge"> 
+    = auto_link pledge
+  </td>
+  <td class="td-header" data-title="Campaign"> 
+    = auto_link pledge.campaign
+  </td>
+  <td class="td-header" data-title="Fundraiser"> 
+    = auto_link pledge.fundraiser
+  </td>
+  <td class="td-header" data-title="Cause"> 
+    = pledge.main_cause
+  </td>
+  <td class="td-header" data-title="Type"> 
+    = pledge.campaign.object.scopes.first
+  </td>
   - if pledge.past?
-    td = pledge.invoice.due if pledge.invoice.present?
-  td = pledge.total_amount 
-  td = pledge.amount_per_click
-  td = b pledge.coupons.any?
-  td = pledge.clicks_count
-  td 78
+    <td class="td-header" data-title="Donation"> 
+      = pledge.invoice.due if pledge.invoice.present?
+    </td>
+  <td class="td-header" data-title="Pledge"> 
+    = pledge.total_amount 
+  </td>
+  <td class="td-header" data-title="Donation/Click "> 
+    = pledge.amount_per_click
+  </td>
+  <td class="td-header" data-title="Coupon"> 
+    = b pledge.coupons.any?
+  </td>
+  <td class="td-header" data-title="No. of Clicks"> 
+    = pledge.clicks_count
+  </td>
+  <td class="td-header" data-title="Impressions"> 
+    = '78'
+  </td>
+tr.empty-tr 

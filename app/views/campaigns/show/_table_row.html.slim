@@ -1,22 +1,59 @@
 tr.campaign 
-  td = auto_link campaign
-  td = campaign.end_date
-  td = campaign.total_donation
-  td = campaign.pledges.count
-  td = campaign.average_pledge
-  td = campaign.average_donation
-  td = campaign.average_donation_per_click
-  td = campaign.total_clicks
-  td = campaign.average_clicks_per_pledge
-  td 4567
-  td 23%
-  - unless campaign.past?
-    td
-      strong = campaign.status
-  td
-    = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+  <td class="td-header" data-title="Campaign"> 
+    = auto_link campaign
+  </td>
+  <td class="td-header" data-title="End Date"> 
+    = campaign.end_date
+  </td>
+  <td class="td-header" data-title="Total"> 
+    = campaign.total_donation
+  </td>
+  <td class="td-header" data-title="Total Pledges"> 
+    = campaign.pledges.count
+  </td>
+  <td class="td-header" data-title="Avg. Pledge"> 
+    = campaign.average_pledge
+  </td>
+  <td class="td-header" data-title="Avg. Donation"> 
+    = campaign.average_donation
+  </td>
+  <td class="td-header" data-title="Avg. Don/Click"> 
+    = campaign.average_donation_per_click
+  </td>
+  <td class="td-header" data-title="Clicks"> 
+    = campaign.total_clicks
+  </td>
+  <td class="td-header" data-title="Avg. Clicks"> 
+    = campaign.average_clicks_per_pledge
+  </td>
+  <td class="td-header" data-title="Avg. Pledge"> 
+    = "4567"
+  </td>
+  <td class="td-header" data-title="Engagement"> 
+    = "23%"
+  </td>
 
-- if campaign.pledges.any?
-  tr.pledges_modal
-    td
-      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+  - unless campaign.past?
+    <td class="td-header truncate" data-title="Status">  
+      - if campaign.status == 'launched'
+        = t('semantic.Launched')
+      - if campaign.status == 'not_launched'
+        .text-danger = t('semantic.Not_Launched')
+    </td>
+
+    /td
+    /  = campaign.status
+  /td.truncate
+  /  = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+tr.empty-tr
+
+/- if campaign.pledges.any?
+/  tr.pledges_modal
+/    td
+/      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+
+
+
+
+
+

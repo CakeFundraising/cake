@@ -1,16 +1,34 @@
 - if campaigns.any?
-  table.table.data-table
-    thead
-      tr
-        th = Campaign.model_name.human
-        th = Campaign.human_attribute_name :total_donations
-        th = Campaign.human_attribute_name :main_cause
-        th = Campaign.human_attribute_name :end_date
-        th = t('semantic.number_of', model: 'Sponsors')
-        th = t('semantic.average', model: 'Donation')
-        th = t('semantic.average', model: 'Pledge')
-        th = t('semantic.average', model: 'Donation/Click')
-    tbody
-      = render partial:'fundraisers/public_profile/campaign_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
+  #no-more-tables
+    table.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Campaign.model_name.human
+          th = Campaign.human_attribute_name :total_donations
+          th = Campaign.human_attribute_name :main_cause
+          th = Campaign.human_attribute_name :end_date
+          th = t('semantic.number_of', model: 'Sponsors')
+          th = t('semantic.average', model: 'Donation')
+          th = t('semantic.average', model: 'Pledge')
+          th = t('semantic.average', model: 'Donation/Click')
+      tbody
+        = render partial:'fundraisers/public_profile/campaign_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.campaigns'), in_profile: true}
+
+
+/  table.table.data-table
+/    thead
+/      tr
+/        th = Campaign.model_name.human
+/        th = Campaign.human_attribute_name :total_donations
+/        th = Campaign.human_attribute_name :main_cause
+/        th = Campaign.human_attribute_name :end_date
+/        th = t('semantic.number_of', model: 'Sponsors')
+/        th = t('semantic.average', model: 'Donation')
+/        th = t('semantic.average', model: 'Pledge')
+/        th = t('semantic.average', model: 'Donation/Click')
+/    tbody
+/      = render partial:'fundraisers/public_profile/campaign_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
+/- else
+/  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.campaigns'), in_profile: true}

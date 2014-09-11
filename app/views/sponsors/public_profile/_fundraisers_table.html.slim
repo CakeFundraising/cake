@@ -1,14 +1,15 @@
 - if @fundraisers.any?
-  table.table.data-table
-    thead
-      tr
-        th = Fundraiser.model_name.human
-        th = Fundraiser.human_attribute_name :pledges_quantity
-        th = Pledge.model_name.human
-        th Avg. Donation
-        th = t('semantic.average', model: 'Donation/Click')
-        th = Campaign.human_attribute_name :avg_pledge_rank
-    tbody
-      = render partial:'sponsors/public_profile/fundraiser_row', collection: @fundraisers, as: :fr
+  #no-more-tables
+    table.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Fundraiser.model_name.human
+          th = Fundraiser.human_attribute_name :pledges_quantity
+          th = Pledge.model_name.human
+          th Avg. Donation
+          th = t('semantic.average', model: 'Donation/Click')
+          th = Campaign.human_attribute_name :avg_pledge_rank
+      tbody
+        = render partial:'sponsors/public_profile/fundraiser_row', collection: @fundraisers, as: :fr
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.fundraisers'), in_profile: true}

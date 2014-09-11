@@ -18,6 +18,7 @@
 }
 
 //Typography ----------------------------------------------------------------------------
+
 h3, h4 {
   color: $brand-primary;
 }
@@ -45,7 +46,16 @@ h3, h4 {
 .clear{
   clear: both;
 }
+
+.page-cta {
+  margin: 20px;
+}
+
+
 //Navbar --------------------------------------------------------------------------------
+.nav {
+  margin-top: 15px;
+}
 .navbar {
   margin-bottom: 0;
   background-color: #FFFFFF;
@@ -73,6 +83,10 @@ h3, h4 {
 .navbar-collapse{
   max-height: 1000px;
 }
+.glyphicon {
+    padding: 0px 4px;
+}
+
 
 //Media Responsive -------------------------------------------------------------------------------
 
@@ -336,7 +350,12 @@ margin: 20px 325px;
 }
 
 .btn-lg{
-padding: 10px 60px !important;
+  padding: 10px 60px !important;
+}
+
+.btn-sm{
+  padding: 1px 5px !important;
+  font-size: 11px !important;
 }
 
 .btn {
@@ -514,6 +533,11 @@ footer {
 
 // Sign Up Styles ------------------------------------------------------------------
 
+.form-wrap {
+  max-width: 400px;
+  padding: 20px 0;
+}
+
 .signup-wrap {
   padding: 0 9%;
   color: $text-color-light;
@@ -689,6 +713,20 @@ p.signup-social {
 }
 .dash-head {
   padding: 10px 0px 0px;
+  display: inline-block;
+}
+
+h1 span {
+  float: left;
+  margin-right: 20px;
+}
+
+.page-cta {
+  /* margin: 20px; */
+  float: left;
+  display: inline;
+  margin: -2px;
+  padding: 0px;
 }
 
 #search_sponsors{
@@ -919,9 +957,46 @@ table.performance-summary {
 // Tables -----------------------------------------------------------------------------
 .data-table {
   margin: 15px 0;
+  font-size:13px;
   thead {
     background-color: $brand-primary;
+    tr {
+      border-bottom-width: 0px !important;
+    }
   }
+  .empty-tr{
+    border: 6px solid #f5f4ec !important;
+  }
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
+  border-bottom-width: 0px !important;
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+}
+
+#no-more-tables td{
+  @media (max-width: 800px) {
+    padding-left: 40% !important;
+    background: #e7e7e7; /* Old browsers */
+  background: -moz-linear-gradient(left, #e7e7e7 38%, #ffffff 38%, #ffffff 38%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(38%,#e7e7e7), color-stop(38%,#ffffff), color-stop(38%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* IE10+ */
+  background: linear-gradient(to right, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+  }
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
+  border-bottom-width: 0px !important;
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+}
+.table-bordered > thead > tr > th{
+  border: 0px;
+}
+#no-more-tables td:before{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  top: 8px !important;
 }
 
 // Pledge Page Styles -----------------------------------------------------------------
@@ -1410,6 +1485,9 @@ header {
 }
 // home box views (temp?) --------------------------------------------------------
 .campaign_grid, .sponsor_grid {
+  padding-left: 5px;
+  padding-right: 5px;
+
   .thumbnail {
     background-color: #fff;
   }
@@ -2049,6 +2127,7 @@ ul#share-block {
 
 .form-group label{
 margin-bottom: 5px;
+text-transform: capitalize;
 }
 
 .coupon-uploads {
@@ -2223,3 +2302,57 @@ margin-bottom: 5px;
     background-position: 50% 50%;
   }
 }
+
+@media only screen and (max-width: 800px) {
+    
+    /* Force table to not be like tables anymore */
+  #no-more-tables table, 
+  #no-more-tables thead, 
+  #no-more-tables tbody, 
+  #no-more-tables th, 
+  #no-more-tables td, 
+  #no-more-tables tr { 
+    display: block; 
+    border:0px;
+  }
+ 
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+ 
+  #no-more-tables tr { border: 1px solid #ccc; }
+ 
+  #no-more-tables td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+    white-space: normal;
+    text-align:left;
+  }
+ 
+  #no-more-tables td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+ 
+  /*
+  Label the data
+  */
+  #no-more-tables td:before { content: attr(data-title); }
+}
+
+
+

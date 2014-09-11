@@ -1,17 +1,19 @@
 - if pledges.any? 
-  table#sponsor_pledges.table.table-hover.table-bordered.data-table
-    thead
-      tr
-        th = Pledge.model_name.human
-        th = Fundraiser.model_name.human
-        th = Campaign.model_name.human
-        th = Pledge.human_attribute_name :causes
-        th = Pledge.human_attribute_name :scopes
-        th = Pledge.human_attribute_name :end_date
-        th = Pledge.model_name.human
-        th = Pledge.human_attribute_name :donation_click
-        th = Pledge.human_attribute_name :status
-    tbody
-      = render partial:'pledges/tables/pending/sponsor/row', collection: pledges, as: :pledge
+  #no-more-tables
+    table#sponsor_pledges.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Pledge.human_attribute_name :name
+          th = Fundraiser.model_name.human
+          th = Campaign.model_name.human
+          th = Pledge.human_attribute_name :causes
+          th = Pledge.human_attribute_name :scopes
+          th = Pledge.human_attribute_name :end_date
+          th = Pledge.model_name.human
+          th = Pledge.human_attribute_name :amount
+          th = Pledge.human_attribute_name :status
+          th
+      tbody
+        = render partial:'pledges/tables/pending/sponsor/row', collection: pledges, as: :pledge
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pledges.my_offers')}

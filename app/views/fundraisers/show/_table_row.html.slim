@@ -1,9 +1,26 @@
 tr.fundraiser
-  td = auto_link fundraiser
-  td = sponsor.pledges.past.fundraiser(fundraiser).count
-  td = fundraiser.average_donation_with(sponsor)
-  td = fundraiser.average_pledge_with(sponsor)
-  td = fundraiser.average_donation_per_click_with(sponsor)
-  td = fundraiser.average_clicks_per_pledge_with(sponsor)
-  td 1989
-  td 25%
+  <td class="td-header" data-title="TBD"> 
+    = auto_link fundraiser
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = sponsor.pledges.past.fundraiser(fundraiser).count
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = fundraiser.average_donation_with(sponsor)
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = fundraiser.average_pledge_with(sponsor)
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = fundraiser.average_donation_per_click_with(sponsor)
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = fundraiser.average_clicks_per_pledge_with(sponsor)
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = '1989'
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = '25%'
+  </td>
+tr.empty-tr

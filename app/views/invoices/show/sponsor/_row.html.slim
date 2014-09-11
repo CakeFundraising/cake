@@ -1,13 +1,25 @@
 tr.invoice
-  td = auto_link invoice.fundraiser
-  td = invoice.clicks
-  td = humanized_money_with_symbol invoice.click_donation
-  td = humanized_money_with_symbol invoice.due
-  td = invoice.status
+  <td class="td-header" data-title="TBD"> 
+    = auto_link invoice.fundraiser
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = invoice.clicks
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = humanized_money_with_symbol invoice.click_donation
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = humanized_money_with_symbol invoice.due
+  </td>
+  <td class="td-header" data-title="TBD"> 
+    = invoice.status
+  </td>
   - unless invoice.paid?
-    td
+    <td class="td-header" data-title="TBD"> 
       = invoice_pay_button(invoice)
       = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button'
+    </td>
+tr.empty-tr
 
 - unless current_sponsor.decorate.stripe_customer?
   javascript:
