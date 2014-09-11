@@ -4,6 +4,6 @@
       = link_to sponsor do
         = image_tag sponsor.avatar.url(:medium)
     .caption
-      h4 = auto_link sponsor
+      h4.truncate = auto_link sponsor
       .cause = sponsor.object.causes.first
-      .type = sponsor.object.scopes.first
+      /.type = sponsor.object.scopes.first

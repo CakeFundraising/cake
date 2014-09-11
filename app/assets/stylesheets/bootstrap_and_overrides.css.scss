@@ -21,6 +21,7 @@
 h3, h4 {
   color: $brand-primary;
 }
+
 .nav-tabs {
   text-transform: uppercase;
 }
@@ -48,9 +49,15 @@ h3, h4 {
 .navbar {
   margin-bottom: 0;
   background-color: #FFFFFF;
+  /*float:right;*/
+}
+
+.navbar-collapse{
+  padding-right: 0px;
+  padding-left: 0px;
 }
 .navbar-brand {
-  padding-top: 6px;
+  padding-top: 8px;
 }
 .user-logged-in {
   span {
@@ -60,6 +67,228 @@ h3, h4 {
     top: 2px;
   }
 }
+.navbar-nav{
+  margin: 0px 0px 0px -1px !important;
+}
+.navbar-collapse{
+  max-height: 1000px;
+}
+
+//Media Responsive -------------------------------------------------------------------------------
+
+.container{
+  width: 90% !important;
+  max-width: 1200px;
+  min-width: 260px;
+}
+
+.navbar-text{
+  padding: 0px 2px;
+  margin-top: 15px;
+}
+
+.nav-default{
+  /*position: absolute;*/
+}
+
+.logged-out {
+  .navbar-header {
+    float:left !important;
+  }
+  .navbar-brand{
+    padding: 8px 3px;
+  }
+  .navbar-right {
+    float: right !important;
+  }
+  .navbar-text{
+    float:left;
+  }
+  .navbar-nav li {
+    float:left;
+  }
+
+  .nav > li > a{
+    padding: 10px 5px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 570px){
+  .nav-tabs{
+    font-size: 11px;
+    a{
+      padding: 9px 7px !important;
+      min-width:115px !important;
+    }
+  }
+  .popular > li{
+      margin:2px !important;
+      font-size: .8em !important;
+      a {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding: 10px 0px !important;
+        min-width:115px !important;
+      }
+    }
+}
+
+@media (max-width: 420px){
+  /*#main-container, .hero-home{
+    margin-top:50px;
+  }
+  .alert{
+    position: absolute;
+    margin: 60px 20px;
+  }*/
+  .container{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .popular > li > a{
+    min-width:90px !important;
+  }
+  #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+    display: none;
+  }
+  #tab-campaigns:after{
+    content: "Campaigns";
+  }
+  #tab-sponsors:after{
+    content: "Sponsors";
+  }
+  #tab-coupons:after{
+    content: "Coupons";
+  }
+  .navbar{
+    /*position: fixed;
+    top: 0px;
+    z-index: 1000;*/
+    width: 100%;
+  }
+  .navbar-brand{
+    position: absolute;
+    padding-top: 11px !important;
+    padding: 12px 5px !important;
+    img {
+      width:75%; /* you can use % */
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 620px){
+    .navbar-default{
+      .container{
+        padding-left:0px;
+        padding-right:0px;
+      }
+    }
+    .navbar-text{
+      display:none;
+    }
+    .secondary-navbar{
+      margin:0px !important;
+      .col-md-12 {
+       padding:0px !important;
+      }
+    }
+    .main-home{
+      margin-top: 20px;
+    }
+    .hero-home{
+      height:350px !important;
+      .cta h1{
+        font-size: 38px;
+      }
+    }
+    .button-wrap{
+      display:none;
+    }
+    .navbar-collapse{
+      /*margin-top: 10px !important;*/
+    }
+    #main-container{
+
+    }
+    .bottom_section{
+      
+      .container{
+        padding:0px !important;
+      }
+    }
+    .circle-campaign{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .circle-sp{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .circle-raised{
+      margin: auto 0 !important;
+      padding:0px !important;
+    }
+    .easy-band{
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      .center{
+        padding:0px !important;
+        margin: 0px !important;
+      }
+    }
+    .rank-rows{
+      .boldest{
+        display:block !important;
+      }
+      .pull-right{
+        float:none !important;
+      }
+    }
+    .media{
+      img{
+        max-width: 305px;
+      }
+      .btn{
+        padding: 10px 20px !important;
+      }
+      .pull-right{
+        float:none !important;
+        margin:auto 0 !important;
+      }
+      .media-body{
+        float: left !important;
+        margin-top: 20px;
+      }
+    }
+    .active-campaigns{
+      .pull-right{
+        float:none !important;
+      }
+    }
+    .pad-top{
+      margin-top: 15px !important;
+    }
+    .section-wrapper{
+      padding: 35px 25px 30px !important;
+    }
+    .account-wrapper{
+      padding: 35px 25px 30px !important;
+    }
+}
+
+@media (min-width: 766px){
+  .container{
+    padding-left:0px !important;
+    padding-right:0px !important;
+  }
+}
+
+p.signup-social span:before, p.signup-social span:after {
+  width: 70% !important;
+}
+
 //Buttons -------------------------------------------------------------------------------
 
 .btn-block {
@@ -74,11 +303,36 @@ h3, h4 {
 	
 }
 
+.pagination{
+margin: 20px 325px;
+}
+
 .btn-search{
 	padding:6px 15px !important;
-	margin-left:4px;
-	background-color:#e7e7e7;
+	margin-left:4px !important;
+	color: #333333;
+	background-color: whitesmoke;
+	border-color: #dddddd !important;
+	border-width:1px;
 	color:#555555;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active {
+  color: white !important;
+  background-color: #9eb230 !important;
+  border-color: #7e8e27 !important;
+}
+
+.btn-signup{
+  /*padding:6px 15px !important;
+  margin-left:4px !important;
+  color: #fff;
+  background-color: whitesmoke;
+  border-color: #dddddd !important;
+  border-width:1px;*/
+  margin: 10px 0px 0px 5px !important;
+  padding: 5px 10px 5px 10px !important;
+  color: #fff !important;
 }
 
 .btn-lg{
@@ -143,8 +397,13 @@ padding: 10px 60px !important;
 }
 
 .panel-group h4{
-	margin-top: 25px;
+	margin-top: 20px;
 	margin-bottom: 5px;
+}
+
+.panel-heading h4{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .shared-links{
@@ -190,8 +449,8 @@ form{
 // Footer Styles ---------------------------------------------------------------
 
 footer {
-  padding: 25px 0;
-  margin-top: 30px;
+  padding: 15px 0;
+  margin-top: 0px;
   background: $gray-darker;
   color: $gray-lighter;
   font-size: 12px;
@@ -199,6 +458,7 @@ footer {
   h4 {
     color: $cake-green;
     font-size: 14px;
+    padding-top: 10px;
   }
   ul {
     padding-left: 0px;
@@ -216,7 +476,7 @@ footer {
 }
 // Register - Choose Styles ------------------------------------------------------------------
 .choose-role {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 .fundraisers-cir {
   background-image: image-url('fr-circle.png');
@@ -282,34 +542,64 @@ footer {
   font-style: italic;
   text-align: center;
   border: none;
+  margin-bottom: 40px;
+  width:100%;
+
+  &:before {
+    border-top: 1px solid #dfdfdf;
+    content:"";
+    position: absolute;
+    top: 9px;
+    right: 15%;
+    bottom: 0;
+    width: 70%;
+    height: 10px;
+  }
   span {
-    position: relative;
-    &:before, &:after {
-      border-top: 1px solid #dfdfdf;
-      content:"";
-      position: absolute;
-      top: 9px;
-      right: 8em;
-      bottom: 0;
-      width: 140%;
-    }
-    &:after {
-      position: absolute;
-      top: 9px;
-      left:8em;
-      right:0;
-      bottom: 0;
-    }
+      position: relative;
+      background-color: #f5f4ec;
+      padding: 15px;
   } 
 }
+
+
+
 p.signup-social {
   color: $text-color-light;
   font-size: 14px;
   font-style: italic;
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
+  width:100%;
+
   @media (max-width: $screen-md-min) {
-    margin-top: 45px;
+    margin-top: 40px;
+  }
+
+  &:before {
+      border-top: 1px solid #dfdfdf;
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 0%;
+      bottom: 0;
+      width: 100%;
+    }
+  span {
+    position: relative;
+    background-color: #f5f4ec;
+    padding: 15px;
+  } 
+}
+
+/*p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  @media (max-width: $screen-md-min) {
+    margin-top: 40px;
   }
   span {
     position: relative;
@@ -330,7 +620,36 @@ p.signup-social {
       bottom: 0;
     }
   } 
+}*/
+
+p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  width:100%;
+
+  @media (max-width: $screen-md-min) {
+    margin-top: 40px;
+  }
+
+  &:before {
+      border-top: 1px solid #dfdfdf;
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 0%;
+      bottom: 0;
+      width: 100%;
+    }
+  span {
+    position: relative;
+    background-color: #f5f4ec;
+    padding: 15px;
+  } 
 }
+
 // Sign In Styles ------------------------------------------------------------------
 .sign-in-social {
   margin-top: 25px;
@@ -344,7 +663,7 @@ p.signup-social {
 //  fr was just completed first,)
 
 .fr-dash {
-  margin: 45px 0;
+  margin:20px 0;
 }
 .fr-dash-avatar {
   max-width: 160px;
@@ -369,10 +688,20 @@ p.signup-social {
   padding-left: 5px;
 }
 .dash-head {
-  padding: 25px 0;
+  padding: 10px 0px 0px;
 }
+
+#search_sponsors{
+	margin-bottom:40px;
+}
+
+.counter {
+	margin: 25px 0px 5px 5px;
+}
+
 .active-campaigns {
-  margin: 20px 0 10px;
+  /*margin: 20px 0 10px;*/
+  margin: 0px 0 10px;
   h1 {
     margin: 0;
   }
@@ -383,6 +712,10 @@ p.signup-social {
   h1 {
     margin: 0;
   }
+}
+
+.fundraiser_name {
+	height: 40px;
 }
 
 // Account Page Styles ------------------------------------------------------------------
@@ -441,7 +774,8 @@ p.signup-social {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2.5em;
+    font-size: 1.5em;
+    /*padding: 20px 100px 20px 100px;*/
   }
 }
 
@@ -460,6 +794,17 @@ p.signup-social {
     margin-left: 5px;
   }
 }
+
+.mission{
+  display: -webkit-box;
+  max-width: 100%;
+  margin: 0 auto;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 address {
   color: #fff;
 }
@@ -467,7 +812,7 @@ address {
   padding-right: 15px;
 }
 .sponsor-profile {
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
   background-color:#fff;
 }
@@ -483,7 +828,18 @@ table.performance-summary {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
+  margin-bottom: 20px;
+  hr {
+    margin-top:5px;  
+    margin-bottom:10px;  
+  }
 }
+
+.boldest{
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+}
+
+
 .donation-stats {
   font-size: 3em;
   color: $brand-primary;
@@ -529,7 +885,7 @@ table.performance-summary {
 
 // Tables -----------------------------------------------------------------------------
 .data-table {
-  margin: 30px 0;
+  margin: 15px 0;
   thead {
     background-color: $brand-primary;
   }
@@ -541,6 +897,11 @@ table.performance-summary {
   font-size: 2.5em;
   color: $brand-primary;
   margin-bottom: 0;
+  font-weight: 700;
+}
+
+.campaign-story h3{
+  font-weight: 700;
 }
 
 .click-btn {
@@ -577,6 +938,7 @@ table.performance-summary {
 }
 .blue {
   background-color: $brand-primary;
+  margin-bottom: 30px;
 }
 
 .share-info{
@@ -584,19 +946,40 @@ table.performance-summary {
   padding-left: 5px;
 }
 
+
+.blue:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-primary;
+  border-width: 30px;
+  margin-left: -30px;
+}
+
+
+
 .pledgebluestripe {
   &.campaign{
-    padding: 0px 15px;
-    height: 140px;
+    padding: 30px;
+    /*height: 140px;*/
     h1{
       position: absolute;
       padding: 15px 0px;
       margin-bottom: 0;
-      margin-top: 0px;
-      font-size: 3.6em;
+      padding-top: 20px;
+      font-size: 3em;
     }
     .share{
       margin-top: 80px;
+    }
+    p{
+      margin:0px;
+      font-size: 1.2em;
     }
   }
   &.pledge{
@@ -635,6 +1018,7 @@ table.performance-summary {
   h4 {
     color: $gray-light;
     font-size: 20px;
+    margin-top: 15px;
     @media (max-width: $screen-md-min) {
       text-align: center;
     }
@@ -644,7 +1028,8 @@ table.performance-summary {
   }
   .btn {
     @media (min-width: $screen-sm-min) {
-    font-size: 20px;
+      font-size: 20px;
+      padding: 6px 40px 6px 40px;
     }
   }
 }
@@ -696,6 +1081,14 @@ table.performance-summary {
 
 .caption h4{
   margin:0px;
+  padding-right: 20px;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .caption h4 a{
@@ -922,40 +1315,49 @@ ul.share-coupon {
   font-size: 11px;
   padding-left: 25px;
 }
+
+
+
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  height: 60px;
+  height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
 }
 .popular {
   list-style: none;
   text-align: center;
-  margin-top: 10px;
+  margin: 10px auto;
   li > a:hover {
-    background: #fe6a52;
+    background: $brand-primary;
   }
 }
 .popular > li {
   display: inline-block;
   float: none;
   margin: 0 10px;
+  font-size:1em;
 }
+
 .popular > li > a {
-  border-radius: 25px;
-  background: $gray-light;
+  border-radius: 15px;
+  background: $gray-lighter;
   color: #fff;
+  padding: 10px 20px;
+  /*width: 30%;*/
+  min-width: 140px;
 }
 .popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: #fe6a52;
+  background-color: $brand-primary;
 }
 
 .main-home {
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
  ul.cats {
   list-style: none;
-  padding: 0 !important;
+  /*padding: 0 !important;*/
   li {
   border-bottom: 1px dotted $gray-light;
   padding: 5px 0;
@@ -1169,14 +1571,29 @@ ul.share-coupon {
 .secondary-navbar {
   background-color: #fff;
   height: 60px;
-  @include box-shadow(0 0 3px $gray-darker);
+  @include box-shadow(0 0 3px $gray-light);
 }
+
+/*.popular > li:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $gray-light;
+  border-width: 6px;
+  margin-left: -6px;
+}*/
+
 .popular {
   list-style: none;
   text-align: center;
   margin-top: 10px;
   li > a:hover {
-    background: #fe6a52;
+    background: $brand-success;
   }
 }
 .popular > li {
@@ -1187,14 +1604,29 @@ ul.share-coupon {
 .popular > li > a {
   border-radius: 25px;
   background: $gray-light;
+  border-top-color: $gray-light;
   color: #fff;
 }
 .popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: #fe6a52;
+  background-color: $brand-success;
+}
+
+.popular > li.active:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-success;
+  border-width: 6px;
+  margin-left: -6px;
 }
 
 .main-home {
-  margin-top: 50px;
+  margin-top: 30px;
 }
  ul.cats {
   list-style: none;
@@ -1495,12 +1927,15 @@ ul#share-block {
 }
 .media-body {
   position: relative;
-  min-height: 180px;
+  /*min-height: 180px;*/
   .dates {
     //position: absolute;
     bottom: 0;
     left: 0;
   }
+}
+.media-data{
+  margin-top: 20px;
 }
 .solicit-invite {
   color: black;
@@ -1668,15 +2103,32 @@ margin-bottom: 5px;
 
 #filters{
   ul{
+    font-size: 13px;
+    
     padding-left: 0;
+    padding: 0px;
+    margin-bottom: 0px;
     li{
       list-style: none;
+      padding: 4px;
+     
+	  .link{
+	  	width: 75%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: inline-block;
+	  }
     }
   }
 }
 
 .alert, .alert-transparent{
   margin:20px;
+}
+
+.banner .alert, .alert-transparent{
+  margin:0px;
 }
 
 .alert-transparent{
@@ -1690,7 +2142,7 @@ margin-bottom: 5px;
 
 .controls {
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 0px; /*20px*/
   border-bottom: 1px solid $gray-lighter;
 }
 

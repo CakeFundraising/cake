@@ -5,7 +5,7 @@
 				.col-md-12
 					h1 Donation Per Click Fundraising
 					h3 Now Social Marketing and Fundraising can work hand in hand so everyone wins.
-			.row.cake-steps
+			.row.cake-steps.hidden-xs.hidden-sm
 				.col-md-3
 					= image_tag("step01.png", class: "step")
 					p A Fundraiser creates a campaign
@@ -36,11 +36,15 @@
 				.col-md-12
 					ul.nav.nav-pills.popular
 						li.active
-							a data-toggle="tab" href="#pop-campaigns" Popular Campaigns
+							a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
+								span Popular Campaigns
 						li
-							a data-toggle="tab" href="#pop-sponsors" Popular Sponsors
+							a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
+								span Popular Sponsors
 						li
-							a data-toggle="tab" href="#pop-coupons" Best Discounts
+							a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
+								span Best Discounts
+								
 /- main content							
 .container.main-home
 	= render partial:'home/search/section'
@@ -65,6 +69,15 @@
 						p.total-type RAISED
 			h3 Let your friends know that CakeFundraising is the best way to raise money online.
 			.share-block-wrap
-				- 1.times do
-					= render partial:'share/share_block'
+				.text-center = render partial:'layouts/share_buttons'
+			/	- 1.times do
+			/		= render partial:'share/share_block'
 	.success-banner
+
+
+
+
+
+
+
+	

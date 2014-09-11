@@ -27,8 +27,8 @@ module ApplicationHelper
 
   def basic_list_item(name, value)
     content_tag(:div, class: name) do
-      content_tag(:span, name)+
-      content_tag(:strong, value, class:'pull-right')
+      content_tag(:span, name, class:'boldest')+
+      content_tag(:span, value, class:'pull-right')
     end
   end
 
