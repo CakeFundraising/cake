@@ -1,9 +1,7 @@
-<h1 class="dash-head">
+h1.dash-head
 	span Active Campaigns
 	.page-cta
 		= link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
-</h1>
-
 .row
   .col-md-12
     = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}

@@ -133,7 +133,7 @@ h3, h4 {
     font-size: 11px;
     a{
       padding: 9px 7px !important;
-      min-width:115px !important;
+      /*min-width:115px !important;*/
     }
   }
   .popular > li{
@@ -285,7 +285,7 @@ h3, h4 {
       margin-top: 15px !important;
     }
     .section-wrapper{
-      padding: 35px 25px 30px !important;
+      padding: 25px 25px 35px !important;
     }
     .account-wrapper{
       padding: 35px 25px 30px !important;
@@ -301,6 +301,10 @@ h3, h4 {
 
 p.signup-social span:before, p.signup-social span:after {
   width: 70% !important;
+}
+
+#main-container {
+  margin-bottom: 35px;
 }
 
 //Buttons -------------------------------------------------------------------------------
@@ -354,8 +358,8 @@ margin: 20px 325px;
 }
 
 .btn-sm{
-  padding: 1px 5px !important;
-  font-size: 11px !important;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
 }
 
 .btn {
@@ -415,14 +419,60 @@ margin: 20px 325px;
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 
-.panel-group h4{
-	margin-top: 20px;
-	margin-bottom: 5px;
-}
+.panel-default {
+  background-color:#fff !important;
+  margin-top: 20px;
+  margin-bottom: 5px;
 
-.panel-heading h4{
-	margin-top: 0px;
-	margin-bottom: 0px;
+  .container-fluid{
+    margin-left:0px;
+    margin-right:0px;
+    padding-left:0px;
+    padding-right:0px;
+  }
+
+  .data-table{
+    margin:0px !important;
+  }
+
+  .panel-title-right{
+    float:right;
+    margin:0px;
+    margin-right: 40px;
+
+    .stat {
+      display: inline-block;
+      margin: 15px 10px 15px 40px;
+      text-align: center;
+      border-left: 1px solid #cccccc;
+      padding-left: 50px;
+      span{
+
+      }
+      p{
+        margin:0px;
+        color:#555555;
+      }
+    }
+  }
+
+  .panel-heading{
+    padding: 0px 5px;
+    background-color:#fff !important;
+    color:#555555 !important;
+  }
+
+  h4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .panel-title{
+    margin: 25px 0px 0px 15px;
+    float: left;
+    color: #555555;
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
 }
 
 .shared-links{
@@ -472,11 +522,11 @@ footer {
   margin-top: 0px;
   background: $gray-darker;
   color: $gray-lighter;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.8em;
   h4 {
     color: $cake-green;
-    font-size: 14px;
+    font-size: 15px;
     padding-top: 10px;
   }
   ul {
@@ -752,7 +802,7 @@ h1 span {
   }
 }
 
-$font-size: 14px;
+$font-size: 16px;
 $line-height: 1.4;
 $lines-to-show: 2;
 
@@ -792,7 +842,7 @@ h2 {
 // Account Page Styles ------------------------------------------------------------------
 .account-wrapper {
   border-top: 1px dotted $gray-light;
-  padding: 35px 350px 30px;
+  padding: 35px 60% 30px 25px;
   @media (max-width: $screen-md-min) {
     padding: 25px 50px 20px;
   }
@@ -904,6 +954,10 @@ table.performance-summary {
     margin-top:5px;  
     margin-bottom:10px;  
   }
+}
+
+.bolder{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
 }
 
 .boldest{
@@ -1199,6 +1253,10 @@ table.performance-summary {
   text-overflow: ellipsis;
 }
 
+.min-width{
+  width:1%;
+}
+
 .caption h4 a{
   color:#363636;
   text-decoration: none;
@@ -1431,6 +1489,10 @@ ul.share-coupon {
   background-color: #fff;
   height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
+}
+
+.tab-content {
+  margin-top:15px;
 }
 
 header {
@@ -1964,9 +2026,9 @@ ul#share-block {
   }
 }
 .campaign-steps {
-  padding: 50px 50px;
+  padding: 20px 50px;
   @media (min-width: $screen-lg-min) {
-  padding: 50px 100px;
+  padding: 20px 100px;
   }
 }
 .campaign-name {
@@ -2346,6 +2408,10 @@ text-transform: capitalize;
     white-space: nowrap;
     text-align:left;
     font-weight: bold;
+  }
+
+  .min-width {
+    width: 100%;
   }
  
   /*

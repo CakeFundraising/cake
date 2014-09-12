@@ -1,22 +1,17 @@
 tr class='pledge #{"danger" if pledge_request.rejected? }'
 	- if current_fundraiser.present?
-    	<td class="td-header" data-title="TBD"> 
-			= auto_link pledge_request.sponsor
-		</td>
+    	td.td-header(data-title='TBD') 
+  			= auto_link pledge_request.sponsor
 	- if current_sponsor.present?
-    	<td class="td-header" data-title="TBD"> 
+    	td.td-header(data-title='TBD') 
 			= link_to pledge_request.fundraiser, pledge_request.campaign 
-		</td>
-	<td class="td-header" data-title="TBD"> 
+	td.td-header(data-title='TBD') 
 	  = pledge_request.campaign.causes
-	</td>
-	<td class="td-header" data-title="TBD"> 
+	td.td-header(data-title='TBD') 
 	  = pledge_request.campaign.scopes
-	</td>
-	<td class="td-header" data-title="TBD"> 
+	td.td-header(data-title='TBD') 
 	  = pledge_request.start_end_dates
-	</td>
-	td
+	td.truncate.min-width
 	  = render partial:'pledge_requests/show/actions', locals:{pr: pledge_request}
 
 

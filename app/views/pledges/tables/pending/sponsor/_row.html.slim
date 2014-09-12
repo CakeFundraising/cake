@@ -1,35 +1,26 @@
 tr.pledge id=(pledge.id) 
-  <td class="td-header" data-title="Name"> 
+  td.td-header(data-title='Name') 
     = auto_link pledge
-  </td>
-  <td class="td-header" data-title="Fundraiser"> 
+  td.td-header(data-title='Fundraiser') 
     = auto_link pledge.fundraiser
-  </td>
-  <td class="td-header" data-title="Campaign"> 
+  td.td-header(data-title='Campaign') 
     = auto_link pledge.campaign
-  </td>
-  <td class="td-header" data-title="Cause"> 
+  td.td-header(data-title='Cause') 
     = pledge.cause
-  </td>
-  <td class="td-header" data-title="Type"> 
+  td.td-header(data-title='Type') 
     = pledge.scopes.first
-  </td>
-  <td class="td-header" data-title="End Date"> 
+  td.td-header(data-title='End Date') 
     = pledge.end_date
-  </td>
-  <td class="td-header" data-title="Pledge"> 
+  td.td-header(data-title='Pledge') 
     = humanized_money_with_symbol pledge.total_amount
-  </td>
-  <td class="td-header" data-title="Amount"> 
+  td.td-header(data-title='Amount') 
     = humanized_money_with_symbol pledge.amount_per_click
-  </td>
-  <td class="td-header" data-title="Status">  
+  td.td-header(data-title='Status') 
     - if pledge.pending?
       = t('semantic.Pending')
     - if pledge.rejected?
       .text-danger = t('semantic.Rejected')
-  </td>
-  td.truncate
+  td.truncate.min-width
     = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm' if can? :increase, pledge
 
     - if can? :edit, pledge
@@ -42,6 +33,8 @@ tr.pledge id=(pledge.id)
 
     /button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
     /  span.glyphicon.glyphicon-plus
+
 tr.empty-tr
+
 /tr.modal 
 /  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}

@@ -1,50 +1,39 @@
 tr.campaign 
-  <td class="td-header" data-title="Campaign"> 
+  td.td-header(data-title='Campaign') 
     = auto_link campaign
-  </td>
-  <td class="td-header" data-title="End Date"> 
+  td.td-header(data-title='End Date') 
     = campaign.end_date
-  </td>
-  <td class="td-header" data-title="Total"> 
+  td.td-header(data-title='Total') 
     = campaign.total_donation
-  </td>
-  <td class="td-header" data-title="Total Pledges"> 
+  td.td-header(data-title='Total Pledges') 
     = campaign.pledges.count
-  </td>
-  <td class="td-header" data-title="Avg. Pledge"> 
+  td.td-header(data-title='Avg. Pledge') 
     = campaign.average_pledge
-  </td>
-  <td class="td-header" data-title="Avg. Donation"> 
+  td.td-header(data-title='Avg. Donation') 
     = campaign.average_donation
-  </td>
-  <td class="td-header" data-title="Avg. Don/Click"> 
+  td.td-header(data-title='Avg. Don/Click') 
     = campaign.average_donation_per_click
-  </td>
-  <td class="td-header" data-title="Clicks"> 
+  td.td-header(data-title='Clicks') 
     = campaign.total_clicks
-  </td>
-  <td class="td-header" data-title="Avg. Clicks"> 
+  td.td-header(data-title='Avg. Clicks') 
     = campaign.average_clicks_per_pledge
-  </td>
-  <td class="td-header" data-title="Avg. Pledge"> 
+  td.td-header(data-title='Avg. Pledge') 
     = "4567"
-  </td>
-  <td class="td-header" data-title="Engagement"> 
+  td.td-header(data-title='Engagement') 
     = "23%"
-  </td>
-
+  
   - unless campaign.past?
-    <td class="td-header truncate" data-title="Status">  
+    td.td-header(data-title='Status') 
       - if campaign.status == 'launched'
         = t('semantic.Launched')
       - if campaign.status == 'not_launched'
         .text-danger = t('semantic.Not_Launched')
-    </td>
-
+  
     /td
     /  = campaign.status
-  /td.truncate
-  /  = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+  td.truncate
+    = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+  
 tr.empty-tr
 
 /- if campaign.pledges.any?

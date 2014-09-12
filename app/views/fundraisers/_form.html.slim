@@ -11,33 +11,40 @@
         = render partial:'pictures/banner_form', locals:{f: f}
       .col-md-4
       	= render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-    .row
+    .row.section-wrapper
+      h4 Fundraiser Information
       .col-md-4
-      	h4 Organization
-      	br
-	      = f.input :name
-	      = f.input :phone
-	      = f.input :website
-	      = f.input :email
-        
+        = f.input :name
+        = f.input :email
       .col-md-4
-	      = render partial:'locations/form', locals:{f: f}
+  	      = f.input :phone
+          = f.input :website
+    .row.section-wrapper    
+      /.col-md-4
+      = render partial:'locations/form', locals:{f: f}
+    .row.section-wrapper
+      h4 Manager Information
       .col-md-4
-      	h4 Manager Information
-      	br
         = f.input :manager_name
         = f.input :manager_title
-        = f.input :manager_email
-        = f.input :manager_phone
-        
-    .row
-      .col-md-6
-      	= f.input :mission, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
-      	= f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
-      .col-md-6
-      	= f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
-      	= f.input :min_pledge, as: :select, collection: Fundraiser::MIN_PLEDGES
+      .col-md-4
+          = f.input :manager_email
+          = f.input :manager_phone   
+    .row.section-wrapper
+      h4 Fundraiser Mission and Causes
+      .col-md-4      	
+        = f.input :mission, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+      .col-md-4
+        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+      .col-md-4
+        = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
+    .row.section-wrapper
+      h4 Minimum Pledge Requirements
+      .col-md-4
+        = f.input :min_pledge, as: :select, collection: Fundraiser::MIN_PLEDGES
       	= f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
+      .col-md-4
+        label.control-label Accepted Pledge Type
       	= f.input :donations_kind
       	= f.input :tax_exempt
       	= f.input :unsolicited_pledges

@@ -1,17 +1,29 @@
 tr.pledge
-  td = auto_link pledge
-  td = auto_link pledge.campaign
-  td = auto_link pledge.fundraiser
-  td = pledge.main_cause
-  td = pledge.campaign.object.scopes.first
-  td = pledge.end_date
-  td = pledge.invoice.due if pledge.invoice.present?
-  td = pledge.total_amount
-  td = pledge.amount_per_click
-  td = pledge.clicks_count
-  td 45467
-  td 17%
-  td
+  td.td-header(data-title='TBD') 
+    = auto_link pledge
+  td.td-header(data-title='TBD') 
+    = auto_link pledge.campaign
+  td.td-header(data-title='TBD') 
+    = auto_link pledge.fundraiser
+  td.td-header(data-title='TBD') 
+    = pledge.main_cause
+  td.td-header(data-title='TBD') 
+    = pledge.campaign.object.scopes.first
+  td.td-header(data-title='TBD') 
+    = pledge.end_date
+  td.td-header(data-title='TBD') 
+    = pledge.invoice.due if pledge.invoice.present?
+  td.td-header(data-title='TBD') 
+    = pledge.total_amount
+  td.td-header(data-title='TBD') 
+    = pledge.amount_per_click
+  td.td-header(data-title='TBD') 
+    = pledge.clicks_count
+  td.td-header(data-title='TBD') 
+    45467
+  td.td-header(data-title='TBD') 
+    17%
+  td.truncate.min-width
     button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
       span.glyphicon.glyphicon-plus
 

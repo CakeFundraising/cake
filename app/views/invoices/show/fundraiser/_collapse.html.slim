@@ -1,23 +1,20 @@
 .campaign_panel.panel.panel-default
   .panel-heading
-    h4.panel-title
-      a data-parent="#accordion" data-toggle="collapse" href="##{campaign.id}"
-        nav.navbar
-          .container-fluid
-            .navbar-header
-              .navbar-brand = campaign.title
-            ul.nav.navbar-nav.navbar-right
-              div
-                span End Date: 
-                strong = campaign.end_date
-              div
-                span #{Campaign.human_attribute_name :raised}: 
-                strong = campaign.total_raised
-              div
-                span Goal: 
-                strong = campaign.goal
-            /! /.navbar-collapse
-          /! /.container-fluid
+    a data-parent="#accordion" data-toggle="collapse" href="##{campaign.id}"
+      .container-fluid
+        .panel-title = campaign.title
+        ul.panel-title-right.bolder
+          div.stat
+            span = campaign.end_date
+            p End Date
+          div.stat
+            span = campaign.total_raised
+            p Raised
+          div.stat
+            span = campaign.goal
+            p Goal 
+          /! /.navbar-collapse
+        /! /.container-fluid
   .panel-collapse.collapse id=(campaign.id)
     .panel-body
       #no-more-tables

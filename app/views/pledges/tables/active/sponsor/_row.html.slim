@@ -1,26 +1,19 @@
 tr.pledge id=(pledge.id) 
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = auto_link pledge 
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = auto_link pledge.fundraiser
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = pledge.cause
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = pledge.scopes.first
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = pledge.end_date
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = humanized_money_with_symbol pledge.total_amount
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = humanized_money_with_symbol pledge.amount_per_click
-  </td>
-  td
+  td.truncate.min-width
     - if pledge.increase_requested
       button.btn.btn-warning.disabled Increase Requested
       

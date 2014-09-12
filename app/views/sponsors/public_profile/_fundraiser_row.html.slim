@@ -1,20 +1,14 @@
 tr
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = auto_link fr
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = fr.pledges.count
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = humanized_money_with_symbol fr.pledges.not_pending.not_rejected.sponsor(@sponsor).sum(:total_amount_cents)/100
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = '$34,500'
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = umanized_money_with_symbol fr.pledges.not_pending.not_rejected.sponsor(@sponsor).sum(:amount_per_click_cents)/100
-  </td>
-  <td class="td-header" data-title="TBD"> 
+  td.td-header(data-title='TBD') 
     = '28'
-  </td>
 tr.empty-tr

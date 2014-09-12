@@ -1,36 +1,26 @@
 tr
-  <td class="td-header" data-title="Pledge"> 
+  td.td-header(data-title='Pledge') 
     = auto_link pledge
-  </td>
-  <td class="td-header" data-title="Campaign"> 
+  td.td-header(data-title='Campaign') 
     = auto_link pledge.campaign
-  </td>
-  <td class="td-header" data-title="Fundraiser"> 
+  td.td-header(data-title='Fundraiser') 
     = auto_link pledge.fundraiser
-  </td>
-  <td class="td-header" data-title="Cause"> 
+  td.td-header(data-title='Cause') 
     = pledge.main_cause
-  </td>
-  <td class="td-header" data-title="Type"> 
+  td.td-header(data-title='Type') 
     = pledge.campaign.object.scopes.first
-  </td>
   - if pledge.past?
-    <td class="td-header" data-title="Donation"> 
+    td.td-header(data-title='Donation') 
       = pledge.invoice.due if pledge.invoice.present?
-    </td>
-  <td class="td-header" data-title="Pledge"> 
+    td.td-header(data-title='Pledge') 
     = pledge.total_amount 
-  </td>
-  <td class="td-header" data-title="Donation/Click "> 
+  td.td-header(data-title='Donation/Click') 
     = pledge.amount_per_click
-  </td>
-  <td class="td-header" data-title="Coupon"> 
+  td.td-header(data-title='Coupon') 
     = b pledge.coupons.any?
-  </td>
-  <td class="td-header" data-title="No. of Clicks"> 
+  td.td-header(data-title='No. of Clicks') 
     = pledge.clicks_count
-  </td>
-  <td class="td-header" data-title="Impressions"> 
+  td.td-header(data-title='Impressions') 
     = '78'
-  </td>
+    
 tr.empty-tr 

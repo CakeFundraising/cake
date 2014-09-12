@@ -1,20 +1,15 @@
 tr.pledge
-  <td class="td-header" data-title="Name"> 
+  td.td-header(data-title='Name') 
     = auto_link pledge
-  </td>
-  <td class="td-header" data-title="Sponsor"> 
+  td.td-header(data-title='Sponsor') 
     = auto_link pledge.sponsor
-  </td>
-  <td class="td-header" data-title="Campaign"> 
+  td.td-header(data-title='Campaign') 
     = auto_link pledge.campaign
-  </td>
-  <td class="td-header" data-title="Amount"> 
+  td.td-header(data-title='Amount') 
     = humanized_money_with_symbol pledge.amount_per_click
-  </td>
-  <td class="td-header" data-title="Pledge"> 
+  td.td-header(data-title='Pledge') 
     = humanized_money_with_symbol pledge.total_amount
-  </td>
-  td.truncate
+  td.truncate.min-width
     - if can? :accept, pledge
       span = link_to "Accept", accept_pledge_path(pledge), method: :patch, class:'btn btn-success btn-sm'
     - if can? :reject, pledge
