@@ -19,8 +19,35 @@ Cake.validations.custom_methods = ->
     
   return
 
+Cake.validations.form_leaving = ->
+  pages = $('#story.tab-pane.active')
+  form = $('.formtastic.pledge, .formtastic.campaign')
+  model_name = form.attr('class').replace('formtastic ', '') + "s"
+
+  validate = (e, event)->
+    eval("Cake."+ model_name + ".validation()")
+
+    if form.valid()
+      return false
+    else  
+      e.preventDefault()
+      return 'Looks like this form is not correct, please check out all fields and press "SAVE & CONTINUE" before continuing.'
+    return
+
+  if pages.length > 0
+    $(document).on "page:before-change", (e)->
+      alert validate(e) if validate(e)
+      return
+    $(window).on 'beforeunload', (e)->
+      confirmationMessage = validate(e)
+      if confirmationMessage
+        (e or window.event).returnValue = confirmationMessage #Gecko + IE
+        return confirmationMessage
+  return
+
 Cake.validations.init = ->
   Cake.validations.custom_methods()
+  Cake.validations.form_leaving()
 
   Cake.users.validation()
   Cake.fundraisers.validation()

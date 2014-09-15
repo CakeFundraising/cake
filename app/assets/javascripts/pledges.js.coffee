@@ -77,12 +77,10 @@ Cake.pledges.validation = ->
         url: true
       'pledge[terms]':
         required: true
+      'pledge[name]':
+        required: true
       'pledge[mission]':
         required: true
-      # 'pledge[picture_attributes][banner]':
-      #   required: true
-      # 'pledge[picture_attributes][avatar]':
-      #   required: true
       'pledge[headline]':
         required: true
       'pledge[description]':
@@ -92,3 +90,4 @@ Cake.pledges.validation = ->
         url: 'Please enter a valid url. It should include http:// or https://'
   )
   return
+  
