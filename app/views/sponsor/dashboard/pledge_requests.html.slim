@@ -1,10 +1,12 @@
-h1.dash-head Pledge Requests
+h1.dash-head
+	span Pledge Requests
+	.page-cta
+		= link_to "Find a cause to sponsor", new_pledge_path, class:'btn btn-primary btn-md'
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#fr-requests" Fundraiser Requests
   li 
-    a data-toggle="tab" href="#my-requests" My offers to Pledge
-
+    a data-toggle="tab" href="#my-requests" offers to Pledge
 .tab-content
   #fr-requests.tab-pane.active
     = render partial:'pledge_requests/tables/sponsor/table', locals:{pledges: @fundraiser_requests}

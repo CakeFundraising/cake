@@ -1,12 +1,39 @@
 tr.sponsor
-  td = auto_link sponsor
-  td = sponsor.total_donation
-  td = sponsor.pledges_related_to(fr).count
-  td = sponsor.average_donation_with(fr)
-  td = sponsor.average_pledge_with(fr)
-  td = sponsor.average_donation_per_click_with(fr)
-  td = sponsor.average_clicks_per_pledge_with(fr)
-  td 23%
-  td 11%
-  td
-    span = link_to "View", sponsor, class:'btn btn-primary'
+  td.td-header(data-title='Sponsor') 
+    = auto_link sponsor
+  td.td-header(data-title='Total Donations') 
+    = sponsor.total_donation
+  td.td-header(data-title='No. of Pledges') 
+    = sponsor.pledges_related_to(fr).count
+  td.td-header(data-title='Avg. Donation') 
+    = sponsor.average_donation_with(fr)
+  td.td-header(data-title='Avg. Pledge') 
+    = sponsor.average_pledge_with(fr)
+  td.td-header(data-title='Avg. Donation/Click') 
+    = sponsor.average_donation_per_click_with(fr)
+  td.td-header(data-title='Avg. Clicks/Pledge') 
+    = sponsor.average_clicks_per_pledge_with(fr)
+  td.td-header(data-title='Avg. Impressions') 
+    = '23%'
+  td.td-header(data-title='Engagement') 
+    = '11%'
+  
+  /td
+  /  span = link_to "View", sponsor, class:'btn btn-primary btn-sm'
+
+/  td = auto_link sponsor
+/  td = sponsor.total_donation
+/  td = sponsor.pledges_related_to(fr).count
+/  td = sponsor.average_donation_with(fr)
+/  td = sponsor.average_pledge_with(fr)
+/  td = sponsor.average_donation_per_click_with(fr)
+/  td = sponsor.average_clicks_per_pledge_with(fr)
+/  td 23%
+/  td 11%
+/  td
+/    span = link_to "View", sponsor, class:'btn btn-primary btn-sm'
+
+tr.empty-tr
+
+
+

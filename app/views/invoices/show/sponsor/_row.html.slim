@@ -1,13 +1,20 @@
 tr.invoice
-  td = auto_link invoice.fundraiser
-  td = invoice.clicks
-  td = humanized_money_with_symbol invoice.click_donation
-  td = humanized_money_with_symbol invoice.due
-  td = invoice.status
+  td.td-header(data-title='TBD') 
+    = auto_link invoice.fundraiser
+  td.td-header(data-title='TBD') 
+    = invoice.clicks
+  td.td-header(data-title='TBD') 
+    = humanized_money_with_symbol invoice.click_donation
+  td.td-header(data-title='TBD') 
+    = humanized_money_with_symbol invoice.due
+  td.truncate.td-header(data-title='TBD') 
+    = invoice.status
   - unless invoice.paid?
-    td
+    td.truncate.min-width.td-header(data-title='TBD') 
       = invoice_pay_button(invoice)
       = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button'
+
+tr.empty-tr
 
 - unless current_sponsor.decorate.stripe_customer?
   javascript:

@@ -1,9 +1,18 @@
 tr
-  td = auto_link campaign
-  td = campaign.total_donation
-  td = campaign.object.main_cause
-  td = campaign.end_date
-  td = campaign.relevant_sponsors.count
-  td = campaign.average_donation
-  td = campaign.average_pledge
-  td = campaign.average_donation_per_click
+  td.td-header(data-title='Campaign') 
+    = auto_link campaign
+  td.td-header(data-title='Total Donations') 
+    = campaign.total_donation
+  td.td-header(data-title='Cause') 
+    = campaign.object.main_cause
+  td.td-header(data-title='End Date') 
+    = campaign.end_date
+  td.td-header(data-title='No. of Sponsors') 
+    = campaign.relevant_sponsors.count
+  td.td-header(data-title='Avg. Donation') 
+    = campaign.average_donation
+  td.td-header(data-title='Avg. Pledge') 
+    = campaign.average_pledge
+  td.td-header(data-title='Avg. Donation/Click') 
+    = campaign.average_donation_per_click
+tr.empty-tr

@@ -1,18 +1,25 @@
 tr.pledge
-  td = auto_link pledge_request.fundraiser
-  td = auto_link pledge_request.campaign 
-  td = pledge_request.cause
-  td = pledge_request.scopes.first
-  td = pledge_request.start_end_dates
-  td
+  td.td-header(data-title='Fundraiser') 
+    = auto_link pledge_request.fundraiser
+  td.td-header(data-title='Campaign') 
+    = auto_link pledge_request.campaign 
+  td.td-header(data-title='Cause') 
+    = pledge_request.cause
+  td.td-header(data-title='Type') 
+    = pledge_request.scopes.first
+  td.td-header(data-title='Timing') 
+    .truncate = pledge_request.start_end_dates
+  td.truncate.min-width
     - if pledge_request.pending?
       - if can? :accept, pledge_request
-        span = link_to "Accept", accept_pledge_request_path(pledge_request), method: :patch, class:'btn btn-success'
+        span = link_to "Accept", accept_pledge_request_path(pledge_request), method: :patch, class:'btn btn-success btn-sm'
       - if can? :reject, pledge_request
-        span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger'
+        span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger btn-sm'
 
-    button.btn.btn-primary data-target="#pledge_modal_#{pledge_request.id}" data-toggle="modal"
-      span.glyphicon.glyphicon-plus
+/    button.btn.btn-primary data-target="#pledge_modal_#{pledge_request.id}" data-toggle="modal"
+/      span.glyphicon.glyphicon-plus
+
+tr.empty-tr
 
 / tr.modal 
 /   = render partial:'pledges/tables/active/modal', locals:{pledge: pledge_request.pledge}

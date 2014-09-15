@@ -1,22 +1,48 @@
 tr.campaign 
-  td = auto_link campaign
-  td = campaign.end_date
-  td = campaign.total_donation
-  td = campaign.pledges.count
-  td = campaign.average_pledge
-  td = campaign.average_donation
-  td = campaign.average_donation_per_click
-  td = campaign.total_clicks
-  td = campaign.average_clicks_per_pledge
-  td 4567
-  td 23%
+  td.td-header(data-title='Campaign') 
+    = auto_link campaign
+  td.td-header(data-title='End Date') 
+    = campaign.end_date
+  td.td-header(data-title='Total') 
+    = campaign.total_donation
+  td.td-header(data-title='Total Pledges') 
+    = campaign.pledges.count
+  td.td-header(data-title='Avg. Pledge') 
+    = campaign.average_pledge
+  td.td-header(data-title='Avg. Donation') 
+    = campaign.average_donation
+  td.td-header(data-title='Avg. Don/Click') 
+    = campaign.average_donation_per_click
+  td.td-header(data-title='Clicks') 
+    = campaign.total_clicks
+  td.td-header(data-title='Avg. Clicks') 
+    = campaign.average_clicks_per_pledge
+  td.td-header(data-title='Avg. Pledge') 
+    = "4567"
+  td.td-header(data-title='Engagement') 
+    = "23%"
+  
   - unless campaign.past?
-    td
-      strong = campaign.status
-  td
+    td.td-header(data-title='Status') 
+      - if campaign.status == 'launched'
+        = t('semantic.Launched')
+      - if campaign.status == 'not_launched'
+        .text-danger = t('semantic.Not_Launched')
+  
+    /td
+    /  = campaign.status
+  td.truncate
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+  
+tr.empty-tr
 
-- if campaign.pledges.any?
-  tr.pledges_modal
-    td
-      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+/- if campaign.pledges.any?
+/  tr.pledges_modal
+/    td
+/      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+
+
+
+
+
+

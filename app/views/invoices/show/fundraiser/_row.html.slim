@@ -1,7 +1,14 @@
 tr.invoice
-  td = auto_link invoice.sponsor
-  td = invoice.clicks
-  td = humanized_money_with_symbol invoice.click_donation
-  td = humanized_money_with_symbol invoice.due
-  td = invoice.status
-  td = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button' unless invoice.paid?
+  td.td-header(data-title='TBD') 
+    = auto_link invoice.sponsor
+  td.td-header(data-title='TBD') 
+    = invoice.clicks
+  td.td-header(data-title='TBD') 
+    = humanized_money_with_symbol invoice.click_donation
+  td.td-header(data-title='TBD') 
+    = humanized_money_with_symbol invoice.due
+  td.truncate.td-header(data-title='TBD') 
+    = invoice.status
+  td.truncate.min-width.td-header(data-title='TBD') 
+    = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
+tr.empty-tr

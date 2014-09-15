@@ -18,6 +18,7 @@
 }
 
 //Typography ----------------------------------------------------------------------------
+
 h3, h4 {
   color: $brand-primary;
 }
@@ -45,7 +46,16 @@ h3, h4 {
 .clear{
   clear: both;
 }
+
+.page-cta {
+  margin: 20px;
+}
+
+
 //Navbar --------------------------------------------------------------------------------
+.nav {
+  margin-top: 15px;
+}
 .navbar {
   margin-bottom: 0;
   background-color: #FFFFFF;
@@ -73,6 +83,10 @@ h3, h4 {
 .navbar-collapse{
   max-height: 1000px;
 }
+.glyphicon {
+    padding: 0px 4px;
+}
+
 
 //Media Responsive -------------------------------------------------------------------------------
 
@@ -119,7 +133,7 @@ h3, h4 {
     font-size: 11px;
     a{
       padding: 9px 7px !important;
-      min-width:115px !important;
+      /*min-width:115px !important;*/
     }
   }
   .popular > li{
@@ -271,7 +285,7 @@ h3, h4 {
       margin-top: 15px !important;
     }
     .section-wrapper{
-      padding: 35px 25px 30px !important;
+      padding: 25px 25px 35px !important;
     }
     .account-wrapper{
       padding: 35px 25px 30px !important;
@@ -287,6 +301,10 @@ h3, h4 {
 
 p.signup-social span:before, p.signup-social span:after {
   width: 70% !important;
+}
+
+#main-container {
+  margin-bottom: 35px;
 }
 
 //Buttons -------------------------------------------------------------------------------
@@ -336,7 +354,12 @@ margin: 20px 325px;
 }
 
 .btn-lg{
-padding: 10px 60px !important;
+  padding: 10px 60px !important;
+}
+
+.btn-sm{
+  padding: 5px 10px !important;
+  font-size: 12px !important;
 }
 
 .btn {
@@ -396,14 +419,60 @@ padding: 10px 60px !important;
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 
-.panel-group h4{
-	margin-top: 20px;
-	margin-bottom: 5px;
-}
+.panel-default {
+  background-color:#fff !important;
+  margin-top: 20px;
+  margin-bottom: 5px;
 
-.panel-heading h4{
-	margin-top: 0px;
-	margin-bottom: 0px;
+  .container-fluid{
+    margin-left:0px;
+    margin-right:0px;
+    padding-left:0px;
+    padding-right:0px;
+  }
+
+  .data-table{
+    margin:0px !important;
+  }
+
+  .panel-title-right{
+    float:right;
+    margin:0px;
+    margin-right: 40px;
+
+    .stat {
+      display: inline-block;
+      margin: 15px 10px 15px 40px;
+      text-align: center;
+      border-left: 1px solid #cccccc;
+      padding-left: 50px;
+      span{
+
+      }
+      p{
+        margin:0px;
+        color:#555555;
+      }
+    }
+  }
+
+  .panel-heading{
+    padding: 0px 5px;
+    background-color:#fff !important;
+    color:#555555 !important;
+  }
+
+  h4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .panel-title{
+    margin: 25px 0px 0px 15px;
+    float: left;
+    color: #555555;
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
 }
 
 .shared-links{
@@ -453,11 +522,11 @@ footer {
   margin-top: 0px;
   background: $gray-darker;
   color: $gray-lighter;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.8em;
   h4 {
     color: $cake-green;
-    font-size: 14px;
+    font-size: 15px;
     padding-top: 10px;
   }
   ul {
@@ -513,6 +582,11 @@ footer {
 }
 
 // Sign Up Styles ------------------------------------------------------------------
+
+.form-wrap {
+  max-width: 400px;
+  padding: 20px 0;
+}
 
 .signup-wrap {
   padding: 0 9%;
@@ -689,6 +763,20 @@ p.signup-social {
 }
 .dash-head {
   padding: 10px 0px 0px;
+  display: inline-block;
+}
+
+h1 span {
+  float: left;
+  margin-right: 20px;
+}
+
+.page-cta {
+  /* margin: 20px; */
+  float: left;
+  display: inline;
+  margin: -2px;
+  padding: 0px;
 }
 
 #search_sponsors{
@@ -714,14 +802,47 @@ p.signup-social {
   }
 }
 
+$font-size: 16px;
+$line-height: 1.4;
+$lines-to-show: 2;
+
 .fundraiser_name {
-	height: 40px;
+	/*height: 60px;*/
+	display: block; /* Fallback for non-webkit */
+	display: -webkit-box;
+	max-width: 400px;
+	height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+	margin: 0 auto;
+	font-size: $font-size;
+ 	line-height: $line-height;
+	-webkit-line-clamp: $lines-to-show;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
+
+
+/*
+h2 {
+  display: block;
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show;
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+*/
+
 
 // Account Page Styles ------------------------------------------------------------------
 .account-wrapper {
   border-top: 1px dotted $gray-light;
-  padding: 35px 350px 30px;
+  padding: 35px 60% 30px 25px;
   @media (max-width: $screen-md-min) {
     padding: 25px 50px 20px;
   }
@@ -835,6 +956,10 @@ table.performance-summary {
   }
 }
 
+.bolder{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+}
+
 .boldest{
   font-family: "museo_sans700", Helvetica, Arial, sans-serif;
 }
@@ -886,9 +1011,46 @@ table.performance-summary {
 // Tables -----------------------------------------------------------------------------
 .data-table {
   margin: 15px 0;
+  font-size:13px;
   thead {
     background-color: $brand-primary;
+    tr {
+      border-bottom-width: 0px !important;
+    }
   }
+  .empty-tr{
+    border: 6px solid #f5f4ec !important;
+  }
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
+  border-bottom-width: 0px !important;
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+}
+
+#no-more-tables td{
+  @media (max-width: 800px) {
+    padding-left: 40% !important;
+    background: #e7e7e7; /* Old browsers */
+  background: -moz-linear-gradient(left, #e7e7e7 38%, #ffffff 38%, #ffffff 38%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(38%,#e7e7e7), color-stop(38%,#ffffff), color-stop(38%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* IE10+ */
+  background: linear-gradient(to right, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+  }
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
+  border-bottom-width: 0px !important;
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+}
+.table-bordered > thead > tr > th{
+  border: 0px;
+}
+#no-more-tables td:before{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  top: 8px !important;
 }
 
 // Pledge Page Styles -----------------------------------------------------------------
@@ -1085,10 +1247,14 @@ table.performance-summary {
 }
 
 .truncate {
-  width: 250px;
+  /*width: 250px;*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.min-width{
+  width:1%;
 }
 
 .caption h4 a{
@@ -1324,6 +1490,18 @@ ul.share-coupon {
   height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
 }
+
+.tab-content {
+  margin-top:15px;
+}
+
+header {
+	.row{
+		margin-left:0px !important;
+		margin-right:0px !important;
+	}
+}
+
 .popular {
   list-style: none;
   text-align: center;
@@ -1369,6 +1547,9 @@ ul.share-coupon {
 }
 // home box views (temp?) --------------------------------------------------------
 .campaign_grid, .sponsor_grid {
+  padding-left: 5px;
+  padding-right: 5px;
+
   .thumbnail {
     background-color: #fff;
   }
@@ -1845,9 +2026,9 @@ ul#share-block {
   }
 }
 .campaign-steps {
-  padding: 50px 50px;
+  padding: 20px 50px;
   @media (min-width: $screen-lg-min) {
-  padding: 50px 100px;
+  padding: 20px 100px;
   }
 }
 .campaign-name {
@@ -2008,6 +2189,7 @@ ul#share-block {
 
 .form-group label{
 margin-bottom: 5px;
+text-transform: capitalize;
 }
 
 .coupon-uploads {
@@ -2182,3 +2364,61 @@ margin-bottom: 5px;
     background-position: 50% 50%;
   }
 }
+
+@media only screen and (max-width: 800px) {
+    
+    /* Force table to not be like tables anymore */
+  #no-more-tables table, 
+  #no-more-tables thead, 
+  #no-more-tables tbody, 
+  #no-more-tables th, 
+  #no-more-tables td, 
+  #no-more-tables tr { 
+    display: block; 
+    border:0px;
+  }
+ 
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+ 
+  #no-more-tables tr { border: 1px solid #ccc; }
+ 
+  #no-more-tables td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+    white-space: normal;
+    text-align:left;
+  }
+ 
+  #no-more-tables td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+
+  .min-width {
+    width: 100%;
+  }
+ 
+  /*
+  Label the data
+  */
+  #no-more-tables td:before { content: attr(data-title); }
+}
+
+
+

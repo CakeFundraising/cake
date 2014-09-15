@@ -1,20 +1,21 @@
 - if pledges.any? 
-  table#past_pledges.table.table-hover.table-bordered.data-table
-    thead
-      tr
-        th = Pledge.model_name.human
-        th = Campaign.model_name.human
-        th = Fundraiser.model_name.human
-        th = Pledge.human_attribute_name :main_cause
-        th = Pledge.human_attribute_name :type
-        th = Pledge.human_attribute_name :end_date
-        th = Pledge.human_attribute_name :donation
-        th = Pledge.human_attribute_name :pledge
-        th = Pledge.human_attribute_name :donation_click
-        th = Pledge.human_attribute_name :clicks
-        th = Pledge.human_attribute_name :impressions
-        th = Pledge.human_attribute_name :conv_rate
-    tbody
-      = render partial:'pledges/tables/past/sponsor/row', collection: PledgeDecorator.decorate_collection(pledges), as: :pledge
+  #no-more-tables
+    table#past_pledges.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Pledge.model_name.human
+          th = Campaign.model_name.human
+          th = Fundraiser.model_name.human
+          th = Pledge.human_attribute_name :main_cause
+          th = Pledge.human_attribute_name :type
+          th = Pledge.human_attribute_name :end_date
+          th = Pledge.human_attribute_name :donation
+          th = Pledge.human_attribute_name :pledge
+          th = Pledge.human_attribute_name :donation_click
+          th = Pledge.human_attribute_name :clicks
+          th = Pledge.human_attribute_name :impressions
+          th = Pledge.human_attribute_name :conv_rate
+      tbody
+        = render partial:'pledges/tables/past/sponsor/row', collection: PledgeDecorator.decorate_collection(pledges), as: :pledge
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pledges.past')}

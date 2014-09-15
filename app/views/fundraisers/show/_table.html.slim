@@ -1,16 +1,17 @@
 - if fundraisers.any?
-  table#fundraisers.table.table-hover.table-bordered.data-table
-    thead
-      tr
-        th = Fundraiser.model_name.human
-        th = t('semantic.number_of', model: 'Pledges')
-        th = t('semantic.average', model: 'Donation')
-        th = t('semantic.average', model: 'Pledge')
-        th = t('semantic.average', model: 'Donation/Click')
-        th = t('semantic.average', model: 'Clicks/Pledge')
-        th = t('semantic.average', model: 'Impressions/Pledge')
-        th = Fundraiser.human_attribute_name :engagement
-    tbody
-      = render partial:'fundraisers/show/table_row', collection: FundraiserDecorator.decorate_collection(fundraisers), as: :fundraiser, locals:{sponsor: sponsor}
+  #no-more-tables
+    table#fundraisers.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Fundraiser.model_name.human
+          th = t('semantic.number_of', model: 'Pledges')
+          th = t('semantic.average', model: 'Donation')
+          th = t('semantic.average', model: 'Pledge')
+          th = t('semantic.average', model: 'Donation/Click')
+          th = t('semantic.average', model: 'Clicks/Pledge')
+          th = t('semantic.average', model: 'Impressions/Pledge')
+          th = Fundraiser.human_attribute_name :engagement
+      tbody
+        = render partial:'fundraisers/show/table_row', collection: FundraiserDecorator.decorate_collection(fundraisers), as: :fundraiser, locals:{sponsor: sponsor}
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.fundraisers')}

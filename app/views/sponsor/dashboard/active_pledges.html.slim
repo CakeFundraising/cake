@@ -1,8 +1,7 @@
-h1.dash-head Active Pledges
-.col-md-4.col-md-push-8.active-campaigns
-  = link_to "Start new pledge", new_pledge_path, class:'btn btn-primary btn-lg pull-right'
-/.col-md-8.col-md-pull-4.dash-head.active-campaigns
-/  h1 Active Pledges
+h1.dash-head
+	span Active Pledges
+	.page-cta
+		= link_to "Find a cause to sponsor", new_pledge_path, class:'btn btn-primary btn-md'
 .row
   .col-md-12
     = render partial:'pledges/tables/active/sponsor/table', locals:{pledges: @pledges}

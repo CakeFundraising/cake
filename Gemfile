@@ -45,6 +45,7 @@ gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
 gem 'jcrop-rails-v2'
+gem 'cloudinary'
 
 #Cron & Asynchronous tasks
 gem 'resque', '~> 1.25.2', require: 'resque/server'
