@@ -8,6 +8,7 @@ Cake.init = ->
   Cake.datepicker()
   Cake.limit_cocoon()
   Cake.locations()
+  Cake.sponsors_form()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.coupons.tos()

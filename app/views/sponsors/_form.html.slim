@@ -59,24 +59,6 @@
           = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
-  $(":checkbox").each(function(o){
-    var textStr = $(this).parent('label').text();
-    var inputPH = $(this);
-    $(this).text('test');
-    $(this).parent().html(inputPH);
-    $("<label class='new-label' for='" + $(this).attr('id') + "'>" + textStr + "</label>").insertAfter($(this));
-  });
+  $(document).ready(Cake.sponsors_form.init);
+  $(document).on('page:load', Cake.sponsors_form.init);
 
-  $(":checkbox:checked").each(function(o){
-    var chkID = $(this).attr("id");
-    $(this).next().addClass('checked');
-  });
-
-  $("input[type='checkbox']").change(function () {
-    
-    if($(this).is(':checked')){
-      $(this).next().addClass('checked');
-    }else{
-      $(this).next().removeClass('checked');
-    }
-  });
