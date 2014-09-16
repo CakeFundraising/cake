@@ -22,29 +22,33 @@ Cake.validations.custom_methods = ->
 Cake.validations.form_leaving = ->
   pages = $('#story.tab-pane.active')
   form = $('.formtastic.pledge, .formtastic.campaign')
-  model_name = form.attr('class').replace('formtastic ', '')
-  object_id = form.attr('action').split('/')[2]
-  message = 'This ' + model_name + " will be cancelled. Please complete the form and press 'SAVE & CONTINUE' to continue."
 
-  form_invalid = (e)->
-    eval("Cake."+ model_name + "s.validation()")
-    e.preventDefault() unless form.valid()
-    return !form.valid()
+  if pages.length > 0 and form.length > 0
+    model_name = form.attr('class').replace('formtastic ', '')
+    object_id = form.attr('action').split('/')[2]
+    message = 'This ' + model_name + " will be cancelled. Please complete the form and press 'SAVE & CONTINUE' to continue."
 
-  delete_object = ->
-    $('#hidden_delete_link').click()
-    return
+    form_invalid = (e)->
+      eval("Cake."+ model_name + "s.validation()")
+      e.preventDefault() unless form.valid()
+      return !form.valid()
 
-  if pages.length > 0
-    #Turbolinks
-    $(document).on "page:before-change", (e)->
+    delete_object = ->
+      $('#hidden_delete_link').click()
+      return
+
+    show_message = (e)->
       r = confirm(message) if form_invalid(e)
       delete_object() if r
       return
+
+    #Turbolinks
+    $(document).on "page:before-change", (e)->
+      show_message(e)
+      return
     #Normal links
     $('a[data-no-turbolink="true"]').click (e)->
-      r = confirm(message) if form_invalid(e)
-      delete_object() if r
+      show_message(e)
       return
   return
 
