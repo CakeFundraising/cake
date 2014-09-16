@@ -19,3 +19,5 @@ Cake.sponsors_form = ->
     else
       $(this).next().removeClass "checked"
     return
+    
+return    
