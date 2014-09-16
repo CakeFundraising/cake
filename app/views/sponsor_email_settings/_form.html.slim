@@ -7,19 +7,23 @@
   = f.inputs nil do
     .row.section-wrapper
       .row.slideCheckbox
-        .col-md-6
-          = f.input :new_pledge_request              
-          = f.input :pledge_increased        
-          = f.input :pledge_fully_subscribed 
-          = f.input :pledge_accepted 
-          = f.input :pledge_rejected 
-          = f.input :account_change          
-        .col-md-6
-          = f.input :campaign_launch            
-          = f.input :campaign_end            
-          = f.input :missed_launch_campaign  
-          = f.input :public_profile_change
+        .col-md-12
+          = f.input :new_pledge_request, input_html: {class: 'checkbox-pill'}              
+          = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}        
+          = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'} 
+          = f.input :pledge_accepted, input_html: {class: 'checkbox-pill'} 
+          = f.input :pledge_rejected, input_html: {class: 'checkbox-pill'} 
+          = f.input :account_change, input_html: {class: 'checkbox-pill'}          
+          = f.input :campaign_launch, input_html: {class: 'checkbox-pill'}            
+          = f.input :campaign_end, input_html: {class: 'checkbox-pill'}            
+          = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}  
+          = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
+    .row.section-wrapper
       .row
         .col-md-12.text-center
           = f.actions do
             = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg'}
+
+javascript:
+  $(document).ready(Cake.sponsors_form);
+  $(document).on('page:load', Cake.sponsors_form);
