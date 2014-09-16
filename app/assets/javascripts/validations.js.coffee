@@ -22,27 +22,30 @@ Cake.validations.custom_methods = ->
 Cake.validations.form_leaving = ->
   pages = $('#story.tab-pane.active')
   form = $('.formtastic.pledge, .formtastic.campaign')
-  model_name = form.attr('class').replace('formtastic ', '') + "s"
+  model_name = form.attr('class').replace('formtastic ', '')
+  object_id = form.attr('action').split('/')[2]
+  message = 'This ' + model_name + " will be cancelled. Please complete the form and press 'SAVE & CONTINUE' to continue."
 
-  validate = (e, event)->
-    eval("Cake."+ model_name + ".validation()")
+  form_invalid = (e)->
+    eval("Cake."+ model_name + "s.validation()")
+    e.preventDefault() unless form.valid()
+    return !form.valid()
 
-    if form.valid()
-      return false
-    else  
-      e.preventDefault()
-      return 'Looks like this form is not correct, please check out all fields and press "SAVE & CONTINUE" before continuing.'
+  delete_object = ->
+    $('#hidden_delete_link').click()
     return
 
   if pages.length > 0
+    #Turbolinks
     $(document).on "page:before-change", (e)->
-      alert validate(e) if validate(e)
+      r = confirm(message) if form_invalid(e)
+      delete_object() if r
       return
-    $(window).on 'beforeunload', (e)->
-      confirmationMessage = validate(e)
-      if confirmationMessage
-        (e or window.event).returnValue = confirmationMessage #Gecko + IE
-        return confirmationMessage
+    #Normal links
+    $('a[data-no-turbolink="true"]').click (e)->
+      r = confirm(message) if form_invalid(e)
+      delete_object() if r
+      return
   return
 
 Cake.validations.init = ->

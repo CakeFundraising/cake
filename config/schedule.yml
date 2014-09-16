@@ -6,14 +6,6 @@ campaign_end:
   queue: high
   description: "Triggers the @campaign.end method on campaigns that have reach their end_date"
 
-notify_pledges_fully_subscribed:
-  # every:
-  #   - "30m"
-  cron: "30 * * * * America/New_York"
-  class: "ResqueSchedule::PledgeFullySubscribed"
-  queue: medium
-  description: "Notifies the SPs when their pledges have been fully subscribed"
-
 campaign_missed_launch:
   # every:
   #   - "1d"
@@ -21,6 +13,28 @@ campaign_missed_launch:
   class: "ResqueSchedule::CampaignMissedLaunch"
   queue: low
   description: "Triggers the @campaign.missed_launch_date method on campaigns that have missed their launch_date"
+
+campaigns_uncompleted:
+  # at: 4:30
+  cron: "30 4 * * * America/New_York"
+  class: "ResqueSchedule::CampaignsUncompleted"
+  queue: high
+  description: "Deletes all uncompleted campaigns."
+
+pledges_uncompleted:
+  # at: 4:30
+  cron: "30 4 * * * America/New_York"
+  class: "ResqueSchedule::PledgesUncompleted"
+  queue: high
+  description: "Deletes all uncompleted pledges."
+
+notify_pledges_fully_subscribed:
+  # every:
+  #   - "30m"
+  cron: "30 * * * * America/New_York"
+  class: "ResqueSchedule::PledgeFullySubscribed"
+  queue: medium
+  description: "Notifies the SPs when their pledges have been fully subscribed"
 
 transfer_payments:
   # every:

@@ -48,6 +48,8 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
 
+  scope :uncompleted, ->{ where("campaigns.mission is NULL OR campaigns.headline is NULL OR campaigns.story is NULL") }
+
   scope :with_invoices, ->{ eager_load(:invoices) }
 
   scope :with_paid_invoices, ->{ 

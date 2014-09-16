@@ -47,4 +47,5 @@
         br
         = f.actions do
           .text-center
-            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}          
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+            = hidden_campaign_cancel_link        

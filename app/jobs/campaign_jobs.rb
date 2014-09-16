@@ -26,4 +26,15 @@ module ResqueSchedule
     end
   end
 
+  class CampaignsUncompleted
+    extend Resque::Plugins::Retry
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform
+      Campaign.uncompleted.destroy_all
+    end
+  end
+
 end

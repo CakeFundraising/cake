@@ -13,4 +13,15 @@ module ResqueSchedule
     end
   end
 
+  class PledgesUncompleted
+    extend Resque::Plugins::Retry
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform
+      Pledge.uncompleted.destroy_all
+    end
+  end
+
 end
