@@ -35,13 +35,13 @@
         .well.text-center.your-pledge-well
           .shakeicon
           span.pledge-pad I agree to donate $ 
-          = f.input :amount_per_click, label: false, input_html:{placeholder: '5.00', value:''}
+          = f.input :amount_per_click, label: false, input_html:{placeholder: '5.00'}
           span.pledge-pad  per unique click to 
           h3 = auto_link @pledge.campaign.decorate
           = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
           br
           span.pledge-pad up to an amount not to exceed $ 
-          = f.input :total_amount, label: false, input_html:{placeholder: '10,000', value:''}
+          = f.input :total_amount, label: false, input_html:{placeholder: '10,000'}
         .well.direct-web-well.text-center
           span Please direct all web traffic to my website:  
 

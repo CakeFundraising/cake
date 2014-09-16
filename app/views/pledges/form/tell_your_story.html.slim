@@ -21,7 +21,6 @@
     = semantic_form_for @pledge do |f|
       = f.inputs do
         .text-center.tell-story-wrap 
-<<<<<<< HEAD
           h2 Tell your story in words.
           div
             p.text-muted Tell your story with the Pledge name, a headline and a message.
@@ -31,16 +30,6 @@
             = f.input :description, input_html: {rows: 5, placeholder: '3,000 words or less'}
             = f.input :mission, input_html: {rows: 2, placeholder: '250 characters or less'}
 
-=======
-          h2 Your Pledge Banner Image
-          p.text-muted Choose an image that best represents your company and the spirit of your pledge.
-          .help-block.italic Suggested size: 1400x614 px
-          .banner-upload
-            = render partial:'pictures/banner_form', locals:{f: f}
-          br
-          = f.input :mission, input_html: {rows: 2, placeholder: '250 characters or less', maxlength: 250}
-        
->>>>>>> FETCH_HEAD
         hr.wizard-rule
 
         .text-center.tell-story-wrap 
@@ -54,7 +43,6 @@
         hr.wizard-rule 
 
         .text-center.tell-story-wrap
-<<<<<<< HEAD
           h2 Your Pledge Banner Image
           div
             p.text-muted Choose an image that best represents your company and the spirit of your pledge.
@@ -64,18 +52,6 @@
             br
             
             = render partial:'videos/form', locals:{f: f}
-=======
-          h2 Tell your story in words.
-          p.text-muted Tell your story with the pledge name, a headline and a message.
-
-          = f.input :name, input_html:{size: 40, placeholder: '40 characters', maxlength: 40}
-          span.help-block.italic Keep it simple.
-
-          = f.input :headline, {placeholder: '250 characters or less'}
-          = f.input :description, input_html: {rows: 5, placeholder: '3,000 words or less', maxlength: 3000}
-
-          = render partial:'videos/form', locals:{f: f}
->>>>>>> FETCH_HEAD
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
       .text-center
