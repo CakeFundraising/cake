@@ -62,6 +62,7 @@ Cake.validations.init = ->
   
   Cake.campaigns.validation()
   Cake.pledges.validation()
+  Cake.pledge_requests.validation()
   Cake.coupons.validation()
 
   Cake.bank_accounts.validation()
