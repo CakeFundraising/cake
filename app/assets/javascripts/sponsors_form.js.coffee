@@ -3,7 +3,7 @@ Cake.sponsors_form = ->
   $(":checkbox").each (o) ->
     textStr = $(this).parent("label").text()
     inputPH = $(this)
-    $(this).text "test"
+    $(this).text " "
     $(this).parent().html inputPH
     $("<label class='new-label' for='" + $(this).attr("id") + "'>" + textStr + "</label>").insertAfter $(this)
     return

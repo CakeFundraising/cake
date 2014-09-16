@@ -1,8 +1,8 @@
 .row.edit-profile-head
-	.col-md-2.col-md-push-10
-		= link_to 'View Profile', @fundraiser, class:'btn btn-primary pull-right' 
-	.col-md-10.col-md-pull-2  
-		h1 Edit #{Fundraiser.model_name.human} Profile
+  .col-md-2.col-md-push-10
+    = link_to 'View Profile', @fundraiser, class:'btn btn-primary pull-right' 
+  .col-md-10.col-md-pull-2  
+    h1 Edit #{Fundraiser.model_name.human} Profile
 
 = semantic_form_for @fundraiser do |f|
   = f.inputs nil do
@@ -10,14 +10,14 @@
       .col-md-8
         = render partial:'pictures/banner_form', locals:{f: f}
       .col-md-4
-      	= render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+        = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
     .row.section-wrapper
       h4 Fundraiser Information
       .col-md-4
         = f.input :name
         = f.input :email
       .col-md-4
-  	      = f.input :phone
+          = f.input :phone
           = f.input :website
     .row.section-wrapper    
       /.col-md-4
@@ -32,26 +32,36 @@
           = f.input :manager_phone   
     .row.section-wrapper
       h4 Fundraiser Mission and Causes
-      .col-md-4      	
+      .col-md-4       
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-4
         = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
-      .col-md-4
-        = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 15}
+      .col-md-12
+        = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
+        = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
+        = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       h4 Minimum Pledge Requirements
       .col-md-4
         = f.input :min_pledge, as: :select, collection: Fundraiser::MIN_PLEDGES
-      	= f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
       .col-md-4
+        = f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
+      .col-md-12
         label.control-label Accepted Pledge Type
-      	= f.input :donations_kind
-      	= f.input :tax_exempt
-      	= f.input :unsolicited_pledges
+        = f.input :donations_kind, input_html: {class: 'checkbox-pill'}
+        = f.input :tax_exempt, input_html: {class: 'checkbox-pill'}
+        = f.input :unsolicited_pledges, input_html: {class: 'checkbox-pill'}
   .row
     .col-md-12.text-center
       = f.actions do
         = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg save-btn'}
 
-
+javascript:
+  $(document).ready(Cake.sponsors_form);
+  $(document).on('page:load', Cake.sponsors_form);
     
