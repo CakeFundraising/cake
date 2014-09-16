@@ -2259,9 +2259,14 @@ ul#share-block {
   }
 }
 
-.form-group label{
-margin-bottom: 5px;
-text-transform: capitalize;
+.form-group{
+  margin-bottom: 30px;
+}
+
+.form-group label, .control-label{
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  display: inherit;
 }
 
 .coupon-uploads {
@@ -2491,6 +2496,56 @@ text-transform: capitalize;
   */
   #no-more-tables td:before { content: attr(data-title); }
 }
+
+
+/*  Custom Pill Checkboxes */
+
+.checkbox{
+  display:inline;
+  line-height: 40px;
+  padding-left: 0px;
+}
+.checkbox .checkbox-pill {
+  position: absolute;
+  left: -9999px;
+  z-index:100;
+}
+
+.checkbox new-label {
+  position: relative;
+  padding-left: 10px;
+  cursor: pointer; 
+}
+
+.checkbox .new-label {
+  position: relative;
+  white-space: nowrap;
+  left:0; top: 0px;
+  width: auto; height: auto;
+  border: 1px solid #fff;
+  background: #d8d8d6;
+  border-radius: 25px;
+  padding:10px 20px 10px 30px;
+  color:#fff;
+  font-size: 14px;
+  transition: all .2s;
+}
+
+.checkbox .new-label:after {
+  content: '✓';
+  position: absolute;
+  top: 0px; left: 10px;
+  font-size: 14px;
+  color: #fff;
+  transition: all .2s;
+}
+
+.checkbox .checked{
+  background:#b5ca41  !important;
+}
+
+
+
 
 
 

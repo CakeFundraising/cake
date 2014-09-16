@@ -39,21 +39,44 @@
     .row.section-wrapper
       h4 Fundraising Requirements
       .col-md-4
-        = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS
+        = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS, input_html: {class: 'checkbox-pill'}
       .col-md-4
-        = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES
+        = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       h4 Organization Causes
-      .col-md-4
+      .col-md-12
         = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false
-      .col-md-4
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
         = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false
-      .col-md-4
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
         = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false
+        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       .col-xs-12.text-center
         = f.actions do
           = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}
+
+javascript:
+  $(":checkbox").each(function(o){
+    var textStr = $(this).parent('label').text();
+    var inputPH = $(this);
+    $(this).text('test');
+    $(this).parent().html(inputPH);
+    $("<label class='new-label' for='" + $(this).attr('id') + "'>" + textStr + "</label>").insertAfter($(this));
+  });
+
+  $(":checkbox:checked").each(function(o){
+    var chkID = $(this).attr("id");
+    $(this).next().addClass('checked');
+  });
+
+  $("input[type='checkbox']").change(function () {
+    
+    if($(this).is(':checked')){
+      $(this).next().addClass('checked');
+    }else{
+      $(this).next().removeClass('checked');
+    }
+  });
