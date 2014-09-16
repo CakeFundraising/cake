@@ -1,5 +1,7 @@
 h2 Hello #{@receiver}, 
 div
   strong Congratulations, you have a pledge request from #{ link_to @pr.fundraiser.decorate, fundraiser_url(@pr.fundraiser) } for this campaign: #{ link_to @pr.campaign.decorate, campaign_url(@pr.campaign) }.
+div This is what #{@pr.fundraiser.decorate} said:
+div.italic "#{@message}"  
 div
   span You can check #{ link_to t('semantic.here').downcase, sponsor_pledge_requests_url } your pledge requests.

@@ -2,17 +2,19 @@ class PledgeNotification < ActionMailer::Base
   default from: "no-reply@cakefundraising.com"
 
   #Pledge Requests
-  def new_pledge_request(pledge_request)
+  def new_pledge_request(pledge_request, message)
     @pr = pledge_request
     @receiver = @pr.sponsor.manager.decorate
     @sender = @pr.fundraiser.manager.decorate
+    @message = message
     mail(to: @receiver.email, subject: 'You have a new pledge request.')          
   end
 
-  def rejected_pledge_request(pledge_request)
+  def rejected_pledge_request(pledge_request, message)
     @pr = pledge_request
     @receiver = @pr.fundraiser.manager.decorate
     @sender = @pr.sponsor.manager.decorate
+    @message = message
     mail(to: @receiver.email, subject: 'Your Pledge Request has been rejected.')
   end
 

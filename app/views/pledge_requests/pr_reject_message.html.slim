@@ -1,6 +1,6 @@
-h2 Please explain the Sponsor why you're rejecting this pledge
+h2 Please explain the Fundraiser why you're rejecting this request
 
-= semantic_form_for :reject_message, url: reject_pledge_path(@pledge), method: :patch do |f|
+= semantic_form_for :reject_message, url: reject_pledge_request_path(@pledge_request), method: :patch do |f|
   = f.inputs do
     = f.input :message, as: :text, input_html:{class: 'autogrow', rows: 10, cols: 20 }
     = f.actions do
