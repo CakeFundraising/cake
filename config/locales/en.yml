@@ -183,15 +183,15 @@ en:
         min_pledge: Min. Acceptable Pledge
         min_click_donation: Min. Donation/Click
         unsolicited_pledges: We welcome Unsolicited Pledges
-        donations_kind: Accept Donations in Kind
-        tax_exempt: Tax Exempt Status
+        donations_kind: We accept Donations in Kind
+        tax_exempt: We are a Tax Exempt Organization
         name: Organization Name
-        mission: Organization Mission Statement
+        mission: Our Mission Statement
         supporter_demographics: Demographic profile of our supporters
         manager_name: Campaign Manager
         pledges_quantity: No. of Pledges
         email: Organization public email
-        causes: Our Causes
+        causes: Our Social
         rank: Global Fundraiser Rank
         local_rank: Location Rank
         invoices_due: Outstanding Invoices

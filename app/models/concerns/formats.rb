@@ -1,3 +1,4 @@
+
 module Formats
   extend ActiveSupport::Concern
 
