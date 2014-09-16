@@ -1,27 +1,31 @@
 campaign_end:
-  every:
-    - "1m"
+  # every:
+  #   - "1m"
+  cron: "* * * * * America/New_York"
   class: "ResqueSchedule::CampaignEnd"
   queue: high
   description: "Triggers the @campaign.end method on campaigns that have reach their end_date"
 
 notify_pledges_fully_subscribed:
-  every:
-    - "30m"
+  # every:
+  #   - "30m"
+  cron: "30 * * * * America/New_York"
   class: "ResqueSchedule::PledgeFullySubscribed"
   queue: medium
   description: "Notifies the SPs when their pledges have been fully subscribed"
 
 campaign_missed_launch:
-  every:
-    - "1d"
+  # every:
+  #   - "1d"
+  cron: "0 0 * * * America/New_York"
   class: "ResqueSchedule::CampaignMissedLaunch"
   queue: low
   description: "Triggers the @campaign.missed_launch_date method on campaigns that have missed their launch_date"
 
 transfer_payments:
-  every:
-    - "1d"
+  # every:
+  #   - "1d"
+  cron: "0 0 * * * America/New_York"
   class: "ResqueSchedule::TranferPayments"
   queue: low
   description: "Transfers funds to fundraisers's Stripe accounts"
