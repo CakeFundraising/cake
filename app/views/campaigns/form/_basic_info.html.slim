@@ -33,22 +33,26 @@
           br
         .row
           .col-xs-12.campaign-name
+<<<<<<< HEAD
+            = f.input :title, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
+=======
             = f.input :title, input_html:{size: 40, placeholder: '40 characters', maxlength: 40}
+>>>>>>> FETCH_HEAD
             span.help-block.italic Keep it simple.
 
-            = f.input :goal
+            = f.input :goal, input_html:{placeholder: '$1,000', value:''}
 
             .input-daterange
-              = f.input :launch_date, as: :string, input_html: {value: f.object.decorate.launch_date}
+              = f.input :launch_date, as: :string, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.launch_date}
               span.help-block.italic This date is for planning purposes only. The target launch date tells your Sponsors when their pledges are due. You launch your Campaign only when you decide.
-              = f.input :end_date, as: :string, label:'Target campaign end date', input_html: {value: f.object.decorate.end_date}
+              = f.input :end_date, as: :string, label:'Target campaign end date', input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.end_date}
               span.help-block.italic This date is when your campaign ends. You can extend the End Date after you have launched your Campaign if you wish to do so.
         .text-center
           hr.wizard-rule 
           h2 Choose the Cause Categories that best represent your fundraising goals.
           .causes.row
             .main_cause.col-xs-6
-              h3 Your primary Cause Category
+              h3 Your Primary Cause Category
               p.text-muted Choose only one.
               = f.input :main_cause, as: :select, collection: Campaign::CAUSES, input_html:{size: 10}, include_blank: false, label: false
             .secondary_causes.col-xs-6

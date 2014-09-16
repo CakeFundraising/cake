@@ -33,11 +33,11 @@
     .row.section-wrapper
       h4 Fundraiser Mission and Causes
       .col-md-4      	
-        = f.input :mission, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-4
-        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-4
-        = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
+        = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 15}
     .row.section-wrapper
       h4 Minimum Pledge Requirements
       .col-md-4

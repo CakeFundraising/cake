@@ -1,23 +1,23 @@
 tr.pledge id=(pledge.id) 
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Name') 
     = auto_link pledge 
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Fundraiser') 
     = auto_link pledge.fundraiser
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Cause') 
     = pledge.cause
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Type') 
     = pledge.scopes.first
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='End Date') 
     = pledge.end_date
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Pledge') 
     = humanized_money_with_symbol pledge.total_amount
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Amount') 
     = humanized_money_with_symbol pledge.amount_per_click
   td.truncate.min-width
     - if pledge.increase_requested
       button.btn.btn-warning.disabled Increase Requested
       
-    = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-default'
+    = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
 
     / = link_to nil do
     /   span.glyphicon.glyphicon-share
@@ -25,8 +25,8 @@ tr.pledge id=(pledge.id)
     = link_to edit_pledge_path(pledge), class:'edit_button' do
       span.glyphicon.glyphicon-pencil
 
-    button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
-      span.glyphicon.glyphicon-plus
+    /button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
+    /  span.glyphicon.glyphicon-plus
 
 tr.empty-tr
 

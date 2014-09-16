@@ -87,6 +87,29 @@ h3, h4 {
     padding: 0px 4px;
 }
 
+.nav-cta{
+  margin-top: 15px;
+  margin-bottom: 0;
+  background-color: #FFFFFF;
+  margin: 0px 0px 0px -1px !important;
+  padding-left: 0;
+  list-style: none;
+  li {
+    position: relative;
+    display: block;
+    a{
+      color: #777777;
+      position: relative;
+      display: block;
+      line-height: 20px;
+      padding: 10px 15px;
+    }
+    a:hover{
+      text-decoration: none !important;
+    }
+  }
+}
+
 
 //Media Responsive -------------------------------------------------------------------------------
 
@@ -105,7 +128,8 @@ h3, h4 {
   /*position: absolute;*/
 }
 
-.logged-out {
+
+/*.logged-out {
   .navbar-header {
     float:left !important;
   }
@@ -126,6 +150,12 @@ h3, h4 {
     padding: 10px 5px;
     margin-top: 6px;
   }
+}*/
+
+.btn-signup {
+  margin: 4px 10px 0px 10px !important;
+  padding: 10px 10px 10px 10px !important;
+  color: #fff !important;
 }
 
 @media (max-width: 570px){
@@ -136,6 +166,7 @@ h3, h4 {
       /*min-width:115px !important;*/
     }
   }
+
   .popular > li{
       margin:2px !important;
       font-size: .8em !important;
@@ -156,6 +187,7 @@ h3, h4 {
     position: absolute;
     margin: 60px 20px;
   }*/
+
   .container{
     padding-left: 0px;
     padding-right: 0px;
@@ -181,15 +213,15 @@ h3, h4 {
     z-index: 1000;*/
     width: 100%;
   }
-  .navbar-brand{
+  /*.navbar-brand{
     position: absolute;
     padding-top: 11px !important;
     padding: 12px 5px !important;
     img {
-      width:75%; /* you can use % */
+      width:75%;
       height: auto;
     }
-  }
+  }*/
 }
 
 @media (max-width: 620px){
@@ -198,6 +230,9 @@ h3, h4 {
         padding-left:0px;
         padding-right:0px;
       }
+    }
+    .btn-success{
+      margin-bottom: 15px !important;
     }
     .navbar-text{
       display:none;
@@ -292,10 +327,20 @@ h3, h4 {
     }
 }
 
-@media (min-width: 766px){
+@media (min-width: 768px){
   .container{
     padding-left:0px !important;
     padding-right:0px !important;
+  }
+  .nav-cta{
+    float:left;
+    li {
+      float: left;
+      a{
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
   }
 }
 
@@ -306,6 +351,14 @@ p.signup-social span:before, p.signup-social span:after {
 #main-container {
   margin-bottom: 35px;
 }
+
+.cats{
+  h4{
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
+
 
 //Buttons -------------------------------------------------------------------------------
 
@@ -347,10 +400,14 @@ margin: 20px 325px;
   color: #fff;
   background-color: whitesmoke;
   border-color: #dddddd !important;
-  border-width:1px;*/
+  border-width:1px;
   margin: 10px 0px 0px 5px !important;
   padding: 5px 10px 5px 10px !important;
   color: #fff !important;
+  
+  margin: 10px 0px 0px 5px !important;
+  padding: 5px 10px 5px 10px !important;
+  color: #fff !important;*/
 }
 
 .btn-lg{
@@ -467,6 +524,21 @@ margin: 20px 325px;
     margin-bottom: 0px;
   }
 
+  .search-panel{
+    ul{
+      li{
+        padding: 0px !important;
+      }
+    }
+  }
+
+  .search-panel-title{
+    margin: 10px 0px 10px 5px;
+    float: left;
+    color: #555555;
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+  }
   .panel-title{
     margin: 25px 0px 0px 15px;
     float: left;
@@ -2419,6 +2491,9 @@ text-transform: capitalize;
   */
   #no-more-tables td:before { content: attr(data-title); }
 }
+
+
+
 
 
 

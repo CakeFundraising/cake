@@ -1,6 +1,6 @@
 = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
   = p.input :avatar, as: :uploader, removable: false, parent: f
-  = p.input :avatar_caption, input_html: {placeholder: '40 characters or less', maxlength: 40} if defined? caption
+  = p.input :avatar_caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
 
   /! Crop modal
   #avatar_crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 

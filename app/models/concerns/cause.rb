@@ -3,38 +3,72 @@ module Cause
 
   # DON'T CHANGE THE ORDER, IF YOU NEED TO ADD JUST APPEND TO THE LIST
   CAUSES_HIERARCHY = {
-    disaster_and_emergency: ["International Relief", "US Relief"],
+    disaster_and_emergency: [
+      "International Relief", 
+      "US Relief"
+    ],
+
     causes_and_organizations: [
-      "Food & Hunger",
-      "Environment & Conservation",
-      "Community Organizations",
-      "Health & Medicine",
-      "Education & Learning",
-      "Economic Development",
-      "Freedom & Liberty",
       "Alternative Media & Web",
-      "Creative Arts & Music",
-      "Community Events & Festivals",
-      "Politics & Campaigns",
-      "Individuals & Families in Need",
       "Animals & Pets",
-      "Sports, Teams & Competitions",
       "Business & Entrepeneurs",
+      "Community Events & Festivals",
+      "Community Organizations",
+      "Community & Social Services",
+      "Creative Arts & Music",
+      "Economic Development",
+      "Education & Learning",
+      "Environment & Conservation",
+      "Food & Hunger",
+      "Freedom & Liberty",
       "Group & Individual Projects",
-      "Military & Veterans",
-      "Memorials, Tributes & Awards",
-      "Science & Research",
+      "Health & Medicine",
+      "Individuals & Families in Need",
       "Inventions & Technology",
-      "Community & Social Services"
+      "Memorials, Tributes & Awards",
+      "Military & Veterans",
+      "Politics & Campaigns",
+      "Science & Research",
+      "Sports, Teams & Competitions"
+      
+      #"Food & Hunger",
+      #"Environment & Conservation",
+      #"Community Organizations",
+      #"Health & Medicine",
+      #"Education & Learning",
+      #"Economic Development",
+      #"Freedom & Liberty",
+      #"Alternative Media & Web",
+      #"Creative Arts & Music",
+      #"Community Events & Festivals",
+      #"Politics & Campaigns",
+      #"Individuals & Families in Need",
+      #"Animals & Pets",
+      #"Sports, Teams & Competitions",
+      #"Business & Entrepeneurs",
+      #"Group & Individual Projects",
+      #"Military & Veterans",
+      #"Memorials, Tributes & Awards",
+      #"Science & Research",
+      #"Inventions & Technology",
+      #"Community & Social Services"
     ],
     building_and_capital_projects: [
-      "Education & Schools",
-      "Sports, Parks & Recreation",
-      "Medical, Hospitals & Clinics",
-      "Churches & Religion",
       "Arts & Culture",
-      "Walks, Roads & Bridges",
-      "Infrastructure & Utility"
+      "Churches & Religion",
+      "Education & Schools",
+      "Infrastructure & Utility",
+      "Medical, Hospitals & Clinics",
+      "Sports, Parks & Recreation",
+      "Walks, Roads & Bridges"
+      
+      #"Education & Schools",
+      #"Sports, Parks & Recreation",
+      #"Medical, Hospitals & Clinics",
+      #"Churches & Religion",
+      #"Arts & Culture",
+      #"Walks, Roads & Bridges",
+      #"Infrastructure & Utility"
     ]
   }
 
