@@ -41,9 +41,5 @@ Cake.campaigns.validation = ->
         required: true
       'campaign[story]':
         required: true
-      # 'campaign[picture_attributes][banner]':
-      #   required: true
-      # 'campaign[picture_attributes][avatar]':
-      #   required: true
   )
   return
