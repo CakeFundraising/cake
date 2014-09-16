@@ -1,15 +1,15 @@
-- if @campaign.pledges.any?
-  - if @campaign.custom_pledge_levels
-    - @sponsor_categories.each do |sc|
-      - if @campaign.object.send("#{sc.object.name}_pledges").any?
-        .row.win-with
-          .col-md-12
-            h2.sponsor-levs 
-              span.sponsor-name = sc.name
-              span.sponsor-pledge = sc.range
-        .row
-          = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge
-  - else
+- if @campaign.custom_pledge_levels
+  h1.text-center Please visit all our generous Sponsors
+  - @sponsor_categories.each do |sc|
+    .row.win-with
+      .col-md-12
+        h2.sponsor-levs 
+          span.sponsor-name = sc.name
+          span.sponsor-pledge = sc.range
+    .row
+      = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge
+- else
+  - if @campaign.accepted_pledges.any?
     .row.special-offers
       .col-md-12
         h1 Please visit all our generous Sponsors

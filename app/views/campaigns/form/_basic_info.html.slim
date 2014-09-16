@@ -36,7 +36,7 @@
             = f.input :title, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
             span.help-block.italic Keep it simple.
 
-            = f.input :goal, input_html:{placeholder: '$1,000', value:''}
+            = f.input :goal, input_html:{placeholder: '$1,000'}
 
             .input-daterange
               = f.input :launch_date, as: :string, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.launch_date}
