@@ -45,5 +45,5 @@ class CampaignDecorator < ApplicationDecorator
   def goal
     h.humanized_money_with_symbol object.goal
   end
-  
+
 end

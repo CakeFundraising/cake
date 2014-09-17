@@ -2,7 +2,7 @@
   .thumbnail
     .avatar 
       = link_to sponsor do
-        = image_tag sponsor.avatar.url(:medium)
+        = avatar_tag_for(sponsor)
     .caption
       h4.truncate = auto_link sponsor
       .cause.truncate = sponsor.object.causes.first

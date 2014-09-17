@@ -69,11 +69,12 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def file_html
-    builder.file_field(method, input_html_options)
+    #builder.file_field(method, input_html_options)
+    builder.cl_image_upload(method)
   end
 
   def input_html_options
-    #{class: "#{method}_input", wrapper_tag: :div, crop: (builder.object.persisted?)}
+    #{class: "#{method}_input", wrapper_tag: :div, crop: (object.persisted?)}
     {class: "#{method}_input", wrapper_tag: :div, crop: false}
   end
 
@@ -90,11 +91,10 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def existing_html
-      # TODO: Add classes based on mime type for icons, etc.
-      # existing = template.content_tag(:span, object.send(method).file.filename, existing_html_options)
-      # template.link_to_if linkable?, existing, object.send(method).url, existing_link_html_options
+    medium_size = "Picture::#{method.upcase}_SIZES".constantize[:medium]
+
     template.content_tag(:div, class: method.to_s) do
-      template.image_tag(object.send(method).medium.url, class:'img-responsive img-thumbnail')
+      template.cl_image_tag(object.send(method), crop: :fill, width: medium_size.first, height: medium_size.last, class:'img-responsive img-thumbnail')
     end
   end
 

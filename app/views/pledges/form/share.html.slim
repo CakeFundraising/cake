@@ -31,9 +31,9 @@
         .well.pledge-thankyou-well.clearfix
           .pledge-thankyou
             span.pledge-avatar 
-              = image_tag @pledge.avatar.url(:medium)
+              = avatar_tag_for @pledge
             span.campaign-avatar 
-              = image_tag @pledge.campaign.avatar.url(:medium)
+              = avatar_tag_for @pledge.campaign
             .shake
             .sp_fr_names
               .sp = auto_link @pledge.sponsor, truncate: 36

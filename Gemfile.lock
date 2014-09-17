@@ -77,11 +77,6 @@ GEM
     carmen-rails (1.0.1)
       carmen (~> 1.0.0)
       rails
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     childprocess (0.5.2)
       ffi (~> 1.0, >= 1.0.11)
     chosen-rails (1.1.0)
@@ -145,7 +140,6 @@ GEM
       activemodel
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.37.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -157,25 +151,6 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
-    fog (1.22.1)
-      fog-brightbox
-      fog-core (~> 1.22)
-      fog-json
-      ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.0.2)
-      fog-core
-      fog-json
-    fog-core (1.22.0)
-      builder
-      excon (~> 0.33)
-      formatador (~> 0.2)
-      mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
-    fog-json (1.0.0)
-      multi_json (~> 1.0)
-    formatador (0.2.5)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     formtastic-bootstrap (3.0.0)
@@ -193,7 +168,6 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    ipaddress (0.8.0)
     jcrop-rails-v2 (0.9.12.3)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -233,9 +207,6 @@ GEM
     multi_test (0.1.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -340,7 +311,6 @@ GEM
       rufus-scheduler (~> 2.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rmagick (2.13.2)
     roadie (3.0.0)
       css_parser (~> 1.3.4)
       nokogiri (~> 1.6.0)
@@ -483,7 +453,6 @@ DEPENDENCIES
   cancancan
   capybara
   carmen-rails
-  carrierwave
   chosen-rails
   cloudinary
   cocoon
@@ -496,7 +465,6 @@ DEPENDENCIES
   email_validator
   factory_girl_rails
   faker
-  fog
   formtastic-bootstrap
   high_voltage
   jcrop-rails-v2
@@ -519,7 +487,6 @@ DEPENDENCIES
   rails_12factor
   resque (~> 1.25.2)
   resque-retry
-  rmagick
   roadie-rails
   rspec-rails
   sass-rails (~> 4.0.2)

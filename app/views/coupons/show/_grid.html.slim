@@ -2,7 +2,7 @@
   .thumbnail
     .avatar 
       = link_to coupon.pledge do
-        = image_tag coupon.avatar.url(:medium)
+        = avatar_tag_for(coupon)
     .caption
       h4.truncate = link_to coupon, coupon.pledge
       .description = coupon.trunc_description

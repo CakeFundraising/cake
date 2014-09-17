@@ -7,9 +7,9 @@ class Coupon < ActiveRecord::Base
   belongs_to :pledge
   has_one :sponsor, through: :pledge
 
-  mount_uploader :qrcode, QrCodeUploader
-  validates_integrity_of  :qrcode
-  validates_processing_of :qrcode
+  # mount_uploader :qrcode, QrCodeUploader
+  # validates_integrity_of  :qrcode
+  # validates_processing_of :qrcode
 
   monetize :unit_donation_cents
   monetize :total_donation_cents

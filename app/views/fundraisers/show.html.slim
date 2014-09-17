@@ -119,7 +119,7 @@
               p = @fundraiser.supporter_demographics
       .col-md-4
         .avatar 
-          = image_tag @fundraiser.avatar.url(:medium)
+          = avatar_tag_for @fundraiser
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
           strong = Fundraiser.human_attribute_name :manager_name
@@ -147,4 +147,4 @@
             = render partial:'sponsors/show/table', locals: {sponsors: @top_sponsors, fr: @fundraiser}
 
 css:
-  .hero { background-image: url("#{@fundraiser.banner.url(:large)}"); }
+  .hero{ background-image: url("#{banner_tag_for(@fundraiser)}"); }

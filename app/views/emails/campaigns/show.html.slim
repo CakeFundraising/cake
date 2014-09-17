@@ -50,7 +50,7 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .avatar 
-              = image_tag @campaign.avatar.url(:medium), class: 'img-responsive'
+              = avatar_tag_for @campaign
               .caption = @campaign.avatar_caption
               .fundraiser-info
                 h4 = link_to @campaign.fundraiser, @campaign.fundraiser
@@ -89,4 +89,4 @@
   = render partial: 'layouts/choose_path'
 
 css:
-  .hero{ background-image: url("#{@campaign.banner.url(:large)}"); }
+  .hero{ background-image: url("#{banner_tag_for(@campaign)}"); }

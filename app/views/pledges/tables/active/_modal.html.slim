@@ -5,7 +5,7 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         .media
           a.pull-left href="#" 
-            = image_tag pledge.campaign.avatar.url(:medium)
+            = avatar_tag_for pledge.campaign
           .media-body
             h4.media-heading = pledge.fundraiser
             .campaign-name = auto_link pledge.campaign

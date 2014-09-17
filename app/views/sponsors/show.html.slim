@@ -109,7 +109,7 @@
           p = @sponsor.customer_demographics
       .col-md-4
         .avatar 
-          = image_tag @sponsor.avatar.url(:medium)
+          = avatar_tag_for @sponsor
           .caption = @sponsor.avatar_caption
 
           h4 Contact:
@@ -137,4 +137,4 @@
           #top.tab-pane
             = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers, sponsor: @sponsor}
 css:
-  .hero { background-image: url("#{@sponsor.banner.url(:large)}"); }
+  .hero{ background-image: url("#{banner_tag_for(@sponsor)}"); }

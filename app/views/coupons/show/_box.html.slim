@@ -10,7 +10,7 @@
       .col-md-4
         - if coupon.extra_donation_pledge
           div.label.label-info Extra Donation
-        = image_tag coupon.avatar.url(:medium)
+          = avatar_tag_for coupon
         .coupon-edge
       .col-md-6
         h2 = coupon
@@ -22,7 +22,7 @@
           .col-xs-12
             a data-target="#coupon-#{coupon.id}" data-toggle="modal" Read terms & conditions
       .col-md-2
-        = image_tag coupon.qrcode.url(:medium), class: "qr" if coupon.qrcode.present?
+        = qrcode_tag coupon if coupon.qrcode.present?
         .promo-code
           strong Promo Code
           span.pull-right = coupon.promo_code

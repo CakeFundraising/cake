@@ -51,8 +51,8 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .shake-wrap
-              = image_tag @pledge.avatar.url(:medium)
-              = image_tag @pledge.campaign.avatar.url(:medium)
+              = avatar_tag_for @pledge
+              = avatar_tag_for @pledge.campaign
               .shake
             .campaign_and_fundraiser
               h5.pull-left = auto_link @pledge.sponsor, truncate: 26
@@ -93,7 +93,7 @@
 = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
 css:
-  .hero { background-image: url("#{@pledge.banner.url(:large)}"); }
+  .hero{ background-image: url("#{banner_tag_for(@pledge)}"); }
 
 javascript:
   $(document).ready( Cake.campaigns.show('#{@pledge.campaign.end_date_countdown}') );

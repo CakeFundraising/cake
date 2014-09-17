@@ -17,6 +17,7 @@
 //= require jquery.expander.min
 //= require jquery.Jcrop
 //= require turbolinks
+//= require cloudinary
 //= require cocoon
 //= require cocoon_limiter
 //= require bootstrap

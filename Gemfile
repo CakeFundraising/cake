@@ -41,9 +41,9 @@ gem 'sunspot_solr'
 gem 'thin', group: :development
 
 #Image processing
-gem 'carrierwave'
-gem 'rmagick', require: 'RMagick'
-gem 'fog'
+# gem 'carrierwave'
+# gem 'rmagick', require: 'RMagick'
+# gem 'fog'
 gem 'jcrop-rails-v2'
 gem 'cloudinary'
 
