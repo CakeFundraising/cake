@@ -137,15 +137,15 @@ en:
     wizards:
       campaign: 
         basic_info: 1. Basic Information
-        tell_your_story: 2. Tell your story
+        tell_your_story: 2. Tell Your Story
         pledge_levels: 3. Set Pledge Levels
         share: 4. Solicit Sponsors
       pledge: 
         your_pledge: 1. Your Pledge
-        tell_your_story: 2. Tell your story
+        tell_your_story: 2. Tell Your Story
         add_coupon: 3. Add Coupon
         extra_donation: 4. Extra Donation
-        share: 4. Confirm your Pledge
+        share: 4. Confirm Your Pledge
   information:
     campaign:
       banner: "Help %{fr}! It is 100% free to help. <strong>Click on our Sponsors below and they will donate for you!</strong>"
