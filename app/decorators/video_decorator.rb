@@ -16,11 +16,14 @@ class VideoDecorator < ApplicationDecorator
   end
 
   def input_value
+    youtube = Proc.new{|url| "https://www.youtube.com/watch?v=#{url}" }
+    vimeo = Proc.new{|url| "https://www.vimeo.com/#{url}"}
+
     if object.url.present?
       if provider == 'youtube'
-        "https://www.youtube.com/watch?v=#{object.url}"
+        youtube.call(object.url)
       elsif provider == 'vimeo'
-        "https://www.vimeo.com/#{object.url}"
+        vimeo.call(object.url)
       end
     end
   end

@@ -6,8 +6,7 @@ class Video < ActiveRecord::Base
   V_REGEX = /vimeo\.com\/([0-9]{1,10})/
 
   validates :url, :recordable_type, :recordable_id, presence: true
-  validates :url, format: { with: Y_REGEX, message: "Invalid Youtube link." }, if: :new_record?
-  validates :url, format: { with: V_REGEX, message: "Invalid Vimeo link." }, if: :new_record?
+  validates :url, format: { with: Regexp.union(Y_REGEX, V_REGEX), message: "Invalid video link." }
 
   private
 

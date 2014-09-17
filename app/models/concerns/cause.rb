@@ -16,7 +16,7 @@ module Cause
       "Community Organizations",
       "Community & Social Services",
       "Creative Arts & Music",
-      "Economic Development",
+      "Colleges, Schools & Alumni",
       "Education & Learning",
       "Environment & Conservation",
       "Food & Hunger",
