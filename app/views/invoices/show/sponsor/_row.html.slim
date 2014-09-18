@@ -22,7 +22,7 @@ tr.empty-tr
       e.preventDefault();
       
       Cake.invoice_payment_handler.open({
-        image: '#{invoice.campaign.avatar.url(:square)}',
+        image: '#{invoice.campaign.picture.avatar}',
         name: "Invoice ##{invoice.id} Payment",
         description: 'From #{invoice.campaign}',
         amount: "#{invoice.due_cents}"
