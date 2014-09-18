@@ -91,6 +91,7 @@ class UploadedImage
   destroy: ->
     #@destroy_in_cloudinary()
     $('input[type="hidden"][name="' + Cake.crop.input.data('cloudinary-field') + '"]').remove() #remove hidden tag
+    $('#image-container').empty()
     return
 
 ##### Cropper Picture #####
@@ -125,7 +126,7 @@ class Cropper
   destroy: ->
     Cake.crop.Jcrop.destroy()
     $('#no_upload').show()
-    #@modal.find('.modal-body').append('<div id="image-container"></div>')
+    $('#image-container').empty()
     return
 
 class CroppedImage
