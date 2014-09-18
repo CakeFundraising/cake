@@ -381,7 +381,6 @@ ActiveRecord::Schema.define(version: 20140908211741) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
-    t.string   "thumbnail"
   end
 
 end
