@@ -30,12 +30,12 @@ Cake.pledge_levels.show = ->
   checked = checkbox.prop('checked')
 
   if checked
-    one_level_button.removeClass('btn-primary')
-    custom_levels_button.addClass('btn-primary')
+    one_level_button.removeClass('btn-selected')
+    custom_levels_button.addClass('btn-selected')
     pledge_levels_container.show()
   else
-    custom_levels_button.removeClass('btn-primary')
-    one_level_button.addClass('btn-primary')
+    custom_levels_button.removeClass('btn-selected')
+    one_level_button.addClass('btn-selected')
     pledge_levels_container.hide()
   return
 

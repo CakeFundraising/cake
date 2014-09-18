@@ -14,25 +14,33 @@
     
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
-    .text-center
-      h1 Set Pledge Levels
-      p.text-muted Would you like to create and name custom pledge levels to recognize and reward your most generous Sponsors?
-    br
-    = semantic_form_for @campaign, html: {class:'form-inline'} do |f|
-      = f.semantic_errors *f.object.errors.keys
-      = f.inputs do
-        .buttons.text-center
-          button.btn#custom_levels Set custom pledge levels
-          span or
-          button.btn#one_level Skip this step
-          = f.input :custom_pledge_levels, as: :boolean
-        br
-        .pledge_levels
-          = render partial:'sponsor_categories/form', locals:{f: f}
-        = f.input :step, as: :hidden, input_html:{value: :share} 
-      = f.actions do
-        .text-center
-          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+    .row.text-center
+      h1 Pick Your Pledge Levels
+      p.text-muted You can choose to have all sponsors appear on the same level, or you can specify up to 3 level of sponsoships 
+    .row
+      = semantic_form_for @campaign, html: {class:'form-inline'} do |f|
+        = f.semantic_errors *f.object.errors.keys
+        
+        = f.inputs do
+          .buttons.text-center
+            .toggle-container
+              .col-md-5
+                button.btn.btn-sponsorship#one_level Display all sponsors together in one level
+              .col-md-2
+                div.vertical-divider 
+                  span or
+                  span.divider
+              .col-md-5
+                button.btn.btn-sponsorship#custom_levels Set custom sponsorship pledge levels
+                = f.input :custom_pledge_levels, as: :boolean
+          .pledge_levels
+            = render partial:'sponsor_categories/form', locals:{f: f}
+          = f.input :step, as: :hidden, input_html:{value: :share} 
+        
+        = f.actions do
+          .row.text-center
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+
 
 javascript:
   $(document).ready(Cake.pledge_levels.init);
