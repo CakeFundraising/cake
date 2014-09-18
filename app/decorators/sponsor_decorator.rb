@@ -2,6 +2,8 @@ class SponsorDecorator < ApplicationDecorator
   include AnalyticsDecorator
   delegate_all
 
+  decorates_association :picture
+
   def scopes
     object.scopes.join(", ")
   end

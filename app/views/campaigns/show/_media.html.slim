@@ -1,7 +1,7 @@
 .solicit-wrap
   .media.thumbnail.campaign-preview-box
     = link_to campaign_url(campaign), class:'pull-left' do
-      = avatar_tag_for(campaign, class:'media-object')
+      = campaign.picture.avatar(class:'media-object')
     .media-body
       = image_tag("cake_logo.png", class: "pledge-logo")
       .media-heading

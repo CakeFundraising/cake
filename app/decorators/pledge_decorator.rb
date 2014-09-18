@@ -6,7 +6,8 @@ class PledgeDecorator < ApplicationDecorator
   decorates_association :coupons
   decorates_association :fundraiser
   decorates_association :video
-
+  decorates_association :picture
+  
   def to_s
     object.name
   end

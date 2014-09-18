@@ -1,6 +1,6 @@
 ul.nav.nav-tabs.pad-top
   li
-    = link_to "Profile", public_profile_path
+    = link_to "Profile", public_profile_path, data: {no_turbolink: true}
   li 
     = link_to "Account", account_path
   li.active

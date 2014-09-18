@@ -1,8 +1,6 @@
 class Picture < ActiveRecord::Base
   belongs_to :picturable, polymorphic: true
 
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-
   AVATAR_SIZES = {
     ico: [25, 19],
     thumb: [50, 38],

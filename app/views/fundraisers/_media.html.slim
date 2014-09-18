@@ -1,6 +1,6 @@
 .media
   = link_to fundraiser_path(@fundraiser), class:'pull-left' do
-    = avatar_tag_for @fundraiser, class:'media-object fr-dash-avatar'
+    = @fundraiser.picture.avatar class:'media-object fr-dash-avatar'
   .media-body
     h4.media-heading = @fundraiser.name
     .data.help-block

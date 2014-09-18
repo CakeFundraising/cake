@@ -50,7 +50,7 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .avatar 
-              = avatar_tag_for @campaign
+              = @campaign.picture.avatar
               .caption = @campaign.avatar_caption
               .fundraiser-info
                 h4 = link_to @campaign.fundraiser, @campaign.fundraiser
@@ -89,4 +89,5 @@
   = render partial: 'layouts/choose_path'
 
 css:
-  .hero{ background-image: url("#{banner_tag_for(@campaign)}"); }
+  .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
+

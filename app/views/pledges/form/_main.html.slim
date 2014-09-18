@@ -6,7 +6,7 @@
       li.active
         a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
       li 
-        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
+        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge), data: {no_turbolink: true}
       li
         = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
       / li

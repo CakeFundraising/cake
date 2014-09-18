@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908211741) do
+ActiveRecord::Schema.define(version: 20140918192953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,14 @@ ActiveRecord::Schema.define(version: 20140908211741) do
     t.integer  "picturable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "avatar_crop_x"
+    t.integer  "avatar_crop_y"
+    t.integer  "avatar_crop_w"
+    t.integer  "avatar_crop_h"
+    t.integer  "banner_crop_x"
+    t.integer  "banner_crop_y"
+    t.integer  "banner_crop_w"
+    t.integer  "banner_crop_h"
   end
 
   create_table "pledge_requests", force: true do |t|

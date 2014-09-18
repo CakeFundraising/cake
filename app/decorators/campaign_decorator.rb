@@ -4,6 +4,7 @@ class CampaignDecorator < ApplicationDecorator
   delegate_all
   decorates_association :video
   decorates_association :fundraiser
+  decorates_association :picture
   decorates_association :sponsor_categories
 
   def launch_date

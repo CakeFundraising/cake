@@ -6,7 +6,7 @@
       li
         = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
       li
-        = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+        = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign), data: {no_turbolink: true}
       li.active
         a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
       li

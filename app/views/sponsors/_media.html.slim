@@ -1,7 +1,7 @@
 .media
   /= link_to "Find a Cause to Sponsor", search_sponsors_path, class:'btn btn-primary btn-lg pull-right'
   = link_to sponsor_path(@sponsor), class:'pull-left' do
-    = avatar_tag_for @sponsor, class:'media-object fr-dash-avatar'
+    = @sponsor.picture.avatar class:'media-object fr-dash-avatar'
   .media-body
     h4.media-heading = @sponsor.name
     .data.help-block

@@ -63,7 +63,7 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .avatar 
-              = avatar_tag_for(@campaign)
+              = @campaign.picture.avatar
               .caption = @campaign.avatar_caption
               .fundraiser-info.text-center
                 h4 = auto_link @campaign.fundraiser
@@ -107,7 +107,7 @@
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
 css:
-  .hero{ background-image: url("#{banner_tag_for(@campaign)}"); }
+  .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
   $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}') );

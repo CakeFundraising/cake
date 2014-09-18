@@ -6,7 +6,7 @@
       .col-md-8
         h1.name = @sponsor.name
         - if can? :update, @sponsor
-          span.edit = link_to 'Edit Profile', public_profile_path 
+          span.edit = link_to 'Edit Profile', public_profile_path, data: {no_turbolink: true}
         .sponsor
           address
             span = @sponsor.location
@@ -109,7 +109,7 @@
           p = @sponsor.customer_demographics
       .col-md-4
         .avatar 
-          = avatar_tag_for @sponsor
+          = @sponsor.picture.avatar
           .caption = @sponsor.avatar_caption
 
           h4 Contact:
@@ -137,4 +137,5 @@
           #top.tab-pane
             = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers, sponsor: @sponsor}
 css:
-  .hero{ background-image: url("#{banner_tag_for(@sponsor)}"); }
+  .hero{ background-image: url("#{@sponsor.picture.banner_path}"); }
+

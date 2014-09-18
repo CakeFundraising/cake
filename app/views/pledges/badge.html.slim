@@ -1,6 +1,6 @@
 .media
   = link_to pledge_url(@pledge), target: :_blank, class:'pull-left' do
-    = avatar_tag_for @pledge, class:'media-object'
+    = @pledge.picture.avatar class:'media-object'
   .media-body
     h4.media-heading = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
     .amount_per_click.help-block

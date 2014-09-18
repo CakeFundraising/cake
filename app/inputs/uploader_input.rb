@@ -74,8 +74,16 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def input_html_options
-    #{class: "#{method}_input", wrapper_tag: :div, crop: (object.persisted?)}
-    {class: "#{method}_input", wrapper_tag: :div, crop: false}
+    {
+      class: "#{method}_input cloudinary-fileupload",
+      name: :field,
+      crop: (object.persisted?)
+      #crop: false
+    }.merge(
+      :"data-url" => template.cl_upload_url,
+      :"data-form-data" => template.cl_upload_tag_params,
+      :"data-cloudinary-field" => "#{object_name}[#{method}]"
+    )
   end
 
   def existing_html_options
@@ -94,7 +102,8 @@ class UploaderInput < Formtastic::Inputs::FileInput
     medium_size = "Picture::#{method.upcase}_SIZES".constantize[:medium]
 
     template.content_tag(:div, class: method.to_s) do
-      template.cl_image_tag(object.send(method), crop: :fill, width: medium_size.first, height: medium_size.last, class:'img-responsive img-thumbnail')
+      object.decorate.send(method)
+      #template.cl_image_tag(object.send(method), crop: :fill, width: medium_size.first, height: medium_size.last, class:'img-responsive img-thumbnail')
     end
   end
 

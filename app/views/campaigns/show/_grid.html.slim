@@ -2,7 +2,7 @@
   .thumbnail 
     .avatar 
       = link_to campaign do
-        = avatar_tag_for(campaign)
+        = campaign.picture.avatar
     .caption
       h4.truncate = auto_link campaign
       .cause.truncate = campaign.object.main_cause

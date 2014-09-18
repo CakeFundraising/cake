@@ -2,7 +2,7 @@
   .thumbnail
     .avatar 
       = link_to coupon.pledge do
-        = avatar_tag_for(coupon)
+        = coupon.picture.avatar
     .caption
       h4.truncate = link_to coupon, coupon.pledge
       .description = coupon.trunc_description

@@ -1,9 +1,14 @@
 = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
   = p.input :avatar, as: :uploader, removable: false, parent: f
   = p.input :avatar_caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
+  #avatar_coords
+    = p.input :avatar_crop_x, as: :hidden, input_html:{class: 'crop_x'}
+    = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
+    = p.input :avatar_crop_w, as: :hidden, input_html:{class: 'crop_w'}
+    = p.input :avatar_crop_h, as: :hidden, input_html:{class: 'crop_h'}
 
   /! Crop modal
-  #avatar_crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 
+  #crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 
     .modal-dialog
       .modal-content
         .modal-header
@@ -12,11 +17,10 @@
             span.sr-only Cancel
           h3#use_label.modal-title Select a region to crop.
         .modal-body
-          = p.input :crop_x, as: :hidden, input_html:{class: 'crop_x'}
-          = p.input :crop_y, as: :hidden, input_html:{class: 'crop_y'}
-          = p.input :crop_w, as: :hidden, input_html:{class: 'crop_w'}
-          = p.input :crop_h, as: :hidden, input_html:{class: 'crop_h'}
           #image-container
+          #no_upload.text-center 
+            = image_tag 'cake_logo.jpg', width: '100%'
+            #overlay_loading
         .modal-footer
           button.btn.btn-default data-dismiss="modal" type="button" Cancel
           - if defined? crop_model

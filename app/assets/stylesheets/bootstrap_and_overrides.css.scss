@@ -832,6 +832,7 @@ p.signup-social {
 }
 .fr-dash-avatar {
   max-width: 160px;
+  height: 100%;
 }
 .media-heading {
   color: $gray-dark;
@@ -2454,9 +2455,12 @@ ul#share-block {
 
 // Images Cropping -------------------------------------------------------
 
-#avatar_crop_modal, #banner_crop_modal{
+#crop_modal{
   .modal-body{
     padding: 0;
+    #no_upload{
+      padding: 60px 0px;
+    }
   }
   .modal-footer{
     margin-top: 0;
@@ -2467,30 +2471,21 @@ ul#share-block {
   }
 }
 
-#avatar_crop_modal{
-  .modal-dialog{
-    max-height: 100%;
-  }
-  #image-container{
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-  }
-}
-
-#banner_crop_modal{
-  .modal-dialog{
-    max-height: 100%;
-  }
-  #image-container{
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+#overlay_loading{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('loading.gif') no-repeat center, rgba(255,255,255,0.8);
+  top: 0;
+  .upload-progress{
+    position: relative;
+    top: 43%;
+    font-size: 1.4em;
+    font-weight: bolder;
   }
 }
 
 @media only screen and (max-width: 800px) {
-    
     /* Force table to not be like tables anymore */
   #no-more-tables table, 
   #no-more-tables thead, 

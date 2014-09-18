@@ -1,7 +1,7 @@
 .col-md-3
   .platinum
     = link_to pledge do
-      = avatar_tag_for(pledge)
+      = pledge.picture.avatar
     .levels
       .progress
         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
