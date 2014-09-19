@@ -2,20 +2,23 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+      span
+        = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
     .hero-screen
   .container
     .content.row.pull-up
       .col-md-8
-        = render partial:'videos/button', locals:{object: @campaign}
-        h1.name 
-          span.mission = @campaign.mission
-          - if can? :edit, @campaign and not @campaign.past?
-            span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
-        .pull-left 
-          = render partial:'layouts/share_buttons'
-        h4.share-info.pull-left Please share our Campaign!
-      .col-md-4
+        .campaign-intro
+          = render partial:'videos/button', locals:{object: @campaign}
+          h1.name 
+            span.mission = @campaign.mission
+            - if can? :edit, @campaign and not @campaign.past?
+              br
+              span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
+          .social
+            = render partial:'layouts/share_buttons'
+            h4.share-info.pull-left Please share our Campaign!
+      .col-md-4.sidebar
         .sidebar-bkg 
           .row
             .col-xs-12
@@ -48,7 +51,7 @@
                 span.pull-right 
                 /Goal
                 span.boldest.pull-right = @campaign.goal
-          br
+          .row
             - if current_user.present?
               - unless @campaign.past? 
                 .col-md-12.text-center

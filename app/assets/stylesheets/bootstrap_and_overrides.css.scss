@@ -998,16 +998,82 @@ h2 {
   background-repeat: repeat-x;
   height:614px;
 }
+
 .pull-up {
-  margin-top: -250px;
+  margin-top: -240px;
 }
-.name {
-  color: #fff;
-  .edit {
-    font-size: 16px;
-    margin-left: 5px;
+
+.campaign-intro {
+  position: absolute;
+  bottom: -200px;
+  .name {
+    color: #fff;
+    display: inline-table;
+    .edit {
+      font-size: 16px;
+      margin-left: 5px;
+    }
+  }
+  .social {
+    display: inline-table;
+  }
+  .addthis_sharing_toolbox {
+    display: table-cell;
+  }
+
+  .share-buttons {
+    float: left;
+  }
+
+  .share-info {
+    color: white;
+    padding-left: 5px;
+  }
+
+}
+
+@media (max-width: 420px){
+  .hero {
+    height: 660px;
+    .alert-dismissable {
+      font-size: 1.2em;
+    }
+  }
+  .campaign-intro {
+    bottom: 0px;
+  }
+  .btn-lg {
+    padding: 10px 40px !important;
+  }
+  .make-pledge {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 }
+
+.pull-up {
+  margin-top: -225px;
+}
+.sidebar{
+  p {
+    margin:0px;
+  }
+}
+
+
+
+.sidebar-bkg {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: $border-radius-base;
+  margin-bottom: 20px;
+
+  hr {
+    margin-top:5px;  
+    margin-bottom:10px;  
+  }
+}
+
 
 .mission{
   display: -webkit-box;
@@ -1038,16 +1104,9 @@ table.performance-summary {
   color: $brand-primary;
   margin-bottom: 0;
 }
-.sidebar-bkg {
-  padding: 15px;
-  background-color: #fff;
-  border-radius: $border-radius-base;
-  margin-bottom: 20px;
-  hr {
-    margin-top:5px;  
-    margin-bottom:10px;  
-  }
-}
+
+
+
 
 .bolder{
   font-family: "museo_sans500", Helvetica, Arial, sans-serif;
@@ -1148,12 +1207,18 @@ table.performance-summary {
 
 // Pledge Page Styles -----------------------------------------------------------------
 
-.campaign-timer {
-  font-size: 2.5em;
-  color: $brand-primary;
-  margin-bottom: 0;
-  font-weight: 700;
+#campaign_countdown {
+  .campaign-timer {
+    font-size: 2.5em;
+    color: $brand-primary;
+    margin-bottom: 0;
+    font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+  }
+  span{
+    margin-left:5px;
+  }
 }
+
 
 .campaign-story h3{
   font-weight: 700;
@@ -1195,12 +1260,6 @@ table.performance-summary {
   background-color: $brand-primary;
   margin-bottom: 30px;
 }
-
-.share-info{
-  color: white;
-  padding-left: 5px;
-}
-
 
 .blue:after {
   left: 50%;
@@ -1377,6 +1436,7 @@ table.performance-summary {
   .caption{
     font-size: 1.1em;
     text-align: center;
+    margin-top: 10px;
   }
 }
 .fundraiser-info{
@@ -1415,6 +1475,8 @@ table.performance-summary {
 }
 .campaign-story {
   letter-spacing: 0.5px;
+  margin-top: 20px;
+
   h3{
     margin-top: 0;
   }
@@ -1590,8 +1652,8 @@ ul.share-coupon {
 
 header {
 	.row{
-		margin-left:0px !important;
-		margin-right:0px !important;
+		/*margin-left:0px !important;
+		margin-right:0px !important;*/
 	}
 }
 
@@ -2121,13 +2183,16 @@ ul#share-block {
     color: black;
   }
   .text-muted{
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 }
 .campaign-steps {
   padding: 20px 50px;
   @media (min-width: $screen-lg-min) {
-  padding: 20px 100px;
+    padding: 20px 100px;
+  }
+  .nav > li > a {
+    padding: 15px 20px;
   }
 }
 .campaign-name {
@@ -2137,6 +2202,13 @@ ul#share-block {
   }
 }
 
+.campaign-nav {
+  .nav{
+    display:inline-block;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+}
 
 .dropdown {
   height: 40px !important;
@@ -2148,7 +2220,8 @@ ul#share-block {
     margin-bottom:15px;
   }
   .section-wrapper{
-    padding: 35px 0px 25px;
+    padding: 25px 0px 0px;
+    margin-top: 30px;
   }
 }
 
@@ -2208,7 +2281,7 @@ ul#share-block {
   }
 }
 #campaign_mission_input {
-  margin: 25px auto;
+  margin: 0px auto;
 }
 .p25 {
   padding-bottom: 25px;
@@ -2219,16 +2292,17 @@ ul#share-block {
   margin-bottom: 50px;
 }
 .solicit-wrap {
-  padding: 0 200px;
-  margin: 50px 0;
+  /*padding: 0 200px;*/
+  margin: 40px 0;
 }
 
 #sponsors_donations{
   .control-label{
     padding-right:10px;
-    float:left;
+    text-align:left;
+    margin-bottom: 5px;
   }
-  .row, text-muted{
+  .row, .text-muted{
     margin-bottom:0px;
     padding:5px;
   }
@@ -2258,15 +2332,23 @@ ul#share-block {
     height:100px;
     display: table;
     margin:auto;
-    width: 70%;
-  }
-  .toggle-container{
-    /*vertical-align:middle;
-    display: table-cell;*/
+    width: 75%;
   }
   .vertical-divider {
-    /*padding-top: 25px;
-    padding-bottom: 25px;*/
+    height:100px;
+    span{
+      padding-top: 25px;
+      display: block;
+    }
+  }
+  
+  /*.toggle-container{
+    vertical-align:middle;
+    display: table-cell;
+  }
+  .vertical-divider {
+    padding-top: 25px;
+    padding-bottom: 25px;
     position: relative;
     vertical-align:middle;
     display: block;
@@ -2276,12 +2358,13 @@ ul#share-block {
       display: block;
     }
   }
+
   .buttons > span{
-      /*padding:20px;
-      height:100px;
-      */
+      padding:20px;
+      height:100px;    
   }
-  col-md-5, col-md-2 {
+  */
+  col-md-1, col-md-2, col-md-4 {
     margin-left:0px !important;
     margin-right:0px !important;
     padding-left:0px !important;
@@ -2293,9 +2376,9 @@ ul#share-block {
   }
 
   .links{
-    margin:10px;
+    margin-bottom: 20px;
   }
-  .pledge_name{
+  .pledge_name, .max_value{
     display: block;
     width:100%;
   }
@@ -2337,7 +2420,7 @@ ul#share-block {
 }
 // Pledge Wizard ---------------------------------------------------------
 .pledge-pad {
-  padding: 5px;
+  padding: 3px;
   display: inline-block;
   text-align: right;
 }
@@ -2404,6 +2487,7 @@ ul#share-block {
   margin-bottom: 5px;
   text-transform: capitalize;
   display: inherit;
+  margin-top: 15px;
 }
 
 .coupon-uploads {
@@ -2525,11 +2609,17 @@ ul#share-block {
 
 .banner .alert, .alert-transparent{
   margin:0px;
+  span{
+    max-width: 1000px;
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
 }
 
 .alert-transparent{
   color: white;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.6);
   font-size: 1.5em;
   border-radius: 0;
 }

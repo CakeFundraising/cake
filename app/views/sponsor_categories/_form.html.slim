@@ -5,7 +5,6 @@
     .row.fields-container
       = f.semantic_fields_for :sponsor_categories, @sponsor_categories do |sc|
         = render partial:'sponsor_categories/fields', locals:{f: sc}
-    .row.links
-      .text-center
-        = link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', 
-        data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
+  .row.links
+    .text-center
+      = link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}

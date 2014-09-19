@@ -1,6 +1,7 @@
 .row
   .col-xs-12.campaign-steps
     = render partial:'campaigns/form/actions'
+  .campaign-nav.text-center
     ul.nav.nav-pills
       li
         = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
@@ -13,35 +14,44 @@
 
 .tab-content.campaign-wizard-wrap
   #story.tab-pane.active
-    br
     = semantic_form_for @campaign do |f|
       = f.inputs do
         .text-center
-          h2 Tell your story in words.
-          p.text-muted Tell your story with a headline and a campaign message.
+          h1 Campaign Purpose
+          p.text-muted Here you can share a brief overview of the Campaign Mission
+        .row
+          .col-md-2
+          .col-md-8
+            = f.input :mission, label: 'Campaign Purpose', input_html: {rows: 4, placeholder: '100 characters or less', maxlength: 100}
+          .col-md-2
+        .row.section-wrapper.text-center
+          h2 Tell your story in more detail
+          p.text-muted Add a headline and a campaign message
         .row
           .col-md-2
           .col-md-8
             = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
             = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
-            = f.input :mission, input_html: {rows: 2, placeholder: '100 characters or less', maxlength: 100}
+            br
             = render partial:'videos/form', locals:{f: f}
           .col-md-2
 
+
+
         .row.section-wrapper.text-center
           h2 Campaign Image
-          p.text-muted Choose a logo or image that best represents your Cause or Organization.
+          p.text-muted Choose a logo or image that best represents your Cause or Organization
           .col-md-2
           .col-md-8
             .help-block.italic Suggested size: 305x230 px
             .avatar-center
               = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-            span.help-block.p25 Include a caption to help others understand your image.
+            span.help-block.p25.text-left Include a caption to help others understand your image.
           .col-md-2
 
         .row.section-wrapper.text-center
-          h2 Your Campaign Banner Image
-          p.text-muted Choose an image that best represents your mission and campaign.
+          h2 Your Campaign Background Banner
+          p.text-muted Choose an background image that best represents your mission and campaign
           .col-md-12.text-center
             .help-block.italic Suggested size: 1400x614 px
             = render partial:'pictures/banner_form', locals:{f: f}
@@ -52,3 +62,13 @@
           .text-center
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
             = hidden_campaign_cancel_link        
+
+
+
+
+
+
+
+
+
+            

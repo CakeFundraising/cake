@@ -1,6 +1,7 @@
 .row
   .col-xs-12.campaign-steps
     = render partial:'campaigns/form/actions'
+  .campaign-nav.text-center  
     - if @campaign.persisted?
         ul.nav.nav-pills
           li.active
@@ -28,7 +29,7 @@
     = semantic_form_for @campaign do |f|
       = f.inputs do
         .text-center
-          h1 Basic Campaign Information
+          h1 Let's start your Campaign
           p.text-muted Tell us about your Campaign. Don't worry, you can edit it whenever you want.
           br
         .row

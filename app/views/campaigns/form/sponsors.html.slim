@@ -1,7 +1,7 @@
 .row
   .col-xs-12.campaign-steps
     = render partial:'campaigns/form/actions'
-
+  .campaign-nav.text-center
     ul.nav.nav-pills
       li
         = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
@@ -15,8 +15,9 @@
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
     .row.text-center
-      h1 Pick Your Pledge Levels
+      h1 Pick your Sponsorship levels
       p.text-muted You can choose to have all sponsors appear on the same level, or you can specify up to 3 level of sponsoships 
+
     .row
       = semantic_form_for @campaign, html: {class:'form-inline'} do |f|
         = f.semantic_errors *f.object.errors.keys
@@ -27,7 +28,7 @@
               .col-md-5
                 button.btn.btn-sponsorship#one_level Display all sponsors together in one level
               .col-md-2
-                div.vertical-divider 
+                .vertical-divider 
                   span or
                   span.divider
               .col-md-5
@@ -38,7 +39,8 @@
           = f.input :step, as: :hidden, input_html:{value: :share} 
         
         = f.actions do
-          .row.text-center
+          .row.section-wrapper.text-center
+            br
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 
