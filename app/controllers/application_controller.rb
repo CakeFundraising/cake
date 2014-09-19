@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   protected 
 
   def after_sign_in_path_for(resource)
-    if not current_user.registered
+    if current_user.present? and not current_user.registered
       if current_user.fundraiser_email_setting.present?
         new_fundraiser_path
       elsif current_user.sponsor_email_setting.present?
@@ -51,6 +51,8 @@ class ApplicationController < ActionController::Base
       sponsor_home_path
     elsif current_fundraiser.present?
       fundraiser_home_path
+    elsif resource.is_a? AdminUser
+      admin_root_path
     else
       super
     end

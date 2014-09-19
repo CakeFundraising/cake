@@ -102,6 +102,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'callback_skipper'
+  gem 'debugger'
 end
 
 group :test do
