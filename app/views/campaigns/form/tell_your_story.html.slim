@@ -9,6 +9,8 @@
         a data-toggle="tab" href="#story" = t('links.wizards.campaign.tell_your_story')
       li
         = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign), data: {no_turbolink: true}
+
+        
       li
         = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
 
@@ -26,7 +28,7 @@
           .col-md-2
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
-          p.text-muted Add a headline and a campaign message
+          p.text-muted Add a headline and a Campaign message
         .row
           .col-md-2
           .col-md-8
@@ -36,8 +38,6 @@
             = render partial:'videos/form', locals:{f: f}
           .col-md-2
 
-
-
         .row.section-wrapper.text-center
           h2 Campaign Image
           p.text-muted Choose a logo or image that best represents your Cause or Organization
@@ -46,7 +46,7 @@
             .help-block.italic Suggested size: 305x230 px
             .avatar-center
               = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-            span.help-block.p25.text-left Include a caption to help others understand your image.
+            span.help-block.p25.text-left Include a caption to help others understand your image
           .col-md-2
 
         .row.section-wrapper.text-center

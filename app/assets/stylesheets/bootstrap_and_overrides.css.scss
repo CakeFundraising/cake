@@ -42,6 +42,7 @@ h3, h4 {
 }
 .error{
   color: #a94442;
+  display: block;
 }
 .clear{
   clear: both;
@@ -2185,7 +2186,15 @@ ul#share-block {
   .text-muted{
     margin-bottom: 15px;
   }
+  .row{
+    /*margin-bottom:15px;*/
+  }
+  .section-wrapper{
+    padding: 25px 0px 0px;
+    margin-top: 30px;
+  }
 }
+
 .campaign-steps {
   padding: 20px 50px;
   @media (min-width: $screen-lg-min) {
@@ -2212,17 +2221,6 @@ ul#share-block {
 
 .dropdown {
   height: 40px !important;
-}
-
-
-.campaign-wizard-wrap {
-  .row{
-    margin-bottom:15px;
-  }
-  .section-wrapper{
-    padding: 25px 0px 0px;
-    margin-top: 30px;
-  }
 }
 
 
@@ -2429,10 +2427,10 @@ ul#share-block {
   margin-top: 15px;
 }
 .pledge-first-step-wrap {
-  padding: 0 100px;
+  /*padding: 0 100px;
   @media (min-width: $screen-md-min) {
     padding: 0 200px;
-  }
+  }*/
 }
 .your-pledge-well {
   padding: 25px;
@@ -2842,5 +2840,13 @@ ul#share-block {
     right: 0px; 
 }
 
+
+
+
+.default-img{
+  display:block !important;
+  width:100px !important;
+  height:100px !important;
+}
 
 

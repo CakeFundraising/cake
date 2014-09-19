@@ -2,6 +2,7 @@
   .col-xs-12.campaign-steps
     - if @pledge.persisted?
     = preview_pledge_link
+  .campaign-nav.text-center
     ul.nav.nav-pills
       li.active
         a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
@@ -13,44 +14,77 @@
       /   = link_to t('links.wizards.pledge.extra_donation'), nil 
       li
         = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
-  - else
-    ul.nav.nav-pills
-      li.active
-        a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
-      li 
-        a href="" = t('links.wizards.pledge.tell_your_story')
-      li
-        a href="" = t('links.wizards.pledge.add_coupon')
-      / li
-      /   a href="" = t('links.wizards.pledge.extra_donation')
-      li
-        a href="" = t('links.wizards.pledge.share')
+    - else
+      .campaign-nav.text-center
+        ul.nav.nav-pills
+          li.active
+            a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
+          li 
+            a href="" = t('links.wizards.pledge.tell_your_story')
+          li
+            a href="" = t('links.wizards.pledge.add_coupon')
+          / li
+          /   a href="" = t('links.wizards.pledge.extra_donation')
+          li
+            a href="" = t('links.wizards.pledge.share')
 
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active
-    br
+    /br
     h1.text-center Your Pledge
     = semantic_form_for @pledge, html:{class:'form-inline pledge-first-step-wrap'} do |f|
       = f.inputs do
         .well.text-center.your-pledge-well
           .shakeicon
-          span.pledge-pad I agree to donate $ 
-          = f.input :amount_per_click, label: false, input_html:{placeholder: '5.00'}
-          span.pledge-pad  per unique click to 
-          h3 = auto_link @pledge.campaign.decorate
-          = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
-          br
-          span.pledge-pad up to an amount not to exceed $ 
-          = f.input :total_amount, label: false, input_html:{placeholder: '10,000'}
+          .row
+            .col-md-2
+            .col-md-8
+              span.pledge-pad I agree to donate $ 
+              = f.input :amount_per_click, label: false, input_html:{placeholder: '5.00'}
+              span.pledge-pad  per unique click to 
+              h3 = auto_link @pledge.campaign.decorate
+              = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
+              br
+              span.pledge-pad up to an amount not to exceed $ 
+              = f.input :total_amount, label: false, input_html:{placeholder: '10,000'}
+            .col-md-2
         .well.direct-web-well.text-center
-          span Please direct all web traffic to my website:  
-
-          = f.input :website_url, label: false, placeholder: 'Enter your URL here...'
+          .row
+            .col-md-2
+            .col-md-8
+              span Please direct all web traffic to my website
+              = f.input :website_url, label: false, placeholder: 'Enter your URL here...', input_html: { :size => "60" } 
+            .col-md-2
 
         = f.input :step, as: :hidden, input_html:{value: :tell_your_story} 
-      br
       .text-center
-        = f.input :terms, as: :boolean, label:'By clicking here I agree to...' if f.object.new_record?
+        = f.input :terms, as: :boolean, label:'  I agree to the terms of this agreement' if f.object.new_record?
         = f.actions do
-          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn ten-t'}
+          = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn ten-t checkbox-pill'}
         = cancel_pledge_link if @pledge.persisted?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

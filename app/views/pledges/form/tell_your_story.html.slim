@@ -1,6 +1,7 @@
 .row
   .col-xs-12.campaign-steps
     = preview_pledge_link
+  .campaign-nav.text-center
     ul.nav.nav-pills
       li
         = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
@@ -13,49 +14,64 @@
       li
         = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
     
-.tab-content.pledge-wizard-wrap
+.tab-content.campaign-wizard-wrap
   #story.tab-pane.active
-    br
-    .text-center
-
     = semantic_form_for @pledge do |f|
       = f.inputs do
-        .text-center.tell-story-wrap 
-          h2 Tell your story in words.
-          div
-            p.text-muted Tell your story with the Pledge name, a headline and a message.
+        .text-center
+          h1 Pledge Purpose
+          p.text-muted Here you can share a brief overview of the Pledge Mission
+        .row
+          .col-md-2
+          .col-md-8
+            = f.input :mission, label: 'Pledge Purpose', input_html: {rows: 4, placeholder: '100 characters or less', maxlength: 100}
             = f.input :name, input_html:{size: 40, placeholder: '40 characters'}
-            span.help-block.italic Keep it simple.
-            = f.input :headline, {placeholder: '250 characters or less'}
-            = f.input :description, input_html: {rows: 5, placeholder: '3,000 words or less'}
-            = f.input :mission, input_html: {rows: 2, placeholder: '250 characters or less'}
-
-        hr.wizard-rule
-
-        .text-center.tell-story-wrap 
-          h2 Pledge Image
-          div
-            p.text-muted Choose a logo or image that best represents you and your company.
-            .help-block.italic Suggested size: 305x230 px
-            = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-            span.help-block.p25 Include a caption to help others understand your image.
-
-        hr.wizard-rule 
-
-        .text-center.tell-story-wrap
-          h2 Your Pledge Banner Image
-          div
-            p.text-muted Choose an image that best represents your company and the spirit of your pledge.
-            .help-block.italic Suggested size: 1400x614 px
-            .banner-upload
-              = render partial:'pictures/banner_form', locals:{f: f}
+          .col-md-2
+        .row.section-wrapper.text-center
+          h2 Tell your story in more detail
+          p.text-muted Add a headline and a Pledge message
+        .row
+          .col-md-2
+          .col-md-8
+            = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
+            = f.input :description, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
             br
-            
             = render partial:'videos/form', locals:{f: f}
+          .col-md-2
+
+        .row.section-wrapper.text-center
+          h2 Pledge Image
+          p.text-muted Choose a logo or image that best represents you and your company
+          .col-md-2
+          .col-md-8
+            .help-block.italic Suggested size: 305x230 px
+            .avatar-center
+              = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+            span.help-block.p25.text-left Include a caption to help others understand your image
+          .col-md-2
+
+        .row.section-wrapper.text-center
+          h2 Your Pledge Background Banner
+          p.text-muted Choose an background image that best represents your company and Pledge
+          .col-md-12.text-center
+            .help-block.italic Suggested size: 1400x614 px
+            = render partial:'pictures/banner_form', locals:{f: f}
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
-      .text-center
+        br
         = f.actions do
-          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-        = cancel_pledge_link
-        = hidden_cancel_pledge_link
+          .text-center
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+            = cancel_pledge_link
+            = hidden_cancel_pledge_link
+
+
+
+
+
+
+
+
+
+
+
