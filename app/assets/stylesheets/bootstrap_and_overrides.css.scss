@@ -56,6 +56,9 @@ h3, h4 {
 //Navbar --------------------------------------------------------------------------------
 .nav {
   margin-top: 15px;
+  li {
+    /*display:initial;*/
+  }
 }
 .navbar {
   margin-bottom: 0;
@@ -2223,6 +2226,15 @@ ul#share-block {
   height: 40px !important;
 }
 
+.dropdown-menu{
+  @media (max-width: $screen-md-min) {
+    float:left !important;
+  }
+}
+
+.dropdown-menu > li > a {
+    padding: 8px 45px 8px 20px;
+}
 
 #campaign_launch_date_input {
   /*padding: 10px 0 0;*/
