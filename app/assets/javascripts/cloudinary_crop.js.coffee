@@ -1,7 +1,7 @@
 Cake.pictures ?= {}
 Cake.crop ?= {}
 
-########### Functions =================================================================
+########### Objects =================================================================
 Cake.pictures.avatarConstants =
   ratio: 1.326087
   versions:
@@ -28,6 +28,7 @@ Cake.pictures.bannerConstants =
       x: 342
       y: 150
 
+########### Classes =================================================================
 ##### Image Class ####
 class UploadedImage
   constructor: (image) ->
@@ -35,32 +36,13 @@ class UploadedImage
     @width = image.width
     @height = image.height
     @ratio = @calculate_ratio()
-
-    if Cake.crop.type is 'banner'
-      @min_size = 1400
-    else
-      @min_size = 305
-
     @modal_width = @calculate_modal_width()
     @modal_height = @calculate_modal_height()
 
+    @validate_image()
+
   calculate_ratio: =>
-    if 305 <= @width <= 900
-      ratio = 1
-    else if 901 <= @width <= 1400
-      ratio = 2
-    else if 1401 <= @width <= 2000
-      ratio = 3
-    else if 2001 <= @width <= 3000
-      ratio = 4.5
-    else if 3001 <= @width <= 4000
-      ratio = 6
-    else if 4001 <= @width <= 5000
-      ratio = 8
-    else if 5001 <= @width <= 6000
-      ratio = 10
-    else
-      ratio = 12
+    ratio = if @width > Cake.pictures.avatarConstants.versions.medium.x then Math.round(@width*0.0015) else 1
     return ratio
 
   calculate_modal_width: =>
@@ -68,6 +50,13 @@ class UploadedImage
 
   calculate_modal_height: =>
     return Math.round @height/@ratio
+
+  validate_image: ->
+    if @width <= Cake.pictures.avatarConstants.versions.medium.x
+      @destroy()
+      Cake.crop.modal.modal('hide')
+      alert 'Please upload an image greater than 305x230px'
+    return
 
   destroy_in_cloudinary: ->
     url = "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/destroy"
@@ -124,7 +113,7 @@ class Cropper
     return
 
   destroy: ->
-    Cake.crop.Jcrop.destroy()
+    Cake.crop.Jcrop.destroy() if Cake.crop.Jcrop
     $('#no_upload').show()
     $('#image-container').empty()
     return
@@ -153,70 +142,67 @@ class CroppedImage
 
 ########### Functions =================================================================
 
+Cake.crop.main = (image)->
+  Cake.pictures.current = new UploadedImage(image)
+
+  $('#no_upload').hide()
+
+  Cake.crop.modal.find('.modal-body #image-container').html(
+    $.cloudinary.image(image.public_id,
+      format: image.format
+      crop: 'fit'
+      width: Cake.pictures.current.modal_width
+      height: Cake.pictures.current.modal_height
+    )
+  )
+  Cake.crop.modal.find('.modal-dialog').width(Cake.pictures.current.modal_width + 2)
+
+  typeConstants = eval "Cake.pictures." + Cake.crop.type + "Constants"
+
+  Cake.crop.Cropper = new Cropper(
+    typeConstants.ratio, 
+    typeConstants.versions.medium.x,
+    typeConstants.versions.medium.y
+  )
+
+  crop_button = Cake.crop.modal.find('#crop_button')
+  crop_button.click ->
+    cropped_image = new CroppedImage(image)
+    cropped_image.show()
+    return
+
+  return
+
 Cake.crop.init = ->
   Cake.crop.modal = $('#crop_modal')
-  modal_cancel = Cake.crop.modal.find('button[data-dismiss="modal"]')
+  Cake.crop.input_selector = $('.cloudinary-fileupload')
 
   Cake.crop.modal.on 'hidden.bs.modal', ->
     Cake.crop.Cropper.destroy()
     return 
 
+  modal_cancel = Cake.crop.modal.find('button[data-dismiss="modal"]')
   modal_cancel.click ->
     Cake.pictures.current.destroy()
     return
 
-  loadAndShowImage = (image)->
-    Cake.pictures.current = new UploadedImage(image)
-
-    $('#no_upload').hide()
-
-    Cake.crop.modal.find('.modal-body #image-container').html(
-      $.cloudinary.image(image.public_id,
-        format: image.format
-        crop: 'fit'
-        width: Cake.pictures.current.modal_width
-        height: Cake.pictures.current.modal_height
-      )
-    )
-    Cake.crop.modal.find('.modal-dialog').width(Cake.pictures.current.modal_width + 2)
-
-    typeConstants = eval "Cake.pictures." + Cake.crop.type + "Constants"
-
-    Cake.crop.Cropper = new Cropper(
-      typeConstants.ratio, 
-      typeConstants.versions.medium.x,
-      typeConstants.versions.medium.y
-    )
-
-    crop_button = Cake.crop.modal.find('#crop_button')
-    crop_button.click ->
-      cropped_image = new CroppedImage(image)
-      cropped_image.show()
-      return
-
-    return
-
-  loadImage = (input) ->
-    Cake.crop.modal.modal('show')
-
-    input.on 'cloudinarydone', (e, data)->
-      loadAndShowImage(data.result)
-      return
-    return
-
-  $('.cloudinary-fileupload').on 'cloudinaryprogressall', (e, data)->
+  Cake.crop.input_selector.on 'cloudinaryprogressall', (e, data)->
     progress = parseInt(data.loaded/data.total * 100, 10);
     $('#overlay_loading').html '<span class="upload-progress">' + progress + '&#37;</span>'
     return
 
-  $('.cloudinary-fileupload').on 'cloudinarystart', ->
+  Cake.crop.input_selector.on 'cloudinarystart', ->
     #if $(this).attr('crop') is "true"
     Cake.crop.input = $(this)
-    Cake.crop.type = Cake.crop.input.data('cloudinary-field').split("[")[2].replace("]", '')
+    Cake.crop.type = $(this).data('cloudinary-field').split("[")[2].replace("]", '')
     Cake.crop.image_previewer = $('.uploader .'+ Cake.crop.type)
     Cake.crop.coords_container = $('#' + Cake.crop.type + '_coords')
 
-    loadImage Cake.crop.input
+    Cake.crop.modal.modal('show')
+
+    $(this).on 'cloudinarydone', (e, data)->
+      Cake.crop.main(data.result)
+      return
     return
 
   return

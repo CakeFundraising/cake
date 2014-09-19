@@ -57,7 +57,7 @@ module Cause
       "Arts & Culture",
       "Churches & Religion",
       "Education & Schools",
-      "Infrastructure & Utility",
+      "Conservation & Nature",
       "Medical, Hospitals & Clinics",
       "Sports, Parks & Recreation",
       "Walks, Roads & Bridges"
