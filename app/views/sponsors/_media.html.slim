@@ -8,7 +8,7 @@
       div.fr-name = @sponsor.manager_name
       div.fr-manager-email 
       	span = @sponsor.manager_email
-      	span.fr-manager-email-edit = link_to "Edit", public_profile_path
+      	span.fr-manager-email-edit = link_to "Edit", public_profile_path, data: {no_turbolink: true}
       = stripe_buttons
   = link_to "Find a Cause to Sponsor", search_sponsors_path, class:'btn btn-primary btn-lg'
 
