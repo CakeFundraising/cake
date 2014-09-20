@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
   before_save :process_url
 
   Y_REGEX = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/
-  V_REGEX = /vimeo\.com\/([0-9]{1,10})/
+  V_REGEX = /vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/
 
   validates :url, :recordable_type, :recordable_id, presence: true
   validates :url, format: { with: Regexp.union(Y_REGEX, V_REGEX), message: "Invalid video link." }
@@ -25,7 +25,7 @@ class Video < ActiveRecord::Base
     end
     # Vimeo
     unless self.url.match(V_REGEX).nil?
-      self.url = self.url.match(V_REGEX)[1]
+      self.url = self.url.match(V_REGEX)[3]
       self.thumbnail = get_vimeo_info["thumbnail_small"]
       self.provider = :vimeo
     end

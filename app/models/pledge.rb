@@ -58,6 +58,7 @@ class Pledge < ActiveRecord::Base
 
   before_save do
     self.max_clicks = self.current_max_clicks
+    return
   end
 
   #Actions
