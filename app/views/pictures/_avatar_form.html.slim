@@ -12,15 +12,13 @@
     .modal-dialog
       .modal-content
         .modal-header
-          button.close data-dismiss="modal" type="button" 
-            span aria-hidden="true" &times;
-            span.sr-only Cancel
-          h3#use_label.modal-title Select a region to crop.
+          h3#use_label.modal-title Uploading your image...
         .modal-body
           #image-container
           #no_upload.text-center 
             = image_tag 'cake_logo.jpg', width: '100%'
             #overlay_loading
+          .success
         .modal-footer
           button.btn.btn-default data-dismiss="modal" type="button" Cancel
           - if defined? crop_model
