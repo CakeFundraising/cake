@@ -57,8 +57,19 @@ class Pledge < ActiveRecord::Base
   delegate :main_cause, to: :campaign
 
   before_save do
+    Rails.logger.info "before save: #{self.valid?}"
     self.max_clicks = self.current_max_clicks
-    return
+    return true
+  end
+
+  before_validation do
+    Rails.logger.info "before validation: #{self.valid?}"
+    return true
+  end
+
+  after_validation do
+    Rails.logger.info "after validation: #{self.valid?}"
+    return true
   end
 
   #Actions
