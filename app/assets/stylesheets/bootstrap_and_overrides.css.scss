@@ -1007,6 +1007,16 @@ h2 {
   margin-top: -240px;
 }
 
+// Titles
+h1.name {
+  color: #fff;
+  display: inline-table;
+  .edit {
+    font-size: 16px;
+    margin-left: 5px;
+  }
+}
+
 .campaign-intro {
   position: absolute;
   bottom: -200px;
