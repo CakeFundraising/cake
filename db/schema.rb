@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918192953) do
+ActiveRecord::Schema.define(version: 20140921214802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,8 +109,6 @@ ActiveRecord::Schema.define(version: 20140918192953) do
     t.string   "promo_code"
     t.text     "description"
     t.text     "terms_conditions"
-    t.string   "avatar"
-    t.string   "qrcode"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -228,6 +226,11 @@ ActiveRecord::Schema.define(version: 20140918192953) do
     t.integer  "banner_crop_y"
     t.integer  "banner_crop_w"
     t.integer  "banner_crop_h"
+    t.string   "qrcode"
+    t.integer  "qrcode_crop_x"
+    t.integer  "qrcode_crop_y"
+    t.integer  "qrcode_crop_w"
+    t.integer  "qrcode_crop_h"
   end
 
   create_table "pledge_requests", force: true do |t|

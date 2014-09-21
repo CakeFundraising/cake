@@ -153,7 +153,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
       remove_html <<
       #label_html <<
       errors_html <<
-      cache_html <<
+      #cache_html <<
       if method_was_present?
         existing_html <<
         replace_html

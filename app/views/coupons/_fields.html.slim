@@ -18,11 +18,12 @@
       .col-sm-6
         .coupon-images.pull-right
           p UPLOAD COUPON PICTURE
-          = render partial:'pictures/avatar_form', locals:{f: f, crop_model: 'coupon'}
+          = render partial:'pictures/avatar_form', locals:{f: f}
       .col-sm-6
         .coupon-images
           p UPLOAD QR CODE (Optional)
-          = f.input :qrcode, as: :uploader, removable: false
+          = render partial:'pictures/qrcode_form', locals:{f: f}
+          /= f.input :qrcode, as: :uploader, removable: false
     .row
       .col-sm-12.remove-coupon.text-center
         = link_to_remove_association "Remove", f

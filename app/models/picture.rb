@@ -21,6 +21,7 @@ class Picture < ActiveRecord::Base
   before_save do
     get_cloudinary_identifier(:avatar) if self.avatar.present? and self.avatar_changed?
     get_cloudinary_identifier(:banner) if self.banner.present? and self.banner_changed?
+    get_cloudinary_identifier(:qrcode) if self.qrcode.present? and self.qrcode_changed?
   end
 
   def get_cloudinary_identifier(image_type)

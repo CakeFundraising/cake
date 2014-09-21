@@ -2508,14 +2508,14 @@ ul#share-block {
   .avatar, .qrcode {
     margin-bottom: 5px;
   }
-  img {
-    height: 230px;
-    width: 300px;
-    @media (max-width: $screen-md-min) {
+  // img {
+  //   height: 230px;
+  //   width: 300px;
+  //   @media (max-width: $screen-md-min) {
 
-      }
-    }
-  }
+  //   }
+  // }
+}
 .coupon-outer-wrap {
   @media (min-width: $screen-md-min) {
   padding: 0 150px;

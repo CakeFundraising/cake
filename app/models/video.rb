@@ -5,8 +5,8 @@ class Video < ActiveRecord::Base
   Y_REGEX = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/
   V_REGEX = /vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/
 
-  validates :url, :recordable_type, :recordable_id, presence: true
-  validates :url, format: { with: Regexp.union(Y_REGEX, V_REGEX), message: "Invalid video link." }
+  validates :recordable_type, :recordable_id, presence: true
+  validates_format_of :url, with: Regexp.union(Y_REGEX, V_REGEX), message: "Invalid video link."
 
   private
 

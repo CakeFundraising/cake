@@ -187,21 +187,22 @@ class PledgesController < InheritedResources::Base
         :name, :mission, :headline, :description, :amount_per_click, :donation_type, 
         :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],
         picture_attributes: [
-          :id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache,
+          :id, :banner, :avatar, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
           :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
         ],
         coupons_attributes: [
           :id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, 
-          :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :avatar_cache, :qrcode_cache, merchandise_categories: [],
+          :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :qrcode_cache, merchandise_categories: [],
           picture_attributes: [
-            :id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache,
+            :id, :banner, :avatar, :qrcode, :avatar_caption,
             :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
-            :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
+            :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h,
+            :qrcode_crop_x, :qrcode_crop_y, :qrcode_crop_w, :qrcode_crop_h
           ]
         ],
         sweepstakes_attributes: [:id, :title, :description, :terms_conditions, :avatar, :winners_quantity,
-        :claim_prize_instructions, :standard_terms, :_destroy, :avatar_cache]
+        :claim_prize_instructions, :standard_terms, :_destroy]
       ],
       click: [:browser_plugins]
     )

@@ -8,15 +8,6 @@ Cake.pictures.avatarConstants =
     medium:
       x: 305
       y: 230
-    square: 
-      x: 120
-      y: 120
-    thumb:
-      x: 50
-      y: 38
-    ico:
-      x: 25
-      y: 19
 
 Cake.pictures.bannerConstants =
   ratio: 2.2801
@@ -27,6 +18,13 @@ Cake.pictures.bannerConstants =
     medium:
       x: 342
       y: 150
+
+Cake.pictures.qrcodeConstants =
+  ratio: 1
+  versions:
+    medium:
+      x: 300
+      y: 300
 
 ########### Classes =================================================================
 ##### Image Class ####
@@ -41,7 +39,7 @@ class UploadedImage
     return
 
   calculate_ratio: =>
-    ratio = if @width > Cake.pictures.avatarConstants.versions.medium.x then @width*0.0015 else 1
+    ratio = if @width > 667 then (@width*0.0015) else 1
     return ratio
 
   calculate_modal_width: =>
@@ -133,7 +131,7 @@ class CroppedImage
     image_tag = $.cloudinary.image(@image.public_id,
       crop: 'crop'
       x: Cake.crop.cropper.x.val()
-      x: Cake.crop.cropper.y.val()
+      y: Cake.crop.cropper.y.val()
       width: Cake.crop.cropper.w.val()
       height: Cake.crop.cropper.h.val()
       class: 'img-responsive img-thumbnail'
@@ -270,7 +268,6 @@ class CropModal
     return
 
 ########### Functions =================================================================
-
 Cake.crop.main = (image)->
   Cake.pictures.current = new UploadedImage(image)
   Cake.pictures.current.validate_image()
@@ -290,7 +287,7 @@ Cake.crop.init = ->
   Cake.crop.input_selector.on 'cloudinarystart', ->
     # Store vars
     Cake.crop.input = $(this)
-    Cake.crop.type = $(this).data('cloudinary-field').split("[")[2].replace("]", '')
+    Cake.crop.type = $(this).data('cloudinary-field').split("[")[$(this).data('cloudinary-field').split("[").length - 1].replace("]", '')
     Cake.crop.image_previewer = $('.uploader .'+ Cake.crop.type)
     Cake.crop.coords_container = $('#' + Cake.crop.type + '_coords')
 

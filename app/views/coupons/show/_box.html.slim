@@ -22,7 +22,8 @@
           .col-xs-12
             a data-target="#coupon-#{coupon.id}" data-toggle="modal" Read terms & conditions
       .col-md-2
-        = qrcode_tag coupon if coupon.qrcode.present?
+        /= qrcode_tag coupon if coupon.qrcode.present?
+        = coupon.picture.qrcode
         .promo-code
           strong Promo Code
           span.pull-right = coupon.promo_code

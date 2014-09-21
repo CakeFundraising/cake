@@ -57,7 +57,7 @@ class FundraisersController < InheritedResources::Base
         :tax_exempt, :phone, :email, :website, causes: [],
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         picture_attributes: [
-          :id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache,
+          :id, :banner, :avatar, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
           :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
         ] 

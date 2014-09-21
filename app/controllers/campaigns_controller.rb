@@ -90,7 +90,7 @@ class CampaignsController < InheritedResources::Base
     params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
     :headline, :step, :main_cause, causes: [], scopes: [], video_attributes: [:id, :url],
     picture_attributes: [
-      :id, :banner, :avatar, :avatar_caption, :banner_cache, :avatar_cache,
+      :id, :banner, :avatar, :avatar_caption,
       :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
       :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
     ], 

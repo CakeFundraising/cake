@@ -21,7 +21,4 @@
           .success
         .modal-footer
           button.btn.btn-default data-dismiss="modal" type="button" Cancel
-          - if defined? crop_model
-            button.btn.btn-primary#crop_button data-crop-model=(crop_model) data-crop-model-id=(f.object.id) type="button" Crop
-          - else
-            button.btn.btn-primary#crop_button type="button" Crop
+          button.btn.btn-primary#crop_button type="button" Crop

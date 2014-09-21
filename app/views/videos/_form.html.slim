@@ -4,4 +4,4 @@
       | Include a video - Optional
     span.help-block Copy link for video from YouTube or Vimeo
     = v.object.decorate.thumbnail
-    = v.input :url, label: false, input_html: {value: nil}
+    = v.input :url, label: false, input_html: {value: v.object.decorate.input_value}
