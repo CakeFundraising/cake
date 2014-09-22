@@ -7,5 +7,5 @@
       div.fr-name = @fundraiser.manager_name
       div.fr-manager-email 
 	      span = @fundraiser.manager_email
-	      span.fr-manager-email-edit = link_to "Edit", public_profile_path, data: {no_turbolink: true}
+	      span.fr-manager-email-edit = link_to "Edit", public_profile_path
       = stripe_buttons

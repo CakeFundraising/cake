@@ -262,6 +262,8 @@ class FileImage
     @image_file = image
     @minWidth = Cake.pictures.avatarConstants.versions.medium.x
     @minHeight = Cake.pictures.avatarConstants.versions.medium.y
+    @maxWidth = 5000
+    @maxHeight = 5000
     
     fileImage = this
 
@@ -284,12 +286,8 @@ Cake.crop.main = (image)->
   Cake.crop.modal.display_cropping(image)
   return
 
-Cake.crop.init = ->
-  Cake.crop.modal = new CropModal( $('#crop_modal') )
-  Cake.crop.input_selector = $('.cloudinary-fileupload')
-
-  #Initialize Cloudinary
-  Cake.crop.input_selector.cloudinary_fileupload
+Cake.crop.uploader = (selector) ->
+  selector.cloudinary_fileupload
     add: (e, data) ->
       Cake.crop.jqXHR = data
       return
@@ -305,17 +303,28 @@ Cake.crop.init = ->
 
         if image.width < image.minWidth or image.height < image.minHeight
           alert 'Please upload an image greater than ' + image.minWidth + 'x' + image.minHeight + 'px'
+          Cake.crop.jqXHR.abort()          
+        else if image.width > image.maxWidth or image.height > image.maxHeight
+          alert 'Please upload an image smaller than ' + image.maxWidth + 'x' + image.maxHeight + 'px'
           Cake.crop.jqXHR.abort()
         else
           Cake.crop.jqXHR.submit()
         return
       return
+  return
+
+Cake.crop.init = (selector)->
+  Cake.crop.modal = new CropModal( $('#crop_modal') )
+  Cake.crop.input_selector = selector || $('.cloudinary-fileupload')
+
+  #Initialize Cloudinary
+  Cake.crop.uploader(Cake.crop.input_selector)
 
   Cake.crop.input_selector.on 'cloudinarystart', ->
     # Store vars
     Cake.crop.input = $(this)
     Cake.crop.type = $(this).data('cloudinary-field').split("[")[$(this).data('cloudinary-field').split("[").length - 1].replace("]", '')
-    Cake.crop.image_previewer = $('.uploader .'+ Cake.crop.type)
+    Cake.crop.image_previewer = $(this).siblings('.uploader .'+ Cake.crop.type)
     Cake.crop.coords_container = $('#' + Cake.crop.type + '_coords')
 
     #Show modal

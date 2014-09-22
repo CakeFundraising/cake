@@ -20,6 +20,7 @@ Cake.coupons.tos = ->
   
   $("#coupons").on "cocoon:after-insert", (e, insertedItem) ->
       Cake.coupons.tos_toggle()
+      #Cake.crop.init(insertedItem.find('.cloudinary-fileupload'))
     return
   return
 

@@ -6,9 +6,9 @@
       li
         = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
       li 
-        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge), data: {no_turbolink: true}
+        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
       li
-        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge), data: {no_turbolink: true}
+        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
       / li
       /   = link_to t('links.wizards.pledge.extra_donation'), nil
       li.active 

@@ -6,7 +6,7 @@
       .col-md-8
         h1.name = @sponsor.name
         - if can? :update, @sponsor
-          span.edit = link_to 'Edit Profile', public_profile_path, data: {no_turbolink: true}
+          span.edit = link_to 'Edit Profile', public_profile_path
         .sponsor
           address
             span = @sponsor.location
