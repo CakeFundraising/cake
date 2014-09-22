@@ -70,7 +70,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def file_html
     #builder.file_field(method, input_html_options)
-    builder.cl_image_upload(method)
+    builder.cl_image_upload(method, return_delete_token: true)
   end
 
   def input_html_options

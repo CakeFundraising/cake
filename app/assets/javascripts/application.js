@@ -17,7 +17,11 @@
 //= require jquery.expander.min
 //= require jquery.Jcrop
 //= require turbolinks
-//= require cloudinary
+
+//= require cloudinary/jquery.ui.widget
+//= require cloudinary/jquery.iframe-transport
+//= require cloudinary/jquery.fileupload
+
 //= require cocoon
 //= require cocoon_limiter
 //= require bootstrap

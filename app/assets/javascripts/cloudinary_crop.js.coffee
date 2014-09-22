@@ -36,6 +36,8 @@ class UploadedImage
     @ratio = @calculate_ratio()
     @modal_width = @calculate_modal_width()
     @modal_height = @calculate_modal_height()
+
+    @delete_token = image.delete_token
     return
 
   calculate_ratio: =>
@@ -56,26 +58,14 @@ class UploadedImage
     return
 
   destroy_in_cloudinary: ->
-    url = "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/destroy"
-    dataType = (if $.support.xhrFileUpload then "json" else "iframe json")
-
-    $.ajax(
-      url: url
-      method: "POST"
-      data:
-        public_id: @image.public_id
-        api_key: $.cloudinary.config().api_key
-        timestamp: Date.now()
-        signature: @image.signature #error here
-      headers:
-        "X-Requested-With": "XMLHttpRequest"
-    ).done ->
-      console.log 'Image deleted.'
-      return
+    # $.cloudinary.delete_by_token(@delete_token).done ->
+    #   console.log 'Image deleted.'
+    #   return
+    $.cloudinary.delete_by_token(@delete_token)
     return
 
   cancel: ->
-    #@destroy_in_cloudinary()
+    @destroy_in_cloudinary()
 
     #Reset coordinates
     if Cake.crop.cropper
@@ -267,6 +257,25 @@ class CropModal
 
     return
 
+class FileImage
+  constructor: (image) ->
+    @image_file = image
+    @minWidth = Cake.pictures.avatarConstants.versions.medium.x
+    @minHeight = Cake.pictures.avatarConstants.versions.medium.y
+    
+    fileImage = this
+
+    @reader = new FileReader()
+    @reader.readAsDataURL image
+    return
+
+  set_width: (width)->
+    @width = width
+    return
+  set_height: (height)->
+    @height = height
+    return
+
 ########### Functions =================================================================
 Cake.crop.main = (image)->
   Cake.pictures.current = new UploadedImage(image)
@@ -279,10 +288,28 @@ Cake.crop.init = ->
   Cake.crop.modal = new CropModal( $('#crop_modal') )
   Cake.crop.input_selector = $('.cloudinary-fileupload')
 
-  Cake.crop.input_selector.on 'cloudinaryprogressall', (e, data)->
-    progress = parseInt(data.loaded/data.total * 100, 10);
-    $('#overlay_loading').html '<span class="upload-progress">' + progress + '&#37;</span>'
-    return
+  #Initialize Cloudinary
+  Cake.crop.input_selector.cloudinary_fileupload
+    add: (e, data) ->
+      Cake.crop.jqXHR = data
+      return
+    change: (e, data)->
+      image = new FileImage(data.files[0])
+
+      image.reader.onload = (e) ->
+        img = new Image()
+        img.src = image.reader.result
+
+        image.set_width(img.width)
+        image.set_height(img.height)
+
+        if image.width < image.minWidth or image.height < image.minHeight
+          alert 'Please upload an image greater than ' + image.minWidth + 'x' + image.minHeight + 'px'
+          Cake.crop.jqXHR.abort()
+        else
+          Cake.crop.jqXHR.submit()
+        return
+      return
 
   Cake.crop.input_selector.on 'cloudinarystart', ->
     # Store vars
@@ -299,6 +326,11 @@ Cake.crop.init = ->
     $(this).on 'cloudinarydone', (e, data)->
       Cake.crop.main(data.result)
       return
+    return
+
+  Cake.crop.input_selector.on 'cloudinaryprogressall', (e, data)->
+    progress = parseInt(data.loaded/data.total * 100, 10);
+    $('#overlay_loading').html '<span class="upload-progress">' + progress + '&#37;</span>'
     return
 
   return
