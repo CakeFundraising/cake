@@ -1,31 +1,31 @@
 tr.pledge
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Pledge') 
     = auto_link pledge
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Campaign') 
     = auto_link pledge.campaign
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Fundraiser') 
     = auto_link pledge.fundraiser
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Cause') 
     = pledge.main_cause
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Type') 
     = pledge.campaign.object.scopes.first
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='End Date') 
     = pledge.end_date
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Donation') 
     = pledge.invoice.due if pledge.invoice.present?
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Pledge') 
     = pledge.total_amount
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Donation/Click') 
     = pledge.amount_per_click
-  td.td-header(data-title='TBD') 
+  td.td-header(data-title='Clicks') 
     = pledge.clicks_count
-  td.td-header(data-title='TBD') 
-    45467
-  td.td-header(data-title='TBD') 
-    17%
-  td.truncate.min-width
-    button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
-      span.glyphicon.glyphicon-plus
+  td.td-header(data-title='Impressions') 
+    '45467
+  td.td-header(data-title='Conv Rate') 
+    '17%
+  /td.truncate.min-width
+  /  button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
+  /    span.glyphicon.glyphicon-plus
 
 tr.empty-tr
 

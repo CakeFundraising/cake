@@ -10,7 +10,8 @@
           th = Invoice.human_attribute_name :donation_click
           th = Invoice.human_attribute_name :due
           th = Invoice.human_attribute_name :status
-          th
+          - if defined? checkout
+            th
       tbody
         = render partial:'invoices/show/sponsor/row', collection: invoices, as: :invoice
 - else

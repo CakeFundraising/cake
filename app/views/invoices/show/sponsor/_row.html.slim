@@ -12,7 +12,7 @@ tr.invoice
   - unless invoice.paid?
     td.truncate.min-width.td-header(data-title='TBD') 
       = invoice_pay_button(invoice)
-      = link_to "Request Arbitration", nil, class:'btn btn-default arbitration_button'
+      = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
 
 tr.empty-tr
 

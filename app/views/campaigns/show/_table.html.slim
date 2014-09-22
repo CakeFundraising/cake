@@ -16,7 +16,7 @@
           th = Campaign.human_attribute_name :engagement
           - unless defined? hide_status and hide_status
             th = Campaign.human_attribute_name :status
-          th
+          /th
       tbody
         = render partial:'campaigns/show/table_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
 - else

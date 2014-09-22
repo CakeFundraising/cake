@@ -31,9 +31,9 @@ tr.campaign
   
     /td
     /  = campaign.status
-  td.truncate
-    = render partial:'campaigns/show/actions', locals:{campaign: campaign}
-  
+  /td.truncate
+  /  = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+  /  = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
 tr.empty-tr
 
 /- if campaign.pledges.any?

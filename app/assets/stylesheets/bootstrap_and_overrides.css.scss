@@ -1176,7 +1176,7 @@ table.performance-summary {
 
 // Tables -----------------------------------------------------------------------------
 .data-table {
-  margin: 15px 0;
+  /*margin: 15px 0;*/
   font-size:13px;
   thead {
     background-color: $brand-primary;
@@ -2416,6 +2416,11 @@ ul#share-block {
   padding: 10px;
   position: relative;
 }
+
+.media{
+  margin-bottom: 15px;
+}
+
 .media-body {
   position: relative;
   /*min-height: 180px;*/
