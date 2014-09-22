@@ -16,6 +16,23 @@ ActiveAdmin.register User do
     default_actions
   end
 
+  show do |user|
+    attributes_table do
+      row :id
+      row :full_name
+      row :email
+      row :sign_in_count
+      row :provider
+      row :created_at
+      row :roles do
+        user.roles.first.capitalize
+      end
+      row :fundraiser
+      row :sponsor
+      bool_row :registered
+    end
+  end
+
   filter :full_name
   filter :email
   filter :provider

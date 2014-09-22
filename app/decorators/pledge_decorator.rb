@@ -39,4 +39,8 @@ class PledgeDecorator < ApplicationDecorator
   def sponsor_name(length)
     h.truncate(object.sponsor.name, length: 36)
   end
+
+  def status
+    object.status.titleize
+  end
 end

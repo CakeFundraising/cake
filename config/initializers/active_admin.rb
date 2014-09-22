@@ -118,7 +118,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.allow_comments = false
+  config.allow_comments = false
   #
   # You can disable the menu item for the comments index page:
   # config.show_comments_in_menu = false
@@ -240,4 +240,19 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+end
+
+module ActiveAdmin
+  module Views
+    class TableFor
+      def bool_column(attribute)
+        column(attribute){ |model| model[attribute] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+      end
+    end
+    class AttributesTable
+      def bool_row(attribute)
+        row(attribute){ |model| model[attribute] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+      end
+    end
+  end
 end

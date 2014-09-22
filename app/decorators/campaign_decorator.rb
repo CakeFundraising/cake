@@ -47,4 +47,7 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.goal
   end
 
+  def status
+    object.status.titleize
+  end
 end
