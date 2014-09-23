@@ -60,6 +60,7 @@ class SponsorsController < InheritedResources::Base
       sponsor: [
         :name, :mission, :manager_name, :manager_title, :manager_email, :manager_phone, 
         :customer_demographics, :phone, :email, :website,
+        :email_subscribers, :facebook_subscribers, :twitter_subscribers, :pinterest_subscribers,
         cause_requirements: [], scopes: [], causes: [],
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         picture_attributes: [

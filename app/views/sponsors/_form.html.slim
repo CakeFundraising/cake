@@ -54,6 +54,16 @@
         = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
         = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
+      h4 Community
+      .col-md-3
+        = f.input :email_subscribers, as: :select, collection: Sponsor::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :facebook_subscribers, as: :select, collection: Sponsor::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :twitter_subscribers, as: :select, collection: Sponsor::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :pinterest_subscribers, as: :select, collection: Sponsor::SUBSCRIBER_RANGES
+    .row.section-wrapper
       .col-xs-12.text-center
         = f.actions do
           = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}

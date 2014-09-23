@@ -16,9 +16,9 @@
               span Phone: 
               span = @sponsor.phone
             span Website: 
-            span.sponsorinfo = link_to @sponsor.object.website, @sponsor.object.website, target: :_blank
+            span.sponsorinfo = auto_attr_link @sponsor.object.website, target: :_blank
             span Email: 
-            = auto_mail @sponsor
+            = @sponsor.email
             br
         = render partial:'layouts/share_buttons'
       .col-md-4
@@ -96,10 +96,26 @@
         = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
         .wesupport
           h3 = Sponsor.human_attribute_name :causes
-          div = @sponsor.causes.join(", ")
+          div = @sponsor.causes
 
         h3 = Sponsor.human_attribute_name :scopes
         div = @sponsor.scopes
+
+        .row
+          .col-md-12
+            h3 = Sponsor.human_attribute_name :our_community
+          .col-md-3
+            strong Email subscribers:
+            div = @sponsor.email_subscribers
+          .col-md-3
+            strong Facebook subscribers:
+            div = @sponsor.facebook_subscribers
+          .col-md-3
+            strong Twitter subscribers:
+            div = @sponsor.twitter_subscribers
+          .col-md-3
+            strong Pinterest subscribers:
+            div = @sponsor.pinterest_subscribers
 
         .profile-message 
           h3 = Sponsor.human_attribute_name :mission

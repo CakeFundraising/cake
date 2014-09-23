@@ -51,6 +51,21 @@ class Sponsor < ActiveRecord::Base
     time :created_at
   end
 
+  SUBSCRIBER_RANGES = [
+    '0 to 500',
+    '500 to 1,000', 
+    '1,000 to 5,000', 
+    '5,000 to 10,000', 
+    '10,000 to 25,000',
+    '25,000 to 50,000',
+    '50,000 to 100,000', 
+    '100,000 to 250,000', 
+    '250,000 to 500,000',
+    '500,000 to 1,000,000',
+    '1,000,000 to 5,000,000',
+    '5,000,000+'
+  ]
+
   def self.popular
     self.order(created_at: :desc).first(12)
   end

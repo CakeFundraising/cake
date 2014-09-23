@@ -18,9 +18,9 @@
               span Phone: 
               span = @fundraiser.phone
             span Website: 
-            span.sponsorinfo = link_to @fundraiser.object.website, @fundraiser.object.website, target: :_blank
-            span Email:
-            = auto_mail @fundraiser
+            span.sponsorinfo = auto_attr_link @fundraiser.object.website, target: :_blank
+            span Email: 
+            = @fundraiser.email
             br
         = render partial:'layouts/share_buttons'
       .col-md-4
@@ -117,6 +117,22 @@
             .demographics
               h3 = Fundraiser.human_attribute_name :supporter_demographics
               p = @fundraiser.supporter_demographics
+          .community.row
+            .col-md-12
+              h3 = Fundraiser.human_attribute_name :our_community
+            .col-md-3
+              strong Email subscribers:
+              div = @fundraiser.email_subscribers
+            .col-md-3
+              strong Facebook subscribers:
+              div = @fundraiser.facebook_subscribers
+            .col-md-3
+              strong Twitter subscribers:
+              div = @fundraiser.twitter_subscribers
+            .col-md-3
+              strong Pinterest subscribers:
+              div = @fundraiser.pinterest_subscribers
+
       .col-md-4
         .avatar 
           = @fundraiser.picture.avatar

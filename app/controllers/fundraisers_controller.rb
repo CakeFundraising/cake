@@ -54,6 +54,7 @@ class FundraisersController < InheritedResources::Base
         :name, :mission, :manager_title, :supporter_demographics, 
         :manager_email, :min_pledge, :min_click_donation, :donations_kind, 
         :unsolicited_pledges, :manager_name, :manager_website, :manager_phone, 
+        :email_subscribers, :facebook_subscribers, :twitter_subscribers, :pinterest_subscribers,
         :tax_exempt, :phone, :email, :website, causes: [],
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         picture_attributes: [

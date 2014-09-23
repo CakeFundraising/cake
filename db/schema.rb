@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921214802) do
+ActiveRecord::Schema.define(version: 20140923231345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,10 @@ ActiveRecord::Schema.define(version: 20140921214802) do
     t.string   "min_pledge_currency",         default: "USD", null: false
     t.integer  "min_click_donation_cents",    default: 0,     null: false
     t.string   "min_click_donation_currency", default: "USD", null: false
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
   end
 
   create_table "invoices", force: true do |t|
@@ -310,6 +314,10 @@ ActiveRecord::Schema.define(version: 20140921214802) do
     t.integer  "manager_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
   end
 
   create_table "stripe_accounts", force: true do |t|

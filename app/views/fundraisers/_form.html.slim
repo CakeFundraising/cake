@@ -31,20 +31,30 @@
           = f.input :manager_email
           = f.input :manager_phone   
     .row.section-wrapper
+      h4 Community
+      .col-md-3
+        = f.input :email_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :facebook_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :twitter_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :pinterest_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
+    .row.section-wrapper
       h4 Fundraiser Mission and Causes
       .col-md-4       
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-4
         = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-12
-        = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+        = f.label Fundraiser::CAUSES_HIERARCHY.keys.last, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Fundraiser::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
       .col-md-12
-        = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+        = f.label Fundraiser::CAUSES_HIERARCHY.keys.first, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Fundraiser::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
       .col-md-12
-        = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
-        = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
+        = f.label Fundraiser::CAUSES_HIERARCHY.keys[1], class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Fundraiser::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       h4 Minimum Pledge Requirements
       .col-md-4
