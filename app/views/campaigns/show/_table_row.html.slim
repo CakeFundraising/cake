@@ -27,7 +27,7 @@ tr.campaign
         .text-danger = t('semantic.Not_Launched')
       - else
         = t('semantic.Launched')
-  td
+  td.truncate
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
     = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
 tr.empty-tr

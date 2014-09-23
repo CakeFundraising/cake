@@ -4,4 +4,4 @@ span = link_to "View", campaign, class:'btn btn-primary btn-sm'
 - unless campaign.launched? or campaign.past?
   span = link_to "Launch", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-sm'
 - if campaign.pledges.any?
-  button class="btn btn-primary btn-sm" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 
+  button class="btn btn-success btn-sm" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 
