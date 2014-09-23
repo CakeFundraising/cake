@@ -20,20 +20,16 @@ tr.campaign
   td.td-header(data-title='Avg. Pledge') 
     = "4567"
   td.td-header(data-title='Engagement') 
-    = "23%"
-  
+    = "23%"  
   - unless campaign.past?
     td.td-header(data-title='Status') 
-      - if campaign.status == 'launched'
-        = t('semantic.Launched')
       - if campaign.status == 'not_launched'
         .text-danger = t('semantic.Not_Launched')
-  
-    /td
-    /  = campaign.status
-  /td.truncate
-  /  = render partial:'campaigns/show/actions', locals:{campaign: campaign}
-  /  = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+      - else
+        = t('semantic.Launched')
+  td
+    = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+    = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
 tr.empty-tr
 
 /- if campaign.pledges.any?

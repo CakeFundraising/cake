@@ -9,6 +9,10 @@ tr.pledge
     = pledge_request.scopes.first
   td.td-header(data-title='Timing') 
     .truncate = pledge_request.start_end_dates
+  /td.td-header(data-title='Pledge') 
+  /  = humanized_money_with_symbol pledge_request.total_amount
+  /td.td-header(data-title='Amount') 
+  /  = humanized_money_with_symbol pledge_request.amount_per_click
   td.truncate.min-width
     - if pledge_request.pending?
       - if can? :accept, pledge_request

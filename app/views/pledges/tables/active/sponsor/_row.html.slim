@@ -1,6 +1,8 @@
 tr.pledge id=(pledge.id) 
-  td.td-header(data-title='Name') 
+  td.td-header(data-title='Pledge') 
     = auto_link pledge 
+  td.td-header(data-title='Campaign') 
+    = auto_link pledge.campaign
   td.td-header(data-title='Fundraiser') 
     = auto_link pledge.fundraiser
   td.td-header(data-title='Cause') 

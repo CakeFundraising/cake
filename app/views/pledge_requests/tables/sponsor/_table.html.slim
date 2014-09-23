@@ -8,6 +8,8 @@
           th = PledgeRequest.human_attribute_name :causes
           th = PledgeRequest.human_attribute_name :type
           th = PledgeRequest.human_attribute_name :timing
+          /th = Pledge.model_name.human
+          /th = Pledge.human_attribute_name :amount
           th
       tbody
         = render partial:'pledge_requests/tables/sponsor/row', collection: pledges, as: :pledge_request
