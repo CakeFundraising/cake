@@ -39,5 +39,19 @@ ActiveAdmin.register User do
   filter :roles_mask, as: :select, collection: [[:Sponsor, '1'], [:Fundraiser, '2']]
   filter :registered
 
-  permit_params :full_name, :email, :password
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+
+    f.inputs do
+      f.input :full_name
+      f.input :email
+      f.input :password
+      f.input :fundraiser
+      f.input :sponsor
+    end
+
+    f.actions
+  end
+
+  permit_params :full_name, :email, :password, :fundraiser_id, :sponsor_id
 end

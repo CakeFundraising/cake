@@ -19,16 +19,12 @@ ActiveAdmin.register Sponsor do
     attributes_table do
       row :name
       row :mission
-      row :supporter_demographics
+      row :customer_demographics
       row :causes
       row :scopes
-      row :company_name
-      row :company_phone
       row :email
       row :website
       row :phone
-      row :min_pledge
-      row :min_click_donation
       row :manager
       row :manager_email
       row :manager_phone
@@ -36,24 +32,32 @@ ActiveAdmin.register Sponsor do
   end
 
   filter :name
-  filter :company_name
   filter :email
   filter :website
   filter :manager
   filter :pledges
   filter :campaigns
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+
+    f.inputs do
+      f.input :name
+      f.input :mission
+      f.input :customer_demographics
+      f.input :email
+      f.input :website
+      f.input :phone
+
+      f.input :manager
+      f.input :manager_name
+      f.input :manager_title
+      f.input :manager_email
+      f.input :manager_phone
+    end
+
+    f.actions
+  end
   
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
-  
+  permit_params :name, :mission, :customer_demographics, :email, :website, :phone, :manager_id, :manager_name, :manager_title, :manager_email, :manager_phone
 end

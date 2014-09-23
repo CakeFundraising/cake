@@ -6,8 +6,6 @@ ActiveAdmin.register Campaign do
 
     column :title
     column 'Main Cause', :main_cause
-    #column 'Launch Date', :launch_date
-    #column :created_at
     column :end_date
     column :status
     column 'Pledge Levels', :custom_pledge_levels
@@ -38,12 +36,31 @@ ActiveAdmin.register Campaign do
 
   filter :fundraiser
   filter :sponsors
-  filter :name
+  filter :title
   filter :main_cause
   filter :launch_date
   filter :end_date
   filter :status, as: :select, collection: Campaign.statuses[:status].map{|s| s.to_s.titleize }.zip(Campaign.statuses[:status])
   filter :custom_pledge_levels
 
-  # permit_params :list, :of, :attributes, :on, :model
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    
+    f.inputs do
+      f.input :title
+      f.input :launch_date, as: :string, input_html:{class: 'datepicker'}
+      f.input :end_date, as: :string, input_html:{class: 'datepicker'}
+      f.input :headline
+      f.input :story
+      f.input :mission
+      f.input :main_cause, as: :select, collection: Campaign::CAUSES
+      f.input :goal
+      f.input :fundraiser
+    end
+
+    f.actions
+  end
+
+  permit_params :title, :launch_date, :end_date, :headline, :story, :mission, :main_cause, :goal, :fundraiser_id
 end

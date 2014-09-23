@@ -7,7 +7,6 @@ ActiveAdmin.register Fundraiser do
     column :name
     #column :mission
     #column :supporter_demographics
-    column :causes
     column :email
     column :website
     column :phone
@@ -46,17 +45,31 @@ ActiveAdmin.register Fundraiser do
   filter :tax_exempt
   filter :unsolicited_pledges
 
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
-  
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+
+    f.inputs do
+      f.input :name
+      f.input :mission
+      f.input :supporter_demographics
+      f.input :email
+      f.input :website
+      f.input :phone
+      f.input :min_pledge
+      f.input :min_click_donation
+      f.input :donations_kind
+      f.input :tax_exempt
+      f.input :unsolicited_pledges
+
+      f.input :manager
+      f.input :manager_name
+      f.input :manager_title
+      f.input :manager_email
+      f.input :manager_phone
+    end
+
+    f.actions
+  end
+
+  permit_params :name, :mission, :supporter_demographics, :email, :website, :phone, :min_pledge, :min_click_donation, :donations_kind, :tax_exempt, :unsolicited_pledges, :manager_id, :manager_name, :manager_title, :manager_email, :manager_phone
 end

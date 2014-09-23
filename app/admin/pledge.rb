@@ -44,18 +44,25 @@ ActiveAdmin.register Pledge do
   filter :sponsor
   filter :fundraiser
   filter :status, as: :select, collection: Pledge.statuses[:status].map{|s| s.to_s.titleize }.zip(Pledge.statuses[:status])
+
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    
+    f.inputs do
+      f.input :name
+      f.input :headline
+      f.input :mission
+      f.input :description
+      f.input :website_url
+      f.input :amount_per_click
+      f.input :total_amount
+      f.input :campaign
+      f.input :sponsor
+    end
+
+    f.actions
+  end
   
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
-  
+  permit_params :name, :headline, :mission, :description, :website_url, :amount_per_click, :total_amount, :campaign_id, :sponsor_id
 end
