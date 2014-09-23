@@ -16,6 +16,22 @@ class FundraiserDecorator < ApplicationDecorator
     object.causes.first
   end
 
+  def min_pledge
+    h.humanized_money_with_symbol object.min_pledge
+  end
+
+  def min_click_donation
+    h.humanized_money_with_symbol object.min_click_donation
+  end
+
+  def website
+    h.auto_attr_link object.website, target: :_blank if object.website.present?
+  end
+
+  def email
+    h.auto_mail object
+  end
+
   ### Performance methods
   def active_campaigns_donation
     h.humanized_money_with_symbol object.active_campaigns_donation

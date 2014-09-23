@@ -43,4 +43,8 @@ class PledgeDecorator < ApplicationDecorator
   def status
     object.status.titleize
   end
+
+  def website
+    h.auto_attr_link object.website_url, target: :_blank if object.website_url.present?
+  end
 end

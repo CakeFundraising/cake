@@ -40,6 +40,10 @@ module ApplicationHelper
     end
   end
 
+  def auto_attr_link(attribute, opts={})
+    link_to attribute, attribute, opts.symbolize_keys
+  end
+
   def auto_mail(object)
     mail_to object.email, object.email
   end

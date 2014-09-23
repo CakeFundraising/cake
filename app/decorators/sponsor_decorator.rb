@@ -8,8 +8,16 @@ class SponsorDecorator < ApplicationDecorator
     object.scopes.join(", ")
   end
 
+  def causes
+    object.causes.join(", ")
+  end
+
+  def email
+    h.auto_mail object
+  end
+
   def website
-    "http://#{object.website}"
+    h.auto_attr_link object.website, target: :_blank if object.website.present?
   end
 
   def to_s
