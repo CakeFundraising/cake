@@ -10,7 +10,7 @@ ActiveAdmin.register User do
     end
     column :created_at
     column :roles, sortable: :roles_mask do |user|
-      user.roles.first.capitalize
+      user.roles.first.capitalize if user.roles.present?
     end
 
     default_actions
@@ -25,7 +25,7 @@ ActiveAdmin.register User do
       row :provider
       row :created_at
       row :roles do
-        user.roles.first.capitalize
+        user.roles.first.capitalize if user.roles.present?
       end
       row :fundraiser
       row :sponsor
@@ -46,6 +46,7 @@ ActiveAdmin.register User do
       f.input :full_name
       f.input :email
       f.input :password
+      #f.input :roles, as: :select, collection: [[:Sponsor, :sponsor], [:Fundraiser, :fundraiser]]
       f.input :fundraiser
       f.input :sponsor
     end
@@ -53,5 +54,5 @@ ActiveAdmin.register User do
     f.actions
   end
 
-  permit_params :full_name, :email, :password, :fundraiser_id, :sponsor_id
+  permit_params :full_name, :email, :password, :fundraiser_id, :sponsor_id, :roles
 end

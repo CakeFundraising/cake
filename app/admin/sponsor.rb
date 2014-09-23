@@ -1,11 +1,14 @@
 ActiveAdmin.register Sponsor do
   decorate_with SponsorDecorator
 
+  before_create do |sponsor|
+    sponsor.build_location(resource_params.first['location_attributes'])
+  end
+
   index do
     selectable_column
 
     column :name
-    column :causes
     column :email
     column :website
     column :company_name
@@ -29,6 +32,17 @@ ActiveAdmin.register Sponsor do
       row :manager_email
       row :manager_phone
     end
+
+    panel 'Location' do
+      attributes_table_for sponsor.location do
+        row :address
+        row :zip_code
+        row :city
+        row :country_code
+        row :state_code
+      end
+    end
+
   end
 
   filter :name
@@ -56,8 +70,16 @@ ActiveAdmin.register Sponsor do
       f.input :manager_phone
     end
 
+    f.inputs 'Location' do
+      f.semantic_fields_for :location do |l|
+        l.inputs :address, :zip_code, :city, :country_code, :state_code
+      end
+    end
+
     f.actions
   end
   
-  permit_params :name, :mission, :customer_demographics, :email, :website, :phone, :manager_id, :manager_name, :manager_title, :manager_email, :manager_phone
+  permit_params :name, :mission, :customer_demographics, :email, :website, :phone, 
+  :manager_id, :manager_name, :manager_title, :manager_email, :manager_phone,
+  location_attributes: [:address, :city, :zip_code, :state_code, :country_code]
 end

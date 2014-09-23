@@ -55,6 +55,8 @@ ActiveAdmin.register Campaign do
       f.input :story
       f.input :mission
       f.input :main_cause, as: :select, collection: Campaign::CAUSES
+      f.input :scopes, as: :check_boxes, collection: Campaign::SCOPES
+      #f.input :scopes, as: :select, collection: Campaign::SCOPES
       f.input :goal
       f.input :fundraiser
     end
@@ -62,5 +64,5 @@ ActiveAdmin.register Campaign do
     f.actions
   end
 
-  permit_params :title, :launch_date, :end_date, :headline, :story, :mission, :main_cause, :goal, :fundraiser_id
+  permit_params :title, :launch_date, :end_date, :headline, :story, :mission, :main_cause, :goal, :fundraiser_id, scopes: []
 end
