@@ -16,7 +16,6 @@ ActiveAdmin.register Campaign do
 
   show title: proc {|campaign| "Campaign: #{campaign.title}" } do |campaign|
     attributes_table do
-      row :id
       row :title
       row :mission
       row :main_cause

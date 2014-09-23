@@ -18,7 +18,6 @@ ActiveAdmin.register User do
 
   show do |user|
     attributes_table do
-      row :id
       row :full_name
       row :email
       row :sign_in_count
