@@ -298,8 +298,8 @@ Cake.crop.uploader = (selector) ->
         img = new Image()
         img.src = image.reader.result
 
-        image.set_width(img.width)
-        image.set_height(img.height)
+        image.width = img.width
+        image.height = img.height
 
         if image.width < image.minWidth or image.height < image.minHeight
           alert 'Please upload an image greater than ' + image.minWidth + 'x' + image.minHeight + 'px'
