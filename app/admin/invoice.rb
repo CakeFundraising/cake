@@ -4,6 +4,9 @@ ActiveAdmin.register Invoice do
   index do
     selectable_column
 
+    column :invoice do |invoice|
+      link_to "##{invoice.id}", admin_invoice_path(invoice)
+    end
     column :pledge
     column :clicks
     column :click_donation
@@ -13,6 +16,7 @@ ActiveAdmin.register Invoice do
     default_actions
   end
 
+  filter :id
   filter :clicks
   filter :status, as: :select, collection: Invoice.statuses[:status].map{|s| s.to_s.titleize }.zip(Invoice.statuses[:status])
   filter :pledge
