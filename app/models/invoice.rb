@@ -1,7 +1,7 @@
 class Invoice < ActiveRecord::Base
   include Statusable
 
-  has_statuses :due_to_pay, :paid, :in_arbitration
+  has_statuses :due_to_pay, :paid
 
   MIN_DUE = 0.5
 

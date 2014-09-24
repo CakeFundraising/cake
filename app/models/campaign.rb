@@ -5,7 +5,7 @@ class Campaign < ActiveRecord::Base
   include Analytics
   include Picturable
 
-  has_statuses :not_launched, :launched, :past
+  has_statuses :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
@@ -46,7 +46,7 @@ class Campaign < ActiveRecord::Base
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Date.today) }
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ not_launched.not_missed_launch.where("launch_date < ?", Date.today) }
+  scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Date.today) }
 
   scope :uncompleted, ->{ where("campaigns.mission is NULL OR campaigns.headline is NULL OR campaigns.story is NULL") }
 

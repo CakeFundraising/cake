@@ -13,7 +13,6 @@
  *= require bootstrap3-switch
  *= require chosen
  *= require_self
- *= require bootstrap_and_overrides
  *= require jquery.Jcrop
- *= require_tree .
+ *= require bootstrap_and_overrides
  */

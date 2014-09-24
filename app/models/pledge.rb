@@ -58,16 +58,7 @@ class Pledge < ActiveRecord::Base
 
   before_save do
     self.max_clicks = self.current_max_clicks
-    #Rails.logger.info "before save: #{self.valid?}"
   end
-
-  # before_validation do
-  #   Rails.logger.info "before validation: #{self.valid?}"
-  # end
-
-  # after_validation do
-  #   Rails.logger.info "after validation: #{self.valid?}"
-  # end
 
   #Actions
   def launch!

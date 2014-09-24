@@ -35,6 +35,7 @@ class Sponsor < ActiveRecord::Base
 
   scope :rank, ->{ eager_load(:invoices).where(invoices: {status: "paid"}).order("invoices.due_cents DESC") }
   scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") } 
+  scope :latest, ->{ order(created_at: :desc) }
 
   #Solr
   searchable do
@@ -67,7 +68,7 @@ class Sponsor < ActiveRecord::Base
   ]
 
   def self.popular
-    self.order(created_at: :desc).first(12)
+    self.latest.first(12)
   end
 
   def accepted_pledges

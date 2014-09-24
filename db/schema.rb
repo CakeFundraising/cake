@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923231345) do
+ActiveRecord::Schema.define(version: 20140924194306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 20140923231345) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               default: "not_launched"
+    t.string   "status",               default: "pending"
     t.text     "mission"
     t.string   "processed_status",     default: "unprocessed"
-    t.integer  "goal_cents",           default: 0,              null: false
-    t.string   "goal_currency",        default: "USD",          null: false
+    t.integer  "goal_cents",           default: 0,             null: false
+    t.string   "goal_currency",        default: "USD",         null: false
     t.string   "main_cause"
   end
 
