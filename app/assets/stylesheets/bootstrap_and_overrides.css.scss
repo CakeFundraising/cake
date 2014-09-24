@@ -121,7 +121,7 @@ h3, h4 {
 //Media Responsive -------------------------------------------------------------------------------
 
 .container{
-  width: 95% !important;
+  /*width: 95% !important;*/
   max-width: 1200px;
   min-width: 260px;
 }
@@ -217,8 +217,8 @@ h3, h4 {
   }
 
   .container{
-    padding-left: 0px;
-    padding-right: 0px;
+    /*padding-left: 0px;
+    padding-right: 0px;*/
   }
   .popular > li > a{
     min-width:90px !important;
@@ -246,8 +246,8 @@ h3, h4 {
 @media (max-width: 620px){
     .navbar-default{
       .container{
-        padding-left:0px;
-        padding-right:0px;
+        /*padding-left:0px;
+        padding-right:0px;*/
       }
     }
     .btn-success{
@@ -275,7 +275,8 @@ h3, h4 {
       display:none;
     }
     .navbar-collapse{
-      /*margin-top: 10px !important;*/
+      margin-left: 5px !important;
+      margin-right: 5px !important;
     }
     #main-container{
 
@@ -2237,9 +2238,12 @@ ul#share-block {
 }
 
 .dropdown-menu{
+
   @media (max-width: $screen-md-min) {
     float:left !important;
+    width: 100% !important;
   }
+
 }
 
 .dropdown-menu > li > a {
