@@ -5,7 +5,6 @@ describe Coupon do
   it { should have_one(:sponsor).through(:pledge) }
 
   it { should validate_presence_of(:title) }
-  it { should validate_presence_of(:avatar) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:expires_at) }
   it { should validate_presence_of(:pledge) }
@@ -19,7 +18,7 @@ describe Coupon do
   it "should set default terms and conditions" do
     new_coupon = FactoryGirl.build(:coupon)
     new_coupon.terms_conditions.should_not be_nil
-    new_coupon.terms_conditions.should == I18n.t('application.terms_and_conditions.standard')
+    new_coupon.terms_conditions.should == I18n.t('application.terms_and_conditions.coupons')
   end
 
   it "should return the collection of normal coupons" do

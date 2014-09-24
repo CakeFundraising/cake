@@ -308,7 +308,7 @@ describe Sponsor do
         end
 
         it "should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents" do
-          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 100)
 
           expect( @sponsor.local_rank ).to eql(6)
         end

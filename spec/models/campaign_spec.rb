@@ -5,6 +5,7 @@ describe Campaign do
   it { should validate_presence_of(:launch_date) }
   it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:fundraiser) }
+  it { should validate_presence_of(:main_cause) }
 
   it { should belong_to(:fundraiser) }
   it { should have_one(:picture).dependent(:destroy) }
@@ -27,10 +28,6 @@ describe Campaign do
     should validate_presence_of(:story)
   end
 
-  it "should validate presence of causes" do
-    FactoryGirl.build(:campaign, causes: []).should have(1).error_on(:causes)
-  end
-
   it "should build a picture if new object" do
     new_campaign = FactoryGirl.build(:campaign)
     new_campaign.picture.should_not be_nil
@@ -38,7 +35,7 @@ describe Campaign do
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:not_launched, :launched, :past]
+    Campaign.statuses[:status].should == [:pending, :launched, :past]
   end
 
   context 'Actions' do

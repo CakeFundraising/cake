@@ -333,7 +333,7 @@ describe Fundraiser do
 
         it "should return the position of the FR in the set of FR's ordered by descendent paid invoice's due_cents" do
           campaign = FactoryGirl.create(:campaign, fundraiser: fundraiser)
-          FactoryGirl.create(:invoice, campaign: campaign, due_cents: 1000)
+          FactoryGirl.create(:invoice, campaign: campaign, due_cents: 100)
 
           expect( fundraiser.local_rank ).to eql(6)
         end

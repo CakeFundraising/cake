@@ -6,8 +6,6 @@ FactoryGirl.define do
     expires_at { Time.now + 3.months }
     promo_code { rand(9999) }
     description { Faker::Lorem.paragraph }
-    avatar { Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/coupon.jpg")) }
-    qrcode { Rack::Test::UploadedFile.new(File.join(Rails.root, "db/seeds/support/images/qrcode.jpg")) }
     merchandise_categories { Coupon::CATEGORIES.sample(3) }
     extra_donation_pledge false
     pledge

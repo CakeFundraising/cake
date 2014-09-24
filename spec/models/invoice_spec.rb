@@ -17,6 +17,6 @@ describe Invoice do
   end
 
   it "should have statuses" do
-    Invoice.statuses[:status].should == [:due_to_pay, :paid, :in_arbitration]
+    Invoice.statuses[:status].should == [:due_to_pay, :paid]
   end
 end
