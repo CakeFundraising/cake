@@ -9,16 +9,12 @@ ActiveAdmin.register Fundraiser do
     selectable_column
 
     column :name
-    #column :mission
-    #column :supporter_demographics
     column :email
     column :website
     column :phone
-    column :min_pledge
-    column :min_click_donation
+    #column :min_pledge
+    #column :min_click_donation
     column :manager
-    #column :manager_email
-    #column :manager_phone
 
     default_actions
   end

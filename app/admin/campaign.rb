@@ -33,13 +33,13 @@ ActiveAdmin.register Campaign do
     end
   end
 
-  filter :fundraiser
-  filter :sponsors
   filter :title
   filter :main_cause
   filter :launch_date
   filter :end_date
   filter :status, as: :select, collection: Campaign.statuses[:status].map{|s| s.to_s.titleize }.zip(Campaign.statuses[:status])
+  filter :fundraiser
+  filter :sponsors
   filter :custom_pledge_levels
 
 

@@ -35,7 +35,7 @@ ActiveAdmin.register User do
   filter :full_name
   filter :email
   filter :provider
-  filter :roles_mask, as: :select, collection: [[:Sponsor, '1'], [:Fundraiser, '2']]
+  filter :roles_mask, as: :select, collection: [[:Sponsor, '1'], [:Fundraiser, '2']], label: 'Roles'
   filter :registered
 
   form do |f|
@@ -46,8 +46,8 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       #f.input :roles, as: :select, collection: [[:Sponsor, :sponsor], [:Fundraiser, :fundraiser]]
-      f.input :fundraiser
-      f.input :sponsor
+      #f.input :fundraiser
+      #f.input :sponsor
     end
 
     f.actions

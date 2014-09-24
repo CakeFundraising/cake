@@ -16,6 +16,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery.expander.min
 //= require jquery.Jcrop
+
 //= require turbolinks
 
 //= require cloudinary/jquery.ui.widget
@@ -24,11 +25,14 @@
 
 //= require cocoon
 //= require cocoon_limiter
+
 //= require bootstrap
 //= require bootstrap-switch
+
 //= require chosen-jquery
 //= require rails-timeago
 //= require bootstrap-datepicker/core
 //= require zeroclipboard
+
 //= require cake
 //= require_tree .
