@@ -17,11 +17,11 @@ tr.pledge id=(pledge.id)
     - if pledge.increase_requested
       button.btn.btn-warning.disabled Increase Requested
     - else
-      = link_to "Request Increase Pledge", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-default increase_request'
-    = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' do
+      = link_to "Request Pledge Increase", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-sm btn-primary increase_request'
+    = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
       span.glyphicon.glyphicon-trash
 
-    = link_to nil do
-      span.glyphicon.glyphicon-share
+    /= link_to nil do
+    /  span.glyphicon.glyphicon-share
 
 tr.empty-tr

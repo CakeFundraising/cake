@@ -13,7 +13,7 @@ tr.pledge
   td.truncate.min-width
     - if can? :destroy, pledge_request
       div 
-        = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+        = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
           span.glyphicon.glyphicon-trash
           
 tr.empty-tr

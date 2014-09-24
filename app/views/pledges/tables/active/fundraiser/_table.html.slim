@@ -10,6 +10,7 @@
           th = Pledge.human_attribute_name :end_date
           th = Pledge.model_name.human
           th = Pledge.human_attribute_name :donation_click
+          th
       tbody
         = render partial:'pledges/tables/active/fundraiser/row', collection: pledges, as: :pledge
 - else
