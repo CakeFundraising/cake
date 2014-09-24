@@ -217,8 +217,8 @@ class PledgesController < InheritedResources::Base
 
   def allow_only_sponsors
     unless current_sponsor.present?
-      cookies[:pledge_campaign] = params[:campaign]
-      cookies[:pledge_fundraiser] = params[:fundraiser]
+      cookies[:pledge_campaign] = {value: params[:campaign], expires: 1.hour.from_now }
+      cookies[:pledge_fundraiser] = {value: params[:fundraiser], expires: 1.hour.from_now }
       sign_out current_user if current_user.present?
       alert_message = params[:campaign].present? ? "To pledge this campaign first you have to register as a Sponsor." : "To pledge this fundraiser first you have to register as a Sponsor."
       redirect_to new_user_registration_path, alert: alert_message
