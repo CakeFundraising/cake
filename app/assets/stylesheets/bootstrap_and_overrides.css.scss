@@ -252,7 +252,7 @@ h3, h4 {
       }
     }
     .btn-success{
-      margin-bottom: 15px !important;
+      /*margin-bottom: 15px !important;*/
     }
     .navbar-text{
       display:none;
@@ -1179,7 +1179,7 @@ table.performance-summary {
 // Tables -----------------------------------------------------------------------------
 .data-table {
   /*margin: 15px 0;*/
-  font-size:13px;
+  font-size:12px;
   thead {
     background-color: $brand-primary;
     tr {
@@ -2665,6 +2665,12 @@ ul#share-block {
 .modal {
   white-space: normal;
 }
+.modal-body{
+  padding: 35px;
+}
+.modal-footer{
+  margin-top: 0px;
+}
 
 // Images Cropping -------------------------------------------------------
 
@@ -2699,6 +2705,10 @@ ul#share-block {
     font-size: 1.4em;
     font-weight: bolder;
   }
+}
+
+.uploader{
+  display: block;
 }
 
 @media only screen and (max-width: 800px) {
