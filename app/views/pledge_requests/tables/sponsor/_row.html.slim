@@ -1,13 +1,13 @@
 tr.pledge
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (PledgeRequest.human_attribute_name :fundraiser )
     = auto_link pledge_request.fundraiser
-  td.td-header(data-title='Campaign') 
+  td data-title = (PledgeRequest.human_attribute_name :campaign)
     = auto_link pledge_request.campaign 
-  td.td-header(data-title='Cause') 
+  td data-title = (PledgeRequest.human_attribute_name :causes)
     = pledge_request.cause
-  td.td-header(data-title='Type') 
+  td data-title = (PledgeRequest.human_attribute_name :type)
     = pledge_request.scopes.first
-  td.td-header(data-title='Timing') 
+  td data-title = (PledgeRequest.human_attribute_name :timing)
     .truncate = pledge_request.start_end_dates
   /td.td-header(data-title='Pledge') 
   /  = humanized_money_with_symbol pledge_request.total_amount

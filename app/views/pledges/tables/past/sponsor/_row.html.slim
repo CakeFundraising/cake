@@ -1,27 +1,27 @@
 tr.pledge
-  td.td-header(data-title='Pledge') 
+  td data-title = (Pledge.model_name.human)
     = auto_link pledge
-  td.td-header(data-title='Campaign') 
+  td data-title = (Campaign.model_name.human)
     = auto_link pledge.campaign
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (Fundraiser.model_name.human)
     = auto_link pledge.fundraiser
-  td.td-header(data-title='Cause') 
+  td data-title = (Pledge.human_attribute_name :main_cause)
     = pledge.main_cause
-  td.td-header(data-title='Type') 
+  td data-title = (Pledge.human_attribute_name :type)
     = pledge.campaign.object.scopes.first
-  td.td-header(data-title='End Date') 
+  td data-title = (Pledge.human_attribute_name :end_date)
     = pledge.end_date
-  td.td-header(data-title='Donation') 
+  td data-title = (Pledge.human_attribute_name :donation)
     = pledge.invoice.due if pledge.invoice.present?
-  td.td-header(data-title='Pledge') 
+  td data-title = (Pledge.human_attribute_name :pledge)
     = pledge.total_amount
-  td.td-header(data-title='Donation/Click') 
+  td data-title = (Pledge.human_attribute_name :donation_click)
     = pledge.amount_per_click
-  td.td-header(data-title='Clicks') 
+  td data-title = (Pledge.human_attribute_name :clicks)
     = pledge.clicks_count
-  td.td-header(data-title='Impressions') 
+  td data-title = (Pledge.human_attribute_name :impressions)
     '45467
-  td.td-header(data-title='Conv Rate') 
+  td data-title = (Pledge.human_attribute_name :conv_rate)
     '17%
   /td.truncate.min-width
   /  button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
@@ -31,3 +31,4 @@ tr.empty-tr
 
 /tr.modal 
 /  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
+

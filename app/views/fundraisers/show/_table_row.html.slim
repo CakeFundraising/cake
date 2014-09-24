@@ -1,18 +1,19 @@
 tr.fundraiser
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (Fundraiser.model_name.human)
     = auto_link fundraiser
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.number_of', model: 'Pledges'))
     = sponsor.pledges.past.fundraiser(fundraiser).count
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.average', model: 'Donation'))
     = fundraiser.average_donation_with(sponsor)
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.average', model: 'Pledge'))
     = fundraiser.average_pledge_with(sponsor)
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.average', model: 'Donation/Click'))
     = fundraiser.average_donation_per_click_with(sponsor)
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.average', model: 'Clicks/Pledge'))
     = fundraiser.average_clicks_per_pledge_with(sponsor)
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (t('semantic.average', model: 'Impressions/Pledge'))
     = '1989'
-  td.td-header(data-title='Fundraiser') 
+  td data-title = (Fundraiser.human_attribute_name :engagement)
     = '25%'
 tr.empty-tr
+

@@ -1,28 +1,28 @@
 tr.campaign 
-  td.td-header(data-title='Campaign') 
+  td data-title = (Campaign.model_name.human)
     = auto_link campaign
-  td.td-header(data-title='End Date') 
+  td data-title = (Campaign.human_attribute_name :end_date)
     = campaign.end_date
-  td.td-header(data-title='Total') 
+  td data-title = (Campaign.human_attribute_name :total)
     = campaign.total_donation
-  td.td-header(data-title='Total Pledges') 
+  td data-title = (t('semantic.number_of', model: 'Pledges'))
     = campaign.pledges.count
-  td.td-header(data-title='Avg. Pledge') 
+  td data-title = (t('semantic.average', model: 'Pledge'))
     = campaign.average_pledge
-  td.td-header(data-title='Avg. Donation') 
+  td data-title = (t('semantic.average', model: 'Donation'))
     = campaign.average_donation
-  td.td-header(data-title='Avg. Don/Click') 
+  td data-title = (t('semantic.average', model: 'Don/Click'))
     = campaign.average_donation_per_click
-  td.td-header(data-title='Clicks') 
+  td data-title = (Campaign.human_attribute_name :total_clicks)
     = campaign.total_clicks
-  td.td-header(data-title='Avg. Clicks') 
+  td data-title = (t('semantic.average', model: 'Clicks'))
     = campaign.average_clicks_per_pledge
-  td.td-header(data-title='Avg. Pledge') 
+  td data-title = (t('semantic.average', model: 'Pledge'))
     = "4567"
-  td.td-header(data-title='Engagement') 
+  td data-title = (Campaign.human_attribute_name :engagement)
     = "23%"  
   - unless campaign.past?
-    td.td-header(data-title='Status') 
+    td data-title = (Campaign.human_attribute_name :status)
       - if campaign.status == 'not_launched'
         .text-danger = t('semantic.Not_Launched')
       - else
@@ -36,9 +36,4 @@ tr.empty-tr
 /  tr.pledges_modal
 /    td
 /      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
-
-
-
-
-
 
