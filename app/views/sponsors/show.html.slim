@@ -4,39 +4,48 @@
   .container
     .content.row.pull-up
       .col-md-8
-        h1.name = @sponsor.name
-        - if can? :update, @sponsor
-          span.edit = link_to 'Edit Profile', public_profile_path
-        .sponsor
-          address
-            span = @sponsor.location
-            br
-          address
-            span.sponsorinfo 
-              span Phone: 
-              span = @sponsor.phone
-            span Website: 
-            span.sponsorinfo = auto_attr_link @sponsor.object.website, target: :_blank
-            span Email: 
-            = @sponsor.email
-            br
-        = render partial:'layouts/share_buttons'
-      .col-md-4
+        .campaign-intro
+          h1.name 
+            span = @sponsor.name
+            - if can? :update, @sponsor
+              span.edit = link_to 'Edit Profile', public_profile_path
+          .sponsor
+            address
+              strong = @sponsor.name
+              br
+              span = @sponsor.location
+            address
+              span.sponsorinfo 
+                span Phone: 
+                span = @sponsor.phone
+              span Website: 
+              span.sponsorinfo = auto_attr_link @sponsor.object.website, target: :_blank
+              span Email: 
+              = @sponsor.email
+              br
+          .social
+            = render partial:'layouts/share_buttons'
+            h4.share-info.pull-left Please share our Campaign!
+      .col-md-4.sidebar
         .sidebar-bkg 
           .row.text-center
-           .col-xs-6.border-right
+            .col-xs-6.border-right
               p.donation-stats = @sponsor.total_donation
               p = Sponsor.human_attribute_name :total_donation
-           .col-xs-6
+            .col-xs-6
               p.donation-stats = @sponsor.total_clicks
               p = Sponsor.human_attribute_name :total_clicks
           .row
-           .col-md-12.rank-rows
+            .col-md-12.rank-rows
               = basic_list_item(Sponsor.human_attribute_name(:rank), @sponsor.rank)
               = basic_list_item(Sponsor.human_attribute_name(:local_rank), @sponsor.local_rank)
           - if can? :create, PledgeRequest
-            .request-pledge
-              = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-block'
+            .row
+              .col-md-12.text-center
+                .request-pledge
+                  = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-block'
+
+
   .white
     .container
       .row.sponsor-profile
@@ -71,69 +80,89 @@
                 p = t('semantic.average', model: 'Conversion Rate')
         .col-md-4
           - if @sponsor.top_causes.keys.any?
-            h3 = Sponsor.human_attribute_name :top_causes
-            .causes 
-              span = @sponsor.top_cause_name(0)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
-                  span.sr-only 100% Complete (success)
-            .causes
-              span = @sponsor.top_cause_name(1)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@sponsor.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@sponsor.top_cause_amount_percentile(1)}%"
-                  span.sr-only #{@sponsor.top_cause_amount_percentile(1)}% Complete (success)
-            .causes
-              span = @sponsor.top_cause_name(2)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@sponsor.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@sponsor.top_cause_amount_percentile(2)}%"
-                  span.sr-only #{@sponsor.top_cause_amount_percentile(2)}% Complete (success)
+            div.top-causes
+              h3 = Sponsor.human_attribute_name :top_causes
+              .causes 
+                span = @sponsor.top_cause_name(0)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
+                    span.sr-only 100% Complete (success)
+              .causes
+                span = @sponsor.top_cause_name(1)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@sponsor.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@sponsor.top_cause_amount_percentile(1)}%"
+                    span.sr-only #{@sponsor.top_cause_amount_percentile(1)}% Complete (success)
+              .causes
+                span = @sponsor.top_cause_name(2)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@sponsor.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@sponsor.top_cause_amount_percentile(2)}%"
+                    span.sr-only #{@sponsor.top_cause_amount_percentile(2)}% Complete (success)
   .pointer
   .container
     .row.min-case
       .col-md-8
-        h3 Minimum Cause Requirements
-        = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.tax_exempt'), b(@sponsor.has_cause_requirement?(:tax_exempt)) )
-        = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
-        .wesupport
-          h3 = Sponsor.human_attribute_name :causes
-          div = @sponsor.causes
+        .left-content
+          .row
+            .col-md-12
+              h3 Minimum Cause Requirements
+              = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.tax_exempt'), b(@sponsor.has_cause_requirement?(:tax_exempt)) )
+              = basic_list_item(t('formtastic.labels.sponsor.cause_requirements.donations_in_kind'), b(@sponsor.has_cause_requirement?(:donations_in_kind)))
+          
+          hr
+          .row
+            .col-md-12
+              h3 = Sponsor.human_attribute_name :causes
+              div = @sponsor.causes
 
-        h3 = Sponsor.human_attribute_name :scopes
-        div = @sponsor.scopes
+          hr
+          .row
+            .col-md-12
+              h3 = Sponsor.human_attribute_name :scopes
+              div = @sponsor.scopes
 
-        .row
-          .col-md-12
-            h3 = Sponsor.human_attribute_name :our_community
-          .col-md-3
-            strong Email subscribers:
-            div = @sponsor.email_subscribers
-          .col-md-3
-            strong Facebook subscribers:
-            div = @sponsor.facebook_subscribers
-          .col-md-3
-            strong Twitter subscribers:
-            div = @sponsor.twitter_subscribers
-          .col-md-3
-            strong Pinterest subscribers:
-            div = @sponsor.pinterest_subscribers
+          hr
+          .row
+            .col-md-12
+              h3 = Sponsor.human_attribute_name :our_community
+            .col-md-3
+              strong Email subscribers:
+              div = @sponsor.email_subscribers
+            .col-md-3
+              strong Facebook subscribers:
+              div = @sponsor.facebook_subscribers
+            .col-md-3
+              strong Twitter subscribers:
+              div = @sponsor.twitter_subscribers
+            .col-md-3
+              strong Pinterest subscribers:
+              div = @sponsor.pinterest_subscribers
 
-        .profile-message 
-          h3 = Sponsor.human_attribute_name :mission
-          p = @sponsor.mission
-        .demographics
-          h3 = Sponsor.human_attribute_name :customer_demographics
-          p = @sponsor.customer_demographics
+          hr
+          .row
+            .col-md-12
+              .profile-message 
+                h3 = Sponsor.human_attribute_name :mission
+                p = @sponsor.mission
+          
+          hr
+          .row
+            .col-md-12
+              .demographics
+                h3 = Sponsor.human_attribute_name :customer_demographics
+                p = @sponsor.customer_demographics
       .col-md-4
         .avatar 
           = @sponsor.picture.avatar
           .caption = @sponsor.avatar_caption
 
           h4 Contact:
-          strong = Sponsor.human_attribute_name :manager_name
+          .boldest = Sponsor.human_attribute_name :manager_name
           div #{@sponsor.manager_name}, #{@sponsor.manager_title} 
-          strong = Sponsor.human_attribute_name :manager_email
+          hr
+          .boldest = Sponsor.human_attribute_name :manager_email
           div = mail_to @sponsor.manager_email, @sponsor.manager_email
-          strong = Sponsor.human_attribute_name :manager_phone
+          hr
+          .boldest = Sponsor.human_attribute_name :manager_phone
           div = @sponsor.manager_phone
     .row
       .col-md-12

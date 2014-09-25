@@ -57,6 +57,7 @@ h3, h4 {
 //Navbar --------------------------------------------------------------------------------
 .nav {
   margin-top: 15px;
+
   li {
     /*display:initial;*/
   }
@@ -75,7 +76,7 @@ h3, h4 {
   padding-left: 0px;
 }
 .navbar-brand {
-  padding-top: 8px;
+  padding-top: 17px;
 }
 .user-logged-in {
   span {
@@ -86,7 +87,7 @@ h3, h4 {
   }
 }
 .navbar-nav{
-  margin: 0px 0px 0px -1px !important;
+  margin: 10px 0px 10px -1px !important;
 }
 .navbar-collapse{
   max-height: 1000px;
@@ -348,11 +349,19 @@ h3, h4 {
     }
 }
 
+@media (max-width: 768px){
+  .navbar-brand {
+    padding-top: 8px;
+  }
+}
+
+
 @media (min-width: 768px){
   .container{
     padding-left:0px !important;
     padding-right:0px !important;
   }
+
   .nav-cta{
     float:left;
     li {
@@ -1013,11 +1022,11 @@ h2 {
 .hero-screen {
   background-image:image-url('hero-screen.png');
   background-repeat: repeat-x;
-  height:525px;
+  height:625px;
 }
 
 .pull-up {
-  margin-top: -240px;
+  margin-top: -300px;
 }
 
 // Titles
@@ -1032,7 +1041,7 @@ h1.name {
 
 .campaign-intro {
   position: absolute;
-  bottom: -200px;
+  bottom: -235px;
   .name {
     color: #fff;
     display: inline-table;
@@ -1078,9 +1087,6 @@ h1.name {
   }
 }
 
-.pull-up {
-  margin-top: -225px;
-}
 .sidebar{
   p {
     margin:0px;
@@ -1093,8 +1099,8 @@ h1.name {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
-  margin-bottom: 20px;
-
+  margin-bottom: 10px;
+  height: 300px;
   hr {
     margin-top:5px;  
     margin-bottom:10px;  
@@ -1122,6 +1128,18 @@ address {
   margin-top: 0px;
   margin-bottom: 30px;
   background-color:#fff;
+  @media (max-width: $screen-md-min) {
+    td {
+      display:block;
+    }
+    .table-bordered {
+      border:0px;
+      border-bottom: 1px solid #dddddd;
+      tbody > tr > td{
+        border-bottom: 0px;
+      }
+    }
+  }
 }
 table.performance-summary {
   text-align: center;
@@ -1131,8 +1149,16 @@ table.performance-summary {
   color: $brand-primary;
   margin-bottom: 0;
 }
+.top-causes {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.left-content{
+  h3{
+    margin-top: 10px;
+  }
 
-
+}
 
 
 .bolder{
@@ -1506,6 +1532,7 @@ table.performance-summary {
 .pledges_total {
   font-size: 18px;
   padding-top: 5px;
+  padding-bottom: 7px;
 }
 
 .levels {
@@ -1768,6 +1795,21 @@ header {
 
   .thumbnail {
     background-color: #fff;
+    padding:0px;
+    border:0px;
+
+    img {
+      max-height: 215px;
+    }
+  }
+
+  .img-thumbnail{
+    padding: 0px;
+    margin: 0px;
+    border:0px;
+    border-radius: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
   }
 }
 
