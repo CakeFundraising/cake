@@ -71,6 +71,12 @@ h3, h4 {
   }
 }
 
+.navbar-form{
+  margin-left: 35px;
+  border-left: 1px solid #000000;
+  padding-left: 45px;
+}
+
 .navbar-collapse{
   padding-right: 0px;
   padding-left: 0px;
@@ -1044,7 +1050,7 @@ h1.name {
 
 .campaign-intro {
   position: absolute;
-  bottom: -235px;
+  bottom: -265px;
   .name {
     color: #fff;
     display: inline-table;
@@ -2523,6 +2529,7 @@ ul#share-block {
 
 .media-body {
   position: relative;
+  padding-left: 15px;
   /*min-height: 180px;*/
   .dates {
     //position: absolute;
