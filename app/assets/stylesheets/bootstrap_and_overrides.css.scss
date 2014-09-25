@@ -841,6 +841,9 @@ p.signup-social {
 .fr-dash-avatar {
   max-width: 160px;
   height: 100%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 .media-heading {
   color: $gray-dark;
@@ -1004,7 +1007,7 @@ h2 {
 .hero-screen {
   background-image:image-url('hero-screen.png');
   background-repeat: repeat-x;
-  height:614px;
+  height:520px;
 }
 
 .pull-up {
@@ -2721,6 +2724,10 @@ ul#share-block {
     font-size: 1.4em;
     font-weight: bolder;
   }
+}
+
+.img-thumbnail{
+  padding: 10px;
 }
 
 .uploader {
