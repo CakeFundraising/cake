@@ -14,8 +14,9 @@ Cake.campaigns.countdown = (end_date) ->
 
   return
 
-Cake.campaigns.show = (end_date)->
+Cake.campaigns.show = (end_date, impression_id)->
   Cake.campaigns.countdown(end_date)
+  Cake.impressions.rendered(impression_id)
   return
 
 Cake.campaigns.validation = ->

@@ -37,6 +37,7 @@
 //= require cake
 
 //= require ./about
+// require ./addthis
 //= require ./clicks
 //= require ./extra_donation_pledges  
 //= require ./locations     
@@ -56,6 +57,7 @@
 //= require ./bank_accounts     
 //= require ./credit_cards      
 //= require ./imgLiquid.min
+//= require ./impressions
 //= require ./pledges     
 //= require ./videos
 //= require ./crop

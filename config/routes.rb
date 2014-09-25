@@ -146,6 +146,10 @@ Cake::Application.routes.draw do
     get :subregion_options
   end
 
+  resources :impressions do
+    patch :rendered
+  end
+
   #Settings
   scope :settings do
     get :public_profile, controller: :settings

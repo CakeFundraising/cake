@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924194306) do
+ActiveRecord::Schema.define(version: 20140925161125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,20 @@ ActiveRecord::Schema.define(version: 20140924194306) do
     t.string   "facebook_subscribers"
     t.string   "twitter_subscribers"
     t.string   "pinterest_subscribers"
+  end
+
+  create_table "impressions", force: true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.string   "view"
+    t.string   "ip"
+    t.string   "user_agent"
+    t.string   "http_encoding"
+    t.string   "http_language"
+    t.text     "browser_plugins"
+    t.boolean  "fully_rendered",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invoices", force: true do |t|

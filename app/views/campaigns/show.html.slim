@@ -103,9 +103,8 @@
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
     .text-center = render partial:'layouts/share_buttons'
     br
-  - if current_user.present?
-  - else
-    = render partial: 'layouts/choose_path'
+    
+  = render partial: 'layouts/choose_path' unless current_user.present?
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
@@ -113,6 +112,6 @@ css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}') );
-  $(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}') );
+  $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present? }") );
+  //$(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
     

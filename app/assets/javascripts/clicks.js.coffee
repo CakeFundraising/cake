@@ -1,14 +1,20 @@
 Cake.clicks ?= {}
+Cake.browser ?= {}
+
+Cake.browser.plugins = ->
+  plugins = []
+  x = navigator.plugins.length
+  i = 0
+
+  while i < x
+    plugins.push navigator.plugins[i].name
+    i++
+  return plugins
 
 Cake.clicks.get_plugins = ->
   if $(".click_link").length > 0
-    plugins = []
-    x = navigator.plugins.length
-    i = 0
-
-    while i < x
-      plugins.push navigator.plugins[i].name
-      i++
+    plugins = Cake.browser.plugins()
+    
     $(".click_link").attr "href", (index, value) ->
       href = value + "?click%5Bbrowser_plugins%5D=" + encodeURIComponent(plugins)
       href

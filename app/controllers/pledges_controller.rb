@@ -1,4 +1,5 @@
 class PledgesController < InheritedResources::Base
+  include ImpressionablesController
   authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
 
@@ -10,6 +11,7 @@ class PledgesController < InheritedResources::Base
     :share
   ]
 
+  include ImpressionablesController
   include PastResource
 
   #CRUD
@@ -31,7 +33,6 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
-    redirect_if_turbolinks_to(@pledge)
   end
 
   def create
