@@ -405,7 +405,8 @@ p.signup-social span:before, p.signup-social span:after {
 }
 
 .pagination{
-margin: 20px 325px;
+  float: right;
+  padding-right: 20px;
 }
 
 .btn-search{
@@ -848,10 +849,8 @@ p.signup-social {
   margin:20px 0;
 }
 .fr-dash-avatar {
-  max-width: 160px;
-  height: 100%;
-  min-width:200px;
-  min-height:200px;
+  width: 200px;
+  height: auto;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -1027,6 +1026,10 @@ h2 {
 
 .pull-up {
   margin-top: -300px;
+}
+
+input[type="checkbox"]{
+  float:none !important;
 }
 
 // Titles
@@ -1479,13 +1482,18 @@ table.performance-summary {
 
 // Campaign Page Styles -----------------------------------------------------------------
 
+.img-default-avatar{
+  height:211px !important;
+}
+
 .avatar {
   img {
     display: block;
     width: 100%;
+    height:auto;
     margin-right: 0;
-    max-width: 375px;
-    max-height: 33%;
+    /*max-width: 375px;
+    max-height: 33%;*/
     margin: auto;
   }
   .caption{
@@ -1799,7 +1807,7 @@ header {
     border:0px;
 
     img {
-      max-height: 215px;
+      /*max-height: 200px;*/
     }
   }
 
