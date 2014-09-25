@@ -3,12 +3,7 @@
   	= menu_item "About Cake", about_page_path('cake')
   	= menu_item "Start a Campaign", new_user_registration_path
   	= menu_item "Search Campaigns", search_campaigns_path
-  ul.nav.navbar-nav.navbar-right
-    li.dropdown
-      ul.dropdown-menu
-        = menu_item "test", '#'
-        = menu_item "test", '#'
-        = menu_item "test", '#'
   ul.nav-cta.navbar-right
-    = menu_item t("links.user.sign_in"), new_user_session_path
+    = menu_item t("links.user.sign_in"), new_user_session_path, { :class=>"btn-signup btn btn-primary" }
     = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn-signup btn btn-success" }
+    br

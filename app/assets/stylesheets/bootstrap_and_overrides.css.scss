@@ -161,8 +161,8 @@ h3, h4 {
 }*/
 
 .btn-signup {
-  margin: 4px 10px 0px 10px !important;
-  padding: 10px 10px 10px 10px !important;
+  margin: 4px 0px 0px 10px !important;
+  padding: 10px 20px !important;
   color: #fff !important;
 }
 
@@ -841,9 +841,15 @@ p.signup-social {
 .fr-dash-avatar {
   max-width: 160px;
   height: 100%;
+  min-width:200px;
+  min-height:200px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+
+  .img-thumbnail{
+    width:100%;
+  }
 }
 .media-heading {
   color: $gray-dark;
@@ -1007,7 +1013,7 @@ h2 {
 .hero-screen {
   background-image:image-url('hero-screen.png');
   background-repeat: repeat-x;
-  height:520px;
+  height:525px;
 }
 
 .pull-up {
@@ -1486,11 +1492,31 @@ table.performance-summary {
     width: 100%;
     height: auto;
   } 
+  .img-thumbnail{
+    padding: 0px;
+    background-color: #ffffff;
+    border: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
 }
+
+.pledges_total {
+  font-size: 18px;
+  padding-top: 5px;
+}
+
 .levels {
   border-top: 1px solid $gray-lighter;
-  padding: 15px;
+  padding: 10px;
+
+  span.text-muted {
+    padding-left: 5px;
+  }
 }
+
 
 .level-divide {
   border-top: 1px dotted $gray-light;
