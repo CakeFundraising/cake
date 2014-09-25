@@ -57,6 +57,7 @@ h3, h4 {
 //Navbar --------------------------------------------------------------------------------
 .nav {
   margin-top: 15px;
+
   li {
     /*display:initial;*/
   }
@@ -70,12 +71,18 @@ h3, h4 {
   }
 }
 
+.navbar-form{
+  margin-left: 35px;
+  border-left: 1px solid #000000;
+  padding-left: 45px;
+}
+
 .navbar-collapse{
   padding-right: 0px;
   padding-left: 0px;
 }
 .navbar-brand {
-  padding-top: 8px;
+  padding-top: 17px;
 }
 .user-logged-in {
   span {
@@ -86,7 +93,7 @@ h3, h4 {
   }
 }
 .navbar-nav{
-  margin: 0px 0px 0px -1px !important;
+  margin: 10px 0px 10px -1px !important;
 }
 .navbar-collapse{
   max-height: 1000px;
@@ -161,8 +168,8 @@ h3, h4 {
 }*/
 
 .btn-signup {
-  margin: 4px 10px 0px 10px !important;
-  padding: 10px 10px 10px 10px !important;
+  margin: 4px 0px 0px 10px !important;
+  padding: 10px 20px !important;
   color: #fff !important;
 }
 
@@ -252,7 +259,7 @@ h3, h4 {
       }
     }
     .btn-success{
-      margin-bottom: 15px !important;
+      /*margin-bottom: 15px !important;*/
     }
     .navbar-text{
       display:none;
@@ -348,11 +355,19 @@ h3, h4 {
     }
 }
 
+@media (max-width: 768px){
+  .navbar-brand {
+    padding-top: 8px;
+  }
+}
+
+
 @media (min-width: 768px){
   .container{
     padding-left:0px !important;
     padding-right:0px !important;
   }
+
   .nav-cta{
     float:left;
     li {
@@ -396,7 +411,8 @@ p.signup-social span:before, p.signup-social span:after {
 }
 
 .pagination{
-margin: 20px 325px;
+  float: right;
+  padding-right: 20px;
 }
 
 .btn-search{
@@ -581,11 +597,13 @@ form{
     height: 150px;
   }
 
-  .avatar{
+  /*.avatar{
     overflow: hidden;
-    width: 305px;
-    height: 230px;
-  }
+    max-width: 305px;
+    max-height: 230px;
+    width: 100%;
+    height: 100%;
+  }*/
 }
 
 .form-control{
@@ -837,8 +855,15 @@ p.signup-social {
   margin:20px 0;
 }
 .fr-dash-avatar {
-  max-width: 160px;
-  height: 100%;
+  width: 200px;
+  height: auto;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+  .img-thumbnail{
+    width:100%;
+  }
 }
 .media-heading {
   color: $gray-dark;
@@ -979,7 +1004,7 @@ h2 {
   .avatar {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
   }
 }
 .save-btn {
@@ -1002,11 +1027,15 @@ h2 {
 .hero-screen {
   background-image:image-url('hero-screen.png');
   background-repeat: repeat-x;
-  height:614px;
+  height:625px;
 }
 
 .pull-up {
-  margin-top: -240px;
+  margin-top: -300px;
+}
+
+input[type="checkbox"]{
+  float:none !important;
 }
 
 // Titles
@@ -1021,7 +1050,7 @@ h1.name {
 
 .campaign-intro {
   position: absolute;
-  bottom: -200px;
+  bottom: -265px;
   .name {
     color: #fff;
     display: inline-table;
@@ -1067,9 +1096,6 @@ h1.name {
   }
 }
 
-.pull-up {
-  margin-top: -225px;
-}
 .sidebar{
   p {
     margin:0px;
@@ -1082,8 +1108,8 @@ h1.name {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
-  margin-bottom: 20px;
-
+  margin-bottom: 10px;
+  height: 300px;
   hr {
     margin-top:5px;  
     margin-bottom:10px;  
@@ -1111,6 +1137,18 @@ address {
   margin-top: 0px;
   margin-bottom: 30px;
   background-color:#fff;
+  @media (max-width: $screen-md-min) {
+    td {
+      display:block;
+    }
+    .table-bordered {
+      border:0px;
+      border-bottom: 1px solid #dddddd;
+      tbody > tr > td{
+        border-bottom: 0px;
+      }
+    }
+  }
 }
 table.performance-summary {
   text-align: center;
@@ -1120,8 +1158,16 @@ table.performance-summary {
   color: $brand-primary;
   margin-bottom: 0;
 }
+.top-causes {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.left-content{
+  h3{
+    margin-top: 10px;
+  }
 
-
+}
 
 
 .bolder{
@@ -1179,7 +1225,7 @@ table.performance-summary {
 // Tables -----------------------------------------------------------------------------
 .data-table {
   /*margin: 15px 0;*/
-  font-size:13px;
+  font-size:12px;
   thead {
     background-color: $brand-primary;
     tr {
@@ -1442,12 +1488,19 @@ table.performance-summary {
 
 // Campaign Page Styles -----------------------------------------------------------------
 
+.img-default-avatar{
+  height:211px !important;
+}
+
 .avatar {
   img {
     display: block;
     width: 100%;
-    height: auto;
+    height:auto;
     margin-right: 0;
+    /*max-width: 375px;
+    max-height: 33%;*/
+    margin: auto;
   }
   .caption{
     font-size: 1.1em;
@@ -1455,6 +1508,18 @@ table.performance-summary {
     margin-top: 10px;
   }
 }
+
+.banner {
+  img {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    max-width: 1400px;
+    max-height: 45%;
+    margin: auto;
+  }
+}
+
 .fundraiser-info{
   margin: 15px 0;
 }
@@ -1467,11 +1532,32 @@ table.performance-summary {
     width: 100%;
     height: auto;
   } 
+  .img-thumbnail{
+    padding: 0px;
+    background-color: #ffffff;
+    border: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
 }
+
+.pledges_total {
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 7px;
+}
+
 .levels {
   border-top: 1px solid $gray-lighter;
-  padding: 15px;
+  padding: 10px;
+
+  span.text-muted {
+    padding-left: 5px;
+  }
 }
+
 
 .level-divide {
   border-top: 1px dotted $gray-light;
@@ -1723,6 +1809,21 @@ header {
 
   .thumbnail {
     background-color: #fff;
+    padding:0px;
+    border:0px;
+
+    img {
+      /*max-height: 200px;*/
+    }
+  }
+
+  .img-thumbnail{
+    padding: 0px;
+    margin: 0px;
+    border:0px;
+    border-radius: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
   }
 }
 
@@ -2428,6 +2529,7 @@ ul#share-block {
 
 .media-body {
   position: relative;
+  padding-left: 15px;
   /*min-height: 180px;*/
   .dates {
     //position: absolute;
@@ -2665,6 +2767,12 @@ ul#share-block {
 .modal {
   white-space: normal;
 }
+.modal-body{
+  padding: 35px;
+}
+.modal-footer{
+  margin-top: 0px;
+}
 
 // Images Cropping -------------------------------------------------------
 
@@ -2700,6 +2808,79 @@ ul#share-block {
     font-weight: bolder;
   }
 }
+
+.img-thumbnail{
+  padding: 10px;
+}
+
+.uploader {
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+  .img-thumbnail{
+    padding: 12px;
+    background-color: #ffffff;
+  }
+
+  .img-loaded {
+    z-index: 2;
+    position: relative;
+  }
+
+  div.camera {
+    content: url("camera-icon.png");
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 65px);
+  }​
+
+  .img-loaded{
+
+  }
+
+  span {
+    background: #08c1dc;
+    border: 1px solid #07abc3;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    position: absolute;
+    top: calc(50% - -25px);
+    color: #ffffff;
+    left: calc(50% - 90px);
+    width: 180px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  input.cloudinary-fileupload {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  input {
+    filter: alpha(opacity=1);
+    -moz-opacity: 0.01;
+    opacity: 0.01;
+  }
+}
+
+
+
+
 
 @media only screen and (max-width: 800px) {
     /* Force table to not be like tables anymore */

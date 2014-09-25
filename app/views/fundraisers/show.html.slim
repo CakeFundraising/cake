@@ -4,26 +4,29 @@
   .container
     .content.row.pull-up
       .col-md-8
-        h1.name
-          span = @fundraiser.name
-          - if can? :edit, @fundraiser
-            span.edit = link_to 'Edit Profile', public_profile_path
-        .sponsor
-          address
-            strong = @fundraiser.name
-            br
-            span = @fundraiser.location
-          address
-            span.sponsorinfo 
-              span Phone: 
-              span = @fundraiser.phone
-            span Website: 
-            span.sponsorinfo = auto_attr_link @fundraiser.object.website, target: :_blank
-            span Email: 
-            = @fundraiser.email
-            br
-        = render partial:'layouts/share_buttons'
-      .col-md-4
+        .campaign-intro
+          h1.name
+            span = @fundraiser.name
+            - if can? :edit, @fundraiser
+              span.edit = link_to 'Edit Profile', public_profile_path
+          .sponsor
+            address
+              strong = @fundraiser.name
+              br
+              span = @fundraiser.location
+            address
+              span.sponsorinfo 
+                span Phone: 
+                span = @fundraiser.phone
+              span Website: 
+              span.sponsorinfo = auto_attr_link @fundraiser.object.website, target: :_blank
+              span Email: 
+              = @fundraiser.email
+              br
+          .social
+            = render partial:'layouts/share_buttons'
+            h4.share-info.pull-left Please share our Campaign!
+      .col-md-4.sidebar
         .sidebar-bkg 
           .row.text-center
             .col-xs-6.border-right
@@ -36,7 +39,11 @@
             .col-md-12.rank-rows
               = basic_list_item("Top Cause Rank", @fundraiser.top_cause_name(0))
               = basic_list_item(Fundraiser.human_attribute_name(:local_rank), @fundraiser.local_rank)
-              = link_to t('actions.make_pledge'), new_pledge_path(fundraiser: @fundraiser), class:'btn btn-success btn-block'
+          .row
+            .col-md-12.text-center
+              = link_to t('actions.make_pledge'), new_pledge_path(fundraiser: @fundraiser), class:'btn btn-primary btn-lg'
+
+
   .white
     .container
       .row.sponsor-profile
@@ -71,54 +78,64 @@
                 p = t('semantic.average', model: 'Conversion Rate')
         .col-md-4
           - if @fundraiser.top_causes.keys.any?
-            h3 = Fundraiser.human_attribute_name :top_causes
-            .causes 
-              span = @fundraiser.top_cause_name(0)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
-                  span.sr-only 100% Complete (success)
-            .causes
-              span = @fundraiser.top_cause_name(1)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@fundraiser.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@fundraiser.top_cause_amount_percentile(1)}%"
-                  span.sr-only #{@fundraiser.top_cause_amount_percentile(1)}% Complete (success)
-            .causes
-              span = @fundraiser.top_cause_name(2)
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@fundraiser.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@fundraiser.top_cause_amount_percentile(2)}%"
-                  span.sr-only #{@fundraiser.top_cause_amount_percentile(2)}% Complete (success)
+            div.top-causes
+              h3 = Fundraiser.human_attribute_name :top_causes
+              .causes 
+                span = @fundraiser.top_cause_name(0)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
+                    span.sr-only 100% Complete (success)
+              .causes
+                span = @fundraiser.top_cause_name(1)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@fundraiser.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@fundraiser.top_cause_amount_percentile(1)}%"
+                    span.sr-only #{@fundraiser.top_cause_amount_percentile(1)}% Complete (success)
+              .causes
+                span = @fundraiser.top_cause_name(2)
+                .progress
+                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@fundraiser.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@fundraiser.top_cause_amount_percentile(2)}%"
+                    span.sr-only #{@fundraiser.top_cause_amount_percentile(2)}% Complete (success)
   .pointer
   .container
     .row.min-case
       .col-md-8
-        .wesupport
-          h4 = Fundraiser.human_attribute_name :causes
-          div = @fundraiser.causes
-          div 
-            h4 = Fundraiser.human_attribute_name :donations_kind
-            div = b @fundraiser.donations_kind
-          div
-            h4 = Fundraiser.human_attribute_name :tax_exempt
-            div = b @fundraiser.tax_exempt, true: 'Exempt', false: 'Not Exempt'
-          
-          h4 Min Pledge Requirements
-          div
-            span = Fundraiser.human_attribute_name :min_pledge
-            strong.pull-right = humanized_money_with_symbol @fundraiser.min_pledge
-          div
-            span = Fundraiser.human_attribute_name :min_click_donation
-            strong.pull-right = humanized_money_with_symbol @fundraiser.min_click_donation        
-          div
-            span = Fundraiser.human_attribute_name :unsolicited_pledges
-            strong.pull-right = b @fundraiser.unsolicited_pledges
-            .profile-message 
+        .left-content
+          .row
+            .col-md-12
+              h3 Minimum Pledge Requirements
+              div
+                span.boldest = Fundraiser.human_attribute_name :min_pledge
+                strong.pull-right = humanized_money_with_symbol @fundraiser.min_pledge
+              div
+                span.boldest = Fundraiser.human_attribute_name :min_click_donation
+                strong.pull-right = humanized_money_with_symbol @fundraiser.min_click_donation        
+              div
+                span.boldest = Fundraiser.human_attribute_name :unsolicited_pledges
+                strong.pull-right = b @fundraiser.unsolicited_pledges
+              div
+                span.boldest = Fundraiser.human_attribute_name :donations_kind
+                strong.pull-right = b @fundraiser.donations_kind
+              div
+                span.boldest = Fundraiser.human_attribute_name :tax_exempt
+                strong.pull-right = b @fundraiser.tax_exempt, true: 'Exempt', false: 'Not Exempt'
+          hr
+          .row
+            .col-md-12
+              h3 = Fundraiser.human_attribute_name :causes
+              div = @fundraiser.causes
+          hr
+          .row
+            .col-md-12 
               h3 = Fundraiser.human_attribute_name :mission
               p = @fundraiser.mission
-            .demographics
+          hr
+          .row
+            .col-md-12 
               h3 = Fundraiser.human_attribute_name :supporter_demographics
               p = @fundraiser.supporter_demographics
-          .community.row
-            .col-md-12
+          hr
+          .row
+            .col-md-12 
               h3 = Fundraiser.human_attribute_name :our_community
             .col-md-3
               strong Email subscribers:
@@ -138,11 +155,13 @@
           = @fundraiser.picture.avatar
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
-          strong = Fundraiser.human_attribute_name :manager_name
+          .boldest = Fundraiser.human_attribute_name :manager_name
           div #{@fundraiser.manager_name}, #{@fundraiser.manager_title}
-          strong = Fundraiser.human_attribute_name :manager_email
+          hr
+          .boldest = Fundraiser.human_attribute_name :manager_email
           div = mail_to @fundraiser.manager_email, @fundraiser.manager_email
-          strong = Fundraiser.human_attribute_name :manager_phone
+          hr
+          .boldest = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
     .row
       .col-md-12
