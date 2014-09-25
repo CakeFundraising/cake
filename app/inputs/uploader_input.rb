@@ -53,6 +53,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def wrapper_html_options
     super.tap do |options|
+      options[:class] << " btn-upload"
       options[:class] << " replaceable" if replaceable?
       options[:class] << " removable" if removable?
       options[:class] << " present" if method_present?
@@ -70,7 +71,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def file_html
     #builder.file_field(method, input_html_options)
-    builder.cl_image_upload(method, return_delete_token: true)
+    builder.cl_image_upload(method, return_delete_token: true) 
   end
 
   def input_html_options
@@ -100,9 +101,10 @@ class UploaderInput < Formtastic::Inputs::FileInput
 
   def existing_html
     medium_size = "Picture::#{method.upcase}_SIZES".constantize[:medium]
-
     template.content_tag(:div, class: method.to_s) do
-      object.decorate.send(method)
+      object.decorate.send(method) <<
+      template.content_tag(:div, nil, class: "camera") <<
+      template.content_tag(:span, localized_string(method, "Upload Picture", :replace_label)) 
       #template.cl_image_tag(object.send(method), crop: :fill, width: medium_size.first, height: medium_size.last, class:'img-responsive img-thumbnail')
     end
   end

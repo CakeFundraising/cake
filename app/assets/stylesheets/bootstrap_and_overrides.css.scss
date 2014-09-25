@@ -581,11 +581,13 @@ form{
     height: 150px;
   }
 
-  .avatar{
+  /*.avatar{
     overflow: hidden;
-    width: 305px;
-    height: 230px;
-  }
+    max-width: 305px;
+    max-height: 230px;
+    width: 100%;
+    height: 100%;
+  }*/
 }
 
 .form-control{
@@ -979,7 +981,7 @@ h2 {
   .avatar {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
   }
 }
 .save-btn {
@@ -1446,8 +1448,10 @@ table.performance-summary {
   img {
     display: block;
     width: 100%;
-    height: auto;
     margin-right: 0;
+    max-width: 375px;
+    max-height: 33%;
+    margin: auto;
   }
   .caption{
     font-size: 1.1em;
@@ -1455,6 +1459,18 @@ table.performance-summary {
     margin-top: 10px;
   }
 }
+
+.banner {
+  img {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    max-width: 1400px;
+    max-height: 45%;
+    margin: auto;
+  }
+}
+
 .fundraiser-info{
   margin: 15px 0;
 }
@@ -2707,9 +2723,74 @@ ul#share-block {
   }
 }
 
-.uploader{
+.uploader {
+  cursor: pointer;
   display: block;
+  overflow: hidden;
+  position: relative;
+
+  .img-thumbnail{
+    padding: 12px;
+    background-color: #ffffff;
+  }
+
+  .img-loaded {
+    z-index: 2;
+    position: relative;
+  }
+
+  div.camera {
+    content: url("camera-icon.png");
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 65px);
+  }​
+
+  .img-loaded{
+
+  }
+
+  span {
+    background: #08c1dc;
+    border: 1px solid #07abc3;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    position: absolute;
+    top: calc(50% - -25px);
+    color: #ffffff;
+    left: calc(50% - 90px);
+    width: 180px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  input.cloudinary-fileupload {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  input {
+    filter: alpha(opacity=1);
+    -moz-opacity: 0.01;
+    opacity: 0.01;
+  }
 }
+
+
+
+
 
 @media only screen and (max-width: 800px) {
     /* Force table to not be like tables anymore */
