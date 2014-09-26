@@ -2,7 +2,7 @@ module ImpressionablesController
   extend ActiveSupport::Concern
 
   included do
-    before_action :create_impression
+    before_action :create_impression, only: :show
   end
 
   protected
