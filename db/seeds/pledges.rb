@@ -16,18 +16,7 @@
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.remote_qrcode_url = "http://www.qrstuff.com/images/default_qrcode.png"
       c.merchandise_categories = Coupon::CATEGORIES.sample(2)
-
-      build(1, c.picture, {prebuild: true}) do |pic|
-        pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
-        pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
-      end
-    end
-
-    build(1, p.picture, {prebuild: true}) do |pic|
-      pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
-      pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
     end
   end
 end
@@ -52,18 +41,7 @@ end
       c.expires_at = Time.now + 3.months
       c.promo_code = rand(9999)
       c.description = Faker::Lorem.paragraph
-      c.remote_qrcode_url = "http://www.qrstuff.com/images/default_qrcode.png"
       c.merchandise_categories = Coupon::CATEGORIES.sample(2)
-
-      build(1, c.picture, {prebuild: true}) do |pic|
-        pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
-        pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
-      end
-    end
-
-    build(1, p.picture, {prebuild: true}) do |pic|
-      pic.remote_avatar_url = "http://ofertas.rogersoto.com/images/avatar.png"
-      pic.remote_banner_url = "http://blogs.mydevstaging.com/blogs/cooking/files/2012/05/Coke.jpg"
     end
 
     build(1, p.build_invoice, {prebuild: true}) do |inv|
