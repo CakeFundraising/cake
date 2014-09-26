@@ -9,8 +9,8 @@
           th = t('semantic.average', model: 'Pledge')
           th = t('semantic.average', model: 'Donation/Click')
           th = t('semantic.average', model: 'Clicks/Pledge')
-          th = t('semantic.average', model: 'Impressions/Pledge')
-          th = Fundraiser.human_attribute_name :engagement
+          th = t('semantic.average', model: 'Pledge Views')
+          th = t('semantic.average', model: 'Engagement')
       tbody
         = render partial:'fundraisers/show/table_row', collection: FundraiserDecorator.decorate_collection(fundraisers), as: :fundraiser, locals:{sponsor: sponsor}
 - else

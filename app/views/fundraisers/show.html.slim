@@ -53,29 +53,29 @@
             tr
               td 
                 p.summery-stats = @fundraiser.campaigns_count
-                p = t('semantic.number_of', model:'Campaign')
+                p = t('semantic.number_of', model:'Campaigns')
               td 
                 p.summery-stats = @fundraiser.average_pledge
-                p = t('semantic.average', model: 'Pledge')
+                p = t('semantic.average', model: 'Total Pledges/Campaigns')
               td 
                 p.summery-stats = @fundraiser.average_donation
-                p = t('semantic.average', model: 'Donation')
+                p = t('semantic.average', model: 'Total Donation/Campaigns')
               td 
                 p.summery-stats = @fundraiser.average_donation_per_click
                 p = t('semantic.average', model: 'Donation/Click')
             tr
               td
-                p.summery-stats = @fundraiser.average_sponsors_per_campaign
-                p = t('semantic.average', model: 'Sponsors/Campaign')
+                p.summery-stats = @fundraiser.average_pledges_per_campaign
+                p = t('semantic.average', model: 'Pledges/Campaign')
               td
                 p.summery-stats = @fundraiser.average_clicks_per_pledge
                 p = t('semantic.average', model: 'Clicks/Pledge')
               td
-                p.summery-stats 2M
-                p = t('semantic.average', model: 'Campaign Reach')
+                p.summery-stats = @fundraiser.average_campaign_views
+                p = t('semantic.average', model: 'Campaign Views')
               td
-                p.summery-stats 16%
-                p = t('semantic.average', model: 'Conversion Rate')
+                p.summery-stats = @fundraiser.average_engagement
+                p = t('semantic.average', model: 'Engagement')
         .col-md-4
           - if @fundraiser.top_causes.keys.any?
             div.top-causes

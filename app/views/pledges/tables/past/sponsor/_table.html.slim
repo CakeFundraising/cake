@@ -13,8 +13,8 @@
           th = Pledge.human_attribute_name :pledge
           th = Pledge.human_attribute_name :donation_click
           th = Pledge.human_attribute_name :clicks
-          th = Pledge.human_attribute_name :impressions
-          th = Pledge.human_attribute_name :conv_rate
+          th = Pledge.human_attribute_name :views
+          th = Pledge.human_attribute_name :engagement
       tbody
         = render partial:'pledges/tables/past/sponsor/row', collection: PledgeDecorator.decorate_collection(pledges), as: :pledge
 - else

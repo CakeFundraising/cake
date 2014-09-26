@@ -4,9 +4,7 @@ h1.dash-head
 		= link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
 .row
   .col-md-12
-    = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
-
-
+    = render partial:'campaigns/show/tables/active_table', locals:{campaigns: @campaigns}
 
 /.row
 /  .col-md-4.col-md-push-8.dash-head.active-campaigns
@@ -16,4 +14,3 @@ h1.dash-head
 /  .row
 /    .col-md-12
 /      = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
-

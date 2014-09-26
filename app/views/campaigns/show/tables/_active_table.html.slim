@@ -5,18 +5,16 @@
         tr
           th = Campaign.model_name.human
           th = Campaign.human_attribute_name :end_date
-          th = Campaign.human_attribute_name :total_donation
+          th = Campaign.human_attribute_name :donations_earned
           th = t('semantic.number_of', model: 'Pledges')
           th = t('semantic.average', model: 'Pledge')
-          th = t('semantic.average', model: 'Donation')
           th = t('semantic.average', model: 'Don/Click')
           th = Campaign.human_attribute_name :total_clicks
           th = t('semantic.average', model: 'Clicks/Pledge')
-          th = t('semantic.average', model: 'Engagement')
-          - unless defined? hide_status and hide_status
-            th = Campaign.human_attribute_name :status
+          /- unless defined? hide_status and hide_status
+          th = Campaign.human_attribute_name :status
           th
       tbody
-        = render partial:'campaigns/show/table_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
+        = render partial:'campaigns/show/tables/active_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.campaigns')}

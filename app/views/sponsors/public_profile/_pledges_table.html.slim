@@ -14,7 +14,7 @@
           th = Pledge.human_attribute_name :donation_click
           th = Pledge.human_attribute_name :coupon
           th = t('semantic.number_of', model: 'Clicks')
-          th = Pledge.human_attribute_name :impressions
+          th = Pledge.human_attribute_name :views
       tbody 
         = render partial:'sponsors/public_profile/pledge_row', collection: PledgeDecorator.decorate_collection(pledges), as: :pledge
 - else

@@ -61,4 +61,13 @@ module AnalyticsDecorator
   def average_donation_per_click_with(user_role)
     h.humanized_money_with_symbol object.average_donation_per_click_with(user_role)/100
   end
+
+  ### Impressions 
+  def average_engagement
+    "#{object.average_engagement*100}%"
+  end
+
+  def average_engagement_with(user_role)
+    "#{object.average_engagement_with(user_role)*100}%"
+  end
 end

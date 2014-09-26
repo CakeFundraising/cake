@@ -47,4 +47,9 @@ class PledgeDecorator < ApplicationDecorator
   def website
     h.auto_attr_link object.website_url, target: :_blank if object.website_url.present?
   end
+
+  ##impressions
+  def engagement
+    "#{object.engagement}%"
+  end
 end

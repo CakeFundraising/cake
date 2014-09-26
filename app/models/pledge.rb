@@ -191,6 +191,16 @@ class Pledge < ActiveRecord::Base
     end
   end
 
+  ### Impressions
+  def views_count
+    impressions_count || 0
+  end
+
+  def engagement
+    return 0 if views_count.zero?
+    (clicks_count/views_count)
+  end
+
   private
 
   def max_amount

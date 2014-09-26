@@ -1,22 +1,22 @@
 tr.sponsor
-  td data-title = (Sponsor.model_name.human)
+  td data-title=(Sponsor.model_name.human)
     = auto_link sponsor
-  td data-title = (Sponsor.human_attribute_name :total_donation)
+  td data-title=(Sponsor.human_attribute_name :total_donation)
     = sponsor.total_donation
-  td data-title = (t('semantic.number_of', model:'Pledges'))
+  td data-title=(t('semantic.number_of', model:'Pledges'))
     = sponsor.pledges_related_to(fr).count
-  td data-title = (t('semantic.average', model:'Donation'))
+  td data-title=(t('semantic.average', model:'Donation'))
     = sponsor.average_donation_with(fr)
-  td data-title = (t('semantic.average', model:'Pledge'))
+  td data-title=(t('semantic.average', model:'Pledge'))
     = sponsor.average_pledge_with(fr)
-  td data-title = (t('semantic.average', model:'Donation/Click'))
+  td data-title=(t('semantic.average', model:'Donation/Click'))
     = sponsor.average_donation_per_click_with(fr)
-  td data-title = (t('semantic.average', model:'Clicks/Pledge'))
+  td data-title=(t('semantic.average', model:'Clicks/Pledge'))
     = sponsor.average_clicks_per_pledge_with(fr)
-  td data-title = (t('semantic.average', model:'Impressions/ Pledge'))
-    = '23%'
-  td data-title = (Sponsor.human_attribute_name :engagement)
-    = '11%'
+  td data-title=(t('semantic.average', model:'Pledge Views'))
+    = sponsor.average_pledge_views_with(fr)
+  td data-title=(t('semantic.average', model:'Engagement'))
+    = sponsor.average_engagement_with(fr)
   
   /td
   /  span = link_to "View", sponsor, class:'btn btn-primary btn-sm'

@@ -247,6 +247,7 @@ en:
         mission: Pledge mission statement
         description: Your Story
         main_cause: Cause
+        views: Pledge Views
       pledge_request: 
         start_end_dates: Launch/ End Date
       sponsor:

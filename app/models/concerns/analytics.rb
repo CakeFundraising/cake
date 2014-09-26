@@ -5,12 +5,17 @@ module Analytics
     alias_method :total_raised, :total_donation
   end
 
+  def analytics_pledges
+    pledges.accepted_or_past
+  end
+
+  ### General
   def total_donation
     invoices.paid.sum(:due_cents).to_i
   end
 
   def total_clicks
-    pledges.accepted_or_past.sum(:clicks_count).to_i
+    analytics_pledges.sum(:clicks_count).to_i
   end
 
   def rank
@@ -27,16 +32,16 @@ module Analytics
 
   ## Averages
   def any_pledges?
-    pledges.accepted_or_past.any?
+    analytics_pledges.any?
   end
 
   def pledges_count
-    pledges.accepted_or_past.count
+    analytics_pledges.count
   end
 
   def average_pledge
     return 0 unless any_pledges?
-    (pledges.accepted_or_past.to_a.sum(&:total_amount_cents)/pledges_count) 
+    (analytics_pledges.to_a.sum(&:total_amount_cents)/pledges_count) 
   end
 
   def average_donation
@@ -46,7 +51,7 @@ module Analytics
 
   def average_donation_per_click
     return 0 unless any_pledges?
-    (pledges.accepted_or_past.sum(:amount_per_click_cents)/pledges_count)
+    (analytics_pledges.sum(:amount_per_click_cents)/pledges_count)
   end
 
   def average_clicks_per_pledge
@@ -55,7 +60,7 @@ module Analytics
   end
 
   def top_pledges(limiter)
-    pledges.accepted_or_past.highest.first(limiter)
+    analytics_pledges.highest.first(limiter)
   end
 
   def top_causes # {cause_name: pledge_amount}
@@ -92,9 +97,9 @@ module Analytics
   ## Avg. Pledges
   def pledges_related_to(user_role)
     if self.is_a?(Sponsor)
-      pledges.accepted_or_past.fundraiser(user_role)
+      analytics_pledges.fundraiser(user_role)
     else
-      pledges.accepted_or_past.sponsor(user_role)
+      analytics_pledges.sponsor(user_role)
     end
   end
 
@@ -125,5 +130,59 @@ module Analytics
 
   def past_invoices
     invoices.paid.merge(pledges.past)
+  end
+
+  #### Impressions
+  ##General
+  def pledge_views
+    analytics_pledges.sum(:impressions_count).to_i
+  end
+
+  def campaign_views
+    if self.is_a?(Sponsor)
+      campaigns.merge(analytics_pledges).sum(:impressions_count).to_i
+    else
+      campaigns.not_pending.sum(:impressions_count).to_i
+    end
+  end
+
+  def average_campaign_views
+    if self.is_a?(Sponsor)
+      return 0 if pledges_count.zero?
+      (campaign_views/pledges_count).floor
+    else
+      return 0 if campaigns_count.zero?
+      (campaign_views/campaigns_count).floor
+    end
+  end
+
+  def average_pledge_views
+    return 0 if pledges_count.zero?
+    (pledge_views/pledges_count).floor
+  end
+
+  def average_engagement
+    if self.is_a?(Sponsor)
+      return 0 if pledge_views.zero?
+      (total_clicks/pledge_views)
+    else
+      return 0 if campaign_views.zero?
+      (total_clicks/campaign_views)
+    end
+  end
+
+  ## Related
+  def pledge_views_with(user_role)
+    pledges_related_to(user_role).sum(:impressions_count).to_i
+  end
+
+  def average_pledge_views_with(user_role)
+    return 0 unless pledges_related_to(user_role).any?
+    (pledge_views_with(user_role)/pledges_related_to(user_role).count).floor
+  end
+
+  def average_engagement_with(user_role)
+    return 0 if pledge_views_with(user_role).zero?
+    round(total_clicks_with(user_role)/pledge_views_with(user_role))
   end
 end

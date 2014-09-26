@@ -1,5 +1,5 @@
 class Impression < ActiveRecord::Base
-  belongs_to :impressionable, polymorphic: true
+  belongs_to :impressionable, polymorphic: true, counter_cache: true
 
   validates :view, :ip, :user_agent, :http_encoding, :http_language, presence: true
   validate :unique_impression

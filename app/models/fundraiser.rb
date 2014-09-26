@@ -92,7 +92,12 @@ class Fundraiser < ActiveRecord::Base
 
   def average_sponsors_per_campaign
     return 0 if campaigns_count.zero?
-    (sponsors.count.to_f/campaigns.count.to_f).round(1)
+    (sponsors.count.to_f/campaigns_count.to_f).round(1)
+  end
+
+  def average_pledges_per_campaign
+    return 0 if campaigns_count.zero?
+    (pledges.count/campaigns_count).round
   end
 
   def active_campaigns_donation

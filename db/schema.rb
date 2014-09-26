@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925161125) do
+ActiveRecord::Schema.define(version: 20140926144350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,18 +55,19 @@ ActiveRecord::Schema.define(version: 20140925161125) do
     t.datetime "end_date"
     t.string   "headline"
     t.text     "story"
-    t.boolean  "custom_pledge_levels", default: false
+    t.boolean  "custom_pledge_levels",           default: false
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               default: "pending"
+    t.string   "status",                         default: "pending"
     t.text     "mission"
-    t.string   "processed_status",     default: "unprocessed"
-    t.integer  "goal_cents",           default: 0,             null: false
-    t.string   "goal_currency",        default: "USD",         null: false
+    t.string   "processed_status",               default: "unprocessed"
+    t.integer  "goal_cents",                     default: 0,             null: false
+    t.string   "goal_currency",                  default: "USD",         null: false
     t.string   "main_cause"
+    t.integer  "impressions_count",    limit: 8, default: 0
   end
 
   create_table "charges", force: true do |t|
@@ -281,6 +282,7 @@ ActiveRecord::Schema.define(version: 20140925161125) do
     t.boolean  "increase_requested",                  default: false
     t.string   "processed_status",                    default: "unprocessed"
     t.string   "name"
+    t.integer  "impressions_count",         limit: 8, default: 0
   end
 
   create_table "sponsor_categories", force: true do |t|

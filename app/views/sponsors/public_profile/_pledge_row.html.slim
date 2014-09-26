@@ -1,27 +1,26 @@
 tr
-  td data-title = (Pledge.model_name.human)
+  td data-title=(Pledge.model_name.human)
     = auto_link pledge
-  td data-title = (Campaign.model_name.human)
+  td data-title=(Campaign.model_name.human)
     = auto_link pledge.campaign
-  td data-title = (Fundraiser.model_name.human)
+  td data-title=(Fundraiser.model_name.human)
     = auto_link pledge.fundraiser
-  td data-title = (Pledge.human_attribute_name :main_cause)
+  td data-title=(Pledge.human_attribute_name :main_cause)
     = pledge.main_cause
-  td data-title = (Pledge.human_attribute_name :type)
+  td data-title=(Pledge.human_attribute_name :type)
     = pledge.campaign.object.scopes.first
   - if pledge.past?
-    td data-title = (Pledge.human_attribute_name :donation)
+    td data-title=(Pledge.human_attribute_name :donation)
       = pledge.invoice.due if pledge.invoice.present?
-    td data-title = (Pledge.human_attribute_name :pledge)
-      = pledge.total_amount 
-  td data-title = (Pledge.human_attribute_name :donation_click)
+  td data-title=(Pledge.human_attribute_name :pledge)
+    = pledge.total_amount 
+  td data-title=(Pledge.human_attribute_name :donation_click)
     = pledge.amount_per_click
-  td data-title = (Pledge.human_attribute_name :coupon)
+  td data-title=(Pledge.human_attribute_name :coupon)
     = b pledge.coupons.any?
-  td data-title = (t('semantic.number_of', model: 'Clicks'))
+  td data-title=(t('semantic.number_of', model: 'Clicks'))
     = pledge.clicks_count
-  td data-title = (Pledge.human_attribute_name :impressions)
-    = '78'
+  td data-title=( t('semantic.average', model: 'Pledge Views') )
+    = pledge.views_count
     
 tr.empty-tr 
-
