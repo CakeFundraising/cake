@@ -143,8 +143,8 @@ h3, h4 {
   /*position: absolute;*/
 }
 
-.navbar-right{
-  padding-top: 10px;
+.navbar-right .btn{
+  margin-top: 15px !important;
 }
 
 /*.logged-out {
@@ -451,7 +451,7 @@ p.signup-social span:before, p.signup-social span:after {
 }
 
 .btn-lg{
-  padding: 10px 60px !important;
+  padding: 10px 50px !important;
 }
 
 .btn-sm{
@@ -1407,7 +1407,7 @@ table.performance-summary {
   .btn {
     @media (min-width: $screen-sm-min) {
       font-size: 20px;
-      padding: 6px 40px 6px 40px;
+      padding: 10px 35px !important;
     }
   }
 }

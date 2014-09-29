@@ -148,9 +148,9 @@ en:
         share: 4. Confirm Your Pledge
   information:
     campaign:
-      banner: "Help %{fr}! <span class='boldest'>Click on our Sponsors below and they will donate for you!</span> It is 100% free to help. "
+      banner: "<span class='boldest'>Help %{fr}!</span> Click on our Sponsors below and they will donate for you! It is 100% free to help."
     pledge:
-      banner: "Click below and %{sponsor} will donate %{donation_per_click} up to %{total_donation} to %{fundraiser}. Every click counts!"
+      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will donate %{donation_per_click} up to %{total_donation} to %{fundraiser}."
     wizards:
       campaign:
 
