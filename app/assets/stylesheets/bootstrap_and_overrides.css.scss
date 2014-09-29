@@ -2323,6 +2323,19 @@ ul#share-block {
     padding: 25px 0px 0px;
     margin-top: 30px;
   }
+  .avatar{
+    img{
+      height: 230px !important;
+      width: 305px !important;
+    }
+  }
+  .banner{
+    img{
+      /*height: 230px !important;
+      width: 305px !important;
+      */
+    }
+  }
 }
 
 .campaign-steps {
@@ -2401,7 +2414,7 @@ ul#share-block {
 #campaign_video_attributes_url {
   width: 50%;
 }
-#campaign_picture_attributes_banner_input {
+#campaign_picture_attributes_banner_input, #pledge_picture_attributes_banner_input {
   .banner {
     width: 100%;
     height: auto;
@@ -2883,6 +2896,7 @@ ul#share-block {
     left: 0;
     top: 0;
     width: 100%;
+    z-index: 10;
   }
 
   input {
