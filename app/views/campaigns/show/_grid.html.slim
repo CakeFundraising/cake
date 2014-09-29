@@ -5,6 +5,7 @@
         = campaign.picture.avatar
     .caption
       h4.truncate = auto_link campaign
+      .location.truncate = (campaign.fundraiser.location.city + ', ' + campaign.fundraiser.location.state_code)
       .cause.truncate = campaign.object.main_cause
       /.type = campaign.object.scopes.first
       hr
