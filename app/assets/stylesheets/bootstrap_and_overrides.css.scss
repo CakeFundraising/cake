@@ -144,7 +144,7 @@ h3, h4 {
 }
 
 .navbar-right .btn{
-  margin-top: 15px !important;
+  margin-top: 10px !important;
 }
 
 /*.logged-out {
@@ -2306,7 +2306,7 @@ ul#share-block {
 .wizard-rule {
   border: 1px dotted $gray-light;
 }
-.campaign-wizard-wrap {
+.campaign-wizard-wrap, .wizard-wrap {
   margin-bottom: 50px;
   width:75%;
   margin:auto;
@@ -3089,7 +3089,9 @@ ul#share-block {
 }
 
 
-
+.default {
+  height: 65px;
+}
 
 .default-img{
   display:block !important;

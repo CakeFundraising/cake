@@ -1,20 +1,77 @@
 .header.text-center
-  h1 First of all..
-  .lead Tell us you are fundraising for. Please complete the form.
+  h1 Tell us about yourself
+  p.text-muted.text-center Who are you fundraising for?
 
 = semantic_form_for @fundraiser do |f|
     = f.inputs nil do
-      .container.first-of-all
+      .container.first-of-all.wizard-wrap
+        .row.text-center
+          h2 Contact Information
         .row
-          .col-md-6
+          .col-md-2
+          .col-md-8
             = f.input :name
-            = render partial:'locations/form', locals:{f: f}
-          .col-md-6
             = f.input :email
             = f.input :phone
-            = f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
-            = f.input :tax_exempt
+          .col-md-2
+        .row.section-wrapper.text-center
+          h2 Organization Address
         .row
-          .col-md-12.text-center
+          .col-md-2
+          .col-md-8
+            /= render partial:'locations/form', locals:{f: f}
+            = f.semantic_fields_for :location do |l|
+              = l.input :address
+              = l.input :city
+              = l.input :zip_code
+              .input.select.required.form-group
+                = l.label :country, class:' control-label'
+                span.form-wrapper
+                  = l.country_select :country_code, {object: l.object, priority: %w(US CA), prompt: 'Please select a country'}, class:'chosen-select form-control country_select'
+                #states_wrapper
+                  - if l.object.country.present?
+                    - if l.object.country.subregions?
+                      = l.input :state_code, as: :select, collection: l.object.country.subregions, member_label: :name, member_value: :code
+                    - else
+                      = l.input :state_code
+                  - else
+                    em.help-block Please select a country above
+          .col-md-2
+        .row.section-wrapper.text-center
+          h2 Organizational Causes
+        .row.text-center
+          .col-md-12
+            = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
+            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+          .col-md-12
+            = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
+            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+          .col-md-12
+            = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
+            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
+        .row.section-wrapper.text-center
+          h2 Tax Status
+        .row.text-center
+          .col-md-2
+          .col-md-8
+            /= f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
+            = f.input :tax_exempt, input_html: {class: 'checkbox-pill'}
+          .col-md-2
+
+        .row.section-wrapper
+          .col-md-2
+          .col-md-8.text-center
             = f.actions do
-              = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+          .col-md-2
+
+
+javascript:
+  $(document).ready(Cake.sponsors_form);
+  $(document).on('page:load', Cake.sponsors_form);
+
+
+
+
+
+
