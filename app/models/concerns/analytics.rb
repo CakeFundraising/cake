@@ -183,6 +183,6 @@ module Analytics
 
   def average_engagement_with(user_role)
     return 0 if pledge_views_with(user_role).zero?
-    round(total_clicks_with(user_role)/pledge_views_with(user_role))
+    (total_clicks_with(user_role)/pledge_views_with(user_role)).round
   end
 end
