@@ -104,39 +104,39 @@
             .col-md-12
               h3 Minimum Pledge Requirements
               div
-                span.boldest = Fundraiser.human_attribute_name :min_pledge
+                span.boldest.init-caps = Fundraiser.human_attribute_name :min_pledge
                 strong.pull-right = humanized_money_with_symbol @fundraiser.min_pledge
               div
-                span.boldest = Fundraiser.human_attribute_name :min_click_donation
+                span.boldest.init-caps = Fundraiser.human_attribute_name :min_click_donation
                 strong.pull-right = humanized_money_with_symbol @fundraiser.min_click_donation        
               div
-                span.boldest = Fundraiser.human_attribute_name :unsolicited_pledges
+                span.boldest.init-caps = Fundraiser.human_attribute_name :unsolicited_pledges
                 strong.pull-right = b @fundraiser.unsolicited_pledges
               div
-                span.boldest = Fundraiser.human_attribute_name :donations_kind
+                span.boldest.init-caps = Fundraiser.human_attribute_name :donations_kind
                 strong.pull-right = b @fundraiser.donations_kind
               div
-                span.boldest = Fundraiser.human_attribute_name :tax_exempt
+                span.boldest.init-caps = Fundraiser.human_attribute_name :tax_exempt
                 strong.pull-right = b @fundraiser.tax_exempt, true: 'Exempt', false: 'Not Exempt'
           hr
           .row
             .col-md-12
-              h3 = Fundraiser.human_attribute_name :causes
+              h3.init-caps = Fundraiser.human_attribute_name :causes
               div = @fundraiser.causes
           hr
           .row
             .col-md-12 
-              h3 = Fundraiser.human_attribute_name :mission
+              h3.init-caps = Fundraiser.human_attribute_name :mission
               p = @fundraiser.mission
           hr
           .row
             .col-md-12 
-              h3 = Fundraiser.human_attribute_name :supporter_demographics
+              h3.init-caps = Fundraiser.human_attribute_name :supporter_demographics
               p = @fundraiser.supporter_demographics
           hr
           .row
             .col-md-12 
-              h3 = Fundraiser.human_attribute_name :our_community
+              h3.init-caps = Fundraiser.human_attribute_name :our_community
             .col-md-3
               strong Email subscribers:
               div = @fundraiser.email_subscribers
@@ -155,13 +155,13 @@
           = @fundraiser.picture.avatar
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
-          .boldest = Fundraiser.human_attribute_name :manager_name
+          .boldest.init-caps = Fundraiser.human_attribute_name :manager_name
           div #{@fundraiser.manager_name}, #{@fundraiser.manager_title}
           hr
-          .boldest = Fundraiser.human_attribute_name :manager_email
+          .boldest.init-caps = Fundraiser.human_attribute_name :manager_email
           div = mail_to @fundraiser.manager_email, @fundraiser.manager_email
           hr
-          .boldest = Fundraiser.human_attribute_name :manager_phone
+          .boldest.init-caps = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
     .row
       .col-md-12
