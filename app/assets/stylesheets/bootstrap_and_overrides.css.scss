@@ -143,6 +143,9 @@ h3, h4 {
   /*position: absolute;*/
 }
 
+.navbar-right{
+  padding-top: 10px;
+}
 
 /*.logged-out {
   .navbar-header {
@@ -1020,7 +1023,11 @@ h2 {
   background-position: 50% 0px;
   .alert-dismissable {
     font-size: 1.5em;
+    background: rgba(8, 193, 220, 0.9);
     /*padding: 20px 100px 20px 100px;*/
+  }
+  .close{
+    opacity: 0.7;
   }
 }
 
@@ -1060,7 +1067,7 @@ h1.name {
     }
   }
   .social {
-    display: inline-table;
+    /*display: inline-table;*/
   }
   .addthis_sharing_toolbox {
     display: table-cell;
@@ -1111,7 +1118,7 @@ h1.name {
   margin-bottom: 10px;
   height: 300px;
   hr {
-    margin-top:5px;  
+    margin-top:10px;  
     margin-bottom:10px;  
   }
 }
@@ -1279,11 +1286,6 @@ table.performance-summary {
   span{
     margin-left:5px;
   }
-}
-
-
-.campaign-story h3{
-  font-weight: 700;
 }
 
 .click-btn {
@@ -1492,6 +1494,10 @@ table.performance-summary {
   height:211px !important;
 }
 
+.campaign-stats {
+  margin-bottom: 20px;
+}
+
 .avatar {
   img {
     display: block;
@@ -1503,7 +1509,7 @@ table.performance-summary {
     margin: auto;
   }
   .caption{
-    font-size: 1.1em;
+    font-size: 1.2em;
     text-align: center;
     margin-top: 10px;
   }
@@ -1581,9 +1587,11 @@ table.performance-summary {
 
   h3{
     margin-top: 0;
+    font-size: 32px;
+    font-family: "museo_sans700", Helvetica, Arial, sans-serif;
   }
   p{
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
   h3, p {
     @media (max-width: $screen-sm-min) {
@@ -1591,6 +1599,8 @@ table.performance-summary {
     }
   }
 }
+
+
 
 // Coupon Styles ---------------------------------------
 

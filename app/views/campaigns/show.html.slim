@@ -78,15 +78,19 @@
     .container
       .row.pledgebluestripe.campaign#sponsors_banner
         .col-md-12.text-center
-          /h1 Click on each of our Sponsors below and they will donate for you!
+          span.h1 Click on each of our Sponsors below and they will donate for you!
           /.share.pull-right
           /  .pull-right = render partial:'layouts/share_buttons'
           /  h4.share-info.pull-right Please share our Campaign!
-          span.h1 Your 
-          span.h1.boldest clicks 
-          span.h1 help us.
-          p Please visit all our generous sponsors and share our campaign with friends!
-          p Working together, we can make a difference!
+          
+
+
+          /span.h1 Your 
+          /span.h1.boldest clicks 
+          /span.h1 help us.
+          /p Please visit all our generous sponsors and share our campaign with friends!
+          /p Working together, we can make a difference!
+          
           /.pull-right = render partial:'layouts/share_buttons'
   .container
     = render partial:'campaigns/show/pledges/pledges_section'

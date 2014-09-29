@@ -8,15 +8,16 @@
   .container
     .content.row.pull-up
       .col-md-8
-        = render partial:'videos/button', locals:{object: @pledge}
-        h1.name 
-          span = @pledge.mission
-          - if can? :edit, @pledge and not @pledge.past?
-            span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
-        .pull-left 
-          = render partial:'layouts/share_buttons'
-        h4.share-info Please share our Pledge!
-      .col-md-4
+        .campaign-intro
+          = render partial:'videos/button', locals:{object: @pledge}
+          h1.name 
+            span = @pledge.mission
+            - if can? :edit, @pledge and not @pledge.past?
+              span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
+          .social
+            = render partial:'layouts/share_buttons'
+            h4.share-info.pull-left Please share our Pledge!
+      .col-md-4.sidebar
         .sidebar-bkg 
           .row
             .col-xs-12
@@ -33,7 +34,6 @@
               span m.
           .row
             .col-md-12
-              = render partial:'clicks/pledge_block_display', locals:{pledge: @pledge}
               hr
               p.timer-ital Our Pledge:
               - if @pledge.max_clicks > 0
@@ -42,8 +42,10 @@
                     span.sr-only #{@pledge.thermometer}% Complete (success)
               .help-block.donation_per_click.text-center
                 strong = humanized_money_with_symbol(@pledge.amount_per_click) 
-                span donation per click up to 
+                span Donation per click up to 
                 strong = humanized_money_with_symbol(@pledge.total_amount)
+              br
+              = render partial:'clicks/pledge_block_display', locals:{pledge: @pledge}
           br
   .white
     .container
@@ -58,21 +60,20 @@
               h5.pull-left = auto_link @pledge.sponsor, truncate: 26
               h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
               .clear.campaign
-                = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-block'
-        .col-md-8.col-md-pull-4.pledge-story
+                = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-lg'
+        .col-md-8.col-md-pull-4.campaign-story
           h3 = @pledge.headline
           p.story.expander = @pledge.description
   .blue
     .container
-      .row.pledgebluestripe.pledge
-        .col-md-12
-          h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
-          .share.pull-right
-            = render partial:'layouts/share_buttons'
-            .clearfix
-            h4.share-info.pull-right Please share our Pledge!
-
-          = render partial:'clicks/pledge', locals:{pledge: @pledge}
+      .row.pledgebluestripe.campaign
+        .col-md-12.text-center
+          span.h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
+          /.share.pull-right
+          /  = render partial:'layouts/share_buttons'
+          /  .clearfix
+          /  h4.share-info.pull-right Please share our Pledge!
+          /= render partial:'clicks/pledge', locals:{pledge: @pledge}
   .container
     - if @pledge.coupons.any?
       .row
