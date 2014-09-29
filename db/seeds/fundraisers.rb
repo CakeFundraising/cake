@@ -40,4 +40,6 @@ end
   user.create_fundraiser_email_setting
 end
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if AdminUser.count.zero?
+
 puts "#{@fundraisers.count} Fundraisers created."
