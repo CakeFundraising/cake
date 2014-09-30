@@ -1022,7 +1022,7 @@ h2 {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 1.5em;
+    font-size: 2em;
     background: rgba(8, 193, 220, 0.9);
     /*padding: 20px 100px 20px 100px;*/
   }
@@ -2769,7 +2769,7 @@ ul#share-block {
 .banner .alert, .alert-transparent{
   margin:0px;
   span{
-    max-width: 1000px;
+    max-width: 1100px;
     display: block;
     text-align: center;
     margin: auto;

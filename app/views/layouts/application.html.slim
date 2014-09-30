@@ -6,6 +6,11 @@ html lang="en"
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"
     meta name="apple-mobile-web-app-title" content="CakeFundraising"
 
+    /!meta property="og:title" content="Your title here" 
+    /!meta property="og:description" content="your description here" 
+    /!meta property="og:url" content="http://www.imdb.com/title/tt0117500/" 
+    /!meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" 
+
     title = content_for?(:title) ? yield(:title) : t('application.name')
     = csrf_meta_tags
 
