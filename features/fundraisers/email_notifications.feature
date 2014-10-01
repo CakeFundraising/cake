@@ -25,8 +25,8 @@ Feature: Fundraiser Email Notifications
     And the fundraiser user <wants?> to receive notifications for "Change of account information"
     And that fundraiser is logged in
     When he visits the account settings page
-    And he fills in the "Full name" field with My new Full Name
-    And he fills in the "Current password" field with password
+    And he fills in the "Full Name" field with My new Full Name
+    And he fills in the "Enter Password To Confirm Changes" field with password
     And he press the "Update Account" button
     Then <quantity> email should be delivered with subject: "Your account information has been modified."
 

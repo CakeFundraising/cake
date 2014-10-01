@@ -12,7 +12,9 @@ Then(/^he should see his fundraiser home dashboard$/) do
   page.should have_content(model(:fundraiser).manager_email)
   page.should have_link("Start New Campaign")
   page.should have_link("Edit")
-  page.should have_content("Active Campaign Donations")
+  page.should have_content("Donations Due From Active Campaigns")
+  page.should have_content("Global Fundraiser Rank")
+  page.should have_content("Total Number of Campaigns")
 end
 
 Then(/^he should see his active campaigns$/) do
