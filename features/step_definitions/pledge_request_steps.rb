@@ -21,5 +21,5 @@ Then(/^a rejected flag should be present in the fundraiser pending pledges page$
   sign_out_user
   login_user(@pledge_request.fundraiser.manager)
   visit path_to('fundraiser pending pledges page')
-  page.should have_content('REJECTED')
+  page.should have_content('Rejected')
 end

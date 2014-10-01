@@ -17,6 +17,8 @@ Feature: Accept or Reject Pledge Request
 
   Scenario: Reject Pledge
     And he press the "Reject" link
+    And he fills in the "Message" field with I'm not interested on your campaign.
+    And he press the "Send" button
     Then he should be taken to the sponsor pledge requests page
     And he should see "Pledge request rejected."
     And 1 email should be delivered with subject: "Your Pledge Request has been rejected."

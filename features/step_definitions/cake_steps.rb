@@ -21,7 +21,7 @@ Then(/^the (.*?) should have a "(.*?)" status$/) do |model, status|
 end
 
 When(/^he press the delete button$/) do
-  find(:css, ".delete").click
+  find(:css, "a.btn[data-method='delete']").click
 end
 
 Then(/^he should see (?:a|an)?(\d+)? edit button(?:s)?$/) do |quantity|
