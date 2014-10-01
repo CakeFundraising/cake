@@ -2,7 +2,9 @@ module ImpressionablesController
   extend ActiveSupport::Concern
 
   included do
-    before_action :create_impression, only: :show
+    unless Rails.env.test?
+      before_action :create_impression, only: :show
+    end
   end
 
   protected

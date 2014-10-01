@@ -112,7 +112,7 @@ group :test do
   gem 'pickle'
   gem 'capybara'
   gem 'webmock'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.43.0'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
   gem "launchy"

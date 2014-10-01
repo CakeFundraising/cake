@@ -11,12 +11,12 @@ Feature: Campaign Wizard
   Scenario Outline: Basic Information
     When he goes to new campaign page
     And he fills in the "Campaign Name" field with <name>
-    And he fills in the "How much do you want to raise?" field with <goal>
+    And he fills in the "campaign_goal" field with <goal>
     And he fills in the "campaign_launch_date" field with <launch_date>
     And he fills in the "campaign_end_date" field with <end_date>
-    And he selects <causes> in "campaign_causes"
+    And he checks <causes> from Campaign Causes
     And he selects <main_cause> in "campaign_main_cause"
-    And he checks <scopes> from the Types of Campaigns options
+    And he checks <scopes> from Types of Campaigns
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
@@ -35,7 +35,7 @@ Feature: Campaign Wizard
     When he goes to campaign wizard tell your story page
     And he fills in the "Headline" field with <headline>
     And he fills in the "Story" field with <story>
-    And he fills in the "Campaign Mission Statement" field with <mission>
+    And he fills in the "Campaign Purpose" field with <mission>
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
@@ -53,14 +53,14 @@ Feature: Campaign Wizard
   Scenario Outline: Pledge Levels
     And a campaign of that fundraiser exists
     When he goes to campaign wizard sponsors page
-    And he press the "Set custom pledge levels" button
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he press the "Set custom sponsorship pledge levels" button
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"

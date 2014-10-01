@@ -5,18 +5,18 @@ Feature: Pledge Levels
     And a campaign of that fundraiser exists
     And that fundraiser is logged in
     When he visits the campaign wizard sponsors page
-    And he press the "Set custom pledge levels" button
+    And he press the "Set custom sponsorship pledge levels" button
 
   #No Levels (New)
   @javascript
   Scenario Outline: Linear Insertion
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
@@ -34,13 +34,13 @@ Feature: Pledge Levels
 
   @javascript
   Scenario Outline: Linear Insertion and Middle level removal
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he removes the Middle level
     Then Top Level min value should be <lowest_max_value>
@@ -55,16 +55,16 @@ Feature: Pledge Levels
   ## Insertions
   @javascript
   Scenario Outline: Linear Insertion
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Save & Continue" button
     #returns to pledge levels page
     And he visits the campaign wizard sponsors page
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     Then he should see "<message>"
@@ -85,13 +85,13 @@ Feature: Pledge Levels
   @javascript 
   Scenario Outline: Linear Removal (Top Level removal)
     #store levels
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     And he visits the campaign wizard sponsors page
@@ -108,13 +108,13 @@ Feature: Pledge Levels
   @javascript
   Scenario Outline: Middle Level removal
     #store levels
-    And he fills in the "Pledge Level Name" field with <lowest_name>
+    And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <medium_name>
+    And he fills in the appearing "Pledge Level" field with <medium_name>
     And he fills in the appearing "Max value" field with <medium_max_value>
     And he press the "Add Next Pledge Level" link
-    And he fills in the appearing "Pledge Level Name" field with <highest_name>
+    And he fills in the appearing "Pledge Level" field with <highest_name>
     And he fills in the appearing "Max value" field with <highest_max_value>
     And he press the "Save & Continue" button
     And he visits the campaign wizard sponsors page

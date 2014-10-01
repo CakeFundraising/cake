@@ -30,7 +30,7 @@ When(/^(?:I|they|he) (?:select|selects) (.*?) in "(.*?)"$/) do |option, select_f
   select(option, from: select_field)
 end
 
-When(/^(?:I|they|he) (?:check|checks) (.*?) from the Types of Campaigns options$/) do |option|
+When(/^(?:I|they|he) (?:check|checks) (.*?) from (.*?)$/) do |option, section|
   check(option)
 end
 
