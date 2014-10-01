@@ -28,15 +28,16 @@ Feature: User Registration
 	| Some Anonymous  | anon@anon.com			| anonUser123   	| anonUser123         	| A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | 1          |
 
 	Examples: Failed registrations
-	| full_name  	| email            	  | password      		| password_confirmation | message										| user_count |
+	| full_name  		| email            	  | password      		| password_confirmation | message																	| user_count |
 	|               | bismark64@gmail.com | mySecretPassword 	| mySecretPassword      | can't be blank                  				| 0          |
-	| Example User  | example@example.com | example5555555   	| example6666666		| Password confirmationdoesn't match Password	| 0          |
+	| Example User  | example@example.com | example5555555   	| example6666666				| Confirm Passworddoesn't match Password	| 0          |
 
 
 	@oauth
 	Scenario Outline: OAuth2 registration
 	  And I press the "<provider_link>" link and allow the required permissions
 	  Then I should be taken to the user registration page
+	  And I fill in the "user_full_name" field with <full_name>
 	  When I fill in the "user_email" field with <email>
 	  When I fill in the "user_password" field with <password>
 	  When I fill in the "user_password_confirmation" field with <password_confirmation>
@@ -46,7 +47,10 @@ Feature: User Registration
 	  And I should have <user_count> new user
 
 	Examples:
-	| provider_link | message                                                                                                                | email          	   | password  			| password_confirmation | user_count |
-	#| Facebook      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
-	| Twitter       | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
-	| Linkedin      | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"    | 1          |
+	| provider_link | full_name 	 | message                                                                                                                | email          	    | password  			   | password_confirmation | user_count |
+	#| Facebook      | Example User | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"   	| 1          |
+	| Twitter       | Example User | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"    | 1          |
+	| Linkedin      | Example User | A message with a confirmation link has been sent to your email address. Please open the link to activate your account. | bismark64@gmail.com | "mySecretPassword" | "mySecretPassword"    | 1          |
+
+
+

@@ -8,11 +8,11 @@ Feature: User Settings
     Given a confirmed user exists with email: "example@example.com", full_name: "Test User"
     And the user is logged in
     When he visits the account settings page
-    And he fills in the "Full name" field with <full_name>
-    And he fills in the "Email" field with <email>
+    And he fills in the "Full Name" field with <full_name>
+    And he fills in the "Email Address" field with <email>
     And he fills in the "user_password" field with <password>
     And he fills in the "user_password_confirmation" field with <password_confirmation>
-    And he fills in the "Current password" field with <current_password>
+    And he fills in the "Enter Password To Confirm Changes" field with <current_password>
     And he press the "Update Account" button
     Then he should see "<message>"
 
@@ -28,4 +28,4 @@ Feature: User Settings
   | Emiliano Coppo  | example@example.com   |                   |                         |                  | can't be blank             |
   | Test User       | emiliano@bytelion.com |                   |                         |                  | can't be blank             |
   | Test User       | example@example.com   | anonUser123       | anonUser                | password         | doesn't match Password     | 
-  | Test User       | info@cakefundraising  |                   |                         | password         | Email*is invalid           | 
+  | Test User       | info@cakefundraising  |                   |                         | password         | Email Address*is invalid           | 

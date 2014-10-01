@@ -23,6 +23,7 @@ Feature: User Sign In
     | test@example.com    | Mypassword    | Invalid email or password. |
     | unexistent@mail.info| password      | Invalid email or password. |
 
+  @javascript
   Scenario Outline: Via Social Networks
     Given the following social_connected_users exist
     | provider |  uid          |
@@ -30,11 +31,11 @@ Feature: User Sign In
     | twitter  | 877df787s8787 |
     | linkedin | asdsd7878d111 |
     When they go to sign in page
-    When they press the "<provider_link>" link and allow the required permissions
+    And they press the "<provider_link>" link and allow the required permissions
     Then they should see "<message>"
 
     Examples: Succesful login
-    | provider_link | message                                           |
-    #| Facebook      | Successfully authenticated from Facebook account. |
-    | Twitter       | Successfully authenticated from Twitter account.  |
-    | Linkedin      | Successfully authenticated from Linkedin account. |
+    | provider_link          | message                                           |
+    #| Sign in with Facebook  | Successfully authenticated from Facebook account. |
+    | Sign in with Twitter   | Successfully authenticated from Twitter account.  |
+    | Sign in with Linkedin  | Successfully authenticated from Linkedin account. |
