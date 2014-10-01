@@ -4,6 +4,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.4'
 gem 'turbolinks'
+gem 'meta-tags', :require => 'meta_tags'
 
 #Assets
 gem 'sass-rails', '~> 4.0.2'

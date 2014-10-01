@@ -47,4 +47,13 @@ module ApplicationHelper
   def auto_mail(object)
     mail_to object.email, object.email
   end
+
+  def default_meta_tags
+  {
+    :title       => 'Member Login',
+    :description => 'Member login page.',
+    :keywords    => 'Site, Login, Members',
+    :separator   => "&mdash;".html_safe,
+  }
+end
 end
