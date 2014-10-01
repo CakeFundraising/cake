@@ -42,9 +42,9 @@
         = f.input :pinterest_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
     .row.section-wrapper
       h4 Fundraiser Mission and Causes
-      .col-md-4       
+      .col-md-6       
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
-      .col-md-4
+      .col-md-6
         = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-12
         = f.label Fundraiser::CAUSES_HIERARCHY.keys.last, class:'control-label'
