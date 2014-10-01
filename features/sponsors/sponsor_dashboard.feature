@@ -28,7 +28,7 @@ Feature: Sponsor Dashboard
     And 3 past pledges of that sponsor exist
     When he visits the sponsor history page
     Then he should see his past pledges
-    Then he should see his fundraisers
+    Then he should see his past fundraisers
 
   Scenario: Billing
     And 5 pending invoices from that sponsor exist

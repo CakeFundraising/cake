@@ -5,8 +5,8 @@ Then(/^he should see his sponsor home dashboard$/) do
   page.should have_link("Find a Cause to Sponsor")
   page.should have_link("Edit")
   page.should have_content("Clicks from Active Pledges")
-  page.should have_content("Sponsor Rank")
-  page.should have_content("Total No. of Pledges")
+  page.should have_content("Global Sponsor Rank")
+  page.should have_content("Total Donations")
 end
 
 Then(/^he should see his active pledges$/) do
@@ -22,8 +22,8 @@ Then(/^he should see his past pledges$/) do
   page.should have_selector('table#past_pledges tr.pledge', count: @past_pledges.count)
 end
 
-Then(/^he should see his fundraisers$/) do
-  @fundraisers = model(:sponsor).fundraisers
+Then(/^he should see his past fundraisers$/) do
+  @fundraisers = model(:sponsor).fundraisers_of(:past)
   page.should have_selector('table#fundraisers tr.fundraiser', count: @fundraisers.count)
 end
 

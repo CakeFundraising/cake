@@ -6,10 +6,19 @@ Feature: Sponsor Email Notifications
 
   Background:
     Given a sponsor exists
-
+  
+  #@javascript
   Scenario Outline: New pledge request
     And the sponsor user <wants?> to receive notifications for "New pledge request"
-    When a pledge request to that sponsor is made
+    #When a pledge request to that sponsor is made
+    And a fundraiser exists
+    And a campaign of that fundraiser exists with title: 'Test Pledge'
+    And that fundraiser is logged in
+    When he goes to the sponsor's page
+    And he press the "Request Pledge" link
+    And he selects Test Pledge in "Campaign"
+    And he fills in the "Message" field with I want you as a partner.
+    And he press the "Request Pledge" button
     Then <quantity> email should be delivered with subject: "You have a new pledge request."
 
     Examples: Enabled notification
@@ -24,8 +33,8 @@ Feature: Sponsor Email Notifications
     And the sponsor user <wants?> to receive notifications for "Change of account information"
     And that sponsor is logged in
     When he visits the account settings page
-    And he fills in the "Full name" field with My new Full Name
-    And he fills in the "Current password" field with password
+    And he fills in the "Full Name" field with My new Full Name
+    And he fills in the "Enter Password To Confirm Changes" field with password
     And he press the "Update Account" button
     Then <quantity> email should be delivered with subject: "Your account information has been modified."
 
