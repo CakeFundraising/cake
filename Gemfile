@@ -60,7 +60,7 @@ group :development do
 end
 
 #Utils
-gem 'money-rails'
+gem 'money-rails', '~> 0.12.0'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'

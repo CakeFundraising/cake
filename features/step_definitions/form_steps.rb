@@ -35,7 +35,9 @@ When(/^(?:I|they|he) (?:check|checks) (.*?) from (.*?)$/) do |option, section|
 end
 
 When(/^he attachs an "(.*?)" image on the "(.*?)" field$/) do |image_type, field|
-  attach_file(field, File.join(Rails.root, 'db/seeds/support/images/' + image_type + '.jpg') )
+  within(:css, "##{field}") do
+    attach_file('file', File.join(Rails.root, 'db/seeds/support/images/' + image_type + '.jpg') )
+  end
 end
 
 #Messages & Locators

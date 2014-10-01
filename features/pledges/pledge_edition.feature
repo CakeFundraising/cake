@@ -17,7 +17,7 @@ Feature: Edit Pledge
     And that sponsor is logged in
     And a pledge of that sponsor exists with mission: 'My mission', headline: 'This is my headline'
     When he goes to pledge wizard tell your story page
-    And he fills in the "Pledge mission statement" field with <mission>
+    And he fills in the "Pledge Purpose" field with <mission>
     And he fills in the "Headline" field with <headline>
     And he press the "Save & Continue" button
     Then he should see "<message>"

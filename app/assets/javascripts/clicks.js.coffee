@@ -9,7 +9,7 @@ Cake.browser.plugins = ->
   while i < x
     plugins.push navigator.plugins[i].name
     i++
-  return plugins
+  return plugins.sort()
 
 Cake.clicks.get_plugins = ->
   if $(".click_link").length > 0

@@ -44,7 +44,7 @@ Then(/^a rejected flag should be present in the sponsor pledge requests page$/) 
   sign_out_user
   login_user(@pending_pledge.sponsor.manager)
   visit path_to('sponsor pledge requests page')
-  page.should have_content('REJECTED')
+  page.should have_content('Rejected')
 end
 
 Given(/^a pledge request related to that pledge exists$/) do
@@ -82,9 +82,12 @@ Then(/^a click should be added to the Pledge$/) do
 end
 
 Given(/^the user has already donated to that pledge$/) do
-  ip_address = "127.0.0.1"
-  @click = FactoryGirl.create(:mozilla_click, pledge: model(:pledge), request_ip: ip_address)
-  #page.driver.options[:headers] = {'REMOTE_ADDR' => ip_address}
+  @click = FactoryGirl.create(:firefox_click,
+    user_agent: page.driver.execute_script('return navigator.userAgent;'),
+    #browser_plugins: page.driver.execute_script('return Cake.browser.plugins();'),
+    pledge: model(:pledge), 
+    request_ip: "127.0.0.1"
+  )
 end
 
 Then(/^the "(.*?)" link should not be present$/) do |link|

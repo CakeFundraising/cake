@@ -14,7 +14,7 @@ Feature: Pledge Wizard
     And he fills in the "pledge_amount_per_click" field with <click_amount>
     And he fills in the "pledge_total_amount" field with <total_amount>
     And he fills in the "pledge_website_url" field with <website>
-    And he checks the "By clicking here I agree to..." checkbox
+    And he checks the "I agree to the terms of this agreement" checkbox
     And he press the "Agree & Continue" button
     Then he should see "<message>"
 
@@ -26,19 +26,19 @@ Feature: Pledge Wizard
   Examples: Failed Step
   | click_amount | total_amount | website             | message                            |
   | 0.00         | 100000.00    | http://coke.com     | must be greater than 0             |
-  | 5.00         |              | http://example.com/ | must be greater than 0             |
+  | 5.00         |              | http://example.com/ | must be greater than or equal to 50 and Must be greater than amount per click. |
   | 5.00         | 100000.00    |                     | can't be blank                     |
   | 5.00         | 100000.00    | example.com         | should include http:// or https:// |
-  | 5.00         | -1588.00     | http://example.com/ | must be greater than 0             |
+  | 5.00         | -1588.00     | http://example.com/ | must be greater than or equal to 50 and Must be greater than amount per click. |
 
   Scenario Outline: Tell your Story
     And a pledge of that sponsor exists
     When he goes to pledge wizard tell your story page
-    And he fills in the "Pledge mission statement" field with <mission>
+    And he fills in the "Pledge Purpose" field with <mission>
     And he fills in the "Headline" field with <headline>
     And he fills in the "Your Story" field with <description>
-    And he attachs an "avatar" image on the "pledge_picture_attributes_avatar" field
-    And he attachs an "banner" image on the "pledge_picture_attributes_banner" field
+    And he attachs an "avatar" image on the "pledge_picture_attributes_avatar_input" field
+    And he attachs an "banner" image on the "pledge_picture_attributes_banner_input" field
     And he press the "Save & Continue" button
     Then he should see "<message>"
 
@@ -58,8 +58,8 @@ Feature: Pledge Wizard
     And he fills in the "Expires at" field with <expires_at>
     And he fills in the "Description" field with <description>
     And he selects <categories> in "Offer or Product Category - choose all that apply - use ctrl to select additional categories"
-    And he attachs an "avatar" image on the "pledge_coupons_attributes_0_avatar" field
-    And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_qrcode" field
+    And he attachs an "avatar" image on the "pledge_coupons_attributes_0_picture_attributes_avatar_input" field
+    And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_picture_attributes_qrcode_input" field
     And he press the "Continue" button
     Then he should see "<message>"
 
