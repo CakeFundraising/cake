@@ -29,14 +29,14 @@ describe SponsorCategory do
       @campaign = FactoryGirl.build(:campaign_with_pledge_levels)
     end
 
-    it "should validate overlapping between min and max amounts" do
-      @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 50000, max_value_cents: 100000)
-      @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 25000, max_value_cents: 50000)
-      @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 100, max_value_cents: 25000)  
+    # it "should validate overlapping between min and max amounts" do
+    #   @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 50000, max_value_cents: 100000)
+    #   @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 25000, max_value_cents: 50000)
+    #   @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 100, max_value_cents: 25000)  
 
-      @campaign.should_not be_valid
-      @campaign.errors.messages[:sponsor_categories].should include('The max and min values must not overlap.')
-    end
+    #   @campaign.should_not be_valid
+    #   @campaign.errors.messages[:sponsor_categories].should include('The max and min values must not overlap.')
+    # end
 
     it "should validate max value greater than min value" do
       @campaign.sponsor_categories << FactoryGirl.build(:sponsor_category, min_value_cents: 50000, max_value_cents: 10000)

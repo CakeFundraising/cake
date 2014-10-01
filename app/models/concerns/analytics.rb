@@ -60,14 +60,16 @@ module Analytics
   end
 
   def top_pledges(limiter)
-    analytics_pledges.highest.first(limiter)
+    analytics_pledges.highest.limit(limiter)
   end
 
   def top_causes # {cause_name: pledge_amount}
-    top_causes = {}
-    top_pledges(3).each do |pledge|
-      top_causes.store(pledge.main_cause, pledge.total_amount) unless top_causes.has_key?(pledge.main_cause)
+    pledges = analytics_pledges.highest.with_campaign
+
+    top_causes = pledges.inject({}) do |top_causes, pledge|
+      top_causes = (top_causes.has_key?(pledge.main_cause) or top_causes.keys.count == 3) ? top_causes : top_causes.merge({pledge.main_cause => pledge.total_amount})
     end
+    
     top_causes
   end
 

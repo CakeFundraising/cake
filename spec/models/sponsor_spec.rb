@@ -62,17 +62,17 @@ describe Sponsor do
     describe "Pledges" do
       it "should show a collection of sponsor's active pledges" do
         active_pledges = create_list(:pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.active.reload.should == active_pledges
+        @sponsor.pledges.active.reload.sort.should == active_pledges.sort
       end
 
       it "should show a collection of sponsor's pending pledges" do
         pending_pledges = create_list(:pending_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.pending.reload.should == pending_pledges
+        @sponsor.pledges.pending.reload.sort.should == pending_pledges.sort
       end
 
       it "should show a collection of sponsor's rejected pledges" do
         rejected_pledges = create_list(:rejected_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.rejected.reload.should == rejected_pledges
+        @sponsor.pledges.rejected.reload.sort.should == rejected_pledges.sort
       end
     end
 
@@ -276,7 +276,7 @@ describe Sponsor do
         end
 
         it "should return the position of the SP in the set of SP's ordered by descendent paid invoice's due_cents" do
-          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 1000)
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 10)
 
           expect( @sponsor.rank ).to eql(6)
         end
@@ -308,7 +308,7 @@ describe Sponsor do
         end
 
         it "should return the position of the SP in the set of same zip code SPs ordered by descendent paid invoice's due_cents" do
-          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 100)
+          FactoryGirl.create(:invoice, sponsor: @sponsor, due_cents: 10)
 
           expect( @sponsor.local_rank ).to eql(6)
         end
@@ -417,13 +417,13 @@ describe Sponsor do
         end
 
         it "should list the causes from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount, p.amount_per_click] }
-          expect( @sponsor.top_causes.keys ).to eql(@pledges.first(3).map(&:main_cause).uniq)
+          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
+          expect( @sponsor.top_causes.keys.sort ).to eql(@pledges.map(&:main_cause).uniq.first(3).sort)
         end
 
         it "should list the total_amount from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount, p.amount_per_click] }
-          expect( @sponsor.top_causes.values ).to eql(@pledges.first(3).uniq(&:main_cause).map(&:total_amount))
+          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
+          expect( @sponsor.top_causes.values.sort ).to eql(@pledges.uniq(&:main_cause).map(&:total_amount).first(3).sort)
         end
       end
       

@@ -54,6 +54,7 @@ class Pledge < ActiveRecord::Base
   scope :not_fully_subscribed, ->{ where.not("clicks_count >= max_clicks") }
 
   scope :highest, ->{ order(total_amount_cents: :desc, amount_per_click_cents: :desc) }
+  scope :with_campaign, ->{ eager_load(:campaign) }
 
   delegate :main_cause, to: :campaign
 
