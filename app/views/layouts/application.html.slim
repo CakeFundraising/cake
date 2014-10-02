@@ -32,6 +32,9 @@ html lang="en"
     /! Size should be 32 x 32 pixels
     = favicon_link_tag '/favicon.ico', :rel => 'shortcut icon'
 
+    /= analytics_init if Rails.env.production?
+    = analytics_init if Rails.env.development?
+
   body.fixed
     = render partial: 'layouts/main_nav'
     = bootstrap_flash

@@ -1,10 +1,12 @@
-= meta title: "Homepage",
-     description: "My description",
-     keywords: %w(keyword1 keyword2 keyword3),
-     og: { title: "test", 
-     		image: "http://ia.media-imdb.com/images/rock.jpg",
-     		description: "Test Description",
-     		url: "http://www.imdb.com/title/tt0117500/" }
+/ TEMPORARY UNTIL THIS IS MADE DYNAMIC
+span.meta
+	= meta title: "Homepage",
+	     description: "My description",
+	     keywords: %w(keyword1 keyword2 keyword3),
+	     og: { title: "test", 
+	     		image: "http://ia.media-imdb.com/images/rock.jpg",
+	     		description: "Test Description",
+	     		url: "http://www.imdb.com/title/tt0117500/" }
 
 = content_for :header do	
 	.banner.hero-home
@@ -82,10 +84,17 @@
 			/		= render partial:'share/share_block'
 	.success-banner
 
-
-
-
-
+/ TEMPORARY UNTIL THIS IS MADE DYNAMIC
+javascript:
+	var addthis_share = addthis_share || {}
+	addthis_share = {
+		passthrough : {
+			twitter: {
+				via: "cakefundraising",
+				text: "Share CakeFundraising with your friends, it costs nothing to donate but a click."
+			}
+		}
+	}
 
 
 	
