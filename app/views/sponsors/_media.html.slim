@@ -1,14 +1,23 @@
 .media
   /= link_to "Find a Cause to Sponsor", search_sponsors_path, class:'btn btn-primary btn-lg pull-right'
-  = link_to sponsor_path(@sponsor), class:'pull-left media-object fr-dash-avatar' do
-    = @sponsor.picture.avatar class:'media-object fr-dash-avatar'
-  .media-body
-    h4.media-heading = @sponsor.name
-    .data.help-block
-      div.fr-name = @sponsor.manager_name
-      div.fr-manager-email 
-      	span = @sponsor.manager_email
-      	span.fr-manager-email-edit = link_to "Edit", public_profile_path
-      = stripe_buttons
-  /= link_to "Find a Cause to Sponsor", search_sponsors_path, class:'btn btn-primary btn-lg'
+  
+  /= link_to sponsor_path(@sponsor), class:'pull-left media-object fr-dash-avatar' do
+  /  = @sponsor.picture.avatar class:'media-object fr-dash-avatar'
+  
+  = semantic_form_for @sponsor do |f|
+    = f.inputs do
+      .row 
+        .col-md-4
+          = render partial:'pictures/avatar_form', locals:{f: f}
+
+
+        .col-md-8.media-block
+          h4.media-heading = @sponsor.name
+          .data.help-block
+            div.fr-name = @sponsor.manager_name
+            div.fr-manager-email 
+            	span = @sponsor.manager_email
+            	span.fr-manager-email-edit = link_to "Edit", public_profile_path
+            = stripe_buttons
+        /= link_to "Find a Cause to Sponsor", search_sponsors_path, class:'btn btn-primary btn-lg'
 

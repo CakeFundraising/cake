@@ -328,7 +328,7 @@ h3, h4 {
     }
     .media{
       img{
-        max-width: 305px;
+        /*max-width: 305px;*/
       }
       .btn{
         padding: 10px 20px !important;
@@ -392,6 +392,17 @@ h3, h4 {
 p.signup-social span:before, p.signup-social span:after {
   width: 70% !important;
 }
+
+.media{
+  img{
+    /*max-width: 305px;*/
+  }
+  .media-block{
+    margin-top:20px;
+  }
+}
+
+
 
 #main-container {
   margin-bottom: 35px;
@@ -1502,7 +1513,7 @@ table.performance-summary {
 // Campaign Page Styles -----------------------------------------------------------------
 
 .img-default-avatar{
-  height:211px !important;
+  height:250px !important;
 }
 
 .campaign-stats {
