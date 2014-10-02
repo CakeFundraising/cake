@@ -7,7 +7,7 @@ class PictureDecorator < ApplicationDecorator
       h.cl_image_tag(object.avatar, options)
     else
       #h.image_tag 'http://www.placehold.it/305x230&text=no+image+available', class: 'img-thumbnail img-responsive'
-      h.image_tag 'placeholder.png', class: 'img-thumbnail img-responsive img-default-avatar'
+      h.image_tag 'placeholder_avatar.png', class: 'img-thumbnail img-responsive img-default-avatar'
     end
   end
 
@@ -17,7 +17,7 @@ class PictureDecorator < ApplicationDecorator
       h.cl_image_tag(object.banner, options)      
     else
       #h.image_tag 'http://www.placehold.it/342x150&text=no+image+available', class: 'img-thumbnail img-responsive'
-      h.image_tag 'placeholder.png', class: 'img-thumbnail img-responsive img-default-banner'
+      h.image_tag 'placeholder_banner.png', class: 'img-thumbnail img-responsive img-default-banner'
     end
   end
 
@@ -27,7 +27,7 @@ class PictureDecorator < ApplicationDecorator
       h.cl_image_path(object.banner, options)    
     else
       #h.image_tag 'http://www.placehold.it/1400x614&text=no+image+available'
-      h.image_tag 'placeholder.png', class: 'img-thumbnail img-responsive'
+      h.image_tag 'placeholder_banner.png', class: 'img-thumbnail img-responsive'
     end
   end
 

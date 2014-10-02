@@ -5,12 +5,12 @@ class Picture < ActiveRecord::Base
     ico: [25, 19],
     thumb: [50, 38],
     square: [120, 120],
-    medium: [305, 230]
+    medium: [300, 200]
   }
 
   BANNER_SIZES = {
-    large: [1400, 614],
-    medium: [342, 150]
+    large: [1400, 700],
+    medium: [280, 140]
   }
 
   QRCODE_SIZES = {
