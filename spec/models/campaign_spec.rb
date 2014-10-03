@@ -41,11 +41,11 @@ describe Campaign do
   context 'Actions' do
     describe "#launch" do
       before(:each) do
-        @campaign = FactoryGirl.create(:not_launched_campaign)
+        @campaign = FactoryGirl.create(:pending_campaign)
       end
 
       it "should set a launched status" do
-        @campaign.status.should == :not_launched
+        @campaign.status.should == :pending
         @campaign.launch!
         @campaign.status.should == :launched
       end

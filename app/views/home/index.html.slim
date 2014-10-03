@@ -1,12 +1,6 @@
 / TEMPORARY UNTIL THIS IS MADE DYNAMIC
 span.meta
-	= meta title: "Homepage",
-	     description: "My description",
-	     keywords: %w(keyword1 keyword2 keyword3),
-	     og: { title: "test", 
-	     		image: "http://ia.media-imdb.com/images/rock.jpg",
-	     		description: "Test Description",
-	     		url: "http://www.imdb.com/title/tt0117500/" }
+	= meta title: "Homepage", description: "My description", keywords: %w(keyword1 keyword2 keyword3), og: { title: "test", image: "http://ia.media-imdb.com/images/rock.jpg", description: "Test Description", url: "http://www.imdb.com/title/tt0117500/" }
 
 = content_for :header do	
 	.banner.hero-home
@@ -67,15 +61,15 @@ span.meta
 			.row.center
 				.circle-campaign
 					.totals-centerd
-						h4 235
+						h4 = campaigns_count
 						p.total-type CAMPAIGNS
 				.circle-sp
 					.totals-centerd
-						h4 135
+						h4 = sponsors_count
 						p.total-type SPONSORS
 				.circle-raised
 					.totals-centerd
-						h4 $235
+						h4 = global_raised
 						p.total-type RAISED
 			h3 Let your friends know that CakeFundraising is the best way to raise money online.
 			.share-block-wrap

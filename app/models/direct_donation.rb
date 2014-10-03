@@ -16,7 +16,7 @@ class DirectDonation < ActiveRecord::Base
       currency: self.amount_currency.downcase,
       card: self.card_token,
       description: "Direct Donation from #{self.email}",
-      application_fee: (self.amount_cents*CakeConstants::APPLICATION_FEE).round # amount in cents
+      application_fee: (self.amount_cents*Cake::APPLICATION_FEE).round # amount in cents
       },
       self.campaign.fundraiser.stripe_account.token # user's access token from the Stripe Connect flow
     )

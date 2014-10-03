@@ -7,7 +7,6 @@ ul.nav.nav-tabs
     a data-toggle="tab" href="#unsolicited" = t('titles.empty_results.pledges.from_sponsors')
   li 
     a data-toggle="tab" href="#requested" = t('titles.empty_results.pledges.my_pledge_requests')
-  /Added New Tab
   li 
     a data-toggle="tab" href="#active" = t('titles.empty_results.pledges.active')
 .tab-content
@@ -15,6 +14,5 @@ ul.nav.nav-tabs
     = render partial:'pledges/tables/pending/fundraiser/table', locals:{pledges: @unsolicited_pledges}
   #requested.tab-pane
     = render partial:'pledge_requests/tables/fundraiser/table', locals:{pledges: @requested_pledges}
-  /Added New Tab Content
   #active.tab-pane
-    span Add functionality to display all the active pledges assigned to the fundraisers campaigns
+    = render partial:'pledges/tables/active/fundraiser/table', locals:{pledges: @accepted_pledges}

@@ -49,7 +49,7 @@ describe Payment do
       transfer =  @payment.transfers.first
       
       transfer.should be_instance_of(Transfer)
-      transfer.amount_cents.should == ((1-CakeConstants::APPLICATION_FEE)*@payment.total_cents).round
+      transfer.amount_cents.should == ((1-Cake::APPLICATION_FEE)*@payment.total_cents).round
     end
   end
 

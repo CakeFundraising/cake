@@ -49,11 +49,24 @@ module ApplicationHelper
   end
 
   def default_meta_tags
-  {
-    :title       => 'Member Login',
-    :description => 'Member login page.',
-    :keywords    => 'Site, Login, Members',
-    :separator   => "&mdash;".html_safe,
-  }
-end
+    {
+      :title       => 'Member Login',
+      :description => 'Member login page.',
+      :keywords    => 'Site, Login, Members',
+      :separator   => "&mdash;".html_safe,
+    }
+  end
+
+  ## Global data
+  def global_raised
+    number_to_human(Cake.global_raised, units: :numbers, format: '%n%u')
+  end
+
+  def campaigns_count
+    number_to_human(Campaign.count, units: :numbers, format: '%n%u')
+  end
+
+  def sponsors_count
+    number_to_human(Sponsor.count, units: :numbers, format: '%n%u')
+  end
 end

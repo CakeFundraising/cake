@@ -27,7 +27,7 @@ class PledgesController < InheritedResources::Base
     elsif params[:fundraiser].present?
       redirect_to select_campaign_pledges_path(fundraiser: params[:fundraiser]), notice: 'Please select one of these campaigns to start a pledge.'
     else
-      redirect_to search_campaigns_path, alert: 'Please select one of these campaigns to start a pledge.'
+      redirect_to search_campaigns_path, notice: 'Please select one of these campaigns to start a pledge.'
     end
   end
 

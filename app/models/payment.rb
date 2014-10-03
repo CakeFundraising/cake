@@ -77,7 +77,7 @@ class Payment < ActiveRecord::Base
 
   #Transfers
   def stripe_trasfer
-    amount = ((1-CakeConstants::APPLICATION_FEE)*self.total_cents).round
+    amount = ((1-Cake::APPLICATION_FEE)*self.total_cents).round
 
     transfer = Stripe::Transfer.create(
       amount: amount,
@@ -98,7 +98,7 @@ class Payment < ActiveRecord::Base
       kind: stripe_transfer.object,
       amount_cents: stripe_transfer.amount,
       amount_currency: stripe_transfer.currency.upcase,
-      total_fee_cents: balance_transaction.fee + CakeConstants::APPLICATION_FEE*stripe_transfer.amount,
+      total_fee_cents: balance_transaction.fee + Cake::APPLICATION_FEE*stripe_transfer.amount,
       status: stripe_transfer.status
     ).save
   end
