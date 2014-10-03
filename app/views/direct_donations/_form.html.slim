@@ -20,7 +20,7 @@ javascript:
   Cake.direct_donation = function(){
     var handler = StripeCheckout.configure({
       key: "#{campaign.fundraiser.stripe_account.stripe_publishable_key}",
-      image: '#{campaign.picture.avatar}',
+      image: '#{campaign.picture.avatar_path}',
       token: function(token, args) {
         $('#direct_donation_card_token').val(token.id);
         $('#direct_donation_email').val(token.email);
