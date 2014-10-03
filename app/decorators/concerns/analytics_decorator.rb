@@ -64,10 +64,10 @@ module AnalyticsDecorator
 
   ### Impressions 
   def average_engagement
-    "#{object.average_engagement*100}%"
+    "#{(object.average_engagement*100).round(1)}%"
   end
 
   def average_engagement_with(user_role)
-    "#{object.average_engagement_with(user_role)*100}%"
+    "#{(object.average_engagement_with(user_role)*100).round(1)}%"
   end
 end
