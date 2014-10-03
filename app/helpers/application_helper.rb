@@ -59,7 +59,7 @@ module ApplicationHelper
 
   ## Global data
   def global_raised
-    number_to_human(Cake.global_raised, units: :numbers, format: '%n%u')
+    "#{currency_symbol}#{number_to_human(Cake.global_raised, units: :numbers, format: '%n%u')}".html_safe
   end
 
   def campaigns_count
