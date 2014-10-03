@@ -1,5 +1,6 @@
-h3 #{Fundraiser.model_name.human} profile
+= display_meta("Profile", nil, nil, nil)
 
+h3 #{Fundraiser.model_name.human} profile
 = semantic_form_for @fundraiser do |f|
   = f.inputs nil do
     .row
