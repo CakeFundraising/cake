@@ -234,12 +234,70 @@ describe Fundraiser do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
-          end           
+          end
         end
 
         it "should be the total clicks divided total of accepted and past pledges" do
           avg = @pledges.map(&:clicks).flatten.count/@pledges.count
           expect( fundraiser.average_clicks_per_pledge_with(@sponsor) ).to eql(avg)
+        end
+      end
+
+      context 'Impressions' do
+        before(:each) do
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
+          @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
+
+          @pledges = @accepted_pledges + @past_pledges
+
+          @impressions = create_list(:impression, 25, impressionable: @accepted_pledges.sample)
+          @pending_impressions = create_list(:impression, 15, impressionable: @pending_pledges.sample)
+          @past_impressions = create_list(:impression, 56, impressionable: @past_pledges.sample)
+
+          @impressions_count = @impressions.count + @past_impressions.count
+        end
+
+        describe "Pledge Views" do
+          it "should be the sum of all accepted and past pledge impressions between that SP and FR" do
+            expect( fundraiser.pledge_views_with(@sponsor) ).to eql(@impressions_count)
+          end
+
+          it "should not include impressions from pending pledges" do
+            expect( fundraiser.pledge_views_with(@sponsor) ).not_to eql(@pending_impressions.count)
+          end
+        end
+        
+        describe "Average Pledge Views" do
+          it "should be total impressions of valid pledges between SP and FR divided that count" do
+            avg = (@impressions_count/@pledges.count).floor
+            expect( fundraiser.average_pledge_views_with(@sponsor) ).to eql(avg)
+          end
+
+          it "should not include impressions from pending pledges" do
+            avg = (@pending_impressions.count/@pending_pledges.count).floor
+            expect( fundraiser.average_pledge_views_with(@sponsor) ).not_to eql(avg)
+          end
+        end
+
+        describe "Average Engagement" do
+          before(:each) do
+            @accepted_clicks = create_list(:click, 5, pledge: @accepted_pledges.sample)
+            @pending_clicks = create_list(:click, 5, pledge: @pending_pledges.sample)
+            @past_clicks = create_list(:click, 5, pledge: @past_pledges.sample)
+
+            @total_clicks = @accepted_clicks.count + @past_clicks.count
+          end
+
+          it "should be the sum of all clicks divided accepted and past pledges count" do
+            avg = (@total_clicks.to_f/@impressions_count.to_f)
+            expect( fundraiser.average_engagement_with(@sponsor) ).to eql(avg)
+          end
+
+          it "should not include clicks from pending pledges" do
+            avg = (@pending_clicks.count.to_f/@pending_impressions.count.to_f)
+            expect( fundraiser.average_engagement_with(@sponsor) ).not_to eql(avg)
+          end
         end
       end
 
@@ -452,6 +510,69 @@ describe Fundraiser do
         end
       end
 
+      context 'Impressions' do
+        before(:each) do
+          @launched_campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
+          @pending_campaigns = create_list(:pending_campaign, 5, fundraiser: fundraiser)
+          @past_campaigns = create_list(:past_campaign, 5, fundraiser: fundraiser)
+
+          @impressions = create_list(:impression, 25, impressionable: @launched_campaigns.sample)
+          @pending_impressions = create_list(:impression, 15, impressionable: @pending_campaigns.sample)
+          @past_impressions = create_list(:impression, 56, impressionable: @past_campaigns.sample)
+
+          @impressions_count = @impressions.count + @past_impressions.count
+        end
+
+        describe "Campaign Views" do
+          it "should count all launched and past campaign impressions" do
+            expect( fundraiser.campaign_views ).to eql(@impressions_count)
+          end
+
+          it "should not include pending campaign impressions" do
+            expect( fundraiser.campaign_views ).not_to eql(@pending_impressions.count)
+          end
+        end
+        
+        describe "Average Campaign Views" do
+          it "should be sum of all launched and past campaign impressions divided launched and past campaigns count" do
+            campaigns_count = @launched_campaigns.count + @past_campaigns.count
+            avg = (@impressions_count/campaigns_count).floor
+
+            expect( fundraiser.average_campaign_views ).to eql(avg)
+          end
+
+          it "should not include pending campaigns" do
+            avg = (@pending_impressions.count/@pending_campaigns.count).floor
+            expect( fundraiser.average_campaign_views ).not_to eql(avg)
+          end
+        end
+
+        describe "Average Engagement" do
+          before(:each) do
+            @pledges = create_list(:pledge, 15, clicks_count: 0, campaign: @launched_campaigns.sample)
+            @past_pledges = create_list(:past_pledge, 55, clicks_count: 0, campaign: @past_campaigns.sample)
+            @pending_pledges = create_list(:pending_pledge, 44, clicks_count: 0, campaign: @pending_campaigns.sample)
+
+            @clicks = create_list(:click, 9, pledge: @pledges.sample)  
+            @past_clicks = create_list(:click, 6, pledge: @past_pledges.sample)  
+            @pending_clicks = create_list(:click, 3, pledge: @pending_pledges.sample) 
+
+            @total_clicks = @clicks.count + @past_clicks.count 
+          end
+
+          it "should be total_clicks divided by total launched and past campaign impressions" do
+            avg = (@total_clicks.to_f/@impressions_count.to_f)
+            expect( fundraiser.average_engagement ).to eql(avg)
+          end
+
+          it "should not include clicks from pending pledges" do
+            avg = (@pending_clicks.count.to_f/@pending_impressions.count.to_f)
+            expect( fundraiser.average_engagement ).not_to eql(avg)
+          end
+        end
+        
+      end
+
       describe "Top Causes" do
         before(:each) do
           @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)   
@@ -475,6 +596,7 @@ describe Fundraiser do
           expect( fundraiser.top_causes.values.sort ).to eql(@pledges.uniq(&:main_cause).map(&:total_amount).first(3).sort)
         end
       end
+
     end
 
     context 'FR Home Dashboard' do

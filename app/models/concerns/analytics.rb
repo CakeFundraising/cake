@@ -153,8 +153,8 @@ module Analytics
       return 0 if pledges_count.zero?
       (campaign_views/pledges_count).floor
     else
-      return 0 if campaigns_count.zero?
-      (campaign_views/campaigns_count).floor
+      return 0 if campaigns.not_pending.count.zero?
+      (campaign_views/campaigns.not_pending.count).floor
     end
   end
 
@@ -166,10 +166,10 @@ module Analytics
   def average_engagement
     if self.is_a?(Sponsor)
       return 0 if pledge_views.zero?
-      (total_clicks/pledge_views)
+      (total_clicks.to_f/pledge_views.to_f)
     else
       return 0 if campaign_views.zero?
-      (total_clicks/campaign_views)
+      (total_clicks.to_f/campaign_views.to_f)
     end
   end
 
@@ -185,6 +185,6 @@ module Analytics
 
   def average_engagement_with(user_role)
     return 0 if pledge_views_with(user_role).zero?
-    (total_clicks_with(user_role)/pledge_views_with(user_role)).round
+    (total_clicks_with(user_role).to_f/pledge_views_with(user_role).to_f)
   end
 end
