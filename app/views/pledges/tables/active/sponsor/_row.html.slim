@@ -17,7 +17,7 @@ tr.pledge id=(pledge.id)
     = humanized_money_with_symbol pledge.amount_per_click
   td.truncate.min-width
     - if pledge.increase_requested
-      button.btn.btn-warning.btn-sm.disabled Increase Requested
+      button.btn.btn-sm.btn-warning.btn-sm.disabled Increase Requested
       
     = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
 
