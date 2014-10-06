@@ -5,7 +5,7 @@ class Campaign < ActiveRecord::Base
   include Analytics
   include Picturable
 
-  has_statuses :pending, :launched, :past
+  has_statuses :uncompleted, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 
@@ -49,7 +49,7 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Date.today) }
 
-  scope :uncompleted, ->{ where("campaigns.mission is NULL OR campaigns.headline is NULL OR campaigns.story is NULL") }
+  #scope :uncompleted, ->{ where("campaigns.mission is NULL OR campaigns.headline is NULL OR campaigns.story is NULL") }
 
   scope :with_invoices, ->{ eager_load(:invoices) }
 
@@ -132,6 +132,10 @@ class Campaign < ActiveRecord::Base
   end
 
   #Actions
+  def pending!
+    update_attribute(:status, :pending)
+  end
+
   def end
     pledges.accepted.each(&:generate_invoice)
     pledges.each(&:past!)

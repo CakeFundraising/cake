@@ -31,10 +31,12 @@ Cake::Application.routes.draw do
       scope :edit do
         get :tell_your_story
         get :sponsors
+        get :launch_wizard, path: :launch
         get :share
       end
       get :badge
       patch :launch
+      patch :save_for_launch
 
       scope :pictures, controller: :cropping do
         post :crop

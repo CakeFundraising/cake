@@ -76,7 +76,13 @@ Feature: Campaign Wizard
     | Minor            | 45               | Medium       | 100000           | Major            | 1000000           | Please enter a value greater than $50    |
     | Minor            | 10000            | Medium       | 10000            | Major            | 1000000           | Please enter a value greater than $10001 |
 
-  Scenario: Solicit Sponsors
+  Scenario: Launch Campaign
+    And a campaign of that fundraiser exists
+    When he goes to campaign wizard launch wizard page
+    Then he should see a "Launch your Campaign now" button
+    And he should see a "Save your campaign & secure Sponsors before you launch" button
+
+  Scenario: Find Sponsors
     And a campaign of that fundraiser exists
     When he goes to campaign wizard share page
     Then he should see the invitation link and badge

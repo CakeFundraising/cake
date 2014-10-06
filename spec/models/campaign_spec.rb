@@ -35,11 +35,23 @@ describe Campaign do
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:pending, :launched, :past]
+    Campaign.statuses[:status].should == [:uncompleted, :pending, :launched, :past]
   end
 
   context 'Actions' do
-    describe "#launch" do
+    describe "#pending!" do
+      before(:each) do
+        @campaign = FactoryGirl.create(:uncompleted_campaign)
+      end
+
+      it "should set a pending status" do
+        @campaign.status.should == :uncompleted
+        @campaign.launch!
+        @campaign.status.should == :pending
+      end
+    end
+
+    describe "#launch!" do
       before(:each) do
         @campaign = FactoryGirl.create(:pending_campaign)
       end

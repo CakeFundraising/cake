@@ -1,10 +1,12 @@
 class CampaignsController < InheritedResources::Base
   authorize_resource
+  before_action :check_if_uncompleted, only: :launch_wizard
 
   WIZARD_STEPS = [
     :basic_info,
     :tell_your_story,
     :sponsors,
+    :launch_wizard,
     :share
   ]
 
@@ -50,7 +52,7 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
-  #Non restful actions
+  #Campaign wizard steps
   def basic_info
     @campaign = resource
     render 'campaigns/form/basic_info'
@@ -67,6 +69,11 @@ class CampaignsController < InheritedResources::Base
     render 'campaigns/form/sponsors'
   end
 
+  def launch_wizard
+    @campaign = resource.decorate
+    render 'campaigns/form/launch'
+  end
+
   def share
     @campaign = resource.decorate
     render 'campaigns/form/share'
@@ -78,9 +85,15 @@ class CampaignsController < InheritedResources::Base
     response.headers.except! 'X-Frame-Options'
   end
 
+  #actions
+  def save_for_launch
+    resource.pending!
+    redirect_to share_campaign_path(resource), notice: 'Campaign saved!'
+  end
+
   def launch
     resource.launch!
-    redirect_to resource, notice: 'Campaign is launched now!'
+    redirect_to share_campaign_path(resource), notice: 'Campaign is launched now!'
   end
 
   protected
@@ -95,5 +108,9 @@ class CampaignsController < InheritedResources::Base
     ], 
     sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy]
     ])
+  end
+
+  def check_if_uncompleted
+    redirect_to edit_campaign_path(resource), alert: "This campaign can't be launched again." unless resource.uncompleted?
   end
 end

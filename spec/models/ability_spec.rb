@@ -213,6 +213,16 @@ describe Ability do
         @campaign = FactoryGirl.create(:campaign)
         @ability.should_not be_able_to(:launch, @campaign)
       end
+
+      it "can save for later his campaign" do
+        @campaign = FactoryGirl.create(:campaign, fundraiser: @fundraiser)
+        @ability.should be_able_to(:save_for_launch, @campaign)
+      end
+
+      it "cannot save for later someone else's campaign" do
+        @campaign = FactoryGirl.create(:campaign)
+        @ability.should_not be_able_to(:save_for_launch, @campaign)
+      end
     end
 
     context 'Pledge Requests' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926144350) do
+ActiveRecord::Schema.define(version: 20141006171325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140926144350) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",                         default: "pending"
+    t.string   "status",                         default: "uncompleted"
     t.text     "mission"
     t.string   "processed_status",               default: "unprocessed"
     t.integer  "goal_cents",                     default: 0,             null: false

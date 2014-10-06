@@ -25,7 +25,7 @@ class Ability
 
       #Campaign
       can :create, Campaign
-      can :launch, Campaign, fundraiser_id: user.fundraiser.id
+      can [:launch, :save_for_launch], Campaign, fundraiser_id: user.fundraiser.id
       can [:update, :destroy] + CampaignsController::WIZARD_STEPS, Campaign, fundraiser_id: user.fundraiser.id
       
       #PledgeRequest

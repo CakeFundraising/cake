@@ -11,38 +11,43 @@
         = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
       li
         = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
+      - if @campaign.uncompleted? 
+        li
+          = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
       li.active
         a data-toggle="tab" href="#share" = t('links.wizards.campaign.share')
     
 .tab-content.campaign-wizard-solicit-wrap
   #share.tab-pane.active
-    .text-center
-      h1 Congratulations on your new Campaign!
-      p.text-muted You can now share your Campaign with potential business Sponsors who may want to help
-
-    .col-md-2
-    .col-md-8
-      = render partial:'campaigns/show/media', locals:{campaign: @campaign}
-    .col-md-2
-
     .row
-      .col-md-6
-        .share-links
-          h3.solicit-invite Share this link via email to invite businesses you know to make a Pledge to your new Campaign
+      .col-md-12
+        .share-links.text-center
+          .lead Email your Campaign link directly to potential Sponsors. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
             
           label Campaign Url: 
           input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
           button.clipboard.btn.btn-default data-clipboard-target="campaign_url" Copy
-      .col-md-6
+
+          .lead Share your Campaign link on social media too!
+          = render partial:'layouts/share_buttons'
+
+        hr
+        
+        .row
+          .col-md-2
+          .col-md-8
+            .lead Display and Link to your Campaign on your website
+            = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+          .col-md-2
+
         .share-embed
-          h3.solicit-invite Share this link via email to invite businesses you know to make a Pledge to your new Campaign
-          label Copy code to paste into your website:  
           textarea#embedded_link.form-control disabled='' rows="5" 
             iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
               p 
                 | See this campaign here: 
                 = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
           button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+
     .row.solicit-choose
       .col-md-12.text-center
         = link_to "Help me find sponsors", search_sponsors_path, class:'btn btn-primary'

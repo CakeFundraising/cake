@@ -1,0 +1,44 @@
+= display_meta("Campaign Setup")
+
+.row
+  .col-xs-12.campaign-steps
+    = render partial:'campaigns/form/actions'
+  .campaign-nav.text-center
+    ul.nav.nav-pills
+      li
+        = link_to t('links.wizards.campaign.basic_info'), edit_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
+      - if @campaign.uncompleted? 
+        li.active
+          a data-toggle="tab" href="#launch" = t('links.wizards.campaign.launch')
+      li
+        = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
+    
+.tab-content.campaign-wizard-solicit-wrap
+  #launch.tab-pane.active
+    .text-center
+      h1 Congratulations on your new Campaign!
+
+    .col-md-2
+    .col-md-8
+      = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+    .col-md-2
+
+    .row
+      .col-md-5
+        = link_to "Launch your Campaign now", launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary'
+        ul
+          li Launch your Campaign now if you are organizing an informal, local campaign.
+          li Accept Sponsor Pledges one by one.
+          li Sponsor Pledges are immediately live and clickable.
+      .col-md-2
+        span or
+      .col-md-5
+        = link_to "Save your campaign & secure Sponsors before you launch", save_for_launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary' 
+        ul 
+          li Secure sponsors before you launch if you are organizing a larger campaign.
+          li All Sponsor Pledges go live at the same time.
+          li Campaign and Pledge links are not live or clickable until you choose to officially launch your Campaign.
