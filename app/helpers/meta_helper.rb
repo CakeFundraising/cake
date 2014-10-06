@@ -4,7 +4,7 @@ module MetaHelper
 		
 		og = {
 			title: t('application.meta.og.title'), 
-			image: image_path("cake_logo.jpg"), 
+			image: image_path("fb_share.jpg"), 
 			url: request.original_url, 
 			description: t('application.meta.description') 
 		} if og.nil?
