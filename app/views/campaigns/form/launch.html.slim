@@ -13,9 +13,12 @@
         = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
       - if @campaign.uncompleted? 
         li.active
-          a data-toggle="tab" href="#launch" = t('links.wizards.campaign.launch')
-      li
-        = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
+          a data-toggle="tab" href="#main" = t('links.wizards.campaign.launch')
+        li
+          = link_to t('links.wizards.campaign.share', number: 5), share_campaign_path(@campaign)
+      - else
+        li
+          = link_to t('links.wizards.campaign.share', number: 4), share_campaign_path(@campaign)
     
 .tab-content.campaign-wizard-solicit-wrap
   #launch.tab-pane.active
