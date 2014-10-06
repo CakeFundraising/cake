@@ -36,7 +36,7 @@ describe Pledge do
   end
 
   it "should have statuses" do
-    Pledge.statuses[:status].should == [:pending, :accepted, :rejected, :past]
+    Pledge.statuses[:status].should == [:uncompleted, :pending, :accepted, :rejected, :past]
   end
 
   describe "#max_clicks" do

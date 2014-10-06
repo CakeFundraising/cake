@@ -20,10 +20,10 @@ Cake.validations.custom_methods = ->
   return
 
 Cake.validations.form_leaving = ->
-  pages = $('#story.tab-pane.active')
+  object_status = Cake.campaigns.status || Cake.pledges.status
   form = $('.formtastic.pledge, .formtastic.campaign')
 
-  if pages.length > 0 and form.length > 0
+  if object_status is 'uncompleted' and form.length > 0
     model_name = form.attr('class').replace('formtastic ', '')
     object_id = form.attr('action').split('/')[2]
     message = 'This ' + model_name + " will be cancelled. Please complete the form and press 'SAVE & CONTINUE' to continue."

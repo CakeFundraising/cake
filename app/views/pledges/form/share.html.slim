@@ -68,3 +68,8 @@
             | See this pledge here: 
             = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
       button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+
+javascript:
+  Cake.pledges.status = "#{@pledge.status}";
+
+  

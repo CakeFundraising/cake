@@ -49,8 +49,6 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Date.today) }
 
-  #scope :uncompleted, ->{ where("campaigns.mission is NULL OR campaigns.headline is NULL OR campaigns.story is NULL") }
-
   scope :with_invoices, ->{ eager_load(:invoices) }
 
   scope :with_paid_invoices, ->{ 
@@ -132,14 +130,10 @@ class Campaign < ActiveRecord::Base
   end
 
   #Actions
-  def pending!
-    update_attribute(:status, :pending)
-  end
-
   def end
     pledges.accepted.each(&:generate_invoice)
     pledges.each(&:past!)
-    update_attribute(:status, :past)
+    past!
     notify_end
   end
 
@@ -150,7 +144,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def launch!
-    notify_launch if update_attribute(:status, :launched)
+    notify_launch if self.launched!
   end
 
   def notify_launch

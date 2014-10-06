@@ -56,3 +56,6 @@
         = link_to "Help me find sponsors", search_sponsors_path, class:'btn btn-primary'
         span.text-muted.italic or
         = link_to "Go to my account", fundraiser_home_path, class:'btn btn-success'
+
+javascript:
+  Cake.campaigns.status = "#{@campaign.status}";

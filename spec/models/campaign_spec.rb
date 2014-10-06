@@ -46,7 +46,7 @@ describe Campaign do
 
       it "should set a pending status" do
         @campaign.status.should == :uncompleted
-        @campaign.launch!
+        @campaign.pending!
         @campaign.status.should == :pending
       end
     end

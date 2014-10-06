@@ -119,9 +119,10 @@ Cake.pledge_levels.levels_form.levels = ->
   @last_item = ->
     return last_item
 
-  @bind_levels()
-  @increment_items()
-  @decrement_items()
+  if @container
+    @bind_levels()
+    @increment_items()
+    @decrement_items()
 
   return
 

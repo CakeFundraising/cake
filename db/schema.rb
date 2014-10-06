@@ -275,7 +275,7 @@ ActiveRecord::Schema.define(version: 20141006171325) do
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                              default: "pending"
+    t.string   "status",                              default: "uncompleted"
     t.integer  "clicks_count",              limit: 8, default: 0
     t.boolean  "show_coupons",                        default: false
     t.integer  "max_clicks",                          default: 0

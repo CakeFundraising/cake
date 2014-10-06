@@ -3,7 +3,7 @@ class Pledge < ActiveRecord::Base
   include Formats
   include Picturable
   
-  has_statuses :pending, :accepted, :rejected, :past
+  has_statuses :uncompleted, :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
   attr_accessor :step
@@ -43,8 +43,6 @@ class Pledge < ActiveRecord::Base
   scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
   scope :accepted_or_past, ->{ where("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
 
-  scope :uncompleted, ->{ where("pledges.name is NULL OR pledges.mission is NULL OR pledges.headline is NULL OR pledges.description is NULL") }
-  
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }
 

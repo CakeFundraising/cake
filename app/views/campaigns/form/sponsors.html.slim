@@ -59,4 +59,5 @@
 javascript:
   $(document).ready(Cake.pledge_levels.init);
   $(document).on('page:load', Cake.pledge_levels.init);
+  Cake.campaigns.status = "#{@campaign.status}";
   
