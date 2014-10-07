@@ -1,4 +1,4 @@
-= display_meta("Sponsor Profile", {title: "Help Support Us - It's 100% Free", image: @sponsor.picture.avatar_path, description: @sponsor.name, url: request.original_url})
+= display_meta(@sponsor.name, {title: @sponsor.name + " – Check out our Cake Fundraising profile.  See how we rank!", image: @sponsor.picture.avatar_path, description: @sponsor.mission, url: request.original_url})
 
 = content_for :header do
   .banner.hero

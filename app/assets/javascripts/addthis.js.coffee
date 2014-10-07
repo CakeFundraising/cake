@@ -1,5 +1,5 @@
 # turbolinks addthis
-Cake.initAdthis = ->
+Cake.initAddthis = ->
   # Remove all global properties set by addthis, otherwise it won't reinitialize
   for i of window
     delete window[i]  if /^addthis/.test(i) or /^_at/.test(i)

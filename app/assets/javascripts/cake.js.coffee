@@ -16,7 +16,7 @@ Cake.init = ->
   Cake.validations.init()
   Cake.crop.init()
 
-  #Cake.initAdthis()
+  #Cake.initAddthis()
   return
 
 $(document).ready(Cake.init)
