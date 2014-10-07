@@ -2,7 +2,7 @@ module ImpressionablesController
   extend ActiveSupport::Concern
 
   included do
-    unless Rails.env.test?
+    unless Rails.env.test? or Browser.new.bot?
       before_action :create_impression, only: :show
     end
   end
