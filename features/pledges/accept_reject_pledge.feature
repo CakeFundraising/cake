@@ -11,6 +11,7 @@ Feature: Accept and Reject Pledges
     And that fundraiser is logged in
     When he visits the fundraiser pending pledges page
 
+  @javascript
   Scenario: Accept Pledge
     And he press the "Accept" link
     Then he should see "Pledge accepted."
