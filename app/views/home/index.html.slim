@@ -71,7 +71,18 @@
 						p.total-type RAISED
 			h3 Let your friends know that CakeFundraising is the best way to raise money online.
 			.share-block-wrap
-				.text-center = render partial:'layouts/share_buttons'
+				/.text-center = render partial:'layouts/share_buttons'
+
+				.text-center
+					.share-buttons
+						.addthis_jumbo_share#social
+							script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-542a2ea07b4b6c5d" type="text/javascript"
+  
+
+
+
+
+
 			/	- 1.times do
 			/		= render partial:'share/share_block'
 	.success-banner

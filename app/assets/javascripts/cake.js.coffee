@@ -12,15 +12,14 @@ Cake.init = ->
   Cake.pledges.update_triggers()
   Cake.coupons.tos()
   Cake.clicks.get_plugins()
-
   Cake.validations.init()
   Cake.crop.init()
-
   #Cake.initAddthis()
   return
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)
+$(document).on('page:change', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()
