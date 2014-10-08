@@ -77,7 +77,7 @@ Feature: Campaign Wizard
     | Minor            | 10000            | Medium       | 10000            | Major            | 1000000           | Please enter a value greater than $10001 |
 
   Scenario: Launch Campaign
-    And a uncompleted campaign of that fundraiser exists
+    And a incomplete campaign of that fundraiser exists
     When he goes to campaign wizard launch wizard page
     Then he should see a "Launch your Campaign now" button
     And he should see a "Save your campaign & secure Sponsors before you launch" button

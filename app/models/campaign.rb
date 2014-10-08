@@ -5,7 +5,7 @@ class Campaign < ActiveRecord::Base
   include Analytics
   include Picturable
 
-  has_statuses :uncompleted, :pending, :launched, :past
+  has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
   attr_accessor :step 

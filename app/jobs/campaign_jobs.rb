@@ -33,7 +33,7 @@ module ResqueSchedule
     @retry_delay = 60
 
     def self.perform
-      Campaign.uncompleted.destroy_all
+      Campaign.incomplete.destroy_all
     end
   end
 

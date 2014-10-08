@@ -52,7 +52,7 @@ module NavigationHelpers
     
     #campaign
     when /^campaign wizard (.*?) page$/
-      campaign = @campaign || model(:campaign) || @pending_campaign || @uncompleted_campaign
+      campaign = @campaign || model(:campaign) || @pending_campaign || @incomplete_campaign
       path_components = $1.split(/\s+/)
       send(path_components.push('campaign').push('path').join('_').to_sym, campaign)
 

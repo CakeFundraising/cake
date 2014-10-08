@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006171325) do
+ActiveRecord::Schema.define(version: 20141008145436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,14 @@ ActiveRecord::Schema.define(version: 20141006171325) do
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",                         default: "uncompleted"
+    t.string   "status",                         default: "incomplete"
     t.text     "mission"
     t.string   "processed_status",               default: "unprocessed"
     t.integer  "goal_cents",                     default: 0,             null: false
     t.string   "goal_currency",                  default: "USD",         null: false
     t.string   "main_cause"
     t.integer  "impressions_count",    limit: 8, default: 0
+    t.boolean  "visible",                        default: false
   end
 
   create_table "charges", force: true do |t|
@@ -275,7 +276,7 @@ ActiveRecord::Schema.define(version: 20141006171325) do
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                              default: "uncompleted"
+    t.string   "status",                              default: "incomplete"
     t.integer  "clicks_count",              limit: 8, default: 0
     t.boolean  "show_coupons",                        default: false
     t.integer  "max_clicks",                          default: 0

@@ -11,7 +11,7 @@
         = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
       li.active
         a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
-      - if @campaign.uncompleted? 
+      - if @campaign.incomplete? 
         li
           = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
         li
@@ -49,7 +49,7 @@
         .row.text-center
           = render partial:'sponsor_categories/form', locals:{f: f}
 
-          - if @campaign.uncompleted?
+          - if @campaign.incomplete?
             = f.input :step, as: :hidden, input_html:{value: :launch_wizard} 
           - else
             = f.input :step, as: :hidden, input_html:{value: :share} 

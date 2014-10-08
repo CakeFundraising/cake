@@ -20,7 +20,7 @@ module ResqueSchedule
     @retry_delay = 60
 
     def self.perform
-      Pledge.uncompleted.destroy_all
+      Pledge.incomplete.destroy_all
     end
   end
 

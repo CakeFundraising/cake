@@ -25,8 +25,8 @@ FactoryGirl.define do
       end
     end
 
-    factory :uncompleted_campaign do
-      status :uncompleted
+    factory :incomplete_campaign do
+      status :incomplete
     end
 
     factory :pending_campaign do
