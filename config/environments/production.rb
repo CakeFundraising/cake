@@ -14,7 +14,7 @@ Cake::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  GA.tracker = "UA-55367562"
+  GA.tracker = "UA-55367562-1"
   GA.script_source = :doubleclick
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application

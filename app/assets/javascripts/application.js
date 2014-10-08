@@ -37,7 +37,7 @@
 //= require cake
 
 //= require ./about
-// require ./addthis
+//= require ./addthis
 //= require ./clicks
 //= require ./extra_donation_pledges  
 //= require ./locations     

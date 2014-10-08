@@ -1,4 +1,4 @@
-= display_meta("Pledge")
+= display_meta("Pledge", {title: "Click and help support us! It is 100% free!", image: @pledge.campaign.picture.avatar_path, description: @pledge.sponsor.mission, url: request.original_url})
 
 = content_for :header do
   .banner.hero
