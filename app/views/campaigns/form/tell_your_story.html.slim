@@ -35,14 +35,14 @@
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
           p.text-muted Add a headline and a Campaign message
-        .row
-          .col-md-2
-          .col-md-8
-            = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
-            = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
-            br
-            = render partial:'videos/form', locals:{f: f}
-          .col-md-2
+          .row.text-left
+            .col-md-2
+            .col-md-8
+              = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
+              = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
+              br
+              = render partial:'videos/form', locals:{f: f}
+            .col-md-2
 
         .row.section-wrapper.text-center
           h2 Campaign Image

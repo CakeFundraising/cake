@@ -53,6 +53,9 @@ h3, h4 {
   margin: 20px;
 }
 
+.text-left{
+  text-align: left;
+}
 
 //Navbar --------------------------------------------------------------------------------
 .nav {
@@ -122,6 +125,16 @@ h3, h4 {
     a:hover{
       text-decoration: none !important;
     }
+  }
+}
+
+ul.nav.nav-pills {
+  background-color: #ffffff;
+  padding: 10px 50px;
+  border: 1px solid #f1f1f1;
+  border-radius: 15px;
+  li{
+    padding:0 5px;
   }
 }
 
@@ -995,7 +1008,8 @@ h2 {
 // Edit Profile, Email Settings Dividers ---------------------------------------------------------------
 .section-wrapper {
   border-top: 1px dotted $gray-light;
-  padding: 35px 25px 30px;
+  padding-top: 25px;
+  margin: 35px 0;
   @media (max-width: $screen-md-min) {
     padding: 25px 50px 20px;
   }
@@ -1057,6 +1071,10 @@ h2 {
 
 .pull-up {
   margin-top: -300px;
+}
+
+.pull-left {
+  margin-right:0px !important;
 }
 
 input[type="checkbox"]{
@@ -1542,8 +1560,8 @@ table.performance-summary {
     display: block;
     width: 100%;
     margin-right: 0;
-    max-width: 1400px;
-    max-height: 45%;
+    /*max-width: 1400px;
+    max-height: 45%;*/
     margin: auto;
   }
 }
@@ -2324,22 +2342,25 @@ ul#share-block {
 .wizard-rule {
   border: 1px dotted $gray-light;
 }
+
+.text-muted{
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
 .campaign-wizard-wrap, .wizard-wrap {
   margin-bottom: 50px;
-  width:75%;
+  /*width:90%;*/
   margin:auto;
   h3, h4{
     color: black;
-  }
-  .text-muted{
-    margin-bottom: 15px;
   }
   .row{
     /*margin-bottom:15px;*/
   }
   .section-wrapper{
-    padding: 25px 0px 0px;
-    margin-top: 30px;
+    /*padding: 25px 0px 0px;
+    margin-top: 30px;*/
   }
   .avatar{
     img{
@@ -2445,7 +2466,7 @@ ul#share-block {
 }
 #campaign_picture_attributes_avatar_input {
   .avatar {
-    margin: 10px auto;
+    /*margin: 10px auto;*/
   }
   .avatar_input {
     margin: 0 auto 35px;
@@ -2458,66 +2479,80 @@ ul#share-block {
   padding-bottom: 25px;
 }
 // Solicit Sponsors Step ------------------------------------
-.campaign-wizard-solicit-wrap {
+/*.campaign-wizard-solicit-wrap {
   padding: 0 50px 0;
   margin-bottom: 50px;
-}
+}*/
 .solicit-wrap {
   /*padding: 0 200px;*/
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
+
+.btn-lg-choice{
+  padding: 15px;
+  max-width: 250px;
+  margin: 0px;
+  white-space: normal;
+  min-width: 225px;
+  color: #999999;
+  background-color: whitesmoke;
+  border-color: #dddddd;
+  border-radius: 10px;
+}
+.btn-lg-choice:focus {
+  outline:none;
+}
+
+.btn-lg-choice:hover {
+  color:#333333;
+}
+
+
+.toggle-container {
+  margin: 20px;
+}
+
+.clipboard{
+  margin: 5px;
+}
+
+
 #sponsors_donations{
-  .control-label{
+  /*.control-label{
     padding-right:10px;
     text-align:left;
     margin-bottom: 5px;
-  }
-  .row, .text-muted{
-    margin-bottom:0px;
-    padding:5px;
-  }
-  .pledge_level{
+  }*/
+  /*.pledge_level{
     margin:5px;
-  }
-  .btn-sponsorship{
-    padding: 15px;
-    max-width: 250px;
-    margin: 0px;
-    white-space: normal;
-    min-width: 225px;
-    color: #999999;
-    background-color: whitesmoke;
-    border-color: #dddddd;
-  }
-  .btn-sponsorship:focus {
-    outline:none;
-  }
+  }*/
   .btn-selected{
     color: white;
     background-color: #07b4cd;
     border-color: #07a3ba;
   }
 
-  .buttons{
+  .toggle-container {
+    display: inline-block;
+  }
+
+  /*.buttons{
     height:100px;
     display: table;
     margin:auto;
     width: 75%;
-  }
+  }*/
+
   .vertical-divider {
-    height:100px;
+    /*height:100px;*/
     span{
-      padding-top: 25px;
+      padding: 25px;
       display: block;
     }
   }
-  
-  /*.toggle-container{
-    vertical-align:middle;
-    display: table-cell;
-  }
-  .vertical-divider {
+
+  /*.vertical-divider {
     padding-top: 25px;
     padding-bottom: 25px;
     position: relative;
@@ -2582,6 +2617,11 @@ ul#share-block {
     left: 0;
   }
 }
+
+.media-object {
+  width: 400px;
+}
+
 .media-data{
   margin-top: 20px;
 }
@@ -2596,11 +2636,11 @@ ul#share-block {
   }
 }
 // Pledge Wizard ---------------------------------------------------------
-.pledge-pad {
+/*.pledge-pad {
   padding: 3px;
   display: inline-block;
   text-align: right;
-}
+}*/
 #pledge_amount_per_click_input, #pledge_total_amount_input {
   margin-bottom: 15px;
   margin-top: 15px;

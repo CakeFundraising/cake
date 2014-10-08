@@ -1,10 +1,13 @@
 #sponsor_categories
   .row.section-wrapper.text-center
-    h3 Create Up To 3 Custom Pledge Levels
-    p.text-muted Name each Sponsorship Pledge Level and set the minimum and maximum pledge amount for each one. Begin with the lowest Sponsor pledge level and then add superior pledge levels one by one.
-    .row.fields-container
-      = f.semantic_fields_for :sponsor_categories, @sponsor_categories do |sc|
-        = render partial:'sponsor_categories/fields', locals:{f: sc}
-  .row.links
-    .text-center
-      = link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
+    .col-md-2
+	.col-md-8
+	    h3 Create Up To 3 Custom Pledge Levels
+	    p.text-muted Name each Sponsorship Pledge Level and set the minimum and maximum pledge amount for each one. Begin with the lowest Sponsor Pledge Level and then add higher Pledge Levels one by one.
+	    .fields-container
+	      = f.semantic_fields_for :sponsor_categories, @sponsor_categories do |sc|
+	        = render partial:'sponsor_categories/fields', locals:{f: sc}
+		.links
+	    	.text-center
+				= link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 2, :'association-insertion-method' => :prepend, :'association-insertion-node' => '.fields-container'}
+	.col-md-2

@@ -23,37 +23,44 @@
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
     .row.text-center
-      h1 Pick your Sponsorship levels
-      p.text-muted You can choose to have all sponsors appear on the same level, or you can specify up to 3 level of sponsoships 
-
-    .row
-      = semantic_form_for @campaign, html: {class:'form-inline'} do |f|
-        = f.semantic_errors *f.object.errors.keys
-        
-        = f.inputs do
-          .buttons.text-center
-            .toggle-container
-              .col-md-5
-                button.btn.btn-sponsorship#one_level Display all sponsors together in one level
-              .col-md-2
-                .vertical-divider 
-                  span or
-                  span.divider
-              .col-md-5
-                button.btn.btn-sponsorship#custom_levels Set custom sponsorship pledge levels
-                = f.input :custom_pledge_levels, as: :boolean
-          .pledge_levels
-            = render partial:'sponsor_categories/form', locals:{f: f}
+      .col-md-2
+      .col-md-8
+        h1 Pick your Sponsorship levels
+        p.text-muted You can choose to have all sponsors appear on the same designation level, or you can specify up to 3 level of sponsoships pledge levels like Gold, Silver and Bronze 
+      .col-md-2
+   
+    = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
+      = f.inputs do
+        .row.text-center
+          .col-md-2
+          .col-md-8
+            .buttons.text-center
+              .toggle-container
+                .col-md-5
+                  button.btn.btn-lg-choice#one_level Display all sponsors together a one
+                .col-md-2
+                  .vertical-divider 
+                    span or
+                .col-md-5
+                  button.btn.btn-lg-choice#custom_levels Set custom pledge levels for sponsors
+                  .hidden
+                    = f.input :custom_pledge_levels, as: :boolean
+        .row.text-center
+          = render partial:'sponsor_categories/form', locals:{f: f}
 
           - if @campaign.uncompleted?
             = f.input :step, as: :hidden, input_html:{value: :launch_wizard} 
           - else
             = f.input :step, as: :hidden, input_html:{value: :share} 
 
-        = f.actions do
-          .row.section-wrapper.text-center
-            br
-            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+      = f.actions do
+        .row.section-wrapper.text-center
+          br
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+       
+
+        
 
 
 javascript:

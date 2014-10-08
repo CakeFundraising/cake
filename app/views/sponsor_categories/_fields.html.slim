@@ -2,23 +2,23 @@
 
 .nested-fields data-position=(f.object.position)
   = f.inputs do
-    .row.pledge_level.text-center
+    .pledge_level.text-center
       .col-md-6
-        .row
+        .row.text-left
           = f.input :name, placeholder: 'Silver Sponsor', label: 'Pledge Level', input_html: {class:'pledge_name'}
         
       .col-md-6
-        .row.text-left
-          .form-group
-            label.control-label Sponsorship Amount
-            .form-wrapper
-              .form-group.inline
-                span.pledge-pad.min_value = f.object.decorate.min
-                = f.input :min_value, as: :hidden, input_html: {class:'input_min_value'}
-                = f.input :position, as: :hidden, input_html: {class:'input_position'}
-                span.pledge-pad to $
-              .form-group.inline
-                = f.input :max_value, label: false, input_html: {class:'max_value'}
-              .form-group.inline
-                - unless f.object.min_value == '50'
-                  = link_to_remove_association "Remove", f, class:'pull-right'
+        .text-left
+          /label.control-label Sponsorship Amount
+          .form-wrapper
+            .form-group
+              span.pledge-pad.min_value.control-label = f.object.decorate.min 
+                span test
+              = f.input :min_value, as: :hidden, input_html: {class:'input_min_value'}
+              = f.input :position, as: :hidden, input_html: {class:'input_position'}
+              /span.pledge-pad to $
+            .form-group
+              = f.input :max_value, label: false, input_html: {class:'max_value'}
+            .form-group
+              - unless f.object.min_value == '50'
+                = link_to_remove_association "Remove", f, class:'pull-right'

@@ -20,42 +20,54 @@
         li.active
           a data-toggle="tab" href="#share" = t('links.wizards.campaign.share', number: 4)
     
-.tab-content.campaign-wizard-solicit-wrap
+.tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    .row
-      .col-md-12
-        .share-links.text-center
-          .lead Email your Campaign link directly to potential Sponsors. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
-            
+    .row.text-center
+      .col-md-2
+      .col-md-8
+        h1 Find Sponsors
+        p.text-muted It's time to Find Sponsors and share your Campaign. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
+        .row.text-left
+          = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+      .col-md-2
+    .row.section-wrapper.text-center
+      .col-md-2
+      .col-md-8
+        h2 Share Your Campaign
+        p.text-muted Email your Campaign link directly to potential Sponsors
+        .toggle-container.text-left
           label Campaign Url: 
           input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
-          button.clipboard.btn.btn-default data-clipboard-target="campaign_url" Copy
-
-          .lead Share your Campaign link on social media too!
-          = render partial:'layouts/share_buttons'
-
-        hr
-        
-        .row
-          .col-md-2
-          .col-md-8
-            .lead Display and Link to your Campaign on your website
-            = render partial:'campaigns/show/media', locals:{campaign: @campaign}
-          .col-md-2
-
-        .share-embed
+          .row.text-center
+            button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
+      .col-md-2
+    .row.section-wrapper.text-center
+      .col-md-2
+      .col-md-8
+        h2 Share Your Campaign on Social Media
+        p.text-muted This will help your Campaign reach the most people
+        = render partial:'layouts/share_buttons'
+      .col-md-2
+    .row.section-wrapper.text-center       
+      .col-md-2
+      .col-md-8
+        h2 Embed Your Campaign on Your Website
+        p.text-muted Copy the source code below and past it on your website
+        .share-embed.text-left
           textarea#embedded_link.form-control disabled='' rows="5" 
             iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
               p 
                 | See this campaign here: 
                 = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
-          button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
-
-    .row.solicit-choose
-      .col-md-12.text-center
-        = link_to "Help me find sponsors", search_sponsors_path, class:'btn btn-primary'
-        span.text-muted.italic or
-        = link_to "Go to my account", fundraiser_home_path, class:'btn btn-success'
+          .row.text-center
+            button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
+      .col-md-2
+    .row.section-wrapper.text-center
+      .row.solicit-choose
+        .col-md-12.text-center
+          = link_to "Search for sponsors", search_sponsors_path, class:'btn btn-primary'
+          span.text-muted.italic or
+          = link_to "Go to my account", fundraiser_home_path, class:'btn btn-success'
 
 javascript:
   Cake.campaigns.status = "#{@campaign.status}";
