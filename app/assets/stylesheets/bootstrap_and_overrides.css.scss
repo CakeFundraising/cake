@@ -102,7 +102,7 @@ h3, h4 {
   max-height: 1000px;
 }
 .glyphicon {
-    padding: 0px 2px;
+    /*padding: 0px 2px;*/
 }
 
 .nav-cta{
@@ -1604,6 +1604,11 @@ table.performance-summary {
   }
 }
 
+.fields-container{
+  .inputs{
+    margin-bottom: 0px;
+  }
+}
 
 .level-divide {
   border-top: 1px dotted $gray-light;

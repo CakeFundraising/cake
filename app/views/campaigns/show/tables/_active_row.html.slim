@@ -7,6 +7,8 @@ tr.campaign
     = campaign.total_donation
   td data-title=(t('semantic.number_of', model: 'Pledges'))
     = campaign.pledges.count
+    - if campaign.pledges.any?
+      = link_to " view", "#campaign-#{campaign.id}", :class => "link", "data-toggle" => "modal"
   td data-title=(t('semantic.average', model: 'Pledge'))
     = campaign.average_pledge
   td data-title=(t('semantic.average', model: 'Don/Click'))
@@ -17,8 +19,12 @@ tr.campaign
     = campaign.average_clicks_per_pledge
   - unless campaign.past?
     td data-title=(Campaign.human_attribute_name :status)
-      div class=("text-danger" unless campaign.status == 'Launched')
-        = campaign.status
+      - if campaign.pending?
+        span = link_to "Launch", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-sm'
+      - else
+        div.btn.btn-sm.btn-success.disabled = campaign.status
+      /div class=("text-danger" if campaign.status == 'Pending')
+      /  = campaign.status
   td.truncate
     = render partial:'campaigns/show/actions', locals:{campaign: campaign}
     = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
