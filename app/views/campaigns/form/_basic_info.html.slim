@@ -2,7 +2,7 @@
 
 .row
   .col-xs-12.campaign-steps
-    = render partial:'campaigns/form/actions'
+    = render partial:'campaigns/form/actions' unless @campaign.incomplete?
   .campaign-nav.text-center  
     - if @campaign.persisted?
         ul.nav.nav-pills

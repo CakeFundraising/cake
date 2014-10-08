@@ -20,35 +20,30 @@ Cake.validations.custom_methods = ->
   return
 
 Cake.validations.form_leaving = ->
-  object_status = Cake.campaigns.status || Cake.pledges.status
-  form = $('.formtastic.pledge, .formtastic.campaign')
+  if Cake.campaigns.status or Cake.pledges.status
+    object_status = (Cake.campaigns.status || Cake.pledges.status).capitalize()
 
-  if object_status is 'incomplete' and form.length > 0
-    model_name = form.attr('class').replace('formtastic ', '')
-    object_id = form.attr('action').split('/')[2]
-    message = 'This ' + model_name + " will be cancelled. Please complete the form and press 'SAVE & CONTINUE' to continue."
-
-    form_invalid = (e)->
-      eval("Cake."+ model_name + "s.validation()")
-      e.preventDefault() unless form.valid()
-      return !form.valid()
+  if object_status is 'Incomplete'
+    message = "Are you sure you want to leave? Your changes are not saved yet."
 
     delete_object = ->
       $('#hidden_delete_link').click()
       return
 
-    show_message = (e)->
-      r = confirm(message) if form_invalid(e)
+    show_message = ->
+      r = confirm(message)
       delete_object() if r
       return
 
     #Turbolinks
     $(document).on "page:before-change", (e)->
-      show_message(e)
+      e.preventDefault()
+      show_message()
       return
     #Normal links
     $('a[data-no-turbolink="true"]').click (e)->
-      show_message(e)
+      e.preventDefault()
+      show_message()
       return
   return
 

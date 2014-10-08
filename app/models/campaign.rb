@@ -49,8 +49,10 @@ class Campaign < ActiveRecord::Base
   scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
   scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Date.today) }
 
-  scope :with_invoices, ->{ eager_load(:invoices) }
+  scope :visible, ->{ where(visible: true) }
+  scope :not_visible, ->{ where(visible: false) }
 
+  scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_paid_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
   }
@@ -72,6 +74,7 @@ class Campaign < ActiveRecord::Base
     end
 
     boolean :active, using: :active?
+    boolean :visible
 
     string :scopes, multiple: true
     string :causes, multiple: true
@@ -121,7 +124,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def self.popular
-    self.not_past.order(created_at: :desc).first(12)
+    self.not_past.not_incomplete.visible.order(created_at: :desc).first(12)
   end
 
   #Status
@@ -144,7 +147,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def launch!
-    notify_launch if self.launched!
+    notify_launch if self.launched! and self.update_attribute(:visible, true)
   end
 
   def notify_launch

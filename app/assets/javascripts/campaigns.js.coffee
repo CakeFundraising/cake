@@ -19,6 +19,14 @@ Cake.campaigns.show = (end_date, impression_id)->
   Cake.impressions.rendered(impression_id)
   return
 
+Cake.campaigns.visibility = ->
+  checkbox = $('#campaign_visible')
+  form = $('.formtastic.campaign')
+  checkbox.change ->
+    form.submit()
+    return
+  return
+
 Cake.campaigns.validation = ->
   $('.formtastic.campaign').validate(
     errorElement: "span"

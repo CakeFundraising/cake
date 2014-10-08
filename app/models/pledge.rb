@@ -3,7 +3,7 @@ class Pledge < ActiveRecord::Base
   include Formats
   include Picturable
   
-  has_statuses :uncompleted, :pending, :accepted, :rejected, :past
+  has_statuses :incomplete, :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
 
   attr_accessor :step

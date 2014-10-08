@@ -3,5 +3,8 @@ span = link_to "View", campaign, class:'btn btn-primary btn-sm'
   span = link_to "Edit", edit_campaign_path(campaign), class:'btn btn-warning btn-sm'
 - if campaign.pending?
   span = link_to "Launch", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-sm'
+
+span = link_to "Share", share_campaign_path(campaign), data:{no_turbolink: true}, class:'btn btn-primary btn-sm'
+
 - if campaign.pledges.any?
   button class="btn btn-success btn-sm" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 

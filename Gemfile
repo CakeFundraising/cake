@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.4'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'metamagic'
 

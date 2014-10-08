@@ -45,7 +45,6 @@
 //= require ./clipboard     
 //= require ./fundraisers     
 //= require ./pledge_levels     
-//= require ./uploader
 //= require ./cloudinary_crop   
 //= require ./help
 //= require ./pledge_levels_form    
@@ -60,7 +59,6 @@
 //= require ./impressions
 //= require ./pledges     
 //= require ./videos
-//= require ./crop
 //= require ./jquery.cloudinary      
 //= require ./remember_me
 //= require ./cake_popover      

@@ -1,5 +1,8 @@
 window.Cake ?= {}
 
+String::capitalize = ->
+  @charAt(0).toUpperCase() + @slice(1)
+
 Cake.init = ->
   Cake.clipboard()
   Cake.expander()
@@ -15,11 +18,12 @@ Cake.init = ->
   Cake.validations.init()
   Cake.crop.init()
   #Cake.initAddthis()
+  Cake.campaigns.visibility()
   return
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)
-$(document).on('page:change', Cake.init)
+#$(document).on('page:change', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()
