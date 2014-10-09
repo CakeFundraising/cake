@@ -19,6 +19,7 @@ Cake.init = ->
   Cake.crop.init()
   #Cake.initAddthis()
   Cake.campaigns.visibility()
+  Cake.sponsors_form()
   return
 
 $(document).ready(Cake.init)
