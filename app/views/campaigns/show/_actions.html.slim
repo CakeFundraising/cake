@@ -1,10 +1,11 @@
 - unless campaign.past?
 	= link_to edit_campaign_path(campaign), class:'btn btn-primary btn-sm' do
 		span.glyphicon.glyphicon-pencil
+span = link_to "Share", share_campaign_path(campaign), data:{no_turbolink: true}, class:'btn btn-success btn-sm'
 = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
 	span.glyphicon.glyphicon-trash
-= link_to share_campaign_path(campaign), class:'btn btn-success btn-sm' do
-	span.glyphicon.glyphicon-share
-/span = link_to "Share", share_campaign_path(campaign), data:{no_turbolink: true}, class:'btn btn-primary btn-sm'
+/= link_to share_campaign_path(campaign), class:'btn btn-success btn-sm' do
+/	span.glyphicon.glyphicon-share
+
 /- if campaign.pledges.any?
 /  button class="btn btn-success btn-sm" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 

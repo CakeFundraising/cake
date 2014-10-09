@@ -4,8 +4,8 @@
   .col-md-8
     h1 Find Sponsors
     p.text-muted It's time to Find Sponsors and share your Campaign. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
-    .row.text-left
-      = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+    /.row.text-left
+    /  = render partial:'campaigns/show/media', locals:{campaign: @campaign}
   .col-md-2
 .row.section-wrapper.text-center
   .col-md-2
@@ -30,6 +30,7 @@
   .col-md-8
     h2 Embed Your Campaign on Your Website
     p.text-muted Copy the source code below and past it on your website
+    = render partial:'campaigns/show/media', locals:{campaign: @campaign}
     .share-embed.text-left
       textarea#embedded_link.form-control disabled='' rows="5" 
         iframe width='300px' height='300px' src=badge_campaign_url(@campaign)

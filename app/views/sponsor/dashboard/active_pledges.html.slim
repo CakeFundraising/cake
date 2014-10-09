@@ -3,7 +3,7 @@
 h1.dash-head
 	span Active Pledges
 	.page-cta
-		= link_to "Find a cause to sponsor", new_pledge_path, class:'btn btn-primary btn-md'
+		= link_to "Find a Campaign to sponsor", new_pledge_path, class:'btn btn-primary btn-md'
 .row
   .col-md-12
     = render partial:'pledges/tables/active/sponsor/table', locals:{pledges: @pledges}

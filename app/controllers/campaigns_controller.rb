@@ -49,7 +49,7 @@ class CampaignsController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to fundraiser_campaigns_path, notice: 'Campaign was successfully destroyed.'
+        redirect_to fundraiser_campaigns_path, notice: 'Campaign was not saved or completed'
       end
     end
   end

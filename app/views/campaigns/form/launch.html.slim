@@ -24,19 +24,19 @@
   #launch.tab-pane.active
     .text-center
       h1 Congratulations on your new Campaign!
-      p.text-muted You are ready to launch and share your Campaign or you can start to find sponsors. 
+    /  p.text-muted You are ready to launch and share your Campaign or you can wait and find sponsors. 
 
-    .col-md-2
-    .col-md-8
-      = render partial:'campaigns/show/media', locals:{campaign: @campaign}
-    .col-md-2
+    /.col-md-2
+    /.col-md-8
+    /  = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+    /.col-md-2
 
   .row
     .col-md-12
       .col-md-2
       .col-md-8
         .col-md-5
-          = link_to "Launch Campaign", launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary'
+          = link_to "Launch Your Campaign Now", launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary'
           ul
             li Launch your Campaign now if you are organizing an informal, local campaign.
             li Accept Sponsor Pledges one by one.
@@ -44,7 +44,7 @@
         .col-md-2
           span or
         .col-md-5
-          = link_to "Find Sponsors", save_for_launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary' 
+          = link_to "Wait and Find Sponsors First", save_for_launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary' 
           ul 
             li Secure sponsors before you launch if you are organizing a larger campaign.
             li All Sponsor Pledges go live at the same time.

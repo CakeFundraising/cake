@@ -4,26 +4,9 @@
       .col-md-2
       .col-md-8
         h1 Find Sponsors
-        p.text-muted It's time to Find Sponsors and share your Campaign. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
-        .row.text-left
-          = render partial:'campaigns/show/media', locals:{campaign: @campaign}
-      .col-md-2
-    .row.section-wrapper.text-center
-      .col-md-2
-      .col-md-8
-        h2 Campaign Visibility
-        p.text-muted Would you like this campaign to be listed on the homepage and search pages while you attract Sponsors?
-        = semantic_form_for @campaign do |f|
-          .row.text-center 
-            = f.inputs do
-              = f.input :visible, as: :boolean, label:'Visible on Site'
-              = f.input :step, as: :hidden, input_html:{value: :share} 
-      .col-md-2
-    .row.section-wrapper.text-center
-      .col-md-2
-      .col-md-8
-        h2 Share Your Campaign
-        p.text-muted Email your Campaign link directly to potential Sponsors
+        p.text-muted It's time to Find Sponsors for your Campaign. Ask Sponsors you know to follow your link in order to make a donation per click Pledge supporting your Campaign today!
+        /.row.text-left
+        /  = render partial:'campaigns/show/media', locals:{campaign: @campaign}
         .toggle-container.text-left
           label Campaign Url: 
           input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
@@ -33,22 +16,54 @@
     .row.section-wrapper.text-center
       .col-md-2
       .col-md-8
-        h2 Share Your Campaign on Social Media
-        p.text-muted This will help your Campaign reach the most people
-        = render partial:'layouts/share_buttons'
-      .col-md-2
-    .row.section-wrapper.text-center       
-      .col-md-2
-      .col-md-8
-        h2 Embed Your Campaign on Your Website
-        p.text-muted Copy the source code below and past it on your website
-        .share-embed.text-left
-          textarea#embedded_link.form-control disabled='' rows="5" 
-            iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
-              p 
-                | See this campaign here: 
-                = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
-          .row.text-center
-            button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
+        h2 Search for Sponsors
+        p.text-muted Request Pledges from Active Sponsors already on Cake Fundraising 
+        br
+        = link_to "Search for sponsors", search_sponsors_path, class:'btn btn-primary'
+
+    /.row.section-wrapper.text-center
+    /  .col-md-2
+    /  .col-md-8
+    /    h2 Share Your Campaign on Social Media
+    /    p.text-muted This will help your Campaign reach the most people
+    /    = render partial:'layouts/share_buttons'
+    /  .col-md-2
+    /.row.section-wrapper.text-center
+    /  .col-md-2
+    /  .col-md-8
+    /    h2 Campaign Visibility
+    /    p.text-muted Would you like this campaign to be listed on the homepage and search pages while you attract Sponsors?
+    /    = semantic_form_for @campaign do |f|
+    /      .row.text-center 
+    /        = f.inputs do
+    /          = f.input :visible, as: :boolean, label:'Visible on Site'
+    /          = f.input :step, as: :hidden, input_html:{value: :share} 
+    /  .col-md-2
+    
+    /.row.section-wrapper.text-center
+    /  .col-md-2
+    /  .col-md-8
+    /    h2 Share Your Campaign
+    /    p.text-muted Email your Campaign link directly to potential Sponsors
+    /    .toggle-container.text-left
+    /      label Campaign Url: 
+    /      input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
+    /      .row.text-center
+    /        button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
+    /  .col-md-2
+    /.row.section-wrapper.text-center       
+    /  .col-md-2
+    /  .col-md-8
+    /    h2 Embed Your Campaign on Your Website
+    /    p.text-muted Copy the source code below and past it on your website
+    /    = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+    /    .share-embed.text-left
+    /      textarea#embedded_link.form-control disabled='' rows="5" 
+    /        iframe width='300px' height='300px' src=badge_campaign_url(@campaign)
+    /          p 
+    /            | See this campaign here: 
+    /            = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
+    /      .row.text-center
+    /        button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
       .col-md-2
 
