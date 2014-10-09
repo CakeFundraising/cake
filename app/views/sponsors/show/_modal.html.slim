@@ -1,0 +1,15 @@
+.sponsor_modal_.modal.fade id="sponsor_modal_#{sponsor.id}"
+  .modal-dialog
+    .modal-content
+      .modal-body
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        .row.text-center.clear
+          h2 Request a Pledge from #{ auto_link @sponsor}
+          p.text-muted Describe below why you are rejecting this offer.
+          
+          br
+          div Include the dropdown and message box to allow for a pledge to be made.
+          div the button below is a placeholder until the functionality gets implemented
+          br
+          = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-lg'
+
