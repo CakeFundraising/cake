@@ -1,4 +1,4 @@
-.campaign_modal.modal.fade id="campaign_modal_#{pledge.id}"
+.campaign_modal.modal.fade id="campaign_modal_#{campaign.id}"
   .modal-dialog
     .modal-content
       .modal-body
@@ -12,7 +12,7 @@
           p.text-muted Email your Campaign link directly to potential Sponsors
           .toggle-container.text-left
             label Campaign Url: 
-            input#campaign_url.form-control disabled='' type="text" value=campaign_url(pledge.campaign.id)
+            input#campaign_url.form-control disabled='' type="text" value=campaign_url(campaign.id)
             .row.text-center
               button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
         .row.section-wrapper.text-center       
@@ -21,10 +21,10 @@
           /= render partial:'campaigns/show/media', locals:{campaign: @campaign}
           .share-embed.text-left
             textarea#embedded_link.form-control disabled='' rows="5" 
-              iframe width='300px' height='300px' src=badge_campaign_url(pledge.campaign.id)
+              iframe width='300px' height='300px' src=badge_campaign_url(campaign.id)
                 p 
                   | See this campaign here: 
-                  = link_to pledge.campaign.mission, campaign_url(pledge.campaign.id), target: :_blank
+                  = link_to campaign.mission, campaign_url(campaign.id), target: :_blank
             .row.text-center
               button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
 

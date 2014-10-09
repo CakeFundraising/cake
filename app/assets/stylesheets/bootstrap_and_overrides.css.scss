@@ -2922,6 +2922,12 @@ ul#share-block {
 
 .modal {
   white-space: normal;
+
+  .section-wrapper {
+    border-top: 1px dotted #999999;
+    padding-top: 15px;
+    margin: 15px 0;
+  }
 }
 .modal-body{
   padding: 35px;

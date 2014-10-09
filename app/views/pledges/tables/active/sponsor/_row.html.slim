@@ -5,10 +5,6 @@ tr.pledge id=(pledge.id)
     = auto_link pledge.fundraiser
   td data-title=(Campaign.model_name.human)
     = auto_link pledge.campaign
-  /td data-title=(Pledge.human_attribute_name :causes)
-  /  = pledge.cause
-  /td data-title=(Pledge.human_attribute_name :scopes)
-  /  = pledge.scopes.first
   td data-title=(Pledge.human_attribute_name :end_date)
     = pledge.end_date
   td data-title=(Pledge.model_name.human)
@@ -20,21 +16,10 @@ tr.pledge id=(pledge.id)
   td.truncate.min-width
     - if pledge.increase_requested
       button.btn.btn-sm.btn-warning.btn-sm.disabled Increase Requested
-      
     = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
-
-    / = link_to nil do
-    /   span.glyphicon.glyphicon-share
-
     = link_to edit_pledge_path(pledge), class:'btn btn-sm btn-primary edit_button' do
       span.glyphicon.glyphicon-pencil
-    span = link_to "Share", share_pledge_path(pledge), data:{no_turbolink: true}, class:'btn btn-warning btn-sm'
-
-    /button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
-    /  span.glyphicon.glyphicon-plus
-
+    button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{pledge.id}" data-toggle="modal"
+      = "Share"
+    = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
 tr.empty-tr
-
-/tr.modal 
-/  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
-
