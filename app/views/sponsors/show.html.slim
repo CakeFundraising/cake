@@ -46,10 +46,7 @@
               .col-md-12.text-center
                 .request-pledge
                   .main-cta
-                    = link_to new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-xl' do
-                      i.glyphicon.glyphicon-chevron-right
-                        .glyph-spacing = "Request Pledge"
-
+                    = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-xl'
 
   .white
     .container
