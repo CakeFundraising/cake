@@ -11,8 +11,13 @@ tr.pledge id=(pledge.id)
     = humanized_money_with_symbol pledge.total_amount
   td data-title=(Pledge.human_attribute_name :donation_click)
     = humanized_money_with_symbol pledge.amount_per_click
+  td data-title=(Pledge.human_attribute_name :clicks)
+    = pledge.clicks_count
   td data-title=("Total")
-    = '$3,245'
+    - if pledge.invoice.present?
+      = pledge.invoice.due 
+    - else
+      = '$0.00'
   td.truncate.min-width
     - if pledge.increase_requested
       button.btn.btn-sm.btn-warning.btn-sm.disabled Increase Requested

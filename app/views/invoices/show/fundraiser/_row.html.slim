@@ -1,5 +1,9 @@
 tr.invoice
   td data-title = (Sponsor.model_name.human)
+    = "10/09/2014"
+  td data-title = (Sponsor.model_name.human)
+    = "2325"
+  td data-title = (Sponsor.model_name.human)
     = auto_link invoice.sponsor
   td data-title = (Invoice.human_attribute_name :clicks)
     = invoice.clicks
@@ -7,8 +11,8 @@ tr.invoice
     = humanized_money_with_symbol invoice.click_donation
   td data-title = (Invoice.human_attribute_name :due)
     = humanized_money_with_symbol invoice.due
-  td data-title = (Invoice.human_attribute_name :status)
-    = invoice.status
+  /td data-title = (Invoice.human_attribute_name :status)
+  /  = invoice.status
   td.truncate.min-width
     = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
 tr.empty-tr
