@@ -3,10 +3,6 @@ Cake.pledge_levels.levels_form ?= {}
 Cake.pledge_levels.levels_form.set_position = (item, position)->
   item.attr('data-position', position)
   item.find('.input_position').val(position)
-  #if posiiton == 1
-  #  item.find('.control-label').html("test 1")
-  #if posiiton == 2 
-  #  item.find('.control-label').html("test 2")
   return
 
 #Set min value input
