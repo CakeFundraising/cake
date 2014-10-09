@@ -1,5 +1,5 @@
 .row.text-center
-  h1 Launched Campaign
+  /h1 Campaign is Launched
   .col-md-2
   .col-md-8
     h1 Find Sponsors
@@ -39,3 +39,8 @@
       .row.text-center
         button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
   .col-md-2
+
+
+javascript:
+  $(document).ready(Cake.sponsors_form);
+  $(document).on('page:load', Cake.sponsors_form);
