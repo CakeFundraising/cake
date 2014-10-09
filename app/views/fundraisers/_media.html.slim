@@ -1,11 +1,14 @@
 .media
-  = link_to fundraiser_path(@fundraiser), class:'pull-left' do
-    = @fundraiser.picture.avatar class:'media-object fr-dash-avatar'
-  .media-body
-    h4.media-heading = @fundraiser.name
-    .data.help-block
-      div.fr-name = @fundraiser.manager_name
-      div.fr-manager-email 
-	      span = @fundraiser.manager_email
-	      span.fr-manager-email-edit = link_to "Edit", public_profile_path
-      = stripe_buttons
+  = semantic_form_for @fundraiser do |f|
+    = f.inputs do
+      .row 
+        .col-md-4
+          = render partial:'pictures/avatar_form', locals:{f: f}
+        .col-md-8.media-block
+          h4.media-heading = @fundraiser.name
+          .data.help-block
+            div.fr-name = @fundraiser.manager_name
+            div.fr-manager-email 
+              span = @fundraiser.manager_email
+              span.fr-manager-email-edit = link_to "Edit", public_profile_path
+            = stripe_buttons

@@ -5,7 +5,7 @@
     .pledge_level.text-center
       .col-md-6
         .row.text-left
-          = f.input :name, placeholder: 'Silver Sponsor', label: 'Lowest Pledge Level', input_html: {class:'pledge_name'}
+          = f.input :name, placeholder: 'Silver Sponsor', label: 'Pledge Level', input_html: {class:'pledge_name'}
         
       .col-md-6
         .text-left
@@ -19,6 +19,5 @@
               /span.pledge-pad to $
             .form-group
               = f.input :max_value, label: false, input_html: {class:'max_value'}
-            .form-group
               - unless f.object.min_value == '50'
-                = link_to_remove_association "Remove", f, class:'pull-right'
+                = link_to_remove_association "Remove", f, class: 'btn btn-success pull-right'
