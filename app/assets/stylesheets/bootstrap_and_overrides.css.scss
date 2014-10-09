@@ -98,6 +98,9 @@ h3, h4 {
 .navbar-nav{
   margin: 10px 0px 10px -1px !important;
 }
+.navbar-nav a{
+  border-radius: 5px;
+}
 .navbar-collapse{
   max-height: 1000px;
 }
@@ -128,13 +131,16 @@ h3, h4 {
   }
 }
 
-ul.nav.nav-pills {
-  background-color: #ffffff;
-  padding: 10px 50px;
-  border: 1px solid #f1f1f1;
-  border-radius: 15px;
-  li{
-    padding:0 5px;
+.campaign-nav {
+
+  ul.nav.nav-pills {
+    background-color: #ffffff;
+    padding: 10px 50px;
+    border: 1px solid #f1f1f1;
+    border-radius: 15px;
+    li{
+      padding:0 5px;
+    }
   }
 }
 
@@ -478,6 +484,25 @@ p.signup-social span:before, p.signup-social span:after {
   margin: 10px 0px 0px 5px !important;
   padding: 5px 10px 5px 10px !important;
   color: #fff !important;*/
+}
+
+.main-cta{
+  margin-top:10px;
+}
+
+.btn-xl{
+  padding: 15px 0px !important;
+  width: 100% !important;
+  font-size: 16px !important;
+  .glyph-spacing{
+    padding-right: 8%;
+    margin-top: -1px;
+    display: inline-block;
+    float: left;
+    font-size: 20px !important;
+    font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+    padding-left: 8%;
+  }
 }
 
 .btn-lg{
@@ -877,7 +902,7 @@ p.signup-social {
   margin-top: 25px;
 }
 .inputs {
-  text-align: center;
+  text-align: left;
   margin-bottom: 15px;
 }
 
@@ -1817,7 +1842,7 @@ header {
 .popular {
   list-style: none;
   text-align: center;
-  margin: 10px auto;
+  margin: 5px auto;
   li > a:hover {
     background: $brand-primary;
   }
@@ -2597,9 +2622,15 @@ ul#share-block {
     display:block;
     
   }
-  .inline {
-      display:inline-block !important;
-    }
+  
+}
+.inline {
+  display:inline-block !important;
+}
+.icon-arrow-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
 }
 
 .campaign-preview-box {

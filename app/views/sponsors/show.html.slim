@@ -45,7 +45,10 @@
             .row
               .col-md-12.text-center
                 .request-pledge
-                  = link_to "Request Pledge", new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-block'
+                  .main-cta
+                    = link_to new_pledge_request_path(sponsor_id: @sponsor), class:'btn btn-primary btn-xl' do
+                      i.glyphicon.glyphicon-chevron-right
+                        .glyph-spacing = "Request Pledge"
 
 
   .white
@@ -170,7 +173,7 @@
       .col-md-12
         ul.nav.nav-tabs
           li.active
-            a data-toggle="tab" href="#active-pledges" Active Pledges
+            a data-toggle="tab" href="#active-pledges" Current Pledges
           li
             a data-toggle="tab" href="#past" Past Pledges
           li

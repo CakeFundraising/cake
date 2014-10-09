@@ -62,7 +62,8 @@
               h5.pull-left = auto_link @pledge.sponsor, truncate: 26
               h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
               .clear.campaign
-                = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-lg'
+                .main-cta
+                  = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-xl'
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @pledge.headline
           p.story.expander = @pledge.description

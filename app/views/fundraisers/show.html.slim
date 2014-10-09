@@ -43,7 +43,10 @@
               = basic_list_item(Fundraiser.human_attribute_name(:local_rank), @fundraiser.local_rank)
           .row
             .col-md-12.text-center
-              = link_to t('actions.make_pledge'), new_pledge_path(fundraiser: @fundraiser), class:'btn btn-primary btn-lg'
+              .main-cta
+                = link_to new_pledge_path(fundraiser: @fundraiser), class:'btn btn-primary btn-xl' do
+                  i.glyphicon.glyphicon-chevron-right
+                        .glyph-spacing = t('actions.make_pledge')
 
 
   .white
@@ -169,7 +172,7 @@
       .col-md-12
         ul.nav.nav-tabs
           li.active
-            a data-toggle="tab" href="#active-campaigns" Active Campaigns
+            a data-toggle="tab" href="#active-campaigns" Current Campaigns
           li
             a data-toggle="tab" href="#past" Past Campaigns
           li
