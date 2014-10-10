@@ -1,6 +1,6 @@
 tr.invoice
   td data-title = (Pledge.model_name.human)
-    = "10/09/2014"
+    = invoice.created_at
   td data-title = (Pledge.model_name.human)
     = invoice.id
   td data-title = (Pledge.model_name.human)
@@ -18,13 +18,13 @@ tr.invoice
   - unless invoice.paid?
     td.truncate.min-width
       = invoice_pay_button(invoice)
-      = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
+      //= link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
 
 tr.empty-tr
 
 - unless current_sponsor.decorate.stripe_customer?
   javascript:
-    $(".pay_button##{invoice.id}").unbind("click").click(function(e) {
+    $(".pay_button##{invoice.object.id}").unbind("click").click(function(e) {
       e.preventDefault();
       
       Cake.invoice_payment_handler.open({
