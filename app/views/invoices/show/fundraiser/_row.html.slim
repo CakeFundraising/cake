@@ -1,8 +1,8 @@
 tr.invoice
   td data-title = (Sponsor.model_name.human)
     = "10/09/2014"
-  td data-title = (Sponsor.model_name.human)
-    = "2325"
+  td data-title = (Invoice.model_name.human)
+    = invoice.id
   td data-title = (Sponsor.model_name.human)
     = auto_link invoice.sponsor
   td data-title = (Invoice.human_attribute_name :clicks)

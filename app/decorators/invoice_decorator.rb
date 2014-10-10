@@ -15,4 +15,8 @@ class InvoiceDecorator < ApplicationDecorator
   def click_donation
     h.humanized_money_with_symbol object.click_donation
   end
+
+  def id
+    "##{object.id}"
+  end
 end

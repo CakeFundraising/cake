@@ -4,8 +4,8 @@
       thead.cf
         tr
           th = 'Date'
-          th = 'Invoice'
-          th = 'Pledge'
+          th = Invoice.model_name.human
+          th = Pledge.model_name.human
           th = Fundraiser.model_name.human
           th = Invoice.human_attribute_name :clicks
           th = Invoice.human_attribute_name :donation_click
