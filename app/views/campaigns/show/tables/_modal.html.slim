@@ -26,7 +26,7 @@
             = render partial:'layouts/share_buttons'
           .row.section-wrapper.text-center
             h2 Email your Campaign
-            p.text-muted Email your Campaign link directly to potential Sponsors
+            p.text-muted Email your Campaign directly to your friends and supporters
             .toggle-container.text-left
               div
                 label Campaign Url: 
@@ -34,7 +34,7 @@
               div.pull-right
                 button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
           .row.section-wrapper.text-center       
-            h2 Embed on Your Website
+            h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website
             /= render partial:'campaigns/show/media', locals:{campaign: @campaign}
             .toggle-container.text-left
