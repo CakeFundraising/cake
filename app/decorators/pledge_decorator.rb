@@ -32,6 +32,10 @@ class PledgeDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.amount_per_click
   end
 
+  def total_charge
+    h.humanized_money_with_symbol object.total_charge
+  end
+
   def fundraiser_name(length)
     h.truncate(object.fundraiser.name, length: 36)
   end

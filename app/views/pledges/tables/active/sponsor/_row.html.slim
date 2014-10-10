@@ -17,7 +17,7 @@ tr.pledge id=(pledge.id)
     - if pledge.invoice.present?
       = pledge.invoice.due 
     - else
-      = '$0.00'
+      = pledge.total_charge
   td.truncate.min-width
     - if pledge.increase_requested
       button.btn.btn-sm.btn-warning.btn-sm.disabled Increase Requested
