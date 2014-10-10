@@ -2575,11 +2575,12 @@ ul#share-block {
 
 
 .toggle-container {
-  margin: 20px;
+  margin: 5px;
+  padding: 15px;
 }
 
 .clipboard{
-  margin: 5px;
+  margin: 5px 0px;
 }
 
 
@@ -2925,12 +2926,13 @@ ul#share-block {
 
   .section-wrapper {
     border-top: 1px dotted #999999;
-    padding-top: 15px;
+    padding: 0px;
     margin: 15px 0;
   }
 }
 .modal-body{
   padding: 35px;
+  margin: 0px 15px;
 }
 .modal-footer{
   margin-top: 0px;
