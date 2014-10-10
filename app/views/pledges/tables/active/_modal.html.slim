@@ -4,12 +4,14 @@
       .modal-body
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         .row.text-center.clear
+          h1 Let the world see the good that #{pledge.sponsor} does!
+        .row.text-center.clear
           h2 Share on Social Media
-          p.text-muted This will help your Campaign reach the most people
+          p.text-muted Share your Pledge and ask your friends to reshare!
           = render partial:'layouts/share_buttons'
         .row.section-wrapper.text-center
-          h2 Email your Campaign
-          p.text-muted Email your Campaign link directly to potential Sponsors
+          h2 Email your Pledge
+          p.text-muted Email your Pledge to your customers, friends and business associates.
           .toggle-container.text-left
             label Campaign Url: 
             input#campaign_url.form-control disabled='' type="text" value=campaign_url(pledge.campaign.id)
