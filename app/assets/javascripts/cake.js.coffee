@@ -20,6 +20,8 @@ Cake.init = ->
   #Cake.initAddthis()
   Cake.sponsors_form()
   Cake.campaigns.init()
+
+  Cake.bootstrap_overrides.hide_alert()
   return
 
 $(document).ready(Cake.init)
