@@ -19,6 +19,7 @@
 .tab-content.campaign-wizard-wrap
   #story.tab-pane.active
     = semantic_form_for @pledge do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .text-center
           h1 Pledge Purpose

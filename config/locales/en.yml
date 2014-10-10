@@ -144,7 +144,7 @@ en:
         tell_your_story: 2. Tell Your Story
         pledge_levels: 3. Set Pledge Levels
         launch: 4. Launch Campaign
-        share: "%{number}. Find Sponsors"
+        share: 5. Find Sponsors
       pledge: 
         your_pledge: 1. Your Pledge
         tell_your_story: 2. Tell Your Story

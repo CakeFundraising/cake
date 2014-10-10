@@ -24,7 +24,7 @@ Cake.validations.form_leaving = ->
     object_status = (Cake.campaigns.status || Cake.pledges.status).capitalize()
 
   if object_status is 'Incomplete'
-    message = "Are you sure you want to leave? Your changes are not saved yet."
+    message = "Are you sure you want to leave? \n Your changes will not be saved."
 
     delete_object = ->
       $('#hidden_delete_link').click()

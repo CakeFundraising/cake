@@ -18,6 +18,8 @@ class Picture < ActiveRecord::Base
     large: [600, 600]
   }
 
+  #validates :avatar, :banner, presence: true
+
   before_save do
     unless Rails.env.test?
       get_cloudinary_identifier(:avatar) if self.avatar.present? and self.avatar_changed?

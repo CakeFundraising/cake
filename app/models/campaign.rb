@@ -37,12 +37,9 @@ class Campaign < ActiveRecord::Base
   validates :goal, numericality: {greater_than: 0}
 
   validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
-  #validates :mission, :headline, :story, :avatar, :banner, presence: true, if: :persisted?
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
 
-  #validates :sponsor_categories, length: {is: SponsorCategory::LENGTH}, if: ->{ self.custom_pledge_levels and self.persisted? }
-  #validate :sponsor_categories_overlapping, :sponsor_categories_max_min_value, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Date.today) }

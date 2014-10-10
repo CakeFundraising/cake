@@ -1,6 +1,5 @@
 class CampaignsController < InheritedResources::Base
   authorize_resource
-  before_action :check_if_incomplete, only: :launch_wizard
 
   WIZARD_STEPS = [
     :basic_info,
@@ -110,9 +109,5 @@ class CampaignsController < InheritedResources::Base
     ], 
     sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy]
     ])
-  end
-
-  def check_if_incomplete
-    redirect_to edit_campaign_path(resource), alert: "This campaign can't be launched again." unless resource.incomplete?
   end
 end

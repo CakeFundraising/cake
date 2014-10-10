@@ -1,0 +1,14 @@
+- if @campaign.valid?
+  = render partial: "campaigns/form/launch/pending"
+- else
+  .text-center
+    h1 This Campaign is incomplete!
+    p.text-muted Please return to step 2 and complete all required fields.
+    .text-left
+      = semantic_form_for @campaign do |f|
+        = f.semantic_errors *f.object.errors.keys
+    hr
+    .row.text-center
+      = link_to "Go to Step 2", tell_your_story_campaign_path(@campaign), class:'btn btn-primary'
+    br
+    br

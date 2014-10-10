@@ -1,0 +1,14 @@
+.col-md-5
+  = link_to "Launch Your Campaign Now", launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary'
+  ul
+    li Launch your Campaign now if you are organizing an informal, local campaign.
+    li Accept Sponsor Pledges one by one.
+    li Sponsor Pledges are immediately live and clickable.
+.col-md-2
+  span or
+.col-md-5
+  = link_to "Wait and Find Sponsors First", save_for_launch_campaign_path(@campaign), method: :patch, class: 'btn btn-primary' 
+  ul 
+    li Secure sponsors before you launch if you are organizing a larger campaign.
+    li All Sponsor Pledges go live at the same time.
+    li Campaign and Pledge links are not live or clickable until you choose to officially launch your Campaign.

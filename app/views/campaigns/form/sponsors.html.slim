@@ -11,14 +11,10 @@
         = link_to t('links.wizards.campaign.tell_your_story'), tell_your_story_campaign_path(@campaign)
       li.active
         a data-toggle="tab" href="#sponsors_donations" = t('links.wizards.campaign.pledge_levels')
-      - if @campaign.incomplete? 
-        li
-          = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
-        li
-          = link_to t('links.wizards.campaign.share', number: 5), share_campaign_path(@campaign)
-      - else
-        li
-          = link_to t('links.wizards.campaign.share', number: 4), share_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
     
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
@@ -48,11 +44,7 @@
                     = f.input :custom_pledge_levels, as: :boolean
         .row.text-center
           = render partial:'sponsor_categories/form', locals:{f: f}
-
-          - if @campaign.incomplete?
-            = f.input :step, as: :hidden, input_html:{value: :launch_wizard} 
-          - else
-            = f.input :step, as: :hidden, input_html:{value: :share} 
+          = f.input :step, as: :hidden, input_html:{value: :launch_wizard} 
 
       = f.actions do
         .row.section-wrapper.text-center
@@ -60,11 +52,7 @@
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
        
 
-        
-
-
 javascript:
   $(document).ready(Cake.pledge_levels.init);
   $(document).on('page:load', Cake.pledge_levels.init);
-  Cake.campaigns.status = "#{@campaign.status}";
   

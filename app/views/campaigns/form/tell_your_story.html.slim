@@ -11,18 +11,15 @@
         a data-toggle="tab" href="#story" = t('links.wizards.campaign.tell_your_story')
       li
         = link_to t('links.wizards.campaign.pledge_levels'), sponsors_campaign_path(@campaign)
-      - if @campaign.incomplete?
-        li
-          = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
-        li
-          = link_to t('links.wizards.campaign.share', number: 5), share_campaign_path(@campaign)
-      - else
-        li
-          = link_to t('links.wizards.campaign.share', number: 4), share_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.launch'), launch_wizard_campaign_path(@campaign)
+      li
+        = link_to t('links.wizards.campaign.share'), share_campaign_path(@campaign)
 
 .tab-content.campaign-wizard-wrap
   #story.tab-pane.active
     = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .text-center
           h1 Campaign Purpose
