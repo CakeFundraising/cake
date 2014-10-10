@@ -97,6 +97,11 @@ class CampaignsController < InheritedResources::Base
     redirect_to share_campaign_path(resource), notice: 'Campaign is launched now!'
   end
 
+  def toggle_visibility
+    resource.toggle! :visible
+    render nothing: true
+  end
+
   protected
 
   def permitted_params

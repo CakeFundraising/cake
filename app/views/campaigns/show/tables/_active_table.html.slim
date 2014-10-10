@@ -13,6 +13,7 @@
           th = t('semantic.average', model: 'Clicks / Pledge')
           /- unless defined? hide_status and hide_status
           th = Campaign.human_attribute_name :status
+          th = Campaign.human_attribute_name :visibility
           th
       tbody
         = render partial:'campaigns/show/tables/active_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign

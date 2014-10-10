@@ -37,6 +37,7 @@ Cake::Application.routes.draw do
       get :badge
       patch :launch
       patch :save_for_launch
+      patch :toggle_visibility
 
       scope :pictures, controller: :cropping do
         post :crop

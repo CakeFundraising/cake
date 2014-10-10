@@ -20,10 +20,15 @@ Cake.campaigns.show = (end_date, impression_id)->
   return
 
 Cake.campaigns.visibility = ->
-  checkbox = $('#campaign_visible')
-  form = $('.formtastic.campaign')
-  checkbox.change ->
-    form.submit()
+  containers = $('.visibility_buttons')
+  links = containers.find('a')
+
+  links.on "ajax:success", (e, data, status, xhr) ->
+    current = $(this)
+    opposite = current.siblings('a')
+
+    opposite.removeClass('hidden')
+    current.addClass('hidden')
     return
   return
 
