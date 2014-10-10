@@ -2,6 +2,10 @@
   .modal-dialog
     .modal-content
       .modal-body
+       
+        /Needs to get reset when the modal is opened
+        = display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
+        
         - if campaign.pending?
           button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
           .row.text-center.clear
@@ -25,7 +29,7 @@
             p.text-muted This will help your Campaign reach the most people
             = render partial:'layouts/share_buttons'
           .row.section-wrapper.text-center
-            h2 Email your Campaign
+            h2 Email Your Campaign
             p.text-muted Email your Campaign directly to your friends and supporters
             .toggle-container.text-left
               div
