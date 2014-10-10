@@ -23,12 +23,28 @@ Cake.campaigns.visibility = ->
   containers = $('.visibility_buttons')
   links = containers.find('a')
 
-  links.on "ajax:success", (e, data, status, xhr) ->
+  links.on("ajax:success", (e, data, status, xhr) ->
     current = $(this)
-    opposite = current.siblings('a')
+    opposite = current.siblings("a")
 
-    opposite.removeClass('hidden')
-    current.addClass('hidden')
+    opposite.removeClass "hidden"
+    current.addClass "hidden"
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert "There were an error when updating campaign, please reload this page and try again."
+    return
+  return
+
+Cake.campaigns.launch = ->
+  buttons = $('.launch_button')
+  launched_button = '<div class="btn btn-sm btn-default disabled">Launched</div>'
+
+  buttons.on("ajax:success", (e, data, status, xhr) ->
+    current = $(this)
+    current.closest('td').html(launched_button)
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert "There were an error when updating campaign, please reload this page and try again."
     return
   return
 
@@ -56,4 +72,9 @@ Cake.campaigns.validation = ->
       'campaign[story]':
         required: true
   )
+  return
+
+Cake.campaigns.init = ->
+  Cake.campaigns.visibility()
+  Cake.campaigns.launch()
   return

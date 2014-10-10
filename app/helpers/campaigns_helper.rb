@@ -6,7 +6,7 @@ module CampaignsHelper
   def status_buttons(campaign)
     if campaign.pending?
       content_tag :span do
-        link_to "Launch", launch_campaign_path(campaign), method: :patch, class:'btn btn-success btn-sm'
+        link_to "Launch", launch_campaign_path(campaign), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button'
       end
     elsif campaign.incomplete?
       content_tag(:div, campaign.status, class:'btn btn-sm btn-danger disabled')

@@ -94,7 +94,7 @@ class CampaignsController < InheritedResources::Base
 
   def launch
     resource.launch!
-    redirect_to share_campaign_path(resource), notice: 'Campaign is launched now!'
+    render nothing: true
   end
 
   def toggle_visibility

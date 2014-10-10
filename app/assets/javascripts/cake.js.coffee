@@ -18,8 +18,8 @@ Cake.init = ->
   Cake.validations.init()
   Cake.crop.init()
   #Cake.initAddthis()
-  Cake.campaigns.visibility()
   Cake.sponsors_form()
+  Cake.campaigns.init()
   return
 
 $(document).ready(Cake.init)
