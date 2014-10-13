@@ -37,7 +37,7 @@ Cake.campaigns.visibility = ->
 
 Cake.campaigns.launch = ->
   buttons = $('.launch_button')
-  launched_button = '<div class="btn btn-sm btn-default disabled">Launched</div>'
+  launched_button = '<div class="btn btn-sm btn-success disabled">Launched</div>'
 
   buttons.on("ajax:success", (e, data, status, xhr) ->
     current = $(this)

@@ -244,6 +244,10 @@ h3, h4 {
   color: #fff !important;
 }
 
+.btn-left{
+  margin-left: 10px !important;
+}
+
 @media (max-width: 570px){
   .nav-tabs{
     font-size: 11px;
@@ -662,6 +666,7 @@ p.signup-social span:before, p.signup-social span:after {
     padding: 0px 5px;
     background-color:#fff !important;
     color:#555555 !important;
+    display:inline-block;
   }
 
   h4{
@@ -678,7 +683,7 @@ p.signup-social span:before, p.signup-social span:after {
   }
 
   .search-panel-title{
-    margin: 10px 0px 10px 5px;
+    margin: 10px 0px 5px 5px;
     float: left;
     color: #555555;
     font-family: "museo_sans500", Helvetica, Arial, sans-serif;
@@ -1930,7 +1935,7 @@ header {
   .thumbnail {
     background-color: #fff;
     padding:0px;
-    border:0px;
+    /*border:0px;*/
 
     img {
       /*max-height: 200px;*/

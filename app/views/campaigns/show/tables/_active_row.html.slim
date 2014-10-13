@@ -8,7 +8,7 @@ tr.campaign
   td data-title=(t('semantic.number_of', model: 'Pledges'))
     = campaign.pledges.count
     - if campaign.pledges.any?
-      = link_to " View", "#campaign-#{campaign.id}", class: "link", data: {toggle: :modal}
+      = link_to " View", "#campaign-#{campaign.id}", class: "btn btn-sm btn-primary btn-left", data: {toggle: :modal}
   td data-title=(t('semantic.average', model: 'Pledge'))
     = campaign.average_pledge
   td data-title=(t('semantic.average', model: 'Don/Click'))
