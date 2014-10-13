@@ -39,6 +39,7 @@
 //= require ./about
 //= require ./addthis
 //= require ./bootstrap_overrides
+//= require ./browsers
 //= require ./clicks
 //= require ./extra_donation_pledges  
 //= require ./locations     

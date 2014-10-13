@@ -2,7 +2,6 @@ class Click < ActiveRecord::Base
   belongs_to :pledge, counter_cache: true
 
   validates :request_ip, :user_agent, :http_encoding, :http_language, :pledge, presence: true
-  #validates_associated :pledge
   validate :unique_click
 
   scope :equal_to, ->(click){

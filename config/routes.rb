@@ -153,6 +153,12 @@ Cake::Application.routes.draw do
     patch :rendered
   end
 
+  resources :browsers, only: :create do
+    collection do
+      get :current
+    end
+  end
+
   #Settings
   scope :settings do
     get :public_profile, controller: :settings

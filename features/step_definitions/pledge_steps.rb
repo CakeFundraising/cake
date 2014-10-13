@@ -84,7 +84,7 @@ end
 Given(/^the user has already donated to that pledge$/) do
   @click = FactoryGirl.create(:firefox_click,
     user_agent: page.driver.execute_script('return navigator.userAgent;'),
-    #browser_plugins: page.driver.execute_script('return Cake.browser.plugins();'),
+    #browser_plugins: page.driver.execute_script('return Cake.browsers.plugins();'),
     pledge: model(:pledge), 
     request_ip: "127.0.0.1"
   )

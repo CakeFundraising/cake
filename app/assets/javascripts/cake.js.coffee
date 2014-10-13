@@ -15,13 +15,14 @@ Cake.init = ->
   Cake.pledges.update_triggers()
   Cake.coupons.tos()
   Cake.clicks.get_plugins()
+  Cake.bootstrap_overrides.hide_alert()
+  #Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
-  #Cake.initAddthis()
   Cake.sponsors_form()
   Cake.campaigns.init()
 
-  Cake.bootstrap_overrides.hide_alert()
+  Cake.browsers.create()
   return
 
 $(document).ready(Cake.init)

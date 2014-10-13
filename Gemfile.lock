@@ -62,10 +62,10 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    browser (0.7.0)
     builder (3.1.4)
     callback_skipper (1.0.0)
       activerecord (>= 3.0)
+    callsite (0.0.11)
     cancancan (1.7.1)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -201,6 +201,10 @@ GEM
       treetop (~> 1.4.8)
     meta-tags (2.0.0)
       actionpack (>= 3.0.0)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     metamagic (3.1.6)
       rails (>= 3.0.0)
     method_source (0.8.2)
@@ -270,6 +274,8 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -463,7 +469,6 @@ DEPENDENCIES
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.1.1)
   bootstrap-switch-rails
-  browser
   callback_skipper
   cancancan
   capybara
@@ -490,6 +495,7 @@ DEPENDENCIES
   kaminari
   launchy
   meta-tags
+  meta_request
   metamagic
   money-rails (~> 0.12.0)
   omniauth

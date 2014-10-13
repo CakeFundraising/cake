@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_fundraiser, :current_sponsor
+  #before_filter :get_browser_plugins
+  helper_method :current_fundraiser, :current_sponsor, :current_browser
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
       request.env.reject!('HTTP_X_XHR_REFERER')
       redirect_to path 
     end
+  end
+
+  def current_browser
+    Browser.find(session[:browser_id]) if session[:browser_id].present?
   end
 
   protected 

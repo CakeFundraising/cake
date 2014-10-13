@@ -2,7 +2,7 @@ Cake.impressions ?= {}
 
 Cake.impressions.rendered = (impression_id)->
   if impression_id
-    plugins = Cake.browser.plugins()
+    plugins = Cake.browsers.plugins()
     url = "/impressions/" + impression_id + "/rendered"
 
     $.ajax(
