@@ -15,11 +15,9 @@
 	span.glyphicon.glyphicon-trash
 
 
-
 javascript:
-  $('#campaign_modal_#{campaign.id}').on('show.bs.modal', function (e) {
-    $("meta[property='og\\:title']").attr("content", "Click and help support us! It is 100% free!");
-    $("meta[property='og\\:url']").attr("content", "#{request.original_url}");
-    $("meta[property='og\\:image']").attr("content", "#{campaign.picture.avatar_path}");
-    $("meta[property='og\\:description']").attr("content", "#{campaign.mission}");
-  })
+	var addthis_share = addthis_share || {}
+	addthis_share = {
+		url: "#{campaign_url(campaign.id)}"
+	}
+
