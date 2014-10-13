@@ -4,7 +4,7 @@
       .modal-body
        
         /Needs to get reset when the modal is opened
-        = display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
+        /= display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
         
         - if campaign.pending?
           button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
@@ -50,6 +50,7 @@
                       = link_to campaign.mission, campaign_url(campaign.id), target: :_blank
               div.pull-right
                 button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
+  
 
 
 

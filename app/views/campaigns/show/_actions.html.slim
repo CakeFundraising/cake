@@ -1,13 +1,32 @@
 - unless campaign.past?
 	= link_to edit_campaign_path(campaign), class:'btn btn-primary btn-sm' do
 		span.glyphicon.glyphicon-pencil
+	
+
 	button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{campaign.id}" data-toggle="modal"
 		= "Share"
 	= render partial:'campaigns/show/tables/modal', locals:{campaign: campaign}
 
+	/button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{campaign.id}" data-toggle="modal"
+	/	= "Share"
+	/= render partial:'campaigns/show/tables/modal', locals:{campaign: campaign}
+
 = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
 	span.glyphicon.glyphicon-trash
 
+
+
+javascript:
+  $('#campaign_modal_#{campaign.id}').on('show.bs.modal', function (e) {
+    console.log("#campaign_modal_#{campaign.id}");
+    $("meta[property='og\\:title']").attr("content", "Click and help support us! It is 100% free!");
+    $("meta[property='og\\:url']").attr("content", "#{request.original_url}");
+    $("meta[property='og\\:image']").attr("content", "#{campaign.picture.avatar_path}");
+    $("meta[property='og\\:description']").attr("content", "#{campaign.mission}");
+  })
+
+/= display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
+/$('meta[name=description]').attr('content', 'new value');
 
 
 /= link_to share_campaign_path(campaign), class:'btn btn-success btn-sm' do
