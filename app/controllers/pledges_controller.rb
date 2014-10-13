@@ -125,21 +125,13 @@ class PledgesController < InheritedResources::Base
   end
 
   #Clicks
-  def solicit_click
-    @plugins = permitted_params[:click][:browser_plugins] if permitted_params[:click].present?
-    @pledge = resource
-    @clicked_before = @pledge.have_donated?(request, @plugins)
-
-    render partial:'clicks/modal_content'
-  end
-
   def click
-    plugins = permitted_params[:click][:browser_plugins] if permitted_params[:click].present?
+    browser = Browser.find(params[:browser_id])
 
-    if resource.have_donated?(request, plugins)
+    if resource.click_browsers.include?(browser)
       redirect_to resource, alert:"You can contribute to any pledge just once!"
     else
-      click = Click.build_with(resource, request, plugins)
+      click = resource.clicks.build(browser: browser)
       
       if click.save
         redirect_to resource.website_url 

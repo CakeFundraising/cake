@@ -16,7 +16,10 @@ class Pledge < ActiveRecord::Base
   has_one :invoice
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
+
   has_many :clicks, dependent: :destroy
+  has_many :click_browsers, through: :clicks, source: :browser
+
   has_many :impressions, as: :impressionable
 
   delegate :active?, to: :campaign

@@ -12,13 +12,13 @@ class BrowsersController < ApplicationController
     duplicates = Browser.equal_to(browser)
 
     if duplicates.any?
-      render text: 'Browser duplicated.'
       session[:browser_id] = duplicates.first.id unless session[:browser_id].present? or duplicates.count > 1
     else
       browser.save! 
       session[:browser_id] = browser.id
-      render text: 'Browser created.'
     end
+    
+    render json: session[:browser_id]
   end
 
 end

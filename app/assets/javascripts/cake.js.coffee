@@ -14,7 +14,6 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.coupons.tos()
-  Cake.clicks.get_plugins()
   Cake.bootstrap_overrides.hide_alert()
   #Cake.initAddthis()
   Cake.validations.init()
@@ -27,7 +26,6 @@ Cake.init = ->
 
 $(document).ready(Cake.init)
 $(document).on('page:load', Cake.init)
-#$(document).on('page:change', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()

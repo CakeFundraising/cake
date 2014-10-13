@@ -1,14 +1,5 @@
 Cake.clicks ?= {}
 
-Cake.clicks.get_plugins = ->
-  if $(".click_link").length > 0
-    plugins = Cake.browsers.plugins()
-    
-    $(".click_link").attr "href", (index, value) ->
-      href = value + "?click%5Bbrowser_plugins%5D=" + encodeURIComponent(plugins)
-      href
-  return
-
 Cake.clicks.after_click = ->
   click_modal = $('#contribute_modal')
   contribute_form = click_modal.find(".formtastic.click")

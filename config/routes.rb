@@ -73,7 +73,6 @@ Cake::Application.routes.draw do
       patch :reject
       get :add_reject_message
 
-      get :solicit_click
       patch :click
     end
   end

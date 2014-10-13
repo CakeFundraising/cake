@@ -1,22 +1,9 @@
 class Click < ActiveRecord::Base
   belongs_to :pledge, counter_cache: true
+  belongs_to :browser
 
-  validates :request_ip, :user_agent, :http_encoding, :http_language, :pledge, presence: true
-  validate :unique_click
-
-  scope :equal_to, ->(click){
-    where(
-      request_ip: click.request_ip, 
-      user_agent: click.user_agent,
-      http_encoding: click.http_encoding,
-      http_language: click.http_language,
-      browser_plugins: click.browser_plugins
-    ) 
-  } 
-
-  def browser
-    "#{user_agent}|#{http_accept}|#{http_encoding}|#{http_language}|#{browser_plugins}"
-  end
+  #validates :request_ip, :user_agent, :http_encoding, :http_language, :pledge, presence: true
+  #validate :unique_click
 
   def self.build_with(pledge, request, plugins=nil)
     new(
