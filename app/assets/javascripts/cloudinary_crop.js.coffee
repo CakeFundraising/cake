@@ -3,21 +3,21 @@ Cake.crop ?= {}
 
 ########### Objects =================================================================
 Cake.pictures.avatarConstants =
-  ratio: 1.326087
+  ratio: 1.5
   versions:
     medium:
-      x: 305
-      y: 230
+      x: 300
+      y: 200
 
 Cake.pictures.bannerConstants =
-  ratio: 2.2801
+  ratio: 2
   versions:
     large: 
       x: 1400
-      y: 614
+      y: 700
     medium:
-      x: 342
-      y: 150
+      x: 340
+      y: 170
 
 Cake.pictures.qrcodeConstants =
   ratio: 1

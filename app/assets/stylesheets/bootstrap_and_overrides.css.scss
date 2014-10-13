@@ -120,6 +120,7 @@ h3, h4 {
   /*float:right;*/
   .form-control{
     height: 34px;
+    text-transform: capitalize;
   }
 }
 
@@ -488,6 +489,11 @@ p.signup-social span:before, p.signup-social span:after {
   }
 }
 
+.search-form {
+  input{
+    height:auto;
+  }
+}
 
 //Buttons -------------------------------------------------------------------------------
 
