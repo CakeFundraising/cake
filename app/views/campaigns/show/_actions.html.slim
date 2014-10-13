@@ -18,18 +18,8 @@
 
 javascript:
   $('#campaign_modal_#{campaign.id}').on('show.bs.modal', function (e) {
-    console.log("#campaign_modal_#{campaign.id}");
     $("meta[property='og\\:title']").attr("content", "Click and help support us! It is 100% free!");
     $("meta[property='og\\:url']").attr("content", "#{request.original_url}");
     $("meta[property='og\\:image']").attr("content", "#{campaign.picture.avatar_path}");
     $("meta[property='og\\:description']").attr("content", "#{campaign.mission}");
   })
-
-/= display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
-/$('meta[name=description]').attr('content', 'new value');
-
-
-/= link_to share_campaign_path(campaign), class:'btn btn-success btn-sm' do
-/	span.glyphicon.glyphicon-share
-/- if campaign.pledges.any?
-/  button class="btn btn-success btn-sm" data-target="#campaign-#{campaign.id}" data-toggle="modal" See Pledges 

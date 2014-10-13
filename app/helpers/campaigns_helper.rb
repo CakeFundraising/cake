@@ -11,7 +11,7 @@ module CampaignsHelper
     elsif campaign.incomplete?
       content_tag(:div, campaign.status, class:'btn btn-sm btn-danger disabled')
     else
-      content_tag(:div, campaign.status, class:'btn btn-sm btn-default disabled')
+      content_tag(:div, campaign.status, class:'btn btn-sm btn-success disabled')
     end
   end
 
