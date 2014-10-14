@@ -63,7 +63,7 @@
               h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
               .clear.campaign
                 .main-cta
-                  = link_to "View Campaign", @pledge.campaign, class:'btn btn-success btn-xl'
+                  = link_to "View Campaign", @pledge.campaign, class:'btn btn-primary btn-xl'
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @pledge.headline
           p.story.expander = @pledge.description
@@ -74,9 +74,10 @@
           span.h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}
           /.share.pull-right
           /  = render partial:'layouts/share_buttons'
-          /  .clearfix
-          /  h4.share-info.pull-right Please share our Pledge!
-          /= render partial:'clicks/pledge', locals:{pledge: @pledge}
+          .clearfix
+          br
+          /h4.share-info.pull-right Please share our Pledge!
+          = render partial:'clicks/pledge', locals:{pledge: @pledge}
   .container
     - if @pledge.coupons.any?
       .row

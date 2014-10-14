@@ -1,6 +1,6 @@
 Cake.expander = ->
   $('.expander').expander
-    slicePoint: 1000
+    slicePoint: 500
     widow: 4
     expandEffect: "show"
     userCollapseText: "Close"

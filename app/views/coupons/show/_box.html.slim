@@ -15,7 +15,7 @@
       .col-md-6
         h2 = coupon
         p 
-          |Ends: 
+          |Expires: 
           span = coupon.expires_at
         p = coupon.description
         .row.terms
@@ -25,9 +25,9 @@
         /= qrcode_tag coupon if coupon.qrcode.present?
         = coupon.picture.qrcode
         .promo-code
-          strong Promo Code
+          .boldest.text-right Promo Code
           span.pull-right = coupon.promo_code
-        button.btn.btn-success.btn-block.pull-right Print Coupon
+        /button.btn.btn-success.btn-block.pull-right Print Coupon
   .col-xs-1
     .shareaholic-canvas data-app='share_buttons' data-app-id='6963788'
 

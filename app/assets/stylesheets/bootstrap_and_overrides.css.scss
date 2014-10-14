@@ -546,6 +546,11 @@ p.signup-social span:before, p.signup-social span:after {
   color: #fff !important;*/
 }
 
+.promo-code {
+  font-size: 20px;
+  margin: 35px 5px;
+}
+
 .main-cta{
   margin-top:15px;
 }
@@ -553,13 +558,14 @@ p.signup-social span:before, p.signup-social span:after {
 .btn-xl{
   padding: 15px 0px !important;
   width: 100% !important;
-  font-size: 18px !important;
+  font-size: 22px !important;
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
   .glyph-spacing{
     padding-right: 8%;
     margin-top: -1px;
     display: inline-block;
     float: left;
-    font-size: 20px !important;
+    font-size: 22px !important;
     font-family: "museo_sans700", Helvetica, Arial, sans-serif;
     padding-left: 8%;
   }
@@ -1118,7 +1124,7 @@ h2 {
   background-position: 50% 0px;
   .alert-dismissable {
     font-size: 2em;
-    background: rgba(8, 193, 220, 0.9);
+    background: rgba(8, 193, 220, 0.75);
     /*padding: 20px 100px 20px 100px;*/
   }
   .close{

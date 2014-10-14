@@ -42,6 +42,8 @@
           .col-md-6
               = f.input :title, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
               span.help-block.italic Keep it simple.
+
+              = f.text_field :title, :append_button => { :label => 'Button label', :icon => 'icon-plus', :type => 'button' }
           .col-md-6
             label.control-label Target Launch & End Dates
             .input-daterange
