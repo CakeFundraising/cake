@@ -47,7 +47,7 @@
           p.text-muted Choose a logo or image that best represents you and your company
           .col-md-2
           .col-md-8
-            .help-block.italic Suggested size: 305x230 px
+            .help-block.italic Suggested size: 300x200 px
             .avatar-center
               = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
             span.help-block.p25.text-left Include a caption to help others understand your image
@@ -57,7 +57,7 @@
           h2 Your Pledge Background Banner
           p.text-muted Choose an background image that best represents your company and Pledge
           .col-md-12.text-center
-            .help-block.italic Suggested size: 1400x614 px
+            .help-block.italic Suggested size: 1400x700 px
             = render partial:'pictures/banner_form', locals:{f: f}
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 

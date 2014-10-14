@@ -3,7 +3,7 @@
     table#active_pledges.table.table-hover.table-bordered.table-striped.data-table
       thead.cf
         tr
-          th = Pledge.model_name.human
+          th = Pledge.human_attribute_name :pledge_name
           th = Fundraiser.model_name.human
           th = Campaign.model_name.human
           th = Pledge.human_attribute_name :end_date

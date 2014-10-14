@@ -1,5 +1,5 @@
 tr.pledge id=(pledge.id) 
-  td data-title = (Pledge.model_name.human)
+  td data-title = (Pledge.human_attribute_name :pledge_name)
     = auto_link pledge
   td data-title = (Sponsor.model_name.human)
     = auto_link pledge.sponsor
