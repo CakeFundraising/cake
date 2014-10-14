@@ -5,8 +5,11 @@
         = coupon.picture.avatar
     .caption
       h4.truncate = link_to coupon, coupon.pledge
-      .description = coupon.trunc_description
       .sponsor = auto_link coupon.sponsor
+      .location.truncate = (coupon.sponsor.location.city + ', ' + coupon.sponsor.location.state_code)
+      hr
+      .description.truncate = coupon.trunc_description
+      hr     
       .promo-code
-        strong Promo Code
-        span.pull-right = coupon.promo_code
+        .boldest.clearfix Promo Code
+        span = coupon.promo_code

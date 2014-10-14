@@ -567,9 +567,11 @@ p.signup-social span:before, p.signup-social span:after {
   color: #fff !important;*/
 }
 
-.promo-code {
-  font-size: 20px;
-  margin: 35px 5px;
+.coupon {
+  .promo-code{
+    font-size: 20px;
+    margin: 35px 5px;
+  }
 }
 
 .main-cta{
@@ -1996,7 +1998,7 @@ header {
   }
 }
 // home box views (temp?) --------------------------------------------------------
-.campaign_grid, .sponsor_grid {
+.campaign_grid, .sponsor_grid, .coupon_grid {
   padding-left: 5px;
   padding-right: 5px;
 

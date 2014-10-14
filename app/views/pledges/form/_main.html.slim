@@ -47,13 +47,13 @@
         .row.text-center
           .col-md-2
           .col-md-8
-            span.pledge-pad I agree to donate $ 
+            p.text-muted I agree to donate $ 
             = f.input :amount_per_click, label: false, input_html:{width:'50%', placeholder: '5.00'}
-            span.pledge-pad  per unique click to 
+            p.text-muted per unique click to 
             h3 = auto_link @pledge.campaign.decorate
             = f.input :campaign_id, as: :hidden, input_html:{value: @pledge.campaign_id}
             br
-            span.pledge-pad up to an amount not to exceed $ 
+            p.text-muted up to an amount not to exceed $ 
             = f.input :total_amount, label: false, input_html:{placeholder: '10,000'}
           .col-md-2
         .row.section-wrapper.text-center
