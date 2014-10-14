@@ -1,0 +1,15 @@
+#click_counted.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h4.modal-title Thanks for your support!
+      .modal-body
+        .lead
+          p Your click has already been counted, but please visit our sponsor again!
+      .modal-footer
+        = link_to 'Visit our Sponsor again', @pledge.website_url, target: :_blank, class:'btn btn-primary pull-right', id:'visit_sponsor_link'
+        button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close
+
+javascript:
+  Cake.clicks.after_click();

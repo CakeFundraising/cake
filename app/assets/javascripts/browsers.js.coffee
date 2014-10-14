@@ -11,12 +11,12 @@ Cake.browsers.plugins = ->
   return plugins.sort()
 
 Cake.browsers.create = ->
-  current_browser = localStorage.getItem('cake_current_browser_id')
+  current_browser = sessionStorage.getItem('cake_current_browser')
 
   unless current_browser
     plugins = Cake.browsers.plugins()
     $.post '/browsers', {plugins: plugins.join(',')}, (data) ->
-      localStorage.cake_current_browser_id = data
+      sessionStorage.cake_current_browser = true
       console.log data
       return
   return

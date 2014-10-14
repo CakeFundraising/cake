@@ -1,18 +1,13 @@
 Cake.clicks ?= {}
 
 Cake.clicks.after_click = ->
-  click_modal = $('#contribute_modal')
-  contribute_form = click_modal.find(".formtastic.click")
-  visit_sponsor_button = click_modal.find('#visit_sponsor_link')
+  click_button = $('.click_link')
+  modal = $('#click_counted.modal')
+  thanks_button = '<button class="btn btn-primary btn-xl disabled">Thanks for your contribution!</button>'
+  buttons_wrapper = $('#buttons_section')
 
-  visit_sponsor_button.hide()
-
-  contribute_form.submit (e)->
-    e.preventDefault();
-    this.submit();
-
-    click_modal.find(".modal-body").html("<div class='lead'>Your click has already been counted, but please visit our sponsor again!</div>")
-    $('#contribute_link').hide()
-    visit_sponsor_button.show()
+  click_button.click ->
+    modal.modal('show')
+    buttons_wrapper.html(thanks_button)
     return
   return
