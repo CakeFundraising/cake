@@ -6,7 +6,7 @@
         ul.panel-title-right.bolder
           div.stat
             span = campaign.end_date
-            p End Date
+            p Campaign End Date
           div.stat
             span = campaign.total_raised
             p Raised
@@ -21,13 +21,13 @@
         table.table.table-hover.table-bordered.table-striped.data-table
           thead.cf
             tr
-              th = 'Date'
+              th = 'Campaign End Date'
               th = Invoice.model_name.human
               th = Sponsor.model_name.human
               th = Invoice.human_attribute_name :clicks
               th = Invoice.human_attribute_name :donation_click
-              th = Invoice.human_attribute_name :due
+              th = Invoice.human_attribute_name :donation
               /th = Invoice.human_attribute_name :status
-              th
+              /th
           tbody
             = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.decorate, as: :invoice

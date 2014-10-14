@@ -52,17 +52,17 @@
         .row.section-wrapper.text-center
           h2 Campaign Goal
           p.text-muted How much do you want to raise for this Campaign? 
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             = f.input :goal, label: false, input_html:{placeholder: '1,000'}, :prepend => '$'
-          .col-md-2
+          .col-md-3
         .row.section-wrapper.text-center
           h2 Your Primary Cause
           p.text-muted  Choose the Cause Category that best represent your Campaign goals
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             = f.input :main_cause, as: :select, collection: Campaign::CAUSES, input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
-          .col-md-2
+          .col-md-3
         .row.section-wrapper.text-center
           h2 Secondary Causes
           p.text-muted You can select more than one

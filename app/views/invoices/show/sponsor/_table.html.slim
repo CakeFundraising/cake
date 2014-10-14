@@ -3,13 +3,13 @@
     table.table.table-hover.table-bordered.table-striped.data-table
       thead.cf
         tr
-          th = 'Date'
+          th = 'Campaign End Date'
           th = Invoice.model_name.human
           th = Pledge.model_name.human
           th = Fundraiser.model_name.human
           th = Invoice.human_attribute_name :clicks
           th = Invoice.human_attribute_name :donation_click
-          th = Invoice.human_attribute_name :due
+          th = Invoice.human_attribute_name :donations
           /th = Invoice.human_attribute_name :status
           - if defined? checkout
             th

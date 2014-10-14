@@ -13,6 +13,6 @@ tr.invoice
     = humanized_money_with_symbol invoice.due
   /td data-title = (Invoice.human_attribute_name :status)
   /  = invoice.status
-  td.truncate.min-width
-    = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
+  /td.truncate.min-width
+  /  = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
 tr.empty-tr

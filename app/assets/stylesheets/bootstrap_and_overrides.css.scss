@@ -450,6 +450,7 @@ hr{
   .container{
     padding-left:0px !important;
     padding-right:0px !important;
+    width:auto !important;
   }
 
   
@@ -1473,7 +1474,7 @@ table.performance-summary {
 }
 .shake-wrap {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
   img {#wrap {
   min-height: 100%;
   height: auto;

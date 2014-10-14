@@ -25,32 +25,32 @@
           h1 Campaign Purpose
           p.text-muted Here you can share a brief overview of the Campaign Mission
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             = f.input :mission, label: 'Campaign Purpose', input_html: {rows: 4, placeholder: '100 characters or less', maxlength: 100}
-          .col-md-2
+          .col-md-3
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
           p.text-muted Add a headline and a Campaign message
           .row.text-left
-            .col-md-2
-            .col-md-8
+            .col-md-3
+            .col-md-6
               = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
               = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
               br
               = render partial:'videos/form', locals:{f: f}
-            .col-md-2
+            .col-md-3
 
         .row.section-wrapper.text-center
           h2 Campaign Image
           p.text-muted Choose a logo or image that best represents your Cause or Organization
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             .help-block.italic Suggested size: 300x200 px
             .avatar-center
               = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
             span.help-block.p25.text-left Include a caption to help others understand your image
-          .col-md-2
+          .col-md-3
 
         .row.section-wrapper.text-center
           h2 Your Campaign Background Banner

@@ -5,8 +5,11 @@
       .col-md-12.coupons-wrap
         = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
         = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
+      .col-md-4
         = f.input :title, {placeholder: '60 characters or less', class: 'coupon_title'}
+      .col-md-4
         = f.input :expires_at, as: :string, input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
+      .col-md-4
         = f.input :promo_code, {placeholder: '20 characters or less', class: 'coupon_promo_code'}
     .row
       .col-md-12

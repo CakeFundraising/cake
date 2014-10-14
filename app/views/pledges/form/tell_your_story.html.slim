@@ -25,33 +25,33 @@
           h1 Pledge Purpose
           p.text-muted Here you can share a brief overview of the Pledge Mission
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             = f.input :mission, label: 'Pledge Purpose', input_html: {rows: 4, placeholder: '100 characters or less', maxlength: 100}
             /= f.input :name, input_html:{size: 40, placeholder: '40 characters'}
-          .col-md-2
+          .col-md-3
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
           p.text-muted Add a headline and a Pledge message
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
             = f.input :description, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
             br
             = render partial:'videos/form', locals:{f: f}
-          .col-md-2
+          .col-md-3
 
         .row.section-wrapper.text-center
           h2 Pledge Image
           p.text-muted Choose a logo or image that best represents you and your company
-          .col-md-2
-          .col-md-8
+          .col-md-3
+          .col-md-6
             .help-block.italic Suggested size: 300x200 px
             .avatar-center
               = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
             span.help-block.p25.text-left Include a caption to help others understand your image
-          .col-md-2
+          .col-md-3
 
         .row.section-wrapper.text-center
           h2 Your Pledge Background Banner

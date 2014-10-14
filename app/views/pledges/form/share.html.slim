@@ -19,14 +19,13 @@
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
     /- if @pledge.pending? or @pledge.rejected?
-    br
     .text-center
       h1 Thank you for your Pledge!
       p.text-muted Confirm your pledge to #{ auto_link @pledge.campaign }.
       p.text-muted They will share your pledge with their many supporters and friends and drive traffic to your website.
       br
       
-      = link_to "Confirm your Pledge", launch_pledge_path(@pledge), method: :patch, class:'btn btn-success'
+      = link_to "Confirm your Pledge", launch_pledge_path(@pledge), method: :patch, class:'btn btn-success btn-lg'
 
     br
     .example-badge.row
@@ -67,7 +66,7 @@
           p 
             | See this pledge here: 
             = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
-      button.clipboard.btn.btn-default data-clipboard-target="embedded_link" Copy
+      button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
 
 javascript:
   Cake.pledges.status = "#{@pledge.status}";

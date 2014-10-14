@@ -1,4 +1,4 @@
-= display_meta("Pledge", {title: "Click and help support us! It is 100% free!", image: @pledge.campaign.picture.avatar_path, description: @pledge.sponsor.mission, url: request.original_url})
+= display_meta("Pledge", {title: "Click and help support us! It is 100% free!", image: @pledge.campaign.picture.avatar_path, description: @pledge.mission, url: request.original_url})
 
 = content_for :header do
   .banner.hero
@@ -55,8 +55,10 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .shake-wrap
-              = @pledge.picture.avatar
-              = @pledge.campaign.picture.avatar
+              = link_to @pledge.sponsor do
+                = @pledge.picture.avatar
+              = link_to @pledge.fundraiser do
+                = @pledge.campaign.picture.avatar
               .shake
             .campaign_and_fundraiser
               h5.pull-left = auto_link @pledge.sponsor, truncate: 26
@@ -95,7 +97,7 @@
         p.text-muted Working together, we can make a difference.
       .text-center = render partial:'layouts/share_buttons'
   = render partial: 'layouts/choose_path'
-= render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
+  = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
 css:
   .hero{ background-image: url("#{@pledge.picture.banner_path}"); }
