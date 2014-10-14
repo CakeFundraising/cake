@@ -1410,8 +1410,8 @@ table.performance-summary {
 }
 .table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
   border-bottom-width: 0px !important;
-  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
-  font-size: 10px;
+  font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+  font-size: 9px;
 }
 
 #no-more-tables td{
@@ -1426,10 +1426,6 @@ table.performance-summary {
   background: linear-gradient(to right, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
   }
-}
-.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
-  border-bottom-width: 0px !important;
-  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
 }
 .table-bordered > thead > tr > th{
   border: 0px;
