@@ -54,7 +54,7 @@
           p.text-muted How much do you want to raise for this Campaign? 
           .col-md-2
           .col-md-8
-            = f.input :goal, label: false, input_html:{placeholder: '$1,000'}
+            = f.input :goal, label: false, input_html:{placeholder: '$1,000'}, :prepend => '$'
           .col-md-2
         .row.section-wrapper.text-center
           h2 Your Primary Cause
