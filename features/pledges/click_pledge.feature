@@ -11,9 +11,7 @@ Feature: Click Donation to Pledge
   @javascript @truncateDB
   Scenario: Successful Donation in Pledge Page
     When he visits the pledge's page
-    And he press the first "Click to help. It's free" link
-    And he sees the click contribution modal
-    And he press the "Click Here!" button
+    And he press the click button
     Then he should see "Your click has already been counted, but please visit our sponsor again!" in the click contribution modal
     Then he should see "VISIT OUR SPONSOR AGAIN" in the click contribution modal
     And the sponsor website should be open in a new window
@@ -23,12 +21,11 @@ Feature: Click Donation to Pledge
   Scenario: Failed Donation in Pledge Page
     And the user has already donated to that pledge
     When he visits the pledge's page
-    And he press the first "Click to help. It's free" link
-    Then he should see "Your click has already been counted, but please visit our sponsor again!"
+    Then he should see "THANKS FOR YOUR CONTRIBUTION!"
     And the "Contribute" link should not be present
 
   Scenario: Pledge fully subscribed
     And the pledge is fully subscribed
     When he visits the pledge's page
-    Then he should see "This pledge cannot accept more clicks. Thanks for your contribution!"
+    Then he should see "Pledge fully subscribed"
     And the "Contribute" link should not be present

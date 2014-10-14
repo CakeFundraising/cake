@@ -56,8 +56,13 @@ Then(/^it should delete the related pledge request$/) do
 end
 
 #Pledge Click
+When(/^he press the click button$/) do
+  find(:css, '.no_browser_link').click
+  find(:css, '.click_link').click
+end
+
 When(/^he sees the click contribution modal$/) do
-  within(:css, '#contribute_modal') do
+  within(:css, '#click_counted') do
     page.should have_content("Thanks for your support!")
   end
 end
@@ -67,7 +72,7 @@ Given(/^the pledge is fully subscribed$/) do
 end
 
 Then(/^he should see "(.*?)" in the click contribution modal$/) do |message|
-  within(:css, '#contribute_modal') do
+  within(:css, '#click_counted') do
     page.should have_content(message)
   end
 end
@@ -82,12 +87,8 @@ Then(/^a click should be added to the Pledge$/) do
 end
 
 Given(/^the user has already donated to that pledge$/) do
-  @click = FactoryGirl.create(:firefox_click,
-    user_agent: page.driver.execute_script('return navigator.userAgent;'),
-    #browser_plugins: page.driver.execute_script('return Cake.browsers.plugins();'),
-    pledge: model(:pledge), 
-    request_ip: "127.0.0.1"
-  )
+  browser = FactoryGirl.create(:firefox_browser, ip: "127.0.0.1", ua: page.driver.execute_script('return navigator.userAgent;') )
+  @click = FactoryGirl.create(:firefox_click, pledge: model(:pledge), browser: browser)
 end
 
 Then(/^the "(.*?)" link should not be present$/) do |link|

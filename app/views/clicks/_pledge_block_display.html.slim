@@ -1,6 +1,6 @@
 - if pledge.campaign.launched? and pledge.accepted?
   - if pledge.fully_subscribed?
-    button.btn.btn-primary.btn-xl.disabled Pledge fully subscribed
+    button.btn.btn-warning.btn-xl.disabled Pledge fully subscribed
   - else
     hr
     div.text-center
@@ -13,6 +13,6 @@
               = link_to "Click to help. It's free", click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'btn btn-primary btn-xl click_link'
             = render partial:'clicks/success_modal'
         - else
-          = link_to "Click to help. It's free", url_for(params), class: 'btn btn-primary btn-xl'
+          = link_to "Click to help. It's free", url_for(params), class: 'btn btn-primary btn-xl no_browser_link'
           /button.btn.btn-danger.btn-xl.disabled No browser registered.
 
