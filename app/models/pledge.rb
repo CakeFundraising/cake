@@ -100,13 +100,9 @@ class Pledge < ActiveRecord::Base
   end
 
   #Clicks association
-  def have_donated?(request, plugins=nil)
-    click = Click.build_with(self, request, plugins)
-    click_exists?(click)
-  end
-
   def click_exists?(click)
-    clicks.equal_to(click).any?
+    # We delegate click existance to browser existance
+    click_browsers.equal_to(click.browser).any?
   end
 
   def current_max_clicks
