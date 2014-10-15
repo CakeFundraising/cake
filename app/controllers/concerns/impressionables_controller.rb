@@ -10,12 +10,10 @@ module ImpressionablesController
   protected
 
   def create_impression
-    @impression = resource.impressions.create!(
-      view: "#{controller_name}/#{action_name}",
-      ip: request.remote_ip,
-      user_agent: request.headers['HTTP_USER_AGENT'],
-      http_encoding: request.headers['HTTP_ACCEPT_ENCODING'],
-      http_language: request.headers['HTTP_ACCEPT_LANGUAGE']
-    ) unless resource.impressions.find_with("#{controller_name}/#{action_name}", request).any? or request.headers['HTTP_USER_AGENT'] == "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"   
+    view = "#{controller_name}/#{action_name}"
+
+    unless current_browser.blank? or resource.impressions.find_with(view, current_browser).any? or request.headers['HTTP_USER_AGENT'] == "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"   
+      @impression = resource.impressions.create!(view: view, browser: current_browser)
+    end
   end
 end

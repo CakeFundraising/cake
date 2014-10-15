@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013222551) do
+ActiveRecord::Schema.define(version: 20141014232014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,14 +181,10 @@ ActiveRecord::Schema.define(version: 20141013222551) do
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
     t.string   "view"
-    t.string   "ip"
-    t.string   "user_agent"
-    t.string   "http_encoding"
-    t.string   "http_language"
-    t.text     "browser_plugins"
     t.boolean  "fully_rendered",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "browser_id"
   end
 
   create_table "invoices", force: true do |t|
