@@ -16,7 +16,8 @@
                 label Campaign Url: 
                 input#campaign_url.form-control disabled='' type="text" value=campaign_url(campaign.id)
               div.pull-right
-                button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
+                br
+                button.btn.btn-primary data-clipboard-target="campaign_url" Copy
           .row.section-wrapper.text-center
             h2 Search for Sponsors
             p.text-muted Request Pledges from Active Sponsors already on Cake Fundraising 
@@ -36,7 +37,17 @@
                 label Campaign Url: 
                 input#campaign_url.form-control disabled='' type="text" value=campaign_url(campaign.id)
               div.pull-right
-                button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
+                br
+                button.btn.btn-primary data-clipboard-target="campaign_url" Copy
+          .row.section-wrapper.text-center
+            h2 Download Your Campaign Image
+            p.text-muted You can use a PNG of your Campaign for emails and mailings
+            .toggle-container.text-left
+              .screenshot
+                img.img-responsive src='https://api.url2png.com/v6/P4DE5D1C99D8EF/94f47e6105141b3f5455aadfc4ee8263/png/?url=http%3A%2F%2Fstaging.cakefundraising.com%2Fcampaigns%2F118&max_width=550&viewport=1024x2000&fullpage=1&thumbnail_max_width=550'
+              div.pull-right
+                br
+                = link_to "Download", 'https://api.url2png.com/v6/P4DE5D1C99D8EF/94f47e6105141b3f5455aadfc4ee8263/png/?url=http%3A%2F%2Fstaging.cakefundraising.com%2Fcampaigns%2F118&max_width=550&viewport=1024x2000&fullpage=1&thumbnail_max_width=550', class:'btn btn-primary', :download => 'campaign.png'
           .row.section-wrapper.text-center       
             h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website
@@ -49,7 +60,8 @@
                       | See this campaign here: 
                       = link_to campaign.mission, campaign_url(campaign.id), target: :_blank
               div.pull-right
-                button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
+                br
+                button.btn.btn-primary data-clipboard-target="embedded_link" Copy
   
 
 
