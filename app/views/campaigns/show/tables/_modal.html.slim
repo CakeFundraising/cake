@@ -44,10 +44,10 @@
             p.text-muted You can use a PNG of your Campaign for emails and mailings
             .toggle-container.text-left
               .screenshot
-                img.img-responsive src='https://api.url2png.com/v6/P4DE5D1C99D8EF/94f47e6105141b3f5455aadfc4ee8263/png/?url=http%3A%2F%2Fstaging.cakefundraising.com%2Fcampaigns%2F118&max_width=550&viewport=1024x2000&fullpage=1&thumbnail_max_width=550'
+                = screenshot_tag_for campaign_url(campaign.id)
               div.pull-right
                 br
-                = link_to "Download", 'https://api.url2png.com/v6/P4DE5D1C99D8EF/94f47e6105141b3f5455aadfc4ee8263/png/?url=http%3A%2F%2Fstaging.cakefundraising.com%2Fcampaigns%2F118&max_width=550&viewport=1024x2000&fullpage=1&thumbnail_max_width=550', class:'btn btn-primary', :download => 'campaign.png'
+                /= link_to "Download", '#', class:'btn btn-primary', :download => 'campaign.png'
           .row.section-wrapper.text-center       
             h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website
