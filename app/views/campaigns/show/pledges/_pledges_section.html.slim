@@ -7,7 +7,15 @@
           span.sponsor-name = sc.name
           span.sponsor-pledge = sc.range
     .row
+    - case sc.position  
+      - when 2
+      = render partial:'campaigns/show/pledges/platinum_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+      - when 1
       = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+      - when 0
+      = render partial:'campaigns/show/pledges/silver_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+
+      /= render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
 - else
   - if @campaign.accepted_pledges.any?
     .row.special-offers

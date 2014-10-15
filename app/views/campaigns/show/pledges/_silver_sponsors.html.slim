@@ -1,13 +1,15 @@
 .col-md-2
   .platinum
-    img src="http://placekitten.com/160/120"
+    = link_to pledge do
+      = pledge.picture.avatar
     .levels
+      .sponsor-name = link_to pledge.sponsor.name, pledge
       .progress
-        .progress-bar.progress-bar-success roll="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"
-          span.sr-only 40% Complete (success)
-      p
-        | $5 
-        span.text-muted Per click
-      p
-        | $15 
-        span.text-muted Pledge
+        .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
+          span.sr-only #{pledge.thermometer}% Complete (success)
+      span
+        span = humanized_money_with_symbol pledge.amount_per_click
+        /span.text-muted Per click
+      span.pull-right
+        span = humanized_money_with_symbol pledge.total_amount
+        /span.text-muted Pledge
