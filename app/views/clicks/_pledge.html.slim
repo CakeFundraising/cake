@@ -1,11 +1,18 @@
 - if pledge.campaign.launched? and pledge.accepted?
   - if pledge.fully_subscribed?
-    button.btn.btn-primary.btn-block.disabled This pledge cannot accept more clicks. Thanks for your contribution!
+    button.btn.btn-warning.btn-xl.disabled Pledge fully subscribed
   - else
-    /hr
-    .text-center
-      = link_to "Click to help. It's free!", solicit_click_pledge_path(pledge), class:'btn btn-success btn-lg click_link', data:{toggle: 'modal', target: '#contribute_modal'}
+    hr
+    div.text-center
+      .main-cta
+        - if session[:browser_id].present?
+          - if pledge.click_browsers.include?(current_browser)
+            button.btn.btn-primary.btn-xl.disabled Thanks for your contribution!
+          - else
+            #buttons_section
+              = link_to "Click to help. It's free", click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'btn btn-primary btn-xl click_link'
+            = render partial:'clicks/success_modal'
+        - else
+          = link_to "Click to help. It's free", url_for(params), class: 'btn btn-primary btn-xl no_browser_link'
+          /button.btn.btn-danger.btn-xl.disabled No browser registered.
 
-    #contribute_modal.modal.fade
-      .modal-dialog
-        .modal-content

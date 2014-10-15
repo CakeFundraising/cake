@@ -47,7 +47,7 @@
                 span Donation per click up to 
                 strong = humanized_money_with_symbol(@pledge.total_amount)
               br
-              = render partial:'clicks/pledge_block_display', locals:{pledge: @pledge}
+              = render partial:'clicks/pledge', locals:{pledge: @pledge}
           br
   .white
     .container
