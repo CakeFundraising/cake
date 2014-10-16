@@ -125,7 +125,6 @@ javascript:
   $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present? }") );
   //$(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
 
-  / TEMPORARY UNTIL THIS IS MADE DYNAMIC
   var addthis_share = addthis_share || {}
   addthis_share = {
     url_transforms : {
@@ -137,7 +136,7 @@ javascript:
       bitly : {} 
     },
     templates: { 
-      twitter: "Clickk to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
+      twitter: "Click to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
     }   
   }
     
