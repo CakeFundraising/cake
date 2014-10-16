@@ -27,7 +27,7 @@
                 = screenshot_tag_for pledge_url(pledge.id)
               div.pull-right
                 br
-                = link_to "Download", '#', class:'btn btn-primary', :download => 'campaign.png'
+                = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge.id), class:'btn btn-primary', :download => 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
           p.text-muted Copy the source code below and past it on your website

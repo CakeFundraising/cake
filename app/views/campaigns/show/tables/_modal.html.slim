@@ -47,7 +47,7 @@
                 = screenshot_tag_for campaign_url(campaign.id)
               div.pull-right
                 br
-                = link_to "Download", '#', class:'btn btn-primary', :download => 'campaign.png'
+                = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + campaign_url(campaign.id), class:'btn btn-primary', :download => 'campaign.png'
           .row.section-wrapper.text-center       
             h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website

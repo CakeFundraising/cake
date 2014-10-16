@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014232014) do
+ActiveRecord::Schema.define(version: 20141016184714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20141014232014) do
     t.string   "main_cause"
     t.integer  "impressions_count",    limit: 8, default: 0
     t.boolean  "visible",                        default: false
+    t.string   "screenshot_url"
   end
 
   create_table "charges", force: true do |t|
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20141014232014) do
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
   create_table "clicks", force: true do |t|
+    t.string   "email"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -284,6 +286,7 @@ ActiveRecord::Schema.define(version: 20141014232014) do
     t.string   "processed_status",                    default: "unprocessed"
     t.string   "name"
     t.integer  "impressions_count",         limit: 8, default: 0
+    t.string   "screenshot_url"
   end
 
   create_table "sponsor_categories", force: true do |t|
