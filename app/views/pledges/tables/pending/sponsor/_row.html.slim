@@ -13,7 +13,7 @@ tr.pledge id=(pledge.id)
     = pledge.end_date
   td data-title=(Pledge.model_name.human)
     = humanized_money_with_symbol pledge.total_amount
-  td data-title=(Pledge.human_attribute_name :amount)
+  td data-title=('Donation/Click')
     = humanized_money_with_symbol pledge.amount_per_click
   td data-title=(Pledge.human_attribute_name :status)
     - if pledge.pending?

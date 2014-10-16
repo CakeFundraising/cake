@@ -20,8 +20,9 @@ tr.pledge id=(pledge.id)
       = pledge.total_charge
   td.truncate.min-width
     - if pledge.increase_requested
-      button.btn.btn-sm.btn-warning.btn-sm.disabled Increase Requested
-    = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
+      button.btn.btn-sm.btn-success.btn-sm.disabled Increase Requested
+    - else
+      = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
     = link_to edit_pledge_path(pledge), class:'btn btn-sm btn-primary edit_button' do
       span.glyphicon.glyphicon-pencil
     button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{pledge.id}" data-toggle="modal"

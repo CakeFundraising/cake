@@ -54,7 +54,7 @@
           p.text-muted How much do you want to raise for this Campaign? 
           .col-md-3
           .col-md-6
-            = f.input :goal, label: false, input_html:{placeholder: '1,000'}, :prepend => '$'
+            = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
           .col-md-3
         .row.section-wrapper.text-center
           h2 Your Primary Cause
@@ -92,7 +92,6 @@
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
-  var input = $('#campaign_goal');
+  var input = $('.default-zero');
   if(input.val() == "0.00")
     input.val("");
-
