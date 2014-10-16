@@ -31,7 +31,7 @@ tr.pledge id=(pledge.id)
     javascript:
       var addthis_share = addthis_share || {}
       addthis_share = {
-        url: "#{campaign_url(pledge.campaign.id)}"
+        url: "#{pledge_url(pledge.id)}"
       }
 
     = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
