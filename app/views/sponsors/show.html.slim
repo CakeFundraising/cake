@@ -158,7 +158,8 @@
                 p = @sponsor.customer_demographics
       .col-md-4
         .avatar 
-          = @sponsor.picture.avatar
+          = link_to @sponsor do
+            = @sponsor.picture.avatar
           .caption = @sponsor.avatar_caption
 
           h4 Contact:

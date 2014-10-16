@@ -3,9 +3,9 @@
 h1.dash-head History
 ul.nav.nav-tabs
   li.active
-    a data-toggle="tab" href="#campaigns-tab" = Campaign.model_name.human(count: 2)
+    a data-toggle="tab" href="#campaigns-tab" = Campaign.model_name.human.pluralize(count: 2)
   li 
-    a data-toggle="tab" href="#sponsors" = Sponsor.model_name.human(count: 2)
+    a data-toggle="tab" href="#sponsors" = Sponsor.model_name.human.pluralize(count: 2)
 
 .tab-content
   #campaigns-tab.tab-pane.active

@@ -17,7 +17,7 @@
                 input#campaign_url.form-control disabled='' type="text" value=campaign_url(campaign.id)
               div.pull-right
                 br
-                button.btn.btn-primary data-clipboard-target="campaign_url" Copy
+                button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
           .row.section-wrapper.text-center
             h2 Search for Sponsors
             p.text-muted Request Pledges from Active Sponsors already on Cake Fundraising 
@@ -38,7 +38,7 @@
                 input#campaign_url.form-control disabled='' type="text" value=campaign_url(campaign.id)
               div.pull-right
                 br
-                button.btn.btn-primary data-clipboard-target="campaign_url" Copy
+                button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
           .row.section-wrapper.text-center
             h2 Download Your Campaign Image
             p.text-muted You can use a PNG of your Campaign for emails and mailings
@@ -47,7 +47,7 @@
                 = screenshot_tag_for campaign_url(campaign.id)
               div.pull-right
                 br
-                /= link_to "Download", '#', class:'btn btn-primary', :download => 'campaign.png'
+                = link_to "Download", '#', class:'btn btn-primary', :download => 'campaign.png'
           .row.section-wrapper.text-center       
             h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website
@@ -61,7 +61,7 @@
                       = link_to campaign.mission, campaign_url(campaign.id), target: :_blank
               div.pull-right
                 br
-                button.btn.btn-primary data-clipboard-target="embedded_link" Copy
+                button.clipboard.btn.btn-primary data-clipboard-target="embedded_link" Copy
   
 
 

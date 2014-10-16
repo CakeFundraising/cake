@@ -1,4 +1,4 @@
-h2 Describe below why you are rejecting this offer.
+h2 Describe below why you are rejecting this request.
 = semantic_form_for :reject_message, url: reject_pledge_request_path(@pledge_request), method: :patch do |f|
   = f.inputs do
     = f.input :message, as: :text, input_html:{class: 'autogrow', rows: 10, cols: 20 }

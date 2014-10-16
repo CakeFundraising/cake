@@ -3,9 +3,9 @@
 h1.dash-head History
 ul.nav.nav-tabs
   li.active
-    a data-toggle="tab" href="#pledges" = Pledge.model_name.human(count: 2)
+    a data-toggle="tab" href="#pledges" = Pledge.model_name.human.pluralize(count: 2)
   li 
-    a data-toggle="tab" href="#fundraisers" = Fundraiser.model_name.human(count: 2)
+    a data-toggle="tab" href="#fundraisers" = Fundraiser.model_name.human.pluralize(count: 2)
 
 .tab-content
   #pledges.tab-pane.active

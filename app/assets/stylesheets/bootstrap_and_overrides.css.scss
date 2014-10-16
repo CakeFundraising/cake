@@ -134,8 +134,8 @@ hr{
 }
 
 .navbar-collapse{
-  padding-right: 0px;
-  padding-left: 0px;
+  /*padding-right: 0px;
+  padding-left: 0px;*/
 }
 .navbar-brand {
   padding-top: 17px;
@@ -257,27 +257,6 @@ hr{
   margin-left: 10px !important;
 }
 
-@media (max-width: 570px){
-  .nav-tabs{
-    font-size: 11px;
-    a{
-      padding: 9px 7px !important;
-      /*min-width:115px !important;*/
-    }
-  }
-
-  .popular > li{
-      margin:2px !important;
-      font-size: .8em !important;
-      a {
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        padding: 10px 0px !important;
-        min-width:115px !important;
-      }
-    }
-}
-
 @media (max-width: 420px){
   /*#main-container, .hero-home{
     margin-top:50px;
@@ -329,10 +308,31 @@ hr{
   }
   .navbar{
     /*position: fixed;
-    top: 0px;
-    z-index: 1000;*/
+    top: 0px;*/
+    z-index: 1000;
     width: 100%;
   }
+}
+
+@media (max-width: 570px){
+  .nav-tabs{
+    font-size: 11px;
+    a{
+      padding: 9px 7px !important;
+      /*min-width:115px !important;*/
+    }
+  }
+
+  .popular > li{
+      margin:2px !important;
+      font-size: .8em !important;
+      a {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding: 10px 0px !important;
+        min-width:115px !important;
+      }
+    }
 }
 
 @media (max-width: 620px){
@@ -367,8 +367,11 @@ hr{
       display:none;
     }
     .navbar-collapse{
-      margin-left: 5px !important;
-      margin-right: 5px !important;
+      /*margin-left: 0px !important;
+      margin-right: 0px !important;
+
+      background-color: white;
+      padding: 0px 10px;*/
     }
     #main-container{
 
@@ -439,13 +442,30 @@ hr{
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 767px){
   .navbar-brand {
     padding-top: 8px;
+    img{
+      height: 35px;
+      padding-top: 3px;
+    }
   }
-
+  .btn-signup.btn-success{
+    display:block;
+  }
   .default {
-    height: 50px !important;
+    /*height: 50px !important;*/
+  }
+}
+@media (min-width: 768px){
+  .btn-signup.btn-success{
+    display:none;
+  }
+}
+
+@media (min-width: 850px){
+  .btn-signup.btn-success{
+    display:block;
   }
 }
 
@@ -456,9 +476,6 @@ hr{
     padding-right:0px !important;
     width:auto !important;
   }
-
-  
-
   .nav-cta{
     float:left;
     li {
@@ -812,8 +829,8 @@ form{
 // Progress Bar Styles ---------------------------------------------------------------
 
 .progress {
-  height: 6px;
-  margin: 10px 10px 5px 10px;
+  height: 8px;
+  margin: 10px 10px 8px 10px;
 }
 
 
@@ -2658,6 +2675,10 @@ ul#share-block {
   color:#333333;
 }
 
+.btn-holder{
+  width:325px;
+  margin: auto;
+}
 
 .toggle-container {
   margin: 5px;
@@ -3018,6 +3039,10 @@ ul#share-block {
 .modal-body{
   padding: 35px;
   margin: 0px 15px;
+  @media (max-width: $screen-md-min) {
+    margin: 15px;
+    padding: 0px;
+  }
 }
 .modal-footer{
   margin-top: 0px;
@@ -3323,7 +3348,7 @@ ul#share-block {
 
 
 .default {
-  height: 70px;
+  /*height: 70px;*/
 }
 
 .default-img{

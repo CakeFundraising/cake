@@ -71,7 +71,8 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .avatar 
-              = @campaign.picture.avatar
+              = link_to @campaign.fundraiser do
+                = @campaign.picture.avatar
               .caption = @campaign.avatar_caption
               .fundraiser-info.text-center
                 h4 = auto_link @campaign.fundraiser
