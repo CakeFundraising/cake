@@ -1,4 +1,4 @@
-= display_meta(@campaign.fundraiser.name, {title: "Click and help support us! It is 100% free!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,r_10/' + campaign_url(@campaign.id), description: @campaign.mission, url: request.original_url})
+= display_meta(@campaign.fundraiser.name, {title: "Click and help support us! It is 100% free!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/' + campaign_url(@campaign.id), description: @campaign.mission, url: request.original_url})
 
 = content_for :header do
   .banner.hero
