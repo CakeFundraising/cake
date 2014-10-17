@@ -254,25 +254,12 @@ class CropModal
 
     return
 
-class FileImage
-  constructor: (image) ->
-    @image_file = image
+class ImageValidSizes
+  constructor: ->
     @minWidth = Cake.pictures.avatarConstants.versions.medium.x
     @minHeight = Cake.pictures.avatarConstants.versions.medium.y
     @maxWidth = 5000
     @maxHeight = 5000
-    
-    fileImage = this
-
-    @reader = new FileReader()
-    @reader.readAsDataURL image
-    return
-
-  set_width: (width)->
-    @width = width
-    return
-  set_height: (height)->
-    @height = height
     return
 
 ########### Functions =================================================================
@@ -289,24 +276,22 @@ Cake.crop.uploader = (selector) ->
       Cake.crop.jqXHR = data
       return
     change: (e, data)->
-      image = new FileImage(data.files[0])
+      image = new Image()
+      validator = new ImageValidSizes()
 
-      image.reader.onload = (e) ->
-        img = new Image()
-        img.src = image.reader.result
-
-        image.width = img.width
-        image.height = img.height
-
-        if image.width < image.minWidth or image.height < image.minHeight
-          alert 'Please upload an image greater than ' + image.minWidth + 'x' + image.minHeight + 'px'
+      image.onload = ->
+        if this.width < validator.minWidth or this.height < validator.minHeight
+          alert 'Please upload an image greater than ' + validator.minWidth + 'x' + validator.minHeight + 'px'
           Cake.crop.jqXHR.abort()          
-        else if image.width > image.maxWidth or image.height > image.maxHeight
-          alert 'Please upload an image smaller than ' + image.maxWidth + 'x' + image.maxHeight + 'px'
+        else if this.width > validator.maxWidth or this.height > validator.maxHeight
+          alert 'Please upload an image smaller than ' + validator.maxWidth + 'x' + validator.maxHeight + 'px'
           Cake.crop.jqXHR.abort()
         else
           Cake.crop.jqXHR.submit()
         return
+
+      _URL = window.URL || window.webkitURL
+      image.src = _URL.createObjectURL(data.files[0])
       return
   return
 

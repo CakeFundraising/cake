@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 20141016184714) do
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
   create_table "clicks", force: true do |t|
-    t.string   "email"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
