@@ -73,6 +73,7 @@
             .avatar 
               = link_to @campaign.fundraiser do
                 = @campaign.picture.avatar
+            .avatar-content
               .caption = @campaign.avatar_caption
               .fundraiser-info.text-center
                 h4 = auto_link @campaign.fundraiser
@@ -108,7 +109,7 @@
                 b> Attention Business Owners!
                 | Support us and reach new customers! 
             .col-md-4
-              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-lg'
+              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
   
     = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
     .text-center = render partial:'layouts/share_buttons'

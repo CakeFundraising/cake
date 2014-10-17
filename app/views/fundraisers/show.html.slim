@@ -157,6 +157,7 @@
         .avatar 
           = link_to @fundraiser do
             = @fundraiser.picture.avatar
+        .avatar-content
           .caption = @fundraiser.avatar_caption
           h4 #{Fundraiser.model_name.human} Profile
           .boldest.init-caps = Fundraiser.human_attribute_name :manager_name

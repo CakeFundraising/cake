@@ -1286,8 +1286,8 @@ h1.name {
     padding: 10px 40px !important;
   }
   .make-pledge {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+    /*padding-left: 30px !important;
+    padding-right: 30px !important;*/
   }
 }
 
@@ -1710,6 +1710,27 @@ table.performance-summary {
     max-height: 33%;*/
     margin: auto;
   }
+  
+}
+
+.avatar-container{
+  position: relative;
+    width: 100%;
+    padding-bottom: 70%;
+    float: left;
+    height: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.avatar-content{
+  margin-top:10px;
+
   .caption{
     font-size: 1.2em;
     text-align: center;
@@ -1772,9 +1793,9 @@ table.performance-summary {
   }
 }
 
-.level-divide {
+/*.level-divide {
   border-top: 1px dotted $gray-light;
-}
+}*/
 .center {
   text-align: center;
   padding: 25px;
@@ -2531,8 +2552,8 @@ ul#share-block {
   }
   .avatar{
     img{
-      height: 230px !important;
-      width: 305px !important;
+      /*height: 230px !important;
+      width: 305px !important;*/
     }
   }
   .banner{
