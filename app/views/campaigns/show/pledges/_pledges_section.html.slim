@@ -1,21 +1,20 @@
 - if @campaign.custom_pledge_levels
   h1.text-center Please visit all our generous Sponsors
   - @sponsor_categories.each do |sc|
-    .row.win-with
-      .col-md-12
-        h2.sponsor-levs 
-          span.sponsor-name = sc.name
-          span.sponsor-pledge = sc.range
-    .row
-    - case sc.position  
-      - when 2
-      = render partial:'campaigns/show/pledges/platinum_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
-      - when 1
-      = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
-      - when 0
-      = render partial:'campaigns/show/pledges/silver_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
-
-      /= render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+    - if @campaign.object.send("#{sc.object.name}_pledges").count > 0
+      .row.win-with
+        .col-md-12
+          h2.sponsor-levs 
+            span.sponsor-name Visit our #{sc.name} Sponsors
+            span.sponsor-pledge.bolder = sc.range
+      .row
+      - case sc.position  
+        - when 2
+        = render partial:'campaigns/show/pledges/platinum_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+        - when 1
+        = render partial:'campaigns/show/pledges/gold_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+        - when 0
+        = render partial:'campaigns/show/pledges/silver_sponsors', collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
 - else
   - if @campaign.accepted_pledges.any?
     .row.special-offers
