@@ -2179,6 +2179,19 @@ header {
   @include background-size(cover);
   background-position: 50% 0px;
 }
+
+.supporters{
+  background-color:white;
+  
+  h3 {
+    color: #999999;
+  }
+  .section-wrapper {
+    margin: 5px 0px 25px;
+  }
+}
+
+
 //Home Sidebar Search form ---------------------------------------------------
 #custom-search-input {
   margin:0;
