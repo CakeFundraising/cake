@@ -2,50 +2,51 @@
 
 = content_for :header do	
 	.banner.hero-home
-		.container.home
-			.row.cta
-				.col-md-12
-					h1 Donation Per Click Fundraising
-					h3 Now Social Marketing and Fundraising can work hand in hand so everyone wins.
-			.row.cake-steps.hidden-xs.hidden-sm
-				.col-md-3
-					= image_tag("step01.png", class: "step")
-					p A Fundraiser creates a campaign
-				.col-md-3
-					= image_tag("step02.png", class: "step")
-					p A Sponsor creates a donation per click pledge
-				.col-md-3
-					= image_tag("step03.png", class: "step")
-					p The Fundraiser and Sponsor share the pledge with Everyone
-				.col-md-3
-					= image_tag("step04.png", class: "step")
-					p The Sponsor wins new customers and the Fundraiser money to do good deeds
-			.row.start
-				.col-xs-12
-					.button-wrap
-						= link_to "START A CAMPAIGN", new_user_registration_path, class:'start-fr'
-						= link_to "SPONSOR A CAMPAIGN", new_user_registration_path, class:'start-sp'
-						.row
-							.col-xs-12
-								p.get-started.pull-right
-								  | GET STARTED FOR FREE!
-								  span.see
-								    | See how it works!
-								    span.play
-	.row.secondary-navbar
-		.container
-			.row
-				.col-md-12
-					ul.nav.nav-pills.popular
-						li.active
-							a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
-								span Popular Campaigns
-						li
-							a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
-								span Popular Sponsors
-						li
-							a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
-								span Best Discounts
+		.home
+			#cycler
+				div.slide1.active
+				div.slide2
+				div.slide3
+			.banner-content
+				.col-md-2
+				.col-md-8
+					h1 You click, sponsors pay!
+					h3 A new donation-per-click platform for fundraisers
+					.row.cake-steps.hidden-xs.hidden-sm
+						.col-md-3
+							= image_tag("step01.png", class: "step")
+							p A Fundraiser creates a campaign
+						.col-md-3
+							= image_tag("step02.png", class: "step")
+							p A Sponsor creates a donation per click pledge
+						.col-md-3
+							= image_tag("step03.png", class: "step")
+							p The Fundraiser and Sponsor share the pledge with Everyone
+						.col-md-3
+							= image_tag("step04.png", class: "step")
+							p The Sponsor wins new customers and the Fundraiser money to do good deeds
+					.row.start
+						.col-xs-12
+							.button-wrap
+								= link_to "START A CAMPAIGN", new_user_registration_path, class:'start-fr'
+								= link_to "SPONSOR A CAMPAIGN", new_user_registration_path, class:'start-sp'
+				.col-md-2
+			
+			
+
+
+
+	.secondary-navbar
+		ul.nav.nav-pills.popular
+			li.active
+				a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
+					span Popular Campaigns
+			li
+				a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
+					span Popular Sponsors
+			li
+				a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
+					span Best Discounts
 								
 /- main content							
 .container.main-home
@@ -103,5 +104,7 @@
 						img src='/assets/partners/logo_tc.gif'/
 						img src='/assets/partners/logo_tech.gif'/
 
-
+javascript:
+  $(document).ready(Cake.slider.init);
+  $(document).on('page:load', Cake.slider.init);
 	

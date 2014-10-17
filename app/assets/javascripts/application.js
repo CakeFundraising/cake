@@ -17,6 +17,9 @@
 //= require jquery.expander.min
 //= require jquery.Jcrop
 
+//= require jssor
+//= require jssor.slider.min
+
 //= require turbolinks
 
 //= require cloudinary/jquery.ui.widget
@@ -44,6 +47,7 @@
 //= require ./extra_donation_pledges  
 //= require ./locations     
 //= require ./sponsors_form
+//= require ./slider
 //= require ./clipboard     
 //= require ./fundraisers     
 //= require ./pledge_levels     

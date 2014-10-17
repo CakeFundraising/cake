@@ -20,10 +20,16 @@
 
 html {
   position: relative;
+  margin:0;
+  padding:0;
   min-height: 100%;
+  min-width: 100%;
 }
 body {
-  margin-bottom: 700px;
+  margin:0;
+  padding:0;
+  margin-bottom: 730px;
+  min-width: 100%;
 }
 
 // Footer Styles ---------------------------------------------------------------
@@ -39,7 +45,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 700px;
+  height: 730px;
   
   padding: 15px 0;
   margin-top: 0px;
@@ -324,13 +330,13 @@ hr{
   }
 
   .popular > li{
-      margin:2px !important;
+      margin:10px 2px !important;
       font-size: .8em !important;
       a {
         padding-left: 5px !important;
         padding-right: 5px !important;
         padding: 10px 0px !important;
-        min-width:115px !important;
+        min-width:90px !important;
       }
     }
 }
@@ -358,7 +364,10 @@ hr{
       margin-top: 20px;
     }
     .hero-home{
-      height:350px !important;
+      height:260px !important;
+      .slide1, .slide2, .slide3{
+        height:260px !important;
+      }
       .cta h1{
         font-size: 38px;
       }
@@ -472,8 +481,8 @@ hr{
 
 @media (min-width: 768px){
   .container{
-    padding-left:0px !important;
-    padding-right:0px !important;
+    /*padding-left:0px !important;
+    padding-right:0px !important;*/
     width:auto !important;
   }
   .nav-cta{
@@ -1929,67 +1938,6 @@ ul.share-coupon {
   background-position: center;
 }
 
-// Home Page Styles! -----------------------------------------------------------------------
-
-.hero-home {
-  height:666px;
-  margin-bottom: 0;
-  border:0px;
-  background-image: image-url('hero-home.jpg');
-  background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
-}
-.home {
-  text-align: center;
-  color: #fff;
-}
-.cta {
-  margin: 10px 0;
-  h1 {
-    text-transform: uppercase;
-    font-size: 44px;
-  }
-  h3 {
-    color: #fff;
-    font-size: 20px;
-  }
-}
-.cake-steps p {
-  margin-top: 8px;
-}
-.button-wrap {
-  width: 549px;
-  margin: 50px auto;
-}
-.start-fr {
-  background-image: image-url('fr-campaign-button.png');
-  width: 269px;
-  height: 69px;
-  display: inline-block;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.start-sp {
-  background-image: image-url('sp-campaign-button.png');
-  width: 280px;
-  height: 69px;
-  display: inline-block;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.get-started {
-  font-style: italic;
-}
-.see {
-  font-size: 11px;
-  padding-left: 25px;
-}
-
-
-
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
@@ -2188,6 +2136,7 @@ header {
   }
   .section-wrapper {
     margin: 5px 0px 25px;
+    padding:0px;
   }
 }
 
@@ -2229,21 +2178,26 @@ header {
 }
 
 // Home Page Styles! ---------------------------------------
+
 .hero-home {
-  height:666px;
+  height:600px;
   margin-bottom: 0;
   border:0px;
-  background-image: url('hero-home.jpg');
+  /*background-image: url('hero-home.jpg');
   background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
+  */
 }
+
 .home {
   text-align: center;
   color: #fff;
+  max-width:100%;
 }
+
 .cta {
-  margin: 40px 0;
+  margin: 10px 0;
   h1 {
     text-transform: uppercase;
     font-size: 44px;
@@ -2253,12 +2207,13 @@ header {
     font-size: 20px;
   }
 }
-.button-wrap {
-  width: 549px;
-  margin: 50px auto;
+
+.cake-steps p {
+  margin-top: 8px;
 }
+
 .start-fr {
-  background-image: url('fr-campaign-button.png');
+  background-image: image-url('fr-campaign-button.png');
   width: 269px;
   height: 69px;
   display: inline-block;
@@ -2266,8 +2221,9 @@ header {
   white-space: nowrap;
   overflow: hidden;
 }
+
 .start-sp {
-  background-image: url('sp-campaign-button.png');
+  background-image: image-url('sp-campaign-button.png');
   width: 280px;
   height: 69px;
   display: inline-block;
@@ -2275,6 +2231,13 @@ header {
   white-space: nowrap;
   overflow: hidden;
 }
+
+
+.button-wrap {
+  width: 549px;
+  margin: 25px auto;
+}
+
 .get-started {
   font-style: italic;
 }
@@ -2306,7 +2269,7 @@ header {
 .popular {
   list-style: none;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 0px;
   li > a:hover {
     background: $brand-success;
   }
@@ -2314,7 +2277,7 @@ header {
 .popular > li {
   display: inline-block;
   float: none;
-  margin: 0 10px;
+  margin: 10px 5px;
 }
 .popular > li > a {
   border-radius: 25px;
@@ -3405,3 +3368,60 @@ ul#share-block {
 .meta{
   display:none;
 }
+
+
+// Image Slider -------------------------------------------------------
+
+.banner-content{
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+  
+  h1{
+    font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+  }
+  h3{
+    color:white;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: auto;
+}
+
+#cycler{position:relative; width: 100%;}
+#cycler div{position:absolute;z-index:1}
+#cycler div.active{z-index:3}
+
+#cycler{
+  width: 100%;
+  float: left;
+  display: block;
+  
+  .slide1, .slide2, .slide3{
+    height:600px;
+    margin-bottom: 0;
+    border:0px;
+    background-image: url('hero-home.jpg');
+    background-size: 100% auto;
+    @include background-size(cover);
+    background-position: 50% 0px;
+
+
+    position:absolute;
+    width: 100%;
+    height: 600px;
+    display:block;
+  }
+  .slide1{ background-image: url('hero-home1.jpg'); } 
+  .slide2{ background-image: url('hero-home2.jpg'); }
+  .slide3{ background-image: url('hero-home3.jpg'); }
+}
+
+
+
+
+
+
+
+
