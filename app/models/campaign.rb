@@ -74,7 +74,7 @@ class Campaign < ActiveRecord::Base
     boolean :visible
 
     string :scopes, multiple: true
-    string :causes, multiple: true
+    string :main_cause
     
     string :zip_code do
       fundraiser.location.zip_code  

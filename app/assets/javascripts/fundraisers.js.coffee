@@ -22,7 +22,7 @@ Cake.fundraisers.validation = ->
       'fundraiser[phone]':
         required: true
         digits: true
-        minlength: 9
+        minlength: 10
       'fundraiser[causes][]':
         required: true
       'fundraiser[website]':
@@ -39,7 +39,7 @@ Cake.fundraisers.validation = ->
       'fundraiser[manager_phone]':
         required: true
         digits: true
-        minlength: 9
+        minlength: 10
       'fundraiser[mission]':
         required: true
       'fundraiser[supporter_demographics]':

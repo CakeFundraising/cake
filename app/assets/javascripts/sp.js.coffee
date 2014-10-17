@@ -22,7 +22,7 @@ Cake.sponsors.validation = ->
       'sponsor[phone]':
         required: true
         digits: true
-        minlength: 9
+        minlength: 10
       'sponsor[website]':
         url: true
       'sponsor[manager_name]':
@@ -37,7 +37,7 @@ Cake.sponsors.validation = ->
       'sponsor[manager_phone]':
         required: true
         digits: true
-        minlength: 9
+        minlength: 10
       'sponsor[mission]':
         required: true
       'sponsor[customer_demographics]':

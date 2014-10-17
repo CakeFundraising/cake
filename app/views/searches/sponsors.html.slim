@@ -3,15 +3,9 @@
 #search_sponsors
   h1.dash-head Search Sponsors
   
-  /.controls.clearfix
-  /  .counter 
-  /  	strong #{@sponsors.total_count} sponsors 
-  /  	span match the criteria
-
   .row
     .col-md-3
     	= render 'layouts/search/search_form', collection: :sponsors
-    	/hr
     	
     	.controls.clearfix
 		    .counter 

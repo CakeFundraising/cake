@@ -7,12 +7,10 @@
       h4.truncate = auto_link campaign
       .location.truncate = (campaign.fundraiser.location.city + ', ' + campaign.fundraiser.location.state_code)
       .cause.truncate = campaign.object.main_cause
-      /.type = campaign.object.scopes.first
       hr
       .fundraiser_name.truncate = auto_link campaign.fundraiser
       hr
       .thermometer
-        /p.timer-ital Total all sponsor pledges:
         .progress
           .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
             span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
@@ -23,13 +21,6 @@
           span.pull-right 
           /Goal
           strong.pull-right = campaign.goal
-      /hr
-      /.dates = campaign.start_end_dates
-  /.sponsors.pull-left 
-  /  = link_to "View Sponsors", campaign 
-  /.actions.pull-right
-  /  = link_to nil do
-  /    span.glyphicon.glyphicon-share
 
     - if can? :edit, campaign
       = link_to edit_campaign_path(campaign) do

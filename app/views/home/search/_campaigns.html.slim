@@ -6,7 +6,7 @@
         - Campaign::CAUSES_HIERARCHY.each do |group|
           h4 = t("titles.causes.#{group.first}")
           - group.last.each do |cause|
-            li = link_to cause, search_campaigns_path(causes: cause)
+            li = link_to cause, search_campaigns_path(main_cause: cause)
   .col-md-9
     .campaigns-container.row-fluid.transitions-enabled
       .campaigns

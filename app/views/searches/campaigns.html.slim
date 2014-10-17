@@ -3,24 +3,15 @@
 #search_campaigns
   h1.dash-head Search Campaigns
   
-  /.controls
-  /  .counter 
-  /  	strong #{@campaigns.total_count} campaigns 
-  /  	span match the criteria
-
   .row
     .col-md-3
     	= render 'layouts/search/search_form', collection: :campaigns
-    	/hr
-    	
     	.controls
     		.counter 
-    			.boldest #{@campaigns.total_count} campaigns 
-    				span match the criteria
+    			.boldest #{@campaigns.total_count} campaigns match the criteria
     	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
-        /hr
         = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
     .col-md-9
       .campaigns-container.row-fluid.transitions-enabled

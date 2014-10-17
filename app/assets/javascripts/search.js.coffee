@@ -5,8 +5,9 @@ Cake.search = (form, resultsDiv) ->
   $input = $form.find("#search")
 
   timer = null
-  delay = 500
-  $input.on "keyup", ->
+  delay = 800
+
+  $input.on "keypress", ->
     window.clearTimeout timer if timer
     timer = window.setTimeout(->
       timer = null

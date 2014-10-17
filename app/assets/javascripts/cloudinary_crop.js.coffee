@@ -58,9 +58,6 @@ class UploadedImage
     return
 
   destroy_in_cloudinary: ->
-    # $.cloudinary.delete_by_token(@delete_token).done ->
-    #   console.log 'Image deleted.'
-    #   return
     $.cloudinary.delete_by_token(@delete_token)
     return
 
