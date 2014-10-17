@@ -845,25 +845,29 @@ form{
   padding: 20px 0;
 }
 .fundraisers-cir {
-  background-image: image-url('fr-circle.png');
-  width: 351px;
-  height: 351px;
+  width: 290px;
+  height: 290px;
   text-align: center;
   color: #fff;
-  padding: 70px 30px 0;
+  padding: 40px 15px;
   margin: 0 auto;
+  background-color: $brand-success;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
+  margin-bottom: 25px;
 }
 .sponsors-cir {
-  background-image: image-url('sp-circle.png');
-  width: 351px;
-  height: 351px;
+  width: 290px;
+  height: 290px;
   text-align: center;
   color: #fff;
-  padding: 70px 30px 0;
+  padding: 40px 15px;
   margin: 0 auto;
+  background-color: $brand-primary;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
 }
 .start-now-btn {
-  font-size: 25px;
   border: 1px solid white;
   margin-top: 10px;
 }
@@ -1308,7 +1312,7 @@ h1.name {
   border: 1px solid #dddddd;
   border-radius: $border-radius-base;
   margin-bottom: 10px;
-  height: 300px;
+  /*height: 300px;*/
   hr {
     margin-top:10px;  
     margin-bottom:10px;  

@@ -51,6 +51,11 @@
                     button.btn.btn-xl.btn-primary data-target="#sponsor_modal_#{@sponsor.id}" data-toggle="modal"
                       = "Request Pledge"
                     = render partial:'sponsors/show/modal', locals:{sponsor: @sponsor}
+          - else
+            .row
+              .col-md-12.text-center
+                .main-cta
+                  a.btn.btn-primary.btn-xl href='#active-pledges' View Current Pledges
 
   .white
     .container
