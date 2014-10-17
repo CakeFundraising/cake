@@ -300,18 +300,7 @@ hr{
   .popular > li > a{
     min-width:90px !important;
   }
-  #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
-    display: none;
-  }
-  #tab-campaigns:after{
-    content: "Campaigns";
-  }
-  #tab-sponsors:after{
-    content: "Sponsors";
-  }
-  #tab-coupons:after{
-    content: "Coupons";
-  }
+  
   .navbar{
     /*position: fixed;
     top: 0px;*/
@@ -375,6 +364,20 @@ hr{
     .button-wrap{
       display:none;
     }
+
+    #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+      display: none;
+    }
+    #tab-campaigns:after{
+      content: "Campaigns";
+    }
+    #tab-sponsors:after{
+      content: "Sponsors";
+    }
+    #tab-coupons:after{
+      content: "Coupons";
+    }
+
     .navbar-collapse{
       /*margin-left: 0px !important;
       margin-right: 0px !important;
@@ -385,8 +388,7 @@ hr{
     #main-container{
 
     }
-    .bottom_section{
-      
+    /*.bottom_section{
       .container{
         padding:0px !important;
       }
@@ -411,6 +413,7 @@ hr{
         margin: 0px !important;
       }
     }
+    */
     .rank-rows{
       .boldest{
         display:block !important;
@@ -2074,36 +2077,29 @@ header {
     margin: 25px 0;
   }
 }
-.circle-campaign {
-  background-image: image-url('circle-campaign.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
+
+.circle-campaign, .circle-sp, .circle-raised {
+  border: 20px solid #08c1dc;
+  height: 250px;
+  width: 250px;
+  border-radius:200px;
   position: relative;
   display: inline-block;
   margin: auto 20px;
+}
+
+.circle-campaign {
+  border-color: #ffa755;
 }
 .circle-sp {
-  background-image: image-url('circle-sp.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
-  position: relative;
-  display: inline-block;
-  margin: auto 20px;
+  border-color: #08c1dc;
 }
 .circle-raised {
-  background-image: image-url('circle-raised.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
-  position: relative;
-  display: inline-block;
-  margin: auto 20px;
+  border-color: #462445;
 }
 .totals-centerd {
-  width: 50%;
-  height: 50%;
+  width: 65%;
+  height: 65%;
   overflow: auto;
   margin: auto;
   position: absolute;
@@ -2114,9 +2110,6 @@ header {
     padding: 30px 0 0;
     margin-bottom: 0;
   }
-}
-.center {
-  text-align: center;
 }
 .success-banner {
   height:375px;
@@ -2367,47 +2360,6 @@ header {
   h3 {
     color: black;
     margin: 25px 0;
-  }
-}
-.circle-campaign {
-  background-image: url('circle-campaign.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
-  position: relative;
-  display: inline-block;
-  margin: auto 20px;
-}
-.circle-sp {
-  background-image: url('circle-sp.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
-  position: relative;
-  display: inline-block;
-  margin: auto 20px;
-}
-.circle-raised {
-  background-image: url('circle-raised.png');
-  background-repeat: no-repeat;
-  height: 266px;
-  width: 266px;
-  position: relative;
-  display: inline-block;
-  margin: auto 20px;
-}
-.totals-centerd {
-  width: 50%;
-  height: 50%;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  h4 {
-    color: #ffa755;
-    font-size: 35px;
-    padding: 30px 0 0;
-    margin-bottom: 0;
   }
 }
 .center {
