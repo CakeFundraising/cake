@@ -18,8 +18,8 @@ tr.pledge id=(pledge.id)
   td data-title=(Pledge.human_attribute_name :status)
     - if pledge.pending?
       = t('semantic.Pending')
-    - if pledge.rejected?
-      .text-danger = t('semantic.Rejected')
+    - if pledge.rejected? or pledge.incomplete?
+      .text-danger = pledge.status.capitalize
   td.truncate.min-width
     = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm' if can? :increase, pledge
 
@@ -31,10 +31,4 @@ tr.pledge id=(pledge.id)
       = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
         span.glyphicon.glyphicon-trash
 
-    /button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal"
-    /  span.glyphicon.glyphicon-plus
-
 tr.empty-tr
-
-/tr.modal 
-/  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}

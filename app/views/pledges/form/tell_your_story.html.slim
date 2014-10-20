@@ -68,6 +68,9 @@
             = cancel_pledge_link
             = hidden_cancel_pledge_link
 
+- pictures_status = raw({avatar: @pledge.avatar.present?, banner: @pledge.banner.present?}.to_json)
 
 javascript:
   Cake.pledges.status = "#{@pledge.status}";
+  Cake.pictures.added_images(#{pictures_status});
+  Cake.pictures.validation();

@@ -16,4 +16,5 @@ class Invoice < ActiveRecord::Base
   monetize :due_cents
 
   scope :outstanding, ->{ where.not(status: :paid) }
+  scope :latest, ->{ order(created_at: :desc) }
 end

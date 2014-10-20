@@ -6,6 +6,9 @@
     = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
     = p.input :avatar_crop_w, as: :hidden, input_html:{class: 'crop_w'}
     = p.input :avatar_crop_h, as: :hidden, input_html:{class: 'crop_h'}
+    
+  - if f.object.errors.present?
+    = p.input :avatar, as: :hidden
 
   /! Crop modal
   #crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 

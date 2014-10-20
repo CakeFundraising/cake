@@ -37,7 +37,7 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
 
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: 'should include http:// or https://'}
-  validates :name, :mission, :headline, :description, :avatar, :banner, presence: true, if: :persisted?
+  validates :name, :mission, :headline, :description, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
@@ -45,6 +45,7 @@ class Pledge < ActiveRecord::Base
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
   scope :accepted_or_past, ->{ where("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
+  scope :not_accepted_or_past, ->{ where.not("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
 
   scope :fundraiser, ->(fr){ joins(:campaign).where("campaigns.fundraiser_id = ?", fr) }
   scope :sponsor, ->(sponsor){ where(sponsor_id: sponsor.id) }
@@ -56,6 +57,8 @@ class Pledge < ActiveRecord::Base
 
   scope :highest, ->{ order(total_amount_cents: :desc, amount_per_click_cents: :desc) }
   scope :with_campaign, ->{ eager_load(:campaign) }
+
+  scope :latest, ->{ order(created_at: :desc) }
 
   delegate :main_cause, to: :campaign
 

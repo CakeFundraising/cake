@@ -252,6 +252,8 @@ class CropModal
       return
     ), 3000
 
+    #Set validation
+    eval('Cake.crop.' + Cake.crop.type + 'Present = true;')
     return
 
 class ImageValidSizes

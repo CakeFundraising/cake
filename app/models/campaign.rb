@@ -57,6 +57,8 @@ class Campaign < ActiveRecord::Base
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
 
+  scope :latest, ->{ order(created_at: :desc) }
+  
   #Solr
   searchable do
     text :title, :headline, boost: 2

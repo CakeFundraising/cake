@@ -64,6 +64,7 @@
 //= require ./imgLiquid.min
 //= require ./impressions
 //= require ./pledges     
+//= require ./pictures   
 //= require ./videos
 //= require ./jquery.cloudinary      
 //= require ./remember_me

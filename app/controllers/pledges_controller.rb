@@ -121,7 +121,7 @@ class PledgesController < InheritedResources::Base
 
   def launch
     resource.launch!
-    redirect_to resource, notice: 'Pledge was successfully launched.'
+    redirect_to resource, notice: 'Pledge was successfully confirmed.'
   end
 
   #Clicks

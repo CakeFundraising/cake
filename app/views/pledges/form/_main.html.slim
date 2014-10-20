@@ -36,6 +36,7 @@
     h1.text-center Pledge Name
     p.text-muted.text-center Keep it simple
     = semantic_form_for @pledge do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .row
           .col-md-3

@@ -14,6 +14,7 @@ class PledgeRequest < ActiveRecord::Base
   validates :sponsor, :campaign, :fundraiser, presence: true
 
   scope :by_pledge, ->(pledge){ where(sponsor_id: pledge.sponsor.id, campaign_id: pledge.campaign.id, fundraiser_id: pledge.fundraiser.id) }
+  scope :latest, ->{ order(created_at: :desc) }
 
   def notify_sponsor(message)
     sponsor.users.each do |user|

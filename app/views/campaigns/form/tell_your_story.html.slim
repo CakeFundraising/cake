@@ -64,9 +64,12 @@
         = f.actions do
           .text-center
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-            = hidden_campaign_cancel_link        
+            = hidden_campaign_cancel_link     
+
+- pictures_status = raw({avatar: @campaign.avatar.present?, banner: @campaign.banner.present?}.to_json)
 
 javascript:
   Cake.campaigns.status = "#{@campaign.status}";
-
+  Cake.pictures.added_images(#{pictures_status});
+  Cake.pictures.validation();
             

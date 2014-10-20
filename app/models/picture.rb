@@ -18,7 +18,7 @@ class Picture < ActiveRecord::Base
     large: [600, 600]
   }
 
-  #validates :avatar, :banner, presence: true
+  validates :avatar, :banner, presence: true, if: :persisted?
 
   before_save do
     unless Rails.env.test?
@@ -29,7 +29,8 @@ class Picture < ActiveRecord::Base
   end
 
   def get_cloudinary_identifier(image_type)
-    preloaded = Cloudinary::PreloadedFile.new(self.send(image_type))         
+    image_file = self.send(image_type)
+    preloaded = Cloudinary::PreloadedFile.new(image_file)         
     raise "Invalid upload signature" unless preloaded.valid?
     self.send("#{image_type}=", preloaded.identifier) 
   end
