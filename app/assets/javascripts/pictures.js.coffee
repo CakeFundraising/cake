@@ -1,7 +1,7 @@
 Cake.pictures ?= {}
 
 Cake.pictures.added_images = (stored_images)->
-  form = $('.formtastic.pledge, .formtastic.campaign')
+  form = $('.formtastic.pledge, .formtastic.campaign, .formtastic.fundraiser, .formtastic.sponsor')
   file_inputs = form.find('input[type="file"]')
 
   file_inputs.each ->
@@ -13,7 +13,7 @@ Cake.pictures.added_images = (stored_images)->
   return
 
 Cake.pictures.validation = ->
-  form = $('.formtastic.pledge, .formtastic.campaign')
+  form = $('.formtastic.pledge, .formtastic.campaign, .formtastic.fundraiser, .formtastic.sponsor')
   submit_button = form.find('input[type="submit"]')
   file_inputs = form.find('input[type="file"]')
 

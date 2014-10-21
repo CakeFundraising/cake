@@ -26,7 +26,7 @@
       .providers.text-center
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
-            = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg' unless [:facebook, :stripe_connect].include?(provider)
+            = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg' unless [:stripe_connect].include?(provider)
 
 javascript:
   $(document).ready(Cake.remember_me);

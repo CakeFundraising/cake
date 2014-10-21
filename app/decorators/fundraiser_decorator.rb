@@ -25,7 +25,8 @@ class FundraiserDecorator < ApplicationDecorator
   end
 
   def website
-    h.auto_attr_link object.website, target: :_blank if object.website.present?
+    url = (object.website=~/^https?:\/\//).nil? ? "http://#{object.website}" : object.website
+    h.auto_attr_link url, target: :_blank
   end
 
   def email

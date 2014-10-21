@@ -7,6 +7,7 @@
     h1 Edit #{Sponsor.model_name.human} Profile
 
 = semantic_form_for @sponsor do |f|
+  = f.semantic_errors *f.object.errors.keys
   = f.inputs do
     .row 
       .col-md-8
@@ -69,3 +70,9 @@
       .col-xs-12.text-center
         = f.actions do
           = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}
+
+- pictures_status = raw({avatar: @sponsor.avatar.present?, banner: @sponsor.banner.present?}.to_json)
+
+javascript:
+  Cake.pictures.added_images(#{pictures_status});
+  Cake.pictures.validation();

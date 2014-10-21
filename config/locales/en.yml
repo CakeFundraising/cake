@@ -69,6 +69,7 @@ en:
       one: Q
       other: Q
   errors:
+    url: should be a valid URL.
     stripe_account:
       account_taken: Stripe Account has already been used. Please use another Stripe Account.
   titles:

@@ -22,7 +22,7 @@ class Sponsor < ActiveRecord::Base
   
   validates :mission, :manager_name, :manager_phone, :manager_title, :customer_demographics, :manager_email, presence: true, unless: :new_record?
   validates :manager_email, email: true, unless: :new_record?
-  validates :website, format: {with: DOMAIN_NAME_REGEX, message: 'should include http:// or https://'}, unless: :new_record?
+  validates :website, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, unless: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
   validates_associated :location
