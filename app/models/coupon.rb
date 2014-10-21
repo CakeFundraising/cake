@@ -2,14 +2,10 @@ class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include Picturable
   
-  attr_accessor :standard_terms
+  #attr_accessor :standard_terms
 
   belongs_to :pledge
   has_one :sponsor, through: :pledge
-
-  # mount_uploader :qrcode, QrCodeUploader
-  # validates_integrity_of  :qrcode
-  # validates_processing_of :qrcode
 
   monetize :unit_donation_cents
   monetize :total_donation_cents
@@ -25,7 +21,7 @@ class Coupon < ActiveRecord::Base
   scope :not_past, ->{ eager_load(:pledge).where("pledges.status != 'past'") }
 
   after_initialize do
-    self.terms_conditions = I18n.t('application.terms_and_conditions.coupons') if self.terms_conditions.blank?
+    self.terms_conditions = I18n.t('application.terms_and_conditions.coupons')
   end
 
   searchable do

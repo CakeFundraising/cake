@@ -1,6 +1,5 @@
 #coupons
-  = hidden_field_tag(:std_tos_text, I18n.t('application.terms_and_conditions.coupons'))
   = f.semantic_fields_for :coupons do |c|
     = render partial:'coupons/fields', locals:{f: c}
-  .links.text-center
-    = link_to_add_association "Add another coupon", f, :coupons, partial: 'coupons/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 3 }
+  / .links.text-center
+  /   = link_to_add_association "Add another coupon", f, :coupons, partial: 'coupons/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 3 }

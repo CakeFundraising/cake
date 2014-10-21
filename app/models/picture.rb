@@ -18,7 +18,7 @@ class Picture < ActiveRecord::Base
     large: [600, 600]
   }
 
-  validates :avatar, :banner, presence: true, if: :persisted?
+  validates :avatar, presence: true, if: :persisted?
 
   before_save do
     unless Rails.env.test?

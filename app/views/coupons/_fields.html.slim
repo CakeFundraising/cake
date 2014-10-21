@@ -15,8 +15,8 @@
       .col-md-12
         = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, placeholder: '300 words or less' }
         = f.input :merchandise_categories, as: :select, collection: Coupon::CATEGORIES, input_html:{multiple: true, size: 10, class: 'coupon_merchandise_categories'}
-        = f.input :terms_conditions, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000 }
-        = f.input :standard_terms, as: :boolean, input_html:{checked: true}
+        = f.input :terms_conditions, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000, disabled: true }
+        / = f.input :standard_terms, as: :boolean, input_html:{checked: true}
     .row.coupon-uploads
       .col-sm-6
         .coupon-images.pull-right
@@ -26,7 +26,6 @@
         .coupon-images
           p UPLOAD QR CODE (Optional)
           = render partial:'pictures/qrcode_form', locals:{f: f}
-          /= f.input :qrcode, as: :uploader, removable: false
-    .row
-      .col-sm-12.remove-coupon.text-center
-        = link_to_remove_association "Remove", f
+    / .row
+    /   .col-sm-12.remove-coupon.text-center
+    /     = link_to_remove_association "Remove", f

@@ -24,6 +24,7 @@
       p.text-muted Add special offers and/or an extra donation pledge
       br
     = semantic_form_for @pledge do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .buttons.text-center
           button.btn#add_coupons Yes! I want to add coupons
