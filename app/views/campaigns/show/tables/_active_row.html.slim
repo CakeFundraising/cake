@@ -4,7 +4,7 @@ tr.campaign
   td data-title=(Campaign.human_attribute_name :end_date)
     = campaign.end_date
   td data-title=(Campaign.human_attribute_name :total)
-    = campaign.total_donation
+    = campaign.raised
   td data-title=(t('semantic.number_of', model: 'Pledges'))
     = campaign.pledges.count
     - if campaign.pledges.any?
