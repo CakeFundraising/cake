@@ -18,7 +18,7 @@ Cake.init = ->
   #Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
-  Cake.sponsors_form()
+  #Cake.sponsors_form()
   Cake.campaigns.init()
 
   Cake.browsers.create()
@@ -29,4 +29,5 @@ $(document).on('page:load', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()
+  Cake.slider.destroy()
   return

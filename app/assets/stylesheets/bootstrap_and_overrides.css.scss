@@ -330,6 +330,19 @@ hr{
     }
 }
 
+
+@media (max-width: $screen-md-min) {
+  .alert, .med-hide{
+    display:none;
+  }
+  .campaign-intro {
+    bottom: 0px !important;
+  }
+  .hero {
+    height: 500px !important;
+  }
+}
+
 @media (max-width: 620px){
     .navbar-default{
       .container{
@@ -857,8 +870,8 @@ form{
   padding: 20px 0;
 }
 .fundraisers-cir {
-  width: 290px;
-  height: 290px;
+  width: 250px;
+  height: 250px;
   text-align: center;
   color: #fff;
   padding: 40px 15px;
@@ -869,8 +882,8 @@ form{
   margin-bottom: 25px;
 }
 .sponsors-cir {
-  width: 290px;
-  height: 290px;
+  width: 250px;
+  height: 250px;
   text-align: center;
   color: #fff;
   padding: 40px 15px;
@@ -881,7 +894,7 @@ form{
 }
 .start-now-btn {
   border: 1px solid white;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 .divider-vert {
   border-right: 1px dotted $gray-light;
@@ -1289,15 +1302,6 @@ h1.name {
 }
 
 @media (max-width: 420px){
-  .hero {
-    height: 660px;
-    .alert-dismissable {
-      font-size: 1.2em;
-    }
-  }
-  .campaign-intro {
-    bottom: 0px;
-  }
   .btn-lg {
     padding: 10px 40px !important;
   }
@@ -1564,7 +1568,7 @@ table.performance-summary {
 
 .pledgebluestripe {
   &.campaign{
-    padding: 30px;
+    padding: 30px 5px;
     /*height: 140px;*/
     h1{
       position: absolute;
@@ -2636,7 +2640,7 @@ ul#share-block {
 }
 
 .btn-holder{
-  width:325px;
+  /*width:325px;*/
   margin: auto;
 }
 

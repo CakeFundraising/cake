@@ -60,15 +60,18 @@ html lang="en"
     - if content_for? :header
       header
         = yield :header
-    .container#main-container
-      .row
-        - if content_for? :sidebar
+    
+    - if content_for? :sidebar
+      .container#main-container
+        .row
           #sidebar.col-md-3
             .sidebar-nav
               = yield :sidebar
           .col-md-9.with-sidebar
             = yield
-        - else
+    - else
+      .container#main-container
+        .row
           .col-md-12
             = yield
       /! /row

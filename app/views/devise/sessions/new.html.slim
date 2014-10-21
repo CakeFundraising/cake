@@ -14,7 +14,8 @@
         = f.inputs 'Sign In With Email' do
           = f.input :email, label:'Email Address'
           = f.input :password
-          = f.input :remember_me, label: '', :input_html => { :class => 'onoffswitch-checkbox'}, as: :boolean if devise_mapping.rememberable?
+          = f.input :remember_me, label: '', :checked => true, as: :boolean if devise_mapping.rememberable?
+          /= f.input :remember_me, label: '', :input_html => { :class => 'onoffswitch-checkbox'}, :checked => true, as: :boolean if devise_mapping.rememberable?
         = f.actions do
           = f.action :submit, label: 'Sign in', button_html: {class: 'btn btn-success btn-lg btn-block'}
         .shared-links
@@ -28,9 +29,9 @@
           - resource_class.omniauth_providers.each do |provider|
             = link_to "Sign in with #{provider.to_s.titleize}", user_omniauth_authorize_path(provider), class:'btn btn-primary btn-lg' unless [:stripe_connect].include?(provider)
 
-javascript:
-  $(document).ready(Cake.remember_me);
-  $(document).on('page:load', Cake.remember_me);
+/javascript:
+/  $(document).ready(Cake.remember_me);
+/  $(document).on('page:load', Cake.remember_me);
 
 
 

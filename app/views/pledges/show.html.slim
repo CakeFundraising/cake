@@ -16,7 +16,7 @@
             span = @pledge.mission
             - if can? :edit, @pledge and not @pledge.past?
               span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
-          .social
+          .social.med-hide
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Pledge!
       .col-md-4.sidebar
@@ -69,6 +69,8 @@
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @pledge.headline
           p.story.expander = @pledge.description
+
+= content_for :bottom_section do
   .blue
     .container
       .row.pledgebluestripe.campaign
@@ -93,7 +95,7 @@
     .row
       = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
       br
-      .text-center
+      .text-center.med-hide
         h2 Please share our pledge with your family and friends!
         p.text-muted Working together, we can make a difference.
       .text-center = render partial:'layouts/share_buttons'
