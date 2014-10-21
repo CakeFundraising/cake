@@ -8,9 +8,9 @@
           - if pledge.click_browsers.include?(current_browser)
             = link_to 'Thanks! Visit our Website Again', pledge.website_url, target: :_blank, class:'btn btn-success btn-xl'
           - else
-            #buttons_section
+            .click_buttons_section
               = link_to "Click to Help. It's Free!", click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'btn btn-success btn-block btn-xl click_link'
             = render partial:'clicks/success_modal', locals: {pledge: pledge}
         - else
           / Browser not registered.
-          = link_to "Click to Help. It's Free!", url_for(params), target: :_blank, onClick:"javascript: setTimeout(window.close, 10);", class: 'btn btn-success btn-xl no_browser_link'
+          = link_to "Click to Help. It's Free!", url_for(params), target: :_blank, onClick:"javascript: setTimeout(window.close(), 10);", class: 'btn btn-success btn-xl no_browser_link'
