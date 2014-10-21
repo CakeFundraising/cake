@@ -98,7 +98,7 @@
       .text-center.med-hide
         h2 Please share our pledge with your family and friends!
         p.text-muted Working together, we can make a difference.
-      .text-center = render partial:'layouts/share_buttons'
+        .text-center = render partial:'layouts/share_buttons'
   = render partial: 'layouts/choose_path'
   = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
