@@ -44,6 +44,7 @@ class Pledge < ActiveRecord::Base
 
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
+  scope :pending_or_past, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :past) }
   scope :accepted_or_past, ->{ where("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
   scope :not_accepted_or_past, ->{ where.not("pledges.status = ? OR pledges.status = ?", :accepted, :past) }
 

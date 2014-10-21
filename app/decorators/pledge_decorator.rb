@@ -49,8 +49,11 @@ class PledgeDecorator < ApplicationDecorator
   end
 
   def website
-    url = (object.website_url=~/^https?:\/\//).nil? ? "http://#{object.website_url}" : object.website_url
-    h.auto_attr_link url, target: :_blank
+    h.auto_attr_link website_url, target: :_blank
+  end
+
+  def website_url
+    (object.website_url=~/^https?:\/\//).nil? ? "http://#{object.website_url}" : object.website_url
   end
 
   ##impressions

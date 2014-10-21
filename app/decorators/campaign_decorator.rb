@@ -50,4 +50,8 @@ class CampaignDecorator < ApplicationDecorator
   def status
     object.status.titleize
   end
+
+  def pledges_count
+    object.pledges.active.count + object.pledges.pending_or_past.count
+  end
 end
