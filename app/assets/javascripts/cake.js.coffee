@@ -18,7 +18,7 @@ Cake.init = ->
   #Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
-  Cake.sponsors_form()
+  #Cake.sponsors_form()
   Cake.campaigns.init()
 
   Cake.browsers.create()
