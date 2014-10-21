@@ -29,4 +29,5 @@ $(document).on('page:load', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()
+  Cake.slider.destroy()
   return

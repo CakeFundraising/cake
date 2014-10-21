@@ -1,4 +1,5 @@
 Cake.slider ?= {}
+$fadeInt = 0
 
 Cake.slider.cycleImages = ->
   $active = $("#cycler .active")
@@ -11,7 +12,13 @@ Cake.slider.cycleImages = ->
   return
 
 Cake.slider.init = ->
-  setInterval Cake.slider.cycleImages, 8000
+  unless $fadeInt
+    $fadeInt = setInterval Cake.slider.cycleImages, 5000
+  return
+
+Cake.slider.destroy = ->
+  clearInterval $fadeInt
+  $fadeInt = null
   return
 
 
