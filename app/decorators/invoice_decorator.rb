@@ -20,4 +20,12 @@ class InvoiceDecorator < ApplicationDecorator
   def id
     "##{object.id}"
   end
+
+  def estimated_fees
+    h.humanized_money_with_symbol object.estimated_fees/100
+  end
+
+  def estimated_net_donation
+    h.humanized_money_with_symbol object.estimated_net_donation/100
+  end
 end
