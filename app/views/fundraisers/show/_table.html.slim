@@ -4,6 +4,7 @@
       thead.cf
         tr
           th = Fundraiser.model_name.human
+          th = Fundraiser.human_attribute_name :total_donation
           th = t('semantic.number_of', model: 'Pledges')
           th = t('semantic.average', model: 'Donation')
           th = t('semantic.average', model: 'Pledge')

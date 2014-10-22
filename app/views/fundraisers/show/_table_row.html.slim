@@ -1,6 +1,8 @@
 tr.fundraiser
   td data-title=(Fundraiser.model_name.human)
     = auto_link fundraiser
+  td data-title=(Fundraiser.human_attribute_name :total_donation)
+    = fundraiser.total_donation
   td data-title=(t('semantic.number_of', model: 'Pledges'))
     = sponsor.pledges.past.fundraiser(fundraiser).count + sponsor.pledges.active.fundraiser(fundraiser).count
   td data-title=(t('semantic.average', model: 'Donation'))
