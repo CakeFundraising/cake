@@ -9,9 +9,9 @@ tr
     = pledge.main_cause
   td data-title=(Pledge.human_attribute_name :type)
     = pledge.campaign.object.scopes.first
-  - if pledge.past?
-    td data-title=(Pledge.human_attribute_name :donation)
-      = pledge.invoice.due if pledge.invoice.present?
+  td data-title=(Pledge.human_attribute_name :donation)
+    = pledge.invoice.due if pledge.past? and pledge.invoice.present?
+    = pledge.total_charge unless pledge.past?
   td data-title=(Pledge.human_attribute_name :pledge)
     = pledge.total_amount 
   td data-title=(Pledge.human_attribute_name :donation_click)

@@ -10,6 +10,8 @@
           th = Pledge.human_attribute_name :type
           - if kind == :past
             th = Pledge.human_attribute_name :donation
+          - else
+            th = Pledge.human_attribute_name :current_donation
           th = Pledge.human_attribute_name :pledge
           th = Pledge.human_attribute_name :donation_click
           th = Pledge.human_attribute_name :coupon
