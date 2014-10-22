@@ -5,8 +5,9 @@ module FundraisersHelper
         link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect' do
           content_tag(:span, "Connect with Stripe")
         end 
-      end+ 
-      content_tag(:span, "Link account to accept donations & payments thru Stripe.", class: 'link-stripe-account')
+      end
+      #end+ 
+      #content_tag(:span, "Link account to accept donations & payments thru Stripe.", class: 'link-stripe-account')
     end
   end
 
