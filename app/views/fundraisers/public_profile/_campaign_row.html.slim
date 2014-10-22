@@ -2,7 +2,8 @@ tr
   td.td-header(data-title='Campaign') 
     = auto_link campaign
   td.td-header(data-title='Total Donations') 
-    = campaign.total_donation
+    = campaign.total_donation if campaign.past?
+    = campaign.raised unless campaign.past?
   td.td-header(data-title='Cause') 
     = campaign.object.main_cause
   td.td-header(data-title='End Date') 
