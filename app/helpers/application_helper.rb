@@ -58,8 +58,12 @@ module ApplicationHelper
   end
 
   ## Global data
+  def cake_global_raised
+    Invoice.paid.sum(:due_cents).to_i/100
+  end
+
   def global_raised
-    "#{currency_symbol}#{number_to_human(Cake.global_raised, units: :numbers, format: '%n%u')}".html_safe
+    "#{currency_symbol}#{number_to_human(cake_global_raised, units: :numbers, format: '%n%u')}".html_safe
   end
 
   def campaigns_count
