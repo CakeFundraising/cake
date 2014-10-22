@@ -16,7 +16,7 @@
       input#campaign_url.form-control disabled='' type="text" value=campaign_url(@campaign)
       .row.text-center
         br
-        button.btn.btn-primary data-clipboard-target="campaign_url" Copy
+        button.btn.btn-primary.clipboard data-clipboard-target="campaign_url" Copy
   .col-md-2
 .row.section-wrapper.text-center       
   .col-md-2
@@ -32,5 +32,5 @@
             = link_to @campaign.mission, campaign_url(@campaign), target: :_blank
       .row.text-center
         br
-        button.btn.btn-primary data-clipboard-target="embedded_link" Copy
+        button.btn.btn-primary.clipboard data-clipboard-target="embedded_link" Copy
   .col-md-2

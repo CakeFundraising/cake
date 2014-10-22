@@ -11,6 +11,7 @@
           th = t('semantic.average', model: 'Donation')
           th = t('semantic.average', model: 'Pledge')
           th = t('semantic.average', model: 'Donation/Click')
+          th = Campaign.human_attribute_name :total_clicks
       tbody
         = render partial:'fundraisers/public_profile/campaign_row', collection: CampaignDecorator.decorate_collection(campaigns), as: :campaign
 - else

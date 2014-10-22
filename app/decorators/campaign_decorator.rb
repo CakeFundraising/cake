@@ -39,6 +39,10 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.current_pledges_total
   end
 
+  def current_average_donation
+    h.humanized_money_with_symbol object.current_average_donation
+  end
+
   def raised
     h.humanized_money_with_symbol object.raised
   end

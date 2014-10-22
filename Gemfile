@@ -22,7 +22,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'rails-timeago'
 gem 'chosen-rails'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
-gem 'zeroclipboard-rails'
+gem 'zeroclipboard-rails', '~> 0.1.0'
 
 #Views
 gem 'slim'

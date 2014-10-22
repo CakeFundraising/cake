@@ -118,6 +118,11 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.sum(:total_amount_cents)/100
   end
 
+  def current_average_donation
+    return 0 unless pledges.accepted.any?
+    (raised/pledges.accepted.count).floor
+  end
+
   def pledges_thermometer
     (raised/goal.amount)*100 unless goal.amount == 0.0
   end
