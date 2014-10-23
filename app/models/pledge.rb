@@ -177,22 +177,6 @@ class Pledge < ActiveRecord::Base
     end
   end
 
-  def force_save_amounts(old_amount_per_click_cents, old_total_amount_cents, new_amount_per_click_cents, new_total_amount_cents)
-    unless new_amount_per_click_cents.zero? #param no present
-      if self.amount_per_click_cents < new_amount_per_click_cents and self.amount_per_click_cents == old_amount_per_click_cents
-        puts "Pledge increase failed. Amount per click."
-        self.update_attribute :amount_per_click_cents, new_amount_per_click_cents
-      end
-    end
-
-    unless new_total_amount_cents.zero? #param no present
-      if self.total_amount_cents < new_total_amount_cents and self.total_amount_cents == old_total_amount_cents
-        puts "Pledge increase failed. Total amount."
-        self.update_attribute :total_amount_cents, new_total_amount_cents
-      end
-    end
-  end
-
   ### Impressions
   def views_count
     impressions_count || 0
