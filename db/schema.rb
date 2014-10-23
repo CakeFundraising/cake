@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023140520) do
+ActiveRecord::Schema.define(version: 20141023191010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20141023140520) do
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
   create_table "clicks", force: true do |t|
+    t.string   "email"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -269,7 +270,6 @@ ActiveRecord::Schema.define(version: 20141023140520) do
     t.text     "description"
     t.integer  "amount_per_click_cents",              default: 0,             null: false
     t.string   "amount_per_click_currency",           default: "USD",         null: false
-    t.string   "donation_type"
     t.integer  "total_amount_cents",                  default: 0,             null: false
     t.string   "total_amount_currency",               default: "USD",         null: false
     t.string   "website_url"

@@ -23,7 +23,7 @@ ActiveAdmin.register Pledge do
       row :name
       row :mission
       row :headline
-      row :story
+      row :description
       row :website
       row :amount_per_click
       row :total_amount
@@ -38,6 +38,7 @@ ActiveAdmin.register Pledge do
 
   filter :name
   filter :headline
+  filter :mission
   filter :website
   filter :clicks_count
   filter :campaign
