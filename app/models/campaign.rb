@@ -49,6 +49,7 @@ class Campaign < ActiveRecord::Base
   scope :visible, ->{ where(visible: true) }
   scope :not_visible, ->{ where(visible: false) }
 
+  scope :with_pledges, ->{ eager_load(:pledges) }
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_paid_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
@@ -57,7 +58,7 @@ class Campaign < ActiveRecord::Base
     past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
 
-  scope :latest, ->{ order(created_at: :desc) }
+  scope :latest, ->{ order('campaigns.created_at DESC') }
   
   #Solr
   searchable do
@@ -128,7 +129,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def self.popular
-    self.not_past.not_incomplete.visible.order(created_at: :desc).first(12)
+    self.with_picture.with_pledges.not_past.not_incomplete.visible.latest.first(12)
   end
 
   #Status

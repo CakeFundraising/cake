@@ -19,6 +19,9 @@ class Coupon < ActiveRecord::Base
   scope :normal, ->{ where(extra_donation_pledge: false) }
 
   scope :not_past, ->{ eager_load(:pledge).where("pledges.status != 'past'") }
+  scope :active, ->{ eager_load(:pledge).where("pledges.status = 'accepted'") }
+
+  scope :latest, ->{ order(created_at: :desc) }
 
   after_initialize do
     self.terms_conditions = I18n.t('application.terms_and_conditions.coupons')
@@ -37,10 +40,14 @@ class Coupon < ActiveRecord::Base
       sponsor.location.zip_code
     end
 
+    string :status do
+      pledge.status
+    end
+
     time :created_at
   end
 
   def self.popular
-    self.not_past.order(created_at: :desc).first(12)
+    self.active.latest.first(12)
   end
 end
