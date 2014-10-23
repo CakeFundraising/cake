@@ -6,10 +6,8 @@
       .col-md-6
         .row.text-left
           = f.input :name, placeholder: 'Silver Sponsor', label: 'Pledge Level', input_html: {class:'pledge_name', size: 40, maxlength: 40}
-        
       .col-md-6
         .text-left
-          /label.control-label Sponsorship Amount
           .form-wrapper
             .form-group
               span.control-label
@@ -22,9 +20,7 @@
               - unless f.object.min_value == '50'
                 = link_to_remove_association "Remove", f, class: 'btn btn-success pull-right'
 
-
-javascript:
-  var input = $('.max_value');
-  if(input.val() == "0.00")
-    input.val("");
-
+/ javascript:
+/   var input = $('.max_value');
+/   if(input.val() == "0.00")
+/     input.val("");

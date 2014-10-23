@@ -18,6 +18,11 @@ Cake.validations.custom_methods = ->
     min = $(element).closest('.pledge_level').find('.min_value').text().replace('$','')
     "Please enter a value greater than $" + min
 
+  $.validator.addMethod "limitToIntegerRange", ((value, element, params) ->
+    this.optional(element) || parseInt(value) < 9999999999
+  ), (params, element) ->
+    "Please enter a value smaller than $9999999999"
+
   $.validator.addMethod "minStrict", ((value, element, params) ->
     this.optional(element) || parseInt(value) > parseInt(params)
   ), jQuery.validator.format("Please enter a value greater than {0}")

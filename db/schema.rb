@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016184714) do
+ActiveRecord::Schema.define(version: 20141023140520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,14 +290,14 @@ ActiveRecord::Schema.define(version: 20141016184714) do
 
   create_table "sponsor_categories", force: true do |t|
     t.string   "name"
-    t.integer  "min_value_cents",    default: 0,     null: false
-    t.string   "min_value_currency", default: "USD", null: false
-    t.integer  "max_value_cents",    default: 0,     null: false
-    t.string   "max_value_currency", default: "USD", null: false
+    t.integer  "min_value_cents",    limit: 8, default: 0,     null: false
+    t.string   "min_value_currency",           default: "USD", null: false
+    t.integer  "max_value_cents",    limit: 8, default: 0,     null: false
+    t.string   "max_value_currency",           default: "USD", null: false
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",           default: 0
+    t.integer  "position",                     default: 0
   end
 
   create_table "sponsor_email_settings", force: true do |t|

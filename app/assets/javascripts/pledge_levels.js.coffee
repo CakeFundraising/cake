@@ -11,6 +11,7 @@ Cake.pledge_levels.validation.set_rules = ->
       required: true
       number: true
       minStrictPledgeLevels: true
+      limitToIntegerRange: true
   return
 
 Cake.pledge_levels.validation.validate = ->

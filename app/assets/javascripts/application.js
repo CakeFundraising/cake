@@ -51,9 +51,9 @@
 //= require ./clipboard     
 //= require ./fundraisers     
 //= require ./pledge_levels     
+//= require ./pledge_levels_form
 //= require ./cloudinary_crop   
 //= require ./help
-//= require ./pledge_levels_form    
 //= require ./users
 //= require ./coupons     
 //= require ./home
