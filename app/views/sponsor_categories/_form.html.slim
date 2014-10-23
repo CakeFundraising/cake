@@ -11,3 +11,8 @@
 	    	.text-center
 				= link_to_add_association 'Add Next Pledge Level', f, :sponsor_categories, partial: 'sponsor_categories/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 2, :'association-insertion-method' => :append, :'association-insertion-node' => '.fields-container'}
 	.col-md-2
+
+javascript:
+  var input = $('.default-zero');
+  if(input.val() == "0.00")
+    input.val("");

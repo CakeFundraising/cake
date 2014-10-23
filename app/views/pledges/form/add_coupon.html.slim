@@ -18,27 +18,36 @@
 
 .tab-content.campaign-wizard-wrap
   #coupon.tab-pane.active
-    br
-    .text-center
-      h2 Add Coupons
-      p.text-muted Add special offers and/or an extra donation pledge
-      br
     = semantic_form_for @pledge do |f|
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
-        .buttons.text-center
-          button.btn#add_coupons Yes! I want to add coupons
-          span or
-          button.btn#no_coupons No! Skip this step
-          = f.input :show_coupons, as: :boolean
-        br
+        .text-center
+          h1 Add Coupons
+          p.text-muted Add special offers and/or an extra donation to your pledge
+        .row
+          .col-md-3
+          .col-md-6
+            .buttons.text-center
+              button.btn#add_coupons Yes! I want to add coupons
+              span or
+              button.btn#no_coupons No! Skip this step
+              = f.input :show_coupons, as: :boolean
+          .col-md-3
+        .row.text-center
+          .col-md-12
+            .coupons_section
+              = render partial:'coupons/form', locals:{f: f}
+            / = f.input :step, as: :hidden, input_html:{value: :add_sweepstakes}
 
-        .coupons_section
-          = render partial:'coupons/form', locals:{f: f}
 
-        / = f.input :step, as: :hidden, input_html:{value: :add_sweepstakes}
+
+
+
+        
+        
         = f.input :step, as: :hidden, input_html:{value: :share}
-        br
+
+
       .text-center
         = f.actions do
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 
@@ -47,3 +56,10 @@
 javascript:
   $(document).ready(Cake.pledges.coupons_switcher);
   $(document).on('page:load', Cake.pledges.coupons_switcher);
+
+
+
+
+
+
+

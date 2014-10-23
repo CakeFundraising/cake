@@ -79,10 +79,13 @@
           /.share.pull-right
           /  = render partial:'layouts/share_buttons'
           .clearfix
-          br
-          /h4.share-info.pull-right Please share our Pledge!
-          .btn-holder.text-center
-            = render partial:'clicks/pledge', locals:{pledge: @pledge}
+            .col-md-4
+            .col-md-4
+              br
+              /h4.share-info.pull-right Please share our Pledge!
+              .btn-holder.text-center
+                = render partial:'clicks/pledge', locals:{pledge: @pledge}
+            .col-md-4
   .container
     - if @pledge.coupons.any? and @pledge.show_coupons
       .row

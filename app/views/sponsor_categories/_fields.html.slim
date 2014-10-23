@@ -18,7 +18,7 @@
               = f.input :min_value, as: :hidden, input_html: {class:'input_min_value'}
               = f.input :position, as: :hidden, input_html: {class:'input_position'}
             .form-group
-              = f.input :max_value, label: false, input_html: {class:'max_value', placeholder: '500.00', maxlength: 16}, :prepend => '$'
+              = f.input :max_value, label: false, input_html: {class:'max_value default-zero', placeholder: '500.00', maxlength: 16}, :prepend => '$'
               - unless f.object.min_value == '50'
                 = link_to_remove_association "Remove", f, class: 'btn btn-success pull-right'
 

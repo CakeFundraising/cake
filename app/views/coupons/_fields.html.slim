@@ -1,31 +1,61 @@
 .nested-fields.coupon-outer-wrap
-  hr
   = f.inputs do
-    .row
+    .row.section-wrapper.text-center
+      h2 Extra Donations?
+      p.text-muted Would you like to make an extra donation for this Coupon?
+      br
       .col-md-12.coupons-wrap
-        = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
-        = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
-      .col-md-4
-        = f.input :title, {placeholder: '60 characters or less', class: 'coupon_title'}
-      .col-md-4
-        = f.input :expires_at, as: :string, input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
-      .col-md-4
-        = f.input :promo_code, {placeholder: '20 characters or less', class: 'coupon_promo_code'}
+        .col-md-2
+        .col-md-8
+          = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
+          = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
+        .col-md-2
+    .row.section-wrapper.text-center
+      h2 Coupon Information
+      p.text-muted Enter in the details of the Coupon
+      br
+      .col-md-2
+      .col-md-8
+        .col-md-4
+          = f.input :title, {placeholder: '60 characters or less', class: 'coupon_title', maxlength: 60}
+        .col-md-4
+          = f.input :expires_at, as: :string, label: 'Expires On', input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
+        .col-md-4
+          = f.input :promo_code, {placeholder: '20 characters or less', class: 'coupon_promo_code', maxlength: 20}
+      .col-md-2
     .row
-      .col-md-12
-        = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, placeholder: '300 words or less' }
-        = f.input :merchandise_categories, as: :select, collection: Coupon::CATEGORIES, input_html:{multiple: true, size: 10, class: 'coupon_merchandise_categories'}
+      .col-md-2
+      .col-md-8
+        = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, placeholder: '500 words or less' }
+      .col-md-2
+    .row.section-wrapper.text-center
+      h2 Coupon Category
+      p.text-muted You can select more than one
+      br
+      .col-md-2
+      .col-md-8
+        = f.input :merchandise_categories, as: :check_boxes, collection: Coupon::CATEGORIES, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-2
+    .row.section-wrapper.text-center
+      .col-md-2
+      .col-md-8
         = f.input :terms_conditions, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000, disabled: true }
         / = f.input :standard_terms, as: :boolean, input_html:{checked: true}
-    .row.coupon-uploads
-      .col-sm-6
+      .col-md-2
+    .row.section-wrapper.coupon-uploads.text-center
+      h2 Coupon Imagery
+      p.text-muted Upload an image for your coupon, then upload an optional QR code.
+      br
+      .col-md-2
+      .col-sm-4
         .coupon-images.pull-right
           p UPLOAD COUPON PICTURE
           = render partial:'pictures/avatar_form', locals:{f: f}
-      .col-sm-6
+      .col-sm-4
         .coupon-images
           p UPLOAD QR CODE (Optional)
           = render partial:'pictures/qrcode_form', locals:{f: f}
+      .col-md-2
     / .row
     /   .col-sm-12.remove-coupon.text-center
     /     = link_to_remove_association "Remove", f
