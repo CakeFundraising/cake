@@ -2,6 +2,7 @@ class PledgesController < InheritedResources::Base
   include ImpressionablesController
   authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
+  before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -204,5 +205,9 @@ class PledgesController < InheritedResources::Base
       alert_message = params[:campaign].present? ? "To pledge this campaign first you have to register as a Sponsor." : "To pledge this fundraiser first you have to register as a Sponsor."
       redirect_to new_user_registration_path, alert: alert_message
     end
+  end
+
+  def block_fully_subscribed
+    redirect_to increase_pledge_path(resource), alert: 'Pledge Fully Subscribed. Please increase pledge amount to reactivate this pledge.' if resource.fully_subscribed?
   end
 end

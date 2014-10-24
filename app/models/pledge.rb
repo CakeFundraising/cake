@@ -40,7 +40,7 @@ class Pledge < ActiveRecord::Base
   validates :name, :mission, :headline, :description, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount, :total_amount_greater_than_amount_per_click
-  validate :pledge_fully_subscribed, :decreased_amounts, if: :persisted?
+  validate :decreased_amounts, if: :persisted?
 
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
@@ -198,12 +198,6 @@ class Pledge < ActiveRecord::Base
 
   def total_amount_greater_than_amount_per_click
     errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
-  end
-
-  def pledge_fully_subscribed
-    if clicks.any? and fully_subscribed?
-      errors.add(:clicks, "Pledge fully subscribed")
-    end
   end
 
   def decreased_amounts
