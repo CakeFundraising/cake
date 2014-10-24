@@ -6,7 +6,7 @@
       .main-cta
         - if session[:browser_id].present?
           - if pledge.click_browsers.include?(current_browser)
-            = link_to 'Thanks! Visit our Website Again', pledge.website_url, target: :_blank, class:'btn btn-success btn-xl'
+            = link_to 'Thanks! Visit our Website Again!', pledge.website_url, target: :_blank, class:'btn btn-success btn-xl'
           - else
             .click_buttons_section
               = link_to "Click to Help. It's Free!", click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'btn btn-success btn-block btn-xl click_link'
