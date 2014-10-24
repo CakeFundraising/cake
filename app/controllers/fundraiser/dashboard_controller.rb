@@ -1,5 +1,6 @@
 class Fundraiser::DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_fundraiser
   
   def home
     @fundraiser = current_fundraiser.decorate
@@ -24,5 +25,14 @@ class Fundraiser::DashboardController < ApplicationController
   def history
     @campaigns = current_fundraiser.campaigns.past.decorate
     @sponsors = SponsorDecorator.decorate_collection(current_fundraiser.sponsors_of(:past))
+  end
+
+  private
+
+  def ensure_fundraiser
+    unless current_fundraiser.present?
+      sign_out current_user
+      redirect_to new_user_registration_path, alert: 'Please login as a Fundraiser to see this content.'
+    end
   end
 end

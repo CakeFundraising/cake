@@ -1,5 +1,6 @@
 class Sponsor::DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_sponsor
   
   def home
     @sponsor = current_sponsor.decorate
@@ -22,5 +23,14 @@ class Sponsor::DashboardController < ApplicationController
   def history
     @pledges = current_sponsor.pledges.past.latest.decorate
     @fundraisers = FundraiserDecorator.decorate_collection(current_sponsor.fundraisers_of(:past))
+  end
+
+  private
+
+  def ensure_sponsor
+    unless current_sponsor.present?
+      sign_out current_user
+      redirect_to new_user_registration_path, alert: 'Please login as a Sponsor to see this content.'
+    end
   end
 end
