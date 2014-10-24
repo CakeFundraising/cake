@@ -14,9 +14,6 @@ Cake::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  GA.tracker = "UA-55367562-1"
-  GA.script_source = :doubleclick
-
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
@@ -81,18 +78,21 @@ Cake::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.stripe.publishable_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
+  config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
 
-  config.roadie.url_options = {host: "staging-cakefundraising.herokuapp.com", scheme: "http"}
+  config.roadie.url_options = {host: ENV['HOST'], scheme: "http"}
 
-  config.action_mailer.default_url_options = { host: 'staging-cakefundraising.herokuapp.com' }
+  GA.tracker = ENV['GA_TRACKER']
+  GA.script_source = :doubleclick
+
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.mandrillapp.com',
     port:                 587,
     enable_starttls_auto: true,
-    user_name:            'emiliano@bytelion.com',
-    password:             'Iec7U1YW1JnYe3LYdCk7cg',
+    user_name:            ENV['MANDRILL_USERNAME'],
+    password:             ENV['MANDRILL_APIKEY'],
     authentication:       'plain'
   }
 end
