@@ -15,18 +15,18 @@
       p.text-muted Enter in the details of the Coupon
       br
       .col-md-2
-      .col-md-8
+      .col-md-8.text-left
         .col-md-4
-          = f.input :title, {placeholder: '60 characters or less', class: 'coupon_title', maxlength: 60}
+          = f.input :title, input_html:{class: 'coupon_title', size: 60, maxlength: 60, placeholder: '60 characters or less'}
         .col-md-4
           = f.input :expires_at, as: :string, label: 'Expires On', input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
         .col-md-4
-          = f.input :promo_code, {placeholder: '20 characters or less', class: 'coupon_promo_code', maxlength: 20}
+          = f.input :promo_code, input_html:{class: 'coupon_promo_code', size: 20, maxlength: 20, placeholder: '20 characters or less'}
       .col-md-2
     .row
       .col-md-2
       .col-md-8
-        = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, placeholder: '500 words or less' }
+        = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
       .col-md-2
     .row.section-wrapper.text-center
       h2 Coupon Category
