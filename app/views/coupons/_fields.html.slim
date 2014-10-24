@@ -16,11 +16,14 @@
       br
       .col-md-2
       .col-md-8.text-left
-        .col-md-4
-          = f.input :title, input_html:{class: 'coupon_title', size: 60, maxlength: 60, placeholder: '60 characters or less'}
-        .col-md-4
+         = f.input :title, input_html:{class: 'coupon_title', size: 80, maxlength: 80, placeholder: '80 characters or less'}
+      .col-md-2
+    .row
+      .col-md-2
+      .col-md-8.text-left
+        .col-md-6
           = f.input :expires_at, as: :string, label: 'Expires On', input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
-        .col-md-4
+        .col-md-6
           = f.input :promo_code, input_html:{class: 'coupon_promo_code', size: 20, maxlength: 20, placeholder: '20 characters or less'}
       .col-md-2
     .row
@@ -49,11 +52,11 @@
       .col-md-2
       .col-sm-4
         .coupon-images.pull-right
-          p UPLOAD COUPON PICTURE
+          p Upload Coupon Image
           = render partial:'pictures/avatar_form', locals:{f: f}
       .col-sm-4
         .coupon-images
-          p UPLOAD QR CODE (Optional)
+          p Upload QR Code, Or A Second Image (Optional)
           = render partial:'pictures/qrcode_form', locals:{f: f}
       .col-md-2
     / .row
