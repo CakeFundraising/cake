@@ -19,7 +19,8 @@
       h2 Sponsors,
       p support great causes on a risk free "donation-per-click" basis
       = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
-/ .row
-/   .col-md-12.text-center
-/     p.text-muted.explore
-/       | I will do it later, I want to <a href="#"> explore CakeFundraising
+.row
+  .col-md-12.text-center
+    p.text-muted.explore
+      span I am not a Fundraiser or a Sponsor. I want to 
+      = link_to 'cancel my account.', registration_path(current_user), method: :delete, data: {confirm: 'Are you sure?'}

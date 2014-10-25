@@ -14,5 +14,5 @@ Cake.bootstrap_overrides.hide_alert = ->
         $(this).remove()
         return
       return
-    ), 2000
+    ), 3000
   return
