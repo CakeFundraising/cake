@@ -259,7 +259,7 @@ Devise.setup do |config|
     config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET']
     config.omniauth :twitter, ENV['TW_APP_ID'], ENV['TW_APP_SECRET']
     config.omniauth :linkedin, ENV['LI_APP_ID'], ENV['LI_APP_SECRET']
-    config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['ST_APP_SECRET'], scope: 'read_write', stripe_landing: 'login' # or :stripe_landing => 'register'
+    config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['STRIPE_SECRET_KEY'], scope: 'read_write', stripe_landing: 'login' # or :stripe_landing => 'register'
   else
     config.omniauth :facebook, '791515824214877', 'e80c240e39b51d287671193db675c572' #dev
     config.omniauth :twitter, 'iBrgyZ3KHCdWSuiuu08qQ', '6Fy4KkYW7nM1PKmt8hxOgXgf7ygSPNx3HTicFPnHJGY' #CakeFundraising 
