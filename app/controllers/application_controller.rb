@@ -23,15 +23,6 @@ class ApplicationController < ActionController::Base
     current_user.sponsor if current_user.present?
   end
 
-  def redirect_if_turbolinks_to(path)
-    if request.env['HTTP_X_XHR_REFERER'].nil?
-      render 'show'
-    else
-      request.env.reject!('HTTP_X_XHR_REFERER')
-      redirect_to path 
-    end
-  end
-
   def current_browser
     Browser.find(session[:browser_id]) if session[:browser_id].present?
   end
