@@ -44,20 +44,13 @@
             .coupons_section
               = render partial:'coupons/form', locals:{f: f}
             / = f.input :step, as: :hidden, input_html:{value: :add_sweepstakes}
-
-
-
-
-
-        
         
         = f.input :step, as: :hidden, input_html:{value: :share}
-
 
       .text-center
         = f.actions do
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 
-          = cancel_pledge_link 
+          = cancel_pledge_link unless @pledge.accepted?
 
 javascript:
   $(document).ready(Cake.pledges.coupons_switcher);

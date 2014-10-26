@@ -65,7 +65,7 @@
         = f.actions do
           .text-center
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-            = cancel_pledge_link
+            = cancel_pledge_link unless @pledge.accepted?
             = hidden_cancel_pledge_link
 
 - pictures_status = raw({avatar: @pledge.avatar.present?, banner: @pledge.banner.present?}.to_json)
