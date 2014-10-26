@@ -16,8 +16,6 @@ class CampaignsController < InheritedResources::Base
     @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
     @campaign = resource.decorate
     @campaign.rank_levels
-
-    redirect_if_turbolinks_to(@campaign)
   end
 
   def create

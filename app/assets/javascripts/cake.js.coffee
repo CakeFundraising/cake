@@ -15,7 +15,7 @@ Cake.init = ->
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.hide_alert()
   #Cake.coupons.tos()
-  #Cake.initAddthis()
+  Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
   Cake.sponsors_form()

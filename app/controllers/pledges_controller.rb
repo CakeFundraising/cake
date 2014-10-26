@@ -34,7 +34,6 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
-    redirect_if_turbolinks_to(@pledge)
   end
 
   def create

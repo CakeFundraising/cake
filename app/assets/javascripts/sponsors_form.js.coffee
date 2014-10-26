@@ -1,6 +1,4 @@
 Cake.sponsors_form = ->
-  console.log "Cake.sponsors_form"
-
   $(".checkbox-pill").each (o) ->
     if !$(this).hasClass("done")
       textStr = $(this).parent("label").text()
