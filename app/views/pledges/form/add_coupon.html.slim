@@ -22,16 +22,22 @@
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .text-center
-          h1 Add Coupons
-          p.text-muted Add special offers and/or an extra donation to your pledge
+          h1 Add a Coupons
+          p.text-muted Would you like to add a special offers and/or an extra donation to your pledge?
         .row
           .col-md-3
           .col-md-6
             .buttons.text-center
-              button.btn#add_coupons Yes! I want to add coupons
-              span or
-              button.btn#no_coupons No! Skip this step
-              = f.input :show_coupons, as: :boolean
+              .toggle-container
+                .col-md-5
+                  button.btn#add_coupons Yes! I want to add coupons
+                .col-md-2
+                  .vertical-divider 
+                    span or
+                .col-md-5
+                  button.btn#no_coupons No! Skip this step
+                  .hidden
+                    = f.input :show_coupons, as: :boolean
           .col-md-3
         .row.text-center
           .col-md-12
@@ -51,7 +57,7 @@
       .text-center
         = f.actions do
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 
-        = cancel_pledge_link 
+          = cancel_pledge_link 
 
 javascript:
   $(document).ready(Cake.pledges.coupons_switcher);

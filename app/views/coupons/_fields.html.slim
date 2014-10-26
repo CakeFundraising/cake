@@ -7,16 +7,17 @@
       .col-md-12.coupons-wrap
         .col-md-2
         .col-md-8
-          = f.input :extra_donation_pledge, as: :boolean, input_html:{class:'extra_donation_pledge'}
+          = f.input :extra_donation_pledge, label: 'Make an extra donation?', as: :boolean, input_html:{class:'extra_donation_pledge'}
           = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
         .col-md-2
     .row.section-wrapper.text-center
       h2 Coupon Information
-      p.text-muted Enter in the details of the Coupon
-      br
+      p.text-muted Please enter your coupon details
+    .row
       .col-md-2
       .col-md-8.text-left
-         = f.input :title, input_html:{class: 'coupon_title', size: 80, maxlength: 80, placeholder: '80 characters or less'}
+        .col-md-12
+          = f.input :title, input_html:{class: 'coupon_title', size: 80, maxlength: 80, placeholder: '80 characters or less'}
       .col-md-2
     .row
       .col-md-2
@@ -29,7 +30,8 @@
     .row
       .col-md-2
       .col-md-8
-        = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
+        .col-md-12
+          = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
       .col-md-2
     .row.section-wrapper.text-center
       h2 Coupon Category
@@ -47,7 +49,7 @@
       .col-md-2
     .row.section-wrapper.coupon-uploads.text-center
       h2 Coupon Imagery
-      p.text-muted Upload an image for your coupon, then upload an optional QR code.
+      p.text-muted Upload a primary image for your coupon, then you can upload an optional second image to a QR code.
       br
       .col-md-2
       .col-sm-4
