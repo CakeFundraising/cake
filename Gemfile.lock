@@ -329,6 +329,8 @@ GEM
       redis (>= 3.0.0)
       resque (~> 1.25)
       rufus-scheduler (~> 2.0)
+    resque_mailer (2.2.7)
+      actionmailer (>= 3.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     roadie (3.0.0)
@@ -512,6 +514,7 @@ DEPENDENCIES
   rails_12factor
   resque (~> 1.25.2)
   resque-retry
+  resque_mailer
   roadie-rails
   rspec-rails
   sass-rails (~> 4.0.2)

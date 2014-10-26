@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
 
   def notify_account_update
     if fundraiser? and fundraiser_email_setting.account_change
-      UserNotification.account_updated(self).deliver
+      UserNotification.account_updated(self.id).deliver
     elsif sponsor? and sponsor_email_setting.account_change
-      UserNotification.account_updated(self).deliver
+      UserNotification.account_updated(self.id).deliver
     end
   end
 

@@ -18,6 +18,7 @@ FactoryGirl.define do
     association :manager, factory: :fundraiser_user
     location
     stripe_account
+    picture
 
     after(:create) do |fr|
       fr.manager.create_fundraiser_email_setting

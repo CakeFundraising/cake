@@ -18,11 +18,11 @@ class PledgeRequest < ActiveRecord::Base
 
   def notify_sponsor(message)
     sponsor.users.each do |user|
-      PledgeNotification.new_pledge_request(self, message).deliver if user.sponsor_email_setting.new_pledge_request
+      PledgeNotification.new_pledge_request(self.id, message).deliver if user.sponsor_email_setting.new_pledge_request
     end
   end
 
   def notify_rejection(message)
-    PledgeNotification.rejected_pledge_request(self, message).deliver
+    PledgeNotification.rejected_pledge_request(self.id, message).deliver
   end
 end

@@ -79,7 +79,7 @@ class Pledge < ActiveRecord::Base
 
   def notify_launch
     fundraiser.users.each do |user|
-      PledgeNotification.launch_pledge(self, user).deliver if user.fundraiser_email_setting.reload.new_pledge
+      PledgeNotification.launch_pledge(self.id, user.id).deliver if user.fundraiser_email_setting.reload.new_pledge
     end
   end
 
@@ -89,7 +89,7 @@ class Pledge < ActiveRecord::Base
 
   def notify_approval
     sponsor.users.each do |user|
-      PledgeNotification.accepted_pledge(self, user).deliver if user.sponsor_email_setting.reload.pledge_accepted
+      PledgeNotification.accepted_pledge(self.id, user.id).deliver if user.sponsor_email_setting.reload.pledge_accepted
     end
   end
 
@@ -99,7 +99,7 @@ class Pledge < ActiveRecord::Base
 
   def notify_rejection(message)
     sponsor.users.each do |user|
-      PledgeNotification.rejected_pledge(self, user, message).deliver if user.sponsor_email_setting.reload.pledge_rejected
+      PledgeNotification.rejected_pledge(self.id, user.id, message).deliver if user.sponsor_email_setting.reload.pledge_rejected
     end
   end
 
@@ -123,10 +123,10 @@ class Pledge < ActiveRecord::Base
 
   def notify_fully_subscribed
     fundraiser.users.each do |user|
-      PledgeNotification.fr_pledge_fully_subscribed(self, user).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
+      PledgeNotification.fr_pledge_fully_subscribed(self.id, user.id).deliver if user.fundraiser_email_setting.reload.pledge_fully_subscribed
     end
     sponsor.users.each do |user|
-      PledgeNotification.sp_pledge_fully_subscribed(self, user).deliver if user.sponsor_email_setting.reload.pledge_fully_subscribed
+      PledgeNotification.sp_pledge_fully_subscribed(self.id, user.id).deliver if user.sponsor_email_setting.reload.pledge_fully_subscribed
     end
     update_attribute(:processed_status, :notified_fully_subscribed)
   end
@@ -150,7 +150,7 @@ class Pledge < ActiveRecord::Base
   def notify_invoice(invoice)
     users = sponsor.users + fundraiser.users
     users.each do |user|
-      InvoiceNotification.new_invoice(invoice, user).deliver
+      InvoiceNotification.new_invoice(invoice.id, user.id).deliver
     end
   end
 
@@ -162,7 +162,7 @@ class Pledge < ActiveRecord::Base
 
   def notify_increase
     fundraiser.users.each do |user|
-      PledgeNotification.pledge_increased(self, user).deliver if user.fundraiser_email_setting.reload.pledge_increased
+      PledgeNotification.pledge_increased(self.id, user.id).deliver if user.fundraiser_email_setting.reload.pledge_increased
     end
   end
 
@@ -173,7 +173,7 @@ class Pledge < ActiveRecord::Base
 
   def notify_increase_request
     sponsor.users.each do |user|
-      PledgeNotification.pledge_increase_request(self, user).deliver if user.sponsor_email_setting.reload.pledge_increased
+      PledgeNotification.pledge_increase_request(self.id, user.id).deliver if user.sponsor_email_setting.reload.pledge_increased
     end
   end
 

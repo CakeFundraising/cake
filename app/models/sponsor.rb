@@ -106,7 +106,7 @@ class Sponsor < ActiveRecord::Base
   #Notify profile update
   def notify_update
     users.each do |user|
-      UserNotification.sponsor_profile_updated(self, user).deliver if user.sponsor_email_setting.public_profile_change
+      UserNotification.sponsor_profile_updated(self.id, user.id).deliver if user.sponsor_email_setting.public_profile_change
     end
   end
 end

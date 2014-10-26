@@ -81,7 +81,7 @@ class Fundraiser < ActiveRecord::Base
   #Notify profile update
   def notify_update
     users.each do |user|
-      UserNotification.fundraiser_profile_updated(self, user).deliver if user.fundraiser_email_setting.public_profile_change
+      UserNotification.fundraiser_profile_updated(self.id, user.id).deliver if user.fundraiser_email_setting.public_profile_change
     end
   end
 

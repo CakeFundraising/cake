@@ -17,6 +17,7 @@ FactoryGirl.define do
     causes { Sponsor::CAUSES.sample(3) }
     association :manager, factory: :sponsor_user
     location
+    picture
 
     after(:create) do |sponsor|
       sponsor.manager.create_sponsor_email_setting

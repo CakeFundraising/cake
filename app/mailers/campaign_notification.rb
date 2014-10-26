@@ -1,31 +1,37 @@
-class CampaignNotification < ActionMailer::Base
+class CampaignNotification < AsyncMailer
   #include Roadie::Rails::Automatic
 
   #layout 'layouts/emails/application'
 
   default from: "no-reply@cakefundraising.com"
 
-  def campaign_ended(campaign, user)
-    @campaign = campaign.decorate
-    @receiver = user.decorate
+  def campaign_ended(campaign_id, user_id)
+    @campaign = find_campaign(campaign_id).decorate
+    @receiver = find_user(user_id).decorate
     mail(to: @receiver.email, subject: 'Your campaign has ended.')
   end
 
-  def campaign_launched(campaign, user)
-    @campaign = campaign.decorate
-    @receiver = user.decorate
-    mail(to: 'jamie@bytelion.com', subject: 'Your pledged campaign has been launched!')
+  def campaign_launched(campaign_id, user_id)
+    @campaign = find_campaign(campaign_id).decorate
+    @receiver = find_user(user_id).decorate
+    mail(to: @receiver.email, subject: 'Your pledged campaign has been launched!')
   end
 
-  def fundraiser_missed_launch_date(campaign, user)
-    @campaign = campaign.decorate
-    @receiver = user.decorate
+  def fundraiser_missed_launch_date(campaign_id, user_id)
+    @campaign = find_campaign(campaign_id).decorate
+    @receiver = find_user(user_id).decorate
     mail(to: @receiver.email, subject: 'Your campaign has missed its launch date!')
   end
 
-  def sponsor_missed_launch_date(campaign, user)
-    @campaign = campaign.decorate
-    @receiver = user.decorate
+  def sponsor_missed_launch_date(campaign_id, user_id)
+    @campaign = find_campaign(campaign_id).decorate
+    @receiver = find_user(user_id).decorate
     mail(to: @receiver.email, subject: 'One of your pledged campaigns has missed its launch date!')
+  end
+
+  protected
+
+  def find_campaign(id)
+    Campaign.find(id)
   end
 end

@@ -47,15 +47,13 @@ gem 'sunspot_solr'
 gem 'thin', group: :development
 
 #Image processing
-# gem 'carrierwave'
-# gem 'rmagick', require: 'RMagick'
-# gem 'fog'
 gem 'jcrop-rails-v2'
 gem 'cloudinary'
 
 #Cron & Asynchronous tasks
 gem 'resque', '~> 1.25.2', require: 'resque/server'
 gem 'resque-retry'
+gem 'resque_mailer'
 
 #CLI
 gem 'pry-rails'
@@ -97,7 +95,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'stripe-rails'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
@@ -132,14 +129,3 @@ group :production do
   gem 'unicorn-worker-killer'
   gem 'rails_12factor'
 end
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 1.2'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

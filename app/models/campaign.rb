@@ -147,7 +147,7 @@ class Campaign < ActiveRecord::Base
 
   def notify_end
     fundraiser.users.each do |user|
-      CampaignNotification.campaign_ended(self, user).deliver if user.fundraiser_email_setting.campaign_end
+      CampaignNotification.campaign_ended(self.id, user.id).deliver if user.fundraiser_email_setting.campaign_end
     end
   end
 
@@ -157,17 +157,17 @@ class Campaign < ActiveRecord::Base
 
   def notify_launch
     sponsors.map(&:users).flatten.each do |user|
-      CampaignNotification.campaign_launched(self, user).deliver if user.sponsor_email_setting.campaign_launch
+      CampaignNotification.campaign_launched(self.id, user.id).deliver if user.sponsor_email_setting.campaign_launch
     end
   end
 
   def missed_launch_date
     fundraiser.users.each do |user|
-      CampaignNotification.fundraiser_missed_launch_date(self, user).deliver if user.fundraiser_email_setting.missed_launch_campaign
+      CampaignNotification.fundraiser_missed_launch_date(self.id, user.id).deliver if user.fundraiser_email_setting.missed_launch_campaign
     end
 
     sponsors.map(&:users).flatten.each do |user|
-      CampaignNotification.sponsor_missed_launch_date(self, user).deliver if user.sponsor_email_setting.missed_launch_campaign
+      CampaignNotification.sponsor_missed_launch_date(self.id, user.id).deliver if user.sponsor_email_setting.missed_launch_campaign
     end
 
     update_attribute(:processed_status, :missed_launch)

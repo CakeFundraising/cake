@@ -71,7 +71,7 @@ class Payment < ActiveRecord::Base
 
   def notify_charge
     item.fundraiser.users.each do |user|
-      InvoiceNotification.payment_charge(item, user).deliver
+      InvoiceNotification.payment_charge(item.id, user.id).deliver
     end
   end
 
