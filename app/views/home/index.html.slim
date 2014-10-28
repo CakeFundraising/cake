@@ -5,31 +5,13 @@
 		.home
 			#cycler
 				div.slide1.active
+					.banner-content.primaryBanner
+						h1 You click, sponsors pay!
+						h3 donation per click fundraising
 				div.slide3
-			.banner-content
-				.col-md-2
-				.col-md-8
-					h1 You click, sponsors pay!
-					h3 A new donation-per-click platform for fundraisers
-					.row.cake-steps.hidden-xs.hidden-sm
-						.col-md-3
-							= image_tag("step01.png", class: "step")
-							p A Fundraiser creates a campaign
-						.col-md-3
-							= image_tag("step02.png", class: "step")
-							p A Sponsor creates a donation per click pledge
-						.col-md-3
-							= image_tag("step03.png", class: "step")
-							p The Fundraiser and Sponsor share the pledge with Everyone
-						.col-md-3
-							= image_tag("step04.png", class: "step")
-							p The Sponsor wins new customers and the Fundraiser money to do good deeds
-					.row.start
-						.col-xs-12
-							.button-wrap
-								= link_to "START A CAMPAIGN", new_user_registration_path, class:'start-fr'
-								= link_to "SPONSOR A CAMPAIGN", new_user_registration_path, class:'start-sp'
-				.col-md-2
+					.banner-content.secondaryBanner
+						h1 Let the world see your good!
+						h3 cause marketing with real results!
 			
 	.secondary-navbar
 		ul.nav.nav-pills.popular
