@@ -6,12 +6,16 @@
 			#cycler
 				div.slide1.active
 					.banner-content.primaryBanner
-						h1.truncate You click, sponsors pay!
-						h3 donation per click fundraising
+						.banner-container
+							h1 You click, sponsors pay!
+							h3 donation per click fundraising
+							= link_to "See How It Works", "#", class:'btn btn-success btn-md'
 				div.slide3
 					.banner-content.secondaryBanner
-						h1.truncate Show the world the good that you do!
-						h3 cause marketing that works
+						.banner-container
+							h1 Show the world the good that you do!
+							h3 cause marketing that works
+							= link_to "See How It Works", "#", class:'btn btn-primary btn-md'
 			
 	.secondary-navbar
 		ul.nav.nav-pills.popular

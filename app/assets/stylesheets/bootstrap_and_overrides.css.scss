@@ -3337,7 +3337,7 @@ ul#share-block {
 .banner-content{
   /*text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);*/
   text-align: left;
-  min-height:160px;
+  min-height:180px;
   width: 70%;
   padding-left: 35px;
   padding-right: 35px;
@@ -3350,24 +3350,31 @@ ul#share-block {
   @media (max-width: $screen-md-min) {
     width: 100%;
     bottom:25px;
-    padding-left: 20px;
-    padding-right: 20px;
+    height:210px;
+    padding-left: 0px;
+    padding-right: 0px;
     h1{
-      font-size: 36px !important;
+      font-size: 30px !important;
     }
     h3{
       font-size: 18px !important;
+
     }
   }
 
   h1{
     font-family: "museo_sans700", Helvetica, Arial, sans-serif;
-    font-size: 40px;
+    font-size: 38px;
+    margin-top:30px;
+    margin-bottom:5px;
   }
   h3{
     color:white;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .banner-container{
+    margin-left:20px;
   }
   
 }
@@ -3390,7 +3397,7 @@ ul#share-block {
   position: absolute;
   pointer-events: none;
   border-left-color: rgba(8, 193, 220, 0.9);
-  border-width: 80px;
+  border-width: 90px;
   top: 0;
   @media (max-width: $screen-md-min) {
     display:none;
@@ -3406,7 +3413,7 @@ ul#share-block {
   position: absolute;
   pointer-events: none;
   border-left-color: rgba(182, 203, 64, .9);
-  border-width: 80px;
+  border-width: 90px;
   top: 0;
   @media (max-width: $screen-md-min) {
     display:none;
