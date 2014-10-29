@@ -1,20 +1,21 @@
-tr.invoice
-  td data-title=(Sponsor.model_name.human)
-    = invoice.created_at
-  td data-title=(Invoice.model_name.human)
-    = invoice.id
-  td data-title=(Sponsor.model_name.human)
-    = auto_link invoice.sponsor
-  td data-title=(Invoice.human_attribute_name :clicks)
-    = invoice.clicks
-  td data-title=(Invoice.human_attribute_name :donation_click)
-    = humanized_money_with_symbol invoice.click_donation
-  td data-title=(Invoice.human_attribute_name :estimated_fees)
-    = invoice.estimated_fees
-  td data-title=(Invoice.human_attribute_name :net_donation_earned)
-    = humanized_money_with_symbol invoice.estimated_net_donation
-  /td data-title=(Invoice.human_attribute_name :status)
-  /  = invoice.status
-  /td.truncate.min-width
-  /  = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
-tr.empty-tr
+- cache [:table, :fr, invoice] do 
+  tr.invoice
+    td data-title=(Sponsor.model_name.human)
+      = invoice.created_at
+    td data-title=(Invoice.model_name.human)
+      = invoice.id
+    td data-title=(Sponsor.model_name.human)
+      = auto_link invoice.sponsor
+    td data-title=(Invoice.human_attribute_name :clicks)
+      = invoice.clicks
+    td data-title=(Invoice.human_attribute_name :donation_click)
+      = humanized_money_with_symbol invoice.click_donation
+    td data-title=(Invoice.human_attribute_name :estimated_fees)
+      = invoice.estimated_fees
+    td data-title=(Invoice.human_attribute_name :net_donation_earned)
+      = humanized_money_with_symbol invoice.estimated_net_donation
+    /td data-title=(Invoice.human_attribute_name :status)
+    /  = invoice.status
+    /td.truncate.min-width
+    /  = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
+  tr.empty-tr

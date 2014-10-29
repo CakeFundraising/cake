@@ -1,19 +1,20 @@
-tr.pledge
-  td.td-header(data-title='Sponsor') 
-    = auto_link pledge_request.sponsor
-  td.td-header(data-title='Campaign') 
-    = auto_link pledge_request.campaign
-  td.td-header(data-title='Timing') 
-    = pledge_request.start_end_dates
-  td.td-header(data-title='Status') 
-    - if pledge_request.pending?
-      = t('semantic.Pending')
-    - if pledge_request.rejected?
-      .text-danger = t('semantic.Rejected')
-  td.truncate.min-width
-    - if can? :destroy, pledge_request
-      div 
-        = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
-          span.glyphicon.glyphicon-trash
-          
-tr.empty-tr
+- cache [:table, :fr, pledge_request] do 
+  tr.pledge
+    td.td-header(data-title='Sponsor') 
+      = auto_link pledge_request.sponsor
+    td.td-header(data-title='Campaign') 
+      = auto_link pledge_request.campaign
+    td.td-header(data-title='Timing') 
+      = pledge_request.start_end_dates
+    td.td-header(data-title='Status') 
+      - if pledge_request.pending?
+        = t('semantic.Pending')
+      - if pledge_request.rejected?
+        .text-danger = t('semantic.Rejected')
+    td.truncate.min-width
+      - if can? :destroy, pledge_request
+        div 
+          = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
+            span.glyphicon.glyphicon-trash
+            
+  tr.empty-tr

@@ -1,38 +1,39 @@
-tr.invoice
-  td data-title = (Pledge.model_name.human)
-    = invoice.created_at
-  td data-title = (Pledge.model_name.human)
-    = invoice.id
-  td data-title = (Pledge.model_name.human)
-    = auto_link invoice.pledge
-  td data-title = (Fundraiser.model_name.human)
-    = auto_link invoice.fundraiser
-  td data-title = (Invoice.human_attribute_name :clicks)
-    = invoice.clicks
-  td data-title = (Invoice.human_attribute_name :donation_click)
-    = humanized_money_with_symbol invoice.click_donation
-  td data-title = (Invoice.human_attribute_name :due)
-    = humanized_money_with_symbol invoice.due
-  /td data-title = (Invoice.human_attribute_name :status)
-  /  = invoice.status
-  - unless invoice.paid?
-    td.truncate.min-width
-      = invoice_pay_button(invoice)
-      //= link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
+- cache [:table, :sp, invoice] do 
+  tr.invoice
+    td data-title = (Pledge.model_name.human)
+      = invoice.created_at
+    td data-title = (Pledge.model_name.human)
+      = invoice.id
+    td data-title = (Pledge.model_name.human)
+      = auto_link invoice.pledge
+    td data-title = (Fundraiser.model_name.human)
+      = auto_link invoice.fundraiser
+    td data-title = (Invoice.human_attribute_name :clicks)
+      = invoice.clicks
+    td data-title = (Invoice.human_attribute_name :donation_click)
+      = humanized_money_with_symbol invoice.click_donation
+    td data-title = (Invoice.human_attribute_name :due)
+      = humanized_money_with_symbol invoice.due
+    /td data-title = (Invoice.human_attribute_name :status)
+    /  = invoice.status
+    - unless invoice.paid?
+      td.truncate.min-width
+        = invoice_pay_button(invoice)
+        //= link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
 
-tr.empty-tr
+  tr.empty-tr
 
-- unless current_sponsor.decorate.stripe_customer?
-  javascript:
-    $(".pay_button##{invoice.object.id}").unbind("click").click(function(e) {
-      e.preventDefault();
-      
-      Cake.invoice_payment_handler.open({
-        image: '#{invoice.campaign.picture.avatar}',
-        name: "Invoice ##{invoice.id} Payment",
-        description: 'From #{invoice.campaign}',
-        amount: "#{invoice.due_cents}"
+  - unless current_sponsor.decorate.stripe_customer?
+    javascript:
+      $(".pay_button##{invoice.object.id}").off("click").click(function(e) {
+        e.preventDefault();
+        
+        Cake.invoice_payment_handler.open({
+          image: '#{invoice.campaign.picture.avatar}',
+          name: "Invoice #{invoice.id} Payment",
+          description: 'From #{invoice.campaign}',
+          amount: "#{invoice.due_cents}"
+        });
+
+        $('#payment_item_id').val('#{invoice.id}');
       });
-
-      $('#payment_item_id').val('#{invoice.id}');
-    });

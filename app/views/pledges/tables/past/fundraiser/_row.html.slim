@@ -1,31 +1,25 @@
-tr.pledge
-  td.td-header(data-title='TBD') 
-    = auto_link pledge
-  td.td-header(data-title='TBD') 
-    = auto_link pledge.sponsor
-  td.td-header(data-title='TBD') 
-    = pledge.main_cause
-  td.td-header(data-title='TBD') 
-    = pledge.campaign.object.scopes.first
-  td.td-header(data-title='TBD') 
-    = pledge.end_date
-  td.td-header(data-title='TBD') 
-    = pledge.invoice.due if pledge.invoice.present?
-  td.td-header(data-title='TBD') 
-    = pledge.total_amount
-  td.td-header(data-title='TBD') 
-    = pledge.amount_per_click
-  td.td-header(data-title='TBD') 
-    = pledge.clicks_count
-  td.td-header(data-title='TBD')
-    = pledge.views_count
-  td.td-header(data-title='TBD') 
-    = pledge.engagement
-/  td.truncate.min-width
-/    button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
-/      span.glyphicon.glyphicon-plus
-
-tr.empty-tr
-
-/tr.modal 
-/  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
+- cache [:table, :past, :fr, pledge] do
+  tr.pledge
+    td.td-header(data-title='TBD') 
+      = auto_link pledge
+    td.td-header(data-title='TBD') 
+      = auto_link pledge.sponsor
+    td.td-header(data-title='TBD') 
+      = pledge.main_cause
+    td.td-header(data-title='TBD') 
+      = pledge.campaign.object.scopes.first
+    td.td-header(data-title='TBD') 
+      = pledge.end_date
+    td.td-header(data-title='TBD') 
+      = pledge.invoice.due if pledge.invoice.present?
+    td.td-header(data-title='TBD') 
+      = pledge.total_amount
+    td.td-header(data-title='TBD') 
+      = pledge.amount_per_click
+    td.td-header(data-title='TBD') 
+      = pledge.clicks_count
+    td.td-header(data-title='TBD')
+      = pledge.views_count
+    td.td-header(data-title='TBD') 
+      = pledge.engagement
+  tr.empty-tr

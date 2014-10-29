@@ -1,40 +1,40 @@
-tr.pledge id=(pledge.id) 
-  td data-title=(Pledge.human_attribute_name :pledge_name)
-    = auto_link pledge 
-  td data-title=(Fundraiser.model_name.human)
-    = auto_link pledge.fundraiser
-  td data-title=(Campaign.model_name.human)
-    = auto_link pledge.campaign
-  td data-title=(Pledge.human_attribute_name :end_date)
-    = pledge.end_date
-  td data-title=(Pledge.model_name.human)
-    = humanized_money_with_symbol pledge.total_amount
-  td data-title=(Pledge.human_attribute_name :donation_click)
-    = humanized_money_with_symbol pledge.amount_per_click
-  td data-title=(Pledge.human_attribute_name :clicks)
-    = pledge.clicks_count
-  td data-title=("Total")
-    - if pledge.invoice.present?
-      = pledge.invoice.due 
-    - else
-      = pledge.total_charge
-  td.truncate.min-width
-    - if pledge.increase_requested
-      = link_to "Increase Requested", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
-      //button.btn.btn-sm.btn-success.btn-sm.disabled Increase Requested
-    - else
-      = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
-    = link_to edit_pledge_path(pledge), class:'btn btn-sm btn-primary edit_button' do
-      span.glyphicon.glyphicon-pencil
-    button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{pledge.id}" data-toggle="modal"
-      = "Share"
+- cache [:table, :active, :sp, pledge] do
+  tr.pledge id=(pledge.id) 
+    td data-title=(Pledge.human_attribute_name :pledge_name)
+      = auto_link pledge 
+    td data-title=(Fundraiser.model_name.human)
+      = auto_link pledge.fundraiser
+    td data-title=(Campaign.model_name.human)
+      = auto_link pledge.campaign
+    td data-title=(Pledge.human_attribute_name :end_date)
+      = pledge.end_date
+    td data-title=(Pledge.model_name.human)
+      = humanized_money_with_symbol pledge.total_amount
+    td data-title=(Pledge.human_attribute_name :donation_click)
+      = humanized_money_with_symbol pledge.amount_per_click
+    td data-title=(Pledge.human_attribute_name :clicks)
+      = pledge.clicks_count
+    td data-title=("Total")
+      - if pledge.invoice.present?
+        = pledge.invoice.due 
+      - else
+        = pledge.total_charge
+    td.truncate.min-width
+      - if pledge.increase_requested
+        = link_to "Increase Requested", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
+        //button.btn.btn-sm.btn-success.btn-sm.disabled Increase Requested
+      - else
+        = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm'
+      = link_to edit_pledge_path(pledge), class:'btn btn-sm btn-primary edit_button' do
+        span.glyphicon.glyphicon-pencil
+      button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{pledge.id}" data-toggle="modal"
+        = "Share"
 
-    javascript:
-      var addthis_share = addthis_share || {}
-      addthis_share = {
-        url: "#{pledge_url(pledge.id)}"
-      }
+      = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
+  tr.empty-tr
 
-    = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
-tr.empty-tr
-
+  javascript:
+    var addthis_share = addthis_share || {}
+    addthis_share = {
+      url: "#{pledge_url(pledge.id)}"
+    }

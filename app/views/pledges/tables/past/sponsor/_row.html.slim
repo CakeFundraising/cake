@@ -1,34 +1,28 @@
-tr.pledge
-  td data-title=(Pledge.human_attribute_name :pledge_name)
-    = auto_link pledge
-  td data-title=(Campaign.model_name.human)
-    = auto_link pledge.campaign
-  td data-title=(Fundraiser.model_name.human)
-    = auto_link pledge.fundraiser
-  td data-title=(Pledge.human_attribute_name :main_cause)
-    = pledge.main_cause
-  td data-title=(Pledge.human_attribute_name :type)
-    = pledge.campaign.object.scopes.first
-  td data-title=(Pledge.human_attribute_name :end_date)
-    = pledge.end_date
-  td data-title=(Pledge.human_attribute_name :donation)
-    = pledge.invoice.due if pledge.invoice.present?
-  td data-title=(Pledge.human_attribute_name :pledge)
-    = pledge.total_amount
-  td data-title=(Pledge.human_attribute_name :donation_click)
-    = pledge.amount_per_click
-  td data-title=(Pledge.human_attribute_name :clicks)
-    = pledge.clicks_count
-  td data-title=(Pledge.human_attribute_name :views)
-    = pledge.views_count
-  td data-title=(Pledge.human_attribute_name :engagement)
-    = pledge.engagement
-  /td.truncate.min-width
-  /  button.btn.btn-primary data-target="#pledge_modal_#{pledge.id}" data-toggle="modal" 
-  /    span.glyphicon.glyphicon-plus
+- cache [:table, :past, :sp, pledge] do
+  tr.pledge
+    td data-title=(Pledge.human_attribute_name :pledge_name)
+      = auto_link pledge
+    td data-title=(Campaign.model_name.human)
+      = auto_link pledge.campaign
+    td data-title=(Fundraiser.model_name.human)
+      = auto_link pledge.fundraiser
+    td data-title=(Pledge.human_attribute_name :main_cause)
+      = pledge.main_cause
+    td data-title=(Pledge.human_attribute_name :type)
+      = pledge.campaign.object.scopes.first
+    td data-title=(Pledge.human_attribute_name :end_date)
+      = pledge.end_date
+    td data-title=(Pledge.human_attribute_name :donation)
+      = pledge.invoice.due if pledge.invoice.present?
+    td data-title=(Pledge.human_attribute_name :pledge)
+      = pledge.total_amount
+    td data-title=(Pledge.human_attribute_name :donation_click)
+      = pledge.amount_per_click
+    td data-title=(Pledge.human_attribute_name :clicks)
+      = pledge.clicks_count
+    td data-title=(Pledge.human_attribute_name :views)
+      = pledge.views_count
+    td data-title=(Pledge.human_attribute_name :engagement)
+      = pledge.engagement
 
-tr.empty-tr
-
-/tr.modal 
-/  = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
-
+  tr.empty-tr

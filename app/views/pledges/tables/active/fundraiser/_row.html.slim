@@ -1,29 +1,30 @@
-tr.pledge id=(pledge.id) 
-  td data-title = (Pledge.human_attribute_name :pledge_name)
-    = auto_link pledge
-  td data-title = (Sponsor.model_name.human)
-    = auto_link pledge.sponsor
-  td data-title = (Pledge.human_attribute_name :campaign)
-    = auto_link pledge.campaign
-  td data-title = (Pledge.human_attribute_name :causes)
-    = pledge.cause
-  td data-title = (Pledge.human_attribute_name :scopes)
-    = pledge.scopes.first
-  td data-title = (Pledge.human_attribute_name :end_date)
-    = pledge.end_date
-  td data-title = (Pledge.model_name.human)
-    = humanized_money_with_symbol pledge.total_amount
-  td data-title = (Pledge.human_attribute_name :donation_click)
-    = humanized_money_with_symbol pledge.amount_per_click
-  td.truncate.min-width
-    - if pledge.increase_requested
-      button.btn.btn-sm.btn-warning.disabled Increase Requested
-    - else
-      = link_to "Request Pledge Increase", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-sm btn-primary increase_request'
-    = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
-      span.glyphicon.glyphicon-trash
+- cache [:table, :active, :fr, pledge] do
+  tr.pledge id=(pledge.id) 
+    td data-title=(Pledge.human_attribute_name :pledge_name)
+      = auto_link pledge
+    td data-title=(Sponsor.model_name.human)
+      = auto_link pledge.sponsor
+    td data-title=(Pledge.human_attribute_name :campaign)
+      = auto_link pledge.campaign
+    td data-title=(Pledge.human_attribute_name :causes)
+      = pledge.cause
+    td data-title=(Pledge.human_attribute_name :scopes)
+      = pledge.scopes.first
+    td data-title=(Pledge.human_attribute_name :end_date)
+      = pledge.end_date
+    td data-title=(Pledge.model_name.human)
+      = humanized_money_with_symbol pledge.total_amount
+    td data-title=(Pledge.human_attribute_name :donation_click)
+      = humanized_money_with_symbol pledge.amount_per_click
+    td.truncate.min-width
+      - if pledge.increase_requested
+        button.btn.btn-sm.btn-warning.disabled Increase Requested
+      - else
+        = link_to "Request Pledge Increase", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-sm btn-primary increase_request'
+      = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
+        span.glyphicon.glyphicon-trash
 
-    /= link_to nil do
-    /  span.glyphicon.glyphicon-share
+      /= link_to nil do
+      /  span.glyphicon.glyphicon-share
 
-tr.empty-tr
+  tr.empty-tr
