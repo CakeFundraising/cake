@@ -1,9 +1,9 @@
 .col-md-2
   .platinum
-    = link_to pledge do
+    = link_to pledge, :target => "_blank"  do
       = pledge.picture.avatar
     .levels
-      .sponsor-name = link_to pledge.sponsor.name, pledge.sponsor
+      .sponsor-name = link_to pledge.sponsor.name, pledge.sponsor, :target => "_blank" 
       .location.truncate = (pledge.sponsor.location.city + ', ' + pledge.sponsor.location.state_code)
       .progress
         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
