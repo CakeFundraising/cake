@@ -73,7 +73,7 @@ gem 'high_voltage'
 gem 'roadie-rails'
 
 #App performance
-#gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 #User registration
 gem "devise"
