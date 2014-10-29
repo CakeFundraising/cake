@@ -12,5 +12,7 @@
       .campaigns
         - if @campaigns.any?
           = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
+          .col-md-12
+            = link_to "See All Our Campaigns", search_campaigns_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

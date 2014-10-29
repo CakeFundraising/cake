@@ -3338,7 +3338,7 @@ ul#share-block {
   /*text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);*/
   text-align: left;
   min-height:160px;
-  width: 60%;
+  width: 70%;
   padding-left: 35px;
   padding-right: 35px;
   bottom: 75px;
@@ -3392,6 +3392,9 @@ ul#share-block {
   border-left-color: rgba(8, 193, 220, 0.9);
   border-width: 80px;
   top: 0;
+  @media (max-width: $screen-md-min) {
+    display:none;
+  }
 }
 
 .secondaryBanner:after {
@@ -3405,6 +3408,9 @@ ul#share-block {
   border-left-color: rgba(182, 203, 64, .9);
   border-width: 80px;
   top: 0;
+  @media (max-width: $screen-md-min) {
+    display:none;
+  }
 }
 
 #cycler{position:relative; width: 100%;}
