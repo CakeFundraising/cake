@@ -43,7 +43,8 @@ gem 'pg'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
-#Server
+#Servers
+gem 'redis-rails'
 gem 'thin', group: :development
 
 #Image processing

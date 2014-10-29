@@ -17,31 +17,4 @@
   script src="https://checkout.stripe.com/checkout.js" 
 
 javascript:
-  Cake.direct_donation = function(){
-    var handler = StripeCheckout.configure({
-      key: "#{campaign.fundraiser.stripe_account.stripe_publishable_key}",
-      image: '#{campaign.picture.avatar_path}',
-      token: function(token, args) {
-        $('#direct_donation_card_token').val(token.id);
-        $('#direct_donation_email').val(token.email);
-        $('#new_direct_donation').submit();
-      }
-    });
-
-    $('#donate_button').unbind('click').click(function(e){
-      e.preventDefault();
-      amount = $('#direct_donation_amount').val();
-
-      if(amount == '' || amount < 1){
-        $("#direct_donation_amount_input").addClass('has-error');
-        alert('Please check your donation amount.');
-      }else{
-        $("#direct_donation_amount_input").removeClass('has-error');
-        handler.open({
-          name: 'Make a Direct Donation',
-          description: 'To #{campaign}',
-          amount: amount*100
-        });
-      }
-    });
-  }();
+  Cake.direct_donation("#{campaign}", "#{campaign.fundraiser.stripe_account.stripe_publishable_key}", '#{campaign.picture.avatar_path}');

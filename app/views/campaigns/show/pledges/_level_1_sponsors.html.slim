@@ -1,0 +1,17 @@
+- cache [:box, pledge] do
+  .col-md-3
+    .platinum
+      = link_to pledge do
+        = pledge.picture.avatar
+      .levels
+        .sponsor-name = link_to pledge.sponsor.name, pledge.sponsor
+        .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
+        .progress
+          .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
+            span.sr-only #{pledge.thermometer}% Complete (success)
+        span
+          span = humanized_money_with_symbol pledge.amount_per_click
+          span.text-muted Per click
+        span.pull-right
+          span = humanized_money_with_symbol pledge.total_amount
+          span.text-muted Pledge

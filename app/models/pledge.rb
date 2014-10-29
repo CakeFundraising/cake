@@ -9,7 +9,7 @@ class Pledge < ActiveRecord::Base
   attr_accessor :step
   
   belongs_to :sponsor
-  belongs_to :campaign
+  belongs_to :campaign, touch: true
   has_one :fundraiser, through: :campaign
   
   has_one :video, as: :recordable, dependent: :destroy

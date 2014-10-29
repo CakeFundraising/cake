@@ -1,15 +1,16 @@
-.coupon_grid.col-md-4
-  .thumbnail
-    .avatar-container
-      = link_to coupon.pledge, :target => "_blank" do
-        = coupon.picture.avatar
-    .caption
-      h4.truncate = link_to coupon, coupon.pledge, :target => "_blank"
-      .sponsor = auto_link coupon.sponsor, :target => "_blank"
-      .location.truncate = (coupon.sponsor.location.city + ', ' + coupon.sponsor.location.state_code)
-      hr
-      .description.truncate = coupon.trunc_description
-      hr     
-      .promo-code
-        .boldest.clearfix Promo Code
-        span = coupon.promo_code
+- cache [:box, coupon] do
+  .coupon_grid.col-md-4
+    .thumbnail
+      .avatar-container
+        = link_to coupon.pledge do
+          = coupon.picture.avatar
+      .caption
+        h4.truncate = link_to coupon, coupon.pledge
+        .sponsor = auto_link coupon.sponsor
+        .location.truncate = [coupon.sponsor.city, coupon.sponsor.state_code].join(', ')
+        hr
+        .description.truncate = coupon.trunc_description
+        hr     
+        .promo-code
+          .boldest.clearfix Promo Code
+          span = coupon.promo_code

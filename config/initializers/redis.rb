@@ -3,9 +3,13 @@ unless Rails.env.test?
 
   if Rails.env.development?
     Resque.redis = 'localhost:6379' 
+
+    Cake::Application.config.cache_store = :redis_store, 'redis://localhost:6379/0/cache'
   elsif Rails.env.production? and ENV["REDISTOGO_URL"].present?
     uri = URI.parse(ENV["REDISTOGO_URL"])
     Resque.redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, :thread_safe => true)
+
+    Cake::Application.config.cache_store = :redis_store, uri
 
     Resque::Server.use(Rack::Auth::Basic) do |user, password|
       user == ENV["CAKE_RESQUE_SERVER_USER"]

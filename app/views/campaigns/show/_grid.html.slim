@@ -1,30 +1,31 @@
-.campaign_grid.col-md-4
-  .thumbnail 
-    .avatar-container
-      = link_to campaign, :target => "_blank" do
-        = campaign.picture.avatar
-    .caption
-      h4.truncate = auto_link campaign, :target => "_blank"
-      .pull-right
-        - if can? :edit, campaign
-          = link_to edit_campaign_path(campaign), :target => "_blank" do
-            span.glyphicon.glyphicon-pencil
-        - if can? :destroy, campaign
-          = link_to campaign, :target => "_blank", method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
-            span.glyphicon.glyphicon-trash
-      .location.truncate = (campaign.fundraiser.location.city + ', ' + campaign.fundraiser.location.state_code)
-      .cause.truncate = campaign.object.main_cause
-      hr
-      .fundraiser_name.truncate = auto_link campaign.fundraiser, :target => "_blank"
-      hr
-      .thermometer
-        .progress
-          .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
-            span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
-        .campaign-stats
-          strong = campaign.raised
-          span 
-          /Raised
-          span.pull-right 
-          /Goal
-          strong.pull-right = campaign.goal
+- cache [:box, campaign] do 
+  .campaign_grid.col-md-4
+    .thumbnail 
+      .avatar-container
+        = link_to campaign do
+          = campaign.picture.avatar
+      .caption
+        h4.truncate = auto_link campaign
+        .pull-right
+          - if can? :edit, campaign
+            = link_to edit_campaign_path(campaign) do
+              span.glyphicon.glyphicon-pencil
+          - if can? :destroy, campaign
+            = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+              span.glyphicon.glyphicon-trash
+        .location.truncate = [campaign.fundraiser.city, campaign.fundraiser.state_code].join(', ')
+        .cause.truncate = campaign.object.main_cause
+        hr
+        .fundraiser_name.truncate = auto_link campaign.fundraiser
+        hr
+        .thermometer
+          .progress
+            .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
+              span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
+          .campaign-stats
+            strong = campaign.raised
+            span 
+            /Raised
+            span.pull-right 
+            /Goal
+            strong.pull-right = campaign.goal

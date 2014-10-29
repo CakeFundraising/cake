@@ -1,21 +1,22 @@
-tr
-  td.td-header(data-title='Campaign') 
-    = auto_link campaign
-  td.td-header(data-title='Total Donations') 
-    = campaign.total_donation if campaign.past?
-    = campaign.raised unless campaign.past?
-  td.td-header(data-title='Cause') 
-    = campaign.object.main_cause
-  td.td-header(data-title='End Date') 
-    = campaign.end_date
-  td.td-header(data-title='No. of Sponsors') 
-    = campaign.relevant_sponsors.count
-  td.td-header(data-title='Avg. Donation') 
-    = campaign.current_average_donation
-  td.td-header(data-title='Avg. Pledge') 
-    = campaign.average_pledge
-  td.td-header(data-title='Avg. Donation/Click') 
-    = campaign.average_donation_per_click
-  td.td-header(data-title='Total Clicks')
-    = campaign.total_clicks 
-tr.empty-tr
+- cache [:fundraiser_table, campaign] do
+  tr
+    td.td-header(data-title='Campaign') 
+      = auto_link campaign
+    td.td-header(data-title='Total Donations') 
+      = campaign.total_donation if campaign.past?
+      = campaign.raised unless campaign.past?
+    td.td-header(data-title='Cause') 
+      = campaign.object.main_cause
+    td.td-header(data-title='End Date') 
+      = campaign.end_date
+    td.td-header(data-title='No. of Sponsors') 
+      = campaign.relevant_sponsors.count
+    td.td-header(data-title='Avg. Donation') 
+      = campaign.current_average_donation
+    td.td-header(data-title='Avg. Pledge') 
+      = campaign.average_pledge
+    td.td-header(data-title='Avg. Donation/Click') 
+      = campaign.average_donation_per_click
+    td.td-header(data-title='Total Clicks')
+      = campaign.total_clicks 
+  tr.empty-tr

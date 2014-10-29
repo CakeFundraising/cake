@@ -1,21 +1,22 @@
-tr.sponsor
-  td data-title=(Sponsor.model_name.human)
-    = auto_link sponsor
-  td data-title=(Sponsor.human_attribute_name :total_donation)
-    = sponsor.total_donation
-  td data-title=(t('semantic.number_of', model:'Pledges'))
-    = sponsor.pledges_related_to(fr).count
-  td data-title=(t('semantic.average', model:'Donation'))
-    = sponsor.average_donation_with(fr)
-  td data-title=(t('semantic.average', model:'Pledge'))
-    = sponsor.average_pledge_with(fr)
-  td data-title=(t('semantic.average', model:'Donation/Click'))
-    = sponsor.average_donation_per_click_with(fr)
-  td data-title=(t('semantic.average', model:'Clicks/Pledge'))
-    = sponsor.average_clicks_per_pledge_with(fr)
-  td data-title=(t('semantic.average', model:'Pledge Views'))
-    = sponsor.average_pledge_views_with(fr)
-  td data-title=(t('semantic.average', model:'Engagement'))
-    = sponsor.average_engagement_with(fr)
-  
-tr.empty-tr
+- cache [:table, sponsor] do
+  tr.sponsor
+    td data-title=(Sponsor.model_name.human)
+      = auto_link sponsor
+    td data-title=(Sponsor.human_attribute_name :total_donation)
+      = sponsor.total_donation
+    td data-title=(t('semantic.number_of', model:'Pledges'))
+      = sponsor.pledges_related_to(fr).count
+    td data-title=(t('semantic.average', model:'Donation'))
+      = sponsor.average_donation_with(fr)
+    td data-title=(t('semantic.average', model:'Pledge'))
+      = sponsor.average_pledge_with(fr)
+    td data-title=(t('semantic.average', model:'Donation/Click'))
+      = sponsor.average_donation_per_click_with(fr)
+    td data-title=(t('semantic.average', model:'Clicks/Pledge'))
+      = sponsor.average_clicks_per_pledge_with(fr)
+    td data-title=(t('semantic.average', model:'Pledge Views'))
+      = sponsor.average_pledge_views_with(fr)
+    td data-title=(t('semantic.average', model:'Engagement'))
+      = sponsor.average_engagement_with(fr)
+    
+  tr.empty-tr

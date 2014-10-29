@@ -30,6 +30,8 @@ Cake::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.action_controller.perform_caching = true
+
   config.stripe.publishable_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
   config.stripe.secret_key = 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4'
 

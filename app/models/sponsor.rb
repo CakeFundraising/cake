@@ -17,6 +17,8 @@ class Sponsor < ActiveRecord::Base
 
   has_many :payments, as: :payer, dependent: :destroy
 
+  delegate :city, :state, :state_code, :country, :address, to: :location
+
   validates :name, :email, :phone, presence: true
   validates :email, email: true
   
