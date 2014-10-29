@@ -1,5 +1,5 @@
 class Click < ActiveRecord::Base
-  belongs_to :pledge, counter_cache: true
+  belongs_to :pledge, touch: true, counter_cache: true
   belongs_to :browser
 
   validate :unique_click

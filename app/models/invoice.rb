@@ -5,7 +5,7 @@ class Invoice < ActiveRecord::Base
 
   MIN_DUE = 0.5
 
-  belongs_to :pledge
+  belongs_to :pledge, touch: true
   has_one :campaign, through: :pledge
   has_one :fundraiser, through: :campaign
   has_one :sponsor, through: :pledge
