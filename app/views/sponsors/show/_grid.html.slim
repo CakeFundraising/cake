@@ -1,10 +1,10 @@
 .sponsor_grid.col-md-4
   .thumbnail
     .avatar-container 
-      = link_to sponsor do
+      = link_to sponsor, :target => "_blank" do
         = sponsor.picture.avatar
     .caption
-      h4.truncate = auto_link sponsor
+      h4.truncate = auto_link sponsor, :target => "_blank"
       .location.truncate = (sponsor.object.location.city + ', ' + sponsor.object.location.state_code)
       .cause.truncate = sponsor.object.causes.first
       /.type = sponsor.object.scopes.first

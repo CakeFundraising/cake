@@ -1,21 +1,21 @@
 .campaign_grid.col-md-4
   .thumbnail 
     .avatar-container
-      = link_to campaign do
+      = link_to campaign, :target => "_blank" do
         = campaign.picture.avatar
     .caption
-      h4.truncate = auto_link campaign
+      h4.truncate = auto_link campaign, :target => "_blank"
       .pull-right
         - if can? :edit, campaign
-          = link_to edit_campaign_path(campaign) do
+          = link_to edit_campaign_path(campaign), :target => "_blank" do
             span.glyphicon.glyphicon-pencil
         - if can? :destroy, campaign
-          = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+          = link_to campaign, :target => "_blank", method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
             span.glyphicon.glyphicon-trash
       .location.truncate = (campaign.fundraiser.location.city + ', ' + campaign.fundraiser.location.state_code)
       .cause.truncate = campaign.object.main_cause
       hr
-      .fundraiser_name.truncate = auto_link campaign.fundraiser
+      .fundraiser_name.truncate = auto_link campaign.fundraiser, :target => "_blank"
       hr
       .thermometer
         .progress
