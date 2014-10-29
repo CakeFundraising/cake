@@ -855,8 +855,9 @@ form{
 // Progress Bar Styles ---------------------------------------------------------------
 
 .progress {
-  height: 8px;
-  margin: 10px 10px 8px 10px;
+  height: 12px;
+  margin: 10px 5px 5px 5px;
+  border-radius: 10px;
 }
 
 
@@ -1798,7 +1799,7 @@ table.performance-summary {
 
 .pledges_total {
   font-size: 18px;
-  padding-top: 5px;
+  padding-top: 8px;
   padding-bottom: 7px;
 }
 
