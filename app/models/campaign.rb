@@ -42,9 +42,9 @@ class Campaign < ActiveRecord::Base
 
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
-  scope :to_end, ->{ not_past.where("end_date <= ?", Date.today) }
-  scope :active, ->{ not_past.where("end_date >= ?", Date.today) }
-  scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Date.today) }
+  scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
+  scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
+  scope :unlaunched, ->{ pending.not_missed_launch.where("launch_date < ?", Time.zone.now) }
 
   scope :visible, ->{ where(visible: true) }
   scope :not_visible, ->{ where(visible: false) }

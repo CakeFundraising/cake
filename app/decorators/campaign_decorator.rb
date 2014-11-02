@@ -16,7 +16,7 @@ class CampaignDecorator < ApplicationDecorator
   end
 
   def end_date_countdown
-    object.end_date.strftime("%Y/%m/%d")
+    object.end_date.strftime("%Y/%m/%d %H:%M:%S")
   end
 
   def start_end_dates

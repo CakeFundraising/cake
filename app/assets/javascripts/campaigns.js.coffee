@@ -2,6 +2,7 @@ Cake.campaigns ?= {}
 
 #Campaign Show Functions
 Cake.campaigns.countdown = (end_date) ->
+  end_date = new Date(end_date).getTime()
   $("#campaign_countdown").countdown end_date, (event) ->
     countdown_section = $(this)
     # days

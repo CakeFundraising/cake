@@ -115,7 +115,7 @@ css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present? }") );
+  $(document).ready( Cake.campaigns.show('#{@campaign.object.end_date}', "#{@impression.id if @impression.present? }") );
   //$(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
 
   var addthis_share = addthis_share || {}
