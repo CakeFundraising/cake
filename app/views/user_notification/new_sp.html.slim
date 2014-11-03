@@ -1,0 +1,32 @@
+h3 There is a new Sponsor on Cake!
+
+div = link_to 'See on Cake Admin panel', admin_sponsor_url(@sp)
+div = link_to "See Sponsor's Public Profile", sponsor_url(@sp)
+
+p Here some data:
+ul 
+  li 
+    strong Name: 
+    span = @sp.name
+  li 
+    strong Phone: 
+    span = @sp.phone
+  li 
+    strong Email: 
+    span = @sp.email
+  li 
+    strong Website: 
+    span = @sp.website
+  li 
+    strong Manager: 
+    span #{@sp.manager_title} #{@sp.manager_name}. Phone: #{@sp.manager_phone}. Email: #{@sp.manager_email}
+
+p Sponsor Manager user registration data:
+
+ul 
+  li 
+    strong Full Name: 
+    span = @manager.full_name
+  li 
+    strong Email: 
+    span = @manager.email

@@ -35,6 +35,10 @@ class Sponsor < ActiveRecord::Base
     end
   end
 
+  after_create do
+    UserNotification.new_sp(self.id).deliver
+  end
+
   scope :rank, ->{ eager_load(:invoices).where(invoices: {status: "paid"}).order("invoices.due_cents DESC") }
   scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") } 
   scope :latest, ->{ order(created_at: :desc) }

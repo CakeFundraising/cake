@@ -9,6 +9,20 @@ class UserNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your account information has been modified.')
   end
 
+  def new_fr(fr_id)
+    @fr = find_fr(fr_id)
+    @manager = @fr.manager
+
+    mail(to: 'newusers@cakefundraising.com', subject: 'A new Fundraiser has signed up!')
+  end
+
+  def new_sp(sp_id)
+    @sp = find_sp(sp_id)
+    @manager = @sp.manager
+
+    mail(to: 'newusers@cakefundraising.com', subject: 'A new Sponsor has signed up!')
+  end
+
   def fundraiser_profile_updated(fr_id, user_id)
     user = find_user(user_id)
     fr = find_fr(fr_id)

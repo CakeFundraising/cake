@@ -1,0 +1,32 @@
+h3 There is a new Fundraiser on Cake!
+
+div = link_to 'See on Cake Admin panel', admin_fundraiser_url(@fr)
+div = link_to "See Fundraiser's Public Profile", fundraiser_url(@fr)
+
+p Here some data:
+ul 
+  li 
+    strong Name: 
+    span = @fr.name
+  li 
+    strong Phone: 
+    span = @fr.phone
+  li 
+    strong Email: 
+    span = @fr.email
+  li 
+    strong Website: 
+    span = @fr.website
+  li 
+    strong Manager: 
+    span #{@fr.manager_title} #{@fr.manager_name}. Phone: #{@fr.manager_phone}. Email: #{@fr.manager_email}
+
+p Fundraiser Manager user registration data:
+
+ul 
+  li 
+    strong Full Name: 
+    span = @manager.full_name
+  li 
+    strong Email: 
+    span = @manager.email
