@@ -4,7 +4,7 @@ class Fundraiser < ActiveRecord::Base
   include Analytics
   include Picturable
 
-  belongs_to :manager, class_name: "User"
+  belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
   has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
