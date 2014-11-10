@@ -2,7 +2,8 @@
   .col-md-3
     .platinum
       = link_to pledge do
-        = pledge.picture.avatar
+        .avatar-container
+          = pledge.picture.avatar
       .levels
         .sponsor-name = link_to pledge.sponsor.name, pledge.sponsor
         .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
