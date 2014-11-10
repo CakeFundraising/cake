@@ -530,8 +530,8 @@ p.signup-social span:before, p.signup-social span:after {
 
 
 #main-container {
-  margin-bottom: 35px;
-  padding-bottom: 35px;
+  /*margin-bottom: 35px;
+  padding-bottom: 35px;*/
 }
 
 .cats{
@@ -866,6 +866,7 @@ form{
 .Colophon {
   border-top: 1px dotted $gray-lighter;
   padding-top: 10px;
+  margin-top: 30px;
 }
 // Register - Choose Styles ------------------------------------------------------------------
 .choose-role {
