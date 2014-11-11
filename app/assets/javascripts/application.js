@@ -39,6 +39,7 @@
 
 //= require cake
 
+//= require ./google_analytics
 //= require ./about
 //= require ./addthis
 //= require ./bootstrap_overrides

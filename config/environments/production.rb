@@ -82,8 +82,8 @@ Cake::Application.configure do
 
   config.roadie.url_options = {host: ENV['HOST'], scheme: "http"}
 
-  GA.tracker = ENV['GA_TRACKER']
-  GA.script_source = :doubleclick
+  #GA.tracker = ENV['GA_TRACKER']
+  #GA.script_source = :doubleclick
 
   config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.action_mailer.delivery_method = :smtp

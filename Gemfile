@@ -9,7 +9,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'metamagic'
 
 #Analytics
-gem 'google-analytics-rails'
+#gem 'google-analytics-rails'
 
 #Assets
 gem 'sass-rails', '~> 4.0.2'
