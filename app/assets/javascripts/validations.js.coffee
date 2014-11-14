@@ -71,6 +71,8 @@ Cake.validations.init = ->
   Cake.users.validation()
   Cake.fundraisers.validation()
   Cake.sponsors.validation()
+
+  Cake.fr_sponsors.validation()
   
   Cake.campaigns.validation()
   Cake.pledges.validation()
@@ -80,4 +82,5 @@ Cake.validations.init = ->
   Cake.bank_accounts.validation()
   Cake.credit_cards.validation()
 
+  Cake.pictures.validation()
   return

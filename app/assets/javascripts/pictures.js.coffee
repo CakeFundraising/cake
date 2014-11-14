@@ -13,13 +13,31 @@ Cake.pictures.added_images = (stored_images)->
   return
 
 Cake.pictures.validation = ->
-  form = $('.formtastic.pledge, .formtastic.campaign, .formtastic.fundraiser, .formtastic.sponsor')
+  forms = [
+    '.formtastic.pledge', 
+    '.formtastic.campaign', 
+    '.formtastic.fundraiser', 
+    '.formtastic.sponsor', 
+    '.formtastic.fr_sponsor'
+  ]
+
+  form = $(forms.join(','))
   submit_button = form.find('input[type="submit"]')
   file_inputs = form.find('input[type="file"]')
 
   submit_button.click (e)->
-    unless Cake.crop.avatarPresent and Cake.crop.bannerPresent
-      alert "Avatar and Banner can't be blank"
+    avatarPresent = Cake.pictures.avatarPresent
+    bannerPresent = Cake.pictures.bannerPresent
+
+    avatarUploaded = if (typeof Cake.crop.avatarPresent isnt "undefined" and Cake.crop.avatarPresent isnt null) then Cake.crop.avatarPresent else false
+    bannerUploaded = if (typeof Cake.crop.bannerPresent isnt "undefined" and Cake.crop.bannerPresent isnt null) then Cake.crop.bannerPresent else false
+    
+    if (typeof avatarPresent isnt "undefined" and avatarPresent isnt null) and not avatarPresent and not avatarUploaded
+      alert "Please check you've uploaded all required pictures."
+      e.preventDefault()
+
+    if (typeof bannerPresent isnt "undefined" and bannerPresent isnt null) and not bannerPresent and not bannerUploaded
+      alert "Please check you've uploaded all required pictures."
       e.preventDefault()
     return 
   return

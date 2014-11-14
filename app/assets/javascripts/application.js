@@ -50,7 +50,8 @@
 //= require ./sponsors_form
 //= require ./slider
 //= require ./clipboard     
-//= require ./fundraisers     
+//= require ./fundraisers 
+//= require ./fr_sponsors 
 //= require ./pledge_levels     
 //= require ./pledge_levels_form
 //= require ./cloudinary_crop   

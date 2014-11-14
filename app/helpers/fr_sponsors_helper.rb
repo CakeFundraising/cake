@@ -1,0 +1,2 @@
+module FrSponsorsHelper
+end

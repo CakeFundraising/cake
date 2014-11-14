@@ -1,0 +1,11 @@
+#no-more-tables
+  table#campaigns.table.table-hover.table-bordered.table-striped.data-table
+    thead.cf
+      tr
+        th = Sponsor.model_name.human
+        th Location
+        th Website
+        th = t('semantic.number_of', model: 'Campaigns')
+        th
+    tbody
+      = render partial:'fr_sponsors/tables/row', collection: @fr_sponsors, as: :sponsor

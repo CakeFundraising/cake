@@ -1,0 +1,10 @@
+tr
+  td = sponsor.name
+  td = sponsor.location
+  td = sponsor.website
+  td 1
+  td 
+    = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-primary" do 
+      span.glyphicon.glyphicon-pencil
+    = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-danger'
+      span.glyphicon.glyphicon-trash

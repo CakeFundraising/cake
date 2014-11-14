@@ -13,6 +13,8 @@ class Fundraiser < ActiveRecord::Base
   has_many :pledges, through: :campaigns
   has_many :invoices, through: :pledges
 
+  has_many :fr_sponsors, dependent: :destroy
+
   has_many :received_payments, as: :recipient, class_name:'Payment', dependent: :destroy
 
   delegate :city, :state, :state_code, :country, :address, to: :location

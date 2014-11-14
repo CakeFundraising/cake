@@ -77,19 +77,27 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :fundraisers, except: :destroy do
+  resources :fundraisers, except: [:index, :destroy] do
     member do
       get :bank_account
       patch :set_bank_account
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
     end  
   end
 
-  resources :sponsors, except: :destroy do
+  resources :sponsors, except: [:index, :destroy] do
     member do
       get :credit_card
       patch :set_credit_card
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
     end 
   end
+
+  resources :fr_sponsors, except: :show, path: :my_sponsors
   
   resources :pledge_requests do
     member do
@@ -111,14 +119,6 @@ Cake::Application.routes.draw do
     get :history
   end
 
-  resources :fundraisers do
-    member do
-      scope :pictures, controller: :cropping do
-        post :crop
-      end
-    end
-  end
-
   #Sponsor Dashboard
   namespace :sponsor, controller: :dashboard do
     get :home
@@ -126,14 +126,6 @@ Cake::Application.routes.draw do
     get :pledge_requests
     get :active_pledges
     get :history
-  end
-
-  resources :sponsors do
-    member do
-      scope :pictures, controller: :cropping do
-        post :crop
-      end
-    end
   end
 
   resources :coupons do

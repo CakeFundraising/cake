@@ -37,27 +37,4 @@ nav.navbar.navbar-default role="navigation"
               span.icon-bar
               span.icon-bar
         = render partial:'layouts/nav/default/main'
-        /]- if content_for?(:right_nav)
-          /button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-          /  span.sr-only Toggle navigation
-          /  span.icon-bar
-        /    span.icon-bar
-        /    span.icon-bar
-        /  .nav-default
-        /    ul.nav.navbar-nav.navbar-right
-        /      = yield :right_nav
-        /- else
-        /  .nav-default
-        /    ul.nav.navbar-nav.navbar-right
-        /      = menu_item t("links.user.sign_in"), new_user_session_path
-        /      = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn btn-success btn-signup" }
-        /#bs-example-navbar-collapse-1.collapse.navbar-collapse
-        /  ul.nav.navbar-nav.navbar-right
-        /    = menu_item t("links.user.sign_in"), new_user_session_path
-        /    = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn btn-success btn-signup" }
-
-
-
-
-
 

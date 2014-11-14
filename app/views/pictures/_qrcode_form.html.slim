@@ -5,3 +5,6 @@
     = p.input :qrcode_crop_y, as: :hidden, input_html:{class: 'crop_y'}
     = p.input :qrcode_crop_w, as: :hidden, input_html:{class: 'crop_w'}
     = p.input :qrcode_crop_h, as: :hidden, input_html:{class: 'crop_h'}
+
+  javascript:
+    Cake.pictures.qrcodePresent = #{p.object.qrcode.present?};

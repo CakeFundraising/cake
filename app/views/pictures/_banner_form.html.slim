@@ -9,3 +9,6 @@
 
   - if f.object.errors.present?
     = p.input :avatar, as: :hidden
+
+  javascript:
+    Cake.pictures.bannerPresent = #{p.object.banner.present?};
