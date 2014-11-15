@@ -18,7 +18,8 @@ Cake.pictures.validation = ->
     '.formtastic.campaign', 
     '.formtastic.fundraiser', 
     '.formtastic.sponsor', 
-    '.formtastic.fr_sponsor'
+    '.formtastic.fr_sponsor',
+    '.formtastic.quick_pledge'
   ]
 
   form = $(forms.join(','))

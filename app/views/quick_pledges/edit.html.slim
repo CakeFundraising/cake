@@ -1,8 +1,5 @@
-h1 Editing quick_pledge
+h1 Editing #{@quick_pledge.name}
 
-== render 'form'
-
-= link_to 'Show', @quick_pledge
-'|
-= link_to 'Back', quick_pledges_path
+== render 'form' if current_sponsor.present?
+== render 'fr_sponsor_form' if current_fundraiser.present?
 

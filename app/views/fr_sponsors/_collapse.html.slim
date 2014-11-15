@@ -1,0 +1,26 @@
+.fr_sponsor.panel.panel-default
+  .panel-heading
+    a data-parent="#accordion" data-toggle="collapse" href="##{sponsor.id}"
+      .container-fluid
+        .panel-title = sponsor.name
+        ul.panel-title-right.bolder
+          div.stat
+            span = sponsor.location
+          div.stat
+            span = sponsor.website
+          div.stat
+            span #{sponsor.campaigns.count} Campaigns
+          div.stat
+            = link_to 'View Pledges', "##{sponsor.id}", data:{toggle: 'collapse'}, class:'btn btn-default'
+            = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-primary" do 
+              span.glyphicon.glyphicon-pencil
+            = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-danger'
+              span.glyphicon.glyphicon-trash
+  .panel-collapse.collapse id=(sponsor.id)
+    .panel-body
+      = link_to 'New Pledge', new_quick_pledge_path(sponsorable_id: sponsor.id, sponsorable_type: 'FrSponsor'), class:'btn btn-primary pull-right'
+      .content
+        - if sponsor.quick_pledges.any?
+          = render partial:'quick_pledges/tables/table', locals: {quick_pledges: sponsor.quick_pledges.latest.decorate}
+        - else
+          = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.quick_pledges')}

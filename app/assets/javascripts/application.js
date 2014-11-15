@@ -53,6 +53,7 @@
 //= require ./fundraisers 
 //= require ./fr_sponsors 
 //= require ./pledge_levels     
+//= require ./quick_pledges
 //= require ./pledge_levels_form
 //= require ./cloudinary_crop   
 //= require ./help

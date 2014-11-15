@@ -1,0 +1,14 @@
+#no-more-tables
+  table.table.table-hover.table-bordered.table-striped.data-table
+    thead.cf
+      tr
+        th = Pledge.model_name.human
+        th = Campaign.model_name.human
+        th = Pledge.human_attribute_name :end_date
+        th = Pledge.human_attribute_name :website_url
+        th = Pledge.human_attribute_name :donation_click
+        th = Pledge.human_attribute_name :clicks
+        th = Pledge.human_attribute_name :donation
+        th
+    tbody
+      = render partial:'quick_pledges/tables/row', collection: quick_pledges, as: :pledge

@@ -1,6 +1,4 @@
 Cake::Application.routes.draw do
-  resources :quick_pledges
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: 
@@ -78,6 +76,8 @@ Cake::Application.routes.draw do
       patch :click
     end
   end
+
+  resources :quick_pledges, except: [:index, :show]
 
   resources :fundraisers, except: [:index, :destroy] do
     member do

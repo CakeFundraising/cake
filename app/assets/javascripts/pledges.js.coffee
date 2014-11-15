@@ -67,7 +67,7 @@ Cake.pledges.validation = ->
       'pledge[amount_per_click]': 
         required: true
         currency: ["$", false]
-        min: 0
+        min: 1
       'pledge[total_amount]':
         required: true
         currency: ["$", false]

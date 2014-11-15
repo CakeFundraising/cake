@@ -83,4 +83,5 @@ Cake.validations.init = ->
   Cake.credit_cards.validation()
 
   Cake.pictures.validation()
+  Cake.quick_pledges.validation()
   return
