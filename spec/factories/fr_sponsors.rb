@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :fr_sponsor do
-    name "MyString"
-    email "MyString"
-    website_url "MyString"
-    fundraiser_id 1
+    name { Faker::Lorem.sentence }
+    email { Faker::Internet.safe_email }
+    website_url { "http://#{Faker::Internet.domain_name}" }
+    fundraiser
   end
 end

@@ -2,12 +2,11 @@
 
 FactoryGirl.define do
   factory :quick_pledge do
-    name "MyString"
-    donation_per_click ""
-    total_amount ""
-    website_url "MyString"
-    campaign_id 1
-    sponsorable_id 1
-    sponsorable_type "MyString"
+    name { Faker::Lorem.sentence }
+    donation_per_click "2.00"
+    total_amount "4500.00"
+    website_url { "http://#{Faker::Internet.domain_name}" }
+    campaign
+    picture
   end
 end

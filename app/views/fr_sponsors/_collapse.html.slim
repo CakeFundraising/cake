@@ -23,4 +23,4 @@
         - if sponsor.quick_pledges.any?
           = render partial:'quick_pledges/tables/table', locals: {quick_pledges: sponsor.quick_pledges.latest.decorate}
         - else
-          = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.quick_pledges')}
+          = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.quick_pledges'), in_profile: true}

@@ -6,7 +6,7 @@ class FrSponsor < ActiveRecord::Base
 
   belongs_to :fundraiser
   has_one :location, as: :locatable, dependent: :destroy
-  has_many :quick_pledges, as: :sponsorable
+  has_many :quick_pledges, as: :sponsorable, dependent: :destroy
   has_many :campaigns, through: :quick_pledges
 
   delegate :city, :state, :state_code, :country, :address, to: :location
