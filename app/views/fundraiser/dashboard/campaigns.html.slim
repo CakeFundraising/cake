@@ -8,13 +8,3 @@ h1.dash-head
   .col-md-12
     = render partial:'campaigns/show/tables/active_table', locals:{campaigns: @campaigns}
 
-/.row
-/  .col-md-4.col-md-push-8.dash-head.active-campaigns
-/    = link_to "Start New Campaign", new_campaign_path, class:'btn btn-primary pull-right'
-/  .col-md-8.col-md-pull-4.dash-head.active-campaigns
-/    h1 Active Campaigns
-/  .row
-/    .col-md-12
-/      = render partial:'campaigns/show/table', locals:{campaigns: @campaigns}
-
-

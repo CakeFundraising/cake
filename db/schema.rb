@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114004634) do
+ActiveRecord::Schema.define(version: 20141115145722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,6 +295,23 @@ ActiveRecord::Schema.define(version: 20141114004634) do
     t.string   "name"
     t.integer  "impressions_count",         limit: 8, default: 0
     t.string   "screenshot_url"
+  end
+
+  create_table "quick_pledges", force: true do |t|
+    t.string   "name"
+    t.integer  "donation_per_click_cents",              default: 0,            null: false
+    t.string   "donation_per_click_currency",           default: "USD",        null: false
+    t.integer  "total_amount_cents",                    default: 0,            null: false
+    t.string   "total_amount_currency",                 default: "USD",        null: false
+    t.string   "website_url"
+    t.integer  "campaign_id"
+    t.integer  "sponsorable_id"
+    t.string   "sponsorable_type"
+    t.string   "status",                                default: "incomplete"
+    t.integer  "clicks_count",                limit: 8, default: 0
+    t.integer  "impressions_count",           limit: 8, default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sponsor_categories", force: true do |t|

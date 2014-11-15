@@ -1,0 +1,30 @@
+= form_for @quick_pledge do |f|
+  - if @quick_pledge.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@quick_pledge.errors.count, "error")} prohibited this quick_pledge from being saved:"
+      ul
+        - @quick_pledge.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :donation_per_click
+    = f.text_field :donation_per_click
+  .field
+    = f.label :total_amount
+    = f.text_field :total_amount
+  .field
+    = f.label :website_url
+    = f.text_field :website_url
+  .field
+    = f.label :campaign_id
+    = f.number_field :campaign_id
+  .field
+    = f.label :sponsorable_id
+    = f.number_field :sponsorable_id
+  .field
+    = f.label :sponsorable_type
+    = f.text_field :sponsorable_type
+  .actions = f.submit 'Save'
