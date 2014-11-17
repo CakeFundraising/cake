@@ -3,7 +3,8 @@ h1.dash-head
   .page-cta
     = link_to 'Add a New sponsor', new_fr_sponsor_path, class:'btn btn-primary pull-right'
 
-= render partial:'fr_sponsors/collapse', collection: @fr_sponsors, as: :sponsor
+#fr_sponsors.panel-group role="tablist" aria-multiselectable="true"
+  = render partial:'fr_sponsors/collapse', collection: @fr_sponsors, as: :sponsor
 
 br
 br

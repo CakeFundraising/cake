@@ -14,6 +14,7 @@ class Campaign < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy
+  has_many :quick_pledges, dependent: :destroy
   has_many :invoices, through: :pledges
   has_many :sponsors, through: :pledges
 
