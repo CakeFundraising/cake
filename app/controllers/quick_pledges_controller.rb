@@ -1,9 +1,12 @@
 class QuickPledgesController < InheritedResources::Base
+  def index
+    @fr_sponsors = current_fundraiser.fr_sponsors.latest.decorate
+  end
 
   def create
     create! do |success, failure|
       success.html do
-        redirect_to fr_sponsors_path, notice: 'Pledge created succesfully.'
+        redirect_to quick_pledges_path, notice: 'Pledge created succesfully.'
       end
     end
   end
@@ -11,7 +14,7 @@ class QuickPledgesController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        redirect_to fr_sponsors_path, notice: 'Pledge updated succesfully.'
+        redirect_to quick_pledges_path, notice: 'Pledge updated succesfully.'
       end
     end
   end
@@ -19,10 +22,10 @@ class QuickPledgesController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to fr_sponsors_path, notice: 'Pledge deleted.'
+        redirect_to quick_pledges_path, notice: 'Pledge deleted.'
       end
       failure.html do
-        redirect_to fr_sponsors_path, alert: 'There was an error when deleting this pledge. Please try again.'
+        redirect_to quick_pledges_path, alert: 'There was an error when deleting this pledge. Please try again.'
       end
     end
   end

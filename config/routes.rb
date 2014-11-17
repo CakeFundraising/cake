@@ -77,7 +77,7 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :quick_pledges, except: [:index, :show]
+  resources :quick_pledges, except: :show
 
   resources :fundraisers, except: [:index, :destroy] do
     member do
@@ -99,7 +99,7 @@ Cake::Application.routes.draw do
     end 
   end
 
-  resources :fr_sponsors, except: :show, path: :my_sponsors
+  resources :fr_sponsors, except: [:index, :show]
   
   resources :pledge_requests do
     member do

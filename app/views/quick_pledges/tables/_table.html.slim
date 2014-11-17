@@ -9,6 +9,7 @@
         th = Pledge.human_attribute_name :donation_click
         th = Pledge.human_attribute_name :clicks
         th = Pledge.human_attribute_name :donation
+        th = Pledge.human_attribute_name :status
         th
     tbody
       = render partial:'quick_pledges/tables/row', collection: quick_pledges, as: :pledge

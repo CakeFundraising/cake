@@ -27,6 +27,10 @@ class QuickPledge < ActiveRecord::Base
   monetize :donation_per_click_cents
   monetize :total_amount_cents
 
+  before_create do
+    self.status = :confirmed
+  end
+
   private
 
   def max_amount
