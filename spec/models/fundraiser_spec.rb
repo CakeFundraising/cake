@@ -595,7 +595,10 @@ describe Fundraiser do
         before(:each) do
           campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
 
-          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample)
+          @accepted_pledges = []
+          campaigns.each do |campaign|
+            @accepted_pledges << create_list(:pledge, 4, campaign: campaign)
+          end
         end
 
         it "should return a hash" do
@@ -607,12 +610,13 @@ describe Fundraiser do
         end
 
         it "should list the causes from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
+          @pledges = @accepted_pledges.flatten.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
+
           expect( fundraiser.top_causes.keys.sort ).to eql(@pledges.map(&:main_cause).uniq.first(3).sort)
         end
 
         it "should list the total_amount from SP's top 3 pledges" do
-          @pledges = @accepted_pledges.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
+          @pledges = @accepted_pledges.flatten.sort_by{|p| [p.total_amount_cents, p.amount_per_click_cents] }
           expect( fundraiser.top_causes.values.sort ).to eql(@pledges.uniq(&:main_cause).map(&:total_amount).first(3).sort)
         end
       end
