@@ -1,8 +1,5 @@
 class FrSponsor < ActiveRecord::Base
   include Formats
-  include Picturable
-
-  #attr_accessor :picture_permission
 
   belongs_to :fundraiser
   has_one :location, as: :locatable, dependent: :destroy
@@ -15,7 +12,6 @@ class FrSponsor < ActiveRecord::Base
   validates :email, email: true
   validates_associated :location
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, unless: :new_record?
-  #validates_acceptance_of :picture_permission
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
 
