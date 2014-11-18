@@ -171,11 +171,9 @@ describe Fundraiser do
 
       describe "Average Donation" do
         before(:each) do
-          @campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
 
-          @campaigns.each do |campaign|
-            @pledges = create_list(:past_pledge, 1, sponsor: @sponsor, campaign: campaign)
-          end
+          @pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample)
 
           @paid_invoices = []
           @pending_invoices = []
@@ -202,10 +200,12 @@ describe Fundraiser do
 
       describe "Average Pledge" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, fundraiser: fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, fundraiser: fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: fundraiser)           
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, campaign: campaigns.sample)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, campaign: campaigns.sample)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaigns.sample)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample)
         end
 
         it "should be the average of accepted and past pledges's total_amount" do
@@ -217,16 +217,12 @@ describe Fundraiser do
 
       describe "Average Donation per Click" do
         before(:each) do
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
 
-          @campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
-
-          @campaigns.each do |campaign|
-            @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, campaign: campaign)
-            @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, campaign: campaign)
-            @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaign)
-            @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaign)
-          end
-
+          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, campaign: campaigns.sample)
+          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, campaign: campaigns.sample)
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaigns.sample)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample)
         end
 
         it "should be the average of accepted and past pledges's amount_per_click" do
@@ -238,8 +234,11 @@ describe Fundraiser do
 
       describe "Average Clicks per Pledge" do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample, clicks_count: 0)
+
           @pledges = @accepted_pledges + @past_pledges
 
           @pledges.each do |p|
@@ -255,9 +254,11 @@ describe Fundraiser do
 
       context 'Impressions' do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
-          @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor, fundraiser: fundraiser, clicks_count: 0)
+          campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample, clicks_count: 0)
+          @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor, campaign: campaigns.sample, clicks_count: 0)
 
           @pledges = @accepted_pledges + @past_pledges
 
@@ -410,6 +411,7 @@ describe Fundraiser do
 
       describe "Number of Campaigns" do
         it "should return the number of campaigns created by FR" do
+          fundraiser.campaigns.destroy_all
           @campaigns = create_list(:campaign, 15, fundraiser: fundraiser)
 
           expect( fundraiser.campaigns_count ).to eql(15)
@@ -418,10 +420,12 @@ describe Fundraiser do
 
       describe "Average Pledge" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, fundraiser: fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, fundraiser: fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @pending_pledges = create_list(:pending_pledge, 2, campaign: campaigns.sample)
+          @rejected_pledges = create_list(:rejected_pledge, 3, campaign: campaigns.sample)
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample)
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample)
         end
 
         it "should be the sum of all pledges/number of pledges" do
@@ -452,10 +456,12 @@ describe Fundraiser do
 
       describe "Average Donation per Click" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, fundraiser: fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, fundraiser: fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+          campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
+
+          @pending_pledges = create_list(:pending_pledge, 2, campaign: campaigns.sample)
+          @rejected_pledges = create_list(:rejected_pledge, 3, campaign: campaigns.sample)
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample)
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample)
         end
 
         it "should be the average of accepted and past pledges's amount_per_click" do
@@ -505,8 +511,10 @@ describe Fundraiser do
 
       describe "Average Clicks per Pledge" do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser, clicks_count: 0)
+          campaigns = create_list(:campaign, 5, fundraiser: fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample, clicks_count: 0)
           @pledges = @accepted_pledges + @past_pledges
 
           @pledges.each do |p|
@@ -585,7 +593,9 @@ describe Fundraiser do
 
       describe "Top Causes" do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)   
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample)
         end
 
         it "should return a hash" do
@@ -612,10 +622,12 @@ describe Fundraiser do
     context 'FR Home Dashboard' do
       describe "Active Campaign Donations" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, fundraiser: fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, fundraiser: fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @pending_pledges = create_list(:pending_pledge, 2, campaign: campaigns.sample)
+          @rejected_pledges = create_list(:rejected_pledge, 3, campaign: campaigns.sample)
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample)
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample)
         end
 
         it "should show sum of clicks_count*amount_per_click for all active pledges" do
@@ -641,8 +653,10 @@ describe Fundraiser do
 
       describe "Average Clicks per Campaign" do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, fundraiser: fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser, clicks_count: 0)
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, campaign: campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample, clicks_count: 0)
           @pledges = @accepted_pledges + @past_pledges
 
           @pledges.each do |p|
@@ -659,7 +673,10 @@ describe Fundraiser do
       describe "Outstanding Invoices" do
         before(:each) do
           fundraiser.invoices.destroy_all
-          @past_pledges = create_list(:past_pledge, 5, fundraiser: fundraiser)
+
+          campaigns = create_list(:campaign, 3, fundraiser: fundraiser)
+
+          @past_pledges = create_list(:past_pledge, 5, campaign: campaigns.sample)
 
           @paid_invoices = []
           @outstanding_invoices = []
