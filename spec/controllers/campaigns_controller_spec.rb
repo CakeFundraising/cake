@@ -94,19 +94,23 @@ describe CampaignsController do
         # specifies that the Campaign created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        put :update, :id => campaign.to_param, :campaign => { "title" => "MyString", "step" => campaign.step }
+        put :update, :id => campaign.to_param, :campaign => { "title" => "MyString", "step" => "tell_your_story" }
       end
 
       it "assigns the requested campaign as @campaign" do
         campaign = Campaign.create! valid_attributes
-        put :update, :id => campaign.to_param, :campaign => valid_attributes
+        updated_campaign = valid_attributes
+        updated_campaign[:step] = "tell_your_story"
+        put :update, :id => campaign.to_param, :campaign => updated_campaign
         assigns(:campaign).should eq(campaign)
       end
 
       it "redirects to the campaign" do
         campaign = Campaign.create! valid_attributes
         Campaign.any_instance.stub(:save).and_return(false)
-        put :update, :id => campaign.to_param, :campaign => valid_attributes
+        updated_campaign = valid_attributes
+        updated_campaign[:step] = "tell_your_story"
+        put :update, :id => campaign.to_param, :campaign => updated_campaign
         response.should redirect_to tell_your_story_campaign_path(campaign)
       end
     end
@@ -124,7 +128,7 @@ describe CampaignsController do
         campaign = Campaign.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Campaign.any_instance.stub(:save).and_return(false)
-        put :update, :id => campaign.to_param, :campaign => { "title" => "", "step" => campaign.step }
+        put :update, :id => campaign.to_param, :campaign => { "title" => "", "step" => "tell_your_story" }
         response.should redirect_to tell_your_story_campaign_path(campaign)
       end
     end

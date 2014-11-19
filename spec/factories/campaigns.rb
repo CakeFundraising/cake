@@ -15,7 +15,6 @@ FactoryGirl.define do
     custom_pledge_levels false
     fundraiser
     status :launched
-    step "tell_your_story"
 
     factory :campaign_with_pledge_levels do
       custom_pledge_levels true
