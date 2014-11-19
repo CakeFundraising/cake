@@ -107,7 +107,7 @@ describe CampaignsController do
         campaign = Campaign.create! valid_attributes
         Campaign.any_instance.stub(:save).and_return(false)
         put :update, :id => campaign.to_param, :campaign => valid_attributes
-        response.should redirect_to edit_campaign_url(campaign) + "/" + campaign.step
+        response.should redirect_to tell_your_story_campaign_path(campaign)
       end
     end
 
@@ -125,7 +125,7 @@ describe CampaignsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Campaign.any_instance.stub(:save).and_return(false)
         put :update, :id => campaign.to_param, :campaign => { "title" => "", "step" => campaign.step }
-        response.should redirect_to edit_campaign_url(campaign) + "/" + campaign.step
+        response.should redirect_to tell_your_story_campaign_path(campaign)
       end
     end
   end
