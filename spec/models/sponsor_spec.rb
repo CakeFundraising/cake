@@ -151,7 +151,11 @@ describe Sponsor do
 
       describe "Average Donation" do
         before(:each) do
-          @pledges = create_list(:past_pledge, 5, fundraiser: @fundraiser)
+          @campaigns = create_list(:campaign, 5, fundraiser: @fundraiser)
+
+          @campaigns.each do |campaign|
+            @pledges = create_list(:past_pledge, 1, sponsor: @sponsor, campaign: campaign)
+          end
 
           @paid_invoices = []
           @pending_invoices = []
@@ -178,10 +182,14 @@ describe Sponsor do
 
       describe "Average Pledge" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, fundraiser: @fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, fundraiser: @fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser)           
+          @campaigns = create_list(:campaign, 5, fundraiser: @fundraiser)
+
+          @campaigns.each do |campaign|
+            @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, campaign: campaign)
+            @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, campaign: campaign)
+            @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaign)
+            @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaign)
+          end
         end
 
         it "should be the average of accepted and past pledges's total_amount" do
@@ -193,10 +201,14 @@ describe Sponsor do
 
       describe "Average Donation per Click" do
         before(:each) do
-          @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, fundraiser: @fundraiser)
-          @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, fundraiser: @fundraiser)
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser)           
+          @campaigns = create_list(:campaign, 5, fundraiser: @fundraiser)
+
+          @campaigns.each do |campaign|
+            @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, campaign: campaign)
+            @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, campaign: campaign)
+            @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaign)
+            @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaign)
+          end
         end
 
         it "should be the average of accepted and past pledges's amount_per_click" do
@@ -208,8 +220,10 @@ describe Sponsor do
 
       describe "Average Clicks per Pledge" do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
+          @campaigns = create_list(:campaign, 3, fundraiser: @fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: @campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: @campaigns.sample, clicks_count: 0)
           @pledges = @accepted_pledges + @past_pledges
 
           @pledges.each do |p|
@@ -225,9 +239,11 @@ describe Sponsor do
 
       context 'Impressions' do
         before(:each) do
-          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
-          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
-          @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor, fundraiser: @fundraiser, clicks_count: 0)
+          @campaigns = create_list(:campaign, 3, fundraiser: @fundraiser)
+
+          @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: @campaigns.sample, clicks_count: 0)
+          @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: @campaigns.sample, clicks_count: 0)
+          @pending_pledges = create_list(:pending_pledge, 3, sponsor: @sponsor, campaign: @campaigns.sample, clicks_count: 0)
 
           @pledges = @accepted_pledges + @past_pledges
 
