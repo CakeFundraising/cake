@@ -19,7 +19,6 @@
     - unless invoice.paid?
       td.truncate.min-width
         = invoice_pay_button(invoice)
-        //= link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button'
 
   tr.empty-tr
 
@@ -35,5 +34,5 @@
           amount: "#{invoice.due_cents}"
         });
 
-        $('#payment_item_id').val('#{invoice.id}');
+        $('#payment_item_id').val('#{invoice.object.id}');
       });

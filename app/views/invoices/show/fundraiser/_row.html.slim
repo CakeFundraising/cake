@@ -14,8 +14,8 @@
       = invoice.estimated_fees
     td data-title=(Invoice.human_attribute_name :net_donation_earned)
       = humanized_money_with_symbol invoice.estimated_net_donation
-    /td data-title=(Invoice.human_attribute_name :status)
-    /  = invoice.status
+    td data-title=(Invoice.human_attribute_name :status)
+     = invoice.status
     /td.truncate.min-width
     /  = link_to "Request Arbitration", nil, class:'btn btn-success btn-sm arbitration_button' unless invoice.paid?
   tr.empty-tr

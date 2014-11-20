@@ -26,7 +26,7 @@
               th = Invoice.human_attribute_name :donation_click
               th = Invoice.human_attribute_name :estimated_fees
               th = Invoice.human_attribute_name :estimated_net_donation_earned
-              /th = Invoice.human_attribute_name :status
+              th = Invoice.human_attribute_name :status
               /th
           tbody
             = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.decorate, as: :invoice
