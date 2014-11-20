@@ -134,7 +134,7 @@ class PledgesController < InheritedResources::Base
       click = resource.clicks.build(browser: browser)
       
       if click.save
-        redirect_to resource.website_url 
+        redirect_to resource.decorate.website_url 
       else
         redirect_to resource, alert: click.errors.messages
       end
