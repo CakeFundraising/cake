@@ -12,6 +12,36 @@ Cake.pictures.added_images = (stored_images)->
     return
   return
 
+### PICTURE VALIDATION ###
+class PictureValidation
+  constructor: (attrs) ->
+    @picType = attrs.type
+    @shouldValidate = true
+
+    @forms = $(attrs.forms.join(','))
+
+    @alreadyPresent = attrs.present
+    @uploaded = if (typeof attrs.uploaded isnt "undefined" and attrs.uploaded isnt null) then attrs.uploaded else false
+
+    @submitButton = @forms.find('input[type="submit"]')
+
+    @validate() if @shouldValidate
+    return
+
+  invalid: ->
+    return (typeof @alreadyPresent isnt "undefined" and @alreadyPresent isnt null) and not @alreadyPresent and not @uploaded
+
+  validate: ->
+    self = this
+
+    @submitButton.click (e)->
+      if self.invalid()
+        alert "Please check you've uploaded all required #{self.picType} pictures."
+        e.preventDefault()
+      return
+    return
+
+
 Cake.pictures.validation = ->
   forms = [
     '.formtastic.pledge', 
@@ -21,23 +51,18 @@ Cake.pictures.validation = ->
     '.formtastic.quick_pledge'
   ]
 
-  form = $(forms.join(','))
-  submit_button = form.find('input[type="submit"]')
-  file_inputs = form.find('input[type="file"]')
+  avatarValidator = new PictureValidation(
+    type: 'avatar'
+    forms: forms
+    present: Cake.pictures.avatarPresent
+    uploaded: Cake.crop.avatarPresent
+  )
 
-  submit_button.click (e)->
-    avatarPresent = Cake.pictures.avatarPresent
-    bannerPresent = Cake.pictures.bannerPresent
+  bannerValidator = new PictureValidation(
+    type: 'banner'
+    forms: forms
+    present: Cake.pictures.bannerPresent
+    uploaded: Cake.crop.bannerPresent
+  )
 
-    avatarUploaded = if (typeof Cake.crop.avatarPresent isnt "undefined" and Cake.crop.avatarPresent isnt null) then Cake.crop.avatarPresent else false
-    bannerUploaded = if (typeof Cake.crop.bannerPresent isnt "undefined" and Cake.crop.bannerPresent isnt null) then Cake.crop.bannerPresent else false
-    
-    if (typeof avatarPresent isnt "undefined" and avatarPresent isnt null) and not avatarPresent and not avatarUploaded
-      alert "Please check you've uploaded all required pictures."
-      e.preventDefault()
-
-    if (typeof bannerPresent isnt "undefined" and bannerPresent isnt null) and not bannerPresent and not bannerUploaded
-      alert "Please check you've uploaded all required pictures."
-      e.preventDefault()
-    return 
   return
