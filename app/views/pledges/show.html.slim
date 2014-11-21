@@ -2,7 +2,7 @@
 
 = content_for :header do
   .banner.hero
-    .alert.alert-transparent.alert-dismissable.text-center
+    .alert.alert-transparent.alert-dismissable.text-center.green-bkg
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
       span
         = t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe
