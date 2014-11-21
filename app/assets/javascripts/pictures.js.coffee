@@ -59,8 +59,17 @@ class PictureValidation
       return
     return
 
+Cake.pictures.validation ?= {}
 
-Cake.pictures.validation = ->
+Cake.pictures.validation.coupons = ->
+  avatarValidator = new PictureValidation(
+    type: 'avatar'
+    forms: ['.formtastic.coupon']
+    present: 'avatarPresent'
+  )
+  return
+
+Cake.pictures.validation.init = ->
   forms = [
     '.formtastic.pledge', 
     '.formtastic.campaign', 

@@ -82,6 +82,7 @@ Cake.validations.init = ->
   Cake.bank_accounts.validation()
   Cake.credit_cards.validation()
 
-  Cake.pictures.validation()
+  Cake.pictures.validation.init()
+  Cake.pictures.validation.coupons()
   Cake.quick_pledges.validation()
   return

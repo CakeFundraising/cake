@@ -93,7 +93,7 @@
           h1 Special Offers from #{@pledge.sponsor}
       .row
         .coupons
-          = render partial:'coupons/show/box', collection: @pledge.coupons, as: :coupon
+          = render partial:'coupons/show/box', collection: @coupons, as: :coupon
       /hr
     .row
       = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}

@@ -14,6 +14,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.hide_alert()
+  #Cake.bootstrap_overrides.stacked_modals()
   #Cake.coupons.tos()
   Cake.initAddthis()
   Cake.validations.init()

@@ -22,12 +22,11 @@
           .col-xs-12
             a data-target="#coupon-#{coupon.id}" data-toggle="modal" Read terms & conditions
       .col-md-2
-        /= qrcode_tag coupon if coupon.qrcode.present?
+        = render partial:'coupons/form/actions', locals: {coupon: coupon} if defined? editable
         = coupon.picture.qrcode
         .promo-code
           .boldest.text-right Promo Code
           span.pull-right = coupon.promo_code
-        /button.btn.btn-success.btn-block.pull-right Print Coupon
   .col-xs-1
     .shareaholic-canvas data-app='share_buttons' data-app-id='6963788'
 

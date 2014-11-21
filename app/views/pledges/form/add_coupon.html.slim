@@ -39,11 +39,10 @@
                   .hidden
                     = f.input :show_coupons, as: :boolean
           .col-md-3
-        .row.text-center
+        .row
           .col-md-12
             .coupons_section
-              = render partial:'coupons/form', locals:{f: f}
-            / = f.input :step, as: :hidden, input_html:{value: :add_sweepstakes}
+              = render partial:'coupons/index', locals:{pledge: @pledge}
         
         = f.input :step, as: :hidden, input_html:{value: :share}
 

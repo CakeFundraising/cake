@@ -3,7 +3,6 @@ class PledgeDecorator < ApplicationDecorator
   decorates_association :campaign
   decorates_association :invoice
   decorates_association :sponsor
-  decorates_association :coupons
   decorates_association :fundraiser
   decorates_association :video
   decorates_association :picture
