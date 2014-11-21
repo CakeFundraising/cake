@@ -1742,9 +1742,10 @@ table.performance-summary {
   position: relative;
     width: 100%;
     padding-bottom: 70%;
-    float: left;
+    overflow-y: hidden;
+    /*float: left;
     height: 0;
-    overflow: hidden;
+    overflow: hidden;*/
 
   img {
     width: 100%;
