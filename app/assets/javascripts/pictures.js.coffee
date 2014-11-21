@@ -20,24 +20,42 @@ class PictureValidation
 
     @forms = $(attrs.forms.join(','))
 
-    @alreadyPresent = attrs.present
-    @uploaded = if (typeof attrs.uploaded isnt "undefined" and attrs.uploaded isnt null) then attrs.uploaded else false
+    @alreadyPresent = ->
+     return Cake.pictures[attrs.present]
+
+    @uploaded = ->
+      uploadPresent = (typeof Cake.crop[attrs.present] isnt "undefined" and Cake.crop[attrs.present] isnt null)
+      return if uploadPresent then Cake.crop[attrs.present] else false
 
     @submitButton = @forms.find('input[type="submit"]')
+    @errorMessageId = "#{@picType}-upload-error"
 
     @validate() if @shouldValidate
     return
 
   invalid: ->
-    return (typeof @alreadyPresent isnt "undefined" and @alreadyPresent isnt null) and not @alreadyPresent and not @uploaded
+    return (typeof @alreadyPresent() isnt "undefined" and @alreadyPresent() isnt null) and not @alreadyPresent() and not @uploaded()
+
+  showMessage: ->
+    message = "<div class='text-danger' id=\"#{@errorMessageId}\">Please upload a picture.</div>"
+    pictureContainer = $(".#{@picType}")
+    pictureContainer.before(message) unless $("##{@errorMessageId}").length > 0
+    #alert "Please check you've uploaded all required #{self.picType} pictures."
+    return
+
+  removeMessage: ->
+    $("##{@errorMessageId}").remove() if $("##{@errorMessageId}").length > 0
+    return
 
   validate: ->
     self = this
 
     @submitButton.click (e)->
       if self.invalid()
-        alert "Please check you've uploaded all required #{self.picType} pictures."
+        self.showMessage()
         e.preventDefault()
+      else
+        self.removeMessage()
       return
     return
 
@@ -54,15 +72,13 @@ Cake.pictures.validation = ->
   avatarValidator = new PictureValidation(
     type: 'avatar'
     forms: forms
-    present: Cake.pictures.avatarPresent
-    uploaded: Cake.crop.avatarPresent
+    present: 'avatarPresent'
   )
 
   bannerValidator = new PictureValidation(
     type: 'banner'
     forms: forms
-    present: Cake.pictures.bannerPresent
-    uploaded: Cake.crop.bannerPresent
+    present: 'bannerPresent'
   )
 
   return
