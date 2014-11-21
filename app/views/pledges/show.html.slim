@@ -75,7 +75,7 @@
     .container
       .row.pledgebluestripe.campaign
         .col-md-12.text-center
-          span.h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} for each person who clicks up to #{humanized_money_with_symbol(@pledge.total_amount)}!
+          span.h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} up to #{humanized_money_with_symbol(@pledge.total_amount)}!!
           /.share.pull-right
           /  = render partial:'layouts/share_buttons'
           .clearfix
