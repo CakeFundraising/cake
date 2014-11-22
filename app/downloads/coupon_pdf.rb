@@ -11,35 +11,48 @@ class CouponPdf < Pdf
   private
 
   def coupon_box
-    initial_y_position = 15
+    font "#{Rails.root}/app/assets/fonts/museosans-300-webfont.ttf"
 
-    bounding_box([0, initial_y_position], :width => 915, :height => 315) do
+    bounding_box([15, 450], width: 700, height: 220) do
+      stroke_color 'CCCCCC'
+      stroke_bounds
 
-      define_grid(columns: 3, rows: 1, gutter: 15)
+      define_grid(columns: 3, rows: 1, gutter: 0)
 
-      grid(0,0).bounding_box  do
-        image avatar, width: 300, height: 200, position: :left
+      grid(0,0).bounding_box do
+        image avatar, width: 200, height: 133, position: 15, vposition: 15
       end
 
       grid(0,1).bounding_box  do
-        text @coupon.title, size: 30, style: :bold
+        move_down 15
+
+        text @coupon.title, size: 30
+        
+        move_down 10
+        
         text "Expires: #{@coupon.expires_at}"
+
+        move_down 10
+
         text @coupon.description
       end
 
       grid(0,2).bounding_box  do
-        image qrcode, width: 150, height: 150, position: :right
-        text 'Promo Code', size: 20, style: :bold
-        text @coupon.promo_code, size: 18
+        image qrcode, width: 75, height: 75, position: 145, vposition: 15
+
+        move_down 30
+
+        text 'Promo Code', size: 18, align: :right
+        text @coupon.promo_code, size: 16, align: :right
       end
 
-      grid.show_all
-
-      horizontal_rule
-
-      text 'Terms & Conditions', size: 20
-      text @coupon.terms_conditions.html_safe, size: 10
+      #grid.show_all
     end
+    
+    move_down 30
+
+    text 'Terms & Conditions', size: 14
+    text @coupon.terms_conditions.html_safe, size: 9
   end
 
   def avatar
