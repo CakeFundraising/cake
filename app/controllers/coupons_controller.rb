@@ -1,4 +1,6 @@
 class CouponsController < InheritedResources::Base
+  respond_to :pdf, only: :download
+
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
@@ -28,6 +30,18 @@ class CouponsController < InheritedResources::Base
     destroy! do |success, failure|
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)
+      end
+    end
+  end
+
+  def download
+    respond_with(resource) do |format|
+      format.html do
+        pdf = CouponPdf.new(resource.decorate)
+        send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
+      end
+      format.pdf do
+        render nothing: true
       end
     end
   end

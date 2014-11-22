@@ -48,4 +48,13 @@ class PictureDecorator < ApplicationDecorator
     end
   end
 
+  def qrcode_path(options={})
+    if object.qrcode.present?
+      options = {crop: :crop, width: object.qrcode_crop_w, height: object.qrcode_crop_h, x: object.qrcode_crop_x, y: object.qrcode_crop_y}.merge options
+      h.cl_image_path(object.qrcode, options)    
+    else
+      h.image_path 'placeholder.png', class: 'img-thumbnail img-responsive'
+    end
+  end
+
 end

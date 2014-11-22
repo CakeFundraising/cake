@@ -72,6 +72,7 @@ gem 'american_date'
 gem "jquery-validation-rails"
 gem 'high_voltage'
 gem 'roadie-rails'
+gem 'prawn'
 
 #App performance
 gem 'newrelic_rpm'

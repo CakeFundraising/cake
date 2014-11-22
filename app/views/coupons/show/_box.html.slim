@@ -24,6 +24,10 @@
       .col-md-2
         = render partial:'coupons/form/actions', locals: {coupon: coupon} if defined? editable
         = coupon.picture.qrcode
+        .download
+          = link_to download_coupon_path(coupon), class:'btn btn-primary pull-right' do
+            span.glyphicon.glyphicon-print
+            span  Print
         .promo-code
           .boldest.text-right Promo Code
           span.pull-right = coupon.promo_code
