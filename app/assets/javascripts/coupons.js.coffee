@@ -41,7 +41,7 @@ Cake.coupons.validation = ->
       number: true
       minStrictPledgeLevels: true
 
-  $('.formtastic.pledge').validate(
+  $('.formtastic.coupon').validate(
     errorElement: "span"
   )
   return

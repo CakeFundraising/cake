@@ -1,11 +1,11 @@
 - cache [:box, pledge] do
   .col-md-2
     .platinum
-      = link_to pledge do
+      = link_to pledge, target: :_blank do
         .avatar-container
           = pledge.picture.avatar
       .levels
-        .sponsor-name.truncate = link_to pledge.sponsor.name, pledge.sponsor
+        .sponsor-name.truncate = auto_link pledge.sponsor
         .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
         .progress
           .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"

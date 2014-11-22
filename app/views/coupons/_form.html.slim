@@ -1,5 +1,24 @@
-#coupons
-  = f.semantic_fields_for :coupons do |c|
-    = render partial:'coupons/fields', locals:{f: c}
-  / .links.text-center
-  /   = link_to_add_association "Add another coupon", f, :coupons, partial: 'coupons/fields', class: 'btn btn-primary', data: {:'cocoon-limit' => 3 }
+.row
+  .col-xs-12.campaign-steps
+    = preview_pledge_link
+  .campaign-nav.text-center
+    ul.nav.nav-pills
+      li
+        = link_to t('links.wizards.pledge.your_pledge'), edit_pledge_path(@pledge)
+      li
+        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
+      li.active 
+        a data-toggle="tab" href="#coupon" = t('links.wizards.pledge.add_coupon')
+      / li
+      /   = link_to t('links.wizards.pledge.extra_donation'), nil
+      li
+        = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
+
+= semantic_form_for @coupon do |f|
+  = link_to 'Cancel', add_coupon_pledge_path(@pledge), class:'pull-right'
+  h1.text-center New Coupon
+  = render partial:'coupons/form/fields', locals: {f: f}
+  .text-center
+    = f.actions do
+      = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg save-btn'}
+      = link_to 'Cancel', add_coupon_pledge_path(@pledge), class:'btn btn-default btn-lg'

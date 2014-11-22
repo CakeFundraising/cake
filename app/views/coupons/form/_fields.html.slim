@@ -45,7 +45,7 @@
       .col-md-2
       .col-md-8
         = f.input :terms_conditions, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000, disabled: true }
-        / = f.input :standard_terms, as: :boolean, input_html:{checked: true}
+        = f.input :pledge_id, as: :hidden
       .col-md-2
     .row.section-wrapper.coupon-uploads.text-center
       h2 Coupon Imagery
@@ -61,6 +61,3 @@
           p Upload QR Code, Or A Second Image (Optional)
           = render partial:'pictures/qrcode_form', locals:{f: f}
       .col-md-2
-    / .row
-    /   .col-sm-12.remove-coupon.text-center
-    /     = link_to_remove_association "Remove", f

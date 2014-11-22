@@ -1,0 +1,16 @@
+#coupon_modal.modal.fade aria-hidden="true" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h1.modal-title New Coupon
+      = semantic_form_for Coupon.new do |f|
+        .modal-body
+          = render partial:'coupons/form/fields', locals: {f: f}
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal" type="button" Cancel
+          = f.actions do
+            = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg save-btn'}
+

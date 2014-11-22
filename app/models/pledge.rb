@@ -25,7 +25,6 @@ class Pledge < ActiveRecord::Base
   delegate :main_cause, :active?, to: :campaign
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
-  accepts_nested_attributes_for :coupons, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
   accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
 
   monetize :amount_per_click_cents
