@@ -9,9 +9,9 @@ module PicturesHelper
     time = Time.new
     time.strftime("%Y%m%d%H%M%S")
     cl_image_tag(object,
-      :type => "url2png", :unique => time,
+      :type => "url2png",
       :transformation => [ 
-        { :crop => "fill", :width => 500, :gravity => "north"}], 
+        { :crop => "fill", :width => 500, :gravity => "north", :unique => time.strftime("%Y%m%d%H%M%S")}], 
       :sign_url => true, :class => 'img-responsive')
     #cl_image_tag(object, options)
     #cl_image_tag(url_for(:controller => object.object.class.name.downcase.pluralize, :action => 'show', :id => object.id, :only_path => false), options)
