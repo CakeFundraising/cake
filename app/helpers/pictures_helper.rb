@@ -8,7 +8,7 @@ module PicturesHelper
     #options = {type: 'url2png', :type => "url2png", :transformation => [{ :width => 400, :height => 400, :gravity => "north", :radius => 50, :border => "2px_solid_rgb:999"}], :sign_url => true, class: 'img-responsive'}.merge options
     time = Time.new
     time.strftime("%Y%m%d%H%M%S")
-    cl_image_tag(object,
+    cl_image_tag(object&time.strftime("%Y%m%d%H%M%S"),
       :type => "url2png",
       :transformation => [ 
         { :crop => "fill", :width => 500, :gravity => "north"}], 
