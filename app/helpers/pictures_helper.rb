@@ -6,12 +6,12 @@ module PicturesHelper
 
   def screenshot_tag_for(object, options={})
     #options = {type: 'url2png', :type => "url2png", :transformation => [{ :width => 400, :height => 400, :gravity => "north", :radius => 50, :border => "2px_solid_rgb:999"}], :sign_url => true, class: 'img-responsive'}.merge options
-    time = Time.now  
-    cl_image_tag(object+time.strftime("%Y%m%d%H%M%S"),
+    
+    cl_image_tag(object,
       :type => "url2png", 
       :transformation => [ 
         { :crop => "fill", :width => 500, :gravity => "north"}], 
-      :sign_url => false, :class => 'img-responsive')
+      :sign_url => true, :class => 'img-responsive')
     #cl_image_tag(object, options)
     #cl_image_tag(url_for(:controller => object.object.class.name.downcase.pluralize, :action => 'show', :id => object.id, :only_path => false), options)
   end
