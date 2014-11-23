@@ -10,7 +10,7 @@ module PicturesHelper
       :type => "url2png", 
       :transformation => [ 
         { :crop => "fill", :width => 500, :gravity => "north"}], 
-      :sign_url => true, :class => 'img-responsive')
+      :sign_url => true, :class => 'img-responsive', :unique => Time.new)
     #cl_image_tag(object, options)
     #cl_image_tag(url_for(:controller => object.object.class.name.downcase.pluralize, :action => 'show', :id => object.id, :only_path => false), options)
   end
