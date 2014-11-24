@@ -56,12 +56,12 @@ class CouponPdf < Pdf
   end
 
   def avatar
-    #return open(@coupon.picture.avatar_path) if @coupon.picture.avatar_path != '/assets/placeholder_avatar.png'
+    return open(@coupon.picture.avatar_path) if @coupon.picture.avatar_path != '/assets/placeholder_avatar.png'
     "#{Rails.root}/app/assets/images/placeholder_avatar.png"
   end
 
   def qrcode
-    #return open(@coupon.picture.qrcode_path) if @coupon.picture.qrcode_path != '/assets/placeholder.png'
+    return open(@coupon.picture.qrcode_path) if @coupon.picture.qrcode_path != '/assets/placeholder.png'
     "#{Rails.root}/app/assets/images/placeholder.png"
   end
 end
