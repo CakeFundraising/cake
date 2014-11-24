@@ -27,11 +27,6 @@ module PicturesHelper
     #  :type => "url2png", 
     #  :crop => "fill", :width => 500, :gravity => :north, 
     #  :sign_url => true, :class => 'img-responsive')
- 
-
-    
-
-
 
     #Cloudinary::Uploader.explicit
     #cl_image_tag(screenshot)
