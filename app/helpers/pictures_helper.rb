@@ -6,7 +6,7 @@ module PicturesHelper
 
   def screenshot_tag_for(object, options={})
     cl_image_tag(object, :type => "url2png", :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
-  }
+  end
 
   def screenshot_tag_for_remake(object, options={})
     #EMI
