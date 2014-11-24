@@ -13,7 +13,7 @@ module PicturesHelper
         { :crop => "fill", :width => 500, :gravity => "north"}], 
       :sign_url => true, :class => 'img-responsive')
     
-    cl_image_tag(screenshot.url)
+    cl_image_tag(screenshot)
 
     #cloudinary_url(object,
     #  :type => "url2png", 
