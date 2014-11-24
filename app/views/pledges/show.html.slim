@@ -1,9 +1,9 @@
 /EMI
   /Need to incorporate a reference to the most recent version of the image in order to pull the most recent.
 
-/= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/' + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url})
+= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/' + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url})
 
-= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/' + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url + "?fbrefresh=" + Time.now.to_formatted_s(:number)})
+/= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: 'http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/' + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url + "?fbrefresh=" + Time.now.to_formatted_s(:number)})
 
 = content_for :header do
   .banner.hero
