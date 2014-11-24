@@ -1,3 +1,20 @@
+javascript:
+  var addthis_share = addthis_share || {}
+  addthis_share = {
+    url: "#{pledge_url(pledge.id)}",
+    url_transforms : {
+          shorten: {
+            twitter: 'bitly'
+          }
+      }, 
+    shorteners : {
+      bitly : {} 
+    },
+    templates: { 
+      twitter: "Click to help #{pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
+    }   
+  }
+        
 .campaign_modal.modal.fade id="campaign_modal_#{pledge.id}"
   .modal-dialog
     .modal-content
