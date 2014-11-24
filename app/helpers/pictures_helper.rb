@@ -14,8 +14,14 @@ module PicturesHelper
       #Need to store version as a reference. This is what enables us to access the most recent image.
       #new_screenshot["version"]
 
+    #Recreate screenshot
     new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
     cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
+    
+    #Force Facebook Update
+    uri = URI.parse("https://graph.facebook.com")
+    response = Net::HTTP.post_form(uri, {"scrape" => "true"})
+
   end
 
   def banner_tag_for(object, options={})

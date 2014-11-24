@@ -46,7 +46,7 @@
           = render partial:'sponsor_categories/form', locals:{f: f}
           = f.input :step, as: :hidden, input_html:{value: :launch_wizard} 
           .screenshot.hidden
-            = screenshot_tag_for campaign_url(@campaign)   
+            = screenshot_tag_for_remake campaign_url(@campaign)   
 
       = f.actions do
         .row.section-wrapper.text-center
