@@ -4,8 +4,12 @@ class CouponDecorator < ApplicationDecorator
   decorates_association :sponsor
   decorates_association :picture
 
+  def trunc_title
+    h.truncate(object.title, length: 37)
+  end
+
   def trunc_description
-    h.truncate(object.description, length: 50)
+    h.truncate(object.description, length: 100)
   end
 
   def expires_at

@@ -26,7 +26,7 @@ class CouponPdf < Pdf
       grid(0,1).bounding_box  do
         move_down 15
 
-        text @coupon.title, size: 30
+        text @coupon.trunc_title, size: 30
         
         move_down 10
         
@@ -34,7 +34,7 @@ class CouponPdf < Pdf
 
         move_down 10
 
-        text @coupon.description
+        text @coupon.trunc_description
       end
 
       grid(0,2).bounding_box  do
