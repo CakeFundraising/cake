@@ -45,7 +45,9 @@
               = render partial:'coupons/index', locals:{pledge: @pledge}
         
         = f.input :step, as: :hidden, input_html:{value: :share}
-
+        .screenshot.hidden
+          = screenshot_tag_for_remake pledge_url(@pledge.id)
+          
       .text-center
         = f.actions do
           = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 

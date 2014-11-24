@@ -30,7 +30,15 @@
             p.text-muted This will help your Campaign reach the most people
             //= render partial:'layouts/share_buttons'
             .share-buttons
-              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!" tw:text="Click to help #{campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising">
+              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!" tw:text="Click to help #{campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"></div>
+              <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_linkedin"></a>
+                <a class="addthis_button_google_plusone_share"></a>
+                <a class="addthis_button_pinterest_share"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_compact"></a>
               </div>
           .row.section-wrapper.text-center
             h2 Email Your Campaign
@@ -47,6 +55,7 @@
             p.text-muted You can use a PNG of your Campaign for emails and mailings
             .toggle-container.text-left
               .screenshot
+                /Just display the screenshot, do not recreate it.
                 = screenshot_tag_for campaign_url(campaign.id)
               div.pull-right
                 br
