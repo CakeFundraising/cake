@@ -44,8 +44,7 @@
             p.text-muted You can use a PNG of your Campaign for emails and mailings
             .toggle-container.text-left
               .screenshot
-                = image_tag 'http://res.cloudinary.com/cakefundraising/image/url2png/' + campaign_url(campaign.id)
-                /= screenshot_tag_for campaign_url(campaign.id)
+                = screenshot_tag_for campaign_url(campaign.id)
               div.pull-right
                 br
                 = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + campaign_url(campaign.id), class:'btn btn-primary', :download => 'campaign.png'
