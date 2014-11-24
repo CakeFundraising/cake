@@ -29,7 +29,23 @@
         span.glyphicon.glyphicon-pencil
       button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{pledge.id}" data-toggle="modal"
         = "Share"
+
       = render partial:'pledges/tables/active/modal', locals:{pledge: pledge}
   tr.empty-tr
 
-  
+  javascript:
+    var addthis_share = addthis_share || {}
+    addthis_share = {
+      url: "#{pledge_url(pledge.id)}",
+      url_transforms : {
+            shorten: {
+              twitter: 'bitly'
+            }
+        }, 
+      shorteners : {
+        bitly : {} 
+      },
+      templates: { 
+        twitter: "Click to help #{pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
+      }   
+    }
