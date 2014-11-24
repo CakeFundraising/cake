@@ -10,7 +10,14 @@
           p.text-muted Share your Pledge and ask your friends to reshare!
           /= render partial:'layouts/share_buttons'
           .share-buttons
-            <div class="addthis_sharing_toolbox" data-url="#{pledge_url(pledge.id)}" data-title="Click and help support us! It is 100% free!" tw:text="Click to help #{pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block" data-url="#{pledge_url(pledge.id)}" data-title="Click and help support us! It is 100% free!">
+              <a class="addthis_button_facebook"></a>
+              <a class="addthis_button_twitter" addthis:title="Click to help #{pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising" addthis:url="#{campaign_url(campaign.id)}"></a>
+              <a class="addthis_button_linkedin"></a>
+              <a class="addthis_button_google_plusone_share"></a>
+              <a class="addthis_button_pinterest_share"></a>
+              /<a class="addthis_button_email"></a>
+              <a class="addthis_button_compact"></a>
             </div>
 
         .row.section-wrapper.text-center
