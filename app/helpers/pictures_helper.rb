@@ -5,6 +5,7 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
+    Cloudinary::Uploader.explicit(object, :type => "url2png")
     new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
     cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
   end
