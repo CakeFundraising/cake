@@ -5,6 +5,10 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
+    cl_image_tag(object, :type => "url2png", :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
+  }
+
+  def screenshot_tag_for_remake(object, options={})
     #EMI
       #Generates a new screenshot
       #Need to store version as a reference. This is what enables us to access the most recent image.
