@@ -5,13 +5,8 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
-    new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
-    cl_image_tag(new_screenshot["url"])
-
-    #new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
-    #cl_image_tag(new_screenshot["url"], :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
-
-
+    new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
+    cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
   end
 
   def banner_tag_for(object, options={})
