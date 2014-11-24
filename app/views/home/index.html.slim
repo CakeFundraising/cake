@@ -13,7 +13,7 @@
 								| per 
 								span.boldest click 
 								| fundraising
-							= link_to "See How It Works", "#", class:'btn btn-success btn-md'
+							= link_to "See How It Works", nil, data:{toggle: 'modal', target: '#home_video'}, class:'btn btn-success btn-md'
 				div.slide3
 					.banner-content.secondaryBanner
 						.banner-container
@@ -92,6 +92,8 @@
 				/img src='/assets/partners/logo_nyt.gif'/
 				/img src='/assets/partners/logo_tc.gif'/
 				img src='/assets/partners/logo_tech.gif'/
+
+= render partial:'home/home_video'
 
 javascript:
   $(document).ready(Cake.slider.init);

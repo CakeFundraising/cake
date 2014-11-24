@@ -1,0 +1,11 @@
+#home_video.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h2.modal-title How Cake works?
+      .modal-body
+        = %Q{<iframe id="youtube_video" title="YouTube video player" width="100%" height="400px" src="http://www.youtube.com/embed/_zEtobIg5W8" frameborder="0" allowfullscreen></iframe>}.html_safe
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
