@@ -22,11 +22,14 @@ module PicturesHelper
 
 
 
-    cl_image_tag(object,
-      :type => "url2png", :force => true,
-      :transformation => [ 
-        { :crop => "fill", :width => 500, :gravity => "north"}], 
-      :sign_url => true, :class => 'img-responsive')
+    #cl_image_tag(object,
+    #  :type => "url2png", :force => true,
+    #  :transformation => [ 
+    #    { :crop => "fill", :width => 500, :gravity => "north"}], 
+    #  :sign_url => true, :class => 'img-responsive')
+
+
+
     #Cloudinary::Uploader.explicit
     #cl_image_tag(screenshot)
 
