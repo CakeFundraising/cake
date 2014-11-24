@@ -13,7 +13,15 @@ module PicturesHelper
       :transformation => [ 
         { :crop => "fill", :width => 500, :gravity => "north"}], 
       :sign_url => true, :class => 'img-responsive')
-    
+
+
+    cloudinary_url(object,
+      :type => "url2png", 
+      :crop => "fill", :width => 500, :gravity => :north, 
+      :sign_url => true, :class => 'img-responsive')
+
+
+
     cl_image_tag(object,
       :type => "url2png", :force => true,
       :transformation => [ 
