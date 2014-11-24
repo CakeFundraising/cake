@@ -28,7 +28,11 @@
           .row.text-center.clear
             h2 Share on Social Media
             p.text-muted This will help your Campaign reach the most people
-            = render partial:'layouts/share_buttons'
+            //= render partial:'layouts/share_buttons'
+            /= render partial:'layouts/share_buttons'
+            .share-buttons
+              /.addthis_sharing_toolbox#social
+              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}"></div>
           .row.section-wrapper.text-center
             h2 Email Your Campaign
             p.text-muted Email your Campaign directly to your friends and supporters
