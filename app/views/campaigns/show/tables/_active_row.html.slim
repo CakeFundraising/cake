@@ -27,3 +27,9 @@
       = render partial:'campaigns/show/actions', locals:{campaign: campaign}
       = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
   tr.empty-tr
+
+  javascript:
+    var addthis_share = addthis_share || {}
+    addthis_share = {
+      url: "#{campaign_url(campaign.id)}"
+    }
