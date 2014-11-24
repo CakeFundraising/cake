@@ -7,7 +7,7 @@ module PicturesHelper
   def screenshot_tag_for(object, options={})
     #EMI
       #Generates a new screenshot
-      #Need to store version as a reference. This is what enables us to acces the most recent image.
+      #Need to store version as a reference. This is what enables us to access the most recent image.
       #new_screenshot["version"]
 
     new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")

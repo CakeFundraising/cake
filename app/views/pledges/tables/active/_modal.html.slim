@@ -11,7 +11,7 @@
           /= render partial:'layouts/share_buttons'
           .share-buttons
             /.addthis_sharing_toolbox#social
-            <div class="addthis_sharing_toolbox" data-url="#{pledge_url(pledge.id)}" data-title="Click and help support us! It is 100% free!"></div>
+            <div class="addthis_sharing_toolbox" data-url="#{pledge_url(pledge.id)}" data-title="Click and help support us! It is 100% free!"  tw:text="Click to help #{pledge_url(pledge.id)}. It is 100% free! {{url}} via @cakefundraising" ></div>
 
         .row.section-wrapper.text-center
           h2 Email your Pledge

@@ -32,7 +32,7 @@
             /= render partial:'layouts/share_buttons'
             .share-buttons
               /.addthis_sharing_toolbox#social
-              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!"></div>
+              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!"  tw:text="Click to help #{campaign_url.fundraiser}. It is 100% free! {{url}} via @cakefundraising" ></div>
           .row.section-wrapper.text-center
             h2 Email Your Campaign
             p.text-muted Email your Campaign directly to your friends and supporters

@@ -28,22 +28,22 @@
       = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
   tr.empty-tr
 
-  javascript:
-    var addthis_share = addthis_share || {}
-    addthis_share = {
-      url: "#{campaign_url(campaign.id)}",
-      url_transforms : {
-            shorten: {
-              twitter: 'bitly'
-            }
-        }, 
-      shorteners : {
-        bitly : {} 
-      },
-      templates: { 
-        twitter: "Click to help #{campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
-      }   
-    }
+  /javascript:
+  /  var addthis_share = addthis_share || {}
+  /  addthis_share = {
+  /    url: "#{campaign_url(campaign.id)}",
+  /    url_transforms : {
+  /          shorten: {
+  /            twitter: 'bitly'
+  /          }
+  /      }, 
+  /    shorteners : {
+  /      bitly : {} 
+  /    },
+  /    templates: { 
+  /      twitter: "Click to help #{campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
+  /    }   
+  /  }
 
 
 
