@@ -8,11 +8,13 @@ module PicturesHelper
     #options = {type: 'url2png', :type => "url2png", :transformation => [{ :width => 400, :height => 400, :gravity => "north", :radius => 50, :border => "2px_solid_rgb:999"}], :sign_url => true, class: 'img-responsive'}.merge options
     
 
-    Cloudinary::Uploader.explicit(object,
-      :type => "url2png", :force => true,
-      :transformation => [ 
-        { :crop => "fill", :width => 500, :gravity => "north"}], 
-      :sign_url => true, :class => 'img-responsive')
+    Cloudinary::Uploader.explicit(object, :type => "url2png")
+
+    #Cloudinary::Uploader.explicit(object,
+    #  :type => "url2png", :force => true,
+    #  :transformation => [ 
+    #    { :crop => "fill", :width => 500, :gravity => "north"}], 
+    #  :sign_url => true, :class => 'img-responsive')
 
 
     #cloudinary_url(object,
