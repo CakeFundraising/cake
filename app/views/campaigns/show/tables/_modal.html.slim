@@ -30,7 +30,9 @@
             p.text-muted This will help your Campaign reach the most people
             //= render partial:'layouts/share_buttons'
             .share-buttons
-              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!"></div>
+              <div class="addthis_sharing_toolbox" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!">
+                <a class="addthis_button_tweet" tw:text=""Click to help #{campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising""></a> 
+              </div>
           .row.section-wrapper.text-center
             h2 Email Your Campaign
             p.text-muted Email your Campaign directly to your friends and supporters
