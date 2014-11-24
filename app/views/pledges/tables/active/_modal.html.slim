@@ -27,6 +27,9 @@
                 = screenshot_tag_for pledge_url(pledge.id)
               div.pull-right
                 br
+                /EMI
+                  /Need to incorporate version reference so that is pulles the most recently generated image.
+                  
                 = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge.id), class:'btn btn-primary', :download => 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
