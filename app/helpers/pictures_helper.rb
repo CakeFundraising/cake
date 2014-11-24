@@ -5,7 +5,7 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
-    cl_image_tag(object, :type => "url2png", :version => "1", :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
+    cl_image_tag(object, :type => "url2png", :version => "1", :crop => "fill", :width => 500, :gravity => "north", :sign_url => false, :class => 'img-responsive')
   end
 
   def screenshot_tag_for_remake(object, options={})
@@ -17,7 +17,7 @@ module PicturesHelper
     #Recreate screenshot
     #Cloudinary::Uploader.explicit(object, :type => "url2png")
     new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
-    cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
+    cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => false, :class => 'img-responsive')
     
     #Force Facebook Update
     #Not working. Need to figure out hot to force FB to update the cache
