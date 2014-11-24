@@ -8,7 +8,7 @@ module PicturesHelper
     #http://res.cloudinary.com/cakefundraising/image/url2png/http://staging.cakefundraising.com/campaigns/187
     #http://res.cloudinary.com/cakefundraising/image/url2png/s--iV322qFH--/c_fill,g_north,w_500/v1416845685/http://staging.cakefundraising.com/campaigns/187
     new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
-    cl_image_tag(object, :type => "url2png", :class => 'img-responsive')
+    cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :class => 'img-responsive')
     #cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => true, :class => 'img-responsive')
   end
 
