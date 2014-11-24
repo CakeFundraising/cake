@@ -40,9 +40,10 @@ class CouponsController < InheritedResources::Base
         pdf = CouponPdf.new(resource.decorate)
         send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
       end
-      format.pdf do
-        render nothing: true
-      end
+      # format.pdf do
+      #   pdf = CouponPdf.new(resource.decorate)
+      #   render pdf: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf"
+      # end
     end
   end
 

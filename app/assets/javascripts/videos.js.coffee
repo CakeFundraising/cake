@@ -1,5 +1,5 @@
 Cake.videos = ->
-  modal = $("#video_modal")
+  modal = $(".video_modal")
   video_html = $("iframe#youtube_video").clone()
 
   modal.on "hidden.bs.modal", (e) ->
