@@ -64,6 +64,13 @@ class Pledge < ActiveRecord::Base
     self.max_clicks = self.current_max_clicks
   end
 
+ ### TODO
+  ### EMI How Can we make these links dynamic rather than hardcoded?
+  after_save do
+    
+  end
+
+
   #Actions
   def launch!
     delete_pledge_requests

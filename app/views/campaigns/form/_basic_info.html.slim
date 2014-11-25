@@ -89,9 +89,7 @@
         = f.actions do
           .text-center
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-        .screenshot.hidden
-          = screenshot_tag_for_remake campaign_url(@campaign)  
-          
+
 javascript:
   var input = $('.default-zero');
   if(input.val() == "0.00")
