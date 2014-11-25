@@ -28,6 +28,7 @@ module Cake
 
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
+      #{config.root}/app/jobs
       #{config.root}/app/downloads
     )
   end

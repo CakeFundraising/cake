@@ -37,4 +37,16 @@ module ResqueSchedule
     end
   end
 
+  class CampaignScreenshot
+    extend Resque::Plugins::Retry
+    @queue = :high
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform(campaign_id, url)
+      Campaign.find(campaign_id).update_screenshot(url)
+    end
+  end
+
 end
