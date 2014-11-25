@@ -80,7 +80,7 @@ h3, h4 {
 }
 
 hr{
-  border-top: 1px solid #dddddd;
+  border-top: 1px dotted #dddddd;
 }
 .nav-tabs {
   text-transform: uppercase;
@@ -613,14 +613,6 @@ p.signup-social span:before, p.signup-social span:after {
   margin: 10px 0px 0px 5px !important;
   padding: 5px 10px 5px 10px !important;
   color: #fff !important;*/
-}
-
-.coupon {
-  .promo-code{
-    font-size: 15px;
-    margin: 10px 0px;
-    display: inline-block;
-  }
 }
 
 .main-cta{
@@ -1893,8 +1885,43 @@ table.performance-summary {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
+  p, h2, h3{
+    margin:0px;
+    padding:0px;
+  }
+  h2, h3{
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
+  h2{
+    margin-bottom: 5px;
+  }
+  .coupon-content{
+    margin:10px 0px;
+  }
+  hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  h3{
+    font-size: 17px;
+    color:#333;
+    span {
+      color: #08c1dc;
+    }
+  }
+  .label-info{
+    position:absolute;
+    padding:10px;
+    margin: -5px;
+  }
   img {
     width: 100%;
+    padding:0px;
+  }
+  .promo-code{
+    font-size: 15px;
+    margin: 10px 0px;
+    display: inline-block;
   }
 }
 .terms {

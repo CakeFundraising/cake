@@ -14,14 +14,17 @@
         = coupon.picture.avatar
         .coupon-edge
       .col-md-6
-        h2 = coupon
-        p 
-          |Expires: 
-          span = coupon.expires_at
-        p = coupon.description
-        .row.terms
-          .col-xs-12
-            a data-target="#coupon-#{coupon.id}" data-toggle="modal" View Terms & Conditions
+        div.coupon-content
+          h2 = coupon
+          h3 
+            |Expires: 
+            span = coupon.expires_at
+          hr
+          p = coupon.description
+          hr
+          .row.terms
+            .col-xs-12
+              a data-target="#coupon-#{coupon.id}" data-toggle="modal" View Terms & Conditions
       .col-md-2.text-right
         = render partial:'coupons/form/actions', locals: {coupon: coupon} if defined? editable
         = coupon.picture.qrcode
