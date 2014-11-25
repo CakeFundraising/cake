@@ -61,8 +61,6 @@
             = render partial:'pictures/banner_form', locals:{f: f}
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
-        .screenshot.hidden
-          = screenshot_tag_for_remake pledge_url(@pledge.id)
 
         br
         = f.actions do

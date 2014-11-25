@@ -12,6 +12,9 @@
           .share-buttons
             <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block" data-url="#{pledge_url(pledge.id)}" data-title="Click and help support us! It is 100% free!">
               <a class="addthis_button_facebook"></a>
+
+              /Need to determine if this view is being used as a SP or FR. Then modfiy the Twitter content as necessary
+              
               /<a class="addthis_button_twitter" addthis:title="Click to help #{pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising" addthis:url="#{campaign_url(campaign.id)}"></a>
               <a class="addthis_button_linkedin"></a>
               <a class="addthis_button_google_plusone_share"></a>
@@ -35,14 +38,10 @@
             p.text-muted You can use a PNG of your Campaign for emails and mailings
             .toggle-container.text-left
               .screenshot
-                /Just display the screenshot, do not recreate it.
-                = screenshot_tag_for pledge_url(pledge.id)
+                = screenshot_tag_for pledge
               div.pull-right
                 br
-                /EMI
-                  /Need to incorporate version reference so that is pulles the most recently generated image.
-                  
-                = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge.id), class:'btn btn-primary', :download => 'pledge.png'
+                = link_to "Download", pledge.screenshot_url, class:'btn btn-primary', :download => 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
           p.text-muted Copy the source code below and past it on your website

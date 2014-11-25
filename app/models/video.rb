@@ -11,7 +11,7 @@ class Video < ActiveRecord::Base
   private
 
   def get_vimeo_info
-    uri = URI("http://vimeo.com/api/v2/video/#{self.url}.json")
+    uri = URI("https://vimeo.com/api/v2/video/#{self.url}.json")
     request = Net::HTTP.get(uri)
     response = JSON.parse(request).first
   end
@@ -20,7 +20,7 @@ class Video < ActiveRecord::Base
     # Youtube
     unless self.url.match(Y_REGEX).nil?
       self.url = self.url.match(Y_REGEX)[5]
-      self.thumbnail = "http://img.youtube.com/vi/#{self.url}/1.jpg"
+      self.thumbnail = "https://img.youtube.com/vi/#{self.url}/1.jpg"
       self.provider = :youtube
     end
     # Vimeo

@@ -4,6 +4,7 @@ class Campaign < ActiveRecord::Base
   include Statusable
   include Analytics
   include Picturable
+  include Screenshotable
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -11,6 +12,7 @@ class Campaign < ActiveRecord::Base
   attr_accessor :step 
 
   belongs_to :fundraiser
+  
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, dependent: :destroy

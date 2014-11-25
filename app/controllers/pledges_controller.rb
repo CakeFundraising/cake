@@ -42,6 +42,7 @@ class PledgesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
+        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
@@ -54,6 +55,7 @@ class PledgesController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
+        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
         redirect_to controller: :pledges, action: params[:pledge][:step], id: resource
       end
       failure.html do

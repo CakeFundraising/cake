@@ -5,27 +5,9 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
-    cl_image_tag(object, :type => "url2png", :version => "1", :crop => "fill", :width => 500, :gravity => "north", :sign_url => false, :class => 'img-responsive')
+    cl_image_tag(object.screenshot_url, class: "img-responsive")
   end
-
-  def screenshot_tag_for_remake(object, options={})
-    #EMI
-      #Generates a new screenshot
-      #Need to store version as a reference. This is what enables us to access the most recent image.
-      #new_screenshot["version"]
-
-    #Recreate screenshot
-    #Cloudinary::Uploader.explicit(object, :type => "url2png")
-    new_screenshot = Cloudinary::Uploader.explicit(object, :type => "url2png")
-    cl_image_tag(object, :type => "url2png", :version => new_screenshot["version"], :crop => "fill", :width => 500, :gravity => "north", :sign_url => false, :class => 'img-responsive')
-    
-    #Force Facebook Update
-    #Not working. Need to figure out hot to force FB to update the cache
-    #uri = URI.parse("https://graph.facebook.com")
-    #response = Net::HTTP.post_form(uri, {"scrape" => "true"})
-
-  end
-
+  
   def banner_tag_for(object, options={})
     options = {crop: :fill, width: 1400, height: 700}.merge options
     cl_image_path(object.banner, options)
