@@ -46,7 +46,7 @@
         
         = f.input :step, as: :hidden, input_html:{value: :share}
         .screenshot.hidden
-          = screenshot_tag_for_remake pledge_url(@pledge.id)
+          = screenshot_tag_for @pledge
           
       .text-center
         = f.actions do

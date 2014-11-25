@@ -4,8 +4,7 @@ class Campaign < ActiveRecord::Base
   include Statusable
   include Analytics
   include Picturable
-  include FacebookOpenGraph
-  include Rails.application.routes.url_helpers
+  include Screenshotable
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -64,17 +63,6 @@ class Campaign < ActiveRecord::Base
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
   
-
-  ### TODO
-  ### EMI How Can we make these links dynamic rather than hardcoded?
-  #after_save do  
-  #  screenshot_url = Cloudinary::Uploader.explicit(campaign_url(self), :type => "url2png")["url"]
-  #  puts screenshot_url
-    #self.update_column(:screenshot_url, screenshot_url)
-    #FacebookOpenGraph.clear_cache("http://staging.cakefundraising.com/campaigns/"+self.id)
-  #end
-
-
   #Solr
   searchable do
     text :title, :headline, boost: 2

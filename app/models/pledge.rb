@@ -2,6 +2,7 @@ class Pledge < ActiveRecord::Base
   include Statusable
   include Formats
   include Picturable
+  include Screenshotable
   
   has_statuses :incomplete, :pending, :accepted, :rejected, :past
   has_statuses :unprocessed, :notified_fully_subscribed, column_name: :processed_status
@@ -63,13 +64,6 @@ class Pledge < ActiveRecord::Base
   before_save do
     self.max_clicks = self.current_max_clicks
   end
-
- ### TODO
-  ### EMI How Can we make these links dynamic rather than hardcoded?
-  after_save do
-    
-  end
-
 
   #Actions
   def launch!
