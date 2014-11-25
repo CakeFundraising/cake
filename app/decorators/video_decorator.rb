@@ -8,7 +8,7 @@ class VideoDecorator < ApplicationDecorator
   def iframe
     if object.url.present?
       if provider == 'youtube'
-        %Q{<iframe id="youtube_video" title="YouTube video player" width="100%" height="400px" src="http://www.youtube.com/embed/#{object.url}" frameborder="0" allowfullscreen></iframe>}.html_safe
+        %Q{<iframe id="youtube_video" title="YouTube video player" width="100%" height="400px" src="//www.youtube.com/embed/#{object.url}" frameborder="0" allowfullscreen></iframe>}.html_safe
       elsif provider == 'vimeo'
         %Q{<iframe src="//player.vimeo.com/video/#{object.url}" width="100%" height="400px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>}.html_safe
       end
