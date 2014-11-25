@@ -11,7 +11,7 @@ class Video < ActiveRecord::Base
   private
 
   def get_vimeo_info
-    uri = URI("http://vimeo.com/api/v2/video/#{self.url}.json")
+    uri = URI("https://vimeo.com/api/v2/video/#{self.url}.json")
     request = Net::HTTP.get(uri)
     response = JSON.parse(request).first
   end
