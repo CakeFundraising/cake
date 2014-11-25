@@ -73,6 +73,7 @@ gem "jquery-validation-rails"
 gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
+gem 'secure_headers'
 
 #App performance
 gem 'newrelic_rpm'
