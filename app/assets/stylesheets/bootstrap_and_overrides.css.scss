@@ -850,7 +850,7 @@ form{
 .help-block {
   font-size: 12px;
   span {
-    width:30%;
+    /*width:30%; Removed because the Strip button on the dashboard of a user was malformed */
   }
 }
 
