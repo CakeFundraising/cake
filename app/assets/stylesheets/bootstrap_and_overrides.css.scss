@@ -1797,10 +1797,15 @@ table.performance-summary {
 .fundraiser-info{
   margin: 15px 0;
 }
+
+// Mini Pledges -----------------------------------------------------------------
 .platinum {
   border: 1px solid $gray-lighter;
   background: #fff;
   margin-bottom: 25px;
+  .buttons{
+    padding: 10px;
+  }
   img {
     display: block;
     width: 100%;
@@ -1816,6 +1821,9 @@ table.performance-summary {
     border-bottom-left-radius: 0px;
   }
 }
+
+
+
 
 .pledges_total {
   font-size: 18px;

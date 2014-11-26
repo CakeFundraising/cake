@@ -1,7 +1,7 @@
 - cache [:box, pledge] do
   .col-md-3
     .platinum
-      = link_to pledge, target: :_blank do
+      = link_to click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank do
         .avatar-container
           = pledge.picture.avatar
       .levels
@@ -16,3 +16,8 @@
         span.pull-right
           span = humanized_money_with_symbol pledge.total_amount
           span.text-muted Pledge
+      .buttons.row
+        .col-md-6
+          = link_to 'Our Story', pledge, target: :_blank, class:'btn btn-success btn-block'
+        .col-md-6
+          = link_to 'Special Offers', pledge_path(pledge, anchor: :coupons), target: :_blank, class:'btn btn-primary btn-block' if pledge.coupons.any?
