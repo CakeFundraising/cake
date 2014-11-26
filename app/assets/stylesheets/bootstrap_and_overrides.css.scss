@@ -1798,10 +1798,17 @@ table.performance-summary {
 .fundraiser-info{
   margin: 15px 0;
 }
+
+// Mini Pledges -----------------------------------------------------------------
 .platinum {
   border: 1px solid $gray-lighter;
   background: #fff;
   margin-bottom: 25px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  .buttons{
+    padding: 10px;
+  }
   img {
     display: block;
     width: 100%;
@@ -1817,6 +1824,189 @@ table.performance-summary {
     border-bottom-left-radius: 0px;
   }
 }
+
+.overlay-effects{
+  .overlay-img {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    &:nth-child(n) {
+      margin-right: 5px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    img {
+      display: block;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.effect-overlay {
+  display: block;
+  position: absolute;
+  z-index: 20;
+  background: rgba(182, 203, 64, 0.75);
+  overflow: hidden;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  &.blue-bg{
+    background: rgba(8, 193, 220, 0.75);
+  }
+}
+
+a {
+  &.close-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 45px;
+    text-align: center;
+    background-color: #000;
+    cursor: pointer;
+    &.hidden {
+      display: none;
+    }
+  }
+  &.expand {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    text-align: center;
+    color: #fff;
+    line-height: 50px;
+    font-weight: 700;
+    font-size: 30px;
+    text-decoration: none;
+    &.expand-sm{
+      @media (min-width: $screen-md-min) {
+        text-shadow: 0px 0px 1px $gray;
+        font-size: 16px;
+        line-height: 1.5em;
+      }
+    }
+    &.expand-md{
+      @media (min-width: $screen-md-min) {
+        line-height: 1.5em;
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+#effect-1 {
+  .effect-overlay {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    a.expand {
+      left: 0;
+      right: 0;
+      bottom: 50%;
+      margin: 0 auto -30px auto;
+    }
+  }
+  .overlay-img.hover .effect-overlay,
+  .overlay-img:hover .effect-overlay{
+    height: 100%;
+  }
+}
+
+#effect-5 {
+  .effect-overlay {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    a.expand {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+  }
+  .overlay-img.hover .effect-overlay,
+  .overlay-img:hover .effect-overlay {
+    opacity: 1;
+    a.expand {
+      width: 200px;
+      height: 200px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      -ms-border-radius: 30px;
+      -o-border-radius: 30px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+  }
+}
+
+#effect-6 {
+  .effect-overlay{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    a.expand {
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: 0 auto;
+      opacity: 0;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+  }
+  .overlay-img.hover .effect-overlay,
+  .overlay-img:hover .effect-overlay{
+    opacity: 1;
+    a.expand {
+      top: 50%;
+      margin-top: -30px;
+      opacity: 1;
+    }
+    &.blue-bg{
+      a.expand{
+        top: 45%;
+      }
+      a.expand-md{
+        top: 75px !important;
+      }
+    }
+  }
+}
+// Mini Pledges -----------------------------------------------------------------
 
 .pledges_total {
   font-size: 18px;
@@ -3504,8 +3694,6 @@ ul#share-block {
   .slide2{ background-image: url('hero-home2.jpg'); }
   .slide3{ background-image: url('hero-home3.jpg'); }
 }
-
-
 
 
 

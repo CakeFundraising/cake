@@ -1,9 +1,18 @@
 - cache [:box, pledge] do
   .col-md-4
     .platinum
-      = link_to pledge, target: :_blank do
-        .avatar-container
-          = pledge.picture.avatar
+      .overlay-effects.clearfix#effect-6
+        - if pledge.click_browsers.include?(current_browser)
+          .avatar-container.overlay-img.hover
+            = pledge.picture.avatar
+            .effect-overlay.blue-bg
+              = link_to 'Thank you, please click all our sponsors!', pledge.website_url, target: :_blank, class:'expand'
+        -else
+          .avatar-container.overlay-img
+            = pledge.picture.avatar
+            .effect-overlay
+              = link_to 'Click to Help!', click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'expand click-link'
+              a.close-overlay.hidden x
       .levels
         .sponsor-name.truncate = auto_link pledge.sponsor
         .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
@@ -16,3 +25,8 @@
         span.pull-right
           span = humanized_money_with_symbol pledge.total_amount
           span.text-muted Pledge
+      .buttons.row
+        .col-md-6
+          = link_to 'Our Story', pledge, target: :_blank, class:'btn btn-success btn-block'
+        .col-md-6
+          = link_to 'Special Offers', pledge_path(pledge, anchor: :coupons), target: :_blank, class:'btn btn-primary btn-block' if pledge.coupons.any?
