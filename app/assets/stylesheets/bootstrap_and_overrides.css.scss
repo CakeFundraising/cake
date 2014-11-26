@@ -1855,6 +1855,9 @@ table.performance-summary {
   cursor: pointer;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  &.blue-bg{
+    background: rgba(8, 193, 220, 0.75);
+  }
 }
 
 a {
@@ -1888,8 +1891,17 @@ a {
     font-size: 30px;
     text-decoration: none;
     &.expand-sm{
-      text-shadow: 0px 0px 1px $gray;
-      font-size: 16px;
+      @media (min-width: $screen-md-min) {
+        text-shadow: 0px 0px 1px $gray;
+        font-size: 16px;
+        line-height: 1.5em;
+      }
+    }
+    &.expand-md{
+      @media (min-width: $screen-md-min) {
+        line-height: 1.5em;
+        font-size: 25px;
+      }
     }
   }
 }
@@ -1982,6 +1994,14 @@ a {
       top: 50%;
       margin-top: -30px;
       opacity: 1;
+    }
+    &.blue-bg{
+      a.expand{
+        top: 45%;
+      }
+      a.expand-md{
+        top: 75px !important;
+      }
     }
   }
 }
@@ -3673,8 +3693,6 @@ ul#share-block {
   .slide2{ background-image: url('hero-home2.jpg'); }
   .slide3{ background-image: url('hero-home3.jpg'); }
 }
-
-
 
 
 

@@ -39,6 +39,16 @@ Cake.campaigns.mini_pledges = ->
       return
   return
 
+Cake.campaigns.mini_pledges_click = ->
+  links = $('.click-link')
+
+  links.click (e)->
+    $(this).closest('.overlay-img').addClass('hover')
+    $(this).closest('.effect-overlay').addClass('blue-bg')
+    $(this).text('Thank you, please click all our sponsors!')
+    return
+  return
+
 Cake.campaigns.show = (end_date, impression_id)->
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)

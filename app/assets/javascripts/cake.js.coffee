@@ -23,6 +23,8 @@ Cake.init = ->
   Cake.campaigns.init()
 
   Cake.browsers.create()
+
+  Cake.campaigns.mini_pledges_click()
   return
 
 $(document).ready(Cake.init)
