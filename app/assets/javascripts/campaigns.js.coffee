@@ -2,7 +2,12 @@ Cake.campaigns ?= {}
 
 #Campaign Show Functions
 Cake.campaigns.countdown = (end_date) ->
-  end_date = new Date(end_date).getTime()
+  # There is a timezone issue that needs to be resolved
+  # At least now the date is showing up on the iphone, although it is one day off.
+  
+  arr = end_date.split(/[- :]/)
+  end_date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5])
+  
   $("#campaign_countdown").countdown end_date, (event) ->
     countdown_section = $(this)
     # days
