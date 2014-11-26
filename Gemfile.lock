@@ -210,6 +210,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (4.7.5)
+    modernizr-rails (2.7.1)
     monetize (0.3.0)
       money (~> 6.1.0.beta1)
     money (6.1.1)
@@ -520,6 +521,7 @@ DEPENDENCIES
   meta-tags
   meta_request
   metamagic
+  modernizr-rails
   money-rails (~> 0.12.0)
   newrelic_rpm
   omniauth

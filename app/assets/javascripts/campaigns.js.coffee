@@ -15,9 +15,34 @@ Cake.campaigns.countdown = (end_date) ->
 
   return
 
+Cake.campaigns.mini_pledges = ->
+  if Modernizr.touch
+    # show the close overlay button
+    $(".close-overlay").removeClass "hidden"
+    # handle the adding of hover class when clicked
+    $(".overlay-img").click (e) ->
+      $(this).addClass "hover"  unless $(this).hasClass("hover")
+      return
+    # handle the closing of the overlay
+    $(".close-overlay").click (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+      $(this).closest(".overlay-img").removeClass "hover" if $(this).closest(".overlay-img").hasClass("hover")
+      return
+  else
+    # handle the mouseenter functionality
+    $(".overlay-img").mouseenter(->
+      $(this).addClass "hover"
+      return
+    ).mouseleave -> # handle the mouseleave functionality
+      $(this).removeClass "hover"
+      return
+  return
+
 Cake.campaigns.show = (end_date, impression_id)->
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)
+  Cake.campaigns.mini_pledges()
   return
 
 Cake.campaigns.visibility = ->

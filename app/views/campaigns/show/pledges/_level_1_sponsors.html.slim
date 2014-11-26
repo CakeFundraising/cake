@@ -1,9 +1,12 @@
 - cache [:box, pledge] do
   .col-md-3
     .platinum
-      = link_to click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank do
-        .avatar-container
+      .overlay-effects.clearfix#effect-6
+        .avatar-container.overlay-img
           = pledge.picture.avatar
+          .effect-overlay
+            = link_to 'Click to Help!', click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'expand'
+            a.close-overlay.hidden x
       .levels
         .sponsor-name.truncate = auto_link pledge.sponsor
         .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
