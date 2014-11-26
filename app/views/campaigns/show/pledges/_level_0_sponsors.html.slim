@@ -25,6 +25,8 @@
         span.pull-right
           span = humanized_money_with_symbol pledge.total_amount
           /span.text-muted Pledge
-      .buttons
-        = link_to 'Our Story', pledge, class:'btn btn-success btn-block'
-        = link_to 'Special Offers', pledge, class:'btn btn-primary btn-block' if pledge.coupons.any?
+      .buttons.row
+        .col-md-6
+          = link_to 'Our Story', pledge, target: :_blank, class:'btn btn-success btn-block'
+        .col-md-6
+          = link_to 'Special Offers', pledge_path(pledge, anchor: :coupons), target: :_blank, class:'btn btn-primary btn-block' if pledge.coupons.any?
