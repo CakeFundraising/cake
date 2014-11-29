@@ -162,6 +162,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.5)
+    fingerprintjs-rails (0.5.3)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     formtastic-bootstrap (3.0.0)
@@ -515,6 +516,7 @@ DEPENDENCIES
   evercookie
   factory_girl_rails
   faker
+  fingerprintjs-rails
   formtastic-bootstrap
   high_voltage
   jcrop-rails-v2

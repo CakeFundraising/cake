@@ -75,7 +75,10 @@ gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
 gem 'secure_headers'
+
+#Browser Fingerprinting
 gem 'evercookie'
+gem 'fingerprintjs-rails'
 
 #App performance
 gem 'newrelic_rpm'

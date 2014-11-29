@@ -80,10 +80,9 @@ html lang="en"
         = yield :bottom_section
   footer
     // Set Evercookie
-    - if @evercookie_token.present?
+    - if @evercookie_token.present? and not evercookie_is_set?(:cfbid)
       = set_evercookie(:cfbid, @evercookie_token)
-    
-    = check_evercookie(:cfbid)
+      = check_evercookie(:cfbid)
 
     = current_browser.inspect
 

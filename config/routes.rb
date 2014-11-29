@@ -147,10 +147,8 @@ Cake::Application.routes.draw do
     patch :rendered
   end
 
-  resources :browsers, only: :create do
-    collection do
-      get :current
-    end
+  scope :browser, controller: :browsers do
+    patch :fingerprint
   end
 
   #Settings

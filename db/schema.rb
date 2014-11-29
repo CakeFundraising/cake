@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128115256) do
+ActiveRecord::Schema.define(version: 20141129215105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,17 +50,14 @@ ActiveRecord::Schema.define(version: 20141128115256) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "browsers", force: true do |t|
-    t.string   "ip"
-    t.string   "ua"
-    t.string   "http_language"
-    t.string   "http_encoding"
-    t.text     "plugins"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
+    t.string   "fingerprint"
   end
 
+  add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
   create_table "campaigns", force: true do |t|

@@ -58,6 +58,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def override_evercookie(key, value)
+    session[Evercookie.hash_name_for_set] = {key: key, value: value}
+  end
+
   def after_sign_in_path_for(resource)
     if current_user.present? and not current_user.registered
       if current_user.fundraiser_email_setting.present?

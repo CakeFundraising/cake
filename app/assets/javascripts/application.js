@@ -23,6 +23,7 @@
 //= require turbolinks
 
 //= require modernizr
+//= require fingerprint
 
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
