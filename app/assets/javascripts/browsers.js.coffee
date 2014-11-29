@@ -7,8 +7,11 @@ Cake.browsers.fingerprint = ->
     url: '/browser/fingerprint'
     method: 'PATCH'
     data: {fingerprint: fingerprint}
-  ).done (data)->
-    console.log data
+  ).done (token)->
+    if token
+      ec = new cake_evercookie();
+      ec.set('cfbid', token)
+      ec.get('cfbid');
     return
 
   return

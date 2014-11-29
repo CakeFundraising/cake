@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_action :generate_evercookie_token
   helper_method :current_fundraiser, :current_sponsor, :current_browser
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -26,16 +25,6 @@ class ApplicationController < ActionController::Base
   def current_browser
     token = evercookie_get_value(:cfbid)
     Browser.find_by_token(token) if token.present?
-  end
-
-  def generate_evercookie_token
-    unless evercookie_is_set?(:cfbid)
-      @evercookie_token = loop do
-        random_token = SecureRandom.urlsafe_base64(nil, false)
-        break random_token unless Browser.exists?(token: random_token)
-      end
-      Browser.create(token: @evercookie_token)
-    end
   end
 
   protected 
