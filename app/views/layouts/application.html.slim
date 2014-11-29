@@ -79,6 +79,14 @@ html lang="en"
       .bottom_section
         = yield :bottom_section
   footer
+    // Set Evercookie
+    - if @evercookie_token.present?
+      = set_evercookie(:cfbid, @evercookie_token)
+    
+    = check_evercookie(:cfbid)
+
+    = current_browser.inspect
+
     .container
       .row
         .col-md-4
@@ -108,6 +116,7 @@ html lang="en"
         .col-md-4
           h4 Follow Us  
           div.addthis_custom_follow
+          br
           a alt=("Expedited SSL Scanner") href="https://www.expeditedssl.com/simple-ssl-scanner/scan?target_domain=www.cakefundraising.com" target="_blank" 
             img src="https://www.expeditedssl.com/ssl-secure-badge.png"
 

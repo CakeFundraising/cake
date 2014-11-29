@@ -75,6 +75,7 @@ gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
 gem 'secure_headers'
+gem 'evercookie'
 
 #App performance
 gem 'newrelic_rpm'

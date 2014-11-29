@@ -129,18 +129,20 @@ class PledgesController < InheritedResources::Base
 
   #Clicks
   def click
-    browser = Browser.find(params[:browser_id])
-
-    if resource.click_browsers.include?(browser)
-      redirect_to resource, alert:"You can contribute to any pledge just once!"
-    else
-      click = resource.clicks.build(browser: browser)
-      
-      if click.save
-        redirect_to resource.decorate.website_url 
+    if current_browser.present?
+      if resource.click_browsers.include?(current_browser)
+        redirect_to resource, alert: "You may contribute to any pledge just once!"
       else
-        redirect_to resource, alert: click.errors.messages
+        click = resource.clicks.build(browser: current_browser)
+        
+        if click.save
+          redirect_to resource.decorate.website_url 
+        else
+          redirect_to resource, alert: click.errors.messages
+        end
       end
+    else
+      redirect_to resource, alert: 'There was an error when trying to count your click. Please try again.'
     end
   end
 

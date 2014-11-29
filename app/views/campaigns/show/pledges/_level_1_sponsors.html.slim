@@ -11,7 +11,7 @@
           .avatar-container.overlay-img
             = pledge.picture.avatar
             .effect-overlay
-              = link_to 'Click to Help!', click_pledge_path(pledge, browser_id: session[:browser_id]), method: :patch, target: :_blank, class:'expand expand-md click-link'
+              = link_to 'Click to Help!', click_pledge_path(pledge), method: :patch, target: :_blank, class:'expand expand-md click-link'
               a.close-overlay.hidden x
       .levels
         .sponsor-name.truncate = auto_link pledge.sponsor

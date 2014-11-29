@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :generate_evercookie_token
   helper_method :current_fundraiser, :current_sponsor, :current_browser
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -23,10 +24,39 @@ class ApplicationController < ActionController::Base
   end
 
   def current_browser
-    Browser.find(session[:browser_id]) if session[:browser_id].present?
+    token = evercookie_get_value(:cfbid)
+    Browser.find_by_token(token) if token.present?
+  end
+
+  def generate_evercookie_token
+    unless evercookie_is_set?(:cfbid)
+      @evercookie_token = loop do
+        random_token = SecureRandom.urlsafe_base64(nil, false)
+        break random_token unless Browser.exists?(token: random_token)
+      end
+      Browser.create(token: @evercookie_token)
+    end
   end
 
   protected 
+
+  def evercookie_is_set?(key, value = nil)
+    if session[Evercookie.hash_name_for_set].blank?
+      false
+    elsif value.nil?
+      session[Evercookie.hash_name_for_set][:key] == key
+    else
+      session[Evercookie.hash_name_for_set][:key] == key and session[Evercookie.hash_name_for_set][:value] == value
+    end
+  end
+
+  def evercookie_get_value(key)
+    if session[Evercookie.hash_name_for_set].present? and session[Evercookie.hash_name_for_set][:key] == key
+      session[Evercookie.hash_name_for_set][:value]
+    else
+      nil
+    end
+  end
 
   def after_sign_in_path_for(resource)
     if current_user.present? and not current_user.registered
