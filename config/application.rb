@@ -30,6 +30,7 @@ module Cake
       #{config.root}/app/decorators/concerns
       #{config.root}/app/jobs
       #{config.root}/app/downloads
+      #{config.root}/lib/evercookie
     )
   end
 end
