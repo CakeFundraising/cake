@@ -42,6 +42,9 @@
 
 //= require cake
 
+//= require ./evercookie/evercookie
+//= require ./evercookie/swfobject-2.2.min
+
 //= require ./google_analytics
 //= require ./about
 //= require ./addthis

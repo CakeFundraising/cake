@@ -29,26 +29,23 @@ class ApplicationController < ActionController::Base
 
   protected 
 
-  def evercookie_is_set?(key, value = nil)
-    if session[Evercookie.hash_name_for_set].blank?
-      false
-    elsif value.nil?
-      session[Evercookie.hash_name_for_set][:key] == key
-    else
-      session[Evercookie.hash_name_for_set][:key] == key and session[Evercookie.hash_name_for_set][:value] == value
-    end
+  def set_evercookie(key, value)
+    session[:evercookie] = {} unless session[:evercookie].present?
+    session[:evercookie][key] = value
   end
 
   def evercookie_get_value(key)
-    if session[Evercookie.hash_name_for_set].present? and session[Evercookie.hash_name_for_set][:key] == key
-      session[Evercookie.hash_name_for_set][:value]
-    else
-      nil
-    end
+    session[:evercookie].present? ? session[:evercookie][key] : nil
   end
 
-  def override_evercookie(key, value)
-    session[Evercookie.hash_name_for_set] = {key: key, value: value}
+  def evercookie_is_set?(key, value = nil)
+    if session[:evercookie].blank?
+      false
+    elsif value.nil?
+      session[:evercookie][key].present?
+    else
+      session[:evercookie][key].present? and session[:evercookie][key] == value
+    end
   end
 
   def after_sign_in_path_for(resource)

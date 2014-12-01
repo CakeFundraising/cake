@@ -77,7 +77,6 @@ gem 'prawn'
 gem 'secure_headers'
 
 #Browser Fingerprinting
-gem 'evercookie'
 gem 'fingerprintjs-rails'
 
 #App performance

@@ -1,17 +1,28 @@
 Cake.browsers ?= {}
 
 Cake.browsers.fingerprint = ->
-  fingerprint = new Fingerprint({screen_resolution: true, canvas: true}).get()
+  unless Cake.browsers.current
+    #Fingerprint JS
+    fingerprint = new Fingerprint({screen_resolution: true, canvas: true}).get()
+    #Evercookie
+    ec = new evercookie()
 
-  $.ajax(
-    url: '/browser/fingerprint'
-    method: 'PATCH'
-    data: {fingerprint: fingerprint}
-  ).done (token)->
-    if token
-      ec = new cake_evercookie();
-      ec.set('cfbid', token)
-      ec.get('cfbid');
-    return
+    ec.get "cfbid", (value) ->
+      if value
+        storeFingerprinting(fingerprint, value)
+      else
+        ec_token = uuid.v1()
+        ec.set('cfbid', ec_token)
+        storeFingerprinting(fingerprint, ec_token)
+      return
+
+    storeFingerprinting = (fingerprint, token)->
+      $.ajax(
+        url: '/browser/fingerprint'
+        method: 'PATCH'
+        data: {fingerprint: fingerprint, ec_token: token}
+      ).done (browser_id)->
+        Cake.browsers.current = true if browser_id
+      return
 
   return
