@@ -103,8 +103,11 @@ class Pledge < ActiveRecord::Base
 
   #Clicks association
   def click_exists?(click)
-    # We delegate click existance to browser existance
-    click_browsers.equal_to(click.browser).any?
+    click_browser_exists?(click.browser) # We delegate click existance to browser existance
+  end
+
+  def click_browser_exists?(browser)
+    click_browsers.equal_to(browser).any?
   end
 
   def current_max_clicks

@@ -4,8 +4,8 @@
   - else
     div.text-center
       .main-cta
-        - if session[:browser_id].present?
-          - if pledge.click_browsers.include?(current_browser)
+        - if current_browser.present?
+          - if pledge.click_browser_exists?(current_browser)
             = link_to 'Thanks! Visit our Website Again!', pledge.website_url, target: :_blank, class:'btn btn-success btn-xl'
           - else
             .click_buttons_section
