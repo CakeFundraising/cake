@@ -1,20 +1,28 @@
 Cake.browsers ?= {}
 
-Cake.browsers.plugins = ->
-  plugins = []
-  x = navigator.plugins.length
-  i = 0
-
-  while i < x
-    plugins.push navigator.plugins[i].name
-    i++
-  return plugins.sort()
-
-Cake.browsers.create = ->
+Cake.browsers.fingerprint = ->
   unless Cake.browsers.current
-    plugins = Cake.browsers.plugins()
-    $.post '/browsers', {plugins: plugins.join(',')}, (data) ->
-      Cake.browsers.current = true
-      console.log data
+    #Fingerprint JS
+    fingerprint = new Fingerprint({screen_resolution: true, canvas: true}).get()
+    #Evercookie
+    ec = new evercookie()
+
+    ec.get "cfbid", (value) ->
+      if value
+        storeFingerprinting(fingerprint, value)
+      else
+        ec_token = uuid.v1()
+        ec.set('cfbid', ec_token)
+        storeFingerprinting(fingerprint, ec_token)
       return
+
+    storeFingerprinting = (fingerprint, token)->
+      $.ajax(
+        url: '/browser/fingerprint'
+        method: 'PATCH'
+        data: {fingerprint: fingerprint, ec_token: token}
+      ).done (browser_id)->
+        Cake.browsers.current = true if browser_id
+      return
+
   return

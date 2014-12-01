@@ -1,24 +1,33 @@
 class BrowsersController < ApplicationController
-  def create
-    browser = Browser.new(
-      ip: request.remote_ip,
-      ua: request.headers['HTTP_USER_AGENT'],
-      http_language: request.headers['HTTP_ACCEPT_LANGUAGE'],
-      http_encoding: request.headers['HTTP_ACCEPT_ENCODING'],
-      plugins: params[:plugins],
-      user: current_user
-    )
+  def fingerprint
+    @fingerprint = params[:fingerprint]
+    @evercookie_token = params[:ec_token]
 
-    duplicates = Browser.equal_to(browser)
-
-    if duplicates.any?
-      session[:browser_id] = duplicates.first.id unless session[:browser_id].present? or duplicates.count > 1
+    if current_browser.present?
+      render text: current_browser.id
     else
-      browser.save! 
-      session[:browser_id] = browser.id
+      fingerprinted = Browser.with_fingerprint(@fingerprint)
+
+      if fingerprinted.any? #Incognito/Private session
+        reset_evercookie(fingerprinted.first)
+        render text: fingerprinted.first.id
+      else
+        new_browser = create_browser
+        render text: new_browser.id
+      end
     end
-    
-    render json: session[:browser_id]
+
   end
 
+  private
+
+  def create_browser
+    browser = Browser.create(fingerprint: @fingerprint, token: @evercookie_token, user_id: current_user)
+    reset_evercookie(browser)
+    browser
+  end
+
+  def reset_evercookie(browser)
+    set_evercookie(:cfbid, browser.token)
+  end
 end

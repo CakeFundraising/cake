@@ -23,6 +23,7 @@
 //= require turbolinks
 
 //= require modernizr
+//= require fingerprint
 
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
@@ -41,6 +42,10 @@
 
 //= require cake
 
+//= require ./evercookie/evercookie
+//= require ./evercookie/swfobject-2.2.min
+
+//= require ./uuid
 //= require ./google_analytics
 //= require ./about
 //= require ./addthis

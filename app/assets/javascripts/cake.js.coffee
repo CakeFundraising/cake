@@ -3,7 +3,13 @@ window.Cake ?= {}
 String::capitalize = ->
   @charAt(0).toUpperCase() + @slice(1)
 
+Cake.setup = ->
+  $.ajaxSetup headers:
+    "X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr("content")
+  return
+
 Cake.init = ->
+  #Cake.setup()
   Cake.clipboard()
   Cake.expander()
   Cake.videos()
@@ -22,7 +28,7 @@ Cake.init = ->
   Cake.sponsors_form()
   Cake.campaigns.init()
 
-  Cake.browsers.create()
+  Cake.browsers.fingerprint()
 
   Cake.campaigns.mini_pledges_click()
   return

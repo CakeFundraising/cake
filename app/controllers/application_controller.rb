@@ -23,10 +23,30 @@ class ApplicationController < ActionController::Base
   end
 
   def current_browser
-    Browser.find(session[:browser_id]) if session[:browser_id].present?
+    token = evercookie_get_value(:cfbid)
+    Browser.find_by_token(token) if token.present?
   end
 
   protected 
+
+  def set_evercookie(key, value)
+    session[:evercookie] = {} unless session[:evercookie].present?
+    session[:evercookie][key] = value
+  end
+
+  def evercookie_get_value(key)
+    session[:evercookie].present? ? session[:evercookie][key] : nil
+  end
+
+  def evercookie_is_set?(key, value = nil)
+    if session[:evercookie].blank?
+      false
+    elsif value.nil?
+      session[:evercookie][key].present?
+    else
+      session[:evercookie][key].present? and session[:evercookie][key] == value
+    end
+  end
 
   def after_sign_in_path_for(resource)
     if current_user.present? and not current_user.registered
