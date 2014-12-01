@@ -107,7 +107,7 @@ class Pledge < ActiveRecord::Base
   end
 
   def click_browser_exists?(browser)
-    click_browsers.equal_to(browser).any?
+    browser.nil? ? false : click_browsers.equal_to(browser).any?
   end
 
   def current_max_clicks
