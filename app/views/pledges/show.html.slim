@@ -1,4 +1,4 @@
-= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/" + @pledge.screenshot_version + "/" +  + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url})
+= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@pledge.screenshot_version}/" + pledge_url(@pledge.id), description: @pledge.mission, url: request.original_url})
 
 = content_for :header do
   .banner.hero
