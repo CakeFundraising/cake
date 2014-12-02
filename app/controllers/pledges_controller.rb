@@ -131,7 +131,7 @@ class PledgesController < InheritedResources::Base
   def click
     if current_browser.present?
       if resource.click_browsers.include?(current_browser)
-        redirect_to resource, alert: "Thank you! Your click has been counted."
+        redirect_to resource, notice: "Thank you! Your click has been counted."
       else
         click = resource.clicks.build(browser: current_browser)
         

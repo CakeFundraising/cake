@@ -1585,8 +1585,6 @@ table.performance-summary {
   margin-left: -30px;
 }
 
-
-
 .pledgebluestripe {
   &.campaign{
     padding: 30px 5px;
@@ -1597,6 +1595,12 @@ table.performance-summary {
       margin-bottom: 0;
       padding-top: 20px;
       font-size: 3em;
+    }
+    .h1{
+      letter-spacing: -1px;
+      span.second{
+        margin-left: 10px;
+      }
     }
     .share{
       margin-top: 80px;
@@ -1981,6 +1985,17 @@ a {
     left: 0;
     right: 0;
     opacity: 0;
+    &.blue-bg.clicked,
+    &.blue-bg{
+      opacity: 1;
+      a.expand{
+        background: rgba(8, 193, 220, 0.5);
+        opacity: 1;
+        padding-top:25%;
+      }
+      a.expand-md{
+      }
+    }
     a.expand {
       left: 0;
       right: 0;
@@ -1997,11 +2012,8 @@ a {
   .overlay-img:hover .effect-overlay{
     opacity: 1;
     a.expand {
-      /*top: 50%;
-      margin-top: -30px;*/
       padding-top:25%;
       opacity: 1;
-
       &.expand-sm{
         @media (min-width: $screen-md-min) {
           padding-top:20%;
@@ -2012,16 +2024,13 @@ a {
           padding-top:20%;
         }
       }
-
-
-
     }
-    &.blue-bg{
+    &.blue-bg:not(.clicked){
+      opacity: 0;
       a.expand{
-        /*top: 45%;*/
+        opacity: 0;
       }
       a.expand-md{
-        /*top: 75px !important;*/
       }
     }
   }

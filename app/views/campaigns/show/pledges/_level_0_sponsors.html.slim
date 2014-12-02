@@ -3,15 +3,19 @@
   .platinum
     .overlay-effects.clearfix#effect-6
       - if pledge.click_browser_exists?(current_browser)
-        .avatar-container.overlay-img.hover
+        .avatar-container.overlay-img
           = pledge.picture.avatar
           .effect-overlay.blue-bg
-            = link_to 'Thank you, please click all our sponsors!', pledge, target: :_blank, class:'expand expand-sm'
+            = link_to pledge, target: :_blank, class:'expand expand-sm' do
+              span Thank you! 
+              div Please click all our sponsors!
       -else
         .avatar-container.overlay-img
           = pledge.picture.avatar
           .effect-overlay
-            = link_to "Click to Help! It's 100% free to you.", click_pledge_path(pledge), method: :patch, target: :_blank, class:'expand expand-sm click-link'
+            = link_to click_pledge_path(pledge), target: :_blank, class:'expand expand-sm click-link' do
+              span Click to Help! 
+              div It's 100% free to you
             a.close-overlay.hidden x
     .levels
       .sponsor-name.truncate = auto_link pledge.sponsor

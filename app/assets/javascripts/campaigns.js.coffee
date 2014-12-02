@@ -48,9 +48,18 @@ Cake.campaigns.mini_pledges_click = ->
   links = $('.click-link')
 
   links.click (e)->
-    $(this).closest('.overlay-img').addClass('hover')
-    $(this).closest('.effect-overlay').addClass('blue-bg')
-    $(this).text('Thank you, please click all our sponsors!')
+    overlay = $(this).closest('.effect-overlay')
+
+    unless overlay.hasClass('blue-bg')
+      overlay.addClass('blue-bg').addClass('clicked')
+      $(this).html('<span>Thank you!</span><div>Please click all our sponsors!</div>')
+      
+      window.onfocus = ->
+        setTimeout (->
+          overlay.removeClass('clicked')
+          return
+        ), 1000
+        return
     return
   return
 
