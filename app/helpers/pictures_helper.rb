@@ -5,7 +5,8 @@ module PicturesHelper
   end
 
   def screenshot_tag_for(object, options={})
-    cl_image_tag(object.screenshot_url, class: "img-responsive")
+    options = {class: 'img-responsive'}.merge options
+    cl_image_tag(object.screenshot_url, options)
   end
   
   def banner_tag_for(object, options={})
