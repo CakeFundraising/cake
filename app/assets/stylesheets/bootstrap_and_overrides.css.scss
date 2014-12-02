@@ -1900,12 +1900,12 @@ a {
       @media (min-width: $screen-md-min) {
         text-shadow: 0px 0px 1px $gray;
         font-size: 16px;
-        line-height: 1.5em;
+        line-height: 16px;
       }
     }
     &.expand-md{
       @media (min-width: $screen-md-min) {
-        line-height: 1.5em;
+        line-height: 25px;
         font-size: 25px;
       }
     }
@@ -1999,15 +1999,29 @@ a {
     a.expand {
       /*top: 50%;
       margin-top: -30px;*/
-      padding-top:30%;
+      padding-top:25%;
       opacity: 1;
+
+      &.expand-sm{
+        @media (min-width: $screen-md-min) {
+          padding-top:20%;
+        }
+      }
+      &.expand-md{
+        @media (min-width: $screen-md-min) {
+          padding-top:20%;
+        }
+      }
+
+
+
     }
     &.blue-bg{
       a.expand{
         /*top: 45%;*/
       }
       a.expand-md{
-        top: 75px !important;
+        /*top: 75px !important;*/
       }
     }
   }
