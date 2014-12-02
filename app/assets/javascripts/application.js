@@ -34,6 +34,8 @@
 
 //= require bootstrap
 //= require bootstrap-switch
+//= require bootstrapValidator.min
+//= require bootstrapValidatorRails
 
 //= require chosen-jquery
 //= require rails-timeago

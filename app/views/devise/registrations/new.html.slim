@@ -15,7 +15,7 @@
   .row.choose-role
     .col-md-6.signup-wrap.divider-vert
 
-      = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = semantic_form_for(resource, :as => resource_name, :html => {:class => 'bv_form'}, :url => registration_path(resource_name)) do |f|
         = f.inputs 'Sign Up' do
           = f.input :full_name, label:'Full Name'
           = f.input :email, label:'Email Address'
@@ -26,6 +26,7 @@
           = f.action :submit, label: 'Sign up', button_html: {class: 'btn btn-success btn-lg btn-block'}
         .shared-links
         	= render "devise/shared/links"
+      = bv_javascript_for resource
 
     .col-md-6.signup-wrap
       p.signup-social

@@ -11,6 +11,7 @@
  *= require formtastic-bootstrap
  *= require bootstrap-datepicker3
  *= require bootstrap3-switch
+ *= require bootstrapValidator.min
  *= require chosen
  *= require_self
  *= require jquery.Jcrop
