@@ -76,7 +76,7 @@
           p.story.expander = @pledge.description
 
 = content_for :bottom_section do
-  .blue
+  .blue#coupons
     .container
       .row.pledgebluestripe.campaign
         .col-md-12.text-center
@@ -93,7 +93,7 @@
             .col-md-4
   .container
     - if @pledge.coupons.any? and @pledge.show_coupons
-      .row#coupons
+      .row
         .col-md-12.special-offers
           h1 Special Offers from #{@pledge.sponsor}
       .row
