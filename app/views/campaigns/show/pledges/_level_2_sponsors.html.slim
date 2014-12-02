@@ -11,7 +11,7 @@
         .avatar-container.overlay-img
           = pledge.picture.avatar
           .effect-overlay
-            = link_to 'Click to Help!', click_pledge_path(pledge), method: :patch, target: :_blank, class:'expand click-link'
+            = link_to "Click to Help! It's 100% free to you.", click_pledge_path(pledge), method: :patch, target: :_blank, class:'expand click-link'
             a.close-overlay.hidden x
     .levels
       .sponsor-name.truncate = auto_link pledge.sponsor
@@ -27,6 +27,6 @@
         span.text-muted Pledge
     .buttons.row
       .col-md-6
-        = link_to 'Our Story', pledge, target: :_blank, class:'btn btn-success btn-block'
+        = link_to 'See Our Pledge', pledge, target: :_blank, class:'btn btn-success btn-block'
       .col-md-6
         = link_to 'Special Offers', pledge_path(pledge, anchor: :coupons), target: :_blank, class:'btn btn-primary btn-block' if pledge.coupons.any?
