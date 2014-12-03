@@ -1,12 +1,12 @@
 class Click < ActiveRecord::Base
-  belongs_to :pledge, touch: true, counter_cache: true
+  belongs_to :pledge, touch: true
   belongs_to :browser
 
-  validate :unique_click
+  counter_culture :pledge, column_name: Proc.new {|click| click.bonus ? 'bonus_clicks_count' : 'clicks_count' },
+  column_names: {
+    ["clicks.bonus = ?", true] => 'bonus_clicks_count',
+    ["clicks.bonus = ?", false] => 'clicks_count'
+  }
 
-  private
-
-  def unique_click
-    errors.add(:clicks, "You can click in a pledge only once.") if pledge.present? and pledge.click_exists?(self)
-  end
+  validate :browser_id, :pledge_id, presence: true
 end

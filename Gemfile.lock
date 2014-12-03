@@ -44,6 +44,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
+    after_commit_action (0.1.3)
+      activerecord (>= 3.0.0)
     american_date (1.1.0)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -108,6 +110,8 @@ GEM
     compass-rails (1.1.7)
       compass (>= 0.12.2)
       sprockets (<= 2.11.0)
+    counter_culture (0.1.27)
+      after_commit_action (~> 0.1.3)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     css_parser (1.3.5)
@@ -504,6 +508,7 @@ DEPENDENCIES
   cocoon
   cocoon_limiter
   coffee-rails (~> 4.0.0)
+  counter_culture
   cucumber-rails
   database_cleaner
   debugger
