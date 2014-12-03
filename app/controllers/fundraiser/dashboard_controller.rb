@@ -12,7 +12,7 @@ class Fundraiser::DashboardController < ApplicationController
     @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
   end
 
-  def pending_pledges
+  def pledges
     @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
     @requested_pledges = current_fundraiser.pledge_requests.decorate
     @accepted_pledges = current_fundraiser.pledges.accepted.decorate

@@ -114,7 +114,7 @@ class PledgesController < InheritedResources::Base
 
   def reject
     message = params[:reject_message][:message]
-    redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
+    redirect_to fundraiser_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
   end
 
   def add_reject_message
