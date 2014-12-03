@@ -267,7 +267,7 @@ en:
         customer_demographics: Our Customer Demographics
         cause_requirements: Fundraising Organization Requirements
         pledges_count: No. of Pledges
-        active_pledges_clicks_count: Clicks from Active Pledges
+        active_pledges_clicks_count: Unique Clicks from Active Pledges
         rank: Global Sponsor Rank
         local_rank: Location Rank
         top_causes: Top Causes we sponsor
@@ -279,3 +279,4 @@ en:
       invoice: 
         donation_click: Donation/Click
         due: Donation Due
+        bonus_clicks: Bonus Clicks (Free)

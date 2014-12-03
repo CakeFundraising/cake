@@ -14,8 +14,16 @@ module Analytics
     invoices.paid.sum(:due_cents).to_i
   end
 
-  def total_clicks
+  def unique_clicks
     analytics_pledges.sum(:clicks_count).to_i
+  end
+
+  def bonus_clicks
+    analytics_pledges.sum(:bonus_clicks_count).to_i
+  end
+
+  def total_clicks
+    unique_clicks + bonus_clicks
   end
 
   def rank
@@ -56,7 +64,12 @@ module Analytics
 
   def average_clicks_per_pledge
     return 0 unless any_pledges?
-    (total_clicks/pledges_count).floor
+    (unique_clicks/pledges_count).floor
+  end
+
+  def average_bonus_clicks_per_pledge
+    return 0 unless any_pledges?
+    (bonus_clicks/pledges_count).floor
   end
 
   def top_pledges(limiter)
@@ -116,13 +129,13 @@ module Analytics
   end
 
   ## Avg. Clicks
-  def total_clicks_with(user_role)
+  def unique_clicks_with(user_role)
     pledges_related_to(user_role).sum(:clicks_count).to_i
   end
 
   def average_clicks_per_pledge_with(user_role)
     return 0 unless pledges_related_to(user_role).any?
-    (total_clicks_with(user_role)/pledges_related_to(user_role).count).floor
+    (unique_clicks_with(user_role)/pledges_related_to(user_role).count).floor
   end
 
   #### Invoices
@@ -166,10 +179,10 @@ module Analytics
   def average_engagement
     if self.is_a?(Sponsor)
       return 0 if pledge_views.zero?
-      (total_clicks.to_f/pledge_views.to_f)
+      (unique_clicks.to_f/pledge_views.to_f)
     else
       return 0 if campaign_views.zero?
-      (total_clicks.to_f/campaign_views.to_f)
+      (unique_clicks.to_f/campaign_views.to_f)
     end
   end
 
@@ -185,6 +198,6 @@ module Analytics
 
   def average_engagement_with(user_role)
     return 0 if pledge_views_with(user_role).zero?
-    (total_clicks_with(user_role).to_f/pledge_views_with(user_role).to_f)
+    (unique_clicks_with(user_role).to_f/pledge_views_with(user_role).to_f)
   end
 end

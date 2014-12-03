@@ -8,8 +8,10 @@
       = auto_link invoice.pledge
     td data-title = (Fundraiser.model_name.human)
       = auto_link invoice.fundraiser
-    td data-title = (Invoice.human_attribute_name :clicks)
+    td data-title = (Invoice.human_attribute_name :unique_clicks)
       = invoice.clicks
+    td data-title = (Invoice.human_attribute_name :bonus_clicks)
+      = invoice.bonus_clicks_count
     td data-title = (Invoice.human_attribute_name :donation_click)
       = humanized_money_with_symbol invoice.click_donation
     td data-title = (Invoice.human_attribute_name :due)

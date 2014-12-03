@@ -114,6 +114,6 @@ class Fundraiser < ActiveRecord::Base
 
   def average_clicks_per_campaign
     return 0 if campaigns_count.zero?
-    (total_clicks/campaigns_count).floor
+    (unique_clicks/campaigns_count).floor
   end
 end

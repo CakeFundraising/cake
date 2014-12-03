@@ -39,5 +39,5 @@ h1.dash-head
             = basic_list_item(t('semantic.average', model: 'Clicks/Campaign'), @fundraiser.average_clicks_per_campaign)
             = basic_list_item(t('semantic.average', model: 'Clicks/Pledge'), @fundraiser.average_clicks_per_pledge)
             = basic_list_item(t('semantic.average', model: 'Campaign Views'), @fundraiser.average_campaign_views )
-            = basic_list_item(Fundraiser.human_attribute_name(:total_clicks), @fundraiser.total_clicks)
+            = basic_list_item(Fundraiser.human_attribute_name(:unique_clicks), @fundraiser.unique_clicks)
 
