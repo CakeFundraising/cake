@@ -6,7 +6,7 @@
         .avatar-container.overlay-img
           = pledge.picture.avatar
           .effect-overlay.blue-bg
-            = link_to pledge, target: :_blank, class:'expand' do
+            = link_to click_pledge_path(pledge), target: :_blank, class:'expand' do
               span Thank you! 
               div Please click all our sponsors!
       -else
