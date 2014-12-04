@@ -4,5 +4,9 @@ FactoryGirl.define do
   factory :click do
     pledge
     browser
+
+    factory :bonus_click do
+      bonus true
+    end
   end
 end

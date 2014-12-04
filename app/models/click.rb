@@ -8,7 +8,7 @@ class Click < ActiveRecord::Base
     ["clicks.bonus = ?", false] => 'clicks_count'
   }
 
-  validate :browser_id, :pledge_id, presence: true
+  validates :browser_id, :pledge_id, presence: true
 
   scope :with_browser, ->{ eager_load(:browser) }
   scope :token, ->(token){ where('browsers.token = ?', token) }
