@@ -22,7 +22,8 @@
               th = 'Campaign End Date'
               th = Invoice.model_name.human
               th = Sponsor.model_name.human
-              th = Invoice.human_attribute_name :clicks
+              th = Invoice.human_attribute_name :unique_clicks
+              th = Invoice.human_attribute_name :bonus_clicks
               th = Invoice.human_attribute_name :donation_click
               th = Invoice.human_attribute_name :estimated_fees
               th = Invoice.human_attribute_name :estimated_net_donation_earned

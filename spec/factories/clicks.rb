@@ -5,8 +5,8 @@ FactoryGirl.define do
     pledge
     browser
 
-    factory :firefox_click do
-      association :browser, factory: :firefox_browser
+    factory :bonus_click do
+      bonus true
     end
   end
 end

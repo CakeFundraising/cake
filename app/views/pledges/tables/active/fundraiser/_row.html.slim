@@ -16,6 +16,8 @@
       = humanized_money_with_symbol pledge.total_amount
     td data-title=(Pledge.human_attribute_name :donation_click)
       = humanized_money_with_symbol pledge.amount_per_click
+    td data-title=(Pledge.human_attribute_name :unique_clicks)
+      = pledge.clicks_count
     td.truncate.min-width
       - if pledge.increase_requested
         button.btn.btn-sm.btn-warning.disabled Increase Requested

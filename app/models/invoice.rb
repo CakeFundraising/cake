@@ -19,6 +19,8 @@ class Invoice < ActiveRecord::Base
   scope :outstanding, ->{ where.not(status: :paid) }
   scope :latest, ->{ order(created_at: :desc) }
 
+  delegate :bonus_clicks_count, to: :pledge
+
   def fees
     self.charges.sum(&:total_fee_cents).to_i
   end

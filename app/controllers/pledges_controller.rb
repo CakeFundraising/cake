@@ -114,7 +114,7 @@ class PledgesController < InheritedResources::Base
 
   def reject
     message = params[:reject_message][:message]
-    redirect_to fundraiser_pending_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
+    redirect_to fundraiser_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
   end
 
   def add_reject_message
@@ -131,7 +131,14 @@ class PledgesController < InheritedResources::Base
   def click
     if current_browser.present?
       if resource.click_browsers.include?(current_browser)
-        redirect_to resource, notice: "Thank you! Your click has been counted."
+        bonus_click = resource.bonus_clicks.build(browser: current_browser)
+
+        if bonus_click.save
+          redirect_to resource.decorate.website_url 
+          #redirect_to resource, notice: "Thank you! Your click has been counted."
+        else
+          redirect_to resource, alert: bonus_click.errors.messages
+        end
       else
         click = resource.clicks.build(browser: current_browser)
         

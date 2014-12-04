@@ -26,7 +26,6 @@ describe Pledge do
 
   it { should accept_nested_attributes_for(:picture).update_only(true) }
   it { should accept_nested_attributes_for(:video).update_only(true) }
-  it { should accept_nested_attributes_for(:coupons) }
   it { should accept_nested_attributes_for(:sweepstakes) }
 
   it "should build a picture if new object" do
@@ -178,100 +177,81 @@ describe Pledge do
 
   describe "#clicks" do
     before(:each) do
-      @pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
+      @pledge = FactoryGirl.create(:not_clicked_pledge)  
+      @browser = FactoryGirl.create(:browser)
     end
 
-    it "should store the click if the user has not clicked before" do
-      browser = FactoryGirl.create(:browser, ip: "253.187.158.63")
-      click = FactoryGirl.build(:click, pledge: @pledge, browser: browser)
-      expect( click.save ).to be_true
-    end
-
-    context 'different IP address' do
-      it "should store a click when the click is in another pledge" do
-        @clicks = create_list(:click, 5, pledge: @pledge)
-        ip = @clicks.first.browser.ip
-
-        pledge = FactoryGirl.create(:pledge, clicks_count: 0)  
-        browser = FactoryGirl.create(:browser, ip: ip)  
-        click = FactoryGirl.build(:click, pledge: pledge, browser: browser)
-        
+    context 'Click Action' do
+      it "should store a unique click if the user has not clicked before" do
+        click = FactoryGirl.build(:click, pledge: @pledge, browser: @browser)
         expect( click.save ).to be_true
+        expect( click.bonus ).to be_false
       end
 
-      it "should not store a click if the user has clicked before in that pledge" do
-        @clicks = create_list(:click, 5, pledge: @pledge)
-        ip = @clicks.first.browser.ip
+      it "should store a unique click when the click is in another pledge" do
+        clicks = create_list(:click, 5, pledge: @pledge, browser: @browser)
 
-        browser = FactoryGirl.create(:browser, ip: ip) 
-        @click = FactoryGirl.build(:click, pledge: @pledge, browser: browser)
+        pledge = FactoryGirl.create(:not_clicked_pledge)  
+        click = FactoryGirl.build(:click, pledge: pledge, browser: @browser)
+        
+        expect( click.save ).to be_true
+        expect( click.bonus ).to be_false
+      end
 
-        expect( @click.save ).to be_false
+      it "should store a bonus click if the user has clicked before in that pledge" do
+        clicks = create_list(:click, 5, pledge: @pledge, browser: @browser)
+
+        click = FactoryGirl.build(:bonus_click, pledge: @pledge, browser: @browser)
+
+        expect( click.save ).to be_true
+        expect( click.bonus ).to be_true
       end
     end
 
     context 'Pledge fully subscribed' do
-      it "should store a click if the pledge is not fully subscribed" do
-        @clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
+      it "should store a unique click if the pledge is not fully subscribed" do
+        clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
+        click = FactoryGirl.create(:click, pledge: @pledge) 
 
-        browser = FactoryGirl.create(:browser, ip: "253.187.158.63")
-        @click = FactoryGirl.build(:click, pledge: @pledge, browser: browser) 
-        @pledge.should be_valid
+        expect( click.bonus ).to be_false
       end
 
-      it "should not store a click if the pledge is fully subscribed" do
-        @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
+      it "should store a bonus click if the pledge is fully subscribed" do
+        clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
+        click = FactoryGirl.create(:bonus_click, pledge: @pledge) 
 
-        browser = FactoryGirl.create(:browser, ip: "253.187.158.63")
-        @click = FactoryGirl.build(:click, pledge: @pledge, browser: browser) 
-        @pledge.should_not be_valid
+        expect( click.bonus ).to be_true
       end
     end
 
     context 'Methods' do
       describe "#fully_subscribed?" do
         it "should return true when the pledge reaches the total amount" do
-          @clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
-          @pledge.fully_subscribed?.should be_true
+          @pledge.stub(:clicks_count){ @pledge.max_clicks }
+          expect( @pledge.fully_subscribed? ).to be_true
         end
 
         it "should return false when the pledge has not reached the total amount" do
-          total_clicks = @pledge.max_clicks - 1
-          @clicks = create_list(:click, total_clicks, pledge: @pledge)
-          @pledge.fully_subscribed?.should be_false
+          @pledge.stub(:clicks_count){ @pledge.max_clicks - 1 }
+          expect( @pledge.fully_subscribed? ).to be_false
         end
       end
 
       describe "#click_exists?" do
         it "should return false if pledge doesn't have an equal click to the given one" do
-          @click = FactoryGirl.create(:click, pledge: @pledge)
+          click = FactoryGirl.create(:click, pledge: @pledge, browser: @browser)
 
-          browser = FactoryGirl.create(:browser, ip: '8.8.8.8')
-          @another_click = FactoryGirl.build(:click, browser: browser)
+          another_browser = FactoryGirl.create(:browser)
+          another_click = FactoryGirl.build(:click, browser: another_browser)
 
-          expect( @pledge.click_exists?(@another_click) ).to be_false
+          expect( @pledge.click_exists?(another_click) ).to be_false
         end
 
         it "should return true if the pledge has the same click than the given one" do
-          @click = FactoryGirl.create(:click, pledge: @pledge)
+          click = FactoryGirl.create(:click, pledge: @pledge, browser: @browser)
+          another_click = FactoryGirl.build(:click, browser: @browser)
 
-          browser = FactoryGirl.create(:browser, ip: @click.browser.ip)
-          @another_click = FactoryGirl.build(:click, browser: browser)
-
-          expect( @pledge.click_exists?(@another_click) ).to be_true
-        end
-      end
-
-      describe "#clicks_count" do
-        it "should update the counter when adding new clicks" do
-          @clicks = create_list(:click, 5, pledge: @pledge)
-          @pledge.reload.clicks_count.should == 5
-        end
-
-        it "should update the counter when deleting clicks from collection" do
-          @clicks = create_list(:click, 5, pledge: @pledge)
-          @clicks.first.destroy
-          @pledge.reload.clicks_count.should == 4
+          expect( @pledge.click_exists?(another_click) ).to be_true
         end
       end
     end

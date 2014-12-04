@@ -72,7 +72,7 @@ module NavigationHelpers
       bank_account_fundraiser_path(model(:fundraiser))
 
     when /^fundraiser pending pledges page$/
-      fundraiser_pending_pledges_path
+      fundraiser_pledges_path
 
     when /^new #{capture_model}(?:'s)? page$/
       path_components = $1.split(/\s+/)

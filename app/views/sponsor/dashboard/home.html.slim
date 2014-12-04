@@ -16,6 +16,8 @@ h1.dash-head
             p.boldest = Sponsor.human_attribute_name :active_pledges_clicks_count
         .row
           .col-xs-12.rank-rows
+            = basic_list_item(Sponsor.human_attribute_name(:unique_clicks), @sponsor.unique_clicks)
+            = basic_list_item(Sponsor.human_attribute_name(:bonus_clicks), @sponsor.bonus_clicks)
             = basic_list_item(Sponsor.human_attribute_name(:total_clicks), @sponsor.total_clicks)
             = basic_list_item(Sponsor.human_attribute_name(:invoices_due), @sponsor.invoices_due)
     .col-md-4
@@ -36,5 +38,6 @@ h1.dash-head
             p.boldest = Sponsor.human_attribute_name :total_donation
         .row
           .col-xs-12.rank-rows
-            = basic_list_item(t('semantic.average', model: 'Clicks/Pledge'), @sponsor.average_clicks_per_pledge)
+            = basic_list_item(t('semantic.average', model: 'Unique Clicks/Pledge'), @sponsor.average_clicks_per_pledge)
+            = basic_list_item(t('semantic.average', model: 'Bonus Clicks/Pledge'), @sponsor.average_bonus_clicks_per_pledge)
             = basic_list_item(t('semantic.average', model: 'Pledge Views'), @sponsor.average_pledge_views)

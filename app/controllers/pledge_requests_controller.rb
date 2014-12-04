@@ -13,14 +13,14 @@ class PledgeRequestsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         @pledge_request.notify_sponsor(message)
-        redirect_to fundraiser_pending_pledges_path 
+        redirect_to fundraiser_pledges_path 
       end
     end
   end
 
   def destroy
     destroy! do |success, failure|
-      success.html{ redirect_to fundraiser_pending_pledges_path }
+      success.html{ redirect_to fundraiser_pledges_path }
     end
   end
 

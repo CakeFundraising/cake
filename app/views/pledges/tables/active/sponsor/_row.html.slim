@@ -12,8 +12,10 @@
       = humanized_money_with_symbol pledge.total_amount
     td data-title=(Pledge.human_attribute_name :donation_click)
       = humanized_money_with_symbol pledge.amount_per_click
-    td data-title=(Pledge.human_attribute_name :clicks)
+    td data-title=(Pledge.human_attribute_name :unique_clicks)
       = pledge.clicks_count
+    td data-title=(Pledge.human_attribute_name :bonus_clicks)
+      = pledge.bonus_clicks_count
     td data-title=("Total")
       - if pledge.invoice.present?
         = pledge.invoice.due 

@@ -75,6 +75,7 @@ gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
 gem 'secure_headers'
+gem 'counter_culture'
 
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'

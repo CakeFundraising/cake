@@ -116,7 +116,7 @@ Cake::Application.routes.draw do
   namespace :fundraiser, controller: :dashboard do
     get :home
     get :billing
-    get :pending_pledges
+    get :pledges
     get :campaigns
     get :history
   end
