@@ -130,23 +130,12 @@ class PledgesController < InheritedResources::Base
   #Clicks
   def click
     if current_browser.present?
-      if resource.click_browsers.include?(current_browser)
-        bonus_click = resource.bonus_clicks.build(browser: current_browser)
+      click = resource.click_browsers.include?(current_browser) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
 
-        if bonus_click.save
-          redirect_to resource.decorate.website_url 
-          #redirect_to resource, notice: "Thank you! Your click has been counted."
-        else
-          redirect_to resource, alert: bonus_click.errors.messages
-        end
+      if click.save
+        redirect_to resource.decorate.website_url 
       else
-        click = resource.clicks.build(browser: current_browser)
-        
-        if click.save
-          redirect_to resource.decorate.website_url 
-        else
-          redirect_to resource, alert: click.errors.messages
-        end
+        redirect_to resource, alert: click.errors.messages
       end
     else
       redirect_to resource, alert: 'There was an error when trying to count your click. Please try again.'
