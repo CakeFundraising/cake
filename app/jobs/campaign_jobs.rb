@@ -2,6 +2,7 @@ module ResqueSchedule
 
   class CampaignEnd 
     extend Resque::Plugins::Retry
+    @queue = :high
 
     @retry_limit = 3
     @retry_delay = 60
@@ -15,6 +16,7 @@ module ResqueSchedule
   
   class CampaignMissedLaunch
     extend Resque::Plugins::Retry
+    @queue = :low
 
     @retry_limit = 3
     @retry_delay = 60
@@ -28,6 +30,7 @@ module ResqueSchedule
 
   class CampaignsUncompleted
     extend Resque::Plugins::Retry
+    @queue = :low
 
     @retry_limit = 3
     @retry_delay = 60

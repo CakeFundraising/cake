@@ -6,8 +6,6 @@ module FundraisersHelper
           content_tag(:span, "Connect with Stripe")
         end 
       end
-      #end+ 
-      #content_tag(:span, "Link account to accept donations & payments thru Stripe.", class: 'link-stripe-account')
     end
   end
 

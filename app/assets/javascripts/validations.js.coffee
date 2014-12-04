@@ -64,6 +64,21 @@ Cake.validations.form_leaving = ->
       return
   return
 
+Cake.validations.require_form = (model)->
+  form = $('.formtastic.' + model)
+  eval("Cake."+ model + "s.validation()")
+
+  unless form.valid()
+    #Turbolinks
+    $(document).on "page:before-change", (e)->
+      e.preventDefault()
+      return
+    #Normal links
+    $('a[data-no-turbolink="true"]').click (e)->
+      e.preventDefault()
+      return
+  return
+
 Cake.validations.init = ->
   Cake.validations.custom_methods()
   Cake.validations.form_leaving()

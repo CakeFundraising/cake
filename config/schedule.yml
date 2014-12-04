@@ -41,5 +41,7 @@ transfer_payments:
   #   - "1d"
   cron: "0 0 * * * America/New_York"
   class: "ResqueSchedule::TranferPayments"
-  queue: low
+  queue: high
   description: "Transfers funds to fundraisers's Stripe accounts"
+
+

@@ -2,6 +2,7 @@ module ResqueSchedule
 
   class TranferPayments
     extend Resque::Plugins::Retry
+    @queue = :high
 
     @retry_limit = 3
     @retry_delay = 60
