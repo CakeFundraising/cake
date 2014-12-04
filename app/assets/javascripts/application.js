@@ -64,6 +64,7 @@
 //= require ./pledge_levels_form
 //= require ./cloudinary_crop   
 //= require ./help
+//= require ./mailers
 //= require ./users
 //= require ./coupons     
 //= require ./home
