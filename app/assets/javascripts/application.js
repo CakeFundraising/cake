@@ -75,6 +75,7 @@
 //= require ./impressions
 //= require ./pledges     
 //= require ./pictures   
+//= require ./video
 //= require ./videos
 //= require ./jquery.cloudinary      
 //= require ./remember_me

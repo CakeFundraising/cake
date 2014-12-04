@@ -23,9 +23,5 @@
 /! /.modal
 
 javascript:
-  $('#home_video_fr').on('hidden.bs.modal', function (e) {
-    $('#home_video_fr iframe').attr("src", jQuery("#home_video_fr iframe").attr("src"));
-  });
-  $('#home_video_sp').on('hidden.bs.modal', function (e) {
-    $('#home_video_sp iframe').attr("src", jQuery("#home_video_sp iframe").attr("src"));
-  });
+  $(document).ready(Cake.video.init("#home_video_fr"));
+  $(document).ready(Cake.video.init("#home_video_sp"));
