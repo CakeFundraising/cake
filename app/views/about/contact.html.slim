@@ -1,7 +1,12 @@
 = display_meta("Contact Us")
 
-h1.dash-head Contact
-p = Faker::Lorem.paragraph
-br
-p = Faker::Lorem.paragraph
+h1.dash-head Contact Us
+
+h4 Please use this form to leave us your details
+p A Cakefundraising representative will contact you shortly.
+
+hr 
+
+= render partial:'contact_mailer/form'
+
 br

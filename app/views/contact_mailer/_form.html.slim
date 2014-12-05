@@ -1,0 +1,15 @@
+= semantic_form_for ContactMailer.new, url: mailers_contact_path do |f|
+  = f.inputs do
+    .row
+      .col-md-6
+        = f.input :name, required: true, label: false, input_html: {placeholder: 'Name'}
+        .contact-stitch
+        = f.input :email, required: true, label: false, input_html: {placeholder: 'Email'}
+        .contact-stitch
+        = f.input :phone, required: false, label: false, input_html: {placeholder: 'Phone'}
+      .col-md-6
+        = f.input :topic, as: :select, collection: ContactMailer::TOPICS.values.flatten, label: false, required: true, include_blank: false
+        .contact-stitch
+        = f.input :message, as: :text, input_html: {rows: 10, placeholder: 'Type your message here...'}, required: true, label: false
+  = f.actions do
+    = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-primary pull-right'}

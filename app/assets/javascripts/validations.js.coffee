@@ -100,4 +100,6 @@ Cake.validations.init = ->
   Cake.pictures.validation.init()
   Cake.pictures.validation.coupons()
   Cake.quick_pledges.validation()
+
+  Cake.mailers.contact_validation()
   return

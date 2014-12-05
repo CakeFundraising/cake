@@ -76,6 +76,7 @@ gem 'roadie-rails'
 gem 'prawn'
 gem 'secure_headers'
 gem 'counter_culture'
+gem 'mail_form'
 
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
