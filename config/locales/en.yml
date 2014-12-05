@@ -278,6 +278,6 @@ en:
       picture: 
         avatar_caption: Image Caption
       invoice: 
-        donation_click: Donation/Click
+        donation_click: Donation/Unique Click
         due: Donation Due
         bonus_clicks: Bonus Clicks (Free)
