@@ -10,4 +10,7 @@ Cake.impressions.rendered = (impression_id)->
     ).done (data)->
       console.log data
       return
+
+    #Autoshow video
+    Cake.videos.autoshow_modal()
   return
