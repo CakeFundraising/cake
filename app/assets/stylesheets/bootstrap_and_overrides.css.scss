@@ -1758,6 +1758,14 @@ table.performance-summary {
   }
 }
 
+.video_button{
+  position: relative;
+  top: 120px;
+  img{
+    cursor: pointer;
+  }
+}
+
 .avatar {
   img {
     display: block;
@@ -1801,10 +1809,7 @@ table.performance-summary {
 .banner {
   img {
     display: block;
-    width: 100%;
     margin-right: 0;
-    /*max-width: 1400px;
-    max-height: 45%;*/
     margin: auto;
   }
 }

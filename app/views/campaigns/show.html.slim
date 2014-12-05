@@ -6,12 +6,12 @@
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
       span
         = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+    = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
   .container
     .content.row.pull-up
       .col-md-8
         .campaign-intro
-          = render partial:'videos/button', locals:{object: @campaign}
           h1.name 
             span.mission = @campaign.mission
             - if can? :edit, @campaign and not @campaign.past?
