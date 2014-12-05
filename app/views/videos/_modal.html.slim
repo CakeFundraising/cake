@@ -9,3 +9,7 @@
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal
+
+- if current_browser.nil? and object.video.auto_show
+  javascript:
+    Cake.videos.autoshow();

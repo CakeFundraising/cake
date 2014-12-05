@@ -1,14 +1,16 @@
-Cake.videos = ->
-  modal = $(".video_modal")
-  video_html = $("iframe#youtube_video").clone()
+Cake.videos ?= {}
 
-  modal.on "hidden.bs.modal", (e) ->
-    $("iframe#youtube_video").remove()
+Cake.videos.autoshow = ->
+  $('#video_modal').modal('show')
+  return
+
+Cake.videos.controls = (modal_id)->
+  $(modal_id).on "hidden.bs.modal", (e) ->
+    $(modal_id + " iframe").attr "src", $(modal_id + " iframe").attr("src")
     return
 
-  modal.on "show.bs.modal", (e) ->
-    if $("iframe#youtube_video").length == 0
-      modal.find('.modal-body').append(video_html)
-    return
+  return
 
+Cake.videos.init = ->
+  Cake.videos.controls(".video_modal")
   return

@@ -12,7 +12,7 @@ Cake.init = ->
   #Cake.setup()
   Cake.clipboard()
   Cake.expander()
-  Cake.videos()
+  Cake.videos.init()
   Cake.popover()
   Cake.datepicker()
   Cake.limit_cocoon()

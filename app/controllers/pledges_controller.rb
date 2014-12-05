@@ -167,7 +167,7 @@ class PledgesController < InheritedResources::Base
     params.permit(
       pledge: [
         :name, :mission, :headline, :description, :amount_per_click,
-        :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url],
+        :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url, :auto_show],
         picture_attributes: [
           :id, :banner, :avatar, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,

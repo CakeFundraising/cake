@@ -1748,6 +1748,16 @@ table.performance-summary {
   /*margin-bottom: 20px;*/
 }
 
+#home_video_fr,
+#home_video_sp,
+.video_modal{
+  .modal-body{
+    padding: 0;
+    margin: 0;
+    margin-bottom: -6px;
+  }
+}
+
 .avatar {
   img {
     display: block;

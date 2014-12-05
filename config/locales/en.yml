@@ -274,6 +274,7 @@ en:
         total_donation: Total Donations
       video:
         url: Video Url
+        auto_show: Automatically show video when people first visit this campaign
       picture: 
         avatar_caption: Image Caption
       invoice: 

@@ -63,11 +63,6 @@ Cake.campaigns.mini_pledges_click = ->
     return
   return
 
-Cake.campaigns.show_intro_video = ->
-  video = $('#how_it_works_video')
-  video.modal('show')
-  return
-
 Cake.campaigns.show = (end_date, impression_id)->
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)
