@@ -112,6 +112,8 @@
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
+= render partial:'campaigns/show/video_modal' if current_browser.nil?
+
 css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
