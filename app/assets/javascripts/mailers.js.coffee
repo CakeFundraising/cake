@@ -15,5 +15,7 @@ Cake.mailers.contact_validation = ->
         digits: true
       'contact_mailer[message]':
         required: true
+      'contact_mailer[topic]':
+        required: true
   )
   return

@@ -7,7 +7,6 @@ class MailersController < ApplicationController
       redirect_to root_path, notice: 'Thank you for your message!'
     else 
       flash[:alert] = 'There was an error when sending your message. Check your form fields.'
-      puts @contact.errors.full_messages
       render 'about/contact' 
     end
   end
