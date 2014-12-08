@@ -5,10 +5,17 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h4.modal-title #{object} Video
       .modal-body
-        = object.video.iframe
+        #video_placeholder
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal
 
 javascript:
-  Cake.videos.autoshow = "#{object.video.auto_show}" === 'true' ? true : false;
+  function onYouTubeIframeAPIReady(){
+    Cake.videos.init({
+      modal: '#video_modal',
+      provider: "#{object.video.provider}",
+      videoId: "#{object.video.url}",
+      autoshow: "#{object.video.auto_show}" === 'true' ? true : false
+    });
+  }

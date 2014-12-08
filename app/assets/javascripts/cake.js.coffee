@@ -6,7 +6,6 @@ String::capitalize = ->
 Cake.init = ->
   Cake.clipboard()
   Cake.expander()
-  Cake.videos.init()
   Cake.popover()
   Cake.datepicker()
   Cake.limit_cocoon()
