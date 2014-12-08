@@ -5,14 +5,47 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h4.modal-title #{object} Video
       .modal-body
-        = object.video.iframe
+        - if object.video.provider == 'vimeo'
+          = object.video.iframe
+        - else
+          #video_placeholder
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal
 
 javascript:
-  Cake.videos.autoshow = "#{object.video.auto_show}" === 'true' ? true : false;
-  
-- if current_browser.nil? and object.video.auto_show
-  javascript:
-    Cake.videos.autoshow_modal();
+  Cake.videos.autoshow_setting = "#{object.video.auto_show}" === 'true' ? true : false;
+  var provider = "#{object.video.provider}";
+
+  var youtube_init = function(){
+    Cake.videos.youtube({
+      modal: '#video_modal',
+      provider: provider,
+      videoId: "#{object.video.url}",
+      autoshow: Cake.videos.autoshow_setting
+    });
+  };
+
+  var vimeo_init = function(){
+    Cake.videos.vimeo({
+      modal: '#video_modal',
+      provider: provider,
+      videoId: "#{object.video.url}",
+      iframe: "#vimeo_video",
+      autoshow: Cake.videos.autoshow_setting
+    });
+  };
+
+  if(provider === 'youtube'){
+    if(window.YT){
+      youtube_init();
+    }else{
+      Cake.videos.youtubeApi();
+
+      function onYouTubeIframeAPIReady(){
+        youtube_init();
+      }
+    }
+  }else{
+    vimeo_init();
+  }

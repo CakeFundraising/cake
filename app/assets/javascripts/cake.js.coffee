@@ -3,16 +3,9 @@ window.Cake ?= {}
 String::capitalize = ->
   @charAt(0).toUpperCase() + @slice(1)
 
-Cake.setup = ->
-  $.ajaxSetup headers:
-    "X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr("content")
-  return
-
 Cake.init = ->
-  #Cake.setup()
   Cake.clipboard()
   Cake.expander()
-  Cake.videos.init()
   Cake.popover()
   Cake.datepicker()
   Cake.limit_cocoon()

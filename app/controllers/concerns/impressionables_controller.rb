@@ -12,8 +12,12 @@ module ImpressionablesController
   def create_impression
     view = "#{controller_name}/#{action_name}"
 
-    unless current_browser.blank? or resource.impressions.find_with(view, current_browser).any? or request.headers['HTTP_USER_AGENT'] == "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"   
+    if current_browser.blank?
+      @impression = resource.impressions.create!(view: view)
+    elsif resource.impressions.find_with(view, current_browser).empty? and request.headers['HTTP_USER_AGENT'] != "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"
       @impression = resource.impressions.create!(view: view, browser: current_browser)
+    else
+      #Do nothing
     end
   end
 end

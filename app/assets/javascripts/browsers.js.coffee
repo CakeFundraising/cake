@@ -1,7 +1,9 @@
 Cake.browsers ?= {}
 
 Cake.browsers.fingerprint = ->
-  unless Cake.browsers.current
+  if Cake.browsers.current
+    $('body').trigger('current_browser_ready')
+  else
     #Fingerprint JS
     fingerprint = new Fingerprint({screen_resolution: true, canvas: true}).get()
     #Evercookie
@@ -23,6 +25,7 @@ Cake.browsers.fingerprint = ->
         data: {fingerprint: fingerprint, ec_token: token}
       ).done (browser_id)->
         Cake.browsers.current = true if browser_id
+        $('body').trigger('current_browser_ready')
       return
 
   return
