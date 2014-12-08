@@ -57,6 +57,23 @@ class YoutubeVideo extends Video
     @player.stopVideo()
     return
 
+class VimeoVideo extends Video
+  constructor: (args) ->
+    super args
+
+    @iframe = $(args.iframe)[0]
+    @player = $f(@iframe)
+    return
+  
+  playVideo: ->
+    @player.api('play')
+    return
+
+  stopVideo: ->
+    @player.api('pause')
+    return
+
+
 #Initialize Youtube API
 Cake.videos.youtubeApi = ->
   tag = document.createElement("script")
@@ -66,12 +83,13 @@ Cake.videos.youtubeApi = ->
   firstScriptTag.parentNode.insertBefore tag, firstScriptTag
   return
 
-#Init function
-Cake.videos.init = (options)->
-  if options.provider is 'youtube'
-    new YoutubeVideo(options)
-  if options.provider is 'vimeo'
-    new VimeoVideo(options)
+#Init functions
+Cake.videos.youtube = (options) ->
+  new YoutubeVideo(options)
+  return
+
+Cake.videos.vimeo = (options) ->
+  new VimeoVideo(options)
   return
 
 #Other functions
