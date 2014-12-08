@@ -67,32 +67,49 @@
                 .main-cta
                   a.btn.btn-success.btn-xl href='#sponsors_banner' Visit our Sponsors Below!
 
-  .white
-    .container
-      .row.sponsor-profile
-        .col-md-4.col-md-push-8
-          .sidebar-bkg-2
-            .avatar 
-              = link_to @campaign.fundraiser do
-                = @campaign.picture.avatar
-            .avatar-content
-              .caption = @campaign.avatar_caption
-              .fundraiser-info.text-center
-                h4 = auto_link @campaign.fundraiser
-        .col-md-8.col-md-pull-4.campaign-story
-          h3 = @campaign.headline
-          p.story.expander = @campaign.story
+  /.white
+  /  .container
+  /    .row.sponsor-profile
+        
 
 = content_for :bottom_section do
+  /.white
+  /.green
+  /  .container
+  /    .row.pledgebluestripe.campaign#sponsors_banner
+  /      .col-md-12.text-center
+  /        span.h1 
+  /          span YOU CLICK AND OUR SPONSORS PAY! 
+  /          span.second IT'S 100% FREE TO YOU!
+  /.container
+  .white
+    .container
+      .row
+        = render partial:'campaigns/show/pledges/pledges_section'
+  
   .green
     .container
       .row.pledgebluestripe.campaign#sponsors_banner
         .col-md-12.text-center
           span.h1 
-            span YOU CLICK AND OUR SPONSORS PAY! 
-            span.second IT'S 100% FREE TO YOU!
+            span Learn More About Our Great Cause!
+  /.white
   .container
-    = render partial:'campaigns/show/pledges/pledges_section'
+    .row.sponsor-profile
+      .col-md-4.col-md-push-8
+        .sidebar-bkg-2
+          .avatar 
+            = link_to @campaign.fundraiser do
+              = @campaign.picture.avatar
+          .avatar-content
+            .caption = @campaign.avatar_caption
+            .fundraiser-info.text-center
+              h4 = auto_link @campaign.fundraiser
+      .col-md-8.col-md-pull-4.campaign-story
+        h3 = @campaign.headline
+        p.story.expander = @campaign.story
+
+  .container
     .row
       .col-md-12.text-center
         .make-pledge.well
