@@ -13,6 +13,6 @@ Cake.impressions.rendered = (impression_id)->
         return
 
       #Autoshow video
-      #Cake.videos.autoshow_modal()
+      Cake.videos.autoshow()
       return
   return

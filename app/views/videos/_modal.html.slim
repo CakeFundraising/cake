@@ -11,11 +11,23 @@
 /! /.modal
 
 javascript:
-  function onYouTubeIframeAPIReady(){
+  Cake.videos.autoshow_setting = "#{object.video.auto_show}" === 'true' ? true : false;
+
+  var init = function(){
     Cake.videos.init({
       modal: '#video_modal',
       provider: "#{object.video.provider}",
       videoId: "#{object.video.url}",
-      autoshow: "#{object.video.auto_show}" === 'true' ? true : false
+      autoshow: Cake.videos.autoshow_setting
     });
+  };
+
+  if(window.YT){
+    init();
+  }else{
+    Cake.videos.youtubeApi();
+
+    function onYouTubeIframeAPIReady(){
+      init();
+    }
   }
