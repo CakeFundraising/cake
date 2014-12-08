@@ -2,10 +2,15 @@ Cake.videos ?= {}
 
 class Video
   constructor: (args) ->
+    @modal = $(args.modal)
+    @embedIn = args.embedIn
+
     @provider = args.provider
     @id = args.videoId
+    @width = args.width
+    @height = args.height
+
     @autoshow = args.autoshow
-    @modal = $(args.modal)
 
     @onModalShown()
     @onModalHidden()
@@ -37,9 +42,9 @@ class YoutubeVideo extends Video
   constructor: (args) ->
     super args
 
-    @player = new YT.Player("video_placeholder",
-      height: "400"
-      width: "100%"
+    @player = new YT.Player(@embedIn || "video_placeholder",
+      height: @height || "400"
+      width: @width || "100%"
       videoId: @id
     )
     return
@@ -52,19 +57,6 @@ class YoutubeVideo extends Video
     @player.stopVideo()
     return
 
-
-#Init function
-Cake.videos.init = (options)->
-  if options.provider is 'youtube'
-    video = new YoutubeVideo(options)
-  if options.provider is 'vimeo'
-    video = new VimeoVideo(options)
-  return
-
-Cake.videos.autoshow = ->
-  $('#video_modal').modal('show') if Cake.videos.autoshow_setting
-  return
-
 #Initialize Youtube API
 Cake.videos.youtubeApi = ->
   tag = document.createElement("script")
@@ -72,5 +64,24 @@ Cake.videos.youtubeApi = ->
 
   firstScriptTag = document.getElementsByTagName("script")[0]
   firstScriptTag.parentNode.insertBefore tag, firstScriptTag
+  return
+
+#Init function
+Cake.videos.init = (options)->
+  if options.provider is 'youtube'
+    new YoutubeVideo(options)
+  if options.provider is 'vimeo'
+    new VimeoVideo(options)
+  return
+
+#Other functions
+Cake.videos.autoshow = ->
+  $('#video_modal').modal('show') if Cake.videos.autoshow_setting
+  return
+
+Cake.videos.restartOnModalHidden = (modal_id)->
+  $(modal_id).on "hidden.bs.modal", (e) ->
+    $(modal_id + " iframe").attr "src", $(modal_id + " iframe").attr("src")
+    return
   return
 
