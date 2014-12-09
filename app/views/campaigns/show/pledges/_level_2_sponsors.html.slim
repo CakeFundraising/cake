@@ -1,5 +1,5 @@
 /- cache [:box, pledge] do
-.col-md-4
+.col-md-4.mini-pledge
   .platinum
     .overlay-effects.clearfix#effect-6
       - if pledge.click_browser_exists?(current_browser)
@@ -8,7 +8,7 @@
           .effect-overlay.blue-bg
             = link_to click_pledge_path(pledge), target: :_blank, class:'expand' do
               span Thank you! 
-              div Please click all our sponsors!
+              div #{pledge.amount_per_click} was donated!
       -else
         .avatar-container.overlay-img
           = pledge.picture.avatar
@@ -24,7 +24,7 @@
         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
           span.sr-only #{pledge.thermometer}% Complete (success)
       span
-        span = humanized_money_with_symbol pledge.amount_per_click
+        span.amount_per_click = humanized_money_with_symbol pledge.amount_per_click
         span.text-muted Donation Per Click
       span.pull-right
         span = humanized_money_with_symbol pledge.total_amount

@@ -155,7 +155,8 @@ en:
         share: 4. Confirm Your Pledge
   information:
     campaign:
-      banner: "Click on our sponsors below, and they will donate to %{fr} for you!"
+      banner: "Click on our Sponsors below, and they will donate to %{fr} for you!"
+      sp_banner: "Click on each of our generous Sponsors and %{fr} will earn %{amount}!"
     pledge:
       banner: "<span class='boldest'>Help %{fundraiser}!</span> CLICK BELOW and %{sponsor} will donate %{donation_per_click} up to %{total_donation}!!"
     wizards:

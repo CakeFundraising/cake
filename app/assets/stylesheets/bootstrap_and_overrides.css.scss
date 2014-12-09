@@ -1587,8 +1587,7 @@ table.performance-summary {
 
 .pledgebluestripe {
   &.campaign{
-    padding: 30px 5px;
-    /*height: 140px;*/
+    padding: 18px 5px;
     h1{
       position: absolute;
       padding: 15px 0px;
@@ -1598,6 +1597,7 @@ table.performance-summary {
     }
     .h1{
       letter-spacing: -1px;
+      line-height: 1.3em;
       span.second{
         margin-left: 10px;
       }

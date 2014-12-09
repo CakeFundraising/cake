@@ -73,15 +73,13 @@
         
 
 = content_for :bottom_section do
-  /.white
-  /.green
-  /  .container
-  /    .row.pledgebluestripe.campaign#sponsors_banner
-  /      .col-md-12.text-center
-  /        span.h1 
-  /          span YOU CLICK AND OUR SPONSORS PAY! 
-  /          span.second IT'S 100% FREE TO YOU!
-  /.container
+  - if @campaign.accepted_pledges.any?
+    .green
+      .container
+        .row.pledgebluestripe.campaign#sponsors_banner
+          .col-md-12.text-center
+            span.h1 
+              span = t('information.campaign.sp_banner', fr: @campaign.fundraiser, amount: @campaign.total_donation_per_click).html_safe
   .white
     .container
       .row

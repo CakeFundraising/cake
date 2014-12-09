@@ -37,8 +37,8 @@
           hr
           .row
             .col-md-12.pledges_total
-              span Total Pledge: 
-              span.boldest = @pledge.total_amount
+              span Current Donation: 
+              span.boldest = @pledge.total_charge
           .row
             .col-md-12
               hr
@@ -47,15 +47,12 @@
                 .progress
                   .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@pledge.thermometer}%"
                     span.sr-only #{@pledge.thermometer}% Complete (success)
-              .help-block.donation_per_click.text-center
+              .donation_per_click.text-center
                 span
                   span.boldest = humanized_money_with_symbol(@pledge.amount_per_click)
                 span  Donation Per Click Up To 
                 span
                   span.boldest = humanized_money_with_symbol(@pledge.total_amount)
-                /strong = humanized_money_with_symbol(@pledge.amount_per_click) 
-                /span Donation per click up to 
-                /strong = humanized_money_with_symbol(@pledge.total_amount)
               hr
               = render partial:'clicks/pledge', locals:{pledge: @pledge}
           br
@@ -86,13 +83,9 @@
       .row.pledgebluestripe.campaign
         .col-md-12.text-center
           span.h1.text-center #{@pledge.sponsor_name(26)} will donate #{humanized_money_with_symbol(@pledge.amount_per_click)} up to #{humanized_money_with_symbol(@pledge.total_amount)}!!
-          /.share.pull-right
-          /  = render partial:'layouts/share_buttons'
           .clearfix
             .col-md-4
             .col-md-4
-              br
-              /h4.share-info.pull-right Please share our Pledge!
               .btn-holder.text-center
                 = render partial:'clicks/pledge', locals:{pledge: @pledge}
             .col-md-4

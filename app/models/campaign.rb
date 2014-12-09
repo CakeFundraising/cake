@@ -118,6 +118,10 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.map(&:total_charge).sum.to_f
   end
 
+  def total_donation_per_click
+    pledges.accepted.sum(:amount_per_click_cents)/100.0
+  end
+
   def current_pledges_total
     pledges.accepted.sum(:total_amount_cents)/100
   end
