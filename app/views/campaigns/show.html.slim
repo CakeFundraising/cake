@@ -131,18 +131,18 @@ javascript:
   $(document).ready( Cake.campaigns.show('#{@campaign.object.end_date}', "#{@impression.id if @impression.present? }") );
   //$(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
 
-  var addthis_share = addthis_share || {}
+  var addthis_share = addthis_share || {};
   addthis_share = {
     url_transforms : {
-          shorten: {
-            twitter: 'bitly'
-          }
-      }, 
+      shorten: {
+        twitter: 'bitly'
+      }      
+    }, 
     shorteners : {
       bitly : {} 
     },
     templates: { 
       twitter: "Click to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
     }   
-  }
+  };
     
