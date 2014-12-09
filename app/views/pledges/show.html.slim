@@ -9,7 +9,7 @@
     = render partial:'videos/button', locals:{object: @pledge}
     .hero-screen
   .container
-    .content.row.pull-up
+    .content.row.pull-up.pull-up-pledge
       .col-md-8
         .campaign-intro
           h1.name 
@@ -37,7 +37,7 @@
           hr
           .row
             .col-md-12.pledges_total
-              span Current Donation: 
+              span Donation Earned: 
               span.boldest = @pledge.total_charge
           .row
             .col-md-12

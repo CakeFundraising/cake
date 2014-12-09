@@ -4,8 +4,9 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span
-        = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+      span Click on our Sponsors below, and 
+      span.boldest = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
   .container
@@ -21,7 +22,7 @@
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
       .col-md-4.sidebar
-        .sidebar-bkg.no-border
+        .sidebar-bkg.campaign-sidebar.no-border
           .row
             .col-xs-12
               p.timer-ital Campaign Ends In:
@@ -40,7 +41,6 @@
             .col-md-12.pledges_total
               span Total Donations Earned: 
               span.boldest = @campaign.raised
-          /br
           hr
           .row
             .col-md-12
@@ -53,9 +53,6 @@
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
-                /span.pull-right Goal
-                /span.boldest.pull-right = @campaign.goal
-                /| Goal
           .row
             - if current_user.present?
               - unless @campaign.past? 
@@ -67,11 +64,6 @@
                 .main-cta
                   a.btn.btn-success.btn-xl href='#sponsors_banner' Visit our Sponsors Below!
 
-  /.white
-  /  .container
-  /    .row.sponsor-profile
-        
-
 = content_for :bottom_section do
   - if @campaign.accepted_pledges.any?
     .green
@@ -79,7 +71,12 @@
         .row.pledgebluestripe.campaign#sponsors_banner
           .col-md-12.text-center
             span.h1 
-              span = t('information.campaign.sp_banner', fr: @campaign.fundraiser, amount: @campaign.total_donation_per_click).html_safe
+              span Click on each of our generous Sponsors
+              div 
+                | and 
+                span.boldest #{@campaign.fundraiser} 
+                | will earn 
+                span.boldest = @campaign.total_donation_per_click
   .white
     .container
       .row
@@ -90,8 +87,8 @@
       .row.pledgebluestripe.campaign#sponsors_banner
         .col-md-12.text-center
           span.h1 
-            span Learn More About Our Great Cause!
-  /.white
+            span Learn More About 
+            span.boldest = @campaign.fundraiser
   .container
     .row.sponsor-profile
       .col-md-4.col-md-push-8

@@ -1233,9 +1233,8 @@ h2 {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2em;
+    font-size: 2.2em;
     background: rgba(8, 193, 220, 0.75);
-    /*padding: 20px 100px 20px 100px;*/
   }
   .green-bkg{
     background: rgba(182, 203, 64, 0.75);
@@ -1252,7 +1251,10 @@ h2 {
 }
 
 .pull-up {
-  margin-top: -300px;
+  margin-top: -315px;
+  &.pull-up-pledge{
+    margin-top: -336px;
+  }
 }
 
 .pull-left {
@@ -1333,6 +1335,9 @@ h1.name {
   hr {
     margin-top:10px;  
     margin-bottom:10px;  
+  }
+  &.campaign-sidebar{
+    margin-bottom: 0px;
   }
 }
 
@@ -1761,6 +1766,7 @@ table.performance-summary {
 .video_button{
   position: relative;
   top: 120px;
+  z-index: 99999;
   img{
     cursor: pointer;
   }
@@ -2054,8 +2060,8 @@ a {
 
 .pledges_total {
   font-size: 18px;
-  padding-top: 8px;
-  padding-bottom: 7px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .levels {
