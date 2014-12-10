@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :stripe_account do
     uid { SecureRandom.hex(8) }
-    stripe_publishable_key "pk_test_av3DexUAm41o6QL2yJOoJLLd"
-    token "sk_test_gipO7Xq9sytJOy2bmlfmtVob"
+    stripe_publishable_key "pk_test_4TC9mWqNIII00qjeayaxMvDF"
+    token "sk_test_4TC9E7MBIdJTRUkMPzmmm82j"
 
     factory :sponsor_stripe_account do
       association :account, factory: :sponsor

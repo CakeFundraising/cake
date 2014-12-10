@@ -243,6 +243,7 @@ describe Fundraiser do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
+            p.update_attribute(:clicks_count, 5)
           end
         end
 
@@ -293,11 +294,20 @@ describe Fundraiser do
 
         describe "Average Engagement" do
           before(:each) do
-            @accepted_clicks = create_list(:click, 5, pledge: @accepted_pledges.sample)
-            @pending_clicks = create_list(:click, 5, pledge: @pending_pledges.sample)
-            @past_clicks = create_list(:click, 5, pledge: @past_pledges.sample)
+            accepted = @accepted_pledges.sample
+            past = @past_pledges.sample
+            pending = @pending_pledges.sample
 
-            @total_clicks = @accepted_clicks.count + @past_clicks.count
+            @clicks = create_list(:click, 5, pledge: accepted)
+            accepted.update_attribute(:clicks_count, 5)
+            
+            @past_clicks = create_list(:click, 5, pledge: past)  
+            past.update_attribute(:clicks_count, 5)
+
+            @pending_clicks = create_list(:click, 5, pledge: pending) 
+            pending.update_attribute(:clicks_count, 5)
+
+            @total_clicks = @clicks.count + @past_clicks.count 
           end
 
           it "should be the sum of all clicks divided accepted and past pledges count" do
@@ -519,6 +529,7 @@ describe Fundraiser do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
+            p.update_attribute(:clicks_count, 5)
           end           
         end
 
@@ -571,9 +582,18 @@ describe Fundraiser do
             @past_pledges = create_list(:past_pledge, 55, clicks_count: 0, campaign: @past_campaigns.sample)
             @pending_pledges = create_list(:pending_pledge, 44, clicks_count: 0, campaign: @pending_campaigns.sample)
 
-            @clicks = create_list(:click, 9, pledge: @pledges.sample)  
-            @past_clicks = create_list(:click, 6, pledge: @past_pledges.sample)  
-            @pending_clicks = create_list(:click, 3, pledge: @pending_pledges.sample) 
+            accepted = @pledges.sample
+            past = @past_pledges.sample
+            pending = @pending_pledges.sample
+
+            @clicks = create_list(:click, 9, pledge: accepted)
+            accepted.update_attribute(:clicks_count, 9)
+            
+            @past_clicks = create_list(:click, 6, pledge: past)  
+            past.update_attribute(:clicks_count, 6)
+
+            @pending_clicks = create_list(:click, 3, pledge: pending) 
+            pending.update_attribute(:clicks_count, 3)
 
             @total_clicks = @clicks.count + @past_clicks.count 
           end
@@ -665,6 +685,7 @@ describe Fundraiser do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
+            p.update_attribute(:clicks_count, 5)
           end           
         end
 

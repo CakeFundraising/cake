@@ -264,6 +264,6 @@ Devise.setup do |config|
     config.omniauth :facebook, '791515824214877', 'e80c240e39b51d287671193db675c572' #dev
     config.omniauth :twitter, 'iBrgyZ3KHCdWSuiuu08qQ', '6Fy4KkYW7nM1PKmt8hxOgXgf7ygSPNx3HTicFPnHJGY' #CakeFundraising 
     config.omniauth :linkedin, '75adconoxd5t9f', 'ZzC4CUKTUBU5YUb4' #Cake Staging
-    config.omniauth :stripe_connect, 'ca_49KpsuN3alv27kpoTrs0yRRdMaImqku9', 'sk_test_XReAEVef4RTCciqEckN043Hl', :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
+    config.omniauth :stripe_connect, 'ca_42CxDvyNbYgal8JucbXyQATSYhHIUMbp', 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4', :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
   end
 end
