@@ -9,11 +9,13 @@ class BrowsersController < ApplicationController
       fingerprinted = Browser.with_fingerprint(@fingerprint)
       tokenized = Browser.with_token(@evercookie_token)
 
-      if fingerprinted.any? #Incognito/Private session
+      if fingerprinted.any? #Incognito/Private session 
+        # Distinct token same fingerprint
         browser = fingerprinted.last
         reset_evercookie(browser)
         render text: browser.id
       elsif tokenized.any?
+        # Distinct fingerprint same token
         browser = update_browser(tokenized.last)
         reset_evercookie(browser)
         render text: browser.id
