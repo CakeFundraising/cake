@@ -7,10 +7,16 @@ class BrowsersController < ApplicationController
       render text: current_browser.id
     else
       fingerprinted = Browser.with_fingerprint(@fingerprint)
+      tokenized = Browser.with_token(@evercookie_token)
 
       if fingerprinted.any? #Incognito/Private session
-        reset_evercookie(fingerprinted.first)
-        render text: fingerprinted.first.id
+        browser = fingerprinted.last
+        reset_evercookie(browser)
+        render text: browser.id
+      elsif tokenized.any?
+        browser = update_browser(tokenized.last)
+        reset_evercookie(browser)
+        render text: browser.id
       else
         new_browser = create_browser
         render text: new_browser.id
@@ -25,6 +31,11 @@ class BrowsersController < ApplicationController
     browser = Browser.create(fingerprint: @fingerprint, token: @evercookie_token, user_id: current_user)
     reset_evercookie(browser)
     browser
+  end
+
+  def update_browser(browser)
+    browser.update(fingerprint: @fingerprint, token: @evercookie_token, user_id: current_user)
+    browser.reload
   end
 
   def reset_evercookie(browser)
