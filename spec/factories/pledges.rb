@@ -36,5 +36,9 @@ FactoryGirl.define do
     factory :pledge_with_levels do
       association :campaign, factory: :campaign_with_pledge_levels
     end
+
+    factory :pledge_fully_subscribed do
+      clicks_count 999
+    end
   end
 end

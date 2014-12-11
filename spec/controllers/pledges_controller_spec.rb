@@ -227,6 +227,35 @@ describe PledgesController do
       end
     end
 
+    context 'Pledge fully subscribed' do
+      before :each do
+        @fully_pledge = FactoryGirl.create(:pledge_fully_subscribed)
+        @current_browser = FactoryGirl.create(:browser)
+
+        session[:evercookie] = {}
+        session[:evercookie][:cfbid] = @current_browser.token
+      end
+
+      let(:click_request) { get :click, id: @fully_pledge }
+
+      it "current_browser should not be present in pledge's click_browsers" do
+        expect( @fully_pledge.click_browsers ).not_to include( @current_browser )
+      end
+
+      it "should create a bonus click" do
+        expect{ click_request }.to change{ @fully_pledge.bonus_clicks.count }.by(1)
+      end
+
+      it "should not create a unique click" do
+        expect{ click_request }.not_to change{ @fully_pledge.clicks.count }
+      end
+
+      it "should redirect to pledge's website url" do
+        click_request
+        expect{ response }.to redirect_to( @fully_pledge.website_url )
+      end
+    end
+
   end
 
 end
