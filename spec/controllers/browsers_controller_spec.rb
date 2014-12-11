@@ -53,6 +53,11 @@ describe BrowsersController, type: :controller do
           expect( @browser.reload.token ).not_to eq( new_token )
         end
 
+        it "should not replace the fingerprint attribute" do
+          same_fingerprint_request
+          expect( @browser.reload.fingerprint ).to eq( @browser.fingerprint )
+        end
+
         it "should return the id of the existing browser" do
           same_fingerprint_request
           expect( response.body ).to eq( @browser.id.to_s )
@@ -61,16 +66,22 @@ describe BrowsersController, type: :controller do
 
       context 'Same Token' do
         let(:new_fingerprint) { SecureRandom.random_number(10000000000).to_s }
-        let(:same_token_request) { patch :fingerprint, fingerprint: new_fingerprint, ec_token: @browser.token }
+        let(:same_token) { @browser.token }
+        let(:same_token_request) { patch :fingerprint, fingerprint: new_fingerprint, ec_token: same_token }
 
         it "should use the same token in the session" do
           same_token_request
-          expect( session[:evercookie][:cfbid] ).to eq( @browser.token )
+          expect( session[:evercookie][:cfbid] ).to eq( same_token )
         end
 
         it "should replace the old fingerprint with the new one" do
           same_token_request
           expect( @browser.reload.fingerprint ).to eq( new_fingerprint )
+        end
+
+        it "should not replace the token attribute" do
+          same_token_request
+          expect( @browser.reload.token ).to eq( same_token )
         end
 
         it "should return the id of the existing browser" do

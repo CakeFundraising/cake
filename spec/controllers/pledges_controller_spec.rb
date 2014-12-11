@@ -157,4 +157,76 @@ describe PledgesController do
     end
   end
 
+  #### Click ####
+  describe "GET click" do
+    let(:pledge) { FactoryGirl.create(:not_clicked_pledge) }
+    let(:click_request) { get :click, id: pledge }
+
+    context 'current_browser not present' do
+      it "should redirect to pledge page" do
+        click_request
+        response.should redirect_to(pledge)
+      end
+
+      it "should show an error message" do
+        click_request
+        expect( request.flash[:alert] ).to eq('There was an error when trying to count your click. Please try again.')
+      end
+    end
+
+    context 'Unique Click' do
+      before :each do
+        @current_browser = FactoryGirl.create(:browser)
+
+        session[:evercookie] = {}
+        session[:evercookie][:cfbid] = @current_browser.token
+      end
+
+      it "current_browser should not be present in pledge's click_browsers" do
+        expect( pledge.click_browsers ).not_to include( @current_browser )
+      end
+
+      it "should create a unique click" do
+        expect{ click_request }.to change{ pledge.clicks.count }.by(1)
+      end
+
+      it "should not create a bonus click" do
+        expect{ click_request }.not_to change{ pledge.bonus_clicks.count }
+      end
+
+      it "should redirect to pledge's website url" do
+        click_request
+        expect{ response }.to redirect_to( pledge.website_url )
+      end
+    end
+
+    context 'Bonus Clicks' do
+      before :each do
+        @current_browser = FactoryGirl.create(:browser)
+        @unique_click = FactoryGirl.create(:click, pledge: pledge, browser: @current_browser)
+
+        session[:evercookie] = {}
+        session[:evercookie][:cfbid] = @current_browser.token
+      end
+
+      it "current_browser should be present in pledge's click_browsers" do
+        expect( pledge.click_browsers ).to include( @current_browser )
+      end
+
+      it "should create a bonus click" do
+        expect{ click_request }.to change{ pledge.bonus_clicks.count }.by(1)
+      end
+
+      it "should not create a unique click" do
+        expect{ click_request }.not_to change{ pledge.clicks.count }
+      end
+
+      it "should redirect to pledge's website url" do
+        click_request
+        expect{ response }.to redirect_to( pledge.website_url )
+      end
+    end
+
+  end
+
 end
