@@ -133,6 +133,7 @@ class PledgesController < InheritedResources::Base
       click = (resource.click_browsers.include?(current_browser) || resource.fully_subscribed?) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
 
       if click.save
+        click.pusherize
         redirect_to resource.decorate.website_url 
       else
         redirect_to resource, alert: click.errors.messages

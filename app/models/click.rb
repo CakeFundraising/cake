@@ -17,4 +17,16 @@ class Click < ActiveRecord::Base
 
   scope :bonus, -> { where(bonus: true) }
   scope :unique, -> { where(bonus: false) }
+
+  def pusherize
+    unless self.bonus #Unique clicks only
+      campaign = self.pledge.campaign
+
+      Pusher.trigger("campaign_#{campaign.id}_raised", 'update', {
+        raised: campaign.decorate.raised,
+        thermometer: campaign.pledges_thermometer
+      })
+    end
+  end
+
 end
