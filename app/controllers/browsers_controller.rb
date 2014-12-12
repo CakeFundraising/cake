@@ -4,6 +4,7 @@ class BrowsersController < ApplicationController
     @evercookie_token = params[:ec_token]
 
     if current_browser.present?
+      current_browser.update_attribute(:fingerprint, @fingerprint) if current_browser.fingerprint != @fingerprint
       render text: current_browser.id
     else
       fingerprinted = Browser.with_fingerprint(@fingerprint)

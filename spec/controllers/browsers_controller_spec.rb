@@ -28,8 +28,26 @@ describe BrowsersController, type: :controller do
       end
 
       context 'Already stored' do
+        before :each do
+          session[:evercookie] = {}
+          session[:evercookie][:cfbid] = @browser.token  
+        end
+
         it "should not create a new browser" do
           expect{ request }.not_to change{ Browser.count }
+        end
+
+        it "should update fingerprint if old and new differ" do
+          new_fingerprint = SecureRandom.random_number(10000000000).to_s
+          patch :fingerprint, fingerprint: new_fingerprint, ec_token: @browser.token
+          expect( @browser.reload.fingerprint ).to eq( new_fingerprint )
+        end
+
+        it "should not update token if old and new differ" do
+          new_token = SecureRandom.uuid.to_s
+          patch :fingerprint, ec_token: new_token, fingerprint: @browser.fingerprint
+          expect( @browser.reload.token ).not_to eq( new_token )
+          expect( @browser.reload.token ).to eq( attributes[:token] )
         end
 
         it "should return the current browser id" do
