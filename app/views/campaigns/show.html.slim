@@ -118,9 +118,9 @@ css:
 javascript:
   $(document).ready( 
     Cake.campaigns.show(
-      "#{@campaign.id}", 
       "#{@campaign.object.end_date}", 
-      "#{@impression.id if @impression.present? }"
+      "#{@impression.id if @impression.present? }",
+      "#{@campaign.id}"
     ) 
   );
 

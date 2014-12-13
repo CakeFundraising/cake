@@ -114,8 +114,12 @@ css:
   .hero{ background-image: url("#{@pledge.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( Cake.campaigns.show('#{@pledge.campaign.object.end_date}', "#{@impression.id if @impression.present?}") );
-  //$(document).on('page:load', Cake.campaigns.show('#{@pledge.campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
+  $(document).ready( 
+    Cake.campaigns.show(
+      '#{@pledge.campaign.object.end_date}', 
+      "#{@impression.id if @impression.present?}"
+    ) 
+  );
 
   var addthis_share = addthis_share || {}
   addthis_share = {
