@@ -39,17 +39,17 @@
           .row
             .col-md-12.pledges_total
               span Total Donations Earned: 
-              span.boldest = @campaign.raised
+              span.boldest.raised = @campaign.raised
           /br
           hr
           .row
             .col-md-12
-              .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+              .progress.campaign-thermometer
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
               .campaign-stats
                 span
-                  span.boldest = @campaign.raised
+                  span.boldest.raised = @campaign.raised
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
@@ -116,8 +116,13 @@ css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( Cake.campaigns.show('#{@campaign.object.end_date}', "#{@impression.id if @impression.present? }") );
-  //$(document).on('page:load', Cake.campaigns.show('#{@campaign.end_date_countdown}', "#{@impression.id if @impression.present?}") );
+  $(document).ready( 
+    Cake.campaigns.show(
+      "#{@campaign.id}", 
+      "#{@campaign.object.end_date}", 
+      "#{@impression.id if @impression.present? }"
+    ) 
+  );
 
   var addthis_share = addthis_share || {};
   addthis_share = {
