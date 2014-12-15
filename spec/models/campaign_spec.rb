@@ -262,7 +262,8 @@ describe Campaign do
 
         @pledges.each do |p|
           create_list(:click, 5, pledge: p)
-        end           
+          p.update_attribute(:clicks_count, 5)
+        end
       end
 
       it "should be the total clicks divided total of accepted and past pledges" do

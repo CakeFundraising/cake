@@ -228,6 +228,7 @@ describe Sponsor do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
+            p.update_attribute(:clicks_count, 5)
           end           
         end
 
@@ -278,11 +279,20 @@ describe Sponsor do
 
         describe "Average Engagement" do
           before(:each) do
-            @accepted_clicks = create_list(:click, 5, pledge: @accepted_pledges.sample)
-            @pending_clicks = create_list(:click, 5, pledge: @pending_pledges.sample)
-            @past_clicks = create_list(:click, 5, pledge: @past_pledges.sample)
+            accepted = @accepted_pledges.sample
+            past = @past_pledges.sample
+            pending = @pending_pledges.sample
 
-            @total_clicks = @accepted_clicks.count + @past_clicks.count
+            @clicks = create_list(:click, 5, pledge: accepted)
+            accepted.update_attribute(:clicks_count, 5)
+            
+            @past_clicks = create_list(:click, 5, pledge: past)  
+            past.update_attribute(:clicks_count, 5)
+
+            @pending_clicks = create_list(:click, 5, pledge: pending) 
+            pending.update_attribute(:clicks_count, 5)
+
+            @total_clicks = @clicks.count + @past_clicks.count 
           end
 
           it "should be the sum of all clicks divided accepted and past pledges count" do
@@ -315,13 +325,14 @@ describe Sponsor do
         end
       end
 
-      describe 'Total Clicks' do
+      describe 'Unique Clicks' do
         it "should be the sum of all clicks from accepted and past pledges to SP’s websites" do
           @accepted_pledges = create_list(:pledge, 5, sponsor: @sponsor)
           @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor)
 
           pledges = @accepted_pledges + @past_pledges
-          expect(@sponsor.total_clicks).to eql(pledges.map(&:clicks_count).sum)        
+
+          expect(@sponsor.unique_clicks).to eql(pledges.map(&:clicks_count).sum)        
         end
       end
 
@@ -468,6 +479,7 @@ describe Sponsor do
 
           @pledges.each do |p|
             create_list(:click, 5, pledge: p)
+            p.update_attribute(:clicks_count, 5)
           end           
         end
 
@@ -516,9 +528,18 @@ describe Sponsor do
 
         describe "Average Engagement" do
           before(:each) do
-            @clicks = create_list(:click, 9, pledge: @accepted_pledges.sample)  
-            @past_clicks = create_list(:click, 6, pledge: @past_pledges.sample)  
-            @pending_clicks = create_list(:click, 3, pledge: @pending_pledges.sample) 
+            accepted = @accepted_pledges.sample
+            past = @past_pledges.sample
+            pending = @pending_pledges.sample
+
+            @clicks = create_list(:click, 9, pledge: accepted)
+            accepted.update_attribute(:clicks_count, 9)
+            
+            @past_clicks = create_list(:click, 6, pledge: past)  
+            past.update_attribute(:clicks_count, 6)
+
+            @pending_clicks = create_list(:click, 3, pledge: pending) 
+            pending.update_attribute(:clicks_count, 3)
 
             @total_clicks = @clicks.count + @past_clicks.count 
           end
@@ -563,32 +584,34 @@ describe Sponsor do
     end
 
     context 'SP dashboard home' do
-      describe "Total clicks from Active Pledges" do
+      describe "Unique clicks from Active Pledges" do
         before(:each) do
           @pending_pledges = create_list(:pending_pledge, 2, sponsor: @sponsor, clicks_count: 0)
           @rejected_pledges = create_list(:rejected_pledge, 3, sponsor: @sponsor, clicks_count: 0)
           @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, clicks_count: 0)
           @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, clicks_count: 0)
+
           @pledges = @pending_pledges + @rejected_pledges + @past_pledges + @accepted_pledges
 
           @pledges.each do |pledge|
             create_list(:click, 5, pledge: pledge)
+            pledge.update_attribute(:clicks_count, 5)
           end
         end
 
-        it "should show the total of clicks from active pledges" do
+        it "should show the total of unique clicks from active pledges" do
           expect( @sponsor.active_pledges_clicks_count ).to eql(20)
         end
 
-        it "should not include clicks from pending pledges" do
+        it "should not include unique clicks from pending pledges" do
           expect( @sponsor.active_pledges_clicks_count ).not_to eql(10)
         end
 
-        it "should not include clicks from rejected pledges" do
+        it "should not include unique clicks from rejected pledges" do
           expect( @sponsor.active_pledges_clicks_count ).not_to eql(15)
         end
 
-        it "should not include clicks from past pledges" do
+        it "should not include unique clicks from past pledges" do
           expect( @sponsor.active_pledges_clicks_count ).not_to eql(25)
         end
       end
