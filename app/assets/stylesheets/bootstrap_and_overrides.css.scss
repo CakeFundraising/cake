@@ -1356,7 +1356,6 @@ h1.name {
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
-  font-size: 33px;
 }
 
 address {
@@ -1440,6 +1439,9 @@ table.performance-summary {
   background-color:#fff;
   margin-top: -25px;
   padding-top: 25px;
+}
+.main-background{
+  background-color: $main-background;
 }
 .pointer {
   background: image-url("pointer.png") no-repeat;

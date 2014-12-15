@@ -65,60 +65,61 @@
                   a.btn.btn-success.btn-xl href='#sponsors_banner' Visit our Sponsors Below!
 
 = content_for :bottom_section do
-  - if @campaign.accepted_pledges.any?
+  .main-background
+    - if @campaign.accepted_pledges.any?
+      .green
+        .container
+          .row.pledgebluestripe.campaign#sponsors_banner
+            .col-md-12.text-center
+              span.h1 
+                span Visit every Sponsor and 
+                span.boldest #{@campaign.fundraiser} 
+                span will earn a total of 
+                span.boldest #{@campaign.total_donation_per_click}!
+    .white
+      .container
+        .row
+          = render partial:'campaigns/show/pledges/pledges_section'
+    
     .green
       .container
         .row.pledgebluestripe.campaign#sponsors_banner
           .col-md-12.text-center
             span.h1 
-              span Visit every Sponsor and 
-              span.boldest #{@campaign.fundraiser} 
-              span will earn a total of 
-              span.boldest #{@campaign.total_donation_per_click}!
-  .white
+              span Learn More About 
+              span.boldest = @campaign.fundraiser
+    .container
+      .row.sponsor-profile
+        .col-md-4.col-md-push-8
+          .sidebar-bkg-2
+            .avatar 
+              = link_to @campaign.fundraiser do
+                = @campaign.picture.avatar
+            .avatar-content
+              .caption = @campaign.avatar_caption
+              .fundraiser-name.text-center
+                h4 = auto_link @campaign.fundraiser
+        .col-md-8.col-md-pull-4.campaign-story
+          h3 = @campaign.headline
+          p.story.expander = @campaign.story
+
     .container
       .row
-        = render partial:'campaigns/show/pledges/pledges_section'
-  
-  .green
-    .container
-      .row.pledgebluestripe.campaign#sponsors_banner
         .col-md-12.text-center
-          span.h1 
-            span Learn More About 
-            span.boldest = @campaign.fundraiser
-  .container
-    .row.sponsor-profile
-      .col-md-4.col-md-push-8
-        .sidebar-bkg-2
-          .avatar 
-            = link_to @campaign.fundraiser do
-              = @campaign.picture.avatar
-          .avatar-content
-            .caption = @campaign.avatar_caption
-            .fundraiser-name.text-center
-              h4 = auto_link @campaign.fundraiser
-      .col-md-8.col-md-pull-4.campaign-story
-        h3 = @campaign.headline
-        p.story.expander = @campaign.story
-
-  .container
-    .row
-      .col-md-12.text-center
-        .make-pledge.well
-          .row
-            .col-md-8
-              h4.attention-owners
-                b> Attention Business Owners!
-                | Support us and reach new customers! 
-            .col-md-4
-              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
-  
-    = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-    .text-center.med-hide = render partial:'layouts/share_buttons'
-    br
+          .make-pledge.well
+            .row
+              .col-md-8
+                h4.attention-owners
+                  b> Attention Business Owners!
+                  | Support us and reach new customers! 
+              .col-md-4
+                = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
     
-  = render partial: 'layouts/choose_path' unless current_user.present?
+      = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+      .text-center.med-hide = render partial:'layouts/share_buttons'
+      br
+      
+    = render partial: 'layouts/choose_path' unless current_user.present?
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
