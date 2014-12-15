@@ -6,7 +6,7 @@ en:
       description: "Check out Cake Fundraising and launch a 100% free fundraising campaign for your good cause today! Earn the money you need to do good deeds!"
       keywords: "1,2,3,4,5"
       og: 
-        title: "Cake Fundraising - 100% Free, Donation Per Click Fundraising for Good Causes."
+        title: "Cake Fundraising - 100% Free, Pay Per Click Fundraising for Good Causes."
     terms_and_conditions:
       standard: >
         <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
@@ -188,9 +188,9 @@ en:
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Acceptable Pledge
-        min_click_donation: Min. Donation/Click
+        min_click_donation: Min. Cost/Click
         unsolicited_pledges: We welcome Unsolicited Pledges
-        donations_kind: We accept Donations in Kind
+        donations_kind: We accept Payment in Kind
         tax_exempt: We are a Tax Exempt Organization
         name: Organization Name
         mission: Our Mission Statement
