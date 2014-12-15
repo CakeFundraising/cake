@@ -144,7 +144,10 @@ hr{
   padding-left: 0px;*/
 }
 .navbar-brand {
-  padding-top: 17px;
+  padding-top: 13px;
+  img{
+    width:250px;
+  }
 }
 .user-logged-in {
   span {
@@ -472,8 +475,8 @@ hr{
   .navbar-brand {
     padding-top: 8px;
     img{
-      height: 35px;
-      padding-top: 3px;
+      width: 200px;
+      padding-top: 0px;
     }
   }
   .btn-signup.btn-success{

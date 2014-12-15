@@ -28,7 +28,7 @@ class HomeController < ApplicationController
         route = home_get_started_path
       end
 
-      redirect_to route, notice: 'Please complete your registration in CakeFundraising.'
+      redirect_to route, notice: 'Please complete your registration in CakeCauseMarketing.'
     end
   end
 end
