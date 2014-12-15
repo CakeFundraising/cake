@@ -3684,13 +3684,21 @@ ul#share-block {
     }
     h3{
       font-size: 18px !important;
+    }
+  }
 
+  @media (max-width: $screen-sm-min) {
+    h1{
+      font-size: 26px !important;
+    }
+    h3{
+      font-size: 18px !important;
     }
   }
 
   h1{
     font-family: "museo_sans700", Helvetica, Arial, sans-serif;
-    font-size: 33px;
+    font-size: 30px;
     margin-top: 20px;
     margin-bottom: 5px;
   }
