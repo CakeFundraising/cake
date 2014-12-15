@@ -2,21 +2,7 @@
 .col-md-4.mini-pledge
   .platinum
     .overlay-effects.clearfix#effect-6
-      - if pledge.click_browser_exists?(current_browser)
-        .avatar-container.overlay-img
-          = pledge.picture.avatar
-          .effect-overlay.blue-bg
-            = link_to click_pledge_path(pledge), target: :_blank, class:'expand' do
-              span Thank you! 
-              div #{pledge.amount_per_click} was donated!
-      -else
-        .avatar-container.overlay-img
-          = pledge.picture.avatar
-          .effect-overlay
-            = link_to click_pledge_path(pledge), target: :_blank, class:'expand click-link' do
-              span Click to Help! 
-              div It's 100% free to you
-            a.close-overlay.hidden x
+      = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge}
     .levels
       .sponsor-name.truncate = auto_link pledge.sponsor
       .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
@@ -25,7 +11,7 @@
           span.sr-only #{pledge.thermometer}% Complete (success)
       span
         span.amount_per_click = humanized_money_with_symbol pledge.amount_per_click
-        span.text-muted Donation Per Click
+        span.text-muted Earned Per Click
       span.pull-right
         span = humanized_money_with_symbol pledge.total_amount
         span.text-muted Pledge

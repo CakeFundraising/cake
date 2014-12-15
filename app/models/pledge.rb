@@ -20,7 +20,8 @@ class Pledge < ActiveRecord::Base
 
   has_many :clicks, -> { where(bonus: false) }, class_name: 'Click', dependent: :destroy
   has_many :bonus_clicks, -> { where(bonus: true) }, class_name: 'Click', dependent: :destroy
-  has_many :click_browsers, through: :clicks, source: :browser
+  has_many :unique_click_browsers, through: :clicks, source: :browser
+  has_many :bonus_click_browsers, through: :bonus_clicks, source: :browser
 
   has_many :impressions, as: :impressionable
 
@@ -104,11 +105,15 @@ class Pledge < ActiveRecord::Base
 
   #Clicks association
   def click_exists?(click)
-    click_browser_exists?(click.browser) # We delegate click existance to browser existance
+    unique_click_for_browser?(click.browser) # We delegate click existance to browser existance
   end
 
-  def click_browser_exists?(browser)
-    browser.nil? ? false : click_browsers.equal_to(browser).any?
+  def unique_click_for_browser?(browser)
+    browser.nil? ? false : unique_click_browsers.equal_to(browser).any?
+  end
+
+  def bonus_click_for_browser?(browser)
+    browser.nil? ? false : bonus_click_browsers.equal_to(browser).any?
   end
 
   def current_max_clicks

@@ -4,8 +4,8 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span Click on our Sponsors below, and 
-      span.boldest = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+      span = t('information.campaign.banner')
+      span.boldest #{ @campaign.fundraiser }!
 
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
@@ -71,12 +71,10 @@
         .row.pledgebluestripe.campaign#sponsors_banner
           .col-md-12.text-center
             span.h1 
-              span Click on each of our generous Sponsors
-              div 
-                | and 
-                span.boldest #{@campaign.fundraiser} 
-                | will earn 
-                span.boldest = @campaign.total_donation_per_click
+              span Visit every Sponsor and 
+              span.boldest #{@campaign.fundraiser} 
+              span will earn a total of 
+              span.boldest #{@campaign.total_donation_per_click}!
   .white
     .container
       .row
@@ -98,7 +96,7 @@
               = @campaign.picture.avatar
           .avatar-content
             .caption = @campaign.avatar_caption
-            .fundraiser-info.text-center
+            .fundraiser-name.text-center
               h4 = auto_link @campaign.fundraiser
       .col-md-8.col-md-pull-4.campaign-story
         h3 = @campaign.headline

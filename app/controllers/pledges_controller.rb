@@ -130,7 +130,7 @@ class PledgesController < InheritedResources::Base
   #Clicks
   def click
     if current_browser.present?
-      click = resource.click_browsers.include?(current_browser) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
+      click = resource.unique_click_browsers.include?(current_browser) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
 
       if click.save
         redirect_to resource.decorate.website_url 

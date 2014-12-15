@@ -2,21 +2,7 @@
 .col-md-3.mini-pledge
   .platinum
     .overlay-effects.clearfix#effect-6
-      - if pledge.click_browser_exists?(current_browser)
-        .avatar-container.overlay-img
-          = pledge.picture.avatar
-          .effect-overlay.blue-bg
-            = link_to click_pledge_path(pledge), target: :_blank, class:'expand expand-md' do
-              span Thank you! 
-              div #{pledge.amount_per_click} was donated!
-      -else
-        .avatar-container.overlay-img
-          = pledge.picture.avatar
-          .effect-overlay
-            = link_to click_pledge_path(pledge), target: :_blank, class:'expand expand-md click-link' do
-              span Click to Help! 
-              div It's 100% free to you
-            a.close-overlay.hidden x
+      = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-md'}
     .levels
       .sponsor-name.truncate = auto_link pledge.sponsor
       .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
