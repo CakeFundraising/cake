@@ -37,7 +37,7 @@
           hr
           .row
             .col-md-12.pledges_total
-              span Donation Earned: 
+              span Amount Earned: 
               span.boldest = @pledge.total_charge
           .row
             .col-md-12
@@ -50,7 +50,7 @@
               .donation_per_click.text-center
                 span
                   span.boldest = humanized_money_with_symbol(@pledge.amount_per_click)
-                span  Donation Per Click Up To 
+                span  Per Click Up To 
                 span
                   span.boldest = humanized_money_with_symbol(@pledge.total_amount)
               hr

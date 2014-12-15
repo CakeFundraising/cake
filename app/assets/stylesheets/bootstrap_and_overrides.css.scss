@@ -2182,10 +2182,10 @@ a {
       color: #08c1dc;
     }
   }
-  .label-info{
+  .label-purple{
     position:absolute;
     padding:10px;
-    margin: -5px;
+    margin: -7px;
   }
   img {
     width: 100%;
@@ -3781,5 +3781,24 @@ ul#share-block {
   padding: 7px;
 }
 
+.label-overlapped-container{
+  position: relative;
+}
 
-
+.label-purple{
+  background-color: $brand-purple;
+  &.overlapped{
+    position: absolute;
+    left: 5px;
+    &.big{
+      top: -20%;
+    }
+    &.md{
+      top: -25%;
+    }
+    &.sm{
+      top: -16px;
+      left: -6px;
+    }
+  }
+}
