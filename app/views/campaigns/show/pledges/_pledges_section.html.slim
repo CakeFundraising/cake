@@ -1,10 +1,6 @@
 - if @campaign.custom_pledge_levels
-  /h1.text-center Please visit all our generous Sponsors
   = render partial:'campaigns/show/pledges/pledge_level', collection: @sponsor_categories, as: :sc
 - else
   - if @campaign.accepted_pledges.any?
-    /.row.special-offers
-    /  .col-md-12
-    /    h1 Please visit all our generous Sponsors
     .row
       = render partial:'campaigns/show/pledges/level_2_sponsors', collection: @campaign.accepted_pledges.decorate, as: :pledge    

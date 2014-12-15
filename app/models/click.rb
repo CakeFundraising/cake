@@ -11,6 +11,22 @@ class Click < ActiveRecord::Base
   validates :browser_id, :pledge_id, presence: true
 
   scope :with_browser, ->{ eager_load(:browser) }
+
   scope :token, ->(token){ where('browsers.token = ?', token) }
   scope :fingerprint, ->(fingerprint){ where('browsers.fingerprint = ?', fingerprint) }
+
+  scope :bonus, -> { where(bonus: true) }
+  scope :unique, -> { where(bonus: false) }
+
+  def pusherize
+    unless self.bonus #Unique clicks only
+      campaign = self.pledge.campaign
+
+      Pusher.trigger("campaign_#{campaign.id}_raised", 'update', {
+        raised: campaign.decorate.raised,
+        thermometer: campaign.pledges_thermometer
+      })
+    end
+  end
+
 end

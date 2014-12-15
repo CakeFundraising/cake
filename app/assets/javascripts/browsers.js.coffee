@@ -5,7 +5,7 @@ Cake.browsers.fingerprint = ->
     $('body').trigger('current_browser_ready')
   else
     #Fingerprint JS
-    fingerprint = new Fingerprint({screen_resolution: true, canvas: true}).get()
+    fingerprint = new Fingerprint({screen_resolution: true, canvas: true, ie_activex: true}).get()
     #Evercookie
     ec = new evercookie()
 

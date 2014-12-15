@@ -84,6 +84,9 @@ gem 'fingerprintjs-rails'
 #App performance
 gem 'newrelic_rpm'
 
+#Real Time
+gem 'pusher'
+
 #User registration
 gem "devise"
 

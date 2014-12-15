@@ -65,10 +65,11 @@ Cake.campaigns.mini_pledges_click = ->
     return
   return
 
-Cake.campaigns.show = (end_date, impression_id)->
+Cake.campaigns.show = (end_date, impression_id, campaignId)->
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)
   Cake.campaigns.mini_pledges()
+  Cake.pusher.campaigns.updateRaised(campaignId) if campaignId
   return
 
 Cake.campaigns.visibility = ->
