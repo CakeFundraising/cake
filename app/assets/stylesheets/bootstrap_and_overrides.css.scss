@@ -1354,6 +1354,8 @@ h1.name {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-word;
+  font-size: 33px;
 }
 
 address {
