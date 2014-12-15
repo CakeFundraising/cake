@@ -1284,6 +1284,7 @@ h1.name {
     .edit {
       font-size: 16px;
       margin-left: 5px;
+      margin-top: 5px;
     }
   }
   .social {
@@ -1350,7 +1351,6 @@ h1.name {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: .8em;
 }
 
 address {
@@ -3763,6 +3763,21 @@ ul#share-block {
   width: 100%;
   float: left;
   display: block;
+
+  .main-banner{
+    span{
+      display: block;
+    }
+    h1{
+      font-size: 45px;
+      margin-top: 20px;
+      font-weight: bold;
+      text-shadow: 0px 0px 2px $gray;
+    }
+    h3{
+      color: white;
+    }
+  }
   
   .slide1, .slide2, .slide3{
     height:500px;
