@@ -1,6 +1,9 @@
-- if @campaign.custom_pledge_levels
+- if @custom_pledge_levels
   = render partial:'campaigns/show/pledges/pledge_level', collection: @sponsor_categories, as: :sc
 - else
-  - if @campaign.accepted_pledges.any?
+  - if @campaign.active? and @campaign.accepted_pledges.any?
     .row
       = render partial:'campaigns/show/pledges/level_2_sponsors', collection: @campaign.accepted_pledges.decorate, as: :pledge    
+  - else
+    .row 
+      = render partial:'campaigns/show/pledges/level_2_sponsors', collection: @campaign.pledges.past.decorate, as: :pledge    
