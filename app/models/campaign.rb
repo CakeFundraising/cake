@@ -99,12 +99,12 @@ class Campaign < ActiveRecord::Base
   end
 
   # Campaign pledges
-  def rank_levels
+  def rank_levels(pledges_status=:accepted)
     obj = self
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.accepted.total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
+          obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
         end 
       end
     end

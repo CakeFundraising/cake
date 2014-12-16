@@ -130,13 +130,17 @@ class PledgesController < InheritedResources::Base
   #Clicks
   def click
     if current_browser.present?
-      click = (resource.click_browsers.include?(current_browser) || resource.fully_subscribed?) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
+      if resource.active?
+        click = (resource.unique_click_browsers.include?(current_browser) || resource.fully_subscribed?) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
 
-      if click.save
-        click.pusherize
-        redirect_to resource.decorate.website_url 
+        if click.save
+          click.pusherize
+          redirect_to resource.decorate.website_url 
+        else
+          redirect_to resource, alert: click.errors.messages
+        end
       else
-        redirect_to resource, alert: click.errors.messages
+        redirect_to resource.decorate.website_url
       end
     else
       redirect_to resource, alert: 'There was an error when trying to count your click. Please try again.'

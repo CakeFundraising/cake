@@ -15,7 +15,7 @@ class CampaignsController < InheritedResources::Base
   def show
     @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
     @campaign = resource.decorate
-    @campaign.rank_levels
+    @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
   end
 
   def create
