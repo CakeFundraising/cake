@@ -157,7 +157,7 @@ en:
     campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> Visit our Sponsors below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
     pledge:
-      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will donate %{donation_per_click} up to %{total_donation}!!"
+      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will contribute %{donation_per_click} up to %{total_donation}!!"
     wizards:
       campaign:
 
