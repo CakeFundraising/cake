@@ -3,14 +3,14 @@
     hr
     .row
       .col-xs-12.text-center.extra-donation
-        h2 Extra donation pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
-        h4 #{"(Simply use the coupon below and the Sponsor will make an extra donation)"}
+        h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
+        h4 #{"(Simply use the coupon below and the Sponsor will make an extra contribution)"}
   .col-xs-1
   .col-xs-10.coupon
     .row
       .col-md-4
         - if coupon.extra_donation_pledge
-          div.label.label-purple Extra Donation
+          div.label.label-purple Extra Contribution
         = coupon.picture.avatar
         .coupon-edge
       .col-md-6
