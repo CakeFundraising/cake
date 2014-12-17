@@ -1,0 +1,14 @@
+#how_it_works.modal.fade.video_modal
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h2.modal-title How it works?
+      .modal-body
+        iframe id="youtube_video" title="How it works" width="100%" height="500px" src="//www.youtube.com/embed/_zEtobIg5W8" frameborder="0"
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
+
+javascript:
+  $(document).ready(Cake.videos.restartOnModalHidden("#how_it_works"));

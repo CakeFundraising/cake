@@ -4,8 +4,8 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span
-        = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+      span = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
   .container
@@ -21,7 +21,7 @@
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
       .col-md-4.sidebar
-        .sidebar-bkg.no-border
+        .sidebar-bkg.campaign-sidebar.no-border
           .row
             .col-xs-12
               p.timer-ital Campaign Ends In:
@@ -40,7 +40,6 @@
             .col-md-12.pledges_total
               span Total Donations Earned: 
               span.boldest.raised = @campaign.raised
-          /br
           hr
           .row
             .col-md-12
@@ -53,9 +52,6 @@
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
-                /span.pull-right Goal
-                /span.boldest.pull-right = @campaign.goal
-                /| Goal
           .row
             - if current_user.present?
               - unless @campaign.past? 
@@ -65,9 +61,33 @@
             - else
               .col-md-12.text-center
                 .main-cta
-                  a.btn.btn-success.btn-xl href='#sponsors_banner' Visit our Sponsors Below!
+                  a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How it Works
+                  = render partial:'layouts/how_it_works_modal'
 
-  .white
+= content_for :bottom_section do
+  .main-background
+    - if @campaign.accepted_pledges.any?
+      .green
+        .container
+          .row.pledgebluestripe.campaign#sponsors_banner
+            .col-md-12.text-center
+              span.h1 
+                span Click on every Sponsor and 
+                span.boldest #{@campaign.fundraiser} 
+                span will earn a total of 
+                span.boldest #{@campaign.total_donation_per_click}!
+    .white
+      .container
+        .row
+          = render partial:'campaigns/show/pledges/pledges_section'
+    
+    .green
+      .container
+        .row.pledgebluestripe.campaign#sponsors_banner
+          .col-md-12.text-center
+            span.h1 
+              span Learn More About 
+              span.boldest = @campaign.fundraiser
     .container
       .row.sponsor-profile
         .col-md-4.col-md-push-8
@@ -77,38 +97,29 @@
                 = @campaign.picture.avatar
             .avatar-content
               .caption = @campaign.avatar_caption
-              .fundraiser-info.text-center
+              .fundraiser-name.text-center
                 h4 = auto_link @campaign.fundraiser
         .col-md-8.col-md-pull-4.campaign-story
           h3 = @campaign.headline
           p.story.expander = @campaign.story
 
-= content_for :bottom_section do
-  .green
     .container
-      .row.pledgebluestripe.campaign#sponsors_banner
+      .row
         .col-md-12.text-center
-          span.h1 
-            span YOU CLICK AND OUR SPONSORS PAY! 
-            span.second IT'S 100% FREE TO YOU!
-  .container
-    = render partial:'campaigns/show/pledges/pledges_section'
-    .row
-      .col-md-12.text-center
-        .make-pledge.well
-          .row
-            .col-md-8
-              h4.attention-owners
-                b> Attention Business Owners!
-                | Support us and reach new customers! 
-            .col-md-4
-              = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
-  
-    = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-    .text-center.med-hide = render partial:'layouts/share_buttons'
-    br
+          .make-pledge.well
+            .row
+              .col-md-8
+                h4.attention-owners
+                  b> Attention Business Owners!
+                  | Support us and reach new customers! 
+              .col-md-4
+                = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
     
-  = render partial: 'layouts/choose_path' unless current_user.present?
+      = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+      .text-center.med-hide = render partial:'layouts/share_buttons'
+      br
+      
+    = render partial: 'layouts/choose_path' unless current_user.present?
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 

@@ -4,7 +4,7 @@
   .col-md-2.col-md-push-10
     = link_to 'View Profile', @fundraiser, class:'btn btn-primary pull-right' 
   .col-md-10.col-md-pull-2  
-    h1 Edit #{Fundraiser.model_name.human} Profile
+    h1 Edit Cause Profile
 
 = semantic_form_for @fundraiser do |f|
   = f.semantic_errors *f.object.errors.keys
@@ -15,7 +15,7 @@
       .col-md-4
         = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
     .row.section-wrapper
-      h4 Fundraiser Information
+      h4 Cause Information
       .col-md-4
         = f.input :name
         = f.input :email
@@ -44,7 +44,7 @@
       .col-md-3
         = f.input :pinterest_subscribers, as: :select, collection: Fundraiser::SUBSCRIBER_RANGES
     .row.section-wrapper
-      h4 Fundraiser Mission and Causes
+      h4 Our Mission
       .col-md-6       
         = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
       .col-md-6
