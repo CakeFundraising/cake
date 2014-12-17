@@ -2,7 +2,7 @@ hr
 #disqus_thread
 
 javascript:
-  var disqus_shortname = 'bismarktest'; 
+  var disqus_shortname = "#{Cake::DISQUS_SHORTNAME}"; 
   var disqus_identifier = "campaign_#{@campaign.id}";
   var disqus_title = "#{@campaign} Campaign";
   var disqus_url = "#{campaign_url(@campaign)}";
