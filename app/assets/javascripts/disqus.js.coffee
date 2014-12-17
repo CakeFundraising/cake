@@ -1,6 +1,6 @@
 Cake.disqus ?= {}
 
-Cake.disqus.init = (disqus_shortname, disqus_identifier, disqus_title, disqus_url) ->
+Cake.disqus.init = (disqus_shortname, disqus_identifier, disqus_title, disqus_url, disqus_category_id) ->
   if window.dsq
     DISQUS.reset
       reload: true

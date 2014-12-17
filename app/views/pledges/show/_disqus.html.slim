@@ -3,10 +3,10 @@ hr
 
 javascript:
   var disqus_shortname = "#{Cake::DISQUS_SHORTNAME}"; 
-  var disqus_identifier = "campaign_#{@campaign.id}";
-  var disqus_title = "#{@campaign} Campaign";
-  var disqus_url = "#{campaign_url(@campaign)}";
-  var disqus_category_id = "#{Cake::DISQUS_CAMPAIGNS_CATEGORY_ID}";
+  var disqus_identifier = "pledge_#{@pledge.id}";
+  var disqus_title = "#{@pledge} Pledge";
+  var disqus_url = "#{pledge_url(@pledge)}";
+  var disqus_category_id = "#{Cake::DISQUS_PLEDGES_CATEGORY_ID}";
 
   Cake.disqus.init(disqus_shortname, disqus_identifier, disqus_title, disqus_url, disqus_category_id);
 
