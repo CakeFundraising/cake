@@ -13,9 +13,13 @@ class CampaignsController < InheritedResources::Base
   include PastResource
 
   def show
-    @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
     @campaign = resource.decorate
-    @campaign.rank_levels
+    @custom_pledge_levels = @campaign.custom_pledge_levels
+
+    if @custom_pledge_levels
+      @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
+      @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
+    end
   end
 
   def create

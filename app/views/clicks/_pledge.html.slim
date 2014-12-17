@@ -5,7 +5,7 @@
     div.text-center
       .main-cta
         - if current_browser.present?
-          - if pledge.click_browser_exists?(current_browser) #Bonus Click
+          - if pledge.unique_click_for_browser?(current_browser) #Bonus Click
             = link_to 'Thanks! Visit our Website Again!', click_pledge_path(pledge), target: :_blank, class:'btn btn-success btn-xl'
           - else
             .click_buttons_section

@@ -27,13 +27,13 @@
               br
           .social.med-hide
             = render partial:'layouts/share_buttons'
-            h4.share-info.pull-left Please share our Campaign!
+            h4.share-info.pull-left Please share our Profile!
       .col-md-4.sidebar
         .sidebar-bkg.no-border
           .row.text-center
             .col-xs-6.border-right
               p.donation-stats = @fundraiser.total_raised
-              p = Fundraiser.human_attribute_name :total_raised
+              p = Fundraiser.human_attribute_name :total_earnings
             .col-xs-6
               p.donation-stats = @fundraiser.rank
               p = Fundraiser.human_attribute_name :rank
@@ -62,10 +62,10 @@
                 p = t('semantic.average', model: 'Total Pledges/Campaigns')
               td 
                 p.summery-stats = @fundraiser.average_donation
-                p = t('semantic.average', model: 'Total Donation/Campaigns')
+                p = t('semantic.average', model: 'Earned/Campaigns')
               td 
                 p.summery-stats = @fundraiser.average_donation_per_click
-                p = t('semantic.average', model: 'Donation/Click')
+                p = t('semantic.average', model: 'Cost/Click')
             tr
               td
                 p.summery-stats = @fundraiser.average_pledges_per_campaign
@@ -159,7 +159,7 @@
             = @fundraiser.picture.avatar
         .avatar-content
           .caption = @fundraiser.avatar_caption
-          h4 #{Fundraiser.model_name.human} Profile
+          h4 Cause Profile
           .boldest.init-caps = Fundraiser.human_attribute_name :manager_name
           div #{@fundraiser.manager_name}, #{@fundraiser.manager_title}
           hr

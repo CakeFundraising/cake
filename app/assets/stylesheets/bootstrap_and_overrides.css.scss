@@ -69,6 +69,14 @@ footer {
   }
 }
 
+.addthis_toolbox{
+  .at_a11y, .addthis_follow_label{
+    display:none;
+  }
+}
+
+
+
 //Typography ----------------------------------------------------------------------------
 
 h1{
@@ -134,7 +142,7 @@ hr{
 }
 
 .navbar-form{
-  margin-left: 35px;
+  margin-left: 10px;
   border-left: 1px solid #000000;
   padding-left: 30px;
 }
@@ -144,7 +152,10 @@ hr{
   padding-left: 0px;*/
 }
 .navbar-brand {
-  padding-top: 17px;
+  padding-top: 13px;
+  img{
+    width:250px;
+  }
 }
 .user-logged-in {
   span {
@@ -472,8 +483,8 @@ hr{
   .navbar-brand {
     padding-top: 8px;
     img{
-      height: 35px;
-      padding-top: 3px;
+      width: 200px;
+      padding-top: 0px;
     }
   }
   .btn-signup.btn-success{
@@ -1233,9 +1244,8 @@ h2 {
   @include background-size(cover);
   background-position: 50% 0px;
   .alert-dismissable {
-    font-size: 2em;
+    font-size: 2.2em;
     background: rgba(8, 193, 220, 0.75);
-    /*padding: 20px 100px 20px 100px;*/
   }
   .green-bkg{
     background: rgba(182, 203, 64, 0.75);
@@ -1252,7 +1262,10 @@ h2 {
 }
 
 .pull-up {
-  margin-top: -300px;
+  margin-top: -315px;
+  &.pull-up-pledge{
+    margin-top: -336px;
+  }
 }
 
 .pull-left {
@@ -1282,6 +1295,7 @@ h1.name {
     .edit {
       font-size: 16px;
       margin-left: 5px;
+      margin-top: 5px;
     }
   }
   .social {
@@ -1315,6 +1329,7 @@ h1.name {
 .sidebar{
   p {
     margin:0px;
+    text-transform: capitalize;
   }
 }
 
@@ -1334,6 +1349,9 @@ h1.name {
     margin-top:10px;  
     margin-bottom:10px;  
   }
+  &.campaign-sidebar{
+    margin-bottom: 0px;
+  }
 }
 
 
@@ -1345,7 +1363,7 @@ h1.name {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: .8em;
+  word-break: break-word;
 }
 
 address {
@@ -1357,7 +1375,7 @@ address {
 .sponsor-profile {
   margin-top: 0px;
   margin-bottom: 30px;
-  background-color:#fff;
+  /*background-color:#fff;*/
   @media (max-width: $screen-md-min) {
     td {
       display:block;
@@ -1429,6 +1447,9 @@ table.performance-summary {
   background-color:#fff;
   margin-top: -25px;
   padding-top: 25px;
+}
+.main-background{
+  background-color: $main-background;
 }
 .pointer {
   background: image-url("pointer.png") no-repeat;
@@ -1516,7 +1537,7 @@ table.performance-summary {
 }
 .sidebar-bkg-2 {
   padding: 0 15px;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 .shake-wrap {
   position: relative;
@@ -1587,8 +1608,7 @@ table.performance-summary {
 
 .pledgebluestripe {
   &.campaign{
-    padding: 30px 5px;
-    /*height: 140px;*/
+    padding: 18px 5px;
     h1{
       position: absolute;
       padding: 15px 0px;
@@ -1598,6 +1618,7 @@ table.performance-summary {
     }
     .h1{
       letter-spacing: -1px;
+      line-height: 1.3em;
       span.second{
         margin-left: 10px;
       }
@@ -2006,9 +2027,26 @@ a {
       a.expand{
         background: rgba(8, 193, 220, 0.5);
         opacity: 1;
-        padding-top:25%;
+        padding-top: 15%;
+        padding-left: 10px;
+        padding-right: 10px;
+        .thanks{
+          margin-bottom: 15px;
+          font-size: 36px;
+        }
       }
       a.expand-md{
+        padding-top: 10%;
+        .thanks{
+          font-size: 32px;
+        }
+      }
+      a.expand-sm{
+        padding-top: 10%;
+        .thanks{
+          font-size: 20px;
+          margin-bottom: 8px;
+        }
       }
     }
     a.expand {
@@ -2023,20 +2061,36 @@ a {
       transition: all 0.5s;
     }
   }
+  // Green overlay
   .overlay-img.hover .effect-overlay,
   .overlay-img:hover .effect-overlay{
     opacity: 1;
     a.expand {
-      padding-top:25%;
+      // Top Level
+      padding-top:18%;
       opacity: 1;
+      .click_to_help{
+        font-size: 36px;
+        margin-bottom: 15px; 
+      }
+      // Medium Level
       &.expand-sm{
         @media (min-width: $screen-md-min) {
-          padding-top:20%;
+          padding-top:18%;
+          .click_to_help{
+            font-size: 20px;
+            margin-bottom: 10px; 
+          }
         }
       }
+      // Lowest Level
       &.expand-md{
         @media (min-width: $screen-md-min) {
-          padding-top:20%;
+          padding-top:18%;
+          .click_to_help{
+            font-size: 32px;
+            margin-bottom: 12px; 
+          }
         }
       }
     }
@@ -2054,8 +2108,8 @@ a {
 
 .pledges_total {
   font-size: 18px;
-  padding-top: 8px;
-  padding-bottom: 7px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .levels {
@@ -2144,10 +2198,10 @@ a {
       color: #08c1dc;
     }
   }
-  .label-info{
+  .label-purple{
     position:absolute;
     padding:10px;
-    margin: -5px;
+    margin: -7px;
   }
   img {
     width: 100%;
@@ -3259,7 +3313,6 @@ ul#share-block {
   margin:0px;
   span{
     max-width: 1100px;
-    display: block;
     text-align: center;
     margin: auto;
   }
@@ -3626,7 +3679,7 @@ ul#share-block {
 .banner-content{
   /*text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);*/
   text-align: left;
-  min-height:180px;
+  min-height:188px;
   width: 70%;
   padding-left: 35px;
   padding-right: 35px;
@@ -3647,21 +3700,29 @@ ul#share-block {
     }
     h3{
       font-size: 18px !important;
+    }
+  }
 
+  @media (max-width: $screen-sm-min) {
+    h1{
+      font-size: 26px !important;
+    }
+    h3{
+      font-size: 18px !important;
     }
   }
 
   h1{
     font-family: "museo_sans700", Helvetica, Arial, sans-serif;
-    font-size: 38px;
-    margin-top:30px;
-    margin-bottom:5px;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
   h3{
     color:white;
     margin-top: 0px;
     margin-bottom: 10px;
-    font-size: 22px;
+    font-size: 20px;
   }
   .banner-container{
     margin-left:30px;
@@ -3687,7 +3748,7 @@ ul#share-block {
   position: absolute;
   pointer-events: none;
   border-left-color: rgba(8, 193, 220, 0.9);
-  border-width: 90px;
+  border-width: 94px;
   top: 0;
   @media (max-width: $screen-md-min) {
     display:none;
@@ -3703,7 +3764,7 @@ ul#share-block {
   position: absolute;
   pointer-events: none;
   border-left-color: rgba(182, 203, 64, .9);
-  border-width: 90px;
+  border-width: 94px;
   top: 0;
   @media (max-width: $screen-md-min) {
     display:none;
@@ -3718,6 +3779,21 @@ ul#share-block {
   width: 100%;
   float: left;
   display: block;
+
+  .main-banner{
+    span{
+      display: block;
+    }
+    h1{
+      font-size: 38px;
+      margin-top: 45px;
+      text-shadow: 0px 0px 20px $gray;
+    }
+    h3{
+      color: white;
+      margin-top:10px;
+    }
+  }
   
   .slide1, .slide2, .slide3{
     height:500px;
@@ -3744,5 +3820,24 @@ ul#share-block {
   padding: 7px;
 }
 
+.label-overlapped-container{
+  position: relative;
+}
 
-
+.label-purple{
+  background-color: $brand-purple;
+  &.overlapped{
+    position: absolute;
+    left: 5px;
+    &.big{
+      top: -20%;
+    }
+    &.md{
+      top: -25%;
+    }
+    &.sm{
+      top: -16px;
+      left: -6px;
+    }
+  }
+}

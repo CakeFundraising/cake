@@ -6,18 +6,18 @@
 
 .header.text-center
   h1 Let's Get Started!
-  p.text-muted Thanks for signing up. Now, let start your first steps on CakeFundraising.
+  p.text-muted Thanks for signing up. Now, let start your first steps on CakeCauseMarketing.
 
 .row.choose-role 
   .col-md-6.divider-vert
     .fundraisers-cir
-      h2 Fundraisers,
-      p create your free "donation-per-click" campaign today!
+      h2 Causes,
+      p create your free "pay-per-click" campaign today!
       = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
   .col-md-6
     .sponsors-cir
       h2 Sponsors,
-      p support great causes on a risk free "donation-per-click" basis
+      p support great causes on a risk free "pay-per-click" basis
       = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
 .row
   .col-md-12.text-center

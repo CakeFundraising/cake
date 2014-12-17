@@ -183,7 +183,7 @@ describe PledgesController do
       end
 
       it "current_browser should not be present in pledge's click_browsers" do
-        expect( pledge.click_browsers ).not_to include( @current_browser )
+        expect( pledge.unique_click_browsers ).not_to include( @current_browser )
       end
 
       it "should create a unique click" do
@@ -210,7 +210,7 @@ describe PledgesController do
       end
 
       it "current_browser should be present in pledge's click_browsers" do
-        expect( pledge.click_browsers ).to include( @current_browser )
+        expect( pledge.unique_click_browsers ).to include( @current_browser )
       end
 
       it "should create a bonus click" do
@@ -239,7 +239,7 @@ describe PledgesController do
       let(:click_request) { get :click, id: @fully_pledge }
 
       it "current_browser should not be present in pledge's click_browsers" do
-        expect( @fully_pledge.click_browsers ).not_to include( @current_browser )
+        expect( @fully_pledge.unique_click_browsers ).not_to include( @current_browser )
       end
 
       it "should create a bonus click" do
