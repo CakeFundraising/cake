@@ -39,23 +39,6 @@ html lang="en"
       Cake.pusher.appKey = "#{Pusher.key}"
 
   body.fixed
-    / TEMPORARY UNTIL THIS IS MADE DYNAMIC
-    /javascript:
-    /  var addthis_share = addthis_share || {}
-    /  addthis_share = {
-    /    url_transforms : {
-    /          shorten: {
-    /            twitter: 'bitly'
-    /          }
-    /      }, 
-    /    shorteners : {
-    /      bitly : {} 
-    /    },
-    /    templates: { 
-    /      twitter: "Check out Cake Fundraising – 100% free fundraising for good causes! {{url}} via @cakefundraising"
-    /    }   
-    /  }
-
     = render partial: 'layouts/main_nav'
     = bootstrap_flash
     - if content_for? :header

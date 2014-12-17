@@ -110,6 +110,11 @@
     
   = render partial: 'layouts/choose_path' unless current_user.present?
 
+  .container
+    .row
+      .col-md-8
+        = render partial:'campaigns/show/disqus'
+
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
 css:
