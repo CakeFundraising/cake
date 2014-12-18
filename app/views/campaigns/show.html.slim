@@ -119,9 +119,11 @@
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
           .text-center.med-hide = render partial:'layouts/share_buttons'
 
+        / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
           = render partial:'campaigns/show/disqus'
 
+    / CAUSES/SPONSORS CIRCLES
     = render partial: 'layouts/choose_path'
 
 
