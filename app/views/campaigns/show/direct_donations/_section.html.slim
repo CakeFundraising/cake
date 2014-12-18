@@ -5,7 +5,6 @@
         .level-divide
           .center
             h2 Every Dollar Helps!
-            p.text-muted Contribute any amount to help this campaign
             = render partial:'direct_donations/form', locals:{campaign: campaign}
             
   - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
