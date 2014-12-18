@@ -74,13 +74,22 @@ class VimeoVideo extends Video
     return
 
 
-#Initialize Youtube API
+# Youtube API
 Cake.videos.youtubeApi = ->
   tag = document.createElement("script")
   tag.src = "https://www.youtube.com/iframe_api"
 
   firstScriptTag = document.getElementsByTagName("script")[0]
   firstScriptTag.parentNode.insertBefore tag, firstScriptTag
+  return
+
+Cake.videos.queueFunctions = (fn)->
+  Cake.videos.apiQueue ?= []
+  Cake.videos.apiQueue.push(fn)
+  return
+
+Cake.videos.ytApiReady = ->
+  fn() for fn in Cake.videos.apiQueue
   return
 
 #Init functions
