@@ -117,7 +117,10 @@
      
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-          .text-center.med-hide = render partial:'layouts/share_buttons'
+          .text-center.med-hide 
+            h2 Please share our campaign with your family and friends!
+            p.text-muted Working together, we can make a difference.
+            = render partial:'layouts/share_buttons'
 
         / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
