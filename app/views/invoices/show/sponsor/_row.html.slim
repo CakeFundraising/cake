@@ -12,22 +12,26 @@
       = invoice.clicks
     td data-title = (Invoice.human_attribute_name :bonus_clicks)
       = invoice.bonus_clicks_count
-    td data-title = (Invoice.human_attribute_name :donation_click)
-      = humanized_money_with_symbol invoice.click_donation
-    td data-title = (Invoice.human_attribute_name :due)
-      = humanized_money_with_symbol invoice.due
+    td data-title = (Invoice.human_attribute_name :amount_click)
+      = invoice.click_donation
+    td data-title = (Invoice.human_attribute_name :amount_due)
+      = invoice.due
     /td data-title = (Invoice.human_attribute_name :status)
     /  = invoice.status
-    - unless invoice.paid?
-      td.truncate.min-width
-        = invoice_pay_button(invoice)
+    td.truncate.min-width
+      = invoice_pay_button(invoice) unless invoice.paid?
+
+      a.btn.btn-success.btn-sm data-toggle="modal" data-target="#summary_#{invoice.object.id}" More 
+      = render partial:'invoices/show/invoice_summary', locals:{invoice: invoice, sponsor: true}
 
   tr.empty-tr
 
   - unless current_sponsor.decorate.stripe_customer?
     javascript:
-      $(".pay_button##{invoice.object.id}").off("click").click(function(e) {
+      $(".pay_button.invoice_#{invoice.object.id}").off("click").click(function(e) {
         e.preventDefault();
+
+        console.log('Hola')
         
         Cake.invoice_payment_handler.open({
           image: '#{invoice.campaign.picture.avatar}',

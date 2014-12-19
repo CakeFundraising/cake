@@ -48,7 +48,7 @@
                   td = invoice.due
 
             - if sponsor and invoice.due_to_pay?
-              p = link_to 'Pay Now', sponsor_billing_url, class:'btn btn-primary pull-right'
+              p = invoice_pay_button(invoice)
 
             br
             / FREE INFO
