@@ -1,0 +1,72 @@
+.modal.fade.invoice_summary_modal id="summary_#{invoice.object.id}"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        .modal-title
+          h3 Invoice #{invoice.id}
+          h4 Date: #{invoice.created_at}
+      .modal-body
+        / FUNDRAISER INFO
+        .row
+          .col-md-6
+            h4 = auto_link invoice.fundraiser
+            div = invoice.fundraiser.location
+          .col-md-6
+            h4 = auto_link invoice.campaign
+            div End Date: #{invoice.campaign.end_date}
+        br
+        / SPONSORS INFO
+        .row
+          .col-md-6
+            h4 = auto_link invoice.sponsor
+            div = invoice.sponsor.location
+          .col-md-6
+            div 
+              span Status: 
+              strong = invoice.status
+        hr
+        .row
+          .col-md-12
+            / PAYABLE INFO
+            table.table.table-hover.table-bordered.table-striped.data-table
+              thead
+                tr
+                  th Pledge Name
+                  th Cost/Unique Click 
+                  th Unique Clicks 
+                  th Pledge Amount 
+                  th Amount Due
+              tbody
+                tr
+                  td = auto_link invoice.pledge
+                  td = invoice.click_donation
+                  td = invoice.clicks
+                  td = invoice.pledge.total_amount
+                  td = invoice.due
+
+            - if sponsor and invoice.due_to_pay?
+              p = invoice_pay_button(invoice)
+
+            br
+            / FREE INFO
+            h4.free-bonus Free Bonus Clicks and Impressions
+            table.table.table-hover.table-bordered.table-striped
+              thead
+                tr
+                  th Bonus Clicks
+                  th Pledge Views 
+                  th Total Impressions
+              tbody
+                tr
+                  td = invoice.pledge.bonus_clicks_count
+                  td = invoice.pledge.impressions_count
+                  td = invoice.pledge.total_impressions
+
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button" Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

@@ -23,11 +23,10 @@
               th = Invoice.model_name.human
               th = Sponsor.model_name.human
               th = Invoice.human_attribute_name :unique_clicks
-              th = Invoice.human_attribute_name :bonus_clicks
-              th = Invoice.human_attribute_name :donation_click
-              th = Invoice.human_attribute_name :estimated_fees
-              th = Invoice.human_attribute_name :estimated_net_donation_earned
+              th = Invoice.human_attribute_name :amount_click
+              th = Invoice.human_attribute_name :amount_due
+              th = Invoice.human_attribute_name :gateway_fees
               th = Invoice.human_attribute_name :status
-              /th
+              th
           tbody
             = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.decorate, as: :invoice

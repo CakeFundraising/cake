@@ -3,6 +3,7 @@ class InvoiceNotification < AsyncMailer
 
   def new_invoice(invoice_id, user_id)
     @invoice = find_invoice(invoice_id).decorate
+    @pledge = @invoice.pledge
     @receiver = find_user(user_id).decorate
     mail(to: @receiver.email, subject: 'You have outstanding invoices.')  
   end

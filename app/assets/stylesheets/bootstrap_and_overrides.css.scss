@@ -3359,6 +3359,21 @@ ul#share-block {
     color: black;
   }
 }
+.invoice_summary_modal{
+  .modal-title{
+    h3{
+      margin-top: 0;
+    }
+  }
+  .modal-body{
+    padding: 20px;
+    margin: 0;
+    .free-bonus{
+      margin-bottom: 8px;
+      margin-top: 15px
+    }
+  }
+}
 
 // Images Cropping -------------------------------------------------------
 
