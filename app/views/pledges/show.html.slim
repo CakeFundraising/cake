@@ -97,16 +97,25 @@
       .row
         .coupons
           = render partial:'coupons/show/box', collection: @coupons, as: :coupon
-      /hr
     .row
-      = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
-      br
-      .text-center.med-hide
-        h2 Please share our pledge with your family and friends!
-        p.text-muted Working together, we can make a difference.
-        .text-center = render partial:'layouts/share_buttons'
+      .col-md-4.col-md-push-8.text-center
+        / DIRECT DONATION 
+        = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
+      .col-md-8.col-md-pull-4
+        / DISQUS COMMENTS
+        = render partial:'pledges/show/disqus'
+    .row
+      .col-md-12
+        / SHARE BUTTONS
+        .text-center.med-hide
+          h2 Please share our pledge with your family and friends!
+          p.text-muted Working together, we can make a difference.
+          .text-center = render partial:'layouts/share_buttons'
+
+  / CAUSES/SPONSORS CIRCLES        
   = render partial: 'layouts/choose_path'
-  = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
+
+= render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
 
 css:
   .hero{ background-image: url("#{@pledge.picture.banner_path}"); }

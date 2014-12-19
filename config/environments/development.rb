@@ -4,7 +4,7 @@ Cake::Application.configure do
   Pusher.app_id = '100062'
   Pusher.key    = '1b066386c4d59e4bd908'
   Pusher.secret = 'f2682fa6eb7689082bc7'
-  
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

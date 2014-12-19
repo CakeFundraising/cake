@@ -50,6 +50,7 @@
 //= require ./google_analytics
 //= require ./about
 //= require ./addthis
+//= require ./disqus
 //= require ./bootstrap_overrides
 //= require ./browsers
 //= require ./clicks

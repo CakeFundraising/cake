@@ -61,7 +61,7 @@
             - else
               .col-md-12.text-center
                 .main-cta
-                  a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How it Works
+                  a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How Cake Works
                   = render partial:'layouts/how_it_works_modal'
 
 = content_for :bottom_section do
@@ -105,21 +105,32 @@
 
     .container
       .row
-        .col-md-12.text-center
+        .col-md-4.col-md-push-8.text-center
+          / DIRECT DONATION 
+          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+
+          / MAKE A PLEDGE BANNER 
           .make-pledge.well
             .row
-              .col-md-8
+              .col-md-12s
                 h4.attention-owners
                   b> Attention Business Owners!
                   | Support us and reach new customers! 
-              .col-md-4
                 = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
-    
-      = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-      .text-center.med-hide = render partial:'layouts/share_buttons'
-      br
-      
-    = render partial: 'layouts/choose_path' unless current_user.present?
+        / DISQUS COMMENTS
+        .col-md-8.col-md-pull-4.campaign-story
+          = render partial:'campaigns/show/disqus'
+      .row
+        .col-md-12
+          / SHARE BUTTONS 
+          .text-center.med-hide 
+            h2 Please share our campaign with your family and friends!
+            p.text-muted Working together, we can make a difference.
+            = render partial:'layouts/share_buttons'
+
+    / CAUSES/SPONSORS CIRCLES
+    = render partial: 'layouts/choose_path'
+
 
 = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 

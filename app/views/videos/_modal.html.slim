@@ -41,9 +41,10 @@ javascript:
       youtube_init();
     }else{
       Cake.videos.youtubeApi();
+      if(provider === 'youtube') Cake.videos.queueFunctions(youtube_init);
 
       function onYouTubeIframeAPIReady(){
-        youtube_init();
+        Cake.videos.ytApiReady();
       }
     }
   }else{
