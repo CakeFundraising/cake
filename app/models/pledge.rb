@@ -194,6 +194,10 @@ class Pledge < ActiveRecord::Base
     (clicks_count/views_count)
   end
 
+  def total_impressions
+    views_count + bonus_clicks_count + clicks_count
+  end
+
   private
 
   def max_amount
