@@ -19,8 +19,4 @@
       .col-md-6
         = link_to 'See Our Pledge', pledge, target: :_blank, class:'btn btn-success btn-block'
       .col-md-6
-        - if pledge.coupons.any?
-          = link_to pledge_path(pledge, anchor: :coupons), target: :_blank, class:'btn btn-primary btn-block' do
-            - if pledge.coupons.extra_donation_pledges.any?
-              span.label.label-purple.overlapped.big Extra
-            span Special Offers
+        = pledge_offers_button(pledge)

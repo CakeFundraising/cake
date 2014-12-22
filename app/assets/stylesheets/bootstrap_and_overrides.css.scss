@@ -568,6 +568,15 @@ p.signup-social span:before, p.signup-social span:after {
   
 }
 
+.btn-purple{
+  background-color: #59368e;
+  border: 1px solid #4B2E76;
+  color: white;
+  &:hover{
+    color: white;
+  }
+}
+
 .search-query .form-control{
 	
 }
@@ -3855,4 +3864,8 @@ ul#share-block {
       left: -6px;
     }
   }
+}
+
+.padding-left-out{
+  padding-left: 0;
 }
