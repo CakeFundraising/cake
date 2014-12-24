@@ -73,8 +73,4 @@
           = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn ten-t checkbox-pill'}
         = cancel_pledge_link unless @pledge.new_record? or @pledge.accepted?
 
-javascript:
-  var input = $('.default-zero');
-  if(input.val() == "0.00")
-    input.val("");
 

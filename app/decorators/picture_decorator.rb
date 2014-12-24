@@ -25,7 +25,7 @@ class PictureDecorator < ApplicationDecorator
       options = {crop: :crop, width: object.qrcode_crop_w, height: object.qrcode_crop_h, x: object.qrcode_crop_x, y: object.qrcode_crop_y, class: 'img-thumbnail img-responsive img-loaded'}.merge options
       h.cl_image_tag(object.qrcode, options)
     else
-      h.image_tag 'placeholder.png', class: 'img-thumbnail img-responsive'
+      h.image_tag 'placeholder_transparent.png', class: 'img-thumbnail img-responsive'
     end
   end
 

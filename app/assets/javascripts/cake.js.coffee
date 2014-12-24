@@ -10,6 +10,7 @@ Cake.init = ->
   Cake.datepicker()
   Cake.limit_cocoon()
   Cake.locations()
+  Cake.placeholder_fix()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.hide_alert()

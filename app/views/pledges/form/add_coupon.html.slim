@@ -21,7 +21,7 @@
     .text-center
       h1 Add Coupons
       - unless @coupons.any?
-        p.text-muted Would you like to add a special offers and/or an extra donation to your pledge?
+        p.text-muted Would you like to add a special offers and/or an extra contribution consumer incentive to your pledge?
     .row
       .col-md-3
       .col-md-6
@@ -31,7 +31,7 @@
               - if @coupons.any?
                 = link_to 'Add another Coupon', new_coupon_path(pledge_id: @pledge), class:'btn btn-success'
               - else
-                = link_to 'Add a Coupon', new_coupon_path(pledge_id: @pledge), class:'btn btn-default'
+                = link_to 'Add a Coupon', new_coupon_path(pledge_id: @pledge), class:'btn btn-success'
             .col-md-2
               .vertical-divider 
                 span or
@@ -39,7 +39,7 @@
               - if @coupons.any?
                 = link_to 'Save & Continue', share_pledge_path(@pledge), class:'btn btn-primary'
               - else
-                = link_to 'No! Skip this step', share_pledge_path(@pledge), class:'btn btn-default'
+                = link_to 'No! Skip this step', share_pledge_path(@pledge), class:'btn btn-primary'
       .col-md-3
     .row
       .col-md-12
