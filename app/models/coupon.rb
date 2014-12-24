@@ -2,8 +2,6 @@ class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include Picturable
   
-  #attr_accessor :standard_terms
-
   belongs_to :pledge
   has_one :sponsor, through: :pledge
 
@@ -25,6 +23,10 @@ class Coupon < ActiveRecord::Base
 
   after_initialize do
     self.terms_conditions = I18n.t('application.terms_and_conditions.coupons')
+  end
+
+  after_create do
+    self.pledge.update_attribute(:show_coupons, true) unless self.pledge.show_coupons
   end
 
   searchable do

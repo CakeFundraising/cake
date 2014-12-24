@@ -85,7 +85,7 @@ class PledgesController < InheritedResources::Base
 
   def add_coupon
     @pledge = resource
-    @pledge.coupons.build unless @pledge.coupons.any?
+    @coupons = @pledge.coupons
     render 'pledges/form/add_coupon'
   end
 

@@ -34,11 +34,13 @@ Cake.validations.form_leaving = ->
     object_status = (Cake.campaigns.status || Cake.pledges.status).capitalize()
 
     form = $('.formtastic.pledge, .formtastic.campaign')
-    model_name = form.attr('class').replace('formtastic ', '')
 
-    form_invalid = ->
-      eval("Cake."+ model_name + "s.validation()")
-      return !form.valid()
+    if form.length > 0
+      model_name = form.attr('class').replace('formtastic ', '')
+
+      form_invalid = ->
+        eval("Cake."+ model_name + "s.validation()")
+        return !form.valid()
 
   if object_status is 'Incomplete' and form_invalid()
     message = "Are you sure you want to leave? \n Your changes will not be saved."

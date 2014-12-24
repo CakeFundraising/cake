@@ -18,48 +18,38 @@
 
 .tab-content.campaign-wizard-wrap
   #coupon.tab-pane.active
-    = semantic_form_for @pledge do |f|
-      = f.semantic_errors *f.object.errors.keys
-      = f.inputs do
-        .text-center
-          h1 Add a Coupons
-          p.text-muted Would you like to add a special offers and/or an extra donation to your pledge?
-        .row
-          .col-md-3
-          .col-md-6
-            .buttons.text-center
-              .toggle-container
-                .col-md-5
-                  button.btn#add_coupons Yes! I want to add coupons
-                .col-md-2
-                  .vertical-divider 
-                    span or
-                .col-md-5
-                  button.btn#no_coupons No! Skip this step
-                  .hidden
-                    = f.input :show_coupons, as: :boolean
-          .col-md-3
-        .row
-          .col-md-12
-            .coupons_section
-              = render partial:'coupons/index', locals:{pledge: @pledge}
-        
-        = f.input :step, as: :hidden, input_html:{value: :share}
-        .screenshot.hidden
-          = screenshot_tag_for @pledge
-          
-      .text-center
-        = f.actions do
-          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'} 
-          = cancel_pledge_link unless @pledge.accepted?
+    .text-center
+      h1 Add Coupons
+      - unless @coupons.any?
+        p.text-muted Would you like to add a special offers and/or an extra donation to your pledge?
+    .row
+      .col-md-3
+      .col-md-6
+        .buttons.text-center
+          .toggle-container
+            .col-md-5
+              - if @coupons.any?
+                = link_to 'Add another Coupon', new_coupon_path(pledge_id: @pledge), class:'btn btn-success'
+              - else
+                = link_to 'Add a Coupon', new_coupon_path(pledge_id: @pledge), class:'btn btn-default'
+            .col-md-2
+              .vertical-divider 
+                span or
+            .col-md-5
+              - if @coupons.any?
+                = link_to 'Save & Continue', share_pledge_path(@pledge), class:'btn btn-primary'
+              - else
+                = link_to 'No! Skip this step', share_pledge_path(@pledge), class:'btn btn-default'
+      .col-md-3
+    .row
+      .col-md-12
+        .coupons_section
+          = render partial:'coupons/index', locals:{pledge: @pledge} if @coupons.any?
 
-javascript:
-  $(document).ready(Cake.pledges.coupons_switcher);
-  $(document).on('page:load', Cake.pledges.coupons_switcher);
+    .row
+      = cancel_pledge_link unless @pledge.accepted?
 
-
-
-
+  br
 
 
 

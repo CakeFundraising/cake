@@ -1,4 +1,4 @@
-#coupons.row
-  = link_to 'Add Coupon', new_coupon_path(pledge_id: pledge), class:'btn btn-success pull-right'
-  hr
+hr
+
+#coupons.row-fluid
   = render partial:'coupons/show/box', collection: pledge.coupons.latest.decorate, as: :coupon, locals: {editable: true}

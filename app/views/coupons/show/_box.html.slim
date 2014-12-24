@@ -1,6 +1,5 @@
 .coupon_box.clearfix
   - if coupon.extra_donation_pledge
-    hr
     .row
       .col-xs-12.text-center.extra-donation
         h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }

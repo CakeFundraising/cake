@@ -1,13 +1,13 @@
 .nested-fields.coupon-outer-wrap
   = f.inputs do
     .row.section-wrapper.text-center
-      h2 Extra Donations?
-      p.text-muted Would you like to make an extra donation for this Coupon?
+      h2 Create an Extra Contribution Special Offer?
+      p.text-muted A Consumer who fullfills the terms you specify for an Extra Special Offer earns an additional contribution from you to the Cause.
       br
       .col-md-12.coupons-wrap
         .col-md-2
         .col-md-8
-          = f.input :extra_donation_pledge, label: 'Make an extra donation?', as: :boolean, input_html:{class:'extra_donation_pledge'}
+          = f.input :extra_donation_pledge, label: ' Create an Extra Contribution Special Offer', as: :boolean, input_html:{class:'extra_donation_pledge'}
           = render partial:'coupons/extra_donation_pledge_collapse', locals:{f: f}
         .col-md-2
     .row.section-wrapper.text-center
@@ -48,16 +48,15 @@
         = f.input :pledge_id, as: :hidden
       .col-md-2
     .row.section-wrapper.coupon-uploads.text-center
-      h2 Coupon Imagery
-      p.text-muted Upload a primary image for your coupon, then you can upload an optional second image to a QR code.
+      h2 Coupon Images
       br
       .col-md-2
       .col-sm-4
-        .coupon-images.pull-right
-          p Upload Coupon Image
+        .coupon-images
+          h5 Primary Image
           = render partial:'pictures/avatar_form', locals:{f: f}
       .col-sm-4
         .coupon-images
-          p Upload QR Code, Or A Second Image (Optional)
+          h5 Upload a QR Code or a second image (Optional)
           = render partial:'pictures/qrcode_form', locals:{f: f}
       .col-md-2
