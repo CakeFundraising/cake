@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'modernizr-rails'
+gem 'rack-zippy'
 
 #JS
 gem 'rails-timeago'
