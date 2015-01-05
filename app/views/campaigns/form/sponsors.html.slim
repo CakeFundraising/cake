@@ -18,16 +18,22 @@
     
 .tab-content.campaign-wizard-wrap
   #sponsors_donations.tab-pane.active
-    .row.text-center
-      .col-md-2
-      .col-md-8
-        h1 Set your Sponsorship Pledge levels
-        p.text-muted You can choose to have all sponsors appear on the same pledge level, or you can specify up to 3 pledge levels such as Gold, Silver and Bronze 
-      .col-md-2
-   
     = semantic_form_for @campaign do |f|
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
+        .row.section-wrapper.text-center
+          h1 Choose what to call your sponsors on your campaign page
+          br
+          .col-md-3
+          .col-md-6
+            = f.input :sponsor_alias, as: :select, collection: Campaign::SPONSOR_NAMES, input_html: {size: 1, class: 'dropdown'}, include_blank: false, label: false
+          .col-md-3
+        .row.text-center
+          .col-md-2
+          .col-md-8
+            h1 Set your Sponsorship Pledge levels
+            p.text-muted You can choose to have all sponsors appear on the same pledge level, or you can specify up to 3 pledge levels such as Gold, Silver and Bronze
+          .col-md-2
         .row.text-center
           .col-md-2
           .col-md-8
