@@ -5,11 +5,12 @@ class Campaign < ActiveRecord::Base
   include Analytics
   include Picturable
   include Screenshotable
+  include SponsorAlias
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
 
-  attr_accessor :step 
+  attr_accessor :step
 
   belongs_to :fundraiser
   

@@ -4,7 +4,7 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span = t('information.campaign.banner', fr: @campaign.fundraiser).html_safe
+      span = t('information.campaign.banner', {fr: @campaign.fundraiser, sp_name: @campaign.sponsor_alias}).html_safe
 
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
