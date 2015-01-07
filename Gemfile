@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.2.0'
 
-gem 'rails', '4.0.4'
-gem 'turbolinks'
+gem 'rails', '4.2.0'
+gem 'turbolinks', '~> 2.5.3'
 #gem 'jquery-turbolinks'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'metamagic'
@@ -12,13 +12,12 @@ gem 'metamagic'
 #gem 'google-analytics-rails'
 
 #Assets
-gem 'sass-rails', '~> 4.0.2'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
+gem 'sass-rails', '~> 5.0.1'
+gem 'uglifier', '~> 2.6.1'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'jquery-rails', '~> 4.0.3'
 gem 'therubyracer', platforms: :ruby
-gem 'modernizr-rails'
-gem 'rack-zippy'
+gem 'modernizr-rails', '~> 2.7.1'
 
 #JS
 gem 'rails-timeago'
@@ -66,7 +65,7 @@ group :development do
 end
 
 #Utils
-gem 'money-rails', '~> 0.12.0'
+gem 'money-rails', '~> 1.2.0'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
@@ -102,7 +101,8 @@ gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-stripe-connect'
 
 #Admin panel
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
 
 #Payments
 gem 'stripe-rails'
@@ -122,7 +122,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'callback_skipper'
-  gem 'debugger'
+  gem 'byebug'
 end
 
 group :test do
