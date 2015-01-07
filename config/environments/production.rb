@@ -55,7 +55,7 @@ Cake::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = ENV['CLOUDFRONT_ENDPOINT']
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -71,8 +71,6 @@ Cake::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-
-  config.static_cache_control = "public, max-age=3600"
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
