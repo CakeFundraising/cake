@@ -13,7 +13,7 @@ ActiveAdmin.register Invoice do
     column :due
     column :status
 
-    default_actions
+    actions
   end
 
   filter :id

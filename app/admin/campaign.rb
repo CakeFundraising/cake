@@ -11,7 +11,7 @@ ActiveAdmin.register Campaign do
     column 'Pledge Levels', :custom_pledge_levels
     column :average_pledge
 
-    default_actions
+    actions
   end
 
   show title: proc {|campaign| "Campaign: #{campaign.title}" } do |campaign|

@@ -13,7 +13,7 @@ ActiveAdmin.register User do
       user.roles.first.capitalize if user.roles.present?
     end
 
-    default_actions
+    actions
   end
 
   show do |user|
