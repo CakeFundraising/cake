@@ -22,7 +22,7 @@ class SponsorsController < InheritedResources::Base
         elsif cookies[:pledge_fundraiser].present?
           redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
         else
-          redirect_to sponsor_home_path, notice: 'Now you can start using CakeFundraising!'  
+          redirect_to sponsor_home_path, notice: 'Now you can start using Cake!'
         end
       end
     end

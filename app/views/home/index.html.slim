@@ -2,32 +2,33 @@
 
 = content_for :header do	
 	.banner.hero-home
-		.home
-			#cycler
-				.slide1.active
-					section.main-banner.text-center
-						h1.boldest Cake Cause Marketing
-						h3.boldest pay-it-forward marketing & philanthropy
-					.banner-content.primaryBanner
-						.banner-container
-							h1 Good Causes - partner with Sponsors & advance your mission!
-							h3
-								span.boldest earn 
-								span sponsorship revenues to do 
-								span.boldest good deeds
-							a.btn.btn-success.btn-md data-toggle='modal' data-target='#home_video_fr' See How It Works
-				.slide3
-					section.main-banner.text-center
-						h1.boldest Cake Cause Marketing
-						h3.boldest pay-it-forward marketing & philanthropy
-					.banner-content.secondaryBanner
-						.banner-container
-							h1 Business - pay-it-forward relationship marketing that works!
-							h3
-								span measurable 
-								span.boldest lead generation  
-								span and good will
-							a.btn.btn-primary.btn-md data-toggle='modal' data-target='#home_video_sp' See How It Works
+        .home
+            .hero-home
+                section.main-banner.text-center
+                    h1.boldest Introducing Cake pay-it-forward marketing & fundraising
+                .how_it_works
+                    a.btn.btn-success.btn-sm#how_it_works_btn data-toggle='collapse' data-target='#home_videos' See How It Works
+                .container.collapse#home_videos
+                    .row.vertical-align.wrap
+                        .own-line
+                            section.main-banner.text-center
+                                h3.boldest Cake Fundraising for any Good Cause
+                                .intro-video
+                                    a.btn data-toggle='modal' data-target='#home_video_fr'
+                                        img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
+                                        .center-play
+                                            img.play-btn src='/assets/play_video.png'/
+                        .own-line.learn-more
+                            section.main-banner.text-center
+                                .btn.btn-primary.btn-md.learn-more Learn More
+                        .own-line
+                            section.main-banner.text-center
+                                h3.boldest Cake Cause Marketing for Business
+                                .intro-video
+                                    a.btn data-toggle='modal' data-target='#home_video_sp'
+                                        img src='https://img.youtube.com/vi/XXr73V1eS9M/mqdefault.jpg'
+                                        .center-play
+                                            img.play-btn src='/assets/play_video.png'/
 		
 		= render partial:'home/home_video'
 			
@@ -65,7 +66,7 @@
 					.totals-centerd
 						h4 = global_raised
 						p.total-type RAISED
-			h3 Let your friends know that CakeFundraising is the best way to raise money online.
+			h3 Let your friends know that Cake is the best way to raise money online.
 			.share-block-wrap
 				/.text-center = render partial:'layouts/share_buttons'
 

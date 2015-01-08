@@ -154,7 +154,7 @@ hr{
 .navbar-brand {
   padding-top: 13px;
   img{
-    width:250px;
+    width:120px;
   }
 }
 .user-logged-in {
@@ -378,7 +378,7 @@ hr{
       margin-top: 20px;
     }
     .hero-home{
-      height:260px !important;
+      //height:260px !important;
       .slide1, .slide2, .slide3{
         height:260px !important;
       }
@@ -483,7 +483,7 @@ hr{
   .navbar-brand {
     padding-top: 8px;
     img{
-      width: 200px;
+      width: 90px;
       padding-top: 0px;
     }
   }
@@ -2532,14 +2532,101 @@ header {
 // Home Page Styles! ---------------------------------------
 
 .hero-home {
-  height:500px;
-  margin-bottom: 0;
   border:0px;
+  background-image: url('success-bkg.jpg');
+  overflow: hidden;
+  @media (max-width: 992px) {
+    padding-bottom: 2em;
+  }
   /*background-image: url('hero-home.jpg');
   background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
   */
+
+  h1 {
+    padding: 0 1em;
+  }
+  h3 {
+    padding-left: 1em;
+    color: #FFFFFF;
+  }
+
+  .row.vertical-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media(max-width: $screen-md-min){
+      flex-flow: column;
+    }
+  }
+
+  .how_it_works {
+    @media (max-width: 992px) {
+      padding: 2em;
+    }
+  }
+
+  #how_it_works_btn {
+    display: none;
+    @media (max-width: 992px) {
+      padding: 1em;
+      display: inline;
+    }
+  }
+
+  #home_videos {
+    @media (max-width: 992px) {
+      display: block;
+      height: 0px;
+      h3 {
+        padding-top: 1em;
+        padding-right: 1em;
+      }
+    }
+    @media (min-width: 993px) {
+      display: inline;
+    }
+  }
+
+  .wrap {
+    flex-wrap: wrap;
+  }
+
+  .own-line {
+    margin: auto;
+  }
+
+  .learn-more {
+    padding-top: 2em;
+  }
+
+  .intro-video {
+    position: relative;
+  }
+
+  .centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  a.btn {
+    position: relative;
+  }
+
+  .center-play {
+    position: absolute;
+    margin-left: -34px;
+    margin-top: -40px;
+    left: 50%;
+    top: 50%;
+  }
+
+  .play-btn {
+    position: absolute;
+    width: 5em;
+  }
 }
 
 .home {
