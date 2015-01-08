@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 shared_examples 'a FR object' do
   it "can be created by a fundraiser" do

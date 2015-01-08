@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Invoice do
   it { should belong_to(:pledge) }
@@ -9,11 +9,11 @@ describe Invoice do
   it { should have_one(:payment) }
 
   it "should monetize the due field" do 
-    monetize(:due_cents).should be_true
+    monetize(:due_cents).should be true
   end
 
   it "should monetize the click_donation field" do 
-    monetize(:click_donation_cents).should be_true
+    monetize(:click_donation_cents).should be true
   end
 
   it "should have statuses" do

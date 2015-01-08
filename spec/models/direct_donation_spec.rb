@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectDonation do
   it { should belong_to(:campaign) }
@@ -9,7 +9,7 @@ describe DirectDonation do
   it { should validate_presence_of(:email) }
   
   it "should monetize the amount field" do 
-    monetize(:amount_cents).should be_true
+    monetize(:amount_cents).should be true
   end
 
   describe "#store_transaction" do
@@ -26,7 +26,7 @@ describe DirectDonation do
     it "should store a copy of the stripe charge transaction" do
       @transaction.should be_instance_of(Charge)
       @transaction.kind.should == 'charge'
-      @transaction.paid.should be_true
+      @transaction.paid.should be true
       @transaction.amount.should == @direct_donation.amount
       @transaction.total_fee_cents.should be_within(1).of((@direct_donation.amount_cents*(0.029+Cake::APPLICATION_FEE)).ceil + 30)
     end

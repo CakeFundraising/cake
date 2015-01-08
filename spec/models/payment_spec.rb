@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Payment do
   it { should validate_presence_of(:kind) }
@@ -15,7 +15,7 @@ describe Payment do
   it { should have_many(:transfers) }
 
   it "should monetize the total field" do 
-    monetize(:total_cents).should be_true
+    monetize(:total_cents).should be true
   end
 
   it "should have statuses" do
@@ -67,7 +67,7 @@ describe Payment do
     it "should store a copy of the stripe charge transaction" do
       @transaction.should be_instance_of(Charge)
       @transaction.kind.should == 'charge'
-      @transaction.paid.should be_true
+      @transaction.paid.should be true
       @transaction.amount.should == @payment.total
     end
   end

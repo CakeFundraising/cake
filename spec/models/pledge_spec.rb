@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Pledge do
   it { should validate_presence_of(:campaign) }
@@ -184,8 +184,8 @@ describe Pledge do
     context 'Click Action' do
       it "should store a unique click if the user has not clicked before" do
         click = FactoryGirl.build(:click, pledge: @pledge, browser: @browser)
-        expect( click.save ).to be_true
-        expect( click.bonus ).to be_false
+        expect( click.save ).to be true
+        expect( click.bonus ).to be false
       end
 
       it "should store a unique click when the click is in another pledge" do
@@ -194,8 +194,8 @@ describe Pledge do
         pledge = FactoryGirl.create(:not_clicked_pledge)  
         click = FactoryGirl.build(:click, pledge: pledge, browser: @browser)
         
-        expect( click.save ).to be_true
-        expect( click.bonus ).to be_false
+        expect( click.save ).to be true
+        expect( click.bonus ).to be false
       end
 
       it "should store a bonus click if the user has clicked before in that pledge" do
@@ -203,8 +203,8 @@ describe Pledge do
 
         click = FactoryGirl.build(:bonus_click, pledge: @pledge, browser: @browser)
 
-        expect( click.save ).to be_true
-        expect( click.bonus ).to be_true
+        expect( click.save ).to be true
+        expect( click.bonus ).to be true
       end
     end
 
@@ -213,14 +213,14 @@ describe Pledge do
         clicks = create_list(:click, @pledge.max_clicks - 1, pledge: @pledge)
         click = FactoryGirl.create(:click, pledge: @pledge) 
 
-        expect( click.bonus ).to be_false
+        expect( click.bonus ).to be false
       end
 
       it "should store a bonus click if the pledge is fully subscribed" do
         clicks = create_list(:click, @pledge.max_clicks, pledge: @pledge)
         click = FactoryGirl.create(:bonus_click, pledge: @pledge) 
 
-        expect( click.bonus ).to be_true
+        expect( click.bonus ).to be true
       end
     end
 
@@ -228,12 +228,12 @@ describe Pledge do
       describe "#fully_subscribed?" do
         it "should return true when the pledge reaches the total amount" do
           @pledge.stub(:clicks_count){ @pledge.max_clicks }
-          expect( @pledge.fully_subscribed? ).to be_true
+          expect( @pledge.fully_subscribed? ).to be true
         end
 
         it "should return false when the pledge has not reached the total amount" do
           @pledge.stub(:clicks_count){ @pledge.max_clicks - 1 }
-          expect( @pledge.fully_subscribed? ).to be_false
+          expect( @pledge.fully_subscribed? ).to be false
         end
       end
 
@@ -244,14 +244,14 @@ describe Pledge do
           another_browser = FactoryGirl.create(:browser)
           another_click = FactoryGirl.build(:click, browser: another_browser)
 
-          expect( @pledge.click_exists?(another_click) ).to be_false
+          expect( @pledge.click_exists?(another_click) ).to be false
         end
 
         it "should return true if the pledge has the same click than the given one" do
           click = FactoryGirl.create(:click, pledge: @pledge, browser: @browser)
           another_click = FactoryGirl.build(:click, browser: @browser)
 
-          expect( @pledge.click_exists?(another_click) ).to be_true
+          expect( @pledge.click_exists?(another_click) ).to be true
         end
       end
     end

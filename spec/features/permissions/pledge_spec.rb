@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Pledge Permissions' do
   given(:sponsor){ FactoryGirl.create(:sponsor) }

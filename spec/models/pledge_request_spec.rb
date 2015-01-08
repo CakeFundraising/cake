@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PledgeRequest do
   it { should belong_to(:sponsor) }

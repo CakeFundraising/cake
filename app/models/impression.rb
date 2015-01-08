@@ -14,6 +14,6 @@ class Impression < ActiveRecord::Base
   private
 
   def unique_impression
-    errors.add(:impressions, "Impression already tracked.") if impressionable.present? and impressionable.impressions.exists?(self)
+    errors.add(:impressions, "Impression already tracked.") if impressionable.present? and impressionable.impressions.exists?(self.id)
   end
 end
