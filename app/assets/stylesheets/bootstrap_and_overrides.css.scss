@@ -2548,7 +2548,6 @@ header {
     padding: 0 1em;
   }
   h3 {
-    padding-left: 1em;
     color: #FFFFFF;
   }
 
@@ -2593,12 +2592,11 @@ header {
     flex-wrap: wrap;
   }
 
-  .own-line {
-    margin: auto;
-  }
-
   .learn-more {
-    padding-top: 2em;
+    padding-top: 3em;
+    @media (min-width: 993px) {
+      padding-right: 1.2em;
+    }
   }
 
   .intro-video {
