@@ -2548,7 +2548,7 @@ header {
     padding: 0 1em;
   }
   h3 {
-    padding: 1em;
+    padding-left: 1em;
     color: #FFFFFF;
   }
 
@@ -2581,6 +2581,7 @@ header {
       height: 0px;
       h3 {
         padding-top: 1em;
+        padding-right: 1em;
       }
     }
     @media (min-width: 993px) {
