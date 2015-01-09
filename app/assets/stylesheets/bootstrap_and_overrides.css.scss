@@ -2449,7 +2449,7 @@ header {
   background-image: url('success-bkg.jpg');
   overflow: hidden;
   @media (max-width: 992px) {
-    padding-bottom: 2em;
+    padding-bottom: 1em;
   }
   /*background-image: url('hero-home.jpg');
   background-size: 100% auto;
@@ -2462,6 +2462,7 @@ header {
   }
   h3 {
     color: #FFFFFF;
+    padding-bottom: 1em;
   }
 
   .row.vertical-align {
@@ -2492,13 +2493,19 @@ header {
       display: block;
       height: 0px;
       h3 {
-        padding-top: 1em;
-        padding-right: 1em;
+        padding: 0 1em 0 1em;
       }
     }
     @media (min-width: 993px) {
       display: inline;
+      h3 {
+        margin: 0 -2em 0 -2em;
+      }
     }
+  }
+
+  #intro_video {
+    width: 346px;
   }
 
   .wrap {
@@ -2506,14 +2513,10 @@ header {
   }
 
   .learn-more {
-    padding-top: 3em;
+    padding: 3em 0 2em 0;
     @media (min-width: 993px) {
-      padding-right: 1.2em;
+      padding: 0 2em 0 2em;
     }
-  }
-
-  .intro-video {
-    position: relative;
   }
 
   .centered {
