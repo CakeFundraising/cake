@@ -241,29 +241,6 @@ hr{
   margin-top: 13px !important;
 }
 
-/*.logged-out {
-  .navbar-header {
-    float:left !important;
-  }
-  .navbar-brand{
-    padding: 8px 3px;
-  }
-  .navbar-right {
-    float: right !important;
-  }
-  .navbar-text{
-    float:left;
-  }
-  .navbar-nav li {
-    float:left;
-  }
-
-  .nav > li > a{
-    padding: 10px 5px;
-    margin-top: 6px;
-  }
-}*/
-
 .btn-signup {
   margin: 4px 0px 0px 10px !important;
   padding: 10px 20px !important;
@@ -275,13 +252,6 @@ hr{
 }
 
 @media (max-width: 420px){
-  /*#main-container, .hero-home{
-    margin-top:50px;
-  }
-  .alert{
-    position: absolute;
-    margin: 60px 20px;
-  }*/
   #main-container {
     margin-bottom: 35px;
     margin-left: auto;
@@ -304,17 +274,11 @@ hr{
     margin-top:10px;
   }
 
-  .container{
-    /*padding-left: 0px;
-    padding-right: 0px;*/
-  }
   .popular > li > a{
     min-width:90px !important;
   }
   
   .navbar{
-    /*position: fixed;
-    top: 0px;*/
     z-index: 1000;
     width: 100%;
   }
@@ -325,7 +289,6 @@ hr{
     font-size: 11px;
     a{
       padding: 9px 7px !important;
-      /*min-width:115px !important;*/
     }
   }
 
@@ -356,15 +319,6 @@ hr{
 }
 
 @media (max-width: 620px){
-    .navbar-default{
-      .container{
-        /*padding-left:0px;
-        padding-right:0px;*/
-      }
-    }
-    .btn-success{
-      /*margin-bottom: 15px !important;*/
-    }
     .navbar-text{
       display:none;
     }
@@ -378,7 +332,6 @@ hr{
       margin-top: 20px;
     }
     .hero-home{
-      //height:260px !important;
       .slide1, .slide2, .slide3{
         height:260px !important;
       }
@@ -403,42 +356,9 @@ hr{
       content: "Coupons";
     }
 
-    .navbar-collapse{
-      /*margin-left: 0px !important;
-      margin-right: 0px !important;
-
-      background-color: white;
-      padding: 0px 10px;*/
-    }
     #main-container{
 
     }
-    /*.bottom_section{
-      .container{
-        padding:0px !important;
-      }
-    }
-    .circle-campaign{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .circle-sp{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .circle-raised{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .easy-band{
-      padding-left: 10px !important;
-      padding-right: 10px !important;
-      .center{
-        padding:0px !important;
-        margin: 0px !important;
-      }
-    }
-    */
     .rank-rows{
       .boldest{
         display:block !important;
@@ -471,12 +391,6 @@ hr{
     .pad-top{
       margin-top: 15px !important;
     }
-    .section-wrapper{
-      /*padding: 25px 25px 35px !important;*/
-    }
-    .account-wrapper{
-      /*padding: 35px 25px 30px !important;*/
-    }
 }
 
 @media (max-width: 767px){
@@ -489,9 +403,6 @@ hr{
   }
   .btn-signup.btn-success{
     display:block;
-  }
-  .default {
-    /*height: 50px !important;*/
   }
 }
 @media (min-width: 768px){
@@ -556,6 +467,10 @@ p.signup-social span:before, p.signup-social span:after {
   input{
     height:auto;
   }
+}
+
+.modal-title{
+  color: black;
 }
 
 //Buttons -------------------------------------------------------------------------------

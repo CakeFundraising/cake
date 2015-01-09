@@ -1,41 +1,40 @@
-.coupon_box.clearfix
-  - if coupon.extra_donation_pledge
-    .row
-      .col-xs-12.text-center.extra-donation
-        h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
-        h4 #{"(Simply use the coupon below and the Sponsor will make an extra contribution)"}
-  .col-xs-1
-  .col-xs-10.coupon
-    .row
-      .col-md-4
-        - if coupon.extra_donation_pledge
-          div.label.label-purple Extra Contribution
-        = coupon.picture.avatar
-        .coupon-edge
-      .col-md-6
-        div.coupon-content
-          h2 = coupon
-          h3 
-            |Expires: 
-            span = coupon.expires_at
-          hr
-          p = coupon.description
-          hr
-          .row.terms
-            .col-xs-12
-              a data-target="#coupon-#{coupon.id}" data-toggle="modal" View Terms & Conditions
-      .col-md-2.text-right
-        = render partial:'coupons/form/actions', locals: {coupon: coupon} if defined? editable
-        = coupon.picture.qrcode
-        .promo-code
-          .boldest.text-right Promo Code
-          span = coupon.promo_code
-        .download
-          = link_to download_coupon_path(coupon), class:'btn btn-primary pull-right' do
-            span.glyphicon.glyphicon-print
-            span  Print Coupon
-  /.col-xs-1
-      /.shareaholic-canvas data-app='share_buttons' data-app-id='6963788'
-  .col-xs-1
+- cache [:coupon_box, coupon] do 
+  .coupon_box.clearfix
+    - if coupon.extra_donation_pledge
+      .row
+        .col-xs-12.text-center.extra-donation
+          h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }
+          h4 #{"(Simply use the coupon below and the Sponsor will make an extra contribution)"}
+    .col-xs-1
+    .col-xs-10.coupon
+      .row
+        .col-md-4
+          - if coupon.extra_donation_pledge
+            div.label.label-purple Extra Contribution
+          = coupon.picture.avatar
+          .coupon-edge
+        .col-md-6
+          div.coupon-content
+            h2 = coupon
+            h3 
+              |Expires: 
+              span = coupon.expires_at
+            hr
+            p = coupon.description
+            hr
+            .row.terms
+              .col-xs-12
+                a data-target="#coupon-#{coupon.id}" data-toggle="modal" View Terms & Conditions
+        .col-md-2.text-right
+          = render partial:'coupons/form/actions', locals: {coupon: coupon} if defined? editable
+          = coupon.picture.qrcode
+          .promo-code
+            .boldest.text-right Promo Code
+            span = coupon.promo_code
+          .download
+            = link_to download_coupon_path(coupon), class:'btn btn-primary pull-right' do
+              span.glyphicon.glyphicon-print
+              span  Print Coupon
+    .col-xs-1
 
-  = render partial:'coupons/show/terms', locals:{coupon: coupon}
+    = render partial:'coupons/show/terms', locals:{coupon: coupon}

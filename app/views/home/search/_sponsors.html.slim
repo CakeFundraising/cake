@@ -1,12 +1,13 @@
 .row
   .col-md-3
-    = render 'home/search/search_form', collection: :sponsors
-    #filters.panel-group
-      ul.cats
-        - Sponsor::CAUSES_HIERARCHY.each do |group|
-          h4 = t("titles.causes.#{group.first}")
-          - group.last.each do |cause|
-            li = link_to cause, search_sponsors_path(causes: cause)
+    - cache [:search_sidebar, :coupons] do
+      = render 'home/search/search_form', collection: :sponsors
+      #filters.panel-group
+        ul.cats
+          - Sponsor::CAUSES_HIERARCHY.each do |group|
+            h4 = t("titles.causes.#{group.first}")
+            - group.last.each do |cause|
+              li = link_to cause, search_sponsors_path(causes: cause)
   .col-md-9
     .sponsors-container.row-fluid.transitions-enabled
       .sponsors

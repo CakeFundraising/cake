@@ -1,48 +1,49 @@
 = display_meta("Homepage")
 
-= content_for :header do	
-	.banner.hero-home
-        .home
-            .hero-home
+= content_for :header do 
+  - cache [:home, :header] do
+  	.banner.hero-home
+      .home
+        .hero-home
+          section.main-banner.text-center
+            h1.boldest Introducing Cake pay-it-forward marketing & fundraising
+          .how_it_works
+            a.btn.btn-success.btn-sm#how_it_works_btn data-toggle='collapse' data-target='#home_videos' See How It Works
+          .container.collapse#home_videos
+            .row.vertical-align.wrap
+              .own-line
                 section.main-banner.text-center
-                    h1.boldest Introducing Cake pay-it-forward marketing & fundraising
-                .how_it_works
-                    a.btn.btn-success.btn-sm#how_it_works_btn data-toggle='collapse' data-target='#home_videos' See How It Works
-                .container.collapse#home_videos
-                    .row.vertical-align.wrap
-                        .own-line
-                            section.main-banner.text-center
-                                h3.boldest Cake Fundraising for any Good Cause
-                                .intro-video
-                                    a.btn data-toggle='modal' data-target='#home_video_fr'
-                                        img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
-                                        .center-play
-                                            img.play-btn src='/assets/play_video.png'/
-                        .own-line.learn-more
-                            section.main-banner.text-center
-                                .btn.btn-primary.btn-md.learn-more Learn More
-                        .own-line
-                            section.main-banner.text-center
-                                h3.boldest Cake Cause Marketing for Business
-                                .intro-video
-                                    a.btn data-toggle='modal' data-target='#home_video_sp'
-                                        img src='https://img.youtube.com/vi/XXr73V1eS9M/mqdefault.jpg'
-                                        .center-play
-                                            img.play-btn src='/assets/play_video.png'/
-		
-		= render partial:'home/home_video'
-			
-	.secondary-navbar
-		ul.nav.nav-pills.popular
-			li.active
-				a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
-					span Causes Seeking Sponsors
-			li
-				a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
-					span Sponsors Seeking Causes
-			li
-				a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
-					span Best Discounts
+                  h3.boldest Cake Fundraising for any Good Cause
+                  .intro-video
+                    a.btn data-toggle='modal' data-target='#home_video_fr'
+                      img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
+                      .center-play
+                         img.play-btn src='/assets/play_video.png'/
+              .own-line.learn-more
+                section.main-banner.text-center
+                  .btn.btn-primary.btn-md.learn-more Learn More
+              .own-line
+                section.main-banner.text-center
+                  h3.boldest Cake Cause Marketing for Business
+                  .intro-video
+                    a.btn data-toggle='modal' data-target='#home_video_sp'
+                      img src='https://img.youtube.com/vi/XXr73V1eS9M/mqdefault.jpg'
+                      .center-play
+                          img.play-btn src='/assets/play_video.png'/
+  		
+  		= render partial:'home/home_video'
+  			
+  	.secondary-navbar
+  		ul.nav.nav-pills.popular
+  			li.active
+  				a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
+  					span Causes Seeking Sponsors
+  			li
+  				a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
+  					span Sponsors Seeking Causes
+  			li
+  				a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
+  					span Best Discounts
 								
 /- main content							
 .container.main-home
@@ -74,8 +75,7 @@
 					.share-buttons
 						.addthis_jumbo_share#social
 
-			/	- 1.times do
-			/		= render partial:'share/share_block'
+			/	= render partial:'share/share_block'
 	.success-banner.text-center
 		.container
 			.row

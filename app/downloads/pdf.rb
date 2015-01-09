@@ -6,6 +6,6 @@ class Pdf
   end
   
   def header
-    image "#{Rails.root}/app/assets/images/cake_logo.png", width: 191, height: 39
+    image "#{Rails.root}/app/assets/images/cake_logo.png", width: 120, height: 47
   end
 end
