@@ -1,20 +1,21 @@
-= semantic_form_for campaign.direct_donations.build do |f|
-  = f.inputs do
-    = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
-    = f.input :email, as: :hidden
-    = f.input :card_token, as: :hidden
+- cache [:direct_donations, campaign] do
+  = semantic_form_for campaign.direct_donations.build do |f|
+    = f.inputs do
+      = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
+      = f.input :email, as: :hidden
+      = f.input :card_token, as: :hidden
 
-  #direct_donation_amount_input
-    .row.row-centered
-      .col-md-12.col-centered
-        .direct-donation-form
-          .input-group
-            span.input-group-addon $
-            input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
-          br  
-          button#donate_button.btn.btn-success.btn-md Make a Direct Donation
+    #direct_donation_amount_input
+      .row.row-centered
+        .col-md-12.col-centered
+          .direct-donation-form
+            .input-group
+              span.input-group-addon $
+              input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+            br  
+            button#donate_button.btn.btn-success.btn-md Make a Direct Donation
 
-  script src="https://checkout.stripe.com/checkout.js" 
+    script src="https://checkout.stripe.com/checkout.js" 
 
 javascript:
   Cake.direct_donation("#{campaign}", "#{campaign.fundraiser.stripe_account.stripe_publishable_key}", '#{campaign.picture.avatar_path}');
