@@ -1,5 +1,6 @@
 class SponsorsController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
+  before_action :allow_sp_only, only: :credit_card
 
   def show
     @sponsor = resource.decorate
@@ -72,6 +73,10 @@ class SponsorsController < InheritedResources::Base
   end
 
   private
+
+  def allow_sp_only
+    redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_sponsor != resource
+  end
 
   def send_notification
     resource.notify_update
