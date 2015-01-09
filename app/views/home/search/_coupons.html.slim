@@ -1,11 +1,12 @@
 .row
   .col-md-3
-    = render 'home/search/search_form', collection: :coupons
-    #filters.panel-group
-      ul.cats
-        h4 Discount Categories
-        - Coupon::CATEGORIES.each do |category|
-          li = link_to category, search_coupons_path(merchandise_categories: category)
+    - cache [:search_sidebar, :coupons] do
+      = render 'home/search/search_form', collection: :coupons
+      #filters.panel-group
+        ul.cats
+          h4 Discount Categories
+          - Coupon::CATEGORIES.each do |category|
+            li = link_to category, search_coupons_path(merchandise_categories: category)
   .col-md-9
     .coupons-container.row-fluid.transitions-enabled
       .coupons
