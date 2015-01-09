@@ -2448,9 +2448,6 @@ header {
   border:0px;
   background-image: url('success-bkg.jpg');
   overflow: hidden;
-  @media (max-width: 992px) {
-    padding-bottom: 1em;
-  }
   /*background-image: url('hero-home.jpg');
   background-size: 100% auto;
   @include background-size(cover);
@@ -2471,12 +2468,14 @@ header {
     justify-content: center;
     @media(max-width: $screen-md-min){
       flex-flow: column;
+      padding-bottom: 2em;
     }
+    padding-bottom: 1em;
   }
 
   .how_it_works {
     @media (max-width: 992px) {
-      padding: 2em;
+      padding: 2em 0 3em 0;
     }
   }
 
