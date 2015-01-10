@@ -48,32 +48,32 @@
 	= render partial:'home/search/section'
 
 = content_for :bottom_section do
-	.easy-band
-      .pointer-b
-      h2 Online Fundraising Has Never Been Easier
-      .container
-        .row.center
-          .circle-campaign
-            .totals-centerd
-              h4 = campaigns_count
-              p.total-type CAMPAIGNS
-          .circle-sp
-            .totals-centerd
-              h4 = sponsors_count
-              p.total-type SPONSORS
-          .circle-raised
-            .totals-centerd
-              h4 = global_raised
-              p.total-type RAISED
-        h3 Let your friends know that Cake is the best way to raise money online.
-        .share-block-wrap
-            /.text-center = render partial:'layouts/share_buttons'
+  .easy-band
+    .pointer-b
+    h2 Online Fundraising Has Never Been Easier
+    .container
+      .row.center
+        .circle-campaign
+          .totals-centerd
+            h4 = campaigns_count
+            p.total-type CAMPAIGNS
+        .circle-sp
+          .totals-centerd
+            h4 = sponsors_count
+            p.total-type SPONSORS
+        .circle-raised
+          .totals-centerd
+            h4 = global_raised
+            p.total-type RAISED
+      h3 Let your friends know that Cake is the best way to raise money online.
+      .share-block-wrap
+          /.text-center = render partial:'layouts/share_buttons'
 
-              .text-center
-                  .share-buttons
-                      .addthis_jumbo_share#social
+            .text-center
+                .share-buttons
+                    .addthis_jumbo_share#social
 
-			/	= render partial:'share/share_block'
+          /	= render partial:'share/share_block'
 	.quotes
       .container.quote-container
         .quote-box
