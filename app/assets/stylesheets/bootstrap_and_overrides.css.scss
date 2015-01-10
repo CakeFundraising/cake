@@ -409,7 +409,7 @@ hr{
   }
 }
 
-@media (min-width: 850px){
+@media (min-width: 918px){
   .btn-signup.btn-success{
     display:block;
   }
@@ -2503,7 +2503,7 @@ header {
     }
   }
 
-  #intro_video {
+  .intro_video {
     width: 346px;
   }
 
@@ -2724,14 +2724,66 @@ header {
 .center {
   text-align: center;
 }
-.success-banner {
-  height:375px;
-  margin-bottom: 0;
-  border:0px;
-  background-image: url('success-bkg.jpg');
-  background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
+.quotes {
+  background-image: url("success-bkg.jpg");
+
+  .open-quote {
+    float: left;
+    color: #fff;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 4em;
+  }
+
+  .close-quote {
+    color: #fff;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 4em;
+    display: inline-block;
+    margin-top: -0.4em;
+    margin-left: 92%;
+  }
+
+  .quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: -10%;
+  }
+
+  .quote-box {
+    max-width: 50%;
+    padding-left: 10%;
+  }
+
+  .quote {
+    margin-top: -2em;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+  }
+
+  .author-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20%;
+  }
+
+  .author-box {
+    max-width: 50%;
+    padding-right: 10%;
+  }
+
+  .author {
+    margin-top: -1.8em;
+    font-style: italic;
+  }
+
+  h4 {
+    color: #fff;
+  }
 }
 //Home Sidebar Search form ---------------------------------------------------
 #custom-search-input {

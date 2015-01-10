@@ -11,17 +11,17 @@
             a.btn.btn-success.btn-sm#how_it_works_btn data-toggle='collapse' data-target='#home_videos' See How It Works
           .container.collapse#home_videos
             .row.vertical-align.wrap
-              .own-line#intro_video
+              .intro_video
                 section.main-banner.text-center
                   h3.boldest Cake Fundraising for any Good Cause
                   a.btn data-toggle='modal' data-target='#home_video_fr'
                     img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
                     .center-play
                       img.play-btn src='/assets/play_video.png'/
-              .own-line.learn-more
+              .learn-more
                 section.main-banner.text-center
                   .btn.btn-primary.btn-md.learn-more Learn More
-              .own-line#intro_video
+              .intro_video
                 section.main-banner.text-center
                   h3.boldest Cake Cause Marketing for Business
                   a.btn data-toggle='modal' data-target='#home_video_sp'
@@ -32,16 +32,16 @@
   		= render partial:'home/home_video'
   			
   	.secondary-navbar
-  		ul.nav.nav-pills.popular
-  			li.active
-  				a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns" 
-  					span Causes Seeking Sponsors
-  			li
-  				a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors" 
-  					span Sponsors Seeking Causes
-  			li
-  				a data-toggle="tab" id="tab-coupons" href="#pop-coupons" 
-  					span Best Discounts
+      ul.nav.nav-pills.popular
+        li.active
+          a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns"
+            span Causes Seeking Sponsors
+        li
+          a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors"
+            span Sponsors Seeking Causes
+        li
+          a data-toggle="tab" id="tab-coupons" href="#pop-coupons"
+            span Best Discounts
 								
 /- main content							
 .container.main-home
@@ -49,52 +49,88 @@
 
 = content_for :bottom_section do
 	.easy-band
-		.pointer-b
-		h2 Online Fundraising Has Never Been Easier
-		.container
-			.row.center
-				.circle-campaign
-					.totals-centerd
-						h4 = campaigns_count
-						p.total-type CAMPAIGNS
-				.circle-sp
-					.totals-centerd
-						h4 = sponsors_count
-						p.total-type SPONSORS
-				.circle-raised
-					.totals-centerd
-						h4 = global_raised
-						p.total-type RAISED
-			h3 Let your friends know that Cake is the best way to raise money online.
-			.share-block-wrap
-				/.text-center = render partial:'layouts/share_buttons'
+      .pointer-b
+      h2 Online Fundraising Has Never Been Easier
+      .container
+        .row.center
+          .circle-campaign
+            .totals-centerd
+              h4 = campaigns_count
+              p.total-type CAMPAIGNS
+          .circle-sp
+            .totals-centerd
+              h4 = sponsors_count
+              p.total-type SPONSORS
+          .circle-raised
+            .totals-centerd
+              h4 = global_raised
+              p.total-type RAISED
+        h3 Let your friends know that Cake is the best way to raise money online.
+        .share-block-wrap
+            /.text-center = render partial:'layouts/share_buttons'
 
-				.text-center
-					.share-buttons
-						.addthis_jumbo_share#social
+              .text-center
+                  .share-buttons
+                      .addthis_jumbo_share#social
 
 			/	= render partial:'share/share_block'
-	.success-banner.text-center
-		.container
-			.row
+	.quotes
+      .container.quote-container
+        .quote-box
+          .row
+            .open-quote “
+          .row
+            h4.boldest.quote Cake Fundraising is a fabulous platform and I’m certain it will be a huge success.
+          .row
+            .close-quote ”
+      .container.author-container
+        .author-box
+          .row
+            h4.boldest.author - Robin Clause (Coca-Cola)
+      .container.quote-container
+        .quote-box
+          .row
+            .open-quote “
+          .row
+            h4.boldest.quote Cake sounds great, let's do it!
+          .row
+            .close-quote ”
+      .container.author-container
+        .author-box
+          .row
+            h4.boldest.author - Jim Green (Stop Hunger Now)
+      .container.quote-container
+        .quote-box
+          .row
+            .open-quote “
+          .row
+            h4.boldest.quote Your platform is very interesting and I think has the chance to revolutionize how non-profits and similar entities raise funds.
+          .row
+            .close-quote ”
+      .container.author-container
+        .author-box
+          .row
+            h4.boldest.author - Jason Herndon (Lupus Foundation)
+      br
+
 	.supporters
-		.container
-			.row.text-center
-				br
-				h3 OUR SUPPORTERS
-			.row.section-wrapper.text-center
-				img src='/assets/partners/logo_bj.gif'/
-				img src='/assets/partners/logo_techc.gif'/
-				img src='/assets/partners/logo_etc.gif'/
-				img src='/assets/partners/logo_tb.gif'/
-				/img src='/assets/partners/logo_chitrib.gif'/
-				/img src='/assets/partners/logo_cnn.gif'/
-				/img src='/assets/partners/logo_forbes.gif'/
-				/img src='/assets/partners/logo_huff.gif'/
-				/img src='/assets/partners/logo_mashable.gif'/
-				/img src='/assets/partners/logo_nyt.gif'/
-				/img src='/assets/partners/logo_tc.gif'/
-				img src='/assets/partners/logo_tech.gif'/
+      .container
+        .row.text-center
+          br
+          h3 OUR SUPPORTERS
+        .row.section-wrapper.text-center
+          img src='/assets/partners/logo_bj.gif'/
+          img src='/assets/partners/logo_techc.gif'/
+          img src='/assets/partners/logo_etc.gif'/
+          img src='/assets/partners/logo_tb.gif'/
+          /img src='/assets/partners/logo_chitrib.gif'/
+          /img src='/assets/partners/logo_cnn.gif'/
+          /img src='/assets/partners/logo_forbes.gif'/
+          /img src='/assets/partners/logo_huff.gif'/
+          /img src='/assets/partners/logo_mashable.gif'/
+          /img src='/assets/partners/logo_nyt.gif'/
+          /img src='/assets/partners/logo_tc.gif'/
+          img src='/assets/partners/logo_tech.gif'/
 
 javascript:
   $(document).ready(Cake.slider.init);
