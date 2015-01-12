@@ -188,4 +188,6 @@ Cake::Application.routes.draw do
     # route to basic auth to be tracked by js script
     get 'ec_auth' => "evercookie/evercookie#ec_auth", as: :evercookie_auth
   end
+
+  mount StripeEvent::Engine, at: "/stripe-webhooks"
 end

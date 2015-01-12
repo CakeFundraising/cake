@@ -1,7 +1,30 @@
 = display_meta("Press")
 
-h1.dash-head Press
-p = Faker::Lorem.paragraph
-br
-p = Faker::Lorem.paragraph
-br
+.container
+  .row
+    .col-md-3
+      h1.dash-head Press
+    .col-md-8
+      br
+  .row
+    .col-md-3
+      br
+      img src='/assets/press/tec-press.png'/
+    .col-md-9
+      h3 You click, sponsors pay: Cake Fundraising’s new twist on giving
+      p Technical.ly, October 25, 2014
+      p = '"The site works like a crowdfunding platform similar to Kickstarter or GoFundMe, but with a bent toward directing visitors to sponsors, who pledge a certain amount per click. Nonprofits and businesses can filter and search Cake’s marketplace to find each other, and there is no upfront cost for either side."'
+      = link_to "Read the full article", "http://technical.ly/baltimore/2014/10/15/cake-fundraising-new-twist-justin-kersey/"
+  br
+  hr
+  .row
+    .col-md-3
+      br
+      img src='/assets/press/bbj-press.png'/
+    .col-md-9
+      h3 This startup thinks fundraising should be cake for nonprofits
+      p Baltimore Business Journal, October 1, 2014
+      p = '"Cake’s platform would make it easier for small nonprofits and businesses to participate by standardizing pledge agreements and handling payments. Here’s how it works: A nonprofit and a business connect through Cake for a social media fundraising campaign. With help from Cake, the nonprofit sets up a social media campaign that is designed to drive traffic to its business partner’s website."'
+      = link_to "Read the full article", "http://www.bizjournals.com/baltimore/news/2014/10/01/this-startup-thinks-fundraising-should-be-cake-for.html"
+  br
+  br
