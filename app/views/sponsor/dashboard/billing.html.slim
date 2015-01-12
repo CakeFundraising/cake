@@ -20,12 +20,14 @@ ul.nav.nav-tabs
       h3 Stripe Account
 
       - if @stripe_account.present?
-        strong ID:
+        strong ID: 
         span = @stripe_account.uid
       - else
         span.help-block = t('messages.stripe.sponsors.not_found')
 
-      = stripe_buttons
+      br
+      br
+      div = stripe_buttons
 
     - if @stripe_account.present?
       .credit_card
@@ -36,5 +38,7 @@ ul.nav.nav-tabs
           span = @stripe_account.stripe_customer_id
         - else
           span.help-block = t('messages.stripe.sponsors.credit_card_not_found')
-        
-        = link_to 'Update Credit Card', credit_card_sponsor(current_sponsor), class:'btn btn-primary'
+          
+        br
+        br
+        div = link_to 'Update Credit Card', credit_card_sponsor_path(current_sponsor), class:'btn btn-primary'

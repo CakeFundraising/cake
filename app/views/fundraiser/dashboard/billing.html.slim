@@ -30,12 +30,12 @@ ul.nav.nav-tabs
       h3 Stripe Account
 
       - if @stripe_account.present?
-        strong ID:
+        strong ID: 
         span = @stripe_account.uid
       - else
         span.help-block = t('messages.stripe.fundraisers.not_found')
-
-      = stripe_buttons
+      br
+      div = stripe_buttons
 
     - if @stripe_account.present?
       .credit_card
