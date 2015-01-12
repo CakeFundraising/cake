@@ -106,6 +106,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 #Payments
 gem 'stripe-rails'
+gem 'stripe_event'
 
 group :doc do
   gem 'sdoc', require: false
@@ -116,6 +117,7 @@ gem 'faker'
 
 group :development do
   gem 'meta_request'
+  gem 'ultrahook'
 end
 
 group :test, :development do
