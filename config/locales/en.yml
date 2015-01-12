@@ -164,6 +164,13 @@ en:
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
+    stripe:
+      fundraisers:
+        not_found: "You have not connected your Stripe account. In order to receive payments from your Sponsors, we need your Stripe account data. Please: "
+        bank_account_not_found: "Seems you have not saved your bank account data. In order to receive payments from your Sponsors, we need that information. Please: "
+      sponsors:
+        not_found: "You have not connected your Stripe account. In order to make automatic payments to Causes you sponsor, we need your Stripe account data. Please: "
+        credit_card_not_found: "Seems you have not saved your credit card data. In order to make automatic payments to Causes you sponsor, we need that information. Please: "
   activemodel:
     attributes:
       bank_account:

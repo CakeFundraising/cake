@@ -11,4 +11,10 @@
             div.fr-manager-email 
             	span = @sponsor.manager_email
             	span.fr-manager-email-edit = link_to "Edit", public_profile_path
-            = stripe_buttons
+
+          - if @stripe_account.nil?
+            hr
+            .stripe
+              h4 Stripe Account
+              span.help-block = t('messages.stripe.sponsors.not_found')
+              = stripe_buttons

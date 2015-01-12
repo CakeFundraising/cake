@@ -73,10 +73,17 @@ Cake.validations.require_form = (model)->
   unless form.valid()
     #Turbolinks
     $(document).on "page:before-change", (e)->
+      alert "Please complete this form before leaving."
       e.preventDefault()
       return
     #Normal links
     $('a[data-no-turbolink="true"]').click (e)->
+      alert "Please complete this form before leaving."
+      e.preventDefault()
+      return
+    #Search form
+    $('.form-search').submit (e)->
+      alert "Please complete this form before leaving."
       e.preventDefault()
       return
   return
