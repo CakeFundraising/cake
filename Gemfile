@@ -117,7 +117,6 @@ gem 'faker'
 
 group :development do
   gem 'meta_request'
-  gem 'ultrahook'
 end
 
 group :test, :development do
