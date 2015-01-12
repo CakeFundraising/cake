@@ -105,7 +105,6 @@ class UploaderInput < Formtastic::Inputs::FileInput
       object.decorate.send(method) <<
       template.content_tag(:div, nil, class: "camera") <<
       template.content_tag(:span, localized_string(method, "Upload Picture", :replace_label)) 
-      #template.cl_image_tag(object.send(method), crop: :fill, width: medium_size.first, height: medium_size.last, class:'img-responsive img-thumbnail')
     end
   end
 

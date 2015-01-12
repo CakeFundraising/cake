@@ -1,5 +1,6 @@
 class FundraisersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
+  before_action :allow_fr_only, only: :bank_account
 
   def show
     @fundraiser = resource.decorate
@@ -66,6 +67,10 @@ class FundraisersController < InheritedResources::Base
   end
 
   private
+
+  def allow_fr_only
+    redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource
+  end
 
   def send_notification
     resource.notify_update

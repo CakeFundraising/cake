@@ -1,5 +1,6 @@
 class SponsorsController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
+  before_action :allow_sp_only, only: :credit_card
 
   def show
     @sponsor = resource.decorate
@@ -22,7 +23,7 @@ class SponsorsController < InheritedResources::Base
         elsif cookies[:pledge_fundraiser].present?
           redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
         else
-          redirect_to sponsor_home_path, notice: 'Now you can start using CakeFundraising!'  
+          redirect_to sponsor_home_path, notice: 'Now you can start using Cake!'
         end
       end
     end
@@ -72,6 +73,10 @@ class SponsorsController < InheritedResources::Base
   end
 
   private
+
+  def allow_sp_only
+    redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_sponsor != resource
+  end
 
   def send_notification
     resource.notify_update
