@@ -482,6 +482,8 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    ultrahook (0.1.3)
+      json (>= 1.8.0)
     unicode_utils (1.4.0)
     unicorn (4.8.2)
       kgio (~> 2.6)
@@ -584,6 +586,7 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier (>= 1.3.0)
+  ultrahook
   unicorn
   unicorn-worker-killer
   webmock
