@@ -350,6 +350,9 @@ hr{
     #tab-sponsors:after{
       content: "Sponsors";
     }
+    #tab-fundraisers:after{
+      content: "Causes";
+    }
     #tab-coupons:after{
       content: "Coupons";
     }
@@ -2275,7 +2278,7 @@ header {
   }
 }
 // home box views (temp?) --------------------------------------------------------
-.campaign_grid, .sponsor_grid, .coupon_grid {
+.campaign_grid, .sponsor_grid, .coupon_grid, .fundraiser_grid {
   padding-left: 5px;
   padding-right: 5px;
 

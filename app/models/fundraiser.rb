@@ -36,6 +36,8 @@ class Fundraiser < ActiveRecord::Base
   scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") }
   scope :latest, ->{ order(created_at: :desc) }
 
+  scope :with_location, ->{ eager_load(:location) }
+
   after_initialize do
     if self.new_record?
       self.build_location
@@ -64,6 +66,34 @@ class Fundraiser < ActiveRecord::Base
     '1,000,000 to 5,000,000',
     '5,000,000+'
   ]
+
+  #Solr
+  searchable do
+    text :name, boost: 2
+    text :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+    text :city, :state_code
+
+    text :zip_code do
+      location.zip_code  
+    end
+
+    text :campaigns_titles do
+      campaigns.map {|p| p.title }
+    end
+    
+    text :causes
+    string :causes, multiple: true
+
+    string :zip_code do
+      location.zip_code  
+    end
+
+    time :created_at
+  end
+
+  def self.popular
+    self.with_picture.with_location.latest.first(12)
+  end
 
   def sponsors_of(type) # type = :active || :past
     pledges.send(type).eager_load(:sponsor).map(&:sponsor).uniq
