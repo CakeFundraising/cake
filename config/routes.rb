@@ -23,6 +23,7 @@ Cake::Application.routes.draw do
   scope :search, controller: :searches do
     get :search_campaigns, path:'campaigns'
     get :search_sponsors, path:'sponsors'
+    get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
   end
 

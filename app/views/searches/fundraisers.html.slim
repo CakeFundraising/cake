@@ -1,0 +1,30 @@
+= display_meta("Search Causes")
+
+#search_fundraisers
+  h1.dash-head Search Active Causes
+  
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :fundraisers
+      
+      .controls.clearfix
+        .counter 
+          span.boldest #{@fundraisers.total_count} fundraisers 
+          span match the criteria
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        /hr
+        = link_to t('helpers.filters.clear'), search_fundraisers_path, class:'btn btn-primary'
+    .col-md-9
+      .fundraisers-container.row-fluid.transitions-enabled
+        .fundraisers
+          - if @fundraisers.any?
+            = render partial: "fundraisers/show/grid", collection: @fundraisers, as: :fundraiser
+          - else
+            .alert.alert-info No results found.
+          
+    = pagination(@fundraisers)
+
+javascript:
+  Cake.search("#fundraisers-search", "#search_fundraisers");

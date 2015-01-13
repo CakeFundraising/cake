@@ -58,6 +58,30 @@ class SearchesController < ApplicationController
     end
   end
 
+  def search_fundraisers
+    facets = [:zip_code, :causes]
+
+    @search = Fundraiser.solr_search(include: [:picture]) do
+      fulltext params[:search]
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 20
+
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) if params[f].present?
+      end
+    end
+
+    @facets = facets
+    @fundraisers = FundraiserDecorator.decorate_collection @search.results
+
+    if request.xhr?
+      render "searches/fundraisers", layout: false
+    else
+      render "searches/fundraisers"
+    end
+  end
+
   def search_coupons
     facets = [:zip_code, :merchandise_categories]
 

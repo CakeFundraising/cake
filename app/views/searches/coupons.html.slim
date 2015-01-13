@@ -9,7 +9,8 @@
     	
     	.controls
     		.counter 
-    			.boldest #{@coupons.total_count} coupons span match the criteria
+    			span.boldest #{@coupons.total_count} coupons 
+          span match the criteria
     	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
