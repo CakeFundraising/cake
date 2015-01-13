@@ -46,6 +46,7 @@ ul.nav.nav-tabs
           span = @stripe_account.stripe_recipient_id
         - else
           span.help-block = t('messages.stripe.fundraisers.bank_account_not_found')
-        
-        = link_to 'Update Bank Account', credit_card_sponsor(current_sponsor), class:'btn btn-primary'
+          
+        br
+        div = link_to 'Update Bank Account', bank_account_fundraiser_path(current_fundraiser), class:'btn btn-primary'
   

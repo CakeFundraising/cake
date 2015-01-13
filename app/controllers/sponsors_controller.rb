@@ -49,7 +49,7 @@ class SponsorsController < InheritedResources::Base
     @credit_card = CreditCard.new(permitted_params[:credit_card])
 
     if @credit_card.valid?
-      if @stripe_account.create_stripe_customer(@credit_card)
+      if @stripe_account.store_cc(@credit_card)
         session.delete(:password_confirmed)
         redirect_to sponsor_home_path, notice: 'Your credit card information has been saved.' 
       end

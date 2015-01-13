@@ -42,9 +42,9 @@ class FundraisersController < InheritedResources::Base
     @bank_account = BankAccount.new(permitted_params[:bank_account])
 
     if @bank_account.valid?
-      if @stripe_account.create_stripe_recipient(@bank_account)
+      if @stripe_account.store_ba(@bank_account)
         session.delete(:password_confirmed)
-        redirect_to fundraiser_home_path, notice: 'You have connected your Stripe account successfully.' 
+        redirect_to fundraiser_home_path, notice: 'Your bank account information has been saved.' 
       end
     else
       render 'bank_accounts/new', alert: 'You bank account information is incorrect.'
