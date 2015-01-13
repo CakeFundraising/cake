@@ -152,6 +152,11 @@ Cake::Application.routes.draw do
     patch :fingerprint
   end
 
+  scope :password, controller: :password, name_prefix: :password do
+    get :confirm
+    post :verify
+  end
+
   #Settings
   scope :settings do
     get :public_profile, controller: :settings

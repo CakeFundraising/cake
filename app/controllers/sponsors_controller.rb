@@ -1,6 +1,7 @@
 class SponsorsController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
   before_action :allow_sp_only, only: :credit_card
+  before_action :require_password, only: :credit_card
 
   def show
     @sponsor = resource.decorate
@@ -48,7 +49,10 @@ class SponsorsController < InheritedResources::Base
     @credit_card = CreditCard.new(permitted_params[:credit_card])
 
     if @credit_card.valid?
-      redirect_to sponsor_home_path, notice: 'Your credit card information has been saved.' if @stripe_account.create_stripe_customer(@credit_card)
+      if @stripe_account.store_cc(@credit_card)
+        session.delete(:password_confirmed)
+        redirect_to sponsor_home_path, notice: 'Your credit card information has been saved.' 
+      end
     else
       render 'credit_cards/new', alert: 'You credit card information is incorrect.'
     end
@@ -76,6 +80,10 @@ class SponsorsController < InheritedResources::Base
 
   def allow_sp_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_sponsor != resource
+  end
+
+  def require_password
+    redirect_to confirm_path(url: credit_card_sponsor_path(current_sponsor)) unless session[:password_confirmed]
   end
 
   def send_notification
