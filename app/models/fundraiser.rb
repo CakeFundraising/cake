@@ -71,7 +71,17 @@ class Fundraiser < ActiveRecord::Base
   searchable do
     text :name, boost: 2
     text :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+    text :city, :state_code
 
+    text :zip_code do
+      location.zip_code  
+    end
+
+    text :campaigns_titles do
+      campaigns.map {|p| p.title }
+    end
+    
+    text :causes
     string :causes, multiple: true
 
     string :zip_code do

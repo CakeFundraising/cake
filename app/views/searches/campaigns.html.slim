@@ -1,18 +1,18 @@
 = display_meta("Search Campaigns")
 
 #search_campaigns
-  h1.dash-head Search Active Campaigns
+  h1.dash-head Search Campaigns
   
   .row
     .col-md-3
-    	= render 'layouts/search/search_form', collection: :campaigns
-    	.controls
-    		.counter 
-    			span.boldest #{@campaigns.total_count} campaigns 
+      = render 'layouts/search/search_form', collection: :campaigns
+      .controls
+        .counter 
+          span.boldest #{@campaigns.total_count} campaigns 
           span match the criteria
-    	
-    	#filters.panel-group
-    	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
         = link_to t('helpers.filters.clear'), search_campaigns_path, class:'btn btn-primary'
     .col-md-9
       .campaigns-container.row-fluid.transitions-enabled
@@ -22,7 +22,7 @@
           - else
             .alert.alert-info No results found.
             
-  	= pagination(@campaigns)
+    = pagination(@campaigns)
 
 javascript:
   Cake.search("#campaigns-search", "#search_campaigns");

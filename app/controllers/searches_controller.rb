@@ -5,10 +5,10 @@ class SearchesController < ApplicationController
 
     @search = Campaign.solr_search(include: [:picture]) do
       fulltext params[:search]
-      without :status, [:incomplete, :past]
+      without :status, :incomplete
       with :visible, true
       order_by :created_at, :desc
-      paginate page: params[:page], per_page: 20
+      paginate page: params[:page], per_page: 21
 
       facets.each do |f|
         send(:facet, f)
@@ -40,7 +40,7 @@ class SearchesController < ApplicationController
     @search = Sponsor.solr_search(include: [:picture]) do
       fulltext params[:search]
       order_by :created_at, :desc
-      paginate page: params[:page], per_page: 20
+      paginate page: params[:page], per_page: 21
 
       facets.each do |f|
         send(:facet, f)
@@ -64,7 +64,7 @@ class SearchesController < ApplicationController
     @search = Fundraiser.solr_search(include: [:picture]) do
       fulltext params[:search]
       order_by :created_at, :desc
-      paginate page: params[:page], per_page: 20
+      paginate page: params[:page], per_page: 21
 
       facets.each do |f|
         send(:facet, f)
@@ -89,7 +89,7 @@ class SearchesController < ApplicationController
       fulltext params[:search]
       with :status, :accepted
       order_by :created_at, :desc
-      paginate page: params[:page], per_page: 20
+      paginate page: params[:page], per_page: 21
 
       facets.each do |f|
         send(:facet, f)
