@@ -173,6 +173,19 @@ describe Ability do
         @ability.should_not be_able_to(:reject, @pledge)
       end
     end
+
+    context 'Coupon' do
+      it_behaves_like "a Sponsor object" do
+        let(:klass) { Coupon }
+      end
+
+      it_behaves_like "an owned object" do
+        pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
+        
+        let(:owned_object) { FactoryGirl.create(:coupon, pledge: pledge) }
+        let(:foreign_object) { FactoryGirl.create(:coupon) }
+      end
+    end
   end
 
   ##### Fundraiser Abilities #####
