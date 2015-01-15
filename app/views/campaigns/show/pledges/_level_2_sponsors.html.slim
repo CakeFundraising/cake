@@ -1,22 +1,22 @@
-/- cache [:mini_pledge, pledge.campaign, pledge] do
-.col-md-4.mini-pledge
-  .platinum
-    .overlay-effects.clearfix#effect-6
-      = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge}
-    .levels
-      .sponsor-name.truncate = pledge.sponsor_autolink
-      .location.truncate = pledge.sponsor_location
-      .progress
-        .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
-          span.sr-only #{pledge.thermometer}% Complete (success)
-      span
-        span.amount_per_click = pledge.amount_per_click
-        span.text-muted Earned Per Click
-      span.pull-right
-        span = pledge.total_amount
-        span.text-muted Pledge
-    .buttons.row
-      .col-md-6
-        = pledge.link_button
-      .col-md-6
-        = pledge.coupons_button 
+- cache [:mini_pledge, pledge.campaign, pledge] do
+  .col-md-4.mini-pledge
+    .platinum
+      .overlay-effects.clearfix#effect-6
+        = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge}
+      .levels
+        .sponsor-name.truncate = pledge.sponsor_autolink
+        .location.truncate = pledge.sponsor_location
+        .progress
+          .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
+            span.sr-only #{pledge.thermometer}% Complete (success)
+        span
+          span.amount_per_click = pledge.amount_per_click
+          span.text-muted Earned Per Click
+        span.pull-right
+          span = pledge.total_amount
+          span.text-muted Pledge
+      .buttons.row
+        .col-md-6
+          = pledge.link_button
+        .col-md-6
+          = pledge.coupons_button 
