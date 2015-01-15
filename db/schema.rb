@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115184040) do
+ActiveRecord::Schema.define(version: 20150115192630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -305,21 +305,21 @@ ActiveRecord::Schema.define(version: 20150115184040) do
 
   create_table "quick_pledges", force: true do |t|
     t.string   "name"
-    t.integer  "donation_per_click_cents",              default: 0,            null: false
-    t.string   "donation_per_click_currency",           default: "USD",        null: false
-    t.integer  "total_amount_cents",                    default: 0,            null: false
-    t.string   "total_amount_currency",                 default: "USD",        null: false
+    t.integer  "amount_per_click_cents",              default: 0,            null: false
+    t.string   "amount_per_click_currency",           default: "USD",        null: false
+    t.integer  "total_amount_cents",                  default: 0,            null: false
+    t.string   "total_amount_currency",               default: "USD",        null: false
     t.string   "website_url"
     t.integer  "campaign_id"
     t.integer  "sponsorable_id"
     t.string   "sponsorable_type"
-    t.string   "status",                                default: "incomplete"
-    t.integer  "clicks_count",                limit: 8, default: 0
-    t.integer  "impressions_count",           limit: 8, default: 0
+    t.string   "status",                              default: "incomplete"
+    t.integer  "clicks_count",              limit: 8, default: 0
+    t.integer  "impressions_count",         limit: 8, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bonus_clicks_count",          limit: 8, default: 0,            null: false
-    t.integer  "max_clicks",                            default: 0
+    t.integer  "bonus_clicks_count",        limit: 8, default: 0,            null: false
+    t.integer  "max_clicks",                          default: 0
   end
 
   create_table "sponsor_categories", force: true do |t|

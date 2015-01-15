@@ -18,7 +18,7 @@ class QuickPledge < ActiveRecord::Base
 
   scope :latest, ->{ order(created_at: :desc) }
   scope :with_campaign, ->{ eager_load(:campaign) }
-  scope :highest, ->{ order(total_amount_cents: :desc, donation_per_click_cents: :desc) }
+  scope :highest, ->{ order(total_amount_cents: :desc, amount_per_click_cents: :desc) }
   scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
 
   validates :name, :website_url, :campaign, presence: true
@@ -30,7 +30,7 @@ class QuickPledge < ActiveRecord::Base
   validate :max_amount, :total_amount_greater_than_donation_per_click
   validate :decreased_amounts, if: :persisted?
 
-  monetize :donation_per_click_cents
+  monetize :amount_per_click_cents
   monetize :total_amount_cents
 
   before_save do
@@ -42,7 +42,6 @@ class QuickPledge < ActiveRecord::Base
   end
 
   alias_method :sponsor, :sponsorable
-  alias_method :amount_per_click, :donation_per_click
 
   def click_exists?(click)
     unique_click_for_browser?(click.browser) # We delegate click existance to browser existance
@@ -57,7 +56,7 @@ class QuickPledge < ActiveRecord::Base
   end
 
   def current_max_clicks
-    (self.total_amount_cents/self.donation_per_click_cents).floor
+    (self.total_amount_cents/self.amount_per_click_cents).floor
   end
 
   def fully_subscribed?
@@ -78,11 +77,11 @@ class QuickPledge < ActiveRecord::Base
   end
 
   def total_amount_greater_than_donation_per_click
-    errors.add(:total_amount, "Must be greater than amount per click.") if donation_per_click_cents > total_amount_cents
+    errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
   end
 
   def decreased_amounts
-    errors.add(:donation_per_click, "You can only increase this value after you create the pledge.") if self.changes.key?('donation_per_click_cents') and self.changes['donation_per_click_cents'].last < self.changes['donation_per_click_cents'].first 
+    errors.add(:donation_per_click, "You can only increase this value after you create the pledge.") if self.changes.key?('amount_per_click_cents') and self.changes['amount_per_click_cents'].last < self.changes['amount_per_click_cents'].first 
     errors.add(:total_amount, "You can only increase this value after you create the pledge.") if self.changes.key?('total_amount_cents') and self.changes['total_amount_cents'].last < self.changes['total_amount_cents'].first
   end
 end

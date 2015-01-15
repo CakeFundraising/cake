@@ -118,8 +118,7 @@ class Campaign < ActiveRecord::Base
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc) +
-          obj.quick_pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, donation_per_click_cents: :desc)
+          (obj.pledges.send(pledges_status).total_amount_in(range) + obj.quick_pledges.send(pledges_status).total_amount_in(range) ).sort_by{|p| [-p.total_amount_cents, -p.amount_per_click_cents] }
         end 
       end
     end
