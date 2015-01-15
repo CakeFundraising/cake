@@ -10,7 +10,7 @@ module FundraisersHelper
   end
 
   def stripe_buttons
-    account = current_user.fundraiser || current_user.sponsor
+    account = current_fundraiser || current_sponsor
 
     if account.stripe_account?
       go_to_stripe

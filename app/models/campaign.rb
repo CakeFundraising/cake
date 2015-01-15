@@ -66,11 +66,24 @@ class Campaign < ActiveRecord::Base
   
   #Solr
   searchable do
-    text :title, :headline, boost: 2
-    text :story, :mission
+    text :title, boost: 5
+    text :headline, boost: 5
+    text :story, :mission, :main_cause
+
+    text :fundraiser do
+      fundraiser.name
+    end
 
     text :zip_code do
       fundraiser.location.zip_code  
+    end
+
+    text :city do
+      fundraiser.location.city  
+    end
+
+    text :state_code do
+      fundraiser.location.state_code  
     end
 
     boolean :tax_exempt do

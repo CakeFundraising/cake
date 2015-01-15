@@ -70,15 +70,31 @@ Cake.validations.require_form = (model)->
   form = $('.formtastic.' + model)
   eval("Cake."+ model + "s.validation()")
 
+  show_message = (e)->
+    r = confirm 'Are you sure you want to navigate away from this page?'
+    if r
+      window.onbeforeunload = null
+      $(document).off "page:before-change"
+    else
+      e.preventDefault()
+    return
+
   unless form.valid()
     #Turbolinks
     $(document).on "page:before-change", (e)->
-      e.preventDefault()
+      show_message(e)
       return
     #Normal links
     $('a[data-no-turbolink="true"]').click (e)->
-      e.preventDefault()
+      show_message(e)
       return
+    #Search form
+    $('.form-search').submit (e)->
+      show_message(e)
+      return
+    #Page leaving
+    window.onbeforeunload = ->
+      return 'Your changes are not saved yet.'
   return
 
 Cake.validations.init = ->

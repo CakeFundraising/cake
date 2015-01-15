@@ -1,0 +1,10 @@
+- cache [:box, fundraiser] do
+  .fundraiser_grid.col-md-4
+    .thumbnail
+      .avatar-container 
+        = link_to fundraiser do
+          = fundraiser.picture.avatar
+      .caption
+        h4.truncate = auto_link fundraiser
+        .location.truncate = [fundraiser.object.city, fundraiser.object.state_code].join(', ')
+        .cause.truncate = fundraiser.object.causes.first

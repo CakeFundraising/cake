@@ -1,5 +1,5 @@
 class CampaignsController < InheritedResources::Base
-  authorize_resource
+  load_and_authorize_resource
 
   WIZARD_STEPS = [
     :basic_info,

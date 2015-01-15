@@ -23,6 +23,7 @@ Cake::Application.routes.draw do
   scope :search, controller: :searches do
     get :search_campaigns, path:'campaigns'
     get :search_sponsors, path:'sponsors'
+    get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
   end
 
@@ -151,6 +152,11 @@ Cake::Application.routes.draw do
     patch :fingerprint
   end
 
+  scope :password, controller: :password, name_prefix: :password do
+    get :confirm
+    post :verify
+  end
+
   #Settings
   scope :settings do
     get :public_profile, controller: :settings
@@ -188,4 +194,6 @@ Cake::Application.routes.draw do
     # route to basic auth to be tracked by js script
     get 'ec_auth' => "evercookie/evercookie#ec_auth", as: :evercookie_auth
   end
+
+  mount StripeEvent::Engine, at: "/stripe-webhooks"
 end

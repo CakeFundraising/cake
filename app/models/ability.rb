@@ -14,6 +14,8 @@ class Ability
       can :create, Pledge
       can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
+      can :crud, Coupon, sponsor: user.sponsor
+
       #PledgeRequest
       can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id    
     end
@@ -38,6 +40,7 @@ class Ability
 
     can :read, :all
     can :badge, Campaign
+    can :download, Coupon
     can [:badge, :solicit_click, :click, :new], Pledge
   end
 end

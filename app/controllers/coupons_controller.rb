@@ -1,9 +1,11 @@
 class CouponsController < InheritedResources::Base
   respond_to :pdf, only: :download
+  load_and_authorize_resource
 
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
+    authorize! :new, @coupon
   end
 
   def edit
@@ -40,10 +42,6 @@ class CouponsController < InheritedResources::Base
         pdf = CouponPdf.new(resource.decorate)
         send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
       end
-      # format.pdf do
-      #   pdf = CouponPdf.new(resource.decorate)
-      #   render pdf: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf"
-      # end
     end
   end
 

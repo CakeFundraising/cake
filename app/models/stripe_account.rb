@@ -3,7 +3,11 @@ class StripeAccount < ActiveRecord::Base
 
   validates_uniqueness_of :uid
 
-  #Recipient Methods
+  #Recipient (Bank Account) Methods
+  def store_ba(bank_account)
+    self.recipient? ? bank_account.update(self) : create_stripe_recipient(bank_account)
+  end
+
   def create_stripe_recipient(bank_account)
     recipient = Stripe::Recipient.create(
       name: bank_account.name,
@@ -23,7 +27,11 @@ class StripeAccount < ActiveRecord::Base
     Stripe::Recipient.retrieve(stripe_recipient_id) if recipient?
   end
 
-  #Customer methods
+  #Customer (Credit Card) methods
+  def store_cc(credit_card)
+    self.customer? ? credit_card.update(self) : create_stripe_customer(credit_card)
+  end
+
   def create_stripe_customer(credit_card)
     customer = Stripe::Customer.create(
       card: credit_card.token,
