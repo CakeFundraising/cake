@@ -3,17 +3,23 @@ class QuickPledge < ActiveRecord::Base
   include Statusable
   include Picturable
 
-  has_statuses :incomplete, :confirmed, :past
+  has_statuses :incomplete, :accepted, :past
 
   belongs_to :campaign, touch: true
   belongs_to :sponsorable, polymorphic: true
   has_one :fundraiser, through: :campaign
+
+  has_many :clicks, -> { where(bonus: false) }, as: :pledge, class_name: 'Click', dependent: :destroy
+  has_many :bonus_clicks, -> { where(bonus: true) }, as: :pledge, class_name: 'Click', dependent: :destroy
+  has_many :unique_click_browsers, through: :clicks, source: :browser
+  has_many :bonus_click_browsers, through: :bonus_clicks, source: :browser
 
   delegate :active?, to: :campaign
 
   scope :latest, ->{ order(created_at: :desc) }
   scope :with_campaign, ->{ eager_load(:campaign) }
   scope :highest, ->{ order(total_amount_cents: :desc, donation_per_click_cents: :desc) }
+  scope :total_amount_in, ->(range){ where(total_amount_cents: range) }
 
   validates :name, :website_url, :campaign, presence: true
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}
@@ -27,8 +33,39 @@ class QuickPledge < ActiveRecord::Base
   monetize :donation_per_click_cents
   monetize :total_amount_cents
 
+  before_save do
+    self.max_clicks = self.current_max_clicks
+  end
+
   before_create do
-    self.status = :confirmed
+    self.status = :accepted
+  end
+
+  alias_method :sponsor, :sponsorable
+  alias_method :amount_per_click, :donation_per_click
+
+  def click_exists?(click)
+    unique_click_for_browser?(click.browser) # We delegate click existance to browser existance
+  end
+
+  def unique_click_for_browser?(browser)
+    browser.nil? ? false : unique_click_browsers.equal_to(browser).any?
+  end
+
+  def bonus_click_for_browser?(browser)
+    browser.nil? ? false : bonus_click_browsers.equal_to(browser).any?
+  end
+
+  def current_max_clicks
+    (self.total_amount_cents/self.donation_per_click_cents).floor
+  end
+
+  def fully_subscribed?
+    self.reload.clicks_count >= self.max_clicks
+  end
+
+  def thermometer
+    (clicks_count.to_f/max_clicks)*100
   end
 
   private

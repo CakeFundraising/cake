@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103232208) do
+ActiveRecord::Schema.define(version: 20150115184040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,7 +111,8 @@ ActiveRecord::Schema.define(version: 20150103232208) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "browser_id"
-    t.boolean  "bonus",      default: false
+    t.boolean  "bonus",       default: false
+    t.string   "pledge_type"
   end
 
   create_table "coupons", force: true do |t|
@@ -317,6 +318,8 @@ ActiveRecord::Schema.define(version: 20150103232208) do
     t.integer  "impressions_count",           limit: 8, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bonus_clicks_count",          limit: 8, default: 0,            null: false
+    t.integer  "max_clicks",                            default: 0
   end
 
   create_table "sponsor_categories", force: true do |t|

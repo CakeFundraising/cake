@@ -12,7 +12,7 @@ module PledgesHelper
   end
 
   def pledge_offers_button(pledge)
-    if pledge.coupons.any?
+    if pledge.object.is_a?(Pledge) and pledge.coupons.any?
       extra = pledge.coupons.extra_donation_pledges.any?
       copy = extra ? "Extra Special Offers" : "Special Offers"
 

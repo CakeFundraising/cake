@@ -18,8 +18,8 @@ class Pledge < ActiveRecord::Base
   has_many :coupons, dependent: :destroy, :inverse_of => :pledge
   has_many :sweepstakes, dependent: :destroy, :inverse_of => :pledge
 
-  has_many :clicks, -> { where(bonus: false) }, class_name: 'Click', dependent: :destroy
-  has_many :bonus_clicks, -> { where(bonus: true) }, class_name: 'Click', dependent: :destroy
+  has_many :clicks, -> { where(bonus: false) }, as: :pledge, class_name: 'Click', dependent: :destroy
+  has_many :bonus_clicks, -> { where(bonus: true) }, as: :pledge, class_name: 'Click', dependent: :destroy
   has_many :unique_click_browsers, through: :clicks, source: :browser
   has_many :bonus_click_browsers, through: :bonus_clicks, source: :browser
 
