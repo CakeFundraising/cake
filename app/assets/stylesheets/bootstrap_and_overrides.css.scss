@@ -3379,6 +3379,12 @@ ul#share-block {
     text-align: center;
     margin: auto;
   }
+
+  .rwd-break { display: block; }
+
+  @media (min-width: 1200px){
+    .rwd-break { display: none; }
+  }
 }
 
 .alert-transparent{
