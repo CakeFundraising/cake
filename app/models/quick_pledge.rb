@@ -23,11 +23,11 @@ class QuickPledge < ActiveRecord::Base
 
   validates :name, :website_url, :campaign, presence: true
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}
-  validates :donation_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
+  validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
   validates :total_amount, numericality: {greater_than_or_equal_to: 50}
   validates :terms, acceptance: true, if: :new_record?
 
-  validate :max_amount, :total_amount_greater_than_donation_per_click
+  validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :decreased_amounts, if: :persisted?
 
   monetize :amount_per_click_cents
@@ -76,12 +76,12 @@ class QuickPledge < ActiveRecord::Base
     end
   end
 
-  def total_amount_greater_than_donation_per_click
+  def total_amount_greater_than_amount_per_click
     errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
   end
 
   def decreased_amounts
-    errors.add(:donation_per_click, "You can only increase this value after you create the pledge.") if self.changes.key?('amount_per_click_cents') and self.changes['amount_per_click_cents'].last < self.changes['amount_per_click_cents'].first 
+    errors.add(:amount_per_click, "You can only increase this value after you create the pledge.") if self.changes.key?('amount_per_click_cents') and self.changes['amount_per_click_cents'].last < self.changes['amount_per_click_cents'].first 
     errors.add(:total_amount, "You can only increase this value after you create the pledge.") if self.changes.key?('total_amount_cents') and self.changes['total_amount_cents'].last < self.changes['total_amount_cents'].first
   end
 end

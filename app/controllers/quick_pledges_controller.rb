@@ -52,7 +52,7 @@ class QuickPledgesController < InheritedResources::Base
   def permitted_params
     params.permit(
       quick_pledge: [
-        :name, :donation_per_click, :total_amount, :website_url, :terms, :campaign_id,
+        :name, :amount_per_click, :total_amount, :website_url, :terms, :campaign_id,
         :sponsorable_id, :sponsorable_type,
         picture_attributes: [
           :id, :banner, :avatar, :avatar_caption,

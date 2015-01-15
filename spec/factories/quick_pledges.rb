@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :quick_pledge do
     name { Faker::Lorem.sentence }
-    donation_per_click "2.00"
+    amount_per_click "2.00"
     total_amount "4500.00"
     website_url { "http://#{Faker::Internet.domain_name}" }
     campaign
