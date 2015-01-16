@@ -17,6 +17,8 @@
   /* inline-block space fix */
   margin-right:-4px;
 }
+/* break line responsive */
+.rwd-break { display: block; }
 
 html {
   position: relative;
@@ -42,8 +44,9 @@ body {
 }*/
 
 footer {
-  //position: absolute;
-  //bottom: 0;
+//  position: absolute;
+//  bottom: 0;
+  margin-bottom: -3em;
   width: 100%;
   padding: 15px 0;
   margin-top: 0px;
@@ -2724,20 +2727,18 @@ header {
 .quotes {
   background-image: url("success-bkg.jpg");
 
-  .open-quote {
-    float: left;
+  .quote:before {
     color: #fff;
+    content: open-quote;
     font-family: "minion-pro", Georgia, serif;
-    font-size: 4em;
+    font-size: 1em;
   }
 
-  .close-quote {
+  .quote:after {
     color: #fff;
+    content: close-quote;
     font-family: "minion-pro", Georgia, serif;
-    font-size: 4em;
-    display: inline-block;
-    margin-top: -0.4em;
-    margin-left: 95%;
+    font-size: 1em;
   }
 
   .quote-container {
@@ -2747,32 +2748,20 @@ header {
     flex-direction: column;
   }
 
-  .quote-box {
-    max-width: 90%;
-  }
-
   .quote {
-    margin-top: -2em;
+    margin-top: 2em;
     padding-left: 2em;
     padding-right: 2em;
     text-align: center;
   }
 
-  .author-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .author-box {
-    max-width: 80%;
-    padding-left: 20%;
-  }
-
   .author {
-    margin-top: -1.8em;
+    text-align: left;
     font-style: italic;
+  }
+
+  @media (min-width: 750px){
+    .rwd-break { display: none; }
   }
 
   h4 {
@@ -3379,8 +3368,6 @@ ul#share-block {
     text-align: center;
     margin: auto;
   }
-
-  .rwd-break { display: block; }
 
   @media (min-width: 1200px){
     .rwd-break { display: none; }
