@@ -44,7 +44,7 @@ class Payment < ActiveRecord::Base
       currency: self.total_currency.downcase,
       card: self.card_token,
       customer: self.customer_id,
-      description: "#{item_type} ##{item_id} Payment"
+      description: "CakeCauseMarketing.com #{item_type} ##{item_id} Payment",
     )
     store_charge(charge) 
   end
@@ -83,7 +83,7 @@ class Payment < ActiveRecord::Base
       amount: amount,
       currency: self.total_currency.downcase,
       recipient: self.recipient.stripe_account.stripe_recipient_id,
-      statement_description: "Cake Invoice #{item.id} Payment Transfer"
+      statement_description: "CakeCauseMarketing.com Invoice #{item.id} Payment"
     )
 
     store_transfer(transfer)
