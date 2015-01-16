@@ -2446,11 +2446,11 @@ header {
 
 .hero-home {
   border:0px;
-  background-image: url('success-bkg.jpg');
+  /*background-image: url('success-bkg.jpg');*/
   overflow: hidden;
   padding-bottom: 1em;
-  /*background-image: url('hero-home.jpg');
-  background-size: 100% auto;
+  background-image: url('hero-home.jpg');
+  /*background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
   */
