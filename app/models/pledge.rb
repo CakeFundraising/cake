@@ -9,7 +9,7 @@ class Pledge < ActiveRecord::Base
 
   attr_accessor :step
   
-  belongs_to :sponsor
+  belongs_to :sponsor, polymorphic: true
   belongs_to :campaign, touch: true
   has_one :fundraiser, through: :campaign
   
@@ -62,6 +62,8 @@ class Pledge < ActiveRecord::Base
   scope :with_campaign, ->{ eager_load(:campaign) }
 
   scope :latest, ->{ order(created_at: :desc) }
+
+  scope :quick, ->{ where(type: 'QuickPledge') }
 
   before_save do
     self.max_clicks = self.current_max_clicks
