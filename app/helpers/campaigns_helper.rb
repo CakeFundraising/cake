@@ -25,7 +25,7 @@ module CampaignsHelper
   end
 
   def update_campaign_screenshot(campaign)
-    if Rails.env.production?
+    if not Rails.env.production?
       Resque.enqueue(ResqueSchedule::CampaignScreenshot, resource.id, campaign_url(resource)) #update screenshot
     end
   end
