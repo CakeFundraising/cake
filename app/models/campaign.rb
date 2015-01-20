@@ -19,7 +19,8 @@ class Campaign < ActiveRecord::Base
   has_many :pledges, dependent: :destroy
   has_many :quick_pledges, dependent: :destroy
   has_many :invoices, through: :pledges
-  has_many :sponsors, through: :pledges
+  has_many :sponsors, through: :pledges, source_type: 'Sponsor'
+  has_many :fr_sponsors, through: :pledges, source_type: 'FrSponsor'
 
   has_many :sponsor_categories, validate: false, dependent: :destroy do
     # returns a hash: {category_name: (range_of_category) }
