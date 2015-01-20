@@ -27,7 +27,6 @@ class CampaignsController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::CampaignScreenshot, @campaign.id, campaign_url(@campaign)) #update screenshot
         redirect_to tell_your_story_campaign_path(@campaign)
       end
       failure.html do
@@ -39,7 +38,6 @@ class CampaignsController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::CampaignScreenshot, resource.id, campaign_url(resource)) #update screenshot
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do
@@ -98,6 +96,7 @@ class CampaignsController < InheritedResources::Base
 
   def launch
     resource.launch!
+    Resque.enqueue(ResqueSchedule::CampaignScreenshot, resource.id, campaign_url(resource)) #update screenshot
 
     if request.xhr?
       render nothing: true
