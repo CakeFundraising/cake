@@ -5,7 +5,7 @@ class CampaignPledgeDecorator < PledgeDecorator
     if object.instance_of?(Pledge)
       h.link_to object.sponsor.name, object.sponsor
     else
-      h.content_tag(:a, object.sponsor.name)
+      h.content_tag(:span, object.sponsor.name)
     end
   end
 
@@ -14,11 +14,15 @@ class CampaignPledgeDecorator < PledgeDecorator
   end
 
   def link_button
-    h.link_to('See Our Pledge', object, target: :_blank, class:'btn btn-success btn-block') if object.instance_of?(Pledge)
+    h.link_to('See Our Pledge', object, target: :_blank, class:'btn btn-success btn-block') 
+  end
+
+  def click_button
+    h.link_to('Click to Help!', h.click_quick_pledge_path(object), target: :_blank, class:'btn btn-success btn-block') 
   end
 
   def coupons_button
-    if object.instance_of?(Pledge) and object.coupons.any?
+    if object.coupons.any?
       extra = object.coupons.extra_donation_pledges.any?
       copy = extra ? "Extra Special Offers" : "Special Offers"
 

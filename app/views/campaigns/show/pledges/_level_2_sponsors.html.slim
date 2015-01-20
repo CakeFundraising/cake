@@ -16,7 +16,11 @@
           span = pledge.total_amount
           span.text-muted Pledge
       .buttons.row
-        .col-md-6
-          = pledge.link_button
-        .col-md-6
-          = pledge.coupons_button 
+        - if pledge.instance_of?(Pledge)
+          .col-md-6
+            = pledge.link_button
+          .col-md-6
+            = pledge.coupons_button
+        - else
+          .col-md-12
+            = pledge.click_button

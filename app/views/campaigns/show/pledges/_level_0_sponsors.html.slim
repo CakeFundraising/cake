@@ -14,5 +14,8 @@
         span.pull-right
           span = pledge.total_amount
       .buttons
-        = pledge.link_button
-        = pledge.coupons_button
+        - if pledge.instance_of?(Pledge)
+          = pledge.link_button
+          = pledge.coupons_button
+        - else
+          = pledge.click_button
