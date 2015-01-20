@@ -30,9 +30,11 @@ class Payment < ActiveRecord::Base
   end
 
   def transfer!
-    stripe_trasfer
-    notify_transfer
-    update_attribute(:status, :transferred)
+    if self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
+      stripe_trasfer
+      notify_transfer
+      update_attribute(:status, :transferred)
+    end
   end
 
   private
@@ -104,7 +106,7 @@ class Payment < ActiveRecord::Base
   end
 
   def notify_transfer
-    item.fundraiser.users.each do |user|
+    self.recipient.users.each do |user|
       InvoiceNotification.payment_transfer(item.id, user.id).deliver
     end
   end
