@@ -104,5 +104,8 @@ class Payment < ActiveRecord::Base
   end
 
   def notify_transfer
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.payment_transfer(item.id, user.id).deliver
+    end
   end
 end

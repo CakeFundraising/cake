@@ -129,7 +129,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def raised
-    pledges.accepted.map(&:total_charge).sum.to_f
+    pledges.send(self.status).map(&:total_charge).sum.to_f
   end
 
   def total_donation_per_click
