@@ -1,15 +1,15 @@
 - cache [:table, :active, :fr, pledge] do
   tr.pledge id=(pledge.id) 
     td data-title=(Pledge.human_attribute_name :pledge_name)
-      = auto_link pledge
+      = pledge_autolink(pledge)
     td data-title=(Sponsor.model_name.human)
-      = auto_link pledge.sponsor
+      = sponsor_autolink(pledge)
     td data-title=(Pledge.human_attribute_name :campaign)
       = auto_link pledge.campaign
     td data-title=(Pledge.human_attribute_name :causes)
       = pledge.cause
     td data-title=(Pledge.human_attribute_name :scopes)
-      = pledge.scopes.first
+      = pledge.scope
     td data-title=(Pledge.human_attribute_name :end_date)
       = pledge.end_date
     td data-title=(Pledge.model_name.human)

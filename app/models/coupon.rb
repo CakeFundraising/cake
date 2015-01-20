@@ -3,7 +3,7 @@ class Coupon < ActiveRecord::Base
   include Picturable
   
   belongs_to :pledge
-  has_one :sponsor, through: :pledge
+  has_one :sponsor, through: :pledge, source_type: 'Sponsor'
   has_one :campaign, through: :pledge
 
   monetize :unit_donation_cents

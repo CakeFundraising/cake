@@ -23,6 +23,14 @@ class QuickPledgeDecorator < ApplicationDecorator
     object.status.titleize
   end
 
+  def cause
+    "-"
+  end
+
+  def scope
+    "-"
+  end
+
   def website
     h.auto_attr_link website_url, target: :_blank
   end

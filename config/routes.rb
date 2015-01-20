@@ -78,7 +78,11 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :quick_pledges, except: :show
+  resources :quick_pledges, except: :show do
+    member do
+      get :click
+    end
+  end
 
   resources :fundraisers, except: [:index, :destroy] do
     member do

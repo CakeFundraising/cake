@@ -64,6 +64,7 @@ class Pledge < ActiveRecord::Base
   scope :latest, ->{ order(created_at: :desc) }
 
   scope :quick, ->{ where(type: 'QuickPledge') }
+  scope :normal, ->{ where(type: nil) }
 
   before_save do
     self.max_clicks = self.current_max_clicks

@@ -15,9 +15,9 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def pledges
-    @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
+    @unsolicited_pledges = current_fundraiser.pledges.normal.pending.decorate
     @requested_pledges = current_fundraiser.pledge_requests.decorate
-    @accepted_pledges = current_fundraiser.pledges.accepted.decorate
+    @accepted_pledges = current_fundraiser.pledges.normal.accepted.decorate
   end
 
   def campaigns

@@ -119,7 +119,7 @@ class Campaign < ActiveRecord::Base
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
+          CampaignPledgeDecorator.decorate_collection( obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc) )
         end 
       end
     end
