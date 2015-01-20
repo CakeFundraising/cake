@@ -12,6 +12,6 @@ Feature: Campaign Launch
   Scenario: Launch campaign from Active Campaigns page
     When he visits the fundraiser campaigns page
     And he press the "Launch" link
-    Then he should see "Campaign is launched now!"
+    Then he should see "Campaign launched!"
     And he should be taken to the campaign wizard share page
     And the pending campaign should have a "launched" status

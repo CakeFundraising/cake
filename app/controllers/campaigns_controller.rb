@@ -11,6 +11,7 @@ class CampaignsController < InheritedResources::Base
 
   include ImpressionablesController
   include PastResource
+  include CampaignsHelper
 
   def show
     @campaign = resource.decorate
@@ -96,7 +97,7 @@ class CampaignsController < InheritedResources::Base
 
   def launch
     resource.launch!
-    Resque.enqueue(ResqueSchedule::CampaignScreenshot, resource.id, campaign_url(resource)) #update screenshot
+    update_campaign_screenshot(resource)
 
     if request.xhr?
       render nothing: true
