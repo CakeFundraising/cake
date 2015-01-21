@@ -1,5 +1,5 @@
 class UserNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   def account_updated(user_id)
     user = find_user(user_id)

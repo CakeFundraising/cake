@@ -1,5 +1,5 @@
 class InvoiceNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   def new_invoice(invoice_id, user_id)
     @invoice = find_invoice(invoice_id).decorate
