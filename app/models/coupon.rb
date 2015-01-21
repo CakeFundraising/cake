@@ -2,7 +2,7 @@ class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include Picturable
   
-  belongs_to :pledge
+  belongs_to :pledge, touch: true
   has_one :sponsor, through: :pledge
   has_one :campaign, through: :pledge
 

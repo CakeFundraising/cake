@@ -7,8 +7,6 @@
           div.stat
             span = sponsor.location
           div.stat
-            span = sponsor.website
-          div.stat
             span = pluralize(sponsor.quick_pledges.count, 'Pledge')
           div.stat
             = link_to 'View Pledges', "##{sponsor.id}", data:{toggle: 'collapse'}, class:'btn btn-default'

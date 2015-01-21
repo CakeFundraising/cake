@@ -30,10 +30,29 @@ class QuickPledgesController < InheritedResources::Base
     end
   end
 
+  def click
+    if current_browser.present?
+      if resource.active?
+        click = (resource.unique_click_browsers.include?(current_browser) || resource.fully_subscribed?) ? resource.bonus_clicks.build(browser: current_browser) : resource.clicks.build(browser: current_browser)
+
+        if click.save
+          click.pusherize
+          redirect_to resource.decorate.website_url 
+        else
+          redirect_to resource, alert: click.errors.messages
+        end
+      else
+        redirect_to resource.decorate.website_url
+      end
+    else
+      redirect_to resource, alert: 'There was an error when trying to count your click. Please try again.'
+    end
+  end
+
   def permitted_params
     params.permit(
       quick_pledge: [
-        :name, :donation_per_click, :total_amount, :website_url, :terms, :campaign_id,
+        :name, :amount_per_click, :total_amount, :website_url, :terms, :campaign_id,
         :sponsorable_id, :sponsorable_type,
         picture_attributes: [
           :id, :banner, :avatar, :avatar_caption,

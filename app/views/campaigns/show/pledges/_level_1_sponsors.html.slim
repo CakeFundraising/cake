@@ -4,19 +4,19 @@
       .overlay-effects.clearfix#effect-6
         = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-md'}
       .levels
-        .sponsor-name.truncate = auto_link pledge.sponsor
-        .location.truncate = [pledge.sponsor.city, pledge.sponsor.state_code].join(', ')
+        .sponsor-name.truncate = pledge.sponsor_autolink
+        .location.truncate = pledge.sponsor_location
         .progress
           .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
             span.sr-only #{pledge.thermometer}% Complete (success)
         span
-          span.amount_per_click = humanized_money_with_symbol pledge.amount_per_click
-          span.text-muted Per click
+          span.amount_per_click = pledge.amount_per_click
+          span.text-muted Per Click
         span.pull-right
-          span = humanized_money_with_symbol pledge.total_amount
+          span = pledge.total_amount
           span.text-muted Pledge
       .buttons.row
         .col-md-6
-          = link_to 'See Our Pledge', pledge, target: :_blank, class:'btn btn-success btn-block'
-        .col-md-6.padding-left-out
-          = pledge_offers_button(pledge)
+          = pledge.link_button
+        .col-md-6
+          = pledge.coupons_button 

@@ -1,12 +1,12 @@
 class Click < ActiveRecord::Base
-  belongs_to :pledge, touch: true
+  belongs_to :pledge, polymorphic: true, touch: true
   belongs_to :browser
 
-  counter_culture :pledge, column_name: Proc.new {|click| click.bonus ? 'bonus_clicks_count' : 'clicks_count' },
-  column_names: {
-    ["clicks.bonus = ?", true] => 'bonus_clicks_count',
-    ["clicks.bonus = ?", false] => 'clicks_count'
-  }
+  # counter_culture :pledge, column_name: Proc.new {|click| click.bonus ? 'bonus_clicks_count' : 'clicks_count' },
+  # column_names: {
+  #   ["clicks.bonus = ?", true] => 'bonus_clicks_count',
+  #   ["clicks.bonus = ?", false] => 'clicks_count'
+  # }
 
   validates :browser_id, :pledge_id, presence: true
 
@@ -17,6 +17,11 @@ class Click < ActiveRecord::Base
 
   scope :bonus, -> { where(bonus: true) }
   scope :unique, -> { where(bonus: false) }
+
+  after_create do
+    column = click.bonus ? :bonus_clicks_count : :clicks_count
+    self.pledge.increment!(column)
+  end
 
   def pusherize
     unless self.bonus #Unique clicks only

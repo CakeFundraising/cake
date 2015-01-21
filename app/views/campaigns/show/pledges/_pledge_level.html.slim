@@ -4,4 +4,4 @@
       span.sponsor-name Visit our #{sc.name} #{@campaign.sponsor_alias}
       span.sponsor-pledge.bolder = sc.range
 .row
-  = render partial: "campaigns/show/pledges/level_#{sc.position}_sponsors", collection: @campaign.object.send("#{sc.object.name}_pledges").decorate, as: :pledge
+  = render partial: "campaigns/show/pledges/level_#{sc.position}_sponsors", collection: CampaignPledgeDecorator.decorate_collection( @campaign.object.send("#{sc.object.name}_pledges") ), as: :pledge
