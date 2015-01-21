@@ -19,6 +19,7 @@ class InvoiceNotification < AsyncMailer
     @receiver = find_user(user_id).decorate
     @pledge = @invoice.pledge
     @amount = @invoice.payment.transfers.first.amount
+    @sp = @invoice.sponsor
     mail(to: @receiver.email, subject: 'Transfer scheduled.')
   end
 

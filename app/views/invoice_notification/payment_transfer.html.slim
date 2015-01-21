@@ -1,27 +1,7 @@
 h2 Hello #{@receiver}, 
-div We have scheduled a transfer of #{ humanized_money_with_symbol @amount } to your bank account from Invoice #{@invoice.id}:
 
-br
-br
+div Cake has scheduled a transfer of #{ humanized_money_with_symbol @amount } from #{@sp}, Invoice #{@invoice.id}, to your bank account.
 
-table
-  thead
-    tr
-      th Pledge Name
-      th Cost/Unique Click 
-      th Unique Clicks 
-      th Pledge Amount 
-      th Amount Due
-  tbody
-    tr
-      td = link_to @pledge, pledge_url(@pledge)
-      td = @invoice.click_donation
-      td = @invoice.clicks
-      td = @pledge.total_amount
-      td = @invoice.due
+div The funds should be available in the next 2 to 5 days.
 
-br
-br
-
-div Your money will be available on your bank account within 2-5 days from now.
-div.boldest Thank you for trust on Cake! We're looking forward to run a campaign with you again!
+div Thank you for using Cake!
