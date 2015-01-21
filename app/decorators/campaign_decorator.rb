@@ -47,8 +47,8 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.current_average_donation
   end
 
-  def raised
-    h.humanized_money_with_symbol object.raised
+  def raised(status=:accepted)
+    h.humanized_money_with_symbol object.raised(status)
   end
 
   def goal

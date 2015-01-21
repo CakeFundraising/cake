@@ -128,8 +128,8 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.order(total_amount_cents: :desc, amount_per_click_cents: :desc)
   end
 
-  def raised
-    pledges.accepted.map(&:total_charge).sum.to_f
+  def raised(status=:accepted)
+    pledges.send(status).map(&:total_charge).sum.to_f
   end
 
   def total_donation_per_click

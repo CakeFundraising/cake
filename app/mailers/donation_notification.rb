@@ -1,5 +1,5 @@
 class DonationNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   def charge_succeeded(charge)
     @amount = number_to_currency(charge.amount.to_i/100)
