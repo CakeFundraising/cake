@@ -5,7 +5,7 @@ describe QuickPledge do
   it { should validate_presence_of(:campaign) }
   it { should validate_presence_of(:website_url) }
 
-  it { should belong_to(:sponsorable) }
+  it { should belong_to(:sponsor) }
   it { should belong_to(:campaign) }
   it { should have_one(:fundraiser).through(:campaign) }
   it { should have_one(:picture).dependent(:destroy) }
@@ -19,6 +19,6 @@ describe QuickPledge do
   end
 
   it "should have statuses" do
-    QuickPledge.statuses[:status].should == [:incomplete, :confirmed, :past]
+    QuickPledge.statuses[:status].should == [:incomplete, :pending, :accepted, :rejected, :past]
   end
 end

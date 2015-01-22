@@ -3,7 +3,6 @@ require 'spec_helper'
 describe FrSponsor do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
-  it { should validate_presence_of(:website_url) }
 
   it { should belong_to(:fundraiser) }
   it { should have_one(:location).dependent(:destroy) }
