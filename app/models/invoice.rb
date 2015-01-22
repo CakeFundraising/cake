@@ -8,7 +8,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :pledge, touch: true
   has_one :campaign, through: :pledge
   has_one :fundraiser, through: :campaign
-  has_one :sponsor, through: :pledge
+  has_one :sponsor, through: :pledge, source_type: 'Sponsor'
 
   has_one :payment, as: :item
   has_many :charges, through: :payment

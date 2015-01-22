@@ -96,11 +96,11 @@ class Fundraiser < ActiveRecord::Base
   end
 
   def sponsors_of(type) # type = :active || :past
-    pledges.send(type).eager_load(:sponsor).map(&:sponsor).uniq
+    pledges.send(type).includes(:sponsor).map(&:sponsor).uniq
   end
 
   def sponsors
-    pledges.accepted_or_past.eager_load(:sponsor).map(&:sponsor).uniq
+    pledges.accepted_or_past.includes(:sponsor).map(&:sponsor).uniq
   end
 
   #Stripe Account
