@@ -32,6 +32,7 @@ Cake.bank_accounts.validation = ->
     rules:
       'bank_account[name]': 
         required: true
+        firstLastName: true
       'bank_account[email]':
         required: true
         email: true

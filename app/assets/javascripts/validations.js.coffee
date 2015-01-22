@@ -27,6 +27,11 @@ Cake.validations.custom_methods = ->
     this.optional(element) || parseInt(value) > parseInt(params)
   ), jQuery.validator.format("Please enter a value greater than {0}")
 
+  $.validator.addMethod "firstLastName", ((value, element, params) ->
+    this.optional(element) || /^\w+\s+\w+$/i.test(value)
+  ), (params, element) ->
+    "Please enter First and Last Name."
+
   return
 
 Cake.validations.form_leaving = ->
@@ -94,7 +99,7 @@ Cake.validations.require_form = (model)->
       return
     #Page leaving
     window.onbeforeunload = ->
-      return 'Your changes are not saved yet.'
+      return 'Your changes are not saved yet.' unless form.valid()
   return
 
 Cake.validations.init = ->
