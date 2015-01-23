@@ -21,8 +21,9 @@
     td.truncate.min-width
       - if pledge.increase_requested
         button.btn.btn-sm.btn-warning.disabled Increase Requested
-      - else
+      - elsif pledge.instance_of?(Pledge)
         = link_to "Request Pledge Increase", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-sm btn-primary increase_request'
+
       = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
         span.glyphicon.glyphicon-trash
 
