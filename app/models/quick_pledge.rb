@@ -1,4 +1,6 @@
 class QuickPledge < Pledge
+  has_one :invoice, class_name: 'QpInvoice', foreign_key: :pledge_id
+
   before_create do
     self.status = :accepted
   end
@@ -11,4 +13,8 @@ class QuickPledge < Pledge
 
   validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :decreased_amounts, if: :persisted?
+
+  def create_invoice
+    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge).save!
+  end
 end

@@ -26,13 +26,11 @@
 
   tr.empty-tr
 
-  - unless current_sponsor.decorate.stripe_customer?
+  - unless current_sponsor.present? and current_sponsor.decorate.stripe_customer?
     javascript:
       $(".pay_button.invoice_#{invoice.object.id}").off("click").click(function(e) {
         e.preventDefault();
 
-        console.log('Hola')
-        
         Cake.invoice_payment_handler.open({
           image: '#{invoice.campaign.picture.avatar}',
           name: "Invoice #{invoice.id} Payment",
@@ -42,3 +40,5 @@
 
         $('#payment_item_id').val('#{invoice.object.id}');
       });
+
+      

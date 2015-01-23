@@ -19,6 +19,9 @@ class Invoice < ActiveRecord::Base
   scope :outstanding, ->{ where.not(status: :paid) }
   scope :latest, ->{ order(created_at: :desc) }
 
+  scope :quick, ->{ where(type: 'QpInvoice') }
+  scope :normal, ->{ where(type: nil) }
+
   delegate :bonus_clicks_count, to: :pledge
 
   def fees

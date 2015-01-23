@@ -86,6 +86,7 @@ en:
       invoices:
         outstanding: outstanding invoices
         past: past invoices
+        qp: quick pledge invoices
       sponsors: sponsors
       fundraisers: fundraisers
       fr_sponsors: sponsors

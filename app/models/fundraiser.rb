@@ -9,9 +9,13 @@ class Fundraiser < ActiveRecord::Base
   has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
+  
   has_many :pledge_requests, dependent: :destroy
-  has_many :pledges, through: :campaigns
+
+  has_many :pledges, ->{ normal }, through: :campaigns
+  has_many :quick_pledges, ->{ quick }, through: :campaigns
   has_many :invoices, through: :pledges
+  has_many :qp_invoices, through: :quick_pledges, source: :invoice
 
   has_many :fr_sponsors, dependent: :destroy
 
