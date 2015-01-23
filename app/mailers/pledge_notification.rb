@@ -1,5 +1,5 @@
 class PledgeNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   #Pledge Requests
   def new_pledge_request(pledge_request_id, message)

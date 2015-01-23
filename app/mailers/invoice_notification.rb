@@ -1,5 +1,5 @@
 class InvoiceNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   def new_invoice(invoice_id, user_id)
     @invoice = find_invoice(invoice_id).decorate
@@ -12,6 +12,15 @@ class InvoiceNotification < AsyncMailer
     @invoice = find_invoice(invoice_id).decorate
     @receiver = find_user(user_id).decorate
     mail(to: @receiver.email, subject: 'Your invoice has been paid.')
+  end
+
+  def payment_transfer(invoice_id, user_id)
+    @invoice = find_invoice(invoice_id).decorate
+    @receiver = find_user(user_id).decorate
+    @pledge = @invoice.pledge
+    @amount = @invoice.payment.transfers.first.amount
+    @sp = @invoice.sponsor
+    mail(to: @receiver.email, subject: 'Transfer scheduled.')
   end
 
   protected

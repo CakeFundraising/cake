@@ -21,7 +21,7 @@ class ContactMailer < MailForm::Base
   def headers
     {
       subject: "Contact from #{name}",
-      from: %("CakeFundraising" <no-reply@cakefundraising.com>),
+      from: %("CakeFundraising" <no-reply@cakecausemarketing.com>),
       to: get_recipient
     }
   end  

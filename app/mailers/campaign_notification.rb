@@ -3,7 +3,7 @@ class CampaignNotification < AsyncMailer
 
   #layout 'layouts/emails/application'
 
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   def campaign_ended(campaign_id, user_id)
     @campaign = find_campaign(campaign_id).decorate

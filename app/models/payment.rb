@@ -30,9 +30,11 @@ class Payment < ActiveRecord::Base
   end
 
   def transfer!
-    stripe_trasfer
-    notify_transfer
-    update_attribute(:status, :transferred)
+    if self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
+      stripe_trasfer
+      notify_transfer
+      update_attribute(:status, :transferred)
+    end
   end
 
   private
@@ -76,16 +78,18 @@ class Payment < ActiveRecord::Base
   end
 
   #Transfers
-  def stripe_trasfer
-    amount = ((1-Cake::APPLICATION_FEE)*self.total_cents).round
+  def transfer_amount
+    amount_with_stripe_fees = (((1-Cake::STRIPE_FEE)*self.total_cents) - 30).round
+    (amount_with_stripe_fees*(1-Cake::APPLICATION_FEE)).round
+  end
 
+  def stripe_trasfer
     transfer = Stripe::Transfer.create(
-      amount: amount,
+      amount: transfer_amount,
       currency: self.total_currency.downcase,
       recipient: self.recipient.stripe_account.stripe_recipient_id,
       statement_description: "CakeCauseMarketing.com Invoice #{item.id} Payment"
     )
-
     store_transfer(transfer)
   end
 
@@ -104,5 +108,8 @@ class Payment < ActiveRecord::Base
   end
 
   def notify_transfer
+    self.recipient.users.each do |user|
+      InvoiceNotification.payment_transfer(item.id, user.id).deliver
+    end
   end
 end
