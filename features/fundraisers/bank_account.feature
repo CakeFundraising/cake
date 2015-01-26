@@ -8,6 +8,7 @@ Feature: Bank Account
   Scenario Outline: Create Bank Account
     Given a fundraiser exists
     And that fundraiser is logged in
+    And he confirms the alert dialog
     When he visits the fundraiser bank account page
 #    Then show me the page
     And he reenters his password

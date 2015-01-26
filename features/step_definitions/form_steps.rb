@@ -49,6 +49,6 @@ Then(/^he should see (?:a|an)?(\d+)? "(.*?)" button(?:s)?$/) do |quantity, butto
   page.should have_link(button_name, count: quantity)    
 end
 
-Then /^show me the page$/ do
+Then(/^show me the page$/) do
   save_and_open_page
 end
