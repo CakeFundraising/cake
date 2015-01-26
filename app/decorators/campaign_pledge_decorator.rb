@@ -18,7 +18,7 @@ class CampaignPledgeDecorator < PledgeDecorator
   end
 
   def click_button
-    h.link_to('Click to Help!', h.click_quick_pledge_path(object), target: :_blank, class:'btn btn-success btn-block') 
+    h.link_to('Click to Help!', h.click_quick_pledge_path(object), target: :_blank, class:'btn btn-success btn-block click-link') 
   end
 
   def coupons_button

@@ -48,13 +48,13 @@ Cake.campaigns.mini_pledges_click = ->
   links = $('.click-link')
 
   links.click (e)->
-    overlay = $(this).closest('.effect-overlay')
+    overlay = $(this).closest('.platinum').find('.overlay-effects .effect-overlay')
     amount_per_click = $(this).closest('.mini-pledge').find('.levels span.amount_per_click').text()
     fr = $('.fundraiser-name h4').text()
 
     unless overlay.hasClass('blue-bg')
       overlay.addClass('blue-bg').addClass('clicked')
-      $(this).html("<div class='thanks'>Thank you!</div><div class='earning'>You earned #{amount_per_click} for #{fr}!</div>")
+      overlay.find('a.click-link').html("<div class='thanks'>Thank you!</div><div class='earning'>You earned #{amount_per_click} for #{fr}!</div>")
       
       window.onfocus = ->
         setTimeout (->
