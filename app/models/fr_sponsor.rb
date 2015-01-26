@@ -1,17 +1,20 @@
 class FrSponsor < ActiveRecord::Base
   include Formats
+  #include Analytics
 
   belongs_to :fundraiser
   has_one :location, as: :locatable, dependent: :destroy
-  has_many :quick_pledges, as: :sponsorable, dependent: :destroy
+  has_many :quick_pledges, as: :sponsor, dependent: :destroy
   has_many :campaigns, through: :quick_pledges
+  has_many :invoices, through: :quick_pledges
 
   delegate :city, :state, :state_code, :country, :address, to: :location
 
-  validates :name, :email, :website_url, presence: :true
+  #alias_method :pledges, :quick_pledges
+
+  validates :name, :email, presence: :true
   validates :email, email: true
   validates_associated :location
-  validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, unless: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
 
@@ -21,5 +24,9 @@ class FrSponsor < ActiveRecord::Base
     if self.new_record?
       self.build_location
     end
+  end
+
+  def users #See pledge.notify_invoice
+    []
   end
 end

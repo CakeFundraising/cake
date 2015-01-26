@@ -12,12 +12,13 @@ class Fundraiser::DashboardController < ApplicationController
     @campaigns_with_outstanding_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_outstanding_invoices
     @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
     @stripe_account = current_fundraiser.stripe_account
+    @qp_invoices = InvoiceDecorator.decorate_collection current_fundraiser.qp_invoices.latest
   end
 
   def pledges
-    @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
+    @unsolicited_pledges = current_fundraiser.pledges.normal.pending.decorate
     @requested_pledges = current_fundraiser.pledge_requests.decorate
-    @accepted_pledges = current_fundraiser.pledges.accepted.decorate
+    @accepted_pledges = current_fundraiser.pledges.normal.accepted.decorate
   end
 
   def campaigns

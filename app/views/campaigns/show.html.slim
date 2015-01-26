@@ -53,12 +53,14 @@
                   span.boldest = @campaign.goal
                   |  Goal
           .row
-            - if current_user.present?
-              - unless @campaign.past? 
-                .col-md-12.text-center
-                  .main-cta
-                    = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
-            - else
+            - if current_user.present? and not @campaign.past?
+              .col-md-12.text-center
+                .main-cta
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
+            - elsif @campaign.past?
+              .col-md-12.text-center
+                .main-cta.alert.alert-danger.ended_campaign This campaign is over
+            - elsif current_user.nil?
               .col-md-12.text-center
                 .main-cta
                   a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How Cake Works

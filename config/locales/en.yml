@@ -86,8 +86,10 @@ en:
       invoices:
         outstanding: outstanding invoices
         past: past invoices
+        qp: quick pledge invoices
       sponsors: sponsors
       fundraisers: fundraisers
+      fr_sponsors: sponsors
     causes:
       disaster_and_emergency: Disaster & Emergencies
       causes_and_organizations: Causes & Organizations

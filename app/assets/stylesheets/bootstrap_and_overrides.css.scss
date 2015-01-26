@@ -556,6 +556,10 @@ p.signup-social span:before, p.signup-social span:after {
 
 .main-cta{
   margin-top:15px;
+  &.ended_campaign{
+    font-size: 20px;
+    margin: 20px 0;
+  }
 }
 /*
 .btn-xl{

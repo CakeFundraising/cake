@@ -9,7 +9,7 @@ class Pledge < ActiveRecord::Base
 
   attr_accessor :step
   
-  belongs_to :sponsor
+  belongs_to :sponsor, polymorphic: true
   belongs_to :campaign, touch: true
   has_one :fundraiser, through: :campaign
   
@@ -39,7 +39,7 @@ class Pledge < ActiveRecord::Base
   validates :amount_per_click, :total_amount, :campaign, :website_url, presence: true
 
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}
-  validates :name, :mission, :headline, :description, presence: true, if: :persisted?
+  validates :name, :mission, :headline, :description, presence: true, if: -> (pledge){ pledge.persisted? and pledge.type.nil? } 
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount, :total_amount_greater_than_amount_per_click
   validate :decreased_amounts, if: :persisted?
@@ -62,6 +62,9 @@ class Pledge < ActiveRecord::Base
   scope :with_campaign, ->{ eager_load(:campaign) }
 
   scope :latest, ->{ order(created_at: :desc) }
+
+  scope :quick, ->{ where(type: 'QuickPledge') }
+  scope :normal, ->{ where(type: nil) }
 
   before_save do
     self.max_clicks = self.current_max_clicks

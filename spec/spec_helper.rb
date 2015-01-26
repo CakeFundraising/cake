@@ -6,7 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'simplecov'
 require "cancan/matchers"
-require "money-rails/test_helpers" 
+require 'money-rails/test_helpers'
 #require 'sunspot_test/rspec'
 SimpleCov.start 'rails'
 

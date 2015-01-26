@@ -1,5 +1,4 @@
 class PledgesController < InheritedResources::Base
-  include ImpressionablesController
   load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]

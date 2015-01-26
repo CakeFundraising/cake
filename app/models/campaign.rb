@@ -19,7 +19,8 @@ class Campaign < ActiveRecord::Base
   has_many :pledges, dependent: :destroy
   has_many :quick_pledges, dependent: :destroy
   has_many :invoices, through: :pledges
-  has_many :sponsors, through: :pledges
+  has_many :sponsors, through: :pledges, source_type: 'Sponsor'
+  has_many :fr_sponsors, through: :pledges, source_type: 'FrSponsor'
 
   has_many :sponsor_categories, validate: false, dependent: :destroy do
     # returns a hash: {category_name: (range_of_category) }
@@ -118,7 +119,7 @@ class Campaign < ActiveRecord::Base
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
+          CampaignPledgeDecorator.decorate_collection( obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc) )
         end 
       end
     end
