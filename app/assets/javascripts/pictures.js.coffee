@@ -74,7 +74,7 @@ Cake.pictures.validation.init = ->
     '.formtastic.pledge', 
     '.formtastic.campaign', 
     '.formtastic.fundraiser', 
-    '.formtastic.sponsor', 
+    '.formtastic.sponsor',
     '.formtastic.quick_pledge'
   ]
 

@@ -3,6 +3,10 @@ class QuickPledgesController < InheritedResources::Base
     @fr_sponsors = current_fundraiser.fr_sponsors.latest.decorate
   end
 
+  def new
+    @quick_pledge = QuickPledge.new(sponsor_id: params[:sponsor_id], sponsor_type: params[:sponsor_type])
+  end
+
   def create
     create! do |success, failure|
       success.html do
