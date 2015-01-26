@@ -39,7 +39,7 @@
           .row
             .col-md-12.pledges_total
               span Total Donations Earned: 
-              span.boldest.raised = @campaign.raised
+              span.boldest.raised = @campaign.raised_by_status
           hr
           .row
             .col-md-12
@@ -48,7 +48,7 @@
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
               .campaign-stats
                 span
-                  span.boldest.raised = @campaign.raised
+                  span.boldest.raised = @campaign.raised_by_status
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal

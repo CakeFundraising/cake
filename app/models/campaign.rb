@@ -133,6 +133,11 @@ class Campaign < ActiveRecord::Base
     pledges.send(status).map(&:total_charge).sum.to_f
   end
 
+  def raised_by_status
+    status = self.launched? ? :accepted : self.status
+    pledges.send(status).map(&:total_charge).sum.to_f
+  end
+
   def total_donation_per_click
     pledges.accepted.sum(:amount_per_click_cents)/100.0
   end
@@ -147,7 +152,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def pledges_thermometer
-    (raised/goal.amount)*100 unless goal.amount == 0.0
+    (raised_by_status/goal.amount)*100 unless goal.amount == 0.0
   end
 
   def self.popular

@@ -51,6 +51,10 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.raised(status)
   end
 
+  def raised_by_status
+    h.humanized_money_with_symbol object.raised_by_status
+  end
+
   def goal
     h.humanized_money_with_symbol object.goal
   end
