@@ -17,6 +17,8 @@
   /* inline-block space fix */
   margin-right:-4px;
 }
+/* break line responsive */
+.rwd-break { display: block; }
 
 html {
   position: relative;
@@ -28,7 +30,7 @@ html {
 body {
   margin:0;
   padding:0;
-  margin-bottom: 333px;
+  //margin-bottom: 333px;
   min-width: 100%;
 }
 
@@ -42,8 +44,9 @@ body {
 }*/
 
 footer {
-  position: absolute;
-  bottom: 0;
+//  position: absolute;
+//  bottom: 0;
+  margin-bottom: -3em;
   width: 100%;
   padding: 15px 0;
   margin-top: 0px;
@@ -412,7 +415,7 @@ hr{
   }
 }
 
-@media (min-width: 918px){
+@media (min-width: 935px){
   .btn-signup.btn-success{
     display:block;
   }
@@ -1293,6 +1296,7 @@ h1.name {
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
+  text-shadow: 0 0 10px rgba(0,0,0,1);
 }
 
 address {
@@ -2393,15 +2397,6 @@ header {
     margin-bottom: 0;
   }
 }
-.success-banner {
-  height:375px;
-  margin-bottom: 0;
-  border:0px;
-  background-image: image-url('success-bkg.jpg');
-  background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
-}
 
 .supporters{
   background-color:white;
@@ -2456,11 +2451,11 @@ header {
 
 .hero-home {
   border:0px;
-  background-image: url('success-bkg.jpg');
+  /*background-image: url('success-bkg.jpg');*/
   overflow: hidden;
   padding-bottom: 1em;
-  /*background-image: url('hero-home.jpg');
-  background-size: 100% auto;
+  background-image: url('hero-home.jpg');
+  /*background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
   */
@@ -2737,20 +2732,18 @@ header {
 .quotes {
   background-image: url("success-bkg.jpg");
 
-  .open-quote {
-    float: left;
+  .quote:before {
     color: #fff;
+    content: open-quote;
     font-family: "minion-pro", Georgia, serif;
-    font-size: 4em;
+    font-size: 1em;
   }
 
-  .close-quote {
+  .quote:after {
     color: #fff;
+    content: close-quote;
     font-family: "minion-pro", Georgia, serif;
-    font-size: 4em;
-    display: inline-block;
-    margin-top: -0.4em;
-    margin-left: 92%;
+    font-size: 1em;
   }
 
   .quote-container {
@@ -2758,38 +2751,22 @@ header {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-left: -10%;
-  }
-
-  .quote-box {
-    min-width: 36%;
-    max-width: 50%;
-    padding-left: 10%;
   }
 
   .quote {
-    margin-top: -2em;
-    padding-left: 10%;
-    padding-right: 10%;
+    margin-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
     text-align: center;
   }
 
-  .author-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 20%;
-  }
-
-  .author-box {
-    max-width: 50%;
-    padding-right: 10%;
-  }
-
   .author {
-    margin-top: -1.8em;
+    text-align: left;
     font-style: italic;
+  }
+
+  @media (min-width: 750px){
+    .rwd-break { display: none; }
   }
 
   h4 {
@@ -3395,6 +3372,10 @@ ul#share-block {
     max-width: 1100px;
     text-align: center;
     margin: auto;
+  }
+
+  @media (min-width: 1200px){
+    .rwd-break { display: none; }
   }
 }
 
