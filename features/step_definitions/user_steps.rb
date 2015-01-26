@@ -55,6 +55,9 @@ Given(/^the user is logged in$/) do
   login_user(model(:confirmed_user))
 end
 
+And(/^he reenters his password$/) do
+  fill_in "password_password", :with => "password"
+end
 
 # User states
 Given(/^that (?:I|they) am not registered$/) do

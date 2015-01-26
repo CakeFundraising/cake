@@ -14,12 +14,6 @@ campaign_missed_launch:
   queue: low
   description: "Triggers the @campaign.missed_launch_date method on campaigns that have missed their launch_date"
 
-campaign_screenshot:
-  cron: "30 * * * * America/New_York"
-  class: "ResqueSchedule::CampaignScreenshot"
-  queue: medium
-  description: "Updates the campaign screenshot"
-
 campaigns_incomplete:
   # at: 4:30
   cron: "30 4 * * * America/New_York"
