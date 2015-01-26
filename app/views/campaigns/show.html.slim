@@ -111,14 +111,15 @@
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 
-          / MAKE A PLEDGE BANNER 
-          .make-pledge.well
-            .row
-              .col-md-12s
-                h4.attention-owners
-                  b> Attention Business Owners!
-                  | Support us and reach new customers! 
-                = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
+          / MAKE A PLEDGE BANNER
+          - if not @campaign.past?
+            .make-pledge.well
+              .row
+                .col-md-12s
+                  h4.attention-owners
+                    b> Attention Business Owners!
+                    | Support us and reach new customers!
+                  = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
         / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
           = render partial:'campaigns/show/disqus'

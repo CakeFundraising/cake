@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
   def search_campaigns
     #facets = [:zip_code, :main_cause, :scopes, :tax_exempt, :active]
-    facets = [:main_cause, :scopes, :tax_exempt]
+    facets = [:main_cause, :scopes, :tax_exempt, :zip_code]
 
     @search = Campaign.solr_search(include: [:picture]) do
       fulltext params[:search]
