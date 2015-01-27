@@ -23,7 +23,7 @@
             .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
               span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
           .campaign-stats
-            strong = campaign.raised
+            strong = campaign.raised_by_status
             span 
             /Raised
             span.pull-right 
