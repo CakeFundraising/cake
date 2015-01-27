@@ -25,7 +25,7 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def history
-    @campaigns = current_fundraiser.campaigns.past.decorate
+    @campaigns = current_fundraiser.campaigns.past.latest.decorate
     @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
     @paid_qp_invoices = current_fundraiser.qp_invoices.paid.latest.decorate
     @sponsors = SponsorDecorator.decorate_collection(current_fundraiser.sponsors_of(:past))
