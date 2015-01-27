@@ -16,7 +16,7 @@ class Payment < ActiveRecord::Base
   validates :total, :kind, :item, :payer, :recipient, presence: true
 
   before_create :stripe_charge_card
-  after_create :set_as_paid, :notify_charge
+  after_create :set_as_paid
 
   def self.new_invoice(params, payer)
     payment = new(params)
@@ -29,11 +29,33 @@ class Payment < ActiveRecord::Base
     payment
   end
 
+  def self.new_quick_invoice(params, payer)
+    payment = new(params)
+    payment.item_type = 'Invoice'        
+    payment.kind = 'invoice_payment'
+    payment.recipient = AdminUser.first
+    payment.payer = payer
+    payment.total_cents = payment.item.total_fees_cents
+    payment
+  end
+
   def transfer!
     if self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
       stripe_trasfer
       notify_transfer
       update_attribute(:status, :transferred)
+    end
+  end
+
+  def notify_normal_charge
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.payment_charge(item.id, user.id).deliver
+    end
+  end
+
+  def notify_quick_invoice_charge
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.quick_payment_charge(item.id, user.id).deliver
     end
   end
 
@@ -69,12 +91,6 @@ class Payment < ActiveRecord::Base
 
   def set_as_paid
     item.update_attribute(:status, :paid) #set invoice as paid
-  end
-
-  def notify_charge
-    item.fundraiser.users.each do |user|
-      InvoiceNotification.payment_charge(item.id, user.id).deliver
-    end
   end
 
   #Transfers

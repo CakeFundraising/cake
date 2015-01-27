@@ -115,6 +115,7 @@ Cake::Application.routes.draw do
 
   scope :payments, controller: :payments do
     post :invoice_payment
+    post :quick_invoice_payment
   end
   
   #FR Dashboard
