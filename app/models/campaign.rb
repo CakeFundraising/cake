@@ -57,10 +57,10 @@ class Campaign < ActiveRecord::Base
   scope :with_pledges, ->{ eager_load(:pledges) }
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_paid_invoices, ->{ 
-    past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
+    past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
   }
   scope :with_outstanding_invoices, ->{ 
-    past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
+    past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
