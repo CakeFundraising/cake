@@ -5,8 +5,6 @@ class CouponsController < InheritedResources::Base
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
-    p @coupon.sponsor
-    p current_sponsor
     authorize! :new, @coupon
   end
 

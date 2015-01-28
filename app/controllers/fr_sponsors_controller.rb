@@ -1,4 +1,6 @@
 class FrSponsorsController < InheritedResources::Base
+  load_and_authorize_resource
+  
   def create
     @fr_sponsor = FrSponsor.new(*resource_params)
     @fr_sponsor.fundraiser = current_fundraiser

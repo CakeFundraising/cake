@@ -307,6 +307,34 @@ describe Ability do
         @ability.should_not be_able_to(:destroy, @pledge)
       end
     end
+
+    context "Quick Pledges" do
+      it "can be created by a fundraiser" do
+        @ability.should be_able_to(:create, QuickPledge)
+      end
+
+      it "cannot be created by a guest user" do
+        ability = Ability.new(nil)
+        ability.should_not be_able_to(:create, QuickPledge)
+      end
+
+      it_behaves_like "an owned object" do
+        let(:owned_object) { FactoryGirl.create(:quick_pledge, fundraiser: @fundraiser) }
+        let(:foreign_object) { FactoryGirl.create(:quick_pledge) }
+      end
+    end
+
+    context "FR Sponsor" do
+      it_behaves_like "a FR object" do
+        let(:klass) { FrSponsor }
+      end
+
+      it_behaves_like "an owned object" do
+        let(:owned_object) { FactoryGirl.create(:fr_sponsor, fundraiser: @fundraiser) }
+        let(:foreign_object) { FactoryGirl.create(:fr_sponsor) }
+      end
+    end
+
   end
 
   describe "Campaigns" do

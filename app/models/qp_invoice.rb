@@ -9,4 +9,8 @@ class QpInvoice < Invoice
   def total_fees
     (self.due*Cake::APPLICATION_FEE).round
   end
+
+  def payable?
+    total_fees_cents > 50
+  end
 end

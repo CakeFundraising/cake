@@ -14,10 +14,11 @@
       = invoice.click_donation
     td data-title=(Invoice.human_attribute_name :amount_due)
       = humanized_money_with_symbol invoice.total_fees
-    /td data-title = (Invoice.human_attribute_name :status)
-    /  = invoice.status
     td.truncate.min-width
-      = invoice_pay_button(invoice) unless invoice.paid?
+      - if invoice.due_to_pay? and invoice.payable?
+        = invoice_pay_button(invoice) 
+      - elsif !invoice.payable?
+        button.btn.btn-success.disabled FREE
 
   tr.empty-tr
 
@@ -25,7 +26,7 @@
     $(".pay_button.invoice_#{invoice.object.id}").off("click").click(function(e) {
       e.preventDefault();
 
-      Cake.invoice_payment_handler.open({
+      Cake.quick_invoice_payment_handler.open({
         image: '#{invoice.campaign.picture.avatar}',
         name: "Invoice #{invoice.id} Payment",
         description: 'From #{invoice.campaign}',

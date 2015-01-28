@@ -10,10 +10,13 @@ Cake.pusher.campaigns.updateRaised = (campaignId)->
   channel = pusher.subscribe "campaign_#{campaignId}_raised"
 
   raisedContainers = $('.raised')
-  thermometer = $('.progress.campaign-thermometer .progress-bar')
+  campaignThermometer = $('.progress.campaign-thermometer .progress-bar')
 
   channel.bind 'update', (data)->
     raisedContainers.html(data.raised)
-    thermometer.css({width: "#{data.thermometer}%"})
+    campaignThermometer.css({width: "#{data.campaign_thermometer}%"})
+
+    miniPledgeThermometer = $(".platinum##{data.pledge_id} .progress-bar")
+    miniPledgeThermometer.css({width: "#{data.pledge_thermometer}%"})
     return
   return

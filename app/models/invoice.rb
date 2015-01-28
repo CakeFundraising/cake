@@ -35,4 +35,8 @@ class Invoice < ActiveRecord::Base
   def estimated_net_donation
     self.due_cents - estimated_fees
   end
+
+  def payable?
+    self.due_cents > 50
+  end
 end

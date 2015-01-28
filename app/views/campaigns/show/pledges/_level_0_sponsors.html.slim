@@ -1,6 +1,6 @@
 - cache [:mini_pledge, pledge.campaign, pledge] do
   .col-md-2.mini-pledge
-    .platinum
+    .platinum id=(pledge.id)
       .overlay-effects.clearfix#effect-6
         = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-sm'}
       .levels

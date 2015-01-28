@@ -5,6 +5,8 @@ class QuickPledge < Pledge
     self.status = :accepted
   end
 
+  after_create :notify_sponsor
+
   validates :name, :website_url, :campaign, :sponsor_id, :sponsor_type, presence: true
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}
   validates :amount_per_click, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
@@ -16,5 +18,11 @@ class QuickPledge < Pledge
 
   def create_invoice
     build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge).save!
+  end
+
+  private
+
+  def notify_sponsor
+    PledgeNotification.qp_created(self.id).deliver
   end
 end
