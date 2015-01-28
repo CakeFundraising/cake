@@ -309,8 +309,13 @@ describe Ability do
     end
 
     context "Quick Pledges" do
-      it_behaves_like "a FR object" do
-        let(:klass) { QuickPledge }
+      it "can be created by a fundraiser" do
+        @ability.should be_able_to(:create, QuickPledge)
+      end
+
+      it "cannot be created by a guest user" do
+        ability = Ability.new(nil)
+        ability.should_not be_able_to(:create, QuickPledge)
       end
 
       it_behaves_like "an owned object" do
