@@ -41,6 +41,15 @@ class PledgeNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
   end
 
+  #Quick Pledges
+  def qp_created(qp_id)
+    @qp = find_pledge(qp_id).decorate 
+    sp_email = @qp.sponsor.email
+    @fr = @qp.fundraiser.decorate
+    @campaign = @qp.campaign
+    mail(to: sp_email, subject: 'You have a new Cake pledge!')
+  end
+
   #clicks
   def fr_pledge_fully_subscribed(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate
