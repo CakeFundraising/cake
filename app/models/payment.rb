@@ -40,7 +40,7 @@ class Payment < ActiveRecord::Base
   end
 
   def transfer!
-    if self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
+    if present_recipient? and balance_available?
       stripe_trasfer
       notify_transfer
       update_attribute(:status, :transferred)
@@ -97,6 +97,16 @@ class Payment < ActiveRecord::Base
   def transfer_amount
     amount_with_stripe_fees = (((1-Cake::STRIPE_FEE)*self.total_cents) - 30).round
     (amount_with_stripe_fees*(1-Cake::APPLICATION_FEE)).round
+  end
+
+  def present_recipient?
+    self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
+  end
+
+  def balance_available?
+    balance = Stripe::Balance.retrieve
+    available_amount = balance.available.first.amount
+    available_amount > transfer_amount
   end
 
   def stripe_trasfer
