@@ -5,5 +5,6 @@ FactoryGirl.define do
     name { Faker::Lorem.sentence }
     email { Faker::Internet.safe_email }
     fundraiser
+    location
   end
 end

@@ -36,6 +36,11 @@ class Ability
       
       #Pledge
       can [:accept, :reject, :add_reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
+
+      #QuickPledge
+      can :crud, QuickPledge, fundraiser: user.fundraiser
+      #FrSponsor
+      can :crud, FrSponsor, fundraiser_id: user.fundraiser.id
     end
 
     can :read, :all

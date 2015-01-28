@@ -1,4 +1,6 @@
 class QuickPledgesController < InheritedResources::Base
+  load_and_authorize_resource
+  
   def index
     @fr_sponsors = current_fundraiser.fr_sponsors.latest.decorate
   end
