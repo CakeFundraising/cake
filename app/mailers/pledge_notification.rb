@@ -47,7 +47,7 @@ class PledgeNotification < AsyncMailer
     sp_email = @qp.sponsor.email
     @fr = @qp.fundraiser.decorate
     @campaign = @qp.campaign
-    mail(to: sp_email, subject: 'You have a new Cake pledge!')
+    mail(to: sp_email, cc: @fr.manager.email, subject: 'You have a new Cake pledge!')
   end
 
   #clicks
