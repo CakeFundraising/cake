@@ -1,0 +1,23 @@
+.row
+  .col-xs-12.campaign-steps
+    = render partial:'campaigns/form/actions' unless @campaign.incomplete?
+  .campaign-nav.text-center  
+    - if @campaign.persisted?
+        ul.nav.nav-pills
+          = campaign_wizard_menu_item(edit_campaign_path(@campaign), t('links.wizards.campaign.basic_info'))
+          = campaign_wizard_menu_item(tell_your_story_campaign_path(@campaign), t('links.wizards.campaign.tell_your_story'))
+          = campaign_wizard_menu_item(sponsors_campaign_path(@campaign), t('links.wizards.campaign.pledge_levels'), {data: {no_turbolink: true}}) unless @campaign.hero
+          = campaign_wizard_menu_item(launch_wizard_campaign_path(@campaign), t('links.wizards.campaign.launch'))
+          = campaign_wizard_menu_item(share_campaign_path(@campaign), t('links.wizards.campaign.share'))
+    - else
+        ul.nav.nav-pills
+          li.active
+            a data-toggle="tab" href="#main" = t('links.wizards.campaign.basic_info')
+          li 
+            a href="" = t('links.wizards.campaign.tell_your_story')
+          li 
+            a href="" = t('links.wizards.campaign.pledge_levels')
+          li 
+            a href="" = t('links.wizards.campaign.launch')
+          li
+            a href="" = t('links.wizards.campaign.share')
