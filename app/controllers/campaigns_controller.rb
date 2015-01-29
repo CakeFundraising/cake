@@ -15,11 +15,18 @@ class CampaignsController < InheritedResources::Base
 
   def show
     @campaign = resource.decorate
-    @custom_pledge_levels = @campaign.custom_pledge_levels
 
-    if @custom_pledge_levels
-      @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
-      @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
+    if @campaign.hero
+      render 'campaigns/hero'
+    else
+      @custom_pledge_levels = @campaign.custom_pledge_levels
+
+      if @custom_pledge_levels
+        @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
+        @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
+      end
+      
+      render :show
     end
   end
 
