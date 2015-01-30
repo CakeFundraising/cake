@@ -25,10 +25,10 @@ class CampaignsController < InheritedResources::Base
 
   def create
     @campaign = current_fundraiser.campaigns.build(*resource_params)
-    update_campaign_screenshot(@campaign)
 
     create! do |success, failure|
       success.html do
+        update_campaign_screenshot(@campaign)
         redirect_to tell_your_story_campaign_path(@campaign)
       end
       failure.html do
@@ -38,10 +38,10 @@ class CampaignsController < InheritedResources::Base
   end
 
   def update
-    update_campaign_screenshot(resource)
 
     update! do |success, failure|
       success.html do
+        update_campaign_screenshot(resource)
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do

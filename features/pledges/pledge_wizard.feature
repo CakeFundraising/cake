@@ -28,7 +28,6 @@ Feature: Pledge Wizard
   | 0.00         | 100000.00    | http://coke.com     | must be greater than 0             |
   | 5.00         |              | http://example.com/ | must be greater than or equal to 50 and Must be greater than amount per click. |
   | 5.00         | 100000.00    |                     | can't be blank                     |
-  | 5.00         | 100000.00    | example.com         | should include http:// or https:// |
   | 5.00         | -1588.00     | http://example.com/ | must be greater than or equal to 50 and Must be greater than amount per click. |
 
   Scenario Outline: Tell your Story
@@ -54,23 +53,17 @@ Feature: Pledge Wizard
   Scenario Outline: Add Coupon
     And a pledge of that sponsor exists
     When he goes to pledge wizard add coupon page
+    And he press the "Add a Coupon" link
     And he fills in the "Title" field with <title>
-    And he fills in the "Expires at" field with <expires_at>
+    And he fills in the "Expires On" field with <expires_at>
     And he fills in the "Description" field with <description>
-    And he selects <categories> in "Offer or Product Category - choose all that apply - use ctrl to select additional categories"
-    And he attachs an "avatar" image on the "pledge_coupons_attributes_0_picture_attributes_avatar_input" field
-    And he attachs an "qrcode" image on the "pledge_coupons_attributes_0_picture_attributes_qrcode_input" field
-    And he press the "Continue" button
+    And he checks <categories> from Coupon Categories
+    And he press the "Save" button
     Then he should see "<message>"
-
-    Examples: Skip coupons
-    | title     | expires_at | description                        | categories     | message                          |
-    |           |            |                                    | Cash & Credits | Pledge was successfully updated. |
-    |           | 02/09/2014 | Long text describing the coupon... | Cash & Credits | Pledge was successfully updated. |
     
     Examples: Successful step
     | title     | expires_at | description                        | categories     | message                          |
-    | My Coupon | 02/08/2015 | Long text describing the coupon... | Cash & Credits | Pledge was successfully updated. |
+    | My Coupon | 02/08/2015 | Long text describing the coupon... | Cash & Credits | Coupon was successfully created. |
 
     Examples: Failed step
     | title     | expires_at | description                        | categories     | message        |
@@ -78,10 +71,8 @@ Feature: Pledge Wizard
     | My Coupon | 02/08/2015 |                                    | Cash & Credits | can't be blank |
 
   Scenario: Confirm your Pledge
-    And a pending pledge of that sponsor exists
-    And a pledge request related to that pledge exists
+    And a incomplete pledge of that sponsor exists
     When he goes to pledge wizard share page
     And he press the "Confirm your Pledge" link
-    Then he should see "Pledge was successfully launched."
-    And the pending pledge should have a "pending" status
-    And it should delete the related pledge request 
+    Then he should see "Pledge was successfully confirmed."
+    And the incomplete pledge should have a "pending" status
