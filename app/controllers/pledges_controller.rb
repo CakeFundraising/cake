@@ -123,7 +123,8 @@ class PledgesController < InheritedResources::Base
 
   def launch
     resource.launch!
-    redirect_to resource, notice: 'Pledge was successfully confirmed.'
+    path = resource.hero ? sponsor_pledge_requests_path : resource
+    redirect_to path, notice: 'Pledge was successfully confirmed. Your pledge is pending of FR approval.'
   end
 
   #Clicks

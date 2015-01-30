@@ -53,7 +53,7 @@
                   span.boldest = @campaign.goal
                   |  Goal
           .row
-            - if current_user.present? and not @campaign.past?
+            - if current_user.present? and not @campaign.past? and not @campaign.hero_pledge?
               .col-md-12.text-center
                 .main-cta
                   = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'

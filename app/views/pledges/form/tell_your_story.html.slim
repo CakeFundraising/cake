@@ -7,14 +7,15 @@
     = semantic_form_for @pledge do |f|
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
-        .text-center
-          h1 Pledge Purpose
-          p.text-muted Here you can share a brief overview of the Pledge Mission
-        .row
-          .col-md-3
-          .col-md-6
-            = f.input :mission, label: 'Pledge Purpose', input_html: {rows: 4, placeholder: '140 characters or less', maxlength: 140}
-          .col-md-3
+        - unless @pledge.hero
+          .text-center
+            h1 Pledge Purpose
+            p.text-muted Here you can share a brief overview of the Pledge Mission
+          .row
+            .col-md-3
+            .col-md-6
+              = f.input :mission, label: 'Pledge Purpose', input_html: {rows: 4, placeholder: '140 characters or less', maxlength: 140}
+            .col-md-3
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
           p.text-muted Add a headline and a Pledge message
@@ -38,12 +39,13 @@
             span.help-block.p25.text-left Include a caption to help others understand your image
           .col-md-3
 
-        .row.section-wrapper.text-center
-          h2 Your Pledge Background Banner
-          p.text-muted Choose an background image that best represents your company and Pledge
-          .col-md-12.text-center
-            .help-block.italic Suggested size: 1400x700 px
-            = render partial:'pictures/banner_form', locals:{f: f}
+        - unless @pledge.hero
+          .row.section-wrapper.text-center
+            h2 Your Pledge Background Banner
+            p.text-muted Choose an background image that best represents your company and Pledge
+            .col-md-12.text-center
+              .help-block.italic Suggested size: 1400x700 px
+              = render partial:'pictures/banner_form', locals:{f: f}
             
         = f.input :step, as: :hidden, input_html:{value: :add_coupon} 
 

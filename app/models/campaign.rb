@@ -200,6 +200,11 @@ class Campaign < ActiveRecord::Base
     update_attribute(:processed_status, :missed_launch)
   end
 
+  #Hero Campaign
+  def hero_pledge?
+    self.hero ? pledges.accepted.any? : false
+  end
+
   private
 
   def sponsor_categories_max_min_value
