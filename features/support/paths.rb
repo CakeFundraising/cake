@@ -31,7 +31,7 @@ module NavigationHelpers
       new_pledge_path(campaign: @campaign)
 
     when /^pledge wizard (.*?) page$/
-      pledge = @pledge || @pending_pledge
+      pledge = @pledge || @incomplete_pledge
       path_components = $1.split(/\s+/)
       send(path_components.push('pledge').push('path').join('_').to_sym, pledge)
 

@@ -26,4 +26,10 @@ module PledgesHelper
       link_to pledge, quick_pledges_path
     end
   end
+
+  def update_pledge_screenshot(pledge)
+    if Rails.env.production? or Rails.env.development?
+      Resque.enqueue(ResqueSchedule::CampaignScreenshot, pledge.id, pledge_url(pledge)) #update screenshot
+    end
+  end
 end
