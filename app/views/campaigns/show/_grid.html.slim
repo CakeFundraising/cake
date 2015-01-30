@@ -1,6 +1,8 @@
 - cache [:box, campaign] do 
   .campaign_grid.col-md-4
     .thumbnail 
+      - if campaign.hero
+        span.label.label-success.overlapped.hero-label We need a Hero!
       .avatar-container
         = link_to campaign do
           = campaign.picture.avatar

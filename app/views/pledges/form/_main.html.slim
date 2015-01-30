@@ -1,34 +1,6 @@
 = display_meta("Create Pledge")
 
-.row
-  .col-xs-12.campaign-steps
-    - if @pledge.persisted?
-    = preview_pledge_link
-  .campaign-nav.text-center
-    ul.nav.nav-pills
-      li.active
-        a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
-      li 
-        = link_to t('links.wizards.pledge.tell_your_story'), tell_your_story_pledge_path(@pledge)
-      li
-        = link_to t('links.wizards.pledge.add_coupon'), add_coupon_pledge_path(@pledge)
-      / li
-      /   = link_to t('links.wizards.pledge.extra_donation'), nil 
-      li
-        = link_to t('links.wizards.pledge.share'), share_pledge_path(@pledge)
-    - else
-      .campaign-nav.text-center
-        ul.nav.nav-pills
-          li.active
-            a data-toggle="tab" href="#main" = t('links.wizards.pledge.your_pledge')
-          li 
-            a href="" = t('links.wizards.pledge.tell_your_story')
-          li
-            a href="" = t('links.wizards.pledge.add_coupon')
-          / li
-          /   a href="" = t('links.wizards.pledge.extra_donation')
-          li
-            a href="" = t('links.wizards.pledge.share')
+= render partial:'pledges/form/nav'
 
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active

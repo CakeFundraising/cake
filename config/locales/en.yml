@@ -153,9 +153,10 @@ en:
         your_pledge: 1. Your Pledge
         tell_your_story: 2. Tell Your Story
         add_coupon: 3. Add Coupon
-        extra_donation: 4. Extra Donation
         share: 4. Confirm Your Pledge
   information:
+    hero_campaign:
+      banner: "Help <span class='boldest'>%{fr}!</span> Click on the logo of %{sp} and they will give %{amount} for you!"
     campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> <br /> Visit our %{sp_name} below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
     pledge:

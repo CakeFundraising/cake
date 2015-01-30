@@ -24,7 +24,7 @@ module CampaignsHelper
     end
   end
 
-  def campaign_wizard_menu_item(path, text, options={})
+  def wizard_menu_item(path, text, options={})
     if current_page?(path)
       content_tag(:li, class:'active') do
         content_tag(:a, text, data: {toggle: 'tab'})
