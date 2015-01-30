@@ -12,14 +12,16 @@
         = f.input :amount_per_click, input_html:{width:'50%', placeholder: '5.00', class: 'default-zero'}, :prepend => '$'
         = f.input :total_amount, input_html:{placeholder: '10,000', class: 'default-zero'}, :prepend => '$'
         = f.input :website_url, label: 'Please direct all web traffic to my website', placeholder: 'Enter your URL here...', input_html: { :size => "60" } 
+        br
+        = f.input :terms, as: :boolean, label:'  I agree to the terms of this agreement' if f.object.new_record?
         = f.input :sponsor_id, as: :hidden
         = f.input :sponsor_type, as: :hidden
       .col-md-6
         = render partial:'pictures/avatar_form', locals:{f: f}
         .help-block I have permission to use this image in behalf of this sponsor.
-        = f.input :terms, as: :boolean, label:'  I agree to the terms of this agreement' if f.object.new_record?
   = f.actions do
     .row.section-wrapper.text-center
       br
+      = link_to t('semantic.cancel'), quick_pledges_path, class:'btn btn-default btn-lg pad-right'
       = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
-      = link_to t('semantic.cancel'), quick_pledges_path, class:'btn btn-default btn-lg'
+      
