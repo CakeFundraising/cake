@@ -13,6 +13,7 @@ class PledgesController < InheritedResources::Base
 
   include ImpressionablesController
   include PastResource
+  include PledgesHelper
 
   #CRUD
   def select_campaign
@@ -41,7 +42,7 @@ class PledgesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
+        update_pledge_screenshot(@pledge)
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
@@ -54,7 +55,7 @@ class PledgesController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
+        update_pledge_screenshot(resource)
         redirect_to controller: :pledges, action: params[:pledge][:step], id: resource
       end
       failure.html do
