@@ -13,7 +13,7 @@ class QuickPledge < Pledge
   validates :total_amount, numericality: {greater_than_or_equal_to: 50}
   validates :terms, acceptance: true, if: :new_record?
 
-  validate :max_amount, :total_amount_greater_than_amount_per_click
+  validate :max_amount, :total_amount_greater_than_amount_per_click, :not_hero_campaign
   validate :decreased_amounts, if: :persisted?
 
   def create_invoice
@@ -24,5 +24,9 @@ class QuickPledge < Pledge
 
   def notify_sponsor
     PledgeNotification.qp_created(self.id).deliver
+  end
+
+  def not_hero_campaign
+    errors.add(:campaign, "Hero campaigns cannot have quick pledges.") if self.campaign.hero
   end
 end

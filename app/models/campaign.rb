@@ -64,6 +64,9 @@ class Campaign < ActiveRecord::Base
   }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
+
+  scope :hero, ->{ where(hero: true) }
+  scope :not_hero, ->{ where(hero: false) }
   
   #Solr
   searchable do
