@@ -17,8 +17,8 @@ tr.quick_pledge id=(pledge.id)
     = pledge.status
   td
     - unless pledge.past?
-      = link_to edit_quick_pledge_path(pledge), class:"btn btn-primary" do 
+      = link_to edit_quick_pledge_path(pledge), class:"btn btn-sm btn-primary" do 
         span.glyphicon.glyphicon-pencil
-      = link_to pledge, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-danger'
+      = link_to pledge, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
         span.glyphicon.glyphicon-trash
 tr.empty-tr

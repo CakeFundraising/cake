@@ -3,8 +3,8 @@ tr
   td = sponsor.location
   td = sponsor.campaigns.count
   td 
-    = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-primary" do 
+    = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-sm btn-primary" do 
       span.glyphicon.glyphicon-pencil
-    = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-danger'
+    = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
       span.glyphicon.glyphicon-trash
 
