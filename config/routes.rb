@@ -1,3 +1,5 @@
+require 'robots_generator'
+
 Cake::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -201,4 +203,6 @@ Cake::Application.routes.draw do
   end
 
   mount StripeEvent::Engine, at: "/stripe-webhooks"
+
+  get "/robots.txt" => RobotsGenerator
 end
