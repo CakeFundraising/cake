@@ -10,16 +10,16 @@ Then(/^he should see his fundraiser home dashboard$/) do
   page.should have_content(model(:fundraiser).name)
   page.should have_content(model(:fundraiser).manager_name)
   page.should have_content(model(:fundraiser).manager_email)
-  page.should have_link("Start New Campaign")
+  page.should have_link("Start A New Campaign")
   page.should have_link("Edit")
-  page.should have_content("Donations Due From Active Campaigns")
+  page.should have_content("Amount Earned From Active Campaigns")
   page.should have_content("Global Fundraiser Rank")
   page.should have_content("Total Number of Campaigns")
 end
 
 Then(/^he should see his active campaigns$/) do
   page.should have_selector('table#campaigns tr.campaign', count: @campaigns.count)
-  page.should have_link("Start New Campaign")
+  page.should have_link("Start A New Campaign")
 end
 
 Then(/^he should see his not launched campaigns$/) do

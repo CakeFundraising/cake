@@ -12,6 +12,7 @@ FactoryGirl.define do
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     mission { Faker::Lorem.paragraph }
+    picture
     custom_pledge_levels false
     fundraiser
     status :launched

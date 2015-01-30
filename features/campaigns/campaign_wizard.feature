@@ -22,13 +22,13 @@ Feature: Campaign Wizard
 
     Examples: Succesful step
     | name            | goal  | main_cause        | causes         | scopes  | launch_date | end_date   | message                            |
-    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | National| 04/12/2015  | 06/21/2015 | Campaign was successfully created. |
-    | Other campaign  | 25000 | Freedom & Liberty | US Relief      |  Global | 08/21/2014  | 12/21/2014 | Campaign was successfully created. |
+    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | National| 04/12/2016  | 06/21/2016 | Campaign was successfully created. |
+    | Other campaign  | 25000 | Freedom & Liberty | US Relief      |  Global | 08/21/2016  | 12/21/2016 | Campaign was successfully created. |
 
     Examples: Failed step
     | name            | goal  | main_cause        | causes         | scopes  | launch_date | end_date   | message         |
-    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | Local   |             | 06/21/2015 | can't be blank  |
-    |                 | 25000 | Freedom & Liberty | US Relief      | Global  | 08/21/2014  | 12/21/2014 | can't be blank  |
+    | My new campaign | 25000 | Food & Hunger     | Arts & Culture | Local   |             | 06/21/2016 | can't be blank  |
+    |                 | 25000 | Freedom & Liberty | US Relief      | Global  | 08/21/2016  | 12/21/2016 | can't be blank  |
 
   Scenario Outline: Tell your Story
     And a campaign of that fundraiser exists
@@ -53,7 +53,7 @@ Feature: Campaign Wizard
   Scenario Outline: Pledge Levels
     And a campaign of that fundraiser exists
     When he goes to campaign wizard sponsors page
-    And he press the "Set custom sponsorship pledge levels" button
+    And he press the "Set custom pledge levels for sponsors" button
     And he fills in the "Pledge Level" field with <lowest_name>
     And he fills in the "campaign_sponsor_categories_attributes_0_max_value" field with <lowest_max_value>
     And he press the "Add Next Pledge Level" link
@@ -79,8 +79,8 @@ Feature: Campaign Wizard
   Scenario: Launch Campaign
     And a incomplete campaign of that fundraiser exists
     When he goes to campaign wizard launch wizard page
-    Then he should see a "Launch your Campaign now" button
-    And he should see a "Save your campaign & secure Sponsors before you launch" button
+    Then he should see a "Launch Your Campaign Now" button
+    And he should see a "Wait and Find Sponsors First" button
 
   Scenario: Find Sponsors
     And a campaign of that fundraiser exists
