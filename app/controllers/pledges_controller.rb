@@ -2,6 +2,7 @@ class PledgesController < InheritedResources::Base
   load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]
+  before_action :check_hero_campaign, only: :accept
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -204,5 +205,9 @@ class PledgesController < InheritedResources::Base
 
   def block_fully_subscribed
     redirect_to increase_pledge_path(resource), alert: 'Pledge Fully Subscribed. Please increase pledge amount to reactivate this pledge.' if resource.fully_subscribed?
+  end
+
+  def check_hero_campaign
+    redirect_to resource.campaign, alert:'This campaign have already got a Hero Pledge.' if resource.campaign.hero_pledge?
   end
 end
