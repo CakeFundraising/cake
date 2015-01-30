@@ -99,7 +99,3 @@ end
 Then(/^an increase request should be stored in the pledge$/) do
   @pledge.reload.increase_requested.should be_true
 end
-
-Then(/^he inspects the pledge$/) do
-  puts Pledge.first.inspect
-end
