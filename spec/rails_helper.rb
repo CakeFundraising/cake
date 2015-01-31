@@ -4,7 +4,7 @@ require 'rails_helper'
 require File.expand_path("../../config/environment", __FILE__)
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 require 'rspec/rails'
-require 'rspec/autorun'
+#require 'rspec/autorun'
 require 'capybara/rspec'
 require 'simplecov'
 require "cancan/matchers"
