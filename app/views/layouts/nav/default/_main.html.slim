@@ -2,7 +2,7 @@
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav
       = menu_item "About Cake", about_page_path('cake')
-      = menu_item "Success Stories", "#"
+      = menu_item "Success Stories", about_page_path('success_stories')
       = menu_item "Start a Campaign", new_user_registration_path
       = menu_item "Questions", help_page_path('faq')
     ul.nav-cta.navbar-right
