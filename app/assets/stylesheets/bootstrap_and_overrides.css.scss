@@ -108,6 +108,9 @@ hr{
 .ten-t {
   margin-top: 10px;
 }
+.twenty-t {
+  margin-top: 20px;
+}
 .error{
   color: #a94442;
   display: block;
@@ -2781,10 +2784,6 @@ header {
   }
 }
 
-#boy_scouts {
-  width: 1000px;
-}
-
 //Home Sidebar Search form ---------------------------------------------------
 #custom-search-input {
         margin:0;
@@ -3936,4 +3935,10 @@ ul#share-block {
 
 .padding-left-out{
   padding-left: 0;
+}
+
+// Success Stories -------------------------------------------------------
+
+#boy_scouts {
+  width: 1000px;
 }
