@@ -157,9 +157,9 @@ en:
         share: 4. Confirm Your Pledge
   information:
     campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> <br /> Visit our %{sp_name} below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
+      banner: "Help <span class='boldest'>%{fr}!</span> <br /> Click on the logos of our generous %{sp_name} below. <span class='boldest'>You click and they give!</span>"
     pledge:
-      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will contribute %{donation_per_click} up to %{total_donation}!!"
+      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
     wizards:
       campaign:
 
