@@ -3,6 +3,7 @@ class PledgesController < InheritedResources::Base
   before_action :allow_only_sponsors, :clear_cookies, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]
   before_action :check_hero_campaign, only: :accept
+  before_action :redirect_to_hero_campaign, only: :show
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -209,5 +210,9 @@ class PledgesController < InheritedResources::Base
 
   def check_hero_campaign
     redirect_to resource.campaign, alert:'This campaign have already got a Hero Pledge.' if resource.campaign.hero_pledge?
+  end
+
+  def redirect_to_hero_campaign
+    redirect_to hero_campaign_path(resource.campaign) if resource.hero
   end
 end

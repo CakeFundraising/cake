@@ -195,6 +195,7 @@ en:
     attributes:
       coupon:
         merchandise_categories: Offer or Product Category - choose all that apply - use ctrl to select additional categories
+        url: "Please redirect all web traffic to this url: "
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Acceptable Pledge
