@@ -46,6 +46,8 @@ Cake::Application.routes.draw do
     end
   end
 
+  get '/hero_campaigns/:id', to: 'campaigns#hero', as:'hero_campaign'
+
   resources :pledges do
     collection do
       get :select_campaign

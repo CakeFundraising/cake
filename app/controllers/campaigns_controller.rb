@@ -17,7 +17,7 @@ class CampaignsController < InheritedResources::Base
     @campaign = resource.decorate
 
     if @campaign.hero
-      render 'campaigns/hero'
+      redirect_to hero_campaign_path(@campaign)
     else
       @custom_pledge_levels = @campaign.custom_pledge_levels
 
@@ -28,6 +28,12 @@ class CampaignsController < InheritedResources::Base
       
       render :show
     end
+  end
+
+  def hero
+    @campaign = resource.decorate
+    @pledge = @campaign.hero_pledge.decorate
+    @coupons = @pledge.coupons.latest.decorate
   end
 
   def create

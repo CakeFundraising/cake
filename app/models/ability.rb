@@ -44,7 +44,7 @@ class Ability
     end
 
     can :read, :all
-    can :badge, Campaign
+    can [:badge, :hero], Campaign
     can :download, Coupon
     can [:badge, :solicit_click, :click, :new], Pledge
   end

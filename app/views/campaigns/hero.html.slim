@@ -4,7 +4,7 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: "SP", amount: @campaign.total_donation_per_click}).html_safe
+      span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: @pledge.sponsor, amount: @campaign.total_donation_per_click}).html_safe
 
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
@@ -53,36 +53,60 @@
                   span.boldest = @campaign.goal
                   |  Goal
           .row
-            - if current_user.present? and not @campaign.past? and not @campaign.hero_pledge?
+            - if current_user.present? and not @campaign.past? and @pledge.nil?
               .col-md-12.text-center
                 .main-cta
                   = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
             - elsif @campaign.past?
               .col-md-12.text-center
                 .main-cta.alert.alert-danger.ended_campaign This campaign is over
-            - elsif current_user.nil?
+            - else 
               .col-md-12.text-center
                 .main-cta
-                  a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How Cake Works
-                  = render partial:'layouts/how_it_works_modal'
+                  = render partial:'clicks/pledge', locals: {pledge: @pledge}
 
 = content_for :bottom_section do
   .main-background
-    - if @campaign.accepted_pledges.any?
-      .green
+    .white
+      .container
+        .row.sponsor-profile
+          .col-md-6.campaign-story
+            h3 = @pledge.headline
+            p.story.expander = @pledge.description
+          .col-md-6
+            .sidebar-bkg-2
+              .shake-wrap
+                = link_to @pledge.sponsor do
+                  = @pledge.picture.avatar
+                = link_to @pledge.fundraiser do
+                  = @pledge.campaign.picture.avatar
+                .shake
+              .campaign_and_fundraiser
+                h5.pull-left = auto_link @pledge.sponsor, truncate: 26
+                h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
+
+    - if @pledge.present?
+      .blue
         .container
           .row.pledgebluestripe.campaign#sponsors_banner
             .col-md-12.text-center
               span.h1 
-                span Click on every #{@campaign.sponsor_alias.singularize} and 
-                span.boldest #{@campaign.fundraiser} 
-                span will earn a total of 
-                span.boldest #{@campaign.total_donation_per_click}!
-    .white
-      .container
+                span Click to help and 
+                span.boldest = @pledge.sponsor 
+                span  will give  
+                span.boldest = @pledge.amount_per_click
+                span  up to 
+                span.boldest #{@pledge.total_amount}! 
+            .col-md-4.col-md-push-4
+              = render partial:'clicks/pledge', locals: {pledge: @pledge}
+
+      - if @coupons.any? and @pledge.show_coupons
         .row
-          h1 Hero Campaign
-          = render partial:'campaigns/show/pledges/pledges_section'
+          .col-md-12.special-offers
+            h1 Special Offers from #{@pledge.sponsor}
+        .row
+          .coupons
+            = render partial:'coupons/show/box', collection: @coupons, as: :coupon                
     
     .green
       .container

@@ -208,6 +208,10 @@ class Campaign < ActiveRecord::Base
     self.hero ? pledges.accepted.any? : false
   end
 
+  def hero_pledge
+    pledges.accepted.first if hero_pledge?
+  end
+
   private
 
   def sponsor_categories_max_min_value
