@@ -74,16 +74,16 @@
             h3 = @pledge.headline
             p.story.expander = @pledge.description
           .col-md-6
-            .sidebar-bkg-2
-              .shake-wrap
-                = link_to @pledge.sponsor do
-                  = @pledge.picture.avatar
+            .shake-wrap.row
+              .col-md-6.overlay-effects.clearfix#effect-6
+                = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
+              .col-md-6
                 = link_to @pledge.fundraiser do
                   = @pledge.campaign.picture.avatar
-                .shake
               .campaign_and_fundraiser
                 h5.pull-left = auto_link @pledge.sponsor, truncate: 26
                 h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
+              .shake
 
     - if @pledge.present?
       .blue

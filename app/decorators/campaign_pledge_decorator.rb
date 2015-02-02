@@ -1,5 +1,4 @@
 # Pledge & QuickPledge minipledge integrator
-
 class CampaignPledgeDecorator < PledgeDecorator 
   def sponsor_autolink
     if object.instance_of?(Pledge)

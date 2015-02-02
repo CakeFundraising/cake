@@ -3,8 +3,9 @@ module CouponsHelper
     if coupon.url.nil?
       coupon.picture.avatar
     else
-      link_to coupon.url, target: :_blank do
-        coupon.picture.avatar
+      # Link with rollover
+      picture_rollover(coupon.picture.avatar, coupon.url) do
+        content_tag(:div, 'Learn more') + content_tag(:div, 'about this offer!')
       end
     end
   end
