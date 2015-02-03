@@ -157,7 +157,7 @@ en:
   information:
     hero_campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> Click on the logo of %{sp} and they will give %{amount} for you!"
-      no_pledge: "%{fr} is looking for a Hero Sponsor! Hurry up to get this exclusive campaign!"
+      no_pledge: "%{fr} needs a Hero! Become our exclusive Sponsor today!"
     campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> <br /> Visit our %{sp_name} below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
     pledge:
