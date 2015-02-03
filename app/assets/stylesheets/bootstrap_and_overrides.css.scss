@@ -1269,6 +1269,9 @@ h1.name {
   border:0px !important;
 }
 
+.no-padding{
+  padding: 0;
+}
 
 .sidebar-bkg {
   padding: 15px;
@@ -1501,6 +1504,17 @@ table.performance-summary {
   margin: -85px auto 0;
   z-index: 100;
 }
+
+.hero-shake{
+  background-image: url(/assets/shake.png);
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  z-index: 999;
+  left: 274px;
+  top: 75px;
+}
+
 .blue {
   background-color: $brand-primary;
   margin-bottom: 30px;
@@ -1700,6 +1714,10 @@ table.performance-summary {
 
 .campaign-stats {
   /*margin-bottom: 20px;*/
+}
+
+.hero-pictures-section{
+  margin-top: 64px;
 }
 
 #campaign_hero_input{

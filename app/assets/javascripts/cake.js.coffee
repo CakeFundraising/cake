@@ -23,7 +23,7 @@ Cake.init = ->
 
   Cake.browsers.fingerprint()
 
-  Cake.campaigns.mini_pledges_click()
+  Cake.clicks.init()
   return
 
 $(document).ready(Cake.init)

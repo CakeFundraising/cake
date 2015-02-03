@@ -4,7 +4,10 @@
   .banner.hero
     .alert.alert-transparent.alert-dismissable.text-center
       button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: @pledge.sponsor, amount: @campaign.total_donation_per_click}).html_safe
+      - if @pledge.present?
+        span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: @pledge.sponsor, amount: @campaign.total_donation_per_click}).html_safe
+      - else
+        span = t('information.hero_campaign.no_pledge', {fr: @campaign.fundraiser}).html_safe
 
     = render partial:'videos/button', locals:{object: @campaign}
     .hero-screen
@@ -17,6 +20,9 @@
             - if can? :edit, @campaign and not @campaign.past?
               br
               span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
+            - if can? :edit, @pledge and not @pledge.past?
+              br
+              span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
           .social.med-hide
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
@@ -53,7 +59,7 @@
                   span.boldest = @campaign.goal
                   |  Goal
           .row
-            - if current_user.present? and not @campaign.past? and @pledge.nil?
+            - if current_user.present? and not @campaign.past? and @pledge.blank?
               .col-md-12.text-center
                 .main-cta
                   = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
@@ -67,25 +73,34 @@
 
 = content_for :bottom_section do
   .main-background
-    .white
-      .container
-        .row.sponsor-profile
-          .col-md-6.campaign-story
-            h3 = @pledge.headline
-            p.story.expander = @pledge.description
-          .col-md-6
-            .shake-wrap.row
-              .col-md-6.overlay-effects.clearfix#effect-6
-                = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-              .col-md-6
-                = link_to @pledge.fundraiser do
-                  = @pledge.campaign.picture.avatar
-              .campaign_and_fundraiser
-                h5.pull-left = auto_link @pledge.sponsor, truncate: 26
-                h5.pull-right = auto_link @pledge.fundraiser, truncate: 26
-              .shake
-
     - if @pledge.present?
+      .white
+        .container
+          .row.sponsor-profile
+            .col-md-6.campaign-story
+              h3 = @pledge.headline
+              p.story.expander 
+                = @pledge.description
+              - if @pledge.video.present?
+                p.video-link
+                  a data-target="#pledge_video_modal" data-toggle="modal" 
+                    span.glyphicon.glyphicon-expand
+                    span See our video
+                  = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
+            .col-md-6.hero-pictures-section
+              .row
+                .col-md-6.no-padding.overlay-effects.clearfix#effect-6
+                  = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
+                .hero-shake
+                .col-md-6.no-padding
+                  = link_to @pledge.fundraiser do
+                    = @pledge.campaign.picture.avatar
+              .campaign_and_fundraiser.row
+                .col-md-6.no-padding
+                  h4 = auto_link @pledge.sponsor, truncate: 30
+                .col-md-6.no-padding
+                  h4 = auto_link @pledge.fundraiser, truncate: 30
+
       .blue
         .container
           .row.pledgebluestripe.campaign#sponsors_banner
@@ -94,7 +109,7 @@
                 span Click to help and 
                 span.boldest = @pledge.sponsor 
                 span  will give  
-                span.boldest = @pledge.amount_per_click
+                span.boldest#amount_per_click = @pledge.amount_per_click
                 span  up to 
                 span.boldest #{@pledge.total_amount}! 
             .col-md-4.col-md-push-4
@@ -108,13 +123,13 @@
           .coupons
             = render partial:'coupons/show/box', collection: @coupons, as: :coupon                
     
-    .green
-      .container
-        .row.pledgebluestripe.campaign#sponsors_banner
-          .col-md-12.text-center
-            span.h1 
-              span Learn More About 
-              span.boldest = @campaign.fundraiser
+        .green
+          .container
+            .row.pledgebluestripe.campaign#sponsors_banner
+              .col-md-12.text-center
+                span.h1 
+                  span Learn More About 
+                  span.boldest = @campaign.fundraiser
     .container
       .row.sponsor-profile
         .col-md-4.col-md-push-8
@@ -135,16 +150,6 @@
         .col-md-4.col-md-push-8.text-center
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-
-          / MAKE A PLEDGE BANNER
-          - if not @campaign.past?
-            .make-pledge.well
-              .row
-                .col-md-12s
-                  h4.attention-owners
-                    b> Attention Business Owners!
-                    | Support us and reach new customers!
-                  = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
         / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
           = render partial:'campaigns/show/disqus'
