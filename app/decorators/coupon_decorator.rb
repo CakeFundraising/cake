@@ -25,7 +25,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def url
-    unless object.url.nil?
+    unless object.url.blank?
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
     end
   end

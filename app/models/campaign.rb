@@ -212,6 +212,10 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.first if hero_pledge?
   end
 
+  def build_hero_pledge
+    self.pledges.build(FactoryGirl.attributes_for(:hero_pledge))
+  end
+
   private
 
   def sponsor_categories_max_min_value

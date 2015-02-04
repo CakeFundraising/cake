@@ -156,8 +156,8 @@ en:
         share: 4. Confirm Your Pledge
   information:
     hero_campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> Click on the logo of %{sp} and they will give %{amount} for you!"
-      no_pledge: "%{fr} needs a Hero! Become our exclusive Sponsor today!"
+      banner: "Help <span class='boldest'>%{fr}!</span> Click below and %{sp} will give %{amount} for you!"
+      no_pledge: "<span class='boldest'>%{fr}</span> needs a Hero! Become our exclusive Sponsor today!"
     campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> <br /> Visit our %{sp_name} below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
     pledge:
@@ -196,7 +196,7 @@ en:
     attributes:
       coupon:
         merchandise_categories: Offer or Product Category - choose all that apply - use ctrl to select additional categories
-        url: "Please redirect all web traffic to this url: "
+        url: "Send customers directly to the most relevant URL where they can take action"
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Acceptable Pledge
