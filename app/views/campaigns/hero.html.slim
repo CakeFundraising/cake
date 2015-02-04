@@ -89,7 +89,7 @@
               .row
                 - if @pledge.pending?
                   .col-md-6.no-padding
-                    = image_tag 'http://placehold.it/300x200&text=Your+picture+here', class:'img-responsive img-loaded'
+                    = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
                 - else
                   .col-md-6.no-padding.overlay-effects.clearfix#effect-6
                     = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
@@ -100,7 +100,7 @@
               .campaign_and_fundraiser.row
                 .col-md-6.no-padding
                   - if @pledge.pending?
-                    h4 Your name
+                    h4 Your organization name here
                   - else
                     h4 = auto_link @pledge.sponsor, truncate: 30
                 .col-md-6.no-padding
@@ -111,7 +111,7 @@
           .row.pledgebluestripe.campaign#sponsors_banner
             .col-md-12.text-center
               span.h1 
-                span Click to help and 
+                span Click below and 
                 span.boldest = (@pledge.sponsor || 'YOUR NAME')
                 span  will give  
                 span.boldest#amount_per_click = @pledge.amount_per_click

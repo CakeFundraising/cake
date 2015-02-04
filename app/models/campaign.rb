@@ -216,10 +216,8 @@ class Campaign < ActiveRecord::Base
     self.pledges.build(
       name: "Hero Pledge",
       mission: "Your mission",
-      headline: "Your purpose",
-      description:  "Tell your story in this section. Explain why this cause is important for you, add relevant information about your business and the causes you support.",
-      amount_per_click: "2.00",
-      total_amount: "100000.00",
+      headline: "Sponsors - Tell your story here!",
+      description:  "This is a Hero Campaign. That means your company or organization will be the only Sponsor. In this space, you can tell your story and share important information about your company or organization.",
       website_url: "http://yourdomain.com",
       status: :pending
     )
