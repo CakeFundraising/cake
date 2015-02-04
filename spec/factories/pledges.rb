@@ -45,7 +45,7 @@ FactoryGirl.define do
       name 'Hero Pledge'
       mission 'Your mission'
       headline 'Your purpose'
-      description 'Tell your story in this section.'
+      description 'Tell your story in this section. Explain why this cause is important for you, add relevant information about your business and the causes you support.'
       amount_per_click "2.00"
       total_amount "100000.00"
       website_url { "http://yourdomain.com" }
