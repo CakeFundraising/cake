@@ -205,11 +205,11 @@ class Campaign < ActiveRecord::Base
 
   #Hero Campaign
   def hero_pledge?
-    self.hero ? pledges.accepted.any? : false
+    self.hero ? pledges.accepted_or_past.any? : false
   end
 
   def hero_pledge
-    pledges.accepted.first if hero_pledge?
+    pledges.accepted_or_past.first if hero_pledge?
   end
 
   def build_hero_pledge
