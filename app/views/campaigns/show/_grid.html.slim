@@ -1,6 +1,8 @@
 - cache [:box, campaign] do 
   .campaign_grid.col-md-4
-    .thumbnail 
+    .thumbnail
+      - if campaign.past?
+        span.label.label-danger.overlapped.hero-label Campaign is over
       - if campaign.hero and not campaign.hero_pledge?
         span.label.label-success.overlapped.hero-label We need a Hero!
       .avatar-container
