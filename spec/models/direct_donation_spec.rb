@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectDonation do
   it { should belong_to(:campaign) }
@@ -7,10 +7,6 @@ describe DirectDonation do
   it { should validate_presence_of(:campaign) }
   it { should validate_presence_of(:card_token) }
   it { should validate_presence_of(:email) }
-  
-  it "should monetize the amount field" do 
-    monetize(:amount_cents).should be_true
-  end
 
   describe "#store_transaction" do
     before(:each) do
@@ -23,12 +19,16 @@ describe DirectDonation do
       WebMock.enable!
     end
 
+    it "should monetize the amount field" do
+      expect(@direct_donation).to monetize(:amount_cents)
+    end
+
     it "should store a copy of the stripe charge transaction" do
-      @transaction.should be_instance_of(Charge)
-      @transaction.kind.should == 'charge'
-      @transaction.paid.should be_true
-      @transaction.amount.should == @direct_donation.amount
-      @transaction.total_fee_cents.should be_within(1).of((@direct_donation.amount_cents*(0.029+Cake::APPLICATION_FEE)).ceil + 30)
+      expect(@transaction).to be_instance_of(Charge)
+      expect(@transaction.kind).to eq 'charge'
+      expect(@transaction.paid).to be true
+      expect(@transaction.amount).to eq @direct_donation.amount
+      expect(@transaction.total_fee_cents).to be_within(1).of((@direct_donation.amount_cents*(0.029+Cake::APPLICATION_FEE)).ceil + 30)
     end
   end
 end

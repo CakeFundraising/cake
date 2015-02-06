@@ -15,7 +15,7 @@ ActiveAdmin.register Sponsor do
     column :phone
     column :manager
 
-    default_actions
+    actions
   end
 
   show title: proc {|sponsor| "Sponsor: #{sponsor.name}" } do |sponsor|

@@ -26,6 +26,8 @@ module Cake
     
     config.assets.initialize_on_precompile = false
 
+    config.active_record.raise_in_transactional_callbacks = true
+
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
       #{config.root}/app/jobs

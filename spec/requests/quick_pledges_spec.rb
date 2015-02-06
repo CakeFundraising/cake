@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "QuickPledges" do
   describe "GET /quick_pledges" do

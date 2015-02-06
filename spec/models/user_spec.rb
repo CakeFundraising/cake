@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   it { should have_one(:fundraiser_email_setting) }
@@ -14,15 +14,15 @@ describe User do
     let(:fundraiser){ FactoryGirl.create(:fundraiser) }
 
     it "should have the fundraiser role" do
-      user.has_role?(:fundraiser).should be_true
-      user.has_role?(:sponsor).should be_false
+      expect(user.has_role?(:fundraiser)).to be true
+      expect(user.has_role?(:sponsor)).to be false
     end
     
     describe "#set_fundraiser" do
       it "should allow the user to set fundraiser he's related to" do
-        user.fundraiser.should be_nil
+        expect(user.fundraiser).to be_nil
         user.set_fundraiser(fundraiser)
-        user.fundraiser.should == fundraiser
+        expect(user.fundraiser).to eq fundraiser
       end
     end
   end
@@ -32,15 +32,15 @@ describe User do
     let(:sponsor){ FactoryGirl.create(:sponsor) }
 
     it "should have the sponsor role" do
-      user.has_role?(:sponsor).should be_true
-      user.has_role?(:fundraiser).should be_false
+      expect(user.has_role?(:sponsor)).to be true
+      expect(user.has_role?(:fundraiser)).to be false
     end
     
     describe "#set_sponsor" do
       it "should allow the user to set sponsor he's related to" do
-        user.sponsor.should be_nil
+        expect(user.sponsor).to be_nil
         user.set_sponsor(sponsor)
-        user.sponsor.should == sponsor
+        expect(user.sponsor).to eq sponsor
       end
     end
   end

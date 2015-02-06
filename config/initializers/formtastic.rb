@@ -1,4 +1,14 @@
+Formtastic::FormBuilder.action_class_finder = Formtastic::ActionClassFinder
+Formtastic::FormBuilder.input_class_finder = Formtastic::InputClassFinder
+
 Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+# Define custom namespaces in which to look up your Input classes. Default is
+# to look up in the global scope and in Formtastic::Inputs.
+Formtastic::FormBuilder.input_namespaces = [ ::Object, ::FormtasticBootstrap::Inputs, ::Formtastic::Inputs ]
+
+# Define custom namespaces in which to look up your Action classes. Default is
+# to look up in the global scope and in Formtastic::Actions.
+Formtastic::FormBuilder.action_namespaces = [ ::Object, ::FormtasticBootstrap::Actions, ::Formtastic::Actions ]
 
 class Formtastic::Inputs::SelectInput
   def extra_input_html_options

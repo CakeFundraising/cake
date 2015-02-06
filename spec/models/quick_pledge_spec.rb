@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe QuickPledge do
   it { should validate_presence_of(:name) }
@@ -14,11 +14,11 @@ describe QuickPledge do
 
   it "should build a picture if new object" do
     new_pledge = FactoryGirl.build(:quick_pledge)
-    new_pledge.picture.should_not be_nil
-    new_pledge.picture.should be_instance_of(Picture)
+    expect(new_pledge.picture).to_not be_nil
+    expect(new_pledge.picture).to be_instance_of(Picture)
   end
 
   it "should have statuses" do
-    QuickPledge.statuses[:status].should == [:incomplete, :pending, :accepted, :rejected, :past]
+    expect(QuickPledge.statuses[:status]).to eq [:incomplete, :confirmed, :past]
   end
 end

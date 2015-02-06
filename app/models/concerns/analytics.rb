@@ -94,9 +94,11 @@ module Analytics
   ## Avg. Donation
   def paid_invoices_to(user_role)
     if self.is_a?(Sponsor)
-      invoices.paid.merge pledges.fundraiser(user_role)
+      p = pledges.fundraiser(user_role).pluck(:id)
+      invoices.paid.where(pledge: p)
     else
-      invoices.paid.merge pledges.sponsor(user_role)
+      p = pledges.sponsor(user_role).pluck(:id)
+      invoices.paid.where(pledge: p)
     end
   end
 
@@ -120,7 +122,7 @@ module Analytics
 
   def average_pledge_with(user_role)
     return 0 unless pledges_related_to(user_role).any?
-    (pledges_related_to(user_role).sum(&:total_amount_cents)/pledges_related_to(user_role).count) 
+    (pledges_related_to(user_role).sum(:total_amount_cents)/pledges_related_to(user_role).count)
   end
 
   def average_donation_per_click_with(user_role)

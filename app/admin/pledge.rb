@@ -15,7 +15,7 @@ ActiveAdmin.register Pledge do
     column :sponsor
     column :created_at
 
-    default_actions
+    actions
   end
 
   show title: proc {|pledge| "Pledge: #{pledge.name}" } do |pledge|

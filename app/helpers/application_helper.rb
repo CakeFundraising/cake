@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def to_boolean(string)
-    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(string)
+    ActiveRecord::Type::Boolean.new.type_cast_from_database(string)
   end
 
   def is_boolean?(string)

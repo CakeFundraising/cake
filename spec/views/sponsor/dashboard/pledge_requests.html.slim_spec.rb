@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "sponsor/dashboard/pledge_requests" do
   let(:sponsor){ FactoryGirl.create(:sponsor) }

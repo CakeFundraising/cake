@@ -52,7 +52,7 @@ Given(/^a pledge request related to that pledge exists$/) do
 end
 
 Then(/^it should delete the related pledge request$/) do
-  PledgeRequest.exists?(@pledge_request.id).should be_false
+  PledgeRequest.exists?(@pledge_request.id).should be false
 end
 
 #Pledge Click
@@ -97,5 +97,6 @@ end
 
 #Increase request
 Then(/^an increase request should be stored in the pledge$/) do
-  @pledge.reload.increase_requested.should be_true
+  @pledge.reload.increase_requested.should be true
 end
+

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Campaign do
   it { should validate_presence_of(:title) }
@@ -22,7 +22,7 @@ describe Campaign do
   it { should accept_nested_attributes_for(:sponsor_categories) }
 
   it "should validate other attributes when persisted" do
-    subject.stub(:persisted?) { true } 
+    allow(subject).to receive(:persisted?) { true }
     should validate_presence_of(:headline)
     should validate_presence_of(:mission)
     should validate_presence_of(:story)
@@ -30,12 +30,12 @@ describe Campaign do
 
   it "should build a picture if new object" do
     new_campaign = FactoryGirl.build(:campaign)
-    new_campaign.picture.should_not be_nil
-    new_campaign.picture.should be_instance_of(Picture)
+    expect(new_campaign.picture).not_to be_nil
+    expect(new_campaign.picture).to be_instance_of(Picture)
   end
 
   it "should have statuses" do
-    Campaign.statuses[:status].should == [:incomplete, :pending, :launched, :past]
+    expect(Campaign.statuses[:status]).to eq([:incomplete, :pending, :launched, :past])
   end
 
   context 'Actions' do
@@ -45,9 +45,9 @@ describe Campaign do
       end
 
       it "should set a pending status" do
-        @campaign.status.should == :incomplete
+        expect(@campaign.status).to eq 'incomplete'
         @campaign.pending!
-        @campaign.status.should == :pending
+        expect(@campaign.status).to eq 'pending'
       end
     end
 
@@ -57,9 +57,9 @@ describe Campaign do
       end
 
       it "should set a launched status" do
-        @campaign.status.should == :pending
+        expect(@campaign.status).to eq 'pending'
         @campaign.launch!
-        @campaign.status.should == :launched
+        expect(@campaign.status).to eq 'launched'
       end
     end
 
@@ -78,14 +78,14 @@ describe Campaign do
 
       it "should set all pledges as past" do
         @campaign.end
-        @campaign.pledges.sort.should == @campaign.pledges.past.sort
-        @campaign.pledges.past.count.should == (@active_pledges+@pending_pledges).count
+        expect(@campaign.pledges.sort).to eq @campaign.pledges.past.sort
+        expect(@campaign.pledges.past.count).to eq (@active_pledges+@pending_pledges).count
       end
 
       it "should set the campaign as past" do
         expect{
           @campaign.end
-        }.to change{@campaign.status}.to :past
+        }.to change{@campaign.status}.to 'past'
       end
     end
   end
@@ -94,25 +94,25 @@ describe Campaign do
     #Scopes
     it "should return a collection of active campaigns" do
       @campaigns = create_list(:campaign, 5)
-      Campaign.active.should == @campaigns
+      expect(Campaign.active).to eq @campaigns
     end
 
     it "should return a collection of past campaigns" do
       @campaigns = create_list(:past_campaign, 5)
-      Campaign.past.should == @campaigns
+      expect(Campaign.past).to eq @campaigns
     end
     
     #Conditions
     it "should show whether a campaign is active" do
       campaign = FactoryGirl.create(:campaign)
-      campaign.should be_active
-      campaign.should_not be_past
+      expect(campaign).to be_active
+      expect(campaign).to_not be_past
     end
 
     it "should show whether a campaign is past" do
       campaign = FactoryGirl.create(:past_campaign)
-      campaign.should be_past
-      campaign.should_not be_active 
+      expect(campaign).to be_past
+      expect(campaign).to_not be_active
     end
   end
 
@@ -139,17 +139,17 @@ describe Campaign do
 
       context 'pledge levels' do
         it "should return the pledges ranked according to the pledge levels" do
-          @campaign.top_pledges.should  match_array(@top_pledges)
-          @campaign.medium_pledges.should match_array(@medium_pledges)
-          @campaign.low_pledges.should match_array(@low_pledges)
+          expect(@campaign.top_pledges).to  match_array(@top_pledges)
+          expect(@campaign.medium_pledges).to match_array(@medium_pledges)
+          expect(@campaign.low_pledges).to match_array(@low_pledges)
         end
       end
 
       context 'same pledge level' do
         it "should order the pledges based upon the total_amount" do
-          @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.total_amount_cents }
-          @campaign.medium_pledges.should == @medium_pledges.sort_by{|p| -p.total_amount_cents }
-          @campaign.low_pledges.should == @low_pledges.sort_by{|p| -p.total_amount_cents }
+          expect(@campaign.top_pledges).to eq @top_pledges.sort_by{|p| -p.total_amount_cents }
+          expect(@campaign.medium_pledges).to eq @medium_pledges.sort_by{|p| -p.total_amount_cents }
+          expect(@campaign.low_pledges).to eq @low_pledges.sort_by{|p| -p.total_amount_cents }
         end
 
         it "should order the pledges based upon the amount_per_click when 2 pledges have the same total_amount" do
@@ -158,7 +158,7 @@ describe Campaign do
           @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: 60000, amount_per_click: '2.5')
           @top_pledges << FactoryGirl.create(:pledge, campaign: @campaign, total_amount_cents: 60000, amount_per_click: '2.7')
 
-          @campaign.top_pledges.should == @top_pledges.sort_by{|p| -p.amount_per_click_cents }
+          expect(@campaign.top_pledges).to eq @top_pledges.sort_by{|p| -p.amount_per_click_cents }
         end
       end
     end

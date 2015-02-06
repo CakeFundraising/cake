@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "fr_sponsors/index" do
   before(:each) do

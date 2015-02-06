@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Coupon do
   it { should belong_to(:pledge) }
@@ -17,17 +17,17 @@ describe Coupon do
 
   it "should set default terms and conditions" do
     new_coupon = FactoryGirl.build(:coupon)
-    new_coupon.terms_conditions.should_not be_nil
-    new_coupon.terms_conditions.should == I18n.t('application.terms_and_conditions.coupons')
+    expect(new_coupon.terms_conditions).to_not be_nil
+    expect(new_coupon.terms_conditions).to eq I18n.t('application.terms_and_conditions.coupons')
   end
 
   it "should return the collection of normal coupons" do
     @coupons = create_list(:coupon, 5)
-    Coupon.normal.should == @coupons
+    expect(Coupon.normal).to eq @coupons
   end
 
   it "should return the collection of extra_donation_pledges" do
     @extra_donation_pledges = create_list(:extra_donation_pledge, 5)
-    Coupon.extra_donation_pledges.should == @extra_donation_pledges
+    expect(Coupon.extra_donation_pledges).to eq @extra_donation_pledges
   end
 end

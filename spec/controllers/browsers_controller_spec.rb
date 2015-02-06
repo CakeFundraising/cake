@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BrowsersController, type: :controller do
   describe "PATCH #fingerprint" do

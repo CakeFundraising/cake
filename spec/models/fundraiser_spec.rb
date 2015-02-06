@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Fundraiser do
   it { should validate_presence_of(:name) }
@@ -6,7 +6,7 @@ describe Fundraiser do
   it { should validate_presence_of(:phone) }
 
   it "should validate other attributes when editing" do
-    subject.stub(:new_record?) { false } 
+    allow(subject).to receive(:new_record?) { false }
     should validate_presence_of(:mission) 
     should validate_presence_of(:manager_title) 
     should validate_presence_of(:manager_email) 
@@ -33,19 +33,20 @@ describe Fundraiser do
   it { should accept_nested_attributes_for(:picture).update_only(true) }
 
   it "should validate presence of causes" do
-    FactoryGirl.build(:fundraiser, causes: []).should have(1).error_on(:causes)
+    fundraiser = FactoryGirl.build(:fundraiser, causes: [])
+    expect{fundraiser.valid?}.to change{fundraiser.errors[:causes]}.to include("can't be blank")
   end
 
   it "should build a picture if new object" do
     new_fundraiser = FactoryGirl.build(:fundraiser)
-    new_fundraiser.picture.should_not be_nil
-    new_fundraiser.picture.should be_instance_of(Picture)
+    expect(new_fundraiser.picture).to_not be_nil
+    expect(new_fundraiser.picture).to be_instance_of(Picture)
   end
 
   it "should build a location if new object" do
     new_fundraiser = FactoryGirl.build(:fundraiser)
-    new_fundraiser.location.should_not be_nil
-    new_fundraiser.location.should be_instance_of(Location)
+    expect(new_fundraiser.location).to_not be_nil
+    expect(new_fundraiser.location).to be_instance_of(Location)
   end
 
   context 'Association methods' do
@@ -56,17 +57,17 @@ describe Fundraiser do
       
       it "should show a collection of fundraiser's accepted pledges" do
         accepted_pledges = create_list(:pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.accepted.reload.should == accepted_pledges
+        expect(fundraiser.pledges.accepted.reload).to eq accepted_pledges
       end
 
       it "should show a collection of fundraiser's pending pledges" do
         pending_pledges = create_list(:pending_pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.pending.reload.should == pending_pledges
+        expect(fundraiser.pledges.pending.reload).to eq pending_pledges
       end
 
       it "should show a collection of fundraiser's rejected pledges" do
         rejected_pledges = create_list(:rejected_pledge, 10, campaign: campaigns.sample)
-        fundraiser.pledges.rejected.reload.should == rejected_pledges
+        expect(fundraiser.pledges.rejected.reload).to eq rejected_pledges
       end
     end
 
@@ -79,9 +80,9 @@ describe Fundraiser do
         pending_pledges  = create_list(:pending_pledge, 10, campaign: campaigns.sample)
         rejected_pledges = create_list(:rejected_pledge, 10, campaign: campaigns.sample)
 
-        fundraiser.sponsors.sort.should == accepted_pledges.map(&:sponsor).uniq.sort
-        fundraiser.sponsors.sort.should_not include(pending_pledges.map(&:sponsor).uniq.sort)
-        fundraiser.sponsors.sort.should_not include(rejected_pledges.map(&:sponsor).uniq.sort)
+        expect(fundraiser.sponsors.sort).to eq accepted_pledges.map(&:sponsor).uniq.sort
+        expect(fundraiser.sponsors.sort).to_not include(pending_pledges.map(&:sponsor).uniq.sort)
+        expect(fundraiser.sponsors.sort).to_not include(rejected_pledges.map(&:sponsor).uniq.sort)
       end
     end
 
@@ -94,7 +95,7 @@ describe Fundraiser do
 
       describe "with_paid_invoices" do
         it "should not return any campaign if there isn't invoices created" do
-          fundraiser.campaigns.with_paid_invoices.should be_empty
+          expect(fundraiser.campaigns.with_paid_invoices).to be_empty
         end
         
         context 'invoices present' do
@@ -102,28 +103,28 @@ describe Fundraiser do
           let!(:not_paid_invoice){ FactoryGirl.create(:invoice, pledge: not_included_pledge, status: :due_to_pay) }
 
           it "should not include campaigns with unpaid invoices" do
-            fundraiser.campaigns.with_paid_invoices.should_not include(not_included_campaign)
+            expect(fundraiser.campaigns.with_paid_invoices).to_not include(not_included_campaign)
           end
 
           it "should include only campaigns with paid invoices" do
-            fundraiser.campaigns.with_paid_invoices.should == [included_campaign]
+            expect(fundraiser.campaigns.with_paid_invoices).to eq [included_campaign]
           end
 
           context 'should not include a campaign with both paid and unpaid invoices' do
             it "when invoices is due to pay" do
               not_included_invoice = FactoryGirl.create(:invoice, pledge: included_pledge, status: :due_to_pay)
 
-              included_campaign.invoices.should include(paid_invoice)
-              included_campaign.invoices.should include(not_included_invoice)
-              fundraiser.campaigns.with_paid_invoices.should_not include(included_campaign)
+              expect(included_campaign.invoices).to include(paid_invoice)
+              expect(included_campaign.invoices).to include(not_included_invoice)
+              expect(fundraiser.campaigns.with_paid_invoices).to_not include(included_campaign)
             end
 
             it "when invoices is in arbitration" do
               not_included_invoice = FactoryGirl.create(:invoice, pledge: included_pledge, status: :in_arbitration)
 
-              included_campaign.invoices.should include(paid_invoice)
-              included_campaign.invoices.should include(not_included_invoice)
-              fundraiser.campaigns.with_paid_invoices.should_not include(included_campaign)
+              expect(included_campaign.invoices).to include(paid_invoice)
+              expect(included_campaign.invoices).to include(not_included_invoice)
+              expect(fundraiser.campaigns.with_paid_invoices).to_not include(included_campaign)
             end
           end
         end
@@ -131,7 +132,7 @@ describe Fundraiser do
 
       describe "with_outstanding_invoices" do
         it "should not return any campaign if there isn't invoices" do
-          fundraiser.campaigns.with_outstanding_invoices.should be_empty
+          expect(fundraiser.campaigns.with_outstanding_invoices).to be_empty
         end
 
         context 'invoices present' do
@@ -140,11 +141,11 @@ describe Fundraiser do
           let!(:arbitration_invoice){ FactoryGirl.create(:invoice, pledge: included_pledge, status: :in_arbitration) }
 
           it "should include paid and not paid invoices" do
-            fundraiser.campaigns.with_outstanding_invoices.should == [included_campaign]
+            expect(fundraiser.campaigns.with_outstanding_invoices).to eq [included_campaign]
           end
 
           it "should not include only paid invoices" do
-            fundraiser.campaigns.with_outstanding_invoices.should_not include(not_included_campaign)
+            expect(fundraiser.campaigns.with_outstanding_invoices).to_not include(not_included_campaign)
           end
 
           # it "should not include a campaign with both paid and unpaid invoices" do
@@ -224,6 +225,8 @@ describe Fundraiser do
           @accepted_pledges = create_list(:pledge, 4, sponsor: @sponsor, campaign: campaigns.sample)
           @past_pledges = create_list(:past_pledge, 5, sponsor: @sponsor, campaign: campaigns.sample)
         end
+
+
 
         it "should be the average of accepted and past pledges's amount_per_click" do
           pledges = @accepted_pledges + @past_pledges

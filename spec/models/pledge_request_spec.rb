@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PledgeRequest do
   it { should belong_to(:sponsor) }
@@ -10,6 +10,6 @@ describe PledgeRequest do
   it { should validate_presence_of(:fundraiser) }
 
   it "should have statuses" do
-    PledgeRequest.statuses[:status].should == [:pending, :accepted, :rejected]
+    expect(PledgeRequest.statuses[:status]).to eq [:pending, :accepted, :rejected]
   end
 end

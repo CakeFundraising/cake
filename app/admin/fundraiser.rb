@@ -16,7 +16,7 @@ ActiveAdmin.register Fundraiser do
     #column :min_click_donation
     column :manager
 
-    default_actions
+    actions
   end
 
   show title: proc {|fundraiser| "Fundraiser: #{fundraiser.name}" } do |fundraiser|
