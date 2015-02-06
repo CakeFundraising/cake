@@ -46,10 +46,17 @@ class CouponsController < InheritedResources::Base
     end
   end
 
+  def load_all
+    pledge = Pledge.find(params[:pledge_id])
+    @coupons = CouponDecorator.decorate_collection(pledge.coupons.latest[2..-1])
+    p @coupons
+    render :load_all, layout: false
+  end
+
   def permitted_params
     params.permit(
       coupon: [
-        :id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, :pledge_id,
+        :id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, :pledge_id, :url,
         :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :qrcode_cache, merchandise_categories: [],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,

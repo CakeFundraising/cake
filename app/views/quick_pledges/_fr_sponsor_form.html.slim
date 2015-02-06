@@ -5,7 +5,7 @@
       .col-md-6
         = f.input :name
         - if f.object.new_record?
-          = f.input :campaign, as: :select, collection: current_fundraiser.campaigns.active 
+          = f.input :campaign, as: :select, collection: current_fundraiser.campaigns.not_hero.active
         - else
           label.control-label Campaign: 
           h4 = auto_link f.object.decorate.campaign

@@ -23,4 +23,10 @@ class CouponDecorator < ApplicationDecorator
   def to_s
   	object.title
   end
+
+  def url
+    unless object.url.blank?
+      (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
+    end
+  end
 end

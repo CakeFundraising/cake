@@ -64,6 +64,9 @@ class Campaign < ActiveRecord::Base
   }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
+
+  scope :hero, ->{ where(hero: true) }
+  scope :not_hero, ->{ where(hero: false) }
   
   #Solr
   searchable do
@@ -161,7 +164,7 @@ class Campaign < ActiveRecord::Base
 
   #Status
   def active?
-    end_date >= Date.today and status != :past
+    end_date >= Date.today and status != 'past'
   end
 
   #Actions
@@ -198,6 +201,26 @@ class Campaign < ActiveRecord::Base
     end
 
     update_attribute(:processed_status, :missed_launch)
+  end
+
+  #Hero Campaign
+  def hero_pledge?
+    self.hero ? pledges.accepted_or_past.any? : false
+  end
+
+  def hero_pledge
+    pledges.accepted_or_past.first if hero_pledge?
+  end
+
+  def build_hero_pledge
+    self.pledges.build(
+      name: "Hero Pledge",
+      mission: "Your mission",
+      headline: "Sponsors - Tell your story here!",
+      description:  "This is a Hero Campaign. That means your company or organization will be the only Sponsor. In this space, you can tell your story and share important information about your company or organization.",
+      website_url: "http://yourdomain.com",
+      status: :pending
+    )
   end
 
   private

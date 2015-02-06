@@ -1,5 +1,7 @@
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
+  before_action :bypass_if_hero, only: :sponsors
+  before_action :redirect_to_hero_campaign, only: :show
 
   WIZARD_STEPS = [
     :basic_info,
@@ -21,6 +23,12 @@ class CampaignsController < InheritedResources::Base
       @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
       @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
     end
+  end
+
+  def hero
+    @campaign = resource.decorate
+    @pledge = HeroPledgeDecorator.decorate(@campaign.hero_pledge || @campaign.build_hero_pledge)
+    @coupons = @pledge.coupons.latest.limit(2).decorate if @pledge.present?
   end
 
   def create
@@ -116,9 +124,17 @@ class CampaignsController < InheritedResources::Base
 
   protected
 
+  def bypass_if_hero
+    redirect_to launch_wizard_campaign_path if resource.hero
+  end
+
+  def redirect_to_hero_campaign
+    redirect_to hero_campaign_path(resource) if resource.hero
+  end
+
   def permitted_params
     params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
-    :headline, :step, :main_cause, :sponsor_alias, :visible, causes: [], scopes: [], video_attributes: [:id, :url, :auto_show],
+    :headline, :step, :hero, :main_cause, :sponsor_alias, :visible, causes: [], scopes: [], video_attributes: [:id, :url, :auto_show],
     picture_attributes: [
       :id, :banner, :avatar, :avatar_caption,
       :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,

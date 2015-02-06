@@ -1279,6 +1279,9 @@ h1.name {
   border:0px !important;
 }
 
+.no-padding{
+  padding: 0;
+}
 
 .sidebar-bkg {
   padding: 15px;
@@ -1511,6 +1514,17 @@ table.performance-summary {
   margin: -85px auto 0;
   z-index: 100;
 }
+
+.hero-shake{
+  background-image: url(/assets/shake.png);
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  z-index: 999;
+  left: 274px;
+  top: 75px;
+}
+
 .blue {
   background-color: $brand-primary;
   margin-bottom: 30px;
@@ -1710,6 +1724,14 @@ table.performance-summary {
 
 .campaign-stats {
   /*margin-bottom: 20px;*/
+}
+
+.hero-pictures-section{
+  margin-top: 64px;
+}
+
+#campaign_hero_input{
+  font-size: 16px;
 }
 
 #home_video_fr,
@@ -2047,6 +2069,12 @@ a {
     }
   }
 }
+
+.hero-label{
+  font-size:16px;
+  box-shadow: 1px 1px 0px #999;
+}
+
 // Mini Pledges -----------------------------------------------------------------
 
 .pledges_total {
@@ -2109,9 +2137,14 @@ a {
   }
 }
 
-
-
 // Coupon Styles ---------------------------------------
+.coupon-wrapper{
+  .coupon-actions{
+    position: absolute;
+    right: 120px;
+    z-index: 99;
+  }
+}
 
 .coupon {
   padding: 15px;
@@ -2145,6 +2178,7 @@ a {
     position:absolute;
     padding:10px;
     margin: -7px;
+    z-index: 99;
   }
   img {
     width: 100%;
@@ -2963,25 +2997,14 @@ ul#share-block {
   float: left;
   margin-right: 5px;
 }
-#campaign_end_date_input {
-  /*padding: 10px 0 0;*/
-}
 #campaign_end_date {
   width: 49%;
   margin-right: 5px;
 }
 
-#campaign_causes {
-  /*width: 400px;
-  margin: 40px auto;*/
-}
 #campaign_scopes_input {
   text-align: center;
   margin: 15px 0;
-  .checkbox {
-    /*display: inline-block;
-    margin: 0 15px;*/
-  }
 }
 // Tell Your Story Step ------------------------------------
 .tell-story-wrap {
@@ -3002,9 +3025,6 @@ ul#share-block {
   }
 }
 #campaign_picture_attributes_avatar_input {
-  .avatar {
-    /*margin: 10px auto;*/
-  }
   .avatar_input {
     margin: 0 auto 35px;
   }
@@ -3016,12 +3036,7 @@ ul#share-block {
   padding-bottom: 25px;
 }
 // Solicit Sponsors Step ------------------------------------
-/*.campaign-wizard-solicit-wrap {
-  padding: 0 50px 0;
-  margin-bottom: 50px;
-}*/
 .solicit-wrap {
-  /*padding: 0 200px;*/
   margin: 20px 0;
 }
 
@@ -3061,14 +3076,6 @@ ul#share-block {
 
 
 #sponsors_donations{
-  /*.control-label{
-    padding-right:10px;
-    text-align:left;
-    margin-bottom: 5px;
-  }*/
-  /*.pledge_level{
-    margin:5px;
-  }*/
   .btn-selected{
     color: white;
     background-color: #07b4cd;
@@ -3079,49 +3086,19 @@ ul#share-block {
     display: inline-block;
   }
 
-  /*.buttons{
-    height:100px;
-    display: table;
-    margin:auto;
-    width: 75%;
-  }*/
-
   .vertical-divider {
-    /*height:100px;*/
     span{
       padding: 25px;
       display: block;
     }
   }
 
-  /*.vertical-divider {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    position: relative;
-    vertical-align:middle;
-    display: block;
-    height:100%;
-    span{
-      padding-top: 25px;
-      display: block;
-    }
-  }
-
-  .buttons > span{
-      padding:20px;
-      height:100px;    
-  }
-  */
   col-md-1, col-md-2, col-md-4 {
     margin-left:0px !important;
     margin-right:0px !important;
     padding-left:0px !important;
     padding-right:0px !important;
   }
-
-  /*.remove_fields {
-    padding: 10px;
-  }*/
 
   .links{
     margin-bottom: 20px;
@@ -3184,20 +3161,9 @@ ul#share-block {
   }
 }
 // Pledge Wizard ---------------------------------------------------------
-/*.pledge-pad {
-  padding: 3px;
-  display: inline-block;
-  text-align: right;
-}*/
 #pledge_amount_per_click_input, #pledge_total_amount_input {
   margin-bottom: 15px;
   margin-top: 15px;
-}
-.pledge-first-step-wrap {
-  /*padding: 0 100px;
-  @media (min-width: $screen-md-min) {
-    padding: 0 200px;
-  }*/
 }
 .your-pledge-well {
   padding: 25px;
@@ -3268,18 +3234,6 @@ ul#share-block {
   .avatar, .qrcode {
     margin-bottom: 5px;
   }
-  // img {
-  //   height: 230px;
-  //   width: 300px;
-  //   @media (max-width: $screen-md-min) {
-
-  //   }
-  // }
-}
-.coupon-outer-wrap {
-  /*@media (min-width: $screen-md-min) {
-  padding: 0 150px;
-  }*/
 }
 .remove-coupon {
     margin-bottom: 10px;
@@ -3554,9 +3508,6 @@ ul#share-block {
   }
 }
 
-
-
-
 #no-more-tables td{
   vertical-align: middle;
 }
@@ -3565,7 +3516,6 @@ ul#share-block {
   text-transform: capitalize;
   color:white;
 }
-
 
 @media only screen and (max-width: 800px) {
     /* Force table to not be like tables anymore */
@@ -3670,11 +3620,6 @@ ul#share-block {
 .checkbox .checked{
   background:#b5ca41  !important;
 }
-
-
-
-
-
 
 .onoffswitch {
     position: relative; 
@@ -3913,6 +3858,12 @@ ul#share-block {
 
 .label-overlapped-container{
   position: relative;
+}
+
+.label.overlapped{
+  position: absolute;
+  z-index: 9;
+  top: 0;
 }
 
 .label-purple{

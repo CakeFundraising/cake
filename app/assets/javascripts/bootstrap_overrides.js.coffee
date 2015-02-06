@@ -29,3 +29,18 @@ Cake.bootstrap_overrides.stacked_modals = ->
     $(".modal-backdrop").not(".stacked").addClass "stacked"
     return
   return
+
+Cake.bootstrap_overrides.bootstrap_switch = ->
+  $('.bootstrap_switch').bootstrapSwitch()
+
+  $('.boolean_switch').bootstrapSwitch 
+    onColor: 'success'
+    offColor: 'danger'
+    onText: 'Yes'
+    offText: 'No'
+  return
+
+Cake.bootstrap_overrides.init = ->
+  Cake.bootstrap_overrides.hide_alert()
+  Cake.bootstrap_overrides.bootstrap_switch()
+  return
