@@ -45,6 +45,11 @@ class CouponsController < InheritedResources::Base
     end
   end
 
+  def load_all
+    pledge = Pledge.find(params[:pledge_id])
+    @coupons = CouponDecorator.decorate_collection(pledge.coupons.latest[2..-1])
+  end
+
   def permitted_params
     params.permit(
       coupon: [

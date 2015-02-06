@@ -139,6 +139,10 @@ Cake::Application.routes.draw do
   end
 
   resources :coupons do
+    collection do
+      get :load_all
+    end
+    
     member do
       get :download
       scope :pictures, controller: :cropping do

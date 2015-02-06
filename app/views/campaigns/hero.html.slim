@@ -126,8 +126,10 @@
             h1 Special Offers from #{@pledge.sponsor}
         .row
           .coupons
-            = render partial:'coupons/show/box', collection: @coupons, as: :coupon                
-    
+            = render partial:'coupons/show/box', collection: @coupons, as: :coupon
+            .text-center
+              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary'            
+        br
         .green
           .container
             .row.pledgebluestripe.campaign#sponsors_banner

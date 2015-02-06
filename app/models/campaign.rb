@@ -164,7 +164,7 @@ class Campaign < ActiveRecord::Base
 
   #Status
   def active?
-    end_date >= Date.today and status != :past
+    end_date >= Date.today and status != 'past'
   end
 
   #Actions
