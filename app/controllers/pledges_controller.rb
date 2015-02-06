@@ -35,7 +35,7 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
-    @coupons = @pledge.coupons.latest.decorate
+    @coupons = @pledge.coupons.latest.limit(2).decorate
   end
 
   def create
