@@ -69,6 +69,12 @@
                 .main-cta
                   = render partial:'clicks/campaign'
 
+            a.btn data-toggle='modal' data-target='#how_it_works'
+              h4 
+                span.glyphicon.glyphicon-expand
+                span See how Cake works!
+            = render partial:'layouts/how_it_works_modal'
+
 = content_for :bottom_section do
   .main-background
     - if @pledge.present?
