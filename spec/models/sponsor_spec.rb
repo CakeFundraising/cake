@@ -6,7 +6,7 @@ describe Sponsor do
   it { should validate_presence_of(:phone) }
   
   it "should validate other attributes when editing" do
-    subject.stub(:new_record?) { false } 
+    allow(subject).to receive(:new_record?) { false }
     should validate_presence_of(:mission) 
     should validate_presence_of(:manager_title) 
     should validate_presence_of(:manager_email) 
@@ -44,14 +44,14 @@ describe Sponsor do
 
   it "should build a picture if new object" do
     new_sponsor = FactoryGirl.build(:sponsor)
-    new_sponsor.picture.should_not be_nil
-    new_sponsor.picture.should be_instance_of(Picture)
+    expect(new_sponsor.picture).to_not be_nil
+    expect(new_sponsor.picture).to be_instance_of(Picture)
   end
 
   it "should build a location if new object" do
     new_sponsor = FactoryGirl.build(:sponsor)
-    new_sponsor.location.should_not be_nil
-    new_sponsor.location.should be_instance_of(Location)
+    expect(new_sponsor.location).to_not be_nil
+    expect(new_sponsor.location).to be_instance_of(Location)
   end
 
   context 'Association methods' do
@@ -62,17 +62,17 @@ describe Sponsor do
     describe "Pledges" do
       it "should show a collection of sponsor's active pledges" do
         active_pledges = create_list(:pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.active.reload.sort.should == active_pledges.sort
+        expect(@sponsor.pledges.active.reload.sort).to eq active_pledges.sort
       end
 
       it "should show a collection of sponsor's pending pledges" do
         pending_pledges = create_list(:pending_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.pending.reload.sort.should == pending_pledges.sort
+        expect(@sponsor.pledges.pending.reload.sort).to eq pending_pledges.sort
       end
 
       it "should show a collection of sponsor's rejected pledges" do
         rejected_pledges = create_list(:rejected_pledge, 10, sponsor: @sponsor)
-        @sponsor.pledges.rejected.reload.sort.should == rejected_pledges.sort
+        expect(@sponsor.pledges.rejected.reload.sort).to eq rejected_pledges.sort
       end
     end
 
@@ -83,9 +83,9 @@ describe Sponsor do
         pending_pledges = create_list(:pending_pledge, 10, sponsor: @sponsor)
         rejected_pledges = create_list(:rejected_pledge, 10, sponsor: @sponsor)
 
-        @sponsor.fundraisers.should == accepted_pledges.map(&:fundraiser).uniq
-        @sponsor.fundraisers.should_not include(pending_pledges.map(&:fundraiser))
-        @sponsor.fundraisers.should_not include(rejected_pledges.map(&:fundraiser))
+        expect(@sponsor.fundraisers).to eq accepted_pledges.map(&:fundraiser).uniq
+        expect(@sponsor.fundraisers).to_not include(pending_pledges.map(&:fundraiser))
+        expect(@sponsor.fundraisers).to_not include(rejected_pledges.map(&:fundraiser))
       end
     end
 
@@ -101,14 +101,14 @@ describe Sponsor do
 
         it "should not include paid invoices" do
           @sponsor.outstanding_invoices.each do |invoice|
-            invoice.status.should_not == 'paid'
+            expect(invoice.status).to_not eq 'paid'
           end
         end
 
         it "should list invoices of past accepted pledges" do
           @sponsor.outstanding_invoices.each do |invoice|
-            invoice.pledge.should be_past
-            invoice.pledge.should_not be_active
+            expect(invoice.pledge).to be_past
+            expect(invoice.pledge).to_not be_active
           end
         end
       end
@@ -124,14 +124,14 @@ describe Sponsor do
 
         it "should include only paid invoices" do
           @sponsor.past_invoices.each do |invoice|
-            invoice.status.should == 'paid'
+            expect(invoice.status).to eq 'paid'
           end
         end
 
         it "should list invoices of past accepted pledges" do
           @sponsor.past_invoices.each do |invoice|
-            invoice.pledge.should be_past
-            invoice.pledge.should_not be_active
+            expect(invoice.pledge).to be_past
+            expect(invoice.pledge).to_not be_active
           end
         end
       end

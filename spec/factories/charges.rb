@@ -6,9 +6,7 @@ FactoryGirl.define do
     kind "MyString"
     amount ""
     total_fee ""
-    status "MyString"
-    available_on "2014-05-16 13:22:54"
-    fee_details ""
+    fee_details '{"foo":"bar"}'
     chargeable_type "MyString"
     chargeable_id 1
   end

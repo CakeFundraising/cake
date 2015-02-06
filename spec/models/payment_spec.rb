@@ -14,12 +14,13 @@ describe Payment do
   it { should have_many(:charges) }
   it { should have_many(:transfers) }
 
-  it "should monetize the total field" do 
-    monetize(:total_cents).should be true
+  it "should monetize the total field" do
+    payment = FactoryGirl.create(:payment)
+    expect(payment).to monetize(:total_cents)
   end
 
   it "should have statuses" do
-    Payment.statuses[:status].should == [:charged, :transferred]
+    expect(Payment.statuses[:status]).to eq [:charged, :transferred]
   end
 
   describe "#transfer!" do
@@ -33,23 +34,23 @@ describe Payment do
     end
 
     it "should set the payment as transferred" do
-      @payment.status.should == 'charged'
+      expect(@payment.status).to eq 'charged'
       @payment.transfer!
-      @payment.status.should == :transferred
+      expect(@payment.status).to eq 'transferred'
     end
 
     it "should make a transfer to the fundraiser's bank account" do
-      @payment.transfers.should be_empty
+      expect(@payment.transfers).to be_empty
       @payment.transfer!
-      @payment.transfers.should_not be_empty
+      expect(@payment.transfers).to_not be_empty
     end
 
     it "should create a transfer object" do
       @payment.transfer!
       transfer =  @payment.transfers.first
       
-      transfer.should be_instance_of(Transfer)
-      transfer.amount_cents.should == ((1-Cake::APPLICATION_FEE)*@payment.total_cents).round
+      expect(transfer).to be_instance_of(Transfer)
+      expect(transfer.amount_cents).to eq ((1-Cake::APPLICATION_FEE)*@payment.total_cents).round
     end
   end
 
@@ -65,10 +66,10 @@ describe Payment do
     end
 
     it "should store a copy of the stripe charge transaction" do
-      @transaction.should be_instance_of(Charge)
-      @transaction.kind.should == 'charge'
-      @transaction.paid.should be true
-      @transaction.amount.should == @payment.total
+      expect(@transaction).to be_instance_of(Charge)
+      expect(@transaction.kind).to eq 'charge'
+      expect(@transaction.paid).to be true
+      expect(@transaction.amount).to eq @payment.total
     end
   end
 end

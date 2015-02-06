@@ -45,9 +45,9 @@ describe Campaign do
       end
 
       it "should set a pending status" do
-        expect(@campaign.status).to eq "incomplete"
+        expect(@campaign.status).to eq 'incomplete'
         @campaign.pending!
-        expect(@campaign.status).to eq "pending"
+        expect(@campaign.status).to eq 'pending'
       end
     end
 
@@ -57,9 +57,9 @@ describe Campaign do
       end
 
       it "should set a launched status" do
-        expect(@campaign.status).to eq "pending"
+        expect(@campaign.status).to eq 'pending'
         @campaign.launch!
-        expect(@campaign.status).to eq "launched"
+        expect(@campaign.status).to eq 'launched'
       end
     end
 
@@ -85,7 +85,7 @@ describe Campaign do
       it "should set the campaign as past" do
         expect{
           @campaign.end
-        }.to change{@campaign.status}.to "past"
+        }.to change{@campaign.status}.to 'past'
       end
     end
   end

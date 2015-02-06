@@ -8,7 +8,7 @@ describe Pledge do
   # it { should validate_numericality_of(:total_amount).with_message("must be an integer").is_greater_than(0) }
 
   it "should validate other attributes when editing" do
-    subject.stub(:persisted?){ true } 
+    allow(subject).to receive(:persisted?){ true }
     should validate_presence_of(:mission) 
     should validate_presence_of(:headline) 
     should validate_presence_of(:description) 
@@ -30,12 +30,12 @@ describe Pledge do
 
   it "should build a picture if new object" do
     new_pledge = FactoryGirl.build(:pledge)
-    new_pledge.picture.should_not be_nil
-    new_pledge.picture.should be_instance_of(Picture)
+    expect(new_pledge.picture).to_not be_nil
+    expect(new_pledge.picture).to be_instance_of(Picture)
   end
 
   it "should have statuses" do
-    Pledge.statuses[:status].should == [:incomplete, :pending, :accepted, :rejected, :past]
+    expect(Pledge.statuses[:status]).to eq [:incomplete, :pending, :accepted, :rejected, :past]
   end
 
   describe "#max_clicks" do
@@ -44,7 +44,7 @@ describe Pledge do
     end
 
     it "should store the maximum quantity of clicks a pledge can ever have" do
-      @pledge.reload.max_clicks.should == @pledge.current_max_clicks
+      expect(@pledge.reload.max_clicks).to eq @pledge.current_max_clicks
     end
 
     it "should be updated when the total_amount changes" do
@@ -74,37 +74,37 @@ describe Pledge do
 
     describe "Active Pledges" do
       it "should return a collection of active pledges for the sponsor" do
-        @sponsor_active_pledges.should == @active_pledges
+        expect(@sponsor_active_pledges).to eq @active_pledges
       end
 
       it "should have active campaigns only" do
         @sponsor_active_pledges.each do |p|
-          p.campaign.should be_active
-          p.campaign.should_not be_past        
+          expect(p.campaign).to be_active
+          expect(p.campaign).to_not be_past
         end
       end
 
       it "should return only accepted pledges" do
-        @sponsor_active_pledges.should_not include(@pending_pledges)
-        @sponsor_active_pledges.should_not include(@rejected_pledges)
+        expect(@sponsor_active_pledges).to_not include(@pending_pledges)
+        expect(@sponsor_active_pledges).to_not include(@rejected_pledges)
       end
     end
 
     describe "Past Pledges" do
       it "should return a collection of past pledges for the sponsor" do
-        @sponsor_past_pledges.should == @past_pledges
+        expect(@sponsor_past_pledges).to eq @past_pledges
       end
 
       it "should have past campaigns only" do
         @sponsor_past_pledges.each do |p|
-          p.campaign.should be_past
-          p.campaign.should_not be_active 
+          expect(p.campaign).to be_past
+          expect(p.campaign).to_not be_active
         end
       end
 
       it "should return only accepted pledges" do
-        @sponsor_past_pledges.should_not include(@pending_pledges)
-        @sponsor_past_pledges.should_not include(@rejected_pledges)
+        expect(@sponsor_past_pledges).to_not include(@pending_pledges)
+        expect(@sponsor_past_pledges).to_not include(@rejected_pledges)
       end
     end
     
@@ -117,21 +117,21 @@ describe Pledge do
           campaign = FactoryGirl.create(:campaign_with_pledge_levels)
           max = campaign.sponsor_categories.maximum(:max_value_cents)
           pledge = FactoryGirl.build(:pledge, campaign: campaign, total_amount_cents: max-20)
-          pledge.should be_valid
+          expect(pledge).to be_valid
         end
 
         it "should not be valid if the total_amount is greater than campaign pledge levels max amount" do
           campaign = FactoryGirl.create(:campaign_with_pledge_levels)
           max = campaign.sponsor_categories.maximum(:max_value_cents)
           pledge = FactoryGirl.build(:pledge, campaign: campaign, total_amount_cents: max+20)
-          pledge.should_not be_valid
+          expect(pledge).to_not be_valid
         end
       end
 
       context 'without pledge levels' do
         it "should be valid when the total_amount has any value" do
           pledge = FactoryGirl.build(:pledge, total_amount: '100000')
-          pledge.should be_valid
+          expect(pledge).to be_valid
         end
       end
     end
@@ -146,30 +146,30 @@ describe Pledge do
       context 'increment' do
         it "should be valid if the total_amount is increased" do
           @pledge.total_amount_cents = @total_amount_cents + 200
-          @pledge.should be_valid
+          expect(@pledge).to be_valid
         end
 
         it "should be valid if the amount_per_click is increased" do
           @pledge.amount_per_click_cents = @amount_per_click_cents + 200
-          @pledge.should be_valid
+          expect(@pledge).to be_valid
         end
 
         it "should be valid if the amount_per_click are increased" do
           @pledge.total_amount_cents = @total_amount_cents + 200
           @pledge.amount_per_click_cents = @amount_per_click_cents + 200
-          @pledge.should be_valid
+          expect(@pledge).to be_valid
         end
       end
 
       context 'decrement' do
         it "should not be valid if the total_amount is decreased" do
           @pledge.total_amount_cents = @total_amount_cents - 200
-          @pledge.should_not be_valid
+          expect(@pledge).to_not be_valid
         end
 
         it "should not be valid if the amount_per_click is decreased" do
           @pledge.amount_per_click_cents = @amount_per_click_cents - 200
-          @pledge.should_not be_valid
+          expect(@pledge).to_not be_valid
         end
       end
     end
@@ -227,12 +227,12 @@ describe Pledge do
     context 'Methods' do
       describe "#fully_subscribed?" do
         it "should return true when the pledge reaches the total amount" do
-          @pledge.stub(:clicks_count){ @pledge.max_clicks }
+          allow(@pledge).to receive(:clicks_count){ @pledge.max_clicks }
           expect( @pledge.fully_subscribed? ).to be true
         end
 
         it "should return false when the pledge has not reached the total amount" do
-          @pledge.stub(:clicks_count){ @pledge.max_clicks - 1 }
+          allow(@pledge).to receive(:clicks_count){ @pledge.max_clicks - 1 }
           expect( @pledge.fully_subscribed? ).to be false
         end
       end

@@ -14,7 +14,7 @@ describe Sweepstake do
 
   it "should set default terms and conditions" do
     new_coupon = FactoryGirl.build(:coupon)
-    new_coupon.terms_conditions.should_not be_nil
-    new_coupon.terms_conditions.should == I18n.t('application.terms_and_conditions.coupons')
+    expect(new_coupon.terms_conditions).to_not be_nil
+    expect(new_coupon.terms_conditions).to eq I18n.t('application.terms_and_conditions.coupons')
   end
 end
