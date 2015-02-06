@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202152435) do
+ActiveRecord::Schema.define(version: 20150206183621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,16 +74,17 @@ ActiveRecord::Schema.define(version: 20150202152435) do
     t.integer  "scopes_mask"
     t.string   "status",               limit: 255, default: "incomplete"
     t.text     "mission"
-    t.string   "processed_status",               default: "unprocessed"
-    t.integer  "goal_cents",                     default: 0,             null: false
-    t.string   "goal_currency",                  default: "USD",         null: false
-    t.string   "main_cause"
-    t.integer  "impressions_count",    limit: 8, default: 0
-    t.boolean  "visible",                        default: false
-    t.string   "screenshot_url"
-    t.string   "screenshot_version",             default: ""
-    t.string   "sponsor_alias",                  default: "Sponsors"
-    t.boolean  "hero",                           default: false
+    t.string   "processed_status",     limit: 255, default: "unprocessed"
+    t.integer  "goal_cents",                       default: 0,             null: false
+    t.string   "goal_currency",        limit: 255, default: "USD",         null: false
+    t.string   "main_cause",           limit: 255
+    t.integer  "impressions_count",    limit: 8,   default: 0
+    t.boolean  "visible",                          default: false
+    t.string   "screenshot_url",       limit: 255
+    t.string   "screenshot_version",   limit: 255, default: ""
+    t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
+    t.boolean  "hero",                             default: false
+    t.string   "url"
   end
 
   create_table "charges", force: :cascade do |t|
@@ -130,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150202152435) do
     t.string   "total_donation_currency",     limit: 255, default: "USD", null: false
     t.boolean  "extra_donation_pledge",                   default: false
     t.integer  "merchandise_categories_mask", limit: 8
-    t.string   "url"
+    t.string   "url",                         limit: 255
   end
 
   create_table "direct_donations", force: :cascade do |t|
@@ -143,10 +144,9 @@ ActiveRecord::Schema.define(version: 20150202152435) do
     t.datetime "updated_at"
   end
 
-
-  create_table "fr_sponsors", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "fr_sponsors", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "email",         limit: 255
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(version: 20150202152435) do
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "type",                    limit: 255
   end
 
   create_table "locations", force: :cascade do |t|
@@ -292,19 +292,19 @@ ActiveRecord::Schema.define(version: 20150202152435) do
     t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                              default: "incomplete"
-    t.boolean  "show_coupons",                        default: false
-    t.integer  "max_clicks",                          default: 0
-    t.boolean  "increase_requested",                  default: false
-    t.string   "processed_status",                    default: "unprocessed"
-    t.string   "name"
-    t.integer  "impressions_count",         limit: 8, default: 0
-    t.string   "screenshot_url"
-    t.string   "screenshot_version",                  default: ""
-    t.integer  "bonus_clicks_count",        limit: 8, default: 0,             null: false
-    t.integer  "clicks_count",              limit: 8, default: 0,             null: false
-    t.string   "type"
-    t.string   "sponsor_type"
+    t.string   "status",                    limit: 255, default: "incomplete"
+    t.boolean  "show_coupons",                          default: false
+    t.integer  "max_clicks",                            default: 0
+    t.boolean  "increase_requested",                    default: false
+    t.string   "processed_status",          limit: 255, default: "unprocessed"
+    t.string   "name",                      limit: 255
+    t.integer  "impressions_count",         limit: 8,   default: 0
+    t.string   "screenshot_url",            limit: 255
+    t.string   "screenshot_version",        limit: 255, default: ""
+    t.integer  "bonus_clicks_count",        limit: 8,   default: 0,             null: false
+    t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
+    t.string   "type",                      limit: 255
+    t.string   "sponsor_type",              limit: 255
   end
 
   create_table "sponsor_categories", force: :cascade do |t|

@@ -33,6 +33,13 @@
             = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
           .col-md-3
         .row.section-wrapper.text-center
+          h2 Our Website
+          p.text-muted Choose the exact URL that best serves this Campaign.
+          .col-md-3
+          .col-md-6
+            = f.input :url, label: 'Please direct new visitors to: ', input_html:{placeholder: 'Enter your URL'}
+          .col-md-3
+        .row.section-wrapper.text-center
           h2 Your Primary Cause
           p.text-muted  Choose the Cause Category that best represent your Campaign goals
           .col-md-3
