@@ -20,12 +20,16 @@ module PicturesHelper
   end
 
   def picture_rollover(picture, url, &text)
-    content_tag(:div, class:'overlay-effects', id:'effect-6') do
-      content_tag(:div, class:'overlay-img') do
-        picture + 
-        content_tag(:div, class:'effect-overlay') do
-          link_to url, target: :_blank, class:'expand' do
-            text.call
+    if url.blank? 
+      picture
+    else
+      content_tag(:div, class:'overlay-effects', id:'effect-6') do
+        content_tag(:div, class:'overlay-img') do
+          picture + 
+          content_tag(:div, class:'effect-overlay') do
+            link_to url, target: :_blank, class:'expand' do
+              text.call
+            end
           end
         end
       end

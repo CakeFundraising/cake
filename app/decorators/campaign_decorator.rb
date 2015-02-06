@@ -72,6 +72,8 @@ class CampaignDecorator < ApplicationDecorator
   end
 
   def url
-    (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
+    unless object.url.blank?
+      (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
+    end
   end
 end
