@@ -67,7 +67,7 @@
             - else 
               .col-md-12.text-center
                 .main-cta
-                  = render partial:'clicks/pledge', locals: {pledge: @pledge}
+                  = render partial:'clicks/campaign'
 
 = content_for :bottom_section do
   .main-background
@@ -128,7 +128,7 @@
           .coupons
             = render partial:'coupons/show/box', collection: @coupons, as: :coupon
             .text-center
-              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'            
+              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'
         br
         .green
           .container

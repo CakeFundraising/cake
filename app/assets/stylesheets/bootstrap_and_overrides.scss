@@ -3381,6 +3381,12 @@ ul#share-block {
 }
 
 #click_counted.modal{
+  &.hero_campaign_modal{
+    text-align: left;
+    .modal-body{
+      padding: 15px;
+    }
+  }
   .modal-body{
     color: black;
   }
