@@ -3,6 +3,7 @@ module UserHelper
 
   def login_user(user)
     visit new_user_session_path
+    page.driver.browser.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertPresentError
     fill_in "user_email", :with => user.email
     fill_in "user_password", :with => "password"
     click_button("Sign in")

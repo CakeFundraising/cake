@@ -1,5 +1,5 @@
 module SponsorAlias
   extend ActiveSupport::Concern
 
-  SPONSOR_NAMES = ['Sponsors', 'Friends', 'Supporters', 'Donors', 'Backers', 'Underwriters', 'Partners']
+  SPONSOR_NAMES = ['Sponsors', 'Friends', 'Supporters', 'Donors', 'Backers', 'Underwriters', 'Partners', 'Heroes']
 end

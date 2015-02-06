@@ -13,6 +13,7 @@ class CouponsController < InheritedResources::Base
   end
 
   def create
+    @pledge = resource.pledge
     create! do |success, failure|
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)

@@ -9,11 +9,11 @@
           div.stat
             span = pluralize(sponsor.quick_pledges.count, 'Pledge')
           div.stat
-            = link_to 'View Pledges', "##{sponsor.id}", data:{toggle: 'collapse'}, class:'btn btn-default'
-            = link_to 'New Pledge', new_quick_pledge_path(sponsor_id: sponsor.id, sponsor_type: 'FrSponsor'), class:'btn btn-success'
-            = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-primary" do 
+            /= link_to 'View Pledges', "##{sponsor.id}", data:{toggle: 'collapse'}, class:'btn btn-sm btn-default'
+            = link_to 'New Pledge', new_quick_pledge_path(sponsor_id: sponsor.id, sponsor_type: 'FrSponsor'), class:'btn btn-sm btn-success'
+            = link_to edit_fr_sponsor_path(sponsor), class:"btn btn-sm btn-primary" do 
               span.glyphicon.glyphicon-pencil
-            = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-danger'
+            = link_to sponsor, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
               span.glyphicon.glyphicon-trash
   .panel-collapse.collapse id=(sponsor.id)
     .panel-body

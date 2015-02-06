@@ -20,6 +20,10 @@ FactoryGirl.define do
       bonus_clicks_count 0
     end
 
+    factory :incomplete_pledge do
+      status :incomplete
+    end
+
     factory :pending_pledge do
       status :pending
     end
