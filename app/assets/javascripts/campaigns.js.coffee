@@ -44,27 +44,6 @@ Cake.campaigns.mini_pledges = ->
       return
   return
 
-Cake.campaigns.mini_pledges_click = ->
-  links = $('.click-link')
-
-  links.click (e)->
-    overlay = $(this).closest('.effect-overlay')
-    amount_per_click = $(this).closest('.mini-pledge').find('.levels span.amount_per_click').text()
-    fr = $('.fundraiser-name h4').text()
-
-    unless overlay.hasClass('blue-bg')
-      overlay.addClass('blue-bg').addClass('clicked')
-      $(this).html("<div class='thanks'>Thank you!</div><div class='earning'>You earned #{amount_per_click} for #{fr}!</div>")
-      
-      window.onfocus = ->
-        setTimeout (->
-          overlay.removeClass('clicked')
-          return
-        ), 1000
-        return
-    return
-  return
-
 Cake.campaigns.show = (end_date, impression_id, campaignId)->
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)

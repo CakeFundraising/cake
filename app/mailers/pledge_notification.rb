@@ -1,5 +1,5 @@
 class PledgeNotification < AsyncMailer
-  default from: "no-reply@cakefundraising.com"
+  default from: "no-reply@cakecausemarketing.com"
 
   #Pledge Requests
   def new_pledge_request(pledge_request_id, message)
@@ -39,6 +39,15 @@ class PledgeNotification < AsyncMailer
     @receiver = find_user(user_id).decorate
     @sender = @p.fundraiser.manager.decorate
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.')
+  end
+
+  #Quick Pledges
+  def qp_created(qp_id)
+    @qp = find_pledge(qp_id).decorate 
+    sp_email = @qp.sponsor.email
+    @fr = @qp.fundraiser.decorate
+    @campaign = @qp.campaign
+    mail(to: sp_email, cc: @fr.manager.email, subject: 'You have a new Cake pledge!')
   end
 
   #clicks

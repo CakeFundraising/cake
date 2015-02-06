@@ -1,8 +1,9 @@
 class PledgesController < InheritedResources::Base
-  include ImpressionablesController
-  authorize_resource
+  load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]
+  before_action :check_hero_campaign, only: :accept
+  before_action :redirect_to_hero_campaign, only: :show
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -14,6 +15,7 @@ class PledgesController < InheritedResources::Base
 
   include ImpressionablesController
   include PastResource
+  include PledgesHelper
 
   #CRUD
   def select_campaign
@@ -34,7 +36,7 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
-    @coupons = @pledge.coupons.latest.decorate
+    @coupons = @pledge.coupons.latest.limit(2).decorate
   end
 
   def create
@@ -42,7 +44,7 @@ class PledgesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
+        update_pledge_screenshot(@pledge)
         redirect_to tell_your_story_pledge_path(@pledge)
       end
       failure.html do
@@ -55,7 +57,7 @@ class PledgesController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        Resque.enqueue(ResqueSchedule::PledgeScreenshot, resource.id, pledge_url(resource)) #update screenshot
+        update_pledge_screenshot(resource)
         redirect_to controller: :pledges, action: params[:pledge][:step], id: resource
       end
       failure.html do
@@ -124,7 +126,8 @@ class PledgesController < InheritedResources::Base
 
   def launch
     resource.launch!
-    redirect_to resource, notice: 'Pledge was successfully confirmed.'
+    path = resource.hero ? sponsor_pledge_requests_path : resource
+    redirect_to path, notice: 'Pledge was successfully confirmed. Your pledge is pending of FR approval.'
   end
 
   #Clicks
@@ -204,5 +207,13 @@ class PledgesController < InheritedResources::Base
 
   def block_fully_subscribed
     redirect_to increase_pledge_path(resource), alert: 'Pledge Fully Subscribed. Please increase pledge amount to reactivate this pledge.' if resource.fully_subscribed?
+  end
+
+  def check_hero_campaign
+    redirect_to resource.campaign, alert:'This campaign have already got a Hero Pledge.' if resource.campaign.hero_pledge?
+  end
+
+  def redirect_to_hero_campaign
+    redirect_to hero_campaign_path(resource.campaign) if resource.hero
   end
 end

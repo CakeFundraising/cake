@@ -1,15 +1,15 @@
 - cache [:table, :active, :fr, pledge] do
   tr.pledge id=(pledge.id) 
     td data-title=(Pledge.human_attribute_name :pledge_name)
-      = auto_link pledge
+      = pledge_autolink(pledge)
     td data-title=(Sponsor.model_name.human)
-      = auto_link pledge.sponsor
+      = sponsor_autolink(pledge)
     td data-title=(Pledge.human_attribute_name :campaign)
       = auto_link pledge.campaign
     td data-title=(Pledge.human_attribute_name :causes)
       = pledge.cause
     td data-title=(Pledge.human_attribute_name :scopes)
-      = pledge.scopes.first
+      = pledge.scope
     td data-title=(Pledge.human_attribute_name :end_date)
       = pledge.end_date
     td data-title=(Pledge.model_name.human)
@@ -21,8 +21,9 @@
     td.truncate.min-width
       - if pledge.increase_requested
         button.btn.btn-sm.btn-warning.disabled Increase Requested
-      - else
+      - elsif pledge.instance_of?(Pledge)
         = link_to "Request Pledge Increase", increase_request_pledge_path(pledge), method: :patch, class:'btn btn-sm btn-primary increase_request'
+
       = link_to pledge, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
         span.glyphicon.glyphicon-trash
 

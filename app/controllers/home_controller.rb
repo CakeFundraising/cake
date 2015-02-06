@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @campaigns = CampaignDecorator.decorate_collection Campaign.popular
+    @fundraisers = FundraiserDecorator.decorate_collection Fundraiser.popular
     @sponsors = SponsorDecorator.decorate_collection Sponsor.popular
     @coupons = CouponDecorator.decorate_collection Coupon.popular
   end

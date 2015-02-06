@@ -45,3 +45,12 @@ Cake.coupons.validation = ->
     errorElement: "span"
   )
   return
+
+Cake.coupons.load_all = ->
+  button = $('#load_all_coupons')
+
+  button.on "ajax:success", (e, data, status, xhr) ->
+    button.hide()
+    $('.coupons, #coupons').append(data)
+    return
+  return

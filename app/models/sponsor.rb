@@ -11,7 +11,7 @@ class Sponsor < ActiveRecord::Base
   has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
   has_many :pledge_requests, dependent: :destroy
-  has_many :pledges, dependent: :destroy
+  has_many :pledges, as: :sponsor, dependent: :destroy
   has_many :campaigns, through: :pledges
   has_many :invoices, through: :pledges
 
@@ -49,7 +49,17 @@ class Sponsor < ActiveRecord::Base
   searchable do
     text :name, boost: 2
     text :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+    text :city, :state_code
 
+    text :zip_code do
+      location.zip_code  
+    end
+
+    text :pledges_names do
+      pledges.map {|p| p.name }
+    end
+
+    text :causes
     string :scopes, multiple: true
     string :causes, multiple: true
 

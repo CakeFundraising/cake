@@ -1,4 +1,6 @@
 class FrSponsorsController < InheritedResources::Base
+  load_and_authorize_resource
+  
   def create
     @fr_sponsor = FrSponsor.new(*resource_params)
     @fr_sponsor.fundraiser = current_fundraiser
@@ -24,7 +26,7 @@ class FrSponsorsController < InheritedResources::Base
   def permitted_params
     params.permit(
       fr_sponsor: [
-        :name, :email, :website_url, :picture_permission,
+        :name, :email, :picture_permission,
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code]
       ]
     )

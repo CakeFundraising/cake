@@ -8,7 +8,7 @@ tr.quick_pledge id=(pledge.id)
   td 
     = pledge.website
   td 
-    = pledge.donation_per_click
+    = pledge.amount_per_click
   td 
     = pledge.clicks_count
   td 
@@ -16,8 +16,9 @@ tr.quick_pledge id=(pledge.id)
   td
     = pledge.status
   td
-    = link_to edit_quick_pledge_path(pledge), class:"btn btn-primary" do 
-      span.glyphicon.glyphicon-pencil
-    = link_to pledge, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-danger'
-      span.glyphicon.glyphicon-trash
+    - unless pledge.past?
+      = link_to edit_quick_pledge_path(pledge), class:"btn btn-sm btn-primary" do 
+        span.glyphicon.glyphicon-pencil
+      = link_to pledge, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
+        span.glyphicon.glyphicon-trash
 tr.empty-tr

@@ -13,9 +13,9 @@ Cake.init = ->
   Cake.placeholder_fix()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
-  Cake.bootstrap_overrides.hide_alert()
-  #Cake.bootstrap_overrides.stacked_modals()
+  Cake.bootstrap_overrides.init()
   #Cake.coupons.tos()
+  Cake.coupons.load_all()
   Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
@@ -24,7 +24,7 @@ Cake.init = ->
 
   Cake.browsers.fingerprint()
 
-  Cake.campaigns.mini_pledges_click()
+  Cake.clicks.init()
   return
 
 $(document).ready(Cake.init)

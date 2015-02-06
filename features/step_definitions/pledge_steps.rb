@@ -99,3 +99,4 @@ end
 Then(/^an increase request should be stored in the pledge$/) do
   @pledge.reload.increase_requested.should be true
 end
+

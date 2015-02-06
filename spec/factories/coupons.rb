@@ -9,6 +9,7 @@ FactoryGirl.define do
     merchandise_categories { Coupon::CATEGORIES.sample(3) }
     extra_donation_pledge false
     pledge
+    picture
 
     factory :extra_donation_pledge do
       extra_donation_pledge true

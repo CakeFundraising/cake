@@ -1,5 +1,7 @@
 class FundraisersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
+  before_action :allow_fr_only, only: :bank_account
+  before_action :require_password, only: :bank_account
 
   def show
     @fundraiser = resource.decorate
@@ -40,7 +42,10 @@ class FundraisersController < InheritedResources::Base
     @bank_account = BankAccount.new(permitted_params[:bank_account])
 
     if @bank_account.valid?
-      redirect_to fundraiser_home_path, notice: 'You have connected your Stripe account successfully.' if @stripe_account.create_stripe_recipient(@bank_account)
+      if @stripe_account.store_ba(@bank_account)
+        session.delete(:password_confirmed)
+        redirect_to fundraiser_home_path, notice: 'Your bank account information has been saved.' 
+      end
     else
       render 'bank_accounts/new', alert: 'You bank account information is incorrect.'
     end
@@ -66,6 +71,14 @@ class FundraisersController < InheritedResources::Base
   end
 
   private
+
+  def allow_fr_only
+    redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource
+  end
+
+  def require_password
+    redirect_to confirm_path(url: bank_account_fundraiser_path(current_fundraiser)) unless session[:password_confirmed]
+  end
 
   def send_notification
     resource.notify_update

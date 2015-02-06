@@ -1,0 +1,17 @@
+script src="https://checkout.stripe.com/checkout.js" 
+
+= semantic_form_for Payment.new, url: quick_invoice_payment_path, html: {id:'quick_invoice_payment'} do |f|
+  = f.inputs nil do
+    = f.input :item_id, as: :hidden
+    = f.input :card_token, as: :hidden
+
+javascript:
+  Cake.quick_invoice_payment = function(){
+    window.Cake.quick_invoice_payment_handler = StripeCheckout.configure({
+      key: '#{Rails.configuration.stripe[:publishable_key]}',
+      token: function(token, args) {
+        $("#quick_invoice_payment #payment_card_token").val(token.id);
+        $("#quick_invoice_payment")[0].submit();
+      }
+    });
+  }();

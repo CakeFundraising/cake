@@ -15,12 +15,20 @@ class QuickPledgeDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.total_amount
   end
 
-  def donation_per_click
-    h.humanized_money_with_symbol object.donation_per_click
+  def amount_per_click
+    h.humanized_money_with_symbol object.amount_per_click
   end
 
   def status
     object.status.titleize
+  end
+
+  def cause
+    "-"
+  end
+
+  def scope
+    "-"
   end
 
   def website

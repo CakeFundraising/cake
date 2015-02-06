@@ -1,14 +1,44 @@
 = display_meta("Billing")
 
 h1.dash-head Billing
+
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#outstanding" Outstanding Invoices
   li 
     a data-toggle="tab" href="#past" Past Invoices
+  li 
+    a data-toggle="tab" href="#info" Billing Information
 
 .tab-content
   #outstanding.tab-pane.active
     = render partial:'invoices/show/sponsor/table', locals:{invoices: @outstanding_invoices, checkout: true, kind: :outstanding}
   #past.tab-pane
     = render partial:'invoices/show/sponsor/table', locals:{invoices: @past_invoices, kind: :past}
+  #info.tab-pane
+    .stripe_account
+      h3 Stripe Account
+
+      - if @stripe_account.present?
+        strong ID: 
+        span = @stripe_account.uid
+      - else
+        span.help-block = t('messages.stripe.sponsors.not_found')
+
+      br
+      br
+      div = stripe_buttons
+
+    - if @stripe_account.present?
+      .credit_card
+        h3 Credit Card 
+
+        - if @stripe_account.customer?
+          strong Stripe Credit Card token:
+          span = @stripe_account.stripe_customer_id
+        - else
+          span.help-block = t('messages.stripe.sponsors.credit_card_not_found')
+          
+        br
+        br
+        div = link_to 'Update Credit Card', credit_card_sponsor_path(current_sponsor), class:'btn btn-primary'

@@ -19,7 +19,8 @@ class Campaign < ActiveRecord::Base
   has_many :pledges, dependent: :destroy
   has_many :quick_pledges, dependent: :destroy
   has_many :invoices, through: :pledges
-  has_many :sponsors, through: :pledges
+  has_many :sponsors, through: :pledges, source_type: 'Sponsor'
+  has_many :fr_sponsors, through: :pledges, source_type: 'FrSponsor'
 
   has_many :sponsor_categories, validate: false, dependent: :destroy do
     # returns a hash: {category_name: (range_of_category) }
@@ -56,21 +57,37 @@ class Campaign < ActiveRecord::Base
   scope :with_pledges, ->{ eager_load(:pledges) }
   scope :with_invoices, ->{ eager_load(:invoices) }
   scope :with_paid_invoices, ->{ 
-    past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
+    past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).uniq == ['paid'] }
   }
   scope :with_outstanding_invoices, ->{ 
-    past.with_invoices.select{|c| c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
+    past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
+
+  scope :hero, ->{ where(hero: true) }
+  scope :not_hero, ->{ where(hero: false) }
   
   #Solr
   searchable do
-    text :title, :headline, boost: 2
-    text :story, :mission
+    text :title, boost: 5
+    text :headline, boost: 5
+    text :story, :mission, :main_cause
+
+    text :fundraiser do
+      fundraiser.name
+    end
 
     text :zip_code do
       fundraiser.location.zip_code  
+    end
+
+    text :city do
+      fundraiser.location.city  
+    end
+
+    text :state_code do
+      fundraiser.location.state_code  
     end
 
     boolean :tax_exempt do
@@ -105,7 +122,7 @@ class Campaign < ActiveRecord::Base
     sponsor_categories.levels.each do |name, range|
       class_eval do
         define_method "#{name}_pledges" do
-          obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc)
+          CampaignPledgeDecorator.decorate_collection( obj.pledges.send(pledges_status).total_amount_in(range).order(total_amount_cents: :desc, amount_per_click_cents: :desc) )
         end 
       end
     end
@@ -115,8 +132,13 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.order(total_amount_cents: :desc, amount_per_click_cents: :desc)
   end
 
-  def raised
-    pledges.accepted.map(&:total_charge).sum.to_f
+  def raised(status=:accepted)
+    pledges.send(status).map(&:total_charge).sum.to_f
+  end
+
+  def raised_by_status
+    status = self.launched? ? :accepted : self.status
+    pledges.send(status).map(&:total_charge).sum.to_f
   end
 
   def total_donation_per_click
@@ -133,7 +155,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def pledges_thermometer
-    (raised/goal.amount)*100 unless goal.amount == 0.0
+    (raised_by_status/goal.amount)*100 unless goal.amount == 0.0
   end
 
   def self.popular
@@ -142,7 +164,7 @@ class Campaign < ActiveRecord::Base
 
   #Status
   def active?
-    end_date >= Date.today and status != :past
+    end_date >= Date.today and status != 'past'
   end
 
   #Actions
@@ -179,6 +201,26 @@ class Campaign < ActiveRecord::Base
     end
 
     update_attribute(:processed_status, :missed_launch)
+  end
+
+  #Hero Campaign
+  def hero_pledge?
+    self.hero ? pledges.accepted_or_past.any? : false
+  end
+
+  def hero_pledge
+    pledges.accepted_or_past.first if hero_pledge?
+  end
+
+  def build_hero_pledge
+    self.pledges.build(
+      name: "Hero Pledge",
+      mission: "Your mission",
+      headline: "Sponsors - Tell your story here!",
+      description:  "This is a Hero Campaign. That means your company or organization will be the only Sponsor. In this space, you can tell your story and share important information about your company or organization.",
+      website_url: "http://yourdomain.com",
+      status: :pending
+    )
   end
 
   private

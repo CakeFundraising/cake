@@ -1,3 +1,5 @@
+require 'robots_generator'
+
 Cake::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -23,6 +25,7 @@ Cake::Application.routes.draw do
   scope :search, controller: :searches do
     get :search_campaigns, path:'campaigns'
     get :search_sponsors, path:'sponsors'
+    get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
   end
 
@@ -44,6 +47,8 @@ Cake::Application.routes.draw do
       end
     end
   end
+
+  get '/hero_campaigns/:id', to: 'campaigns#hero', as:'hero_campaign'
 
   resources :pledges do
     collection do
@@ -77,7 +82,11 @@ Cake::Application.routes.draw do
     end
   end
 
-  resources :quick_pledges, except: :show
+  resources :quick_pledges, except: :show do
+    member do
+      get :click
+    end
+  end
 
   resources :fundraisers, except: [:index, :destroy] do
     member do
@@ -110,6 +119,7 @@ Cake::Application.routes.draw do
 
   scope :payments, controller: :payments do
     post :invoice_payment
+    post :quick_invoice_payment
   end
   
   #FR Dashboard
@@ -131,6 +141,10 @@ Cake::Application.routes.draw do
   end
 
   resources :coupons do
+    collection do
+      get :load_all
+    end
+    
     member do
       get :download
       scope :pictures, controller: :cropping do
@@ -149,6 +163,11 @@ Cake::Application.routes.draw do
 
   scope :browser, controller: :browsers do
     patch :fingerprint
+  end
+
+  scope :password, controller: :password, name_prefix: :password do
+    get :confirm
+    post :verify
   end
 
   #Settings
@@ -188,4 +207,8 @@ Cake::Application.routes.draw do
     # route to basic auth to be tracked by js script
     get 'ec_auth' => "evercookie/evercookie#ec_auth", as: :evercookie_auth
   end
+
+  mount StripeEvent::Engine, at: "/stripe-webhooks"
+
+  get "/robots.txt" => RobotsGenerator
 end

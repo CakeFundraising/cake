@@ -1,0 +1,37 @@
+- cache [:table, :quick_pledge, invoice] do 
+  tr.invoice
+    td data-title=(Invoice.model_name.human)
+      = invoice.id
+    td data-title=(Campaign.model_name.human)
+      = auto_link invoice.campaign
+    td data-title=(Pledge.model_name.human)
+      = auto_link invoice.pledge
+    td data-title=(Invoice.human_attribute_name :unique_clicks)
+      = invoice.clicks
+    td data-title=(Invoice.human_attribute_name :bonus_clicks)
+      = invoice.bonus_clicks_count
+    td data-title=(Invoice.human_attribute_name :amount_click)
+      = invoice.click_donation
+    td data-title=(Invoice.human_attribute_name :amount_due)
+      = humanized_money_with_symbol invoice.total_fees
+    td.truncate.min-width
+      - if invoice.due_to_pay? and invoice.payable?
+        = invoice_pay_button(invoice) 
+      - elsif !invoice.payable?
+        button.btn.btn-success.disabled FREE
+
+  tr.empty-tr
+
+  javascript:
+    $(".pay_button.invoice_#{invoice.object.id}").off("click").click(function(e) {
+      e.preventDefault();
+
+      Cake.quick_invoice_payment_handler.open({
+        image: '#{invoice.campaign.picture.avatar}',
+        name: "Invoice #{invoice.id} Payment",
+        description: 'From #{invoice.campaign}',
+        amount: "#{invoice.total_fees_cents}"
+      });
+
+      $('#payment_item_id').val('#{invoice.object.id}');
+    });    

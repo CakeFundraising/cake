@@ -11,7 +11,7 @@ Cake.quick_pledges.validation = ->
       'quick_pledge[website_url]':
         required: true
         url: true
-      'quick_pledge[donation_per_click]': 
+      'quick_pledge[amount_per_click]': 
         required: true
         currency: ["$", false]
         min: 1

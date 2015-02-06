@@ -1,0 +1,2 @@
+class QpInvoiceDecorator < InvoiceDecorator
+end

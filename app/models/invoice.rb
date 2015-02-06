@@ -8,7 +8,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :pledge, touch: true
   has_one :campaign, through: :pledge
   has_one :fundraiser, through: :campaign
-  has_one :sponsor, through: :pledge
+  has_one :sponsor, through: :pledge, source_type: 'Sponsor'
 
   has_one :payment, as: :item
   has_many :charges, through: :payment
@@ -18,6 +18,9 @@ class Invoice < ActiveRecord::Base
 
   scope :outstanding, ->{ where.not(status: :paid) }
   scope :latest, ->{ order(created_at: :desc) }
+
+  scope :quick, ->{ where(type: 'QpInvoice') }
+  scope :normal, ->{ where(type: nil) }
 
   delegate :bonus_clicks_count, to: :pledge
 
@@ -31,5 +34,9 @@ class Invoice < ActiveRecord::Base
 
   def estimated_net_donation
     self.due_cents - estimated_fees
+  end
+
+  def payable?
+    self.due_cents > 50
   end
 end

@@ -3,10 +3,10 @@ en:
   application:
     name: CakeCauseMarketing
     meta:
-      description: "Check out Cake Fundraising and launch a 100% free fundraising campaign for your good cause today! Earn the money you need to do good deeds!"
+      description: "Check out Cake and launch a 100% free fundraising campaign for your good cause today! Earn the money you need to do good deeds!"
       keywords: "1,2,3,4,5"
       og: 
-        title: "Cake Fundraising - 100% Free, Pay Per Click Fundraising for Good Causes."
+        title: "Cake - 100% Free, Pay Per Click Fundraising for Good Causes."
     terms_and_conditions:
       standard: >
         <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
@@ -33,15 +33,15 @@ en:
         and the coupon is freely transferable by the purchaser. Use of a coupon for alcohol is at the sole 
         discretion of the merchant, which may be limited by applicable law. Coupons for alcohol may 
         only be applied by individuals of legal drinking age.Purchasers under the age of 18 must obtain 
-        permission from their parents or guardians before using a coupon. Neither Cake Fundraising, 
+        permission from their parents or guardians before using a coupon. Neither Cake,
         Inc. nor the merchant is responsible for lost or stolen coupons or coupon reference numbers. 
         The merchant reserves the right to withdraw and/or refuse payments for coupons due to fraud 
         or errors. The coupon is in no way sponsored, endorsed or administered by, or associated with, 
-        Cake Fundraising, Inc. and you release Cake Fundraising, Inc. from claims arising from any 
+        Cake, Inc. and you release Cake, Inc. from claims arising from any
         coupon or act or omission of the merchant in connection with the coupon. All coupons are 
-        promotional in nature and are issued by the merchant through Cake Fundraising, Inc. as a service 
+        promotional in nature and are issued by the merchant through Cake, Inc. as a service
         provider. The merchant is the holder and issuer of the coupon and under no circumstances shall 
-        Cake Fundraising, Inc. be deemed the holder, issuer or seller of the coupon. The applicability 
+        Cake, Inc. be deemed the holder, issuer or seller of the coupon. The applicability
         and compliance with any applicable law relating to any coupon is solely determined by and 
         complied with by the merchant. Campaign participants acknowledge that the coupon is issued for 
         loyalty, award, or promotional purposes.
@@ -86,8 +86,10 @@ en:
       invoices:
         outstanding: outstanding invoices
         past: past invoices
+        qp: quick pledge invoices
       sponsors: sponsors
       fundraisers: fundraisers
+      fr_sponsors: sponsors
     causes:
       disaster_and_emergency: Disaster & Emergencies
       causes_and_organizations: Causes & Organizations
@@ -139,31 +141,40 @@ en:
     user:
       sign_in: Sign In
       sign_out: Sign Out
-      sign_up:  Sign Up
+      sign_up:  Sign Up For Free
     wizards:
       campaign: 
-        basic_info: 1. Basic Information
-        tell_your_story: 2. Tell Your Story
-        pledge_levels: 3. Set Pledge Levels
-        launch: 4. Launch Campaign
-        share: 5. Find Sponsors
+        basic_info: Basic Information
+        tell_your_story: Tell Your Story
+        pledge_levels: Set Pledge Levels
+        launch: Launch Campaign
+        share: Find Sponsors
       pledge: 
         your_pledge: 1. Your Pledge
         tell_your_story: 2. Tell Your Story
         add_coupon: 3. Add Coupon
-        extra_donation: 4. Extra Donation
         share: 4. Confirm Your Pledge
   information:
+    hero_campaign:
+      banner: "Help <span class='boldest'>%{fr}!</span> Click below and %{sp} will give %{amount} for you!"
+      no_pledge: "<span class='boldest'>%{fr}</span> needs a Hero! Become our exclusive Sponsor today!"
     campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> Visit our %{sp_name} below. <span class='boldest'>You click, they pay!</span> It's 100% free!"
+      banner: "Help <span class='boldest'>%{fr}!</span> <br /> Click on the logos of our generous %{sp_name} below. <span class='boldest'>You click and they give!</span>"
     pledge:
-      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will contribute %{donation_per_click} up to %{total_donation}!!"
+      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
     wizards:
       campaign:
 
   messages:
     flash:
       omniauth: Please check if your data is correct and press "Sign Up" to continue
+    stripe:
+      fundraisers:
+        not_found: "You have not connected your Stripe account. In order to receive payments from your Sponsors, we need your Stripe account data. Please: "
+        bank_account_not_found: "Seems you have not saved your bank account data. In order to receive payments from your Sponsors, we need that information. Please: "
+      sponsors:
+        not_found: "You have not connected your Stripe account. In order to make automatic payments to Causes you sponsor, we need your Stripe account data. Please: "
+        credit_card_not_found: "Seems you have not saved your credit card data. In order to make automatic payments to Causes you sponsor, we need that information. Please: "
   activemodel:
     attributes:
       bank_account:
@@ -185,6 +196,7 @@ en:
     attributes:
       coupon:
         merchandise_categories: Offer or Product Category - choose all that apply - use ctrl to select additional categories
+        url: "Send customers directly to the most relevant URL where they can take action"
       fundraiser:
         banner: Banner photo upload
         min_pledge: Min. Acceptable Pledge

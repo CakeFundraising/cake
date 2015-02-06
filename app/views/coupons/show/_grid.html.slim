@@ -2,15 +2,11 @@
   .coupon_grid.col-md-4
     .thumbnail
       .avatar-container
-        = link_to coupon.pledge do
+        = link_to pledge_path(coupon.pledge, anchor: :coupons) do
           = coupon.picture.avatar
       .caption
-        h4.truncate = link_to coupon, coupon.pledge
+        h4.truncate = link_to coupon, pledge_path(coupon.pledge, anchor: :coupons)
         .sponsor = auto_link coupon.sponsor
         .location.truncate = [coupon.sponsor.city, coupon.sponsor.state_code].join(', ')
         hr
         .description.truncate = coupon.trunc_description
-        /hr     
-        /.promo-code
-        /  .boldest.clearfix Promo Code
-        /  span = coupon.promo_code

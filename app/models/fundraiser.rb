@@ -9,9 +9,13 @@ class Fundraiser < ActiveRecord::Base
   has_one :stripe_account, as: :account, dependent: :destroy
   has_many :users
   has_many :campaigns, dependent: :destroy
+  
   has_many :pledge_requests, dependent: :destroy
-  has_many :pledges, through: :campaigns
+
+  has_many :pledges, ->{ normal }, through: :campaigns
+  has_many :quick_pledges, ->{ quick }, through: :campaigns
   has_many :invoices, through: :pledges
+  has_many :qp_invoices, through: :quick_pledges, source: :invoice
 
   has_many :fr_sponsors, dependent: :destroy
 
@@ -35,6 +39,8 @@ class Fundraiser < ActiveRecord::Base
   scope :rank, ->{ eager_load(:invoices).where(invoices: {status: "paid"}).order("invoices.due_cents DESC") }
   scope :local_rank, ->(zip_code){ eager_load(:invoices, :location).where(locations: {zip_code: zip_code}, invoices: {status: "paid"}).order("invoices.due_cents DESC") }
   scope :latest, ->{ order(created_at: :desc) }
+
+  scope :with_location, ->{ eager_load(:location) }
 
   after_initialize do
     if self.new_record?
@@ -65,12 +71,40 @@ class Fundraiser < ActiveRecord::Base
     '5,000,000+'
   ]
 
+  #Solr
+  searchable do
+    text :name, boost: 2
+    text :mission, :phone, :website, :email, :manager_name, :manager_email, :manager_phone
+    text :city, :state_code
+
+    text :zip_code do
+      location.zip_code  
+    end
+
+    text :campaigns_titles do
+      campaigns.map {|p| p.title }
+    end
+    
+    text :causes
+    string :causes, multiple: true
+
+    string :zip_code do
+      location.zip_code  
+    end
+
+    time :created_at
+  end
+
+  def self.popular
+    self.with_picture.with_location.latest.first(12)
+  end
+
   def sponsors_of(type) # type = :active || :past
-    pledges.send(type).eager_load(:sponsor).map(&:sponsor).uniq
+    pledges.send(type).includes(:sponsor).map(&:sponsor).uniq
   end
 
   def sponsors
-    pledges.accepted_or_past.eager_load(:sponsor).map(&:sponsor).uniq
+    pledges.accepted_or_past.includes(:sponsor).map(&:sponsor).uniq
   end
 
   #Stripe Account

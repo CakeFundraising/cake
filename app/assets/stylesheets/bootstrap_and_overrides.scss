@@ -17,6 +17,8 @@
   /* inline-block space fix */
   margin-right:-4px;
 }
+/* break line responsive */
+.rwd-break { display: block; }
 
 html {
   position: relative;
@@ -28,7 +30,7 @@ html {
 body {
   margin:0;
   padding:0;
-  margin-bottom: 730px;
+  //margin-bottom: 333px;
   min-width: 100%;
 }
 
@@ -42,11 +44,10 @@ body {
 }*/
 
 footer {
-  position: absolute;
-  bottom: 0;
+//  position: absolute;
+//  bottom: 0;
+  margin-bottom: -3em;
   width: 100%;
-  height: 730px;
-  
   padding: 15px 0;
   margin-top: 0px;
   background: $gray-darker;
@@ -107,6 +108,9 @@ hr{
 .ten-t {
   margin-top: 10px;
 }
+.twenty-t {
+  margin-top: 20px;
+}
 .error{
   color: #a94442;
   display: block;
@@ -154,7 +158,7 @@ hr{
 .navbar-brand {
   padding-top: 13px;
   img{
-    width:250px;
+    width:120px;
   }
 }
 .user-logged-in {
@@ -241,29 +245,6 @@ hr{
   margin-top: 13px !important;
 }
 
-/*.logged-out {
-  .navbar-header {
-    float:left !important;
-  }
-  .navbar-brand{
-    padding: 8px 3px;
-  }
-  .navbar-right {
-    float: right !important;
-  }
-  .navbar-text{
-    float:left;
-  }
-  .navbar-nav li {
-    float:left;
-  }
-
-  .nav > li > a{
-    padding: 10px 5px;
-    margin-top: 6px;
-  }
-}*/
-
 .btn-signup {
   margin: 4px 0px 0px 10px !important;
   padding: 10px 20px !important;
@@ -275,13 +256,6 @@ hr{
 }
 
 @media (max-width: 420px){
-  /*#main-container, .hero-home{
-    margin-top:50px;
-  }
-  .alert{
-    position: absolute;
-    margin: 60px 20px;
-  }*/
   #main-container {
     margin-bottom: 35px;
     margin-left: auto;
@@ -304,17 +278,11 @@ hr{
     margin-top:10px;
   }
 
-  .container{
-    /*padding-left: 0px;
-    padding-right: 0px;*/
-  }
   .popular > li > a{
     min-width:90px !important;
   }
   
   .navbar{
-    /*position: fixed;
-    top: 0px;*/
     z-index: 1000;
     width: 100%;
   }
@@ -325,7 +293,6 @@ hr{
     font-size: 11px;
     a{
       padding: 9px 7px !important;
-      /*min-width:115px !important;*/
     }
   }
 
@@ -356,15 +323,6 @@ hr{
 }
 
 @media (max-width: 620px){
-    .navbar-default{
-      .container{
-        /*padding-left:0px;
-        padding-right:0px;*/
-      }
-    }
-    .btn-success{
-      /*margin-bottom: 15px !important;*/
-    }
     .navbar-text{
       display:none;
     }
@@ -378,7 +336,6 @@ hr{
       margin-top: 20px;
     }
     .hero-home{
-      height:260px !important;
       .slide1, .slide2, .slide3{
         height:260px !important;
       }
@@ -399,46 +356,16 @@ hr{
     #tab-sponsors:after{
       content: "Sponsors";
     }
+    #tab-fundraisers:after{
+      content: "Causes";
+    }
     #tab-coupons:after{
       content: "Coupons";
     }
 
-    .navbar-collapse{
-      /*margin-left: 0px !important;
-      margin-right: 0px !important;
-
-      background-color: white;
-      padding: 0px 10px;*/
-    }
     #main-container{
 
     }
-    /*.bottom_section{
-      .container{
-        padding:0px !important;
-      }
-    }
-    .circle-campaign{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .circle-sp{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .circle-raised{
-      margin: auto 0 !important;
-      padding:0px !important;
-    }
-    .easy-band{
-      padding-left: 10px !important;
-      padding-right: 10px !important;
-      .center{
-        padding:0px !important;
-        margin: 0px !important;
-      }
-    }
-    */
     .rank-rows{
       .boldest{
         display:block !important;
@@ -471,27 +398,18 @@ hr{
     .pad-top{
       margin-top: 15px !important;
     }
-    .section-wrapper{
-      /*padding: 25px 25px 35px !important;*/
-    }
-    .account-wrapper{
-      /*padding: 35px 25px 30px !important;*/
-    }
 }
 
 @media (max-width: 767px){
   .navbar-brand {
     padding-top: 8px;
     img{
-      width: 200px;
+      width: 90px;
       padding-top: 0px;
     }
   }
   .btn-signup.btn-success{
     display:block;
-  }
-  .default {
-    /*height: 50px !important;*/
   }
 }
 @media (min-width: 768px){
@@ -500,7 +418,7 @@ hr{
   }
 }
 
-@media (min-width: 850px){
+@media (min-width: 935px){
   .btn-signup.btn-success{
     display:block;
   }
@@ -556,6 +474,10 @@ p.signup-social span:before, p.signup-social span:after {
   input{
     height:auto;
   }
+}
+
+.modal-title{
+  color: black;
 }
 
 //Buttons -------------------------------------------------------------------------------
@@ -637,6 +559,10 @@ p.signup-social span:before, p.signup-social span:after {
 
 .main-cta{
   margin-top:15px;
+  &.ended_campaign{
+    font-size: 20px;
+    margin: 20px 0;
+  }
 }
 /*
 .btn-xl{
@@ -775,15 +701,18 @@ p.signup-social span:before, p.signup-social span:after {
   .panel-title-right{
     float:right;
     margin:0px;
-    margin-right: 30px;
+    margin-right: 0px;
     .stat {
       display: inline-block;
-      margin: 15px 10px 15px 40px;
+      margin: 10px 10px 5px 30px;
       text-align: center;
       border-left: 1px solid #cccccc;
       padding-left: 50px;
       span{
 
+      }
+      a{
+        margin: 2px;
       }
       p{
         margin:0px;
@@ -797,6 +726,7 @@ p.signup-social span:before, p.signup-social span:after {
     background-color:#fff !important;
     color:#555555 !important;
     display:inline-block;
+    width: 100%;
   }
 
   h4{
@@ -820,7 +750,7 @@ p.signup-social span:before, p.signup-social span:after {
     font-size: 15px;
   }
   .panel-title{
-    margin: 25px 0px 0px 15px;
+    margin: 17px 0px 0px 15px;
     float: left;
     color: #555555;
     font-family: "museo_sans500", Helvetica, Arial, sans-serif;
@@ -1214,6 +1144,9 @@ h2 {
 .pad-top {
   margin-top: 40px;
 }
+.pad-right {
+  margin-right: 5px;
+}
 .simple-margin {
   margin: 2px;
 }
@@ -1346,6 +1279,9 @@ h1.name {
   border:0px !important;
 }
 
+.no-padding{
+  padding: 0;
+}
 
 .sidebar-bkg {
   padding: 15px;
@@ -1373,6 +1309,7 @@ h1.name {
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
+  text-shadow: 0 0 10px rgba(0,0,0,1);
 }
 
 address {
@@ -1577,6 +1514,17 @@ table.performance-summary {
   margin: -85px auto 0;
   z-index: 100;
 }
+
+.hero-shake{
+  background-image: url(/assets/shake.png);
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  z-index: 999;
+  left: 274px;
+  top: 75px;
+}
+
 .blue {
   background-color: $brand-primary;
   margin-bottom: 30px;
@@ -1776,6 +1724,14 @@ table.performance-summary {
 
 .campaign-stats {
   /*margin-bottom: 20px;*/
+}
+
+.hero-pictures-section{
+  margin-top: 64px;
+}
+
+#campaign_hero_input{
+  font-size: 16px;
 }
 
 #home_video_fr,
@@ -2113,6 +2069,12 @@ a {
     }
   }
 }
+
+.hero-label{
+  font-size:16px;
+  box-shadow: 1px 1px 0px #999;
+}
+
 // Mini Pledges -----------------------------------------------------------------
 
 .pledges_total {
@@ -2175,9 +2137,14 @@ a {
   }
 }
 
-
-
 // Coupon Styles ---------------------------------------
+.coupon-wrapper{
+  .coupon-actions{
+    position: absolute;
+    right: 120px;
+    z-index: 99;
+  }
+}
 
 .coupon {
   padding: 15px;
@@ -2211,6 +2178,7 @@ a {
     position:absolute;
     padding:10px;
     margin: -7px;
+    z-index: 99;
   }
   img {
     width: 100%;
@@ -2309,6 +2277,9 @@ ul.share-coupon {
 
 .tab-content {
   margin-top:15px;
+  h3, h4{
+    color: black;
+  }
 }
 
 header {
@@ -2362,7 +2333,7 @@ header {
   }
 }
 // home box views (temp?) --------------------------------------------------------
-.campaign_grid, .sponsor_grid, .coupon_grid {
+.campaign_grid, .sponsor_grid, .coupon_grid, .fundraiser_grid {
   padding-left: 5px;
   padding-right: 5px;
 
@@ -2470,15 +2441,6 @@ header {
     margin-bottom: 0;
   }
 }
-.success-banner {
-  height:375px;
-  margin-bottom: 0;
-  border:0px;
-  background-image: image-url('success-bkg.jpg');
-  background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
-}
 
 .supporters{
   background-color:white;
@@ -2532,14 +2494,101 @@ header {
 // Home Page Styles! ---------------------------------------
 
 .hero-home {
-  height:500px;
-  margin-bottom: 0;
   border:0px;
-  /*background-image: url('hero-home.jpg');
-  background-size: 100% auto;
+  /*background-image: url('success-bkg.jpg');*/
+  overflow: hidden;
+  padding-bottom: 1em;
+  background-image: url('hero-home.jpg');
+  /*background-size: 100% auto;
   @include background-size(cover);
   background-position: 50% 0px;
   */
+
+  h1 {
+    padding: 0 1em;
+  }
+  h3 {
+    color: #FFFFFF;
+    padding-bottom: 1em;
+  }
+
+  .row.vertical-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media(max-width: $screen-md-min){
+      flex-flow: column;
+      padding-bottom: 1em;
+    }
+  }
+
+  .how_it_works {
+    @media (max-width: 992px) {
+      padding: 2em 0 2em 0;
+    }
+  }
+
+  #how_it_works_btn {
+    display: none;
+    @media (max-width: 992px) {
+      padding: 1em;
+      display: inline;
+    }
+  }
+
+  #home_videos {
+    @media (max-width: 992px) {
+      display: block;
+      height: 0px;
+      h3 {
+        padding: 0 1em 0 1em;
+      }
+    }
+    @media (min-width: 993px) {
+      display: inline;
+      h3 {
+        margin: 0 -2em 0 -2em;
+      }
+    }
+  }
+
+  .intro_video {
+    width: 346px;
+  }
+
+  .wrap {
+    flex-wrap: wrap;
+  }
+
+  .learn-more {
+    padding: 3em 0 2em 0;
+    @media (min-width: 993px) {
+      padding: 0 2em 0 2em;
+    }
+  }
+
+  .centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  a.btn {
+    position: relative;
+  }
+
+  .center-play {
+    position: absolute;
+    margin-left: -34px;
+    margin-top: -40px;
+    left: 50%;
+    top: 50%;
+  }
+
+  .play-btn {
+    position: absolute;
+    width: 5em;
+  }
 }
 
 .home {
@@ -2724,15 +2773,51 @@ header {
 .center {
   text-align: center;
 }
-.success-banner {
-  height:375px;
-  margin-bottom: 0;
-  border:0px;
-  background-image: url('success-bkg.jpg');
-  background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
+.quotes {
+  background-image: url("success-bkg.jpg");
+
+  .quote:before {
+    color: #fff;
+    content: open-quote;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 1em;
+  }
+
+  .quote:after {
+    color: #fff;
+    content: close-quote;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 1em;
+  }
+
+  .quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .quote {
+    margin-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+  }
+
+  .author {
+    text-align: left;
+    font-style: italic;
+  }
+
+  @media (min-width: 750px){
+    .rwd-break { display: none; }
+  }
+
+  h4 {
+    color: #fff;
+  }
 }
+
 //Home Sidebar Search form ---------------------------------------------------
 #custom-search-input {
         margin:0;
@@ -2912,25 +2997,14 @@ ul#share-block {
   float: left;
   margin-right: 5px;
 }
-#campaign_end_date_input {
-  /*padding: 10px 0 0;*/
-}
 #campaign_end_date {
   width: 49%;
   margin-right: 5px;
 }
 
-#campaign_causes {
-  /*width: 400px;
-  margin: 40px auto;*/
-}
 #campaign_scopes_input {
   text-align: center;
   margin: 15px 0;
-  .checkbox {
-    /*display: inline-block;
-    margin: 0 15px;*/
-  }
 }
 // Tell Your Story Step ------------------------------------
 .tell-story-wrap {
@@ -2951,9 +3025,6 @@ ul#share-block {
   }
 }
 #campaign_picture_attributes_avatar_input {
-  .avatar {
-    /*margin: 10px auto;*/
-  }
   .avatar_input {
     margin: 0 auto 35px;
   }
@@ -2965,12 +3036,7 @@ ul#share-block {
   padding-bottom: 25px;
 }
 // Solicit Sponsors Step ------------------------------------
-/*.campaign-wizard-solicit-wrap {
-  padding: 0 50px 0;
-  margin-bottom: 50px;
-}*/
 .solicit-wrap {
-  /*padding: 0 200px;*/
   margin: 20px 0;
 }
 
@@ -3010,14 +3076,6 @@ ul#share-block {
 
 
 #sponsors_donations{
-  /*.control-label{
-    padding-right:10px;
-    text-align:left;
-    margin-bottom: 5px;
-  }*/
-  /*.pledge_level{
-    margin:5px;
-  }*/
   .btn-selected{
     color: white;
     background-color: #07b4cd;
@@ -3028,49 +3086,19 @@ ul#share-block {
     display: inline-block;
   }
 
-  /*.buttons{
-    height:100px;
-    display: table;
-    margin:auto;
-    width: 75%;
-  }*/
-
   .vertical-divider {
-    /*height:100px;*/
     span{
       padding: 25px;
       display: block;
     }
   }
 
-  /*.vertical-divider {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    position: relative;
-    vertical-align:middle;
-    display: block;
-    height:100%;
-    span{
-      padding-top: 25px;
-      display: block;
-    }
-  }
-
-  .buttons > span{
-      padding:20px;
-      height:100px;    
-  }
-  */
   col-md-1, col-md-2, col-md-4 {
     margin-left:0px !important;
     margin-right:0px !important;
     padding-left:0px !important;
     padding-right:0px !important;
   }
-
-  /*.remove_fields {
-    padding: 10px;
-  }*/
 
   .links{
     margin-bottom: 20px;
@@ -3133,20 +3161,9 @@ ul#share-block {
   }
 }
 // Pledge Wizard ---------------------------------------------------------
-/*.pledge-pad {
-  padding: 3px;
-  display: inline-block;
-  text-align: right;
-}*/
 #pledge_amount_per_click_input, #pledge_total_amount_input {
   margin-bottom: 15px;
   margin-top: 15px;
-}
-.pledge-first-step-wrap {
-  /*padding: 0 100px;
-  @media (min-width: $screen-md-min) {
-    padding: 0 200px;
-  }*/
 }
 .your-pledge-well {
   padding: 25px;
@@ -3217,18 +3234,6 @@ ul#share-block {
   .avatar, .qrcode {
     margin-bottom: 5px;
   }
-  // img {
-  //   height: 230px;
-  //   width: 300px;
-  //   @media (max-width: $screen-md-min) {
-
-  //   }
-  // }
-}
-.coupon-outer-wrap {
-  /*@media (min-width: $screen-md-min) {
-  padding: 0 150px;
-  }*/
 }
 .remove-coupon {
     margin-bottom: 10px;
@@ -3332,6 +3337,10 @@ ul#share-block {
     max-width: 1100px;
     text-align: center;
     margin: auto;
+  }
+
+  @media (min-width: 1200px){
+    .rwd-break { display: none; }
   }
 }
 
@@ -3499,9 +3508,6 @@ ul#share-block {
   }
 }
 
-
-
-
 #no-more-tables td{
   vertical-align: middle;
 }
@@ -3510,7 +3516,6 @@ ul#share-block {
   text-transform: capitalize;
   color:white;
 }
-
 
 @media only screen and (max-width: 800px) {
     /* Force table to not be like tables anymore */
@@ -3574,6 +3579,10 @@ ul#share-block {
   line-height: 40px;
   padding-left: 0px;
 }
+.checkbox input[type="checkbox"]{
+  margin-left: 0px;
+} 
+
 .checkbox .checkbox-pill {
   position: absolute;
   left: -9999px;
@@ -3611,11 +3620,6 @@ ul#share-block {
 .checkbox .checked{
   background:#b5ca41  !important;
 }
-
-
-
-
-
 
 .onoffswitch {
     position: relative; 
@@ -3856,6 +3860,12 @@ ul#share-block {
   position: relative;
 }
 
+.label.overlapped{
+  position: absolute;
+  z-index: 9;
+  top: 0;
+}
+
 .label-purple{
   background-color: $brand-purple;
   &.overlapped{
@@ -3876,4 +3886,10 @@ ul#share-block {
 
 .padding-left-out{
   padding-left: 0;
+}
+
+// Success Stories -------------------------------------------------------
+
+#boy_scouts {
+  width: 1000px;
 }

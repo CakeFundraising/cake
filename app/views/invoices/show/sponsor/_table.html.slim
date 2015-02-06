@@ -16,7 +16,7 @@
       tbody
         = render partial:'invoices/show/sponsor/row', collection: invoices, as: :invoice
 
-  = render partial:'invoices/checkout_form' if defined? checkout and not current_sponsor.decorate.stripe_customer?
+  = render partial:'invoices/checkout_form' if defined? checkout and not (current_sponsor.present? and current_sponsor.decorate.stripe_customer?)
 
 - else
   = render partial:'layouts/no_results', locals:{object: t("titles.empty_results.invoices.#{kind}")}

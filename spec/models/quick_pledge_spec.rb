@@ -5,7 +5,7 @@ describe QuickPledge do
   it { should validate_presence_of(:campaign) }
   it { should validate_presence_of(:website_url) }
 
-  it { should belong_to(:sponsorable) }
+  it { should belong_to(:sponsor) }
   it { should belong_to(:campaign) }
   it { should have_one(:fundraiser).through(:campaign) }
   it { should have_one(:picture).dependent(:destroy) }

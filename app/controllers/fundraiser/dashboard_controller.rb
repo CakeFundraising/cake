@@ -4,18 +4,20 @@ class Fundraiser::DashboardController < ApplicationController
   
   def home
     @fundraiser = current_fundraiser.decorate
+    @stripe_account = current_fundraiser.stripe_account
   end
 
   def billing
     @fundraiser = current_fundraiser.decorate
     @campaigns_with_outstanding_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_outstanding_invoices
-    @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
+    @qp_invoices = current_fundraiser.qp_invoices.due_to_pay.latest.decorate
+    @stripe_account = current_fundraiser.stripe_account
   end
 
   def pledges
-    @unsolicited_pledges = current_fundraiser.pledges.pending.decorate
+    @unsolicited_pledges = current_fundraiser.pledges.normal.pending.decorate
     @requested_pledges = current_fundraiser.pledge_requests.decorate
-    @accepted_pledges = current_fundraiser.pledges.accepted.decorate
+    @accepted_pledges = current_fundraiser.pledges.normal.accepted.decorate
   end
 
   def campaigns
@@ -23,7 +25,9 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def history
-    @campaigns = current_fundraiser.campaigns.past.decorate
+    @campaigns = current_fundraiser.campaigns.past.latest.decorate
+    @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_fundraiser.campaigns.with_paid_invoices
+    @paid_qp_invoices = current_fundraiser.qp_invoices.paid.latest.decorate
     @sponsors = SponsorDecorator.decorate_collection(current_fundraiser.sponsors_of(:past))
   end
 

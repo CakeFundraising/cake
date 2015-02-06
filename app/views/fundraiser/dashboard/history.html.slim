@@ -5,10 +5,26 @@ ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#campaigns-tab" = Campaign.model_name.human.pluralize(count: 2)
   li 
+    a data-toggle="tab" href="#paid" Paid Invoices
+  li 
+    a data-toggle="tab" href="#paid_qp" Paid Quick Pledge Invoices
+  li 
     a data-toggle="tab" href="#sponsors" = Sponsor.model_name.human.pluralize(count: 2)
 
 .tab-content
   #campaigns-tab.tab-pane.active
     = render partial:'campaigns/show/table', locals:{campaigns: @campaigns, hide_status: true}
+  #paid.tab-pane
+    #past_invoices.panel-group
+      - if @campaigns_with_past_invoices.any?
+        = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_past_invoices, as: :campaign
+      - else
+        = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.past')}
+  #paid_qp.tab-pane
+    #qp_invoices.panel-group
+      - if @paid_qp_invoices.any?
+        = render partial:'quick_pledges/invoices/table', locals:{invoices: @paid_qp_invoices}
+      - else
+        = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.qp')}
   #sponsors.tab-pane
     = render partial:'sponsors/show/table', locals:{sponsors: @sponsors, fr: current_fundraiser}

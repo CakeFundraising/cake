@@ -3,7 +3,7 @@ module Screenshotable
   extend ActiveSupport::Concern
 
   def update_screenshot(url)
-    cloudinary_obj = Cloudinary::Uploader.explicit(url, :type => "url2png")
+    cloudinary_obj = Cloudinary::Uploader.explicit(url, type: "url2png")
     screenshot_url = cloudinary_obj["url"].gsub('http:', 'https:')
     screenshot_version = "v#{cloudinary_obj['version']}"
     self.update_attribute(:screenshot_url, screenshot_url)

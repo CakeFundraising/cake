@@ -16,7 +16,7 @@ class Payment < ActiveRecord::Base
   validates :total, :kind, :item, :payer, :recipient, presence: true
 
   before_create :stripe_charge_card
-  after_create :set_as_paid, :notify_charge
+  after_create :set_as_paid
 
   def self.new_invoice(params, payer)
     payment = new(params)
@@ -29,10 +29,34 @@ class Payment < ActiveRecord::Base
     payment
   end
 
+  def self.new_quick_invoice(params, payer)
+    payment = new(params)
+    payment.item_type = 'Invoice'        
+    payment.kind = 'invoice_payment'
+    payment.recipient = AdminUser.first
+    payment.payer = payer
+    payment.total_cents = payment.item.total_fees_cents
+    payment
+  end
+
   def transfer!
-    stripe_trasfer
-    notify_transfer
-    update_attribute(:status, :transferred)
+    if present_recipient? and balance_available?
+      stripe_trasfer
+      notify_transfer
+      update_attribute(:status, :transferred)
+    end
+  end
+
+  def notify_normal_charge
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.payment_charge(item.id, user.id).deliver
+    end
+  end
+
+  def notify_quick_invoice_charge
+    item.fundraiser.users.each do |user|
+      InvoiceNotification.quick_payment_charge(item.id, user.id).deliver
+    end
   end
 
   private
@@ -44,7 +68,7 @@ class Payment < ActiveRecord::Base
       currency: self.total_currency.downcase,
       card: self.card_token,
       customer: self.customer_id,
-      description: "#{item_type} ##{item_id} Payment"
+      description: "CakeCauseMarketing.com #{item_type} ##{item_id} Payment",
     )
     store_charge(charge) 
   end
@@ -69,23 +93,29 @@ class Payment < ActiveRecord::Base
     item.update_attribute(:status, :paid) #set invoice as paid
   end
 
-  def notify_charge
-    item.fundraiser.users.each do |user|
-      InvoiceNotification.payment_charge(item.id, user.id).deliver
-    end
+  #Transfers
+  def transfer_amount
+    amount_with_stripe_fees = (((1-Cake::STRIPE_FEE)*self.total_cents) - 30).round
+    (amount_with_stripe_fees*(1-Cake::APPLICATION_FEE)).round
   end
 
-  #Transfers
-  def stripe_trasfer
-    amount = ((1-Cake::APPLICATION_FEE)*self.total_cents).round
+  def present_recipient?
+    self.recipient.stripe_account.present? and self.recipient.stripe_account.stripe_recipient_id.present?
+  end
 
+  def balance_available?
+    balance = Stripe::Balance.retrieve
+    available_amount = balance.available.first.amount
+    available_amount > transfer_amount
+  end
+
+  def stripe_trasfer
     transfer = Stripe::Transfer.create(
-      amount: amount,
+      amount: transfer_amount,
       currency: self.total_currency.downcase,
       recipient: self.recipient.stripe_account.stripe_recipient_id,
-      statement_description: "Cake Invoice #{item.id} Payment Transfer"
+      statement_description: "CakeCauseMarketing.com Invoice #{item.id} Payment"
     )
-
     store_transfer(transfer)
   end
 
@@ -104,5 +134,8 @@ class Payment < ActiveRecord::Base
   end
 
   def notify_transfer
+    self.recipient.users.each do |user|
+      InvoiceNotification.payment_transfer(item.id, user.id).deliver
+    end
   end
 end

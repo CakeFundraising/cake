@@ -8,11 +8,11 @@
             span = campaign.end_date
             p Campaign End Date
           div.stat
-            span = campaign.total_raised
-            p Raised
+            span = campaign.raised(:past)
+            p Raised 
           div.stat
-            span = campaign.goal
-            p Goal 
+            span = campaign.total_raised
+            p Paid
   .panel-collapse.collapse id=(campaign.id)
     .panel-body
       #no-more-tables
@@ -29,4 +29,4 @@
               th = Invoice.human_attribute_name :status
               th
           tbody
-            = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.decorate, as: :invoice
+            = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.normal.decorate, as: :invoice

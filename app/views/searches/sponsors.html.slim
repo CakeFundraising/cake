@@ -1,7 +1,7 @@
 = display_meta("Search Sponsors")
 
 #search_sponsors
-  h1.dash-head Search Sponsors
+  h1.dash-head Search Active Sponsors
   
   .row
     .col-md-3
@@ -9,8 +9,8 @@
     	
     	.controls.clearfix
 		    .counter 
-    			.boldest #{@sponsors.total_count} sponsors 
-    				span match the criteria
+    			span.boldest #{@sponsors.total_count} sponsors 
+    			span match the criteria
     	
     	#filters.panel-group
     	  = render partial:'layouts/search/filter', collection: @facets, as: :facet

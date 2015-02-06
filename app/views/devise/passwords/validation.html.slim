@@ -1,0 +1,11 @@
+.user-forms
+  h2 Verify Password
+
+  span.help-block Please enter your password again to access this page.
+
+  = semantic_form_for :password, url: verify_path do |f|
+    = f.inputs do
+      = f.input :password
+      = f.input :redirect_url, as: :hidden, input_html: {value: params[:url]}
+    = f.actions do
+      = f.action :submit, button_html: {class: 'btn btn-success'}

@@ -23,4 +23,34 @@ module CampaignsHelper
       end
     end
   end
+
+  def wizard_menu_item(path, text, options={})
+    if current_page?(path)
+      content_tag(:li, class:'active') do
+        content_tag(:a, text, data: {toggle: 'tab'})
+      end
+    else
+      content_tag :li do
+        link_to text, path, options
+      end
+    end
+  end
+
+  def campaign_page_meta
+    display_meta(
+      @campaign.fundraiser.name, 
+      { 
+        title: "Click and help support us! It is 100% free!", 
+        image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@campaign.screenshot_version}/#{campaign_url(@campaign.id)}", 
+        description: @campaign.mission, 
+        url: request.original_url
+      }
+    )
+  end
+
+  def update_campaign_screenshot(campaign)
+    if Rails.env.production? or Rails.env.development?
+      Resque.enqueue(ResqueSchedule::CampaignScreenshot, campaign.id, campaign_url(campaign)) #update screenshot
+    end
+  end
 end

@@ -501,6 +501,9 @@ GEM
     stripe-rails (0.3.1)
       rails (>= 3)
       stripe
+    stripe_event (1.4.0)
+      activesupport (>= 3.1)
+      stripe (~> 1.6)
     sunspot (2.1.1)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
@@ -625,6 +628,7 @@ DEPENDENCIES
   slim
   slim-rails
   stripe-rails
+  stripe_event
   sunspot_rails
   sunspot_solr
   sunspot_test

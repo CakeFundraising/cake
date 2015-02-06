@@ -23,6 +23,10 @@ class PledgeDecorator < ApplicationDecorator
     object.campaign.scopes
   end
 
+  def scope
+    scopes.first
+  end
+
   def total_amount
     h.humanized_money_with_symbol object.total_amount
   end

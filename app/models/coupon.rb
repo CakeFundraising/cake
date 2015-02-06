@@ -3,7 +3,8 @@ class Coupon < ActiveRecord::Base
   include Picturable
   
   belongs_to :pledge
-  has_one :sponsor, through: :pledge
+  has_one :sponsor, through: :pledge, source_type: 'Sponsor'
+  has_one :campaign, through: :pledge
 
   monetize :unit_donation_cents
   monetize :total_donation_cents
@@ -21,6 +22,8 @@ class Coupon < ActiveRecord::Base
 
   scope :latest, ->{ order(created_at: :desc) }
 
+  delegate :city, :state_code, to: :sponsor
+
   after_initialize do
     self.terms_conditions = I18n.t('application.terms_and_conditions.coupons')
   end
@@ -32,8 +35,18 @@ class Coupon < ActiveRecord::Base
   searchable do
     text :title, boost: 2
     text :promo_code, :description
+    text :city, :state_code
+
     text :sponsor do
       sponsor.name
+    end
+
+    text :pledge do
+      pledge.name
+    end
+
+    text :campaign do
+      campaign.title
     end
 
     string :merchandise_categories, multiple: true

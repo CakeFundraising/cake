@@ -1,4 +1,4 @@
-= display_meta(@campaign.fundraiser.name, {title: "Click and help support us! It is 100% free!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@campaign.screenshot_version}/#{campaign_url(@campaign.id)}", description: @campaign.mission, url: request.original_url})
+= campaign_page_meta
 
 = content_for :header do
   .banner.hero
@@ -39,7 +39,7 @@
           .row
             .col-md-12.pledges_total
               span Total Donations Earned: 
-              span.boldest.raised = @campaign.raised
+              span.boldest.raised = @campaign.raised_by_status
           hr
           .row
             .col-md-12
@@ -48,17 +48,19 @@
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
               .campaign-stats
                 span
-                  span.boldest.raised = @campaign.raised
+                  span.boldest.raised = @campaign.raised_by_status
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
           .row
-            - if current_user.present?
-              - unless @campaign.past? 
-                .col-md-12.text-center
-                  .main-cta
-                    = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
-            - else
+            - if current_user.present? and not @campaign.past?
+              .col-md-12.text-center
+                .main-cta
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
+            - elsif @campaign.past?
+              .col-md-12.text-center
+                .main-cta.alert.alert-danger.ended_campaign This campaign is over
+            - elsif current_user.nil?
               .col-md-12.text-center
                 .main-cta
                   a.btn.btn-success.btn-xl data-toggle="modal" data-target="#how_it_works" See How Cake Works
@@ -72,9 +74,9 @@
           .row.pledgebluestripe.campaign#sponsors_banner
             .col-md-12.text-center
               span.h1 
-                span Click on every Sponsor and 
+                span Click on every logo and 
                 span.boldest #{@campaign.fundraiser} 
-                span will earn a total of 
+                span will receive a total of  
                 span.boldest #{@campaign.total_donation_per_click}!
     .white
       .container
@@ -109,14 +111,15 @@
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
 
-          / MAKE A PLEDGE BANNER 
-          .make-pledge.well
-            .row
-              .col-md-12s
-                h4.attention-owners
-                  b> Attention Business Owners!
-                  | Support us and reach new customers! 
-                = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
+          / MAKE A PLEDGE BANNER
+          - if not @campaign.past?
+            .make-pledge.well
+              .row
+                .col-md-12s
+                  h4.attention-owners
+                    b> Attention Business Owners!
+                    | Support us and reach new customers!
+                  = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
         / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
           = render partial:'campaigns/show/disqus'

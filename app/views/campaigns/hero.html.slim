@@ -1,0 +1,203 @@
+= campaign_page_meta
+
+= content_for :header do
+  .banner.hero
+    .alert.alert-transparent.alert-dismissable.text-center
+      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
+      span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
+
+    = render partial:'videos/button', locals:{object: @campaign}
+    .hero-screen
+  .container
+    .content.row.pull-up
+      .col-md-8
+        .campaign-intro
+          h1.name 
+            span.mission = @campaign.mission
+            - if can? :edit, @campaign and not @campaign.past?
+              br
+              span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
+            - if can? :edit, @pledge and not @pledge.past?
+              br
+              span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
+          .social.med-hide
+            = render partial:'layouts/share_buttons'
+            h4.share-info.pull-left Please share our Campaign!
+      .col-md-4.sidebar
+        .sidebar-bkg.campaign-sidebar.no-border
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends In:
+          .row.text-center#campaign_countdown
+            .col-xs-4.border-right
+              span.campaign-timer.days
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer.hours
+              span h.
+            .col-xs-4
+              span.campaign-timer.mins
+              span m.
+          hr
+          .row
+            .col-md-12.pledges_total
+              span Total Donations Earned: 
+              span.boldest.raised = @campaign.raised_by_status
+          hr
+          .row
+            .col-md-12
+              .progress.campaign-thermometer
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
+              .campaign-stats
+                span
+                  span.boldest.raised = @campaign.raised_by_status
+                span.pull-right
+                  span.boldest = @campaign.goal
+                  |  Goal
+
+          .row
+            - if @campaign.past?
+              .col-md-12.text-center
+                .main-cta.alert.alert-danger.ended_campaign This campaign is over
+            - elsif not @campaign.hero_pledge?
+              .col-md-12.text-center
+                .main-cta
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-success btn-xl'
+            - else 
+              .col-md-12.text-center
+                .main-cta
+                  = render partial:'clicks/pledge', locals: {pledge: @pledge}
+
+= content_for :bottom_section do
+  .main-background
+    - if @pledge.present?
+      .white
+        .container
+          .row.sponsor-profile
+            .col-md-6.campaign-story
+              h3 = @pledge.headline
+              p.story.expander 
+                = @pledge.description
+              - if @pledge.video.present?
+                p.video-link
+                  a data-target="#pledge_video_modal" data-toggle="modal" 
+                    span.glyphicon.glyphicon-expand
+                    span See our video
+                  = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
+            .col-md-6.hero-pictures-section
+              .row
+                - if @pledge.pending?
+                  .col-md-6.no-padding
+                    = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
+                - else
+                  .col-md-6.no-padding.overlay-effects.clearfix#effect-6
+                    = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
+                .hero-shake
+                .col-md-6.no-padding
+                  = link_to @campaign.fundraiser do
+                    = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+              .campaign_and_fundraiser.row
+                .col-md-6.no-padding
+                  - if @pledge.pending?
+                    h4 Your organization name here
+                  - else
+                    h4 = auto_link @pledge.sponsor, truncate: 30
+                .col-md-6.no-padding
+                  h4 = auto_link @campaign.fundraiser, truncate: 30
+
+      .blue
+        .container
+          .row.pledgebluestripe.campaign#sponsors_banner
+            .col-md-12.text-center
+              span.h1 
+                span Click below and 
+                span.boldest = (@pledge.sponsor || 'YOUR NAME')
+                span  will give  
+                span.boldest#amount_per_click = @pledge.amount_per_click
+                span  up to 
+                span.boldest #{@pledge.total_amount}! 
+            .col-md-4.col-md-push-4
+              = render partial:'clicks/pledge', locals: {pledge: @pledge}
+
+      - if @coupons.any? and @pledge.show_coupons
+        .row
+          .col-md-12.special-offers
+            h1 Special Offers from #{@pledge.sponsor}
+        .row
+          .coupons
+            = render partial:'coupons/show/box', collection: @coupons, as: :coupon
+            .text-center
+              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'            
+        br
+        .green
+          .container
+            .row.pledgebluestripe.campaign#sponsors_banner
+              .col-md-12.text-center
+                span.h1 
+                  span Learn More About 
+                  span.boldest = @campaign.fundraiser
+    .container
+      .row.sponsor-profile
+        .col-md-4.col-md-push-8
+          .sidebar-bkg-2
+            .avatar 
+              = link_to @campaign.fundraiser do
+                = @campaign.picture.avatar
+            .avatar-content
+              .caption = @campaign.avatar_caption
+              .fundraiser-name.text-center
+                h4 = auto_link @campaign.fundraiser
+        .col-md-8.col-md-pull-4.campaign-story
+          h3 = @campaign.headline
+          p.story.expander = @campaign.story
+
+    .container
+      .row
+        .col-md-4.col-md-push-8.text-center
+          / DIRECT DONATION 
+          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+        / DISQUS COMMENTS
+        .col-md-8.col-md-pull-4.campaign-story
+          = render partial:'campaigns/show/disqus'
+      .row
+        .col-md-12
+          / SHARE BUTTONS 
+          .text-center.med-hide 
+            h2 Please share our campaign with your family and friends!
+            p.text-muted Working together, we can make a difference.
+            = render partial:'layouts/share_buttons'
+
+    / CAUSES/SPONSORS CIRCLES
+    = render partial: 'layouts/choose_path'
+
+
+= render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
+
+css:
+  .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
+
+javascript:
+  $(document).ready( 
+    Cake.campaigns.show(
+      "#{@campaign.object.end_date}", 
+      "#{@impression.id if @impression.present? }",
+      "#{@campaign.id}"
+    ) 
+  );
+
+  var addthis_share = addthis_share || {};
+  addthis_share = {
+    url_transforms : {
+      shorten: {
+        twitter: 'bitly'
+      }      
+    }, 
+    shorteners : {
+      bitly : {} 
+    },
+    templates: { 
+      twitter: "Click to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
+    }   
+  };
+    

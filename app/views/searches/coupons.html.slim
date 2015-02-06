@@ -1,18 +1,19 @@
 = display_meta("Search Coupons")
 
 #search_coupons
-  h1.dash-head Search coupons
+  h1.dash-head Search Discounts
   
   .row
     .col-md-3
-    	= render 'layouts/search/search_form', collection: :coupons
-    	
-    	.controls
-    		.counter 
-    			.boldest #{@coupons.total_count} coupons span match the criteria
-    	
-    	#filters.panel-group
-    	  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+      = render 'layouts/search/search_form', collection: :coupons
+      
+      .controls
+        .counter 
+          span.boldest #{@coupons.total_count} coupons 
+          span match the criteria
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
         hr
         = link_to t('helpers.filters.clear'), search_coupons_path, class:'btn btn-primary'
     .col-md-9
@@ -23,7 +24,7 @@
           - else
             .alert.alert-info No results found.
           
-  	= pagination(@coupons)
+    = pagination(@coupons)
 
 javascript:
   Cake.search("#coupons-search", "#search_coupons");

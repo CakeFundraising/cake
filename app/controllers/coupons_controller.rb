@@ -1,9 +1,11 @@
 class CouponsController < InheritedResources::Base
   respond_to :pdf, only: :download
+  load_and_authorize_resource
 
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
+    authorize! :new, @coupon
   end
 
   def edit
@@ -11,6 +13,7 @@ class CouponsController < InheritedResources::Base
   end
 
   def create
+    @pledge = resource.pledge
     create! do |success, failure|
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)
@@ -40,17 +43,20 @@ class CouponsController < InheritedResources::Base
         pdf = CouponPdf.new(resource.decorate)
         send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
       end
-      # format.pdf do
-      #   pdf = CouponPdf.new(resource.decorate)
-      #   render pdf: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf"
-      # end
     end
+  end
+
+  def load_all
+    pledge = Pledge.find(params[:pledge_id])
+    @coupons = CouponDecorator.decorate_collection(pledge.coupons.latest[2..-1])
+    p @coupons
+    render :load_all, layout: false
   end
 
   def permitted_params
     params.permit(
       coupon: [
-        :id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, :pledge_id,
+        :id, :title, :expires_at, :promo_code, :description, :terms_conditions, :avatar, :pledge_id, :url,
         :extra_donation_pledge, :unit_donation, :total_donation, :standard_terms, :_destroy, :qrcode, :qrcode_cache, merchandise_categories: [],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,

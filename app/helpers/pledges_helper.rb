@@ -11,14 +11,25 @@ module PledgesHelper
   	link_to "Preview", @pledge, class:'btn btn-primary pull-right'
   end
 
-  def pledge_offers_button(pledge)
-    if pledge.coupons.any?
-      extra = pledge.coupons.extra_donation_pledges.any?
-      copy = extra ? "Extra Special Offers" : "Special Offers"
+  def sponsor_autolink(pledge)
+    if pledge.instance_of?(Pledge)
+      link_to pledge.sponsor.name, pledge.sponsor
+    else
+      content_tag(:a, pledge.sponsor.name)
+    end
+  end
 
-      link_to pledge_path(pledge, anchor: :coupons), target: :_blank, class:"btn btn-#{ extra ? 'purple' : 'primary' } btn-block" do
-        content_tag(:span, copy)
-      end
+  def pledge_autolink(pledge)
+    if pledge.instance_of?(Pledge)
+      auto_link pledge
+    else
+      link_to pledge, quick_pledges_path
+    end
+  end
+
+  def update_pledge_screenshot(pledge)
+    if Rails.env.production? or Rails.env.development?
+      Resque.enqueue(ResqueSchedule::CampaignScreenshot, pledge.id, pledge_url(pledge)) #update screenshot
     end
   end
 end

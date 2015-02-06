@@ -4,11 +4,13 @@ class Sponsor::DashboardController < ApplicationController
   
   def home
     @sponsor = current_sponsor.decorate
+    @stripe_account = current_sponsor.stripe_account
   end
 
   def billing
     @outstanding_invoices = current_sponsor.outstanding_invoices.latest.decorate
     @past_invoices = current_sponsor.past_invoices.latest.decorate
+    @stripe_account = current_sponsor.stripe_account
   end
 
   def pledge_requests

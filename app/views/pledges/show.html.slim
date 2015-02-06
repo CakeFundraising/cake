@@ -82,7 +82,7 @@
     .container
       .row.pledgebluestripe.campaign
         .col-md-12.text-center
-          span.h1.text-center #{@pledge.sponsor_name(26)} will contribute #{humanized_money_with_symbol(@pledge.amount_per_click)} up to #{humanized_money_with_symbol(@pledge.total_amount)}!!
+          span.h1.text-center Click and #{@pledge.sponsor_name(26)} will give #{humanized_money_with_symbol(@pledge.amount_per_click)} up to #{humanized_money_with_symbol(@pledge.total_amount)}!
           .clearfix
             .col-md-4
             .col-md-4
@@ -90,13 +90,15 @@
                 = render partial:'clicks/pledge', locals:{pledge: @pledge}
             .col-md-4
   .container
-    - if @pledge.coupons.any? and @pledge.show_coupons
+    - if @coupons.any? and @pledge.show_coupons
       .row
         .col-md-12.special-offers
           h1 Special Offers from #{@pledge.sponsor}
       .row
         .coupons
           = render partial:'coupons/show/box', collection: @coupons, as: :coupon
+          .text-center
+            = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'
     .row
       .col-md-4.col-md-push-8.text-center
         / DIRECT DONATION 

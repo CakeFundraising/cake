@@ -5,7 +5,7 @@ Feature: Pledge Levels
     And a campaign of that fundraiser exists
     And that fundraiser is logged in
     When he visits the campaign wizard sponsors page
-    And he press the "Set custom sponsorship pledge levels" button
+    And he press the "Set custom pledge levels for sponsors" button
 
   #No Levels (New)
   @javascript
