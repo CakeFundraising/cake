@@ -3,18 +3,20 @@
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h3.modal-title Thank You! You just earned #{pledge.amount_per_click} for #{pledge.fundraiser}!
+        .modal-title.text-center
+          h2 Thank You! 
+          h3 You just earned #{pledge.amount_per_click} for #{pledge.fundraiser}!
       .modal-body
         .lead
           - if pledge.coupons.extra_donation_pledges.any?
-            p Here's how you can help earn even more for #{pledge.fundraiser}!
+            p.text-center Here are more ways to help!
           - else
             p Special Offers from #{pledge.sponsor}
           hr
           .coupons
-            = render partial:'coupons/show/box', collection: coupons, as: :coupon
+            = render partial:'coupons/show/modal_box', collection: coupons, as: :coupon
             .text-center
-              = link_to 'See More Offers', load_all_coupons_path(pledge_id: pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'
+              = all_coupons_button(pledge, :modal_box)
       .modal-footer
         button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close
 

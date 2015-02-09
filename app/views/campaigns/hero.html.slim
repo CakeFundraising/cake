@@ -134,11 +134,11 @@
           .coupons
             = render partial:'coupons/show/box', collection: @coupons, as: :coupon
             .text-center
-              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'
+              = all_coupons_button(@pledge)
         br
         .green
           .container
-            .row.pledgebluestripe.campaign#sponsors_banner
+            .row.pledgebluestripe.campaign
               .col-md-12.text-center
                 span.h1 
                   span Learn More About 
