@@ -93,16 +93,7 @@
                   = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
             .col-md-6.hero-pictures-section
               .row
-                - if @pledge.pending?
-                  .col-md-6.no-padding
-                    = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
-                - else
-                  .col-md-6.no-padding.overlay-effects.clearfix#effect-6
-                    = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-                .hero-shake
-                .col-md-6.no-padding
-                  = link_to @campaign.fundraiser do
-                    = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+                = render partial:'campaigns/hero/shaking_pictures'
               .campaign_and_fundraiser.row
                 .col-md-6.no-padding
                   - if @pledge.pending?
