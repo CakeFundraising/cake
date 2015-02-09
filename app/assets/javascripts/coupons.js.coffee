@@ -47,10 +47,10 @@ Cake.coupons.validation = ->
   return
 
 Cake.coupons.load_all = ->
-  button = $('#load_all_coupons')
+  buttons = $('.load_all_coupons')
 
-  button.on "ajax:success", (e, data, status, xhr) ->
-    button.hide()
-    $('.coupons, #coupons').append(data)
+  buttons.on "ajax:success", (e, data, status, xhr) ->
+    $(this).hide()
+    $(this).closest('.coupons, #coupons').append(data)
     return
   return

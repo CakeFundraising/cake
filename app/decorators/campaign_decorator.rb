@@ -66,4 +66,14 @@ class CampaignDecorator < ApplicationDecorator
   def pledges_count
     object.pledges.active.count + object.pledges.pending_or_past.count
   end
+
+  def url_link
+    h.auto_attr_link url, target: :_blank
+  end
+
+  def url
+    unless object.url.blank?
+      (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
+    end
+  end
 end

@@ -49,7 +49,7 @@ class CouponsController < InheritedResources::Base
   def load_all
     pledge = Pledge.find(params[:pledge_id])
     @coupons = CouponDecorator.decorate_collection(pledge.coupons.latest[2..-1])
-    p @coupons
+    @partial = params[:partial]
     render :load_all, layout: false
   end
 

@@ -478,6 +478,9 @@ p.signup-social span:before, p.signup-social span:after {
 
 .modal-title{
   color: black;
+  h3{
+    color: black;
+  }
 }
 
 //Buttons -------------------------------------------------------------------------------
@@ -2150,6 +2153,15 @@ a {
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
+  box-shadow: 0px 0px 5px #ccc;
+  &.coupon-modal{
+    .label-purple{
+      padding: 6px;
+    }
+    p{
+      font-size: 15px;
+    }
+  }
   p, h2, h3{
     margin:0px;
     padding:0px;
@@ -3381,6 +3393,17 @@ ul#share-block {
 }
 
 #click_counted.modal{
+  &.hero_campaign_modal{
+    text-align: left;
+    .modal-body{
+      padding: 15px 30px;
+      margin: 0;
+      background-color: $main-background;
+      a.expand div{
+        font-size: 21px;
+      }
+    }
+  }
   .modal-body{
     color: black;
   }

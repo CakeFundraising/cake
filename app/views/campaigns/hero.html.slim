@@ -67,7 +67,13 @@
             - else 
               .col-md-12.text-center
                 .main-cta
-                  = render partial:'clicks/pledge', locals: {pledge: @pledge}
+                  = render partial:'clicks/campaign'
+
+            a.btn data-toggle='modal' data-target='#how_it_works'
+              h4 
+                span.glyphicon.glyphicon-expand
+                span See how Cake works!
+            = render partial:'layouts/how_it_works_modal'
 
 = content_for :bottom_section do
   .main-background
@@ -87,16 +93,7 @@
                   = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
             .col-md-6.hero-pictures-section
               .row
-                - if @pledge.pending?
-                  .col-md-6.no-padding
-                    = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
-                - else
-                  .col-md-6.no-padding.overlay-effects.clearfix#effect-6
-                    = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-                .hero-shake
-                .col-md-6.no-padding
-                  = link_to @campaign.fundraiser do
-                    = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+                = render partial:'campaigns/hero/shaking_pictures'
               .campaign_and_fundraiser.row
                 .col-md-6.no-padding
                   - if @pledge.pending?
@@ -128,11 +125,11 @@
           .coupons
             = render partial:'coupons/show/box', collection: @coupons, as: :coupon
             .text-center
-              = link_to 'See More Offers', load_all_coupons_path(pledge_id: @pledge), remote: true, class:'btn btn-primary', id:'load_all_coupons'            
+              = all_coupons_button(@pledge)
         br
         .green
           .container
-            .row.pledgebluestripe.campaign#sponsors_banner
+            .row.pledgebluestripe.campaign
               .col-md-12.text-center
                 span.h1 
                   span Learn More About 
@@ -142,8 +139,10 @@
         .col-md-4.col-md-push-8
           .sidebar-bkg-2
             .avatar 
-              = link_to @campaign.fundraiser do
-                = @campaign.picture.avatar
+              = picture_rollover(@campaign.picture.avatar, @campaign.url) do
+                div Please visit 
+                div our Website!
+              end
             .avatar-content
               .caption = @campaign.avatar_caption
               .fundraiser-name.text-center
