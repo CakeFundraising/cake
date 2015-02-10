@@ -6,7 +6,7 @@
         h2.modal-title How Cake works
       .modal-body
         /#how_it_works_placeholder
-        iframe id="youtube_video" title="YouTube video player" width="100%" height="400px" src="//www.youtube.com/embed/_zEtobIg5W8" frameborder="0" allowfullscreen
+        iframe id="how_it_works_video" class="youtube_video" title="YouTube video player" width="100%" height="400px" src="//www.youtube.com/embed/_zEtobIg5W8?enablejsapi=1" frameborder="0" allowfullscreen
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal
@@ -15,9 +15,8 @@ javascript:
   var yt_init = function(){
     Cake.videos.youtube({
       modal: '#how_it_works',
-      embedIn: 'how_it_works_placeholder',
       provider: 'youtube',
-      videoId: "_zEtobIg5W8",
+      iframeId: "how_it_works_video",
       autoshow: true
     });
   };

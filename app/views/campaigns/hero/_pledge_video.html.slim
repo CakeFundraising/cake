@@ -9,3 +9,32 @@
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal
+
+javascript:
+  var pledge_provider = "#{object.video.provider}";
+
+  var pledge_options = {
+    modal: '#pledge_video_modal',
+    provider: pledge_provider,
+    iframeId: "#{object.video.id}",
+    autoshow: true
+  };
+
+  var pledge_youtube_init = function(){
+    Cake.videos.youtube(pledge_options);
+  };
+
+  if(pledge_provider === 'youtube'){
+    if(window.YT){
+      pledge_youtube_init();
+    }else{
+      Cake.videos.youtubeApi();
+      if(pledge_provider === 'youtube') Cake.videos.queueFunctions(pledge_youtube_init);
+
+      function onYouTubeIframeAPIReady(){
+        Cake.videos.ytApiReady();
+      }
+    }
+  }else{
+    Cake.videos.vimeo(pledge_options);
+  }

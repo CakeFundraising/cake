@@ -6,7 +6,7 @@ class Video
     @embedIn = args.embedIn
 
     @provider = args.provider
-    @id = args.videoId
+    @id = args.iframeId
     @width = args.width
     @height = args.height
 
@@ -42,10 +42,9 @@ class YoutubeVideo extends Video
   constructor: (args) ->
     super args
 
-    @player = new YT.Player(@embedIn || "video_placeholder",
+    @player = new YT.Player(@id,
       height: @height || "400"
       width: @width || "100%"
-      videoId: @id
     )
     return
 
@@ -61,7 +60,7 @@ class VimeoVideo extends Video
   constructor: (args) ->
     super args
 
-    @iframe = $(args.iframe)[0]
+    @iframe = $("iframe##{@id}")[0]
     @player = $f(@iframe)
     return
   
