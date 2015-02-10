@@ -8,7 +8,7 @@
 .hero-shake
 
 .col-md-6.no-padding
-  - if @pledge.active?
+  - if @pledge.accepted?
     = picture_rollover(@campaign.picture.avatar, @pledge.click_path) do
       div.click_to_help Click to Help! 
       div It's 100% free
