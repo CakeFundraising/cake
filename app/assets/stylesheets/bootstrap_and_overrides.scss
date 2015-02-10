@@ -1792,6 +1792,7 @@ table.performance-summary {
     font-size: 1.2em;
     text-align: center;
     margin-top: 10px;
+    clear: both;
   }
 }
 
@@ -3915,4 +3916,9 @@ ul#share-block {
 
 #boy_scouts {
   width: 1000px;
+}
+
+
+.no-height{
+  height: 0;
 }

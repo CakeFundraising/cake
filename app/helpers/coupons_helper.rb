@@ -11,6 +11,6 @@ module CouponsHelper
   end
 
   def all_coupons_button(pledge, partial=:box)
-    link_to 'See More Offers', load_all_coupons_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary load_all_coupons' if pledge.coupons.count > 2
+    link_to 'See More Offers', load_all_coupons_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_coupons' if pledge.coupons.count > 2
   end
 end
