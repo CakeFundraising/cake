@@ -1,6 +1,5 @@
 class FrSponsor < ActiveRecord::Base
   include Formats
-  #include Analytics
 
   belongs_to :fundraiser
   has_one :location, as: :locatable, dependent: :destroy
@@ -9,8 +8,6 @@ class FrSponsor < ActiveRecord::Base
   has_many :invoices, through: :quick_pledges
 
   delegate :city, :state, :state_code, :country, :address, to: :location
-
-  #alias_method :pledges, :quick_pledges
 
   validates :name, :email, presence: :true
   validates :email, email: true

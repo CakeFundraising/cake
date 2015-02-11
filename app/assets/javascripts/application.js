@@ -61,6 +61,7 @@
 //= require ./clipboard     
 //= require ./fundraisers 
 //= require ./fr_sponsors 
+//= require ./subscriptors
 //= require ./pledge_levels     
 //= require ./quick_pledges
 //= require ./pledge_levels_form
@@ -71,7 +72,6 @@
 //= require ./coupons     
 //= require ./home
 //= require ./pledge_requests   
-//= require ./validations
 //= require ./bank_accounts     
 //= require ./credit_cards      
 //= require ./imgLiquid.min
@@ -93,3 +93,4 @@
 //= require ./expander      
 //= require ./limit_cocoon      
 //= require ./sp
+//= require ./validations

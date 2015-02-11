@@ -21,6 +21,8 @@ class Fundraiser < ActiveRecord::Base
 
   has_many :received_payments, as: :recipient, class_name:'Payment', dependent: :destroy
 
+  has_many :subscriptors, as: :object
+
   delegate :city, :state, :state_code, :country, :address, to: :location
 
   validates :name, :email, :phone, :causes, presence: true

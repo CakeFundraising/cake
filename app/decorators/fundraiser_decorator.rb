@@ -48,4 +48,8 @@ class FundraiserDecorator < ApplicationDecorator
   def manager_phone
     h.number_to_phone(object.manager_phone, area_code: true)
   end
+
+  def subscriptors_count
+    object.subscriptors.count
+  end
 end

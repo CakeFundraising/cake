@@ -191,6 +191,8 @@ Cake::Application.routes.draw do
     post :contact
   end
 
+  resources :subscriptors, only: :create
+
   # Adds routes for evercookie under namespace (path)
   scope "#{Evercookie.get_namespace}" do
     # route for js file to set cookie

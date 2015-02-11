@@ -1,0 +1,21 @@
+#follow_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h3.modal-title Enter your personal data to automatically receive our next Campaign!
+      .modal-body
+        = semantic_form_for object.subscriptors.build do |f|
+          = f.inputs do
+            .row
+              .col-md-12
+                = f.input :first_name
+                = f.input :last_name
+                = f.input :email
+                = f.input :object_type, as: :hidden
+                = f.input :object_id, as: :hidden
+          = f.actions do
+            = f.action :submit, label: 'Follow Us!', button_html: {class: 'btn btn-success btn-lg'}
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

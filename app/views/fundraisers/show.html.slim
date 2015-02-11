@@ -25,9 +25,13 @@
               span Email: 
               = @fundraiser.email
               br
-          .social.med-hide
+          .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Profile!
+          .follow-button-wrapper.pull-right
+            a.btn.btn-default data-toggle='modal' data-target='#follow_modal' Follow Us!
+            = render partial:'subscriptions/follow_modal', locals:{object: @fundraiser}
+
       .col-md-4.sidebar
         .sidebar-bkg.no-border
           .row.text-center
@@ -45,8 +49,6 @@
             .col-md-12.text-center
               .main-cta
                 = link_to t('actions.make_pledge'), new_pledge_path(fundraiser: @fundraiser), class:'btn btn-primary btn-xl'
-
-
   .white
     .container
       .row.sponsor-profile
@@ -152,6 +154,11 @@
             .col-md-3
               strong Pinterest subscribers:
               div = @fundraiser.pinterest_subscribers
+          br
+          .row
+            .col-md-3
+              strong Cake followers:
+              div = @fundraiser.subscriptors_count
 
       .col-md-4
         .avatar 

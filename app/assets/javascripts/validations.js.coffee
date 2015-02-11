@@ -125,4 +125,6 @@ Cake.validations.init = ->
   Cake.quick_pledges.validation()
 
   Cake.mailers.contact_validation()
+
+  Cake.subscriptors.validation()
   return
