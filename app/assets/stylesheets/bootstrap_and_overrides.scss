@@ -1708,6 +1708,14 @@ table.performance-summary {
   color:#363636;
   text-decoration: none;
 }
+.fundraiser_grid{
+  .caption h4 a{
+    color: $link-color;
+  }
+  .buttons{
+    padding: 10px;
+  }
+}
 
 .caption .cause{
   color:#999999;

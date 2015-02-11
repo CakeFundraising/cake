@@ -2,6 +2,7 @@ class FundraisersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
   before_action :allow_fr_only, only: :bank_account
   before_action :require_password, only: :bank_account
+  before_action :require_sp, only: :request_partnership
 
   def show
     @fundraiser = resource.decorate
@@ -32,6 +33,7 @@ class FundraisersController < InheritedResources::Base
     end
   end
 
+  #Bank Accounts
   def bank_account
     @bank_account = BankAccount.new
     render 'bank_accounts/new'
@@ -49,6 +51,19 @@ class FundraisersController < InheritedResources::Base
     else
       render 'bank_accounts/new', alert: 'You bank account information is incorrect.'
     end
+  end
+
+  #Request Partnership
+  def request_partnership
+    @fr = resource.decorate
+  end
+
+  def send_partnership
+    @message = params[:partnership][:message]
+    @fr = resource.decorate
+    @sp = current_sponsor.decorate
+
+    redirect_to root_path, notice: "We've sent your message to #{@fr}!" if UserNotification.fr_partnership_request(@fr.id, @sp.id, @message).deliver
   end
 
   def permitted_params
@@ -74,6 +89,13 @@ class FundraisersController < InheritedResources::Base
 
   def allow_fr_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource
+  end
+
+  def require_sp
+    unless current_sponsor.present?
+      sign_out current_user if current_user.present?
+      redirect_to new_user_registration_path, alert: "In order to request partnership to this Fundraiser you have first to register as a Sponsor."
+    end
   end
 
   def require_password

@@ -28,9 +28,9 @@ class PledgesController < InheritedResources::Base
       @pledge = Pledge.new(campaign_id: params[:campaign])
       render 'new'
     elsif params[:fundraiser].present?
-      redirect_to select_campaign_pledges_path(fundraiser: params[:fundraiser]), notice: 'Please select one of these campaigns to start a pledge.'
+      redirect_to select_campaign_pledges_path(fundraiser: params[:fundraiser]), notice: 'Please select one of these Campaigns to start a pledge.'
     else
-      redirect_to search_campaigns_path, notice: 'Please select one of these campaigns to start a pledge.'
+      redirect_to search_campaigns_path, notice: 'Please select one of these Campaigns to start a pledge.'
     end
   end
 
@@ -200,7 +200,7 @@ class PledgesController < InheritedResources::Base
       cookies[:pledge_campaign] = {value: params[:campaign], expires: 1.hour.from_now }
       cookies[:pledge_fundraiser] = {value: params[:fundraiser], expires: 1.hour.from_now }
       sign_out current_user if current_user.present?
-      alert_message = params[:campaign].present? ? "To pledge this campaign first you have to register as a Sponsor." : "To pledge this fundraiser first you have to register as a Sponsor."
+      alert_message = params[:campaign].present? ? "In order to pledge this campaign first you have to register as a Sponsor." : "To pledge this Fundraiser first you have to register as a Sponsor."
       redirect_to new_user_registration_path, alert: alert_message
     end
   end

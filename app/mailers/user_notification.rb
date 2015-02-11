@@ -41,6 +41,14 @@ class UserNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your public profile has been modified.')
   end
 
+  def fr_partnership_request(fr_id, sp_id, message)
+    @fr = find_fr(fr_id)
+    @sp = find_sp(sp_id).decorate
+    @message = message
+    
+    mail(to: @fr.manager.email, subject: 'You have a new Partnership Request from an interesting Sponsor.')
+  end
+
   protected
 
   def find_fr(id)

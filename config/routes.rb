@@ -95,6 +95,8 @@ Cake::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+      get :request_partnership
+      post :send_partnership
     end  
   end
 
