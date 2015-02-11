@@ -25,9 +25,14 @@
               span Email: 
               = @sponsor.email
               br
-          .social.med-hide
+          .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
+
+          .follow-button-wrapper.pull-right
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
+            = render partial:'subscriptions/follow_modal', locals:{object: @sponsor}
+
       .col-md-4.sidebar
         .sidebar-bkg.no-border
           .row.text-center
@@ -135,18 +140,24 @@
           .row
             .col-md-12
               h3 = Sponsor.human_attribute_name :our_community
-            .col-md-3
+          .row
+            .col-md-4
               strong Email subscribers:
               div = @sponsor.email_subscribers
-            .col-md-3
+            .col-md-4
               strong Facebook subscribers:
               div = @sponsor.facebook_subscribers
-            .col-md-3
+            .col-md-4
               strong Twitter subscribers:
               div = @sponsor.twitter_subscribers
-            .col-md-3
+          br   
+          .row
+            .col-md-4
               strong Pinterest subscribers:
               div = @sponsor.pinterest_subscribers
+            .col-md-4
+              strong Cake followers:
+              div = @sponsor.subscriptors_count
 
           hr
           .row

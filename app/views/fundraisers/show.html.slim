@@ -28,6 +28,7 @@
           .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Profile!
+            
           .follow-button-wrapper.pull-right
             a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
             = render partial:'subscriptions/follow_modal', locals:{object: @fundraiser}
@@ -142,21 +143,22 @@
           .row
             .col-md-12 
               h3.init-caps = Fundraiser.human_attribute_name :our_community
-            .col-md-3
+          .row
+            .col-md-4
               strong Email subscribers:
               div = @fundraiser.email_subscribers
-            .col-md-3
+            .col-md-4
               strong Facebook subscribers:
               div = @fundraiser.facebook_subscribers
-            .col-md-3
+            .col-md-4
               strong Twitter subscribers:
               div = @fundraiser.twitter_subscribers
-            .col-md-3
-              strong Pinterest subscribers:
-              div = @fundraiser.pinterest_subscribers
           br
           .row
-            .col-md-3
+            .col-md-4
+              strong Pinterest subscribers:
+              div = @fundraiser.pinterest_subscribers
+            .col-md-4
               strong Cake followers:
               div = @fundraiser.subscriptors_count
 

@@ -18,9 +18,14 @@
             - if can? :edit, @campaign and not @campaign.past?
               br
               span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
-          .social.med-hide
+          .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
+
+          .follow-button-wrapper.pull-right
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
+            = render partial:'subscriptions/follow_modal', locals:{object: @campaign.fundraiser}
+
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
           .row

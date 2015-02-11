@@ -16,9 +16,14 @@
             span = @pledge.mission
             - if can? :edit, @pledge and not @pledge.past?
               span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
-          .social.med-hide
+          .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Pledge!
+            
+          .follow-button-wrapper.pull-right
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
+            = render partial:'subscriptions/follow_modal', locals:{object: @pledge.sponsor}
+
       .col-md-4.sidebar
         .sidebar-bkg.no-border 
           .row
