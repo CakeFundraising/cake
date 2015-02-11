@@ -17,7 +17,7 @@ class SponsorDecorator < ApplicationDecorator
   end
 
   def website
-    h.auto_attr_link website_url, target: :_blank
+    h.auto_attr_link website_url, target: :_blank unless object.website.blank?
   end
 
   def website_url

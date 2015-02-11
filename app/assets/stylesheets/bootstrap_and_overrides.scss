@@ -489,10 +489,6 @@ p.signup-social span:before, p.signup-social span:after {
 	width: auto !important;
 }
 
-.btn-nav {
-  
-}
-
 .btn-purple{
   background-color: #59368e;
   border: 1px solid #4B2E76;
@@ -502,15 +498,20 @@ p.signup-social span:before, p.signup-social span:after {
   }
 }
 
-.search-query .form-control{
-	
+.btn-transparent-light{
+  background: rgba(255,255,255,0.3);
+  border: 1px solid;
+  &:hover{
+    border: 1px solid $link-color;
+    color: $link-color;
+    background: none;
+  }
 }
 
 .pagination{
   float: right;
   padding-right: 20px;
 }
-
 
 .btn-search{
 	padding:6px 15px !important;

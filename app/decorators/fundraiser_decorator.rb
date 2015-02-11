@@ -25,11 +25,13 @@ class FundraiserDecorator < ApplicationDecorator
   end
 
   def website
-    h.auto_attr_link website_url, target: :_blank
+    h.auto_attr_link website_url, target: :_blank unless object.website.blank?
   end
 
   def website_url
-    (object.website=~/^https?:\/\//).nil? ? "http://#{object.website}" : object.website
+    unless object.website.blank?
+      (object.website=~/^https?:\/\//).nil? ? "http://#{object.website}" : object.website
+    end
   end
 
   def email
