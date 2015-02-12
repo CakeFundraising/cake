@@ -21,6 +21,14 @@ class FrSponsorsController < InheritedResources::Base
     end
   end
 
+  def destroy
+    destroy! do |success, failure|
+      success.html do
+        redirect_to quick_pledges_path, notice: 'Sponsor deleted.'
+      end
+    end
+  end
+
   private
 
   def permitted_params
