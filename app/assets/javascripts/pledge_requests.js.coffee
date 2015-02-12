@@ -6,6 +6,8 @@ Cake.pledge_requests.validation = ->
     rules:
       'pledge_request[message]':
         required: true
+      'pledge_request[campaign_id]':
+        required: true
       'reject_message[message]':
         required: true
   )
