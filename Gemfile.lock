@@ -197,8 +197,8 @@ GEM
     fingerprintjs-rails (0.5.3)
     formtastic (3.1.2)
       actionpack (>= 3.2.13)
-    formtastic-bootstrap (3.0.0)
-      formtastic (>= 2.2)
+    formtastic-bootstrap (3.1.0)
+      formtastic (>= 3.0)
     formtastic_i18n (0.1.1)
     get_process_mem (0.2.0)
     gherkin (2.12.2)
@@ -583,7 +583,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fingerprintjs-rails
-  formtastic-bootstrap
+  formtastic-bootstrap (~> 3.1.0)
   high_voltage
   inherited_resources!
   jcrop-rails-v2
