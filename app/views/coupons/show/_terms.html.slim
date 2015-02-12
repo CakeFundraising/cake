@@ -1,11 +1,11 @@
-.modal.fade id="coupon-#{coupon.id}"
+#coupon_terms.modal.fade
   .modal-dialog.modal-lg
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h3.modal-title Terms & Conditions
       .modal-body
-        = coupon.terms_conditions.html_safe
+        = t('application.terms_and_conditions.coupons').html_safe
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close
     /! /.modal-content

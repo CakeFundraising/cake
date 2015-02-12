@@ -102,6 +102,7 @@
       .row
         .coupons
           = render partial:'coupons/show/box', collection: @coupons, as: :coupon
+          = render partial:'coupons/show/terms'
           .text-center
             = all_coupons_button(@pledge)
     .row
