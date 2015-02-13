@@ -1,0 +1,6 @@
+.pledge_news-actions
+  - if can? :crud, pledge_news
+    = link_to edit_pledge_news_path(pledge_news), class:'btn btn-primary btn-sm' do
+      span.glyphicon.glyphicon-pencil
+    = link_to pledge_news, method: :delete, data: {confirm: 'Are you sure you want to delete this Coupon?'}, class:'btn btn-sm btn-danger' do
+      span.glyphicon.glyphicon-trash

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211162306) do
+ActiveRecord::Schema.define(version: 20150213151854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,6 +268,15 @@ ActiveRecord::Schema.define(version: 20150211162306) do
     t.integer  "qrcode_crop_y"
     t.integer  "qrcode_crop_w"
     t.integer  "qrcode_crop_h"
+  end
+
+  create_table "pledge_news", force: :cascade do |t|
+    t.string   "headline"
+    t.text     "story"
+    t.string   "url"
+    t.integer  "pledge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pledge_requests", force: :cascade do |t|

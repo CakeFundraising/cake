@@ -15,9 +15,10 @@ class Ability
       can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       can :crud, Coupon, sponsor: user.sponsor
+      can :crud, PledgeNews, sponsor: user.sponsor
 
       #PledgeRequest
-      can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id    
+      can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id
     end
 
     if user.has_role?(:fundraiser)

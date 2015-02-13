@@ -7,6 +7,7 @@
         = wizard_menu_item(edit_pledge_path(@pledge), t('links.wizards.pledge.your_pledge'))
         = wizard_menu_item(tell_your_story_pledge_path(@pledge), t('links.wizards.pledge.tell_your_story'))
         = wizard_menu_item(add_coupon_pledge_path(@pledge), t('links.wizards.pledge.add_coupon'))
+        = wizard_menu_item(news_pledge_path(@pledge), t('links.wizards.pledge.news'))
         = wizard_menu_item(share_pledge_path(@pledge), t('links.wizards.pledge.share'))
     - else
       ul.nav.nav-pills
@@ -16,5 +17,7 @@
           a href="" = t('links.wizards.pledge.tell_your_story')
         li
           a href="" = t('links.wizards.pledge.add_coupon')
+        li
+          a href="" = t('links.wizards.pledge.news')
         li
           a href="" = t('links.wizards.pledge.share')        

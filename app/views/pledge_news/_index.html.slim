@@ -1,0 +1,5 @@
+hr
+
+#pledge_news.row-fluid
+  = render partial:'pledge_news/show/box', collection: pledge.pledge_news.latest.decorate, as: :coupon
+  = render partial:'pledge_news/show/terms'

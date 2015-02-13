@@ -23,7 +23,9 @@ class Pledge < ActiveRecord::Base
   has_many :unique_click_browsers, through: :clicks, source: :browser
   has_many :bonus_click_browsers, through: :bonus_clicks, source: :browser
 
-  has_many :impressions, as: :impressionable
+  has_many :impressions, as: :impressionable, dependent: :destroy
+
+  has_many :pledge_news, dependent: :destroy
 
   delegate :main_cause, :active?, :hero, to: :campaign
 
