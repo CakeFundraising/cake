@@ -19,6 +19,6 @@ describe QuickPledge do
   end
 
   it "should have statuses" do
-    expect(QuickPledge.statuses[:status]).to eq [:incomplete, :confirmed, :past]
+    expect(QuickPledge.statuses[:status]).to eq [:incomplete, :pending, :accepted, :rejected, :past]
   end
 end

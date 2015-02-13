@@ -27,6 +27,8 @@ class QuickPledge < Pledge
   end
 
   def not_hero_campaign
-    errors.add(:campaign, "Hero campaigns cannot have quick pledges.") if self.campaign.hero
+    if self.campaign.present?
+      errors.add(:campaign, "Hero campaigns cannot have quick pledges.") if self.campaign.hero
+    end
   end
 end

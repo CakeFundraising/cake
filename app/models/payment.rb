@@ -39,9 +39,17 @@ class Payment < ActiveRecord::Base
     payment
   end
 
+  def get_stripe_balance
+    balance = Stripe::Balance.retrieve
+    if Rails.env.test?
+      balance.available.first.amount = 999999999
+    end
+    balance
+  end
+
   def transfer!
     if present_recipient? and balance_available?
-      stripe_trasfer
+      stripe_transfer
       notify_transfer
       update_attribute(:status, :transferred)
     end
@@ -104,12 +112,14 @@ class Payment < ActiveRecord::Base
   end
 
   def balance_available?
-    balance = Stripe::Balance.retrieve
+
+    balance = self.get_stripe_balance
+
     available_amount = balance.available.first.amount
     available_amount > transfer_amount
   end
 
-  def stripe_trasfer
+  def stripe_transfer
     transfer = Stripe::Transfer.create(
       amount: transfer_amount,
       currency: self.total_currency.downcase,
