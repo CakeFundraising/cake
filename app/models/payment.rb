@@ -1,5 +1,6 @@
 class Payment < ActiveRecord::Base
   include Statusable
+  include PaymentsHelper
   has_statuses :charged, :transferred
 
   attr_accessor :card_token, :customer_id
@@ -37,14 +38,6 @@ class Payment < ActiveRecord::Base
     payment.payer = payer
     payment.total_cents = payment.item.total_fees_cents
     payment
-  end
-
-  def get_stripe_balance
-    balance = Stripe::Balance.retrieve
-    if Rails.env.test?
-      balance.available.first.amount = 999999999
-    end
-    balance
   end
 
   def transfer!

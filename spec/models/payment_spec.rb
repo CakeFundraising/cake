@@ -50,7 +50,11 @@ describe Payment do
       transfer =  @payment.transfers.first
       
       expect(transfer).to be_instance_of(Transfer)
-      expect(transfer.amount_cents).to eq ((1-Cake::APPLICATION_FEE)*(((1-Cake::STRIPE_FEE)*@payment.total_cents) - 30).round).round
+
+      total_after_fees = (((1-Cake::STRIPE_FEE)*@payment.total_cents) - 30).round
+      total_after_fees = ((1-Cake::APPLICATION_FEE)*total_after_fees).round
+
+      expect(transfer.amount_cents).to eq total_after_fees
     end
   end
 

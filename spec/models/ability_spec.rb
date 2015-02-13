@@ -39,6 +39,9 @@ end
 shared_examples 'an owned object' do
   context 'actions by the owner' do
     it "can edit his own object" do
+      if owned_object.is_a?(Coupon)
+        puts owned_object.inspect
+      end
       expect(@ability).to be_able_to(:edit, owned_object)
     end
 
@@ -180,9 +183,12 @@ describe Ability do
       end
 
       it_behaves_like "an owned object" do
+        @sponsor = FactoryGirl.create(:sponsor)
+        @user = @sponsor.manager
+        @ability = Ability.new(@user)
         pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
         
-        let(:owned_object) { FactoryGirl.create(:coupon, pledge: pledge) }
+        let(:owned_object) { FactoryGirl.create(:coupon, pledge: pledge, sponsor: @sponsor) }
         let(:foreign_object) { FactoryGirl.create(:coupon) }
       end
     end
