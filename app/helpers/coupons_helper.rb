@@ -10,6 +10,17 @@ module CouponsHelper
     end
   end
 
+  def pledge_news_pic(pledge_news)
+    if pledge_news.url.nil?
+      pledge_news.picture.avatar
+    else
+      # Link with rollover
+      picture_rollover(pledge_news.picture.avatar, pledge_news.url) do
+        content_tag(:div, 'Click to learn more')
+      end
+    end
+  end
+
   def all_coupons_button(pledge, partial=:box)
     link_to 'See More Offers', load_all_coupons_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_coupons' if pledge.coupons.count > 2
   end

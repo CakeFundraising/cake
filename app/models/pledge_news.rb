@@ -6,7 +6,7 @@ class PledgeNews < ActiveRecord::Base
 
   scope :latest, ->{ order(created_at: :desc) }
 
-  validates :headline, :story, :url, presence: true
+  validates :headline, :story, :url, :pledge_id, presence: true
 
   delegate :city, :state_code, to: :sponsor
 end

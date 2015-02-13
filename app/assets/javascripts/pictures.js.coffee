@@ -75,7 +75,8 @@ Cake.pictures.validation.init = ->
     '.formtastic.campaign', 
     '.formtastic.fundraiser', 
     '.formtastic.sponsor',
-    '.formtastic.quick_pledge'
+    '.formtastic.quick_pledge',
+    '.formtastic.pledge_news'
   ]
 
   avatarValidator = new PictureValidation(

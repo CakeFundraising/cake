@@ -270,6 +270,9 @@ en:
         views: Pledge Views
       pledge_request: 
         start_end_dates: Launch/ End Date
+      pledge_news:
+        story: Tell your story
+        url: "Send customers directly to the most relevant URL where they can take action"
       sponsor:
         name: Company Name
         phone: Company Phone Number
