@@ -100,7 +100,7 @@ class PledgesController < InheritedResources::Base
 
   def news
     @pledge = resource.decorate
-    @news = @pledge.pledge_news.decorate
+    @news = @pledge.pledge_news.latest.decorate
     render 'pledges/form/news'    
   end
 

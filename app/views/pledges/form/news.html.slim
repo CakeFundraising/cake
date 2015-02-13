@@ -12,7 +12,10 @@
         .buttons.text-center
           .toggle-container
             .col-md-5
-              = link_to 'Share a Story', new_pledge_news_path(pledge_id: @pledge), class:'btn btn-success'
+              - if @news.any?
+                = link_to 'Share another Story', new_pledge_news_path(pledge_id: @pledge), class:'btn btn-success'
+              - else
+                = link_to 'Share a Story', new_pledge_news_path(pledge_id: @pledge), class:'btn btn-success'
             .col-md-2
               .vertical-divider 
                 span or
