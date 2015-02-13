@@ -26,6 +26,6 @@ module CouponsHelper
   end
 
   def all_news_button(pledge, partial=:box)
-    link_to 'See More', load_all_pledge_news_index_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_news' if pledge.coupons.count > 1
+    link_to 'See More', load_all_pledge_news_index_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_news' if pledge.pledge_news.count > 1
   end
 end

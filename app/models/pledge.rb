@@ -210,7 +210,7 @@ class Pledge < ActiveRecord::Base
   end
 
   def news_sample
-    self.pledge_news.latest.first
+    self.pledge_news.latest.limit(1)
   end
 
   private

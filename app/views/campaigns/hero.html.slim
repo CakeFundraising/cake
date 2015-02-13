@@ -130,14 +130,15 @@
 
       = render partial:'pledges/show/coupons_and_news'
 
-      br
-      .green
-        .container
-          .row.pledgebluestripe.campaign
-            .col-md-12.text-center
-              span.h1 
-                span Learn More About 
-                span.boldest = @campaign.fundraiser
+      - if @coupons.any? or @news.any?
+        br
+        .green
+          .container
+            .row.pledgebluestripe.campaign
+              .col-md-12.text-center
+                span.h1 
+                  span Learn More About 
+                  span.boldest = @campaign.fundraiser
 
     .container
       .row.sponsor-profile
