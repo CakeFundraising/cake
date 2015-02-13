@@ -114,7 +114,7 @@ Cake.validations.init = ->
   
   Cake.campaigns.validation()
   Cake.pledges.validation()
-  Cake.pledges.news_validation()
+  Cake.pledge_news.validation()
   Cake.pledge_requests.validation()
   Cake.coupons.validation()
 

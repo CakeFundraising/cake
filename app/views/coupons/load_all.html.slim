@@ -1,1 +1,2 @@
-= render partial:"coupons/show/#{@partial}", collection: @coupons, as: :coupon unless @coupons.send(:object).nil?
+#remote_coupons
+  = render partial:"coupons/show/#{@partial}", collection: @coupons, as: :coupon

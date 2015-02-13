@@ -204,6 +204,15 @@ class Pledge < ActiveRecord::Base
     views_count + bonus_clicks_count + clicks_count
   end
 
+  #Coupons & News
+  def coupons_sample
+    self.coupons.latest.limit(2)
+  end
+
+  def news_sample
+    self.pledge_news.latest.first
+  end
+
   private
 
   def max_amount

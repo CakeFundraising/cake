@@ -137,6 +137,16 @@
             = render partial:'coupons/show/terms'
             .text-center
               = all_coupons_button(@pledge)
+
+      - if @news.present?
+        .row
+          .col-md-12.special-offers
+            h1 Important News from #{@pledge.sponsor}
+        .row
+          .news
+            = render partial:'pledge_news/show/box', locals: {pledge_news: @news}
+            .text-center
+              = all_news_button(@pledge)
         br
         .green
           .container

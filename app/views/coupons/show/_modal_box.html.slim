@@ -1,7 +1,6 @@
 .coupon-wrapper
   = render partial:'coupons/form/actions', locals: {coupon: coupon}
 
-
   - cache [:coupon_box, :modal, coupon] do 
     .coupon_box.clearfix
       - if coupon.extra_donation_pledge

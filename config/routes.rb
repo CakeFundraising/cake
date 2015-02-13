@@ -156,6 +156,9 @@ Cake::Application.routes.draw do
   end
 
   resources :pledge_news do
+    collection do
+      get :load_all
+    end
     member do
       scope :pictures, controller: :cropping do
         post :crop

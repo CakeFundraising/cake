@@ -36,6 +36,14 @@ class PledgeNewsController < InheritedResources::Base
     end
   end
 
+  def load_all
+    @pledge = Pledge.find(params[:pledge_id]).decorate
+    @news = PledgeNewsDecorator.decorate_collection @pledge.pledge_news.latest.offset(1)
+    @partial = params[:partial]
+
+    @news.any? ? render(:load_all, layout: false) : render(nothing: true)
+  end
+
   def permitted_params
     params.permit(
       pledge_news: [

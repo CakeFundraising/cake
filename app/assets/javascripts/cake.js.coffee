@@ -16,6 +16,7 @@ Cake.init = ->
   Cake.bootstrap_overrides.init()
   #Cake.coupons.tos()
   Cake.coupons.load_all()
+  Cake.pledge_news.load_all()
   Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()

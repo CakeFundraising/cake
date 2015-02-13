@@ -76,7 +76,8 @@
 //= require ./credit_cards      
 //= require ./imgLiquid.min
 //= require ./impressions
-//= require ./pledges     
+//= require ./pledges  
+//= require ./pledge_news  
 //= require ./pictures   
 //= require ./videos
 //= require ./jquery.cloudinary      
