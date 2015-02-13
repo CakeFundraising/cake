@@ -8,6 +8,7 @@
 
     = render partial:'videos/button', locals:{object: @campaign}
     = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
+    
     .hero-screen
   .container
     .content.row.pull-up
@@ -127,34 +128,17 @@
             .col-md-4.col-md-push-4
               = render partial:'clicks/pledge', locals: {pledge: @pledge}
 
-      - if @coupons.any? and @pledge.show_coupons
-        .row
-          .col-md-12.special-offers
-            h1 Special Offers from #{@pledge.sponsor}
-        .row
-          .coupons
-            = render partial:'coupons/show/box', collection: @coupons, as: :coupon
-            = render partial:'coupons/show/terms'
-            .text-center
-              = all_coupons_button(@pledge)
+      = render partial:'pledges/show/coupons_and_news'
 
-      - if @news.present?
-        .row
-          .col-md-12.special-offers
-            h1 Important News from #{@pledge.sponsor}
-        .row
-          .news
-            = render partial:'pledge_news/show/box', locals: {pledge_news: @news}
-            .text-center
-              = all_news_button(@pledge)
-        br
-        .green
-          .container
-            .row.pledgebluestripe.campaign
-              .col-md-12.text-center
-                span.h1 
-                  span Learn More About 
-                  span.boldest = @campaign.fundraiser
+      br
+      .green
+        .container
+          .row.pledgebluestripe.campaign
+            .col-md-12.text-center
+              span.h1 
+                span Learn More About 
+                span.boldest = @campaign.fundraiser
+
     .container
       .row.sponsor-profile
         .col-md-4.col-md-push-8

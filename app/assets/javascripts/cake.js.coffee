@@ -14,9 +14,6 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.init()
-  #Cake.coupons.tos()
-  Cake.coupons.load_all()
-  Cake.pledge_news.load_all()
   Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()
@@ -26,6 +23,8 @@ Cake.init = ->
   Cake.browsers.fingerprint()
 
   Cake.clicks.init()
+
+  Cake.utils.init()
   return
 
 $(document).ready(Cake.init)

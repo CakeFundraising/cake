@@ -12,7 +12,6 @@ class PledgeNewsController < InheritedResources::Base
   end
 
   def create
-    p resource
     create! do |success, failure|
       success.html do
         redirect_to news_pledge_path(resource.pledge)
