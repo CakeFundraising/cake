@@ -130,7 +130,7 @@
 
       = render partial:'pledges/show/coupons_and_news'
 
-      - if @coupons.any? or @news.any?
+      - if @coupons.any? or @news.present?
         br
         .green
           .container
