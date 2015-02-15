@@ -20,7 +20,9 @@ ul.nav.nav-tabs.pad-top
         .account-wrapper
           = semantic_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
             = f.inputs nil do
-              = f.input :full_name, autofocus: true, label:'Full Name'
+              a.btn.float-right data-toggle="tooltip" data-placement="right" data-original-title="This is your Cake username only. Set the name you want to appear on your Campaigns by editing your public profile."
+                img.tooltip-icon src='/assets/tooltip-icon.png'
+              = f.input :full_name, autofocus: true, label:'User Name'
               = f.input :email, label:'Email Address'
               - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                 div Currently waiting confirmation for: #{resource.unconfirmed_email}
@@ -31,3 +33,6 @@ ul.nav.nav-tabs.pad-top
               i.help-block We need your current password to confirm your changes
             = f.actions do
               = f.action :submit, label: 'Update Account', button_html: {class: 'btn btn-success btn-lg btn-block'}
+
+javascript:
+  $('[data-toggle="tooltip"]').tooltip();

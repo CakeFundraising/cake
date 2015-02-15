@@ -2,6 +2,8 @@ h1.dash-head
   span Quick Pledges
   .page-cta
     = link_to 'Add a New Sponsor', new_fr_sponsor_path, class:'btn btn-primary btn-md'
+  a.btn.float-right data-toggle="tooltip" data-placement="right" data-original-title="A Quick Pledge enables you to create a Sponsorship for a company that does not have a Cake account. At the end of a Campaign, Cake will email you an invoice you can forward to your Sponsor. It is your responsibility to collect from your Quick Pledge Sponsors."
+    img.tooltip-icon src='/assets/tooltip-icon.png'
 
 #fr_sponsors.panel-group role="tablist" aria-multiselectable="true"
   - if @fr_sponsors.any?
@@ -11,3 +13,6 @@ h1.dash-head
 
 br
 br
+
+javascript:
+  $('[data-toggle="tooltip"]').tooltip();

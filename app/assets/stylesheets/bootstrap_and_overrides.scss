@@ -127,6 +127,14 @@ hr{
   text-align: left;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
 //Navbar --------------------------------------------------------------------------------
 .nav {
   margin-top: 15px;
@@ -3944,4 +3952,19 @@ ul#share-block {
   .details{
     width: 100%;
   }
+}
+
+// Tooltip -------------------------------------------------------
+
+.tooltip-title {
+  display: inline-block;
+}
+
+.tooltip-icon {
+  width: 20px;
+}
+
+.tooltip-inner {
+  font-size: 1.4em;
+  max-width: 500px;
 }
