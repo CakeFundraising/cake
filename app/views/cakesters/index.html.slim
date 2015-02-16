@@ -1,0 +1,53 @@
+h1 Listing cakesters
+
+table
+  thead
+    tr
+      th Name
+      th Email
+      th Phone
+      th Website
+      th Manager name
+      th Manager email
+      th Manager title
+      th Manager phone
+      th Mission
+      th About
+      th Causes mask
+      th Scopes mask
+      th Cause requirements mask
+      th Email subscribers
+      th Facebook subscribers
+      th Twitter subscribers
+      th Pinterest subscribers
+      th
+      th
+      th
+
+  tbody
+    - @cakesters.each do |cakester|
+      tr
+        td = cakester.name
+        td = cakester.email
+        td = cakester.phone
+        td = cakester.website
+        td = cakester.manager_name
+        td = cakester.manager_email
+        td = cakester.manager_title
+        td = cakester.manager_phone
+        td = cakester.mission
+        td = cakester.about
+        td = cakester.causes_mask
+        td = cakester.scopes_mask
+        td = cakester.cause_requirements_mask
+        td = cakester.email_subscribers
+        td = cakester.facebook_subscribers
+        td = cakester.twitter_subscribers
+        td = cakester.pinterest_subscribers
+        td = link_to 'Show', cakester
+        td = link_to 'Edit', edit_cakester_path(cakester)
+        td = link_to 'Destroy', cakester, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Cakester', new_cakester_path

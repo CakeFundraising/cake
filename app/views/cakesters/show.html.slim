@@ -1,0 +1,57 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @cakester.name
+p
+  strong Email:
+  = @cakester.email
+p
+  strong Phone:
+  = @cakester.phone
+p
+  strong Website:
+  = @cakester.website
+p
+  strong Manager name:
+  = @cakester.manager_name
+p
+  strong Manager email:
+  = @cakester.manager_email
+p
+  strong Manager title:
+  = @cakester.manager_title
+p
+  strong Manager phone:
+  = @cakester.manager_phone
+p
+  strong Mission:
+  = @cakester.mission
+p
+  strong About:
+  = @cakester.about
+p
+  strong Causes mask:
+  = @cakester.causes_mask
+p
+  strong Scopes mask:
+  = @cakester.scopes_mask
+p
+  strong Cause requirements mask:
+  = @cakester.cause_requirements_mask
+p
+  strong Email subscribers:
+  = @cakester.email_subscribers
+p
+  strong Facebook subscribers:
+  = @cakester.facebook_subscribers
+p
+  strong Twitter subscribers:
+  = @cakester.twitter_subscribers
+p
+  strong Pinterest subscribers:
+  = @cakester.pinterest_subscribers
+
+= link_to 'Edit', edit_cakester_path(@cakester)
+'|
+= link_to 'Back', cakesters_path

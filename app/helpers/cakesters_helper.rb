@@ -1,0 +1,2 @@
+module CakestersHelper
+end

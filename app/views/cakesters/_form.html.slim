@@ -1,0 +1,60 @@
+= form_for @cakester do |f|
+  - if @cakester.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@cakester.errors.count, "error")} prohibited this cakester from being saved:"
+      ul
+        - @cakester.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :manager_name
+    = f.text_field :manager_name
+  .field
+    = f.label :manager_email
+    = f.text_field :manager_email
+  .field
+    = f.label :manager_title
+    = f.text_field :manager_title
+  .field
+    = f.label :manager_phone
+    = f.text_field :manager_phone
+  .field
+    = f.label :mission
+    = f.text_area :mission
+  .field
+    = f.label :about
+    = f.text_area :about
+  .field
+    = f.label :causes_mask
+    = f.number_field :causes_mask
+  .field
+    = f.label :scopes_mask
+    = f.number_field :scopes_mask
+  .field
+    = f.label :cause_requirements_mask
+    = f.number_field :cause_requirements_mask
+  .field
+    = f.label :email_subscribers
+    = f.text_field :email_subscribers
+  .field
+    = f.label :facebook_subscribers
+    = f.text_field :facebook_subscribers
+  .field
+    = f.label :twitter_subscribers
+    = f.text_field :twitter_subscribers
+  .field
+    = f.label :pinterest_subscribers
+    = f.text_field :pinterest_subscribers
+  .actions = f.submit

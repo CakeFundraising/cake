@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213151854) do
+ActiveRecord::Schema.define(version: 20150216203531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,29 @@ ActiveRecord::Schema.define(version: 20150213151854) do
 
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
+
+  create_table "cakesters", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "manager_name"
+    t.string   "manager_email"
+    t.string   "manager_title"
+    t.string   "manager_phone"
+    t.text     "mission"
+    t.text     "about"
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
+    t.integer  "cause_requirements_mask"
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
+    t.integer  "manager_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                limit: 255
