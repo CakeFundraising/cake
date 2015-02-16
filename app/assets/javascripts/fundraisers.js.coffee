@@ -46,3 +46,12 @@ Cake.fundraisers.validation = ->
         required: true
   )
   return
+
+Cake.fundraisers.request_partnership_validation = ->
+  $('.formtastic.partnership').validate(
+    errorElement: "span"
+    rules:
+      'partnership[message]':
+        required: true
+  )
+  return

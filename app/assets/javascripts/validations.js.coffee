@@ -109,6 +109,7 @@ Cake.validations.init = ->
   Cake.users.validation()
   Cake.fundraisers.validation()
   Cake.sponsors.validation()
+  Cake.fundraisers.request_partnership_validation()
 
   Cake.fr_sponsors.validation()
   
