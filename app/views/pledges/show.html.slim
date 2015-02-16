@@ -98,12 +98,9 @@
     = render partial:'pledges/show/coupons_and_news'
     
     .row
-      .col-md-4.col-md-push-8.text-center
+      .col-md-12.text-center
         / DIRECT DONATION 
         = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
-      .col-md-8.col-md-pull-4
-        / DISQUS COMMENTS
-        = render partial:'pledges/show/disqus'
     .row
       .col-md-12
         / SHARE BUTTONS
@@ -111,6 +108,10 @@
           h2 Please share our pledge with your family and friends!
           p.text-muted Working together, we can make a difference.
           .text-center = render partial:'layouts/share_buttons'
+    / .row
+    /   .col-md-12.text-center
+    /     / DISQUS COMMENTS
+    /     = render partial:'pledges/show/disqus'
 
   / CAUSES/SPONSORS CIRCLES        
   = render partial: 'layouts/choose_path'

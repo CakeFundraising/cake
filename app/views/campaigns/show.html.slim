@@ -114,9 +114,6 @@
     .container
       .row
         .col-md-4.col-md-push-8.text-center
-          / DIRECT DONATION 
-          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-
           / MAKE A PLEDGE BANNER
           - if not @campaign.past?
             .make-pledge.well
@@ -126,9 +123,9 @@
                     b> Attention Business Owners!
                     | Support us and reach new customers!
                   = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
-        / DISQUS COMMENTS
         .col-md-8.col-md-pull-4.campaign-story
-          = render partial:'campaigns/show/disqus'
+          / DIRECT DONATION 
+          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
       .row
         .col-md-12
           / SHARE BUTTONS 
@@ -136,6 +133,11 @@
             h2 Please share our campaign with your family and friends!
             p.text-muted Working together, we can make a difference.
             = render partial:'layouts/share_buttons'
+      / .row
+      /   .col-md-12.text-center
+      /     / DISQUS COMMENTS
+      /     = render partial:'campaigns/show/disqus'
+
 
     / CAUSES/SPONSORS CIRCLES
     = render partial: 'layouts/choose_path'
