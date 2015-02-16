@@ -1,7 +1,7 @@
 class PledgesController < InheritedResources::Base
   load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, only: :new
-  before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :share]
+  before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :news, :share]
   before_action :check_hero_campaign, only: :accept
   before_action :redirect_to_hero_campaign, only: :show
 
@@ -9,7 +9,7 @@ class PledgesController < InheritedResources::Base
     :your_pledge,
     :tell_your_story,
     :add_coupon,
-    # :add_sweepstakes,
+    :news,
     :share
   ]
 
@@ -36,7 +36,8 @@ class PledgesController < InheritedResources::Base
 
   def show
     @pledge = resource.decorate
-    @coupons = @pledge.coupons.latest.limit(2).decorate
+    @coupons = @pledge.coupons_sample.decorate
+    @news = @pledge.news_sample.decorate
   end
 
   def create
@@ -95,6 +96,12 @@ class PledgesController < InheritedResources::Base
     @pledge = resource
     @pledge.sweepstakes.build unless @pledge.sweepstakes.any?
     render 'pledges/form/add_sweepstakes'
+  end
+
+  def news
+    @pledge = resource.decorate
+    @news = @pledge.pledge_news.latest.decorate
+    render 'pledges/form/news'    
   end
 
   def share

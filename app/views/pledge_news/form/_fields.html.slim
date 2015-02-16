@@ -1,0 +1,31 @@
+.nested-fields.coupon-outer-wrap
+  = f.inputs do
+    .row.section-wrapper.text-center
+      .col-md-2
+      .col-md-8.text-left
+        .col-md-12
+          = f.input :headline, input_html:{size: 80, maxlength: 80, placeholder: '80 characters or less'}
+      .col-md-2
+    .row
+      .col-md-2
+      .col-md-8
+        .col-md-12
+          = f.input :story, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
+          hr
+          h4 Make this box interactive
+          = f.input :url, input_html:{placeholder:'Enter a URL'}
+          = f.input :pledge_id, as: :hidden
+      .col-md-2
+    .row.section-wrapper.coupon-uploads.text-center
+      h2 Images
+      br
+      .col-md-2
+      .col-sm-4
+        .coupon-images
+          h5 Primary Image
+          = render partial:'pictures/avatar_form', locals:{f: f}
+      .col-sm-4
+        .coupon-images
+          h5 Upload a second image (Optional)
+          = render partial:'pictures/qrcode_form', locals:{f: f}
+      .col-md-2

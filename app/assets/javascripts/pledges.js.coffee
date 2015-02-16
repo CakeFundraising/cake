@@ -47,4 +47,4 @@ Cake.pledges.validation = ->
         required: true
   )
   return
-  
+

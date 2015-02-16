@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  belongs_to :picturable, polymorphic: true
+  belongs_to :picturable, polymorphic: true, touch: true
 
   AVATAR_SIZES = {
     ico: [25, 19],

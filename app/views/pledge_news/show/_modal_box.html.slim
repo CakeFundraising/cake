@@ -1,0 +1,17 @@
+.coupon-wrapper
+  = render partial:'pledge_news/form/actions', locals: {pledge_news: pledge_news}
+
+  - cache [:pledge_news_box, pledge_news] do 
+    .coupon_box.clearfix
+      .col-xs-12.coupon.coupon-modal
+        .row
+          .col-md-4
+            = pledge_news_pic(pledge_news)
+            .pledge_news-edge
+          .col-md-6
+            div.pledge_news-content
+              h2 = pledge_news
+              hr
+              p = pledge_news.story
+          .col-md-2.text-right
+            = pledge_news.picture.qrcode

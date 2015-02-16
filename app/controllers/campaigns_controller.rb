@@ -28,7 +28,11 @@ class CampaignsController < InheritedResources::Base
   def hero
     @campaign = resource.decorate
     @pledge = HeroPledgeDecorator.decorate(@campaign.hero_pledge || @campaign.build_hero_pledge)
-    @coupons = @pledge.coupons.latest.limit(2).decorate if @pledge.present?
+    
+    if @pledge.present?
+      @coupons = @pledge.coupons_sample.decorate 
+      @news = @pledge.news_sample.first.decorate if @pledge.news_sample.any?
+    end
   end
 
   def create
