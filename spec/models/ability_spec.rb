@@ -39,9 +39,6 @@ end
 shared_examples 'an owned object' do
   context 'actions by the owner' do
     it "can edit his own object" do
-      if owned_object.is_a?(Coupon)
-        puts owned_object.inspect
-      end
       expect(@ability).to be_able_to(:edit, owned_object)
     end
 
