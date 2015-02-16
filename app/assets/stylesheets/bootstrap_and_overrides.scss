@@ -2162,7 +2162,21 @@ a {
   .coupon-actions{
     position: absolute;
     right: 120px;
-    z-index: 99;
+    z-index: 9999;
+  }
+  .news-actions{
+    position: absolute;
+    z-index: 9999;
+    padding-top: 5px;
+    left: 6.8%;
+    div{
+      margin-bottom: 7px;
+    }
+  }
+}
+.coupons_section{
+  .news-actions{
+    left: 103px;
   }
 }
 
