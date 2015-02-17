@@ -36,7 +36,7 @@ html lang="en"
 
   body.fixed
     = render partial: 'layouts/main_nav'
-    = bootstrap_flash
+    .container = bootstrap_flash
     - if content_for? :header
       header
         = yield :header

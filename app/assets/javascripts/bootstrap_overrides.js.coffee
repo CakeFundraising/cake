@@ -14,7 +14,7 @@ Cake.bootstrap_overrides.hide_alert = ->
         $(this).remove()
         return
       return
-    ), 3000
+    ), 3500
   return
 
 Cake.bootstrap_overrides.stacked_modals = ->
