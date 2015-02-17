@@ -28,8 +28,8 @@
               h4.share-info.pull-left Please share our Campaign!
 
             .follow-button-wrapper.pull-right
-              a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
-              = render partial:'subscriptions/follow_modal', locals:{object: @campaign.fundraiser}
+              a.btn.btn-transparent-light data-toggle='modal' data-target='#campaign_top_subs_modal' Contact Us!
+              = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, position:'campaign.top'}
 
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
@@ -102,6 +102,11 @@
                     span.glyphicon.glyphicon-expand
                     span See our video
                   = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
+
+              a data-toggle='modal' data-target='#sp_subs_modal'
+                span.glyphicon.glyphicon-envelope
+                span Contact us!
+              = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, position:'sp'}
             .col-md-6.hero-pictures-section
               .row
                 = render partial:'campaigns/hero/shaking_pictures'
@@ -158,9 +163,18 @@
           p.story.expander = @campaign.story
 
     .container
-      .row
-        .col-md-12.text-center
+      .row.text-center
+        .col-md-6
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+        .col-md-6
+          .make-pledge.well
+            .row
+              .col-md-12s
+                h4.attention-owners
+                  b> Business Owners:
+                  | You can Partner with #{@campaign.fundraiser} too!
+                a.btn.btn-primary data-toggle='modal' data-target='#campaign_partner_subs_modal' Learn How
+                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, position:'campaign.partner'}
       .row
         .col-md-12
           / SHARE BUTTONS 

@@ -3463,6 +3463,19 @@ ul#share-block {
   }
 }
 
+.contact-modal{
+  h3{
+    font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+  }
+  .modal-body{
+    padding: 20px;
+  }
+  .lead{
+    font-size: 18px;
+  }
+}
+
 // Images Cropping -------------------------------------------------------
 
 #crop_modal{
