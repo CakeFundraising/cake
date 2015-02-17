@@ -24,7 +24,7 @@
 
           .follow-button-wrapper.pull-right
             a.btn.btn-transparent-light data-toggle='modal' data-target='#campaign_top_subs_modal' Contact Us!
-            = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, position: 'campaign.top'}
+            = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position: 'campaign.top'}
 
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
@@ -124,7 +124,7 @@
                   b> Business Owners:
                   | You can Partner with #{@campaign.fundraiser} too!
                 a.btn.btn-primary data-toggle='modal' data-target='#campaign_partner_subs_modal' Learn How
-                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, position:'campaign.partner'}
+                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.partner'}
       .row
         .col-md-12
           br

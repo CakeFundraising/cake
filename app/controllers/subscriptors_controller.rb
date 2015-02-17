@@ -15,7 +15,7 @@ class SubscriptorsController < InheritedResources::Base
 
   def permitted_params
     params.permit(
-      subscriptor: [:name, :email, :organization, :phone, :message, :object_type, :object_id]
+      subscriptor: [:name, :email, :organization, :phone, :message, :object_type, :object_id, :origin_type, :origin_id]
     )
   end
 end

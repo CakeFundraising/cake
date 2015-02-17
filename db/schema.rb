@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217203030) do
+ActiveRecord::Schema.define(version: 20150217212402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -414,6 +414,8 @@ ActiveRecord::Schema.define(version: 20150217203030) do
     t.string   "organization"
     t.text     "message"
     t.string   "name"
+    t.string   "origin_type"
+    t.string   "origin_id"
   end
 
   create_table "sweepstakes", force: :cascade do |t|

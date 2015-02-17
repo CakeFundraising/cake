@@ -22,7 +22,7 @@
             
           .follow-button-wrapper.pull-right
             a.btn.btn-transparent-light data-toggle='modal' data-target='#sp_subs_modal' Contact Us!
-            = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, position: 'sp'}
+            = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @pledge, position: 'sp'}
 
       .col-md-4.sidebar
         .sidebar-bkg.no-border 
