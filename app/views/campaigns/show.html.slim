@@ -112,11 +112,13 @@
           p.story.expander = @campaign.story
 
     .container
-      .row
-        .col-md-6.campaign-story
+      .row.text-center
+        .col-md-12.campaign-story
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-        .col-md-6.text-center
+          br
+          br
+        .col-md-12
           .make-pledge.well
             .row
               .col-md-12s
