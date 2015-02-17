@@ -8,15 +8,25 @@
           h3 You just earned #{pledge.amount_per_click} for #{pledge.fundraiser}!
       .modal-body
         .lead
-          - if pledge.coupons.extra_donation_pledges.any?
-            p.text-center Here are more ways to help!
-          - else
-            p Special Offers from #{pledge.sponsor}
-          hr
-          .coupons
-            = render partial:'coupons/show/modal_box', collection: coupons, as: :coupon
-            .text-center
-              = all_coupons_button(pledge, :modal_box)
+          - if coupons.present?
+            - if pledge.coupons.extra_donation_pledges.any?
+              p.text-center Here are more ways to help!
+            - else
+              p Special Offers from #{pledge.sponsor}
+            hr
+            .coupons
+              = render partial:'coupons/show/modal_box', collection: coupons, as: :coupon
+              .text-center
+                = all_coupons_button(pledge, :modal_box)
+          - if news.present?
+            .row
+              .col-md-12.special-offers
+                p Important News from #{pledge.sponsor}
+            .row
+              .news
+                = render partial:'pledge_news/show/modal_box', locals: {pledge_news: news}
+                .text-center
+                  = all_news_button(pledge, :modal_box)
       .modal-footer
         button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close
 
