@@ -102,11 +102,11 @@
                     span.glyphicon.glyphicon-expand
                     span See our video
                   = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
-
-              a data-toggle='modal' data-target='#sp_subs_modal'
-                span.glyphicon.glyphicon-envelope
-                span Contact us!
-              = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp'}
+              - if @pledge.sponsor.present?
+                a data-toggle='modal' data-target='#sp_subs_modal'
+                  span.glyphicon.glyphicon-envelope
+                  span Contact us!
+                = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp'}
             .col-md-6.hero-pictures-section
               .row
                 = render partial:'campaigns/hero/shaking_pictures'
