@@ -9,16 +9,21 @@
   p.text-muted Thanks for signing up. Now, let start your first steps on CakeCauseMarketing.
 
 .row.choose-role 
-  .col-md-6.divider-vert
+  .col-md-4.divider-vert
     .fundraisers-cir
       h2 Causes,
       p create your free "pay-per-click" campaign today!
       = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
-  .col-md-6
+  .col-md-4
     .sponsors-cir
       h2 Sponsors,
       p support great causes on a risk free "pay-per-click" basis
       = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
+  .col-md-4
+    .cakester-cir
+      h2 Cakesters,
+      p earn money by connecting Sponsors & Causes!
+      = link_to "Start Now!", roles_users_path(role: :cakester), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
 .row
   .col-md-12.text-center
     p.text-muted.explore

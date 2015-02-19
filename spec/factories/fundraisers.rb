@@ -22,7 +22,7 @@ FactoryGirl.define do
 
     after(:create) do |fr|
       fr.manager.create_fundraiser_email_setting
-      fr.manager.set_fundraiser(fr)
+      fr.manager.set_role(fr)
     end
 
     factory :fundraiser_without_stripe_account do

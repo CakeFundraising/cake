@@ -1,22 +1,24 @@
 FactoryGirl.define do
   factory :cakester do
-    name "MyString"
-email "MyString"
-phone "MyString"
-website ""
-manager_name "MyString"
-manager_email "MyString"
-manager_title "MyString"
-manager_phone "MyString"
-mission "MyText"
-about "MyText"
-causes_mask 1
-scopes_mask 1
-cause_requirements_mask 1
-email_subscribers "MyString"
-facebook_subscribers "MyString"
-twitter_subscribers "MyString"
-pinterest_subscribers "MyString"
+    name { Faker::Lorem.sentence }
+    email { Faker::Internet.safe_email }
+    phone { Faker::PhoneNumber.phone_number }
+    website { Faker::Internet.url }
+    manager_name { Faker::Lorem.sentence }
+    manager_email { Faker::Internet.safe_email }
+    manager_title "Mr"
+    manager_phone { Faker::PhoneNumber.phone_number }
+    mission { Faker::Lorem.paragraph }
+    about { Faker::Lorem.paragraph }
+    cause_requirements { [Cakester::CAUSE_REQUIREMENTS.sample] }
+    scopes { Cakester::SCOPES.sample(2) }
+    causes { Cakester::CAUSES.sample(3) }
+    email_subscribers { Cakester::SUBSCRIBER_RANGES.sample }
+    facebook_subscribers { Cakester::SUBSCRIBER_RANGES.sample }
+    twitter_subscribers { Cakester::SUBSCRIBER_RANGES.sample }
+    pinterest_subscribers { Cakester::SUBSCRIBER_RANGES.sample }
+    location
+    picture
   end
 
 end

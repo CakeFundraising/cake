@@ -7,7 +7,7 @@ class Fundraiser < ActiveRecord::Base
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
-  has_many :users
+  has_many :users, as: :role, dependent: :destroy
   has_many :campaigns, dependent: :destroy
   
   has_many :pledge_requests, dependent: :destroy

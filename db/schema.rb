@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216203531) do
+ActiveRecord::Schema.define(version: 20150219202233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150216203531) do
     t.string   "screenshot_url",       limit: 255
     t.string   "screenshot_version",   limit: 255, default: ""
     t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
-    t.boolean  "hero",                             default: false
+    t.boolean  "hero",                             default: true
     t.string   "url"
   end
 
@@ -405,13 +405,17 @@ ActiveRecord::Schema.define(version: 20150216203531) do
   add_index "stripe_accounts", ["uid"], name: "index_stripe_accounts_on_uid", unique: true, using: :btree
 
   create_table "subscriptors", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "email"
     t.string   "object_type"
     t.integer  "object_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "phone"
+    t.string   "organization"
+    t.text     "message"
+    t.string   "name"
+    t.string   "origin_type"
+    t.string   "origin_id"
   end
 
   create_table "sweepstakes", force: :cascade do |t|
@@ -463,9 +467,9 @@ ActiveRecord::Schema.define(version: 20150216203531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "fundraiser_id"
-    t.integer  "sponsor_id"
     t.boolean  "registered",                         default: false
+    t.string   "role_type"
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

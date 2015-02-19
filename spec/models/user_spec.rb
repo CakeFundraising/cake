@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  it { should have_one(:fundraiser_email_setting) }
-  it { should belong_to(:sponsor) }
-  it { should belong_to(:fundraiser) }
+  it { should belong_to(:role) }
 
   it { should validate_presence_of(:full_name) }
   it { should validate_presence_of(:email) }
@@ -16,13 +14,16 @@ describe User do
     it "should have the fundraiser role" do
       expect(user.has_role?(:fundraiser)).to be true
       expect(user.has_role?(:sponsor)).to be false
+      expect(user.has_role?(:cakester)).to be false
     end
     
-    describe "#set_fundraiser" do
+    describe "#set_role" do
       it "should allow the user to set fundraiser he's related to" do
-        expect(user.fundraiser).to be_nil
-        user.set_fundraiser(fundraiser)
-        expect(user.fundraiser).to eq fundraiser
+        expect(user.role).to be_nil
+        user.set_role(fundraiser)
+        expect(user.role).to eq fundraiser
+        expect(user.registered).to be true
+        expect(user.roles).to eq [:fundraiser]
       end
     end
   end
@@ -34,13 +35,37 @@ describe User do
     it "should have the sponsor role" do
       expect(user.has_role?(:sponsor)).to be true
       expect(user.has_role?(:fundraiser)).to be false
+      expect(user.has_role?(:cakester)).to be false
     end
     
-    describe "#set_sponsor" do
+    describe "#set_role" do
       it "should allow the user to set sponsor he's related to" do
-        expect(user.sponsor).to be_nil
-        user.set_sponsor(sponsor)
-        expect(user.sponsor).to eq sponsor
+        expect(user.role).to be_nil
+        user.set_role(sponsor)
+        expect(user.role).to eq sponsor
+        expect(user.registered).to be true
+        expect(user.roles).to eq [:sponsor]
+      end
+    end
+  end
+
+  context 'Cakester user' do
+    let(:user){ FactoryGirl.create(:cakester_user) }
+    let(:cakester){ FactoryGirl.create(:cakester) }
+
+    it "should have the sponsor role" do
+      expect(user.has_role?(:cakester)).to be true
+      expect(user.has_role?(:sponsor)).to be false
+      expect(user.has_role?(:fundraiser)).to be false
+    end
+    
+    describe "#set_role" do
+      it "should allow the user to set cakester he's related to" do
+        expect(user.role).to be_nil
+        user.set_role(cakester)
+        expect(user.role).to eq cakester
+        expect(user.registered).to be true
+        expect(user.roles).to eq [:cakester]
       end
     end
   end

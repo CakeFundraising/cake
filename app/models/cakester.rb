@@ -9,6 +9,8 @@ class Cakester < ActiveRecord::Base
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
 
+  has_many :users, as: :role, dependent: :destroy
+
   validates :name, :email, :phone, presence: true
   validates :email, email: true
   
