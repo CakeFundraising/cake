@@ -76,9 +76,9 @@ en:
     subscribers:
       campaign:
         top: "Thank you for reaching out to %{role}! If you’d like to partner with us, sign up on Cake for free today. Let us know how we can help!"
-        partner: "Business Owners: Let %{role} know you are interested in sponsoring a future Cake Campaign! Cake is 100% free. Sign up today! Or share another message."
-        volunteer: "Volunteer with Us!"
-      sp: "Thank you for contacting %{role}! If you’d like us to consider supporting your cause or organization, sign up for free on Cake and create a Campaign we can review! Let us know how we can better serve you!"
+        partner: "Business Owners: Partner with us! Cake is 100% free for businesses. Sign up today! Or share another message."
+        volunteer: "Volunteer with Us! Or share another message."
+      sp: "Thank you for contacting %{role}! Sign up your good cause for free on Cake and connect with us! Or share another message."
     empty_results:
       pledges:
         from_sponsors: offers from sponsors
