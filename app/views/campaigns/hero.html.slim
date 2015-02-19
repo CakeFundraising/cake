@@ -147,7 +147,10 @@
 
     .container
       .row.sponsor-profile
-        .col-md-4.col-md-push-8
+        .col-md-8.campaign-story
+          h3 = @campaign.headline
+          p.story.expander = @campaign.story
+        .col-md-4
           .sidebar-bkg-2
             .avatar 
               = picture_rollover(@campaign.picture.avatar, @campaign.url) do
@@ -156,11 +159,12 @@
               end
             .avatar-content
               .caption = @campaign.avatar_caption
-              .fundraiser-name.text-center
+              .fundraiser-name
                 h4 = auto_link @campaign.fundraiser
-        .col-md-8.col-md-pull-4.campaign-story
-          h3 = @campaign.headline
-          p.story.expander = @campaign.story
+              a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
+                span.glyphicon.glyphicon-envelope
+                span  Volunteer with Us!
+              = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
 
     .container
       .row.text-center
