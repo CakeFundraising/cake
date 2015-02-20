@@ -26,4 +26,16 @@ class User < ActiveRecord::Base
     self.registered = true
     self.save
   end
+
+  def sponsor
+    self.role if self.role_type == 'Sponsor'
+  end
+
+  def fundraiser
+    self.role if self.role_type == 'Fundraiser'
+  end
+
+  def cakester
+    self.role if self.role_type == 'Cakester'
+  end
 end

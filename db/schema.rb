@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219202233) do
+ActiveRecord::Schema.define(version: 20150220140843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150219202233) do
     t.integer  "impressions_count",    limit: 8,   default: 0
     t.boolean  "visible",                          default: false
     t.string   "screenshot_url",       limit: 255
-    t.string   "screenshot_version",   limit: 255, default: ""
+    t.string   "screenshot_version",   limit: 255
     t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
     t.boolean  "hero",                             default: true
     t.string   "url"
@@ -332,7 +332,7 @@ ActiveRecord::Schema.define(version: 20150219202233) do
     t.string   "name",                      limit: 255
     t.integer  "impressions_count",         limit: 8,   default: 0
     t.string   "screenshot_url",            limit: 255
-    t.string   "screenshot_version",        limit: 255, default: ""
+    t.string   "screenshot_version",        limit: 255
     t.integer  "bonus_clicks_count",        limit: 8,   default: 0,             null: false
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
