@@ -68,10 +68,14 @@
       .col-md-4
         = f.input :min_click_donation, as: :select, collection: Fundraiser::MIN_CLICK_DONATIONS
       .col-md-12
-        label.control-label Accepted Pledge Type
-        = f.input :donations_kind, input_html: {class: 'checkbox-pill'}
-        = f.input :tax_exempt, input_html: {class: 'checkbox-pill'}
-        = f.input :unsolicited_pledges, input_html: {class: 'checkbox-pill'}
+        .check_boxes.input.optional.form-group
+          label.control-label Accepted Pledge Type
+          .checkbox
+            = f.input :donations_kind, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :tax_exempt, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :unsolicited_pledges, input_html: {class: 'checkbox-pill'}
   .row
     .col-md-12.text-center
       = f.actions do
