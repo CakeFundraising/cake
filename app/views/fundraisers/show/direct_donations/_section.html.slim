@@ -1,0 +1,15 @@
+- if fundraiser.stripe_account?
+  .row
+    .col-md-12
+      .level-divide
+        .text-center
+          h2 Every Dollar Helps!
+          = render partial:'direct_donations/form', locals:{fundraiser: fundraiser}
+
+- elsif current_fundraiser.present? and current_fundraiser == fundraiser
+  .alert.alert-warning
+    span You can't receive Direct Donations yet.
+    div Please connect your Stripe Account
+    div
+      = link_to user_omniauth_authorize_path(:stripe_connect), class:'stripe-connect' do
+        span Connect with Stripe

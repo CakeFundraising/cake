@@ -177,6 +177,8 @@
           hr
           .boldest.init-caps = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
+        .direct-donation
+          = render partial:'fundraisers/show/direct_donations/section', locals:{fundraiser: @fundraiser}
     .row
       .col-md-12
         ul.nav.nav-tabs
