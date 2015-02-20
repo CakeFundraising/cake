@@ -4,8 +4,8 @@ class CreateCharges < ActiveRecord::Migration
       t.string :stripe_id
       t.string :balance_transaction_id
       t.string :kind
-      t.money :amount
-      t.money :total_fee
+      t.monetize :amount
+      t.monetize :total_fee
       t.boolean :paid
       t.boolean :captured
       t.json :fee_details

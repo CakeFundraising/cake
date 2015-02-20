@@ -17,10 +17,10 @@
     td data-title = (Invoice.human_attribute_name :amount_due)
       = invoice.due
     td.truncate.min-width
-      - unless invoice.paid? or !invoice.payable?
-        = invoice_pay_button(invoice) 
-      - else
+      - if not invoice.payable?
         button.btn.btn-success.disabled FREE
+      - elsif invoice.due_to_pay?
+        = invoice_pay_button(invoice) 
 
       a.btn.btn-success.btn-sm data-toggle="modal" data-target="#summary_#{invoice.object.id}" More 
       = render partial:'invoices/show/invoice_summary', locals:{invoice: invoice, sponsor: true}

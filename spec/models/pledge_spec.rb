@@ -254,8 +254,42 @@ describe Pledge do
           expect( @pledge.click_exists?(another_click) ).to be true
         end
       end
-    end
 
+    end
+  end
+
+  context "Invoices" do
+    context "Methods" do
+      describe "#generate_invoice" do
+        let!(:pledge) { FactoryGirl.create(:not_clicked_pledge, amount_per_click: "0.4") }
+        let!(:browser) { FactoryGirl.create(:browser) }
+
+        def reload_clicks(pledge)
+          Click.counter_culture_fix_counts
+          pledge.reload
+        end
+
+        it "should generate an invoice if clicks_count > 0" do
+          clicks = create_list(:click, 10, pledge: pledge, browser: browser)
+          reload_clicks(pledge)
+
+          expect{ pledge.generate_invoice }.to change{Invoice.count}.from(0).to(1)
+          expect(pledge.invoice.status).to eq('due_to_pay')
+        end
+
+        it "should not generate an invoice if clicks_count <= 0" do
+          expect{ pledge.generate_invoice }.to_not change{Invoice.count}
+        end
+
+        it "should flag the invoice as paid if invoice due < 0.5" do
+          click = FactoryGirl.create(:click, pledge: pledge, browser: browser)
+          reload_clicks(pledge)
+
+          expect{ pledge.generate_invoice }.to change{Invoice.count}.from(0).to(1)
+          expect(pledge.invoice.status).to eq('paid')
+        end
+      end
+    end
   end
 
 end
