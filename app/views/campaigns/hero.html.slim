@@ -107,13 +107,13 @@
                   - if @pledge.pending?
                     h4 Your organization name here
                   - else
-                    h4 = auto_link @pledge.sponsor, truncate: 30
+                    h4 = auto_link @pledge.sponsor, truncate: 40
                     a data-toggle='modal' data-target='#sp_subs_modal'
                       span.glyphicon.glyphicon-envelope
                       span  Contact us!
                     = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp'}
                 .col-md-6.no-padding
-                  h4 = auto_link @campaign.fundraiser, truncate: 30
+                  h4 = auto_link @campaign.fundraiser, truncate: 40
                   a data-toggle='modal' data-target='#campaign_top_subs_modal' 
                     span.glyphicon.glyphicon-envelope
                     span  Contact us!
