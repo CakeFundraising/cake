@@ -150,14 +150,15 @@ class Pledge < ActiveRecord::Base
   end
 
   def generate_invoice
-    unless clicks_count.zero? or total_charge < Invoice::MIN_DUE
+    unless clicks_count.zero?
       create_invoice
       notify_invoice(invoice)
     end     
   end
 
   def create_invoice
-    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge).save!
+    status = (total_charge < Invoice::MIN_DUE) ? :paid : :due_to_pay
+    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge, status: status).save!
   end
 
   def notify_invoice(invoice)
