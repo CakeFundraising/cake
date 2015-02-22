@@ -39,6 +39,7 @@ gem 'draper'
 
 #Storage
 gem 'pg'
+gem 'sqlite3'
 
 #Solr
 gem 'sunspot_rails'

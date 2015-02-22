@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :quick_pledge, class: QuickPledge, parent: :pledge do
     type 'QuickPledge'
+    campaign
   end
 end
