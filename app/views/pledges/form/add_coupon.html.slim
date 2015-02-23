@@ -23,9 +23,9 @@
                 span or
             .col-md-5
               - if @coupons.any?
-                = link_to 'Save & Continue', share_pledge_path(@pledge), class:'btn btn-primary'
+                = link_to 'Save & Continue', news_pledge_path(@pledge), class:'btn btn-primary'
               - else
-                = link_to 'No! Skip this step', share_pledge_path(@pledge), class:'btn btn-primary'
+                = link_to 'No! Skip this step', news_pledge_path(@pledge), class:'btn btn-primary'
       .col-md-3
     .row
       .col-md-12

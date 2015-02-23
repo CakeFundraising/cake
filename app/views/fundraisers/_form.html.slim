@@ -15,13 +15,16 @@
       .col-md-4
         = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
     .row.section-wrapper
-      h4 Cause Information
+      h4.float-left Cause Information
+      a.btn data-toggle="tooltip" data-placement="right" data-original-title="The organization name you enter here appears on your campaigns. It does not have to be the same as your account username."
+        img.tooltip-icon src='/assets/tooltip-icon.png'
+    .row
       .col-md-4
         = f.input :name
         = f.input :email
       .col-md-4
-          = f.input :phone
-          = f.input :website
+        = f.input :phone
+        = f.input :website
     .row.section-wrapper    
       /.col-md-4
       = render partial:'locations/form', locals:{f: f}
@@ -31,8 +34,8 @@
         = f.input :manager_name
         = f.input :manager_title
       .col-md-4
-          = f.input :manager_email
-          = f.input :manager_phone   
+        = f.input :manager_email
+        = f.input :manager_phone
     .row.section-wrapper
       h4 Community
       .col-md-3
@@ -78,5 +81,6 @@
 
 javascript:
   Cake.pictures.added_images(#{pictures_status});
+  $('[data-toggle="tooltip"]').tooltip();
 
     

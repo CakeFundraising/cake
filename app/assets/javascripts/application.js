@@ -76,7 +76,8 @@
 //= require ./credit_cards      
 //= require ./imgLiquid.min
 //= require ./impressions
-//= require ./pledges     
+//= require ./pledges  
+//= require ./pledge_news  
 //= require ./pictures   
 //= require ./videos
 //= require ./jquery.cloudinary      
@@ -88,9 +89,9 @@
 //= require ./campaigns     
 //= require ./direct_donations    
 //= require ./jquery.expander.min      
-//= require ./searches
 //= require ./chosen_js.coffee      
 //= require ./expander      
 //= require ./limit_cocoon      
 //= require ./sp
+//= require ./utils
 //= require ./validations

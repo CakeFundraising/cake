@@ -43,13 +43,15 @@ body {
   padding: 0 0 360px;
 }*/
 
+.bottom_section {
+  margin-bottom: -100px;
+}
+
 footer {
-//  position: absolute;
-//  bottom: 0;
-  margin-bottom: -3em;
+  position: absolute;
+  margin-top: 100px;
   width: 100%;
   padding: 15px 0;
-  margin-top: 0px;
   background: $gray-darker;
   color: $gray-lighter;
   font-size: 14px;
@@ -125,6 +127,14 @@ hr{
 
 .text-left{
   text-align: left;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 //Navbar --------------------------------------------------------------------------------
@@ -1675,6 +1685,8 @@ table.performance-summary {
   margin: 25px auto;
   h1 {
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
 }
 .pledge-story{
@@ -2160,7 +2172,21 @@ a {
   .coupon-actions{
     position: absolute;
     right: 120px;
-    z-index: 99;
+    z-index: 9999;
+  }
+  .news-actions{
+    position: absolute;
+    z-index: 9999;
+    padding-top: 5px;
+    left: 6.8%;
+    div{
+      margin-bottom: 7px;
+    }
+  }
+}
+.coupons_section{
+  .news-actions{
+    left: 103px;
   }
 }
 
@@ -3237,9 +3263,11 @@ ul#share-block {
   }
 }
 
+#pledge_news_picture_attributes_qrcode_input,
 #coupon_picture_attributes_qrcode_input{
   width: 244px;
   margin: 0 auto;
+  height: 250px;
 }
 
 .form-group{
@@ -3436,6 +3464,19 @@ ul#share-block {
       margin-bottom: 8px;
       margin-top: 15px
     }
+  }
+}
+
+.contact-modal{
+  h3{
+    font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+  }
+  .modal-body{
+    padding: 20px;
+  }
+  .lead{
+    font-size: 18px;
   }
 }
 
@@ -3944,4 +3985,23 @@ ul#share-block {
   .details{
     width: 100%;
   }
+}
+
+// Tooltip -------------------------------------------------------
+
+.tooltip-title {
+  display: inline-block;
+}
+
+.tooltip-icon {
+  width: 20px;
+}
+
+.tooltip-inner {
+  font-size: 1.4em;
+  max-width: 500px;
+}
+
+.page-spinner{
+  margin: 70px 0;
 }

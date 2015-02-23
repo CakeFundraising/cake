@@ -15,15 +15,6 @@ Cake.coupons.tos_toggle = ->
 
   return
 
-Cake.coupons.tos = ->
-  Cake.coupons.tos_toggle()
-  
-  $("#coupons").on "cocoon:after-insert", (e, insertedItem) ->
-      Cake.coupons.tos_toggle()
-      #Cake.crop.init(insertedItem.find('.cloudinary-fileupload'))
-    return
-  return
-
 Cake.coupons.validation = ->
   jQuery.validator.addClassRules
     coupon_title:
@@ -46,11 +37,3 @@ Cake.coupons.validation = ->
   )
   return
 
-Cake.coupons.load_all = ->
-  buttons = $('.load_all_coupons')
-
-  buttons.on "ajax:success", (e, data, status, xhr) ->
-    $(this).hide()
-    $(this).closest('.coupons, #coupons').append(data)
-    return
-  return

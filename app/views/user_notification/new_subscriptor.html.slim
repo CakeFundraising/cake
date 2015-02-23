@@ -1,0 +1,28 @@
+h2 Hello #{@role}, 
+br
+div You have a new message from #{@sub.email}:
+br
+div.italic "#{@sub.message}"
+
+- if @sub.name.present? or @sub.organization.present? or @sub.phone.present?
+  h3 Here is more information about this contact:
+
+  - if @sub.name.present?
+    div 
+      strong Name: 
+      span = @sub.name
+
+  - if @sub.organization.present?
+    div 
+      strong Organization: 
+      span = @sub.organization
+
+  - if @sub.phone.present?
+    div
+      strong Phone: 
+      span = @sub.phone
+
+br
+div This person visited your #{@sub.origin_type.camelize} page: #{link_to @origin, polymorphic_url(@origin)}
+br
+div This contact is now included in your Cake followers in your Public Profile.

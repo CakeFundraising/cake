@@ -1,0 +1,33 @@
+= display_meta("Add News")
+
+= render partial:'pledges/form/nav'
+
+.tab-content.campaign-wizard-wrap
+  #news.tab-pane.active
+    .text-center
+      h1 Share Important News About Your Company
+    .row
+      .col-md-3
+      .col-md-6
+        .buttons.text-center
+          .toggle-container
+            .col-md-5
+              - if @news.any?
+                = link_to 'Share another Story', new_pledge_news_path(pledge_id: @pledge), class:'btn btn-success'
+              - else
+                = link_to 'Share a Story', new_pledge_news_path(pledge_id: @pledge), class:'btn btn-success'
+            .col-md-2
+              .vertical-divider 
+                span or
+            .col-md-5
+              = link_to 'Save & Continue', share_pledge_path(@pledge), class:'btn btn-primary'
+      .col-md-3
+    .row
+      .col-md-12
+        .coupons_section
+          = render partial:'pledge_news/index', locals:{pledge: @pledge} if @news.any?
+
+    .row
+      = cancel_pledge_link unless @pledge.accepted?
+
+  br

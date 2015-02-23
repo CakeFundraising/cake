@@ -35,6 +35,7 @@ cake.sublime-workspace
 .DS_Store
 dump.rdb
 prod.dump
+staging.dump
 
 .com.apple.timemachine.supported
 *.psd

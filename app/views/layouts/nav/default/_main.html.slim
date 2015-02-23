@@ -1,10 +1,20 @@
 - cache :default_navbar do 
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    ul.nav.navbar-nav.navbar-left
+      li.dropdown
+        a.dropdown-toggle data-toggle="dropdown" href="#"
+          | About Cake
+          span.caret
+        ul.dropdown-menu
+          = menu_item "About", about_page_path('cake')
+          = menu_item "Questions", help_page_path('faq')
+          = menu_item "Success Stories", about_page_path('success_stories')
+      /= menu_item "Start a Campaign", new_user_registration_path
+      /= menu_item "Questions", help_page_path('faq')
     ul.nav.navbar-nav
-      = menu_item "About Cake", about_page_path('cake')
-      = menu_item "Success Stories", about_page_path('success_stories')
-      = menu_item "Start a Campaign", new_user_registration_path
-      = menu_item "Questions", help_page_path('faq')
+      = menu_item "Promote Your Business", "#"
+      = menu_item "Raise Money", "#"
+      = menu_item "Earn Money", "#"
     ul.nav-cta.navbar-right
       = menu_item t("links.user.sign_in"), new_user_session_path, { :class=>"btn-signup btn btn-primary" }
       = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn-signup btn btn-success" }

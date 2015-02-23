@@ -21,8 +21,8 @@
             h4.share-info.pull-left Please share our Pledge!
             
           .follow-button-wrapper.pull-right
-            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
-            = render partial:'subscriptions/follow_modal', locals:{object: @pledge.sponsor}
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#sp_subs_modal' Contact Us!
+            = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @pledge, position: 'sp'}
 
       .col-md-4.sidebar
         .sidebar-bkg.no-border 
@@ -95,30 +95,25 @@
                 = render partial:'clicks/pledge', locals:{pledge: @pledge}
             .col-md-4
   .container
-    - if @coupons.any? and @pledge.show_coupons
-      .row
-        .col-md-12.special-offers
-          h1 Special Offers from #{@pledge.sponsor}
-      .row
-        .coupons
-          = render partial:'coupons/show/box', collection: @coupons, as: :coupon
-          = render partial:'coupons/show/terms'
-          .text-center
-            = all_coupons_button(@pledge)
+    = render partial:'pledges/show/coupons_and_news'
+    
     .row
-      .col-md-4.col-md-push-8.text-center
+      .col-md-6.col-md-push-3.text-center
         / DIRECT DONATION 
         = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @pledge.campaign}
-      .col-md-8.col-md-pull-4
-        / DISQUS COMMENTS
-        = render partial:'pledges/show/disqus'
     .row
       .col-md-12
+        br
+        br
         / SHARE BUTTONS
         .text-center.med-hide
           h2 Please share our pledge with your family and friends!
           p.text-muted Working together, we can make a difference.
           .text-center = render partial:'layouts/share_buttons'
+    / .row
+    /   .col-md-12.text-center
+    /     / DISQUS COMMENTS
+    /     = render partial:'pledges/show/disqus'
 
   / CAUSES/SPONSORS CIRCLES        
   = render partial: 'layouts/choose_path'

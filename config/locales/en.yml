@@ -73,6 +73,12 @@ en:
     stripe_account:
       account_taken: Stripe Account has already been used. Please use another Stripe Account.
   titles:
+    subscribers:
+      campaign:
+        top: "Thank you for reaching out to %{role}! If you’d like to partner with us, sign up on Cake for free today. Let us know how we can help!"
+        partner: "Business Owners: Partner with us! Cake is 100% free for businesses. Sign up today! Or share another message."
+        volunteer: "Volunteer with Us! Or share another message."
+      sp: "Thank you for contacting %{role}! Sign up your good cause for free on Cake and connect with us! Or share another message."
     empty_results:
       pledges:
         from_sponsors: offers from sponsors
@@ -153,7 +159,8 @@ en:
         your_pledge: 1. Your Pledge
         tell_your_story: 2. Tell Your Story
         add_coupon: 3. Add Coupon
-        share: 4. Confirm Your Pledge
+        news: 4. News
+        share: 5. Confirm Your Pledge
   information:
     hero_campaign:
       banner: "Help <span class='boldest'>%{fr}!</span> Click below and %{sp} will give %{amount} for you!"
@@ -269,6 +276,9 @@ en:
         views: Pledge Views
       pledge_request: 
         start_end_dates: Launch/ End Date
+      pledge_news:
+        story: Tell your story
+        url: "Send customers directly to the most relevant URL where they can take action"
       sponsor:
         name: Company Name
         phone: Company Phone Number

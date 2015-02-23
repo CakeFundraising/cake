@@ -1,8 +1,12 @@
 = display_meta("Account Setup")
 
-.header.text-center
-  h1 Tell us about yourself
-  p.text-muted.text-center Who are you fundraising for?
+.container
+  .row.text-center
+    .col-md-12
+      h1.tooltip-title Tell us about yourself
+      a.btn data-toggle="tooltip" data-placement="right" data-original-title="An organization, an individual or any good cause can raise money on Cake. Keep your organization's name as short as possible."
+        img.tooltip-icon src='/assets/tooltip-icon.png'
+
 
 = semantic_form_for @fundraiser do |f|
     = f.inputs nil do
@@ -67,3 +71,6 @@
               = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
           .col-md-2
 
+
+javascript:
+  $('[data-toggle="tooltip"]').tooltip();

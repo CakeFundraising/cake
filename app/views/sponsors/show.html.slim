@@ -30,8 +30,8 @@
             h4.share-info.pull-left Please share our Campaign!
 
           .follow-button-wrapper.pull-right
-            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
-            = render partial:'subscriptions/follow_modal', locals:{object: @sponsor}
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#sp_subs_modal' Contact Us!
+            = render partial:'subscriptions/modal', locals:{object: @sponsor, origin: @sponsor, position: 'sp'}
 
       .col-md-4.sidebar
         .sidebar-bkg.no-border

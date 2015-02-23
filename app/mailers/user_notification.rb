@@ -1,6 +1,7 @@
 class UserNotification < AsyncMailer
   default from: "no-reply@cakecausemarketing.com"
 
+  #Account Updated
   def account_updated(user_id)
     user = find_user(user_id)
 
@@ -9,6 +10,7 @@ class UserNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your account information has been modified.')
   end
 
+  #New Accounts
   def new_fr(fr_id)
     @fr = find_fr(fr_id)
     @manager = @fr.manager
@@ -23,6 +25,7 @@ class UserNotification < AsyncMailer
     mail(to: 'newusers@cakefundraising.com', subject: 'A new Sponsor has signed up!')
   end
 
+  #Profiles Updated
   def fundraiser_profile_updated(fr_id, user_id)
     user = find_user(user_id)
     fr = find_fr(fr_id)
@@ -41,6 +44,7 @@ class UserNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your public profile has been modified.')
   end
 
+  #Partnership Request
   def fr_partnership_request(fr_id, sp_id, message)
     @fr = find_fr(fr_id)
     @sp = find_sp(sp_id).decorate
@@ -48,6 +52,15 @@ class UserNotification < AsyncMailer
     
     mail(to: @fr.manager.email, subject: 'You have a new Partnership Request from an interesting Sponsor.')
   end
+
+  #New Subscriptor
+  def new_subscriptor(sub_id)
+    @sub = Subscriptor.find(sub_id)
+    @role = @sub.object.decorate
+    @origin = @sub.origin.decorate
+
+    mail(to: @role.manager.email, cc: @sub.email, subject: 'New Contact from Cake!')
+  end  
 
   protected
 

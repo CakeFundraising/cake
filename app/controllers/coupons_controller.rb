@@ -26,6 +26,10 @@ class CouponsController < InheritedResources::Base
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)
       end
+      failure.html do
+        @pledge = resource.decorate
+        render :edit
+      end
     end
   end
 
@@ -47,10 +51,11 @@ class CouponsController < InheritedResources::Base
   end
 
   def load_all
-    pledge = Pledge.find(params[:pledge_id])
-    @coupons = CouponDecorator.decorate_collection(pledge.coupons.latest[2..-1])
+    @pledge = Pledge.find(params[:pledge_id]).decorate
+    @coupons = CouponDecorator.decorate_collection @pledge.coupons.latest.offset(2)
     @partial = params[:partial]
-    render :load_all, layout: false
+
+    @coupons.any? ? render(:load_all, layout: false) : render(nothing: true)
   end
 
   def permitted_params

@@ -1,6 +1,9 @@
 = display_meta("History")
 
 h1.dash-head History
+
+div = link_to "Go to Billing", sponsor_billing_path, class:'btn btn-default pull-right'
+
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#pledges" = Pledge.model_name.human.pluralize(count: 2)

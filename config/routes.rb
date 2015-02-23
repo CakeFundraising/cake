@@ -59,7 +59,7 @@ Cake::Application.routes.draw do
       scope :edit do
         get :tell_your_story
         get :add_coupon
-        get :add_sweepstakes
+        get :news
         get :share
       end
 
@@ -149,6 +149,17 @@ Cake::Application.routes.draw do
     
     member do
       get :download
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
+  end
+
+  resources :pledge_news do
+    collection do
+      get :load_all
+    end
+    member do
       scope :pictures, controller: :cropping do
         post :crop
       end
