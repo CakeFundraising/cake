@@ -1,4 +1,4 @@
-Cake.direct_donation = (campaign_name, key, image)->
+Cake.direct_donation = (fundraiser_name, key, image)->
   handler = StripeCheckout.configure(
     key: key
     image: image
@@ -20,7 +20,7 @@ Cake.direct_donation = (campaign_name, key, image)->
       $("#direct_donation_amount_input").removeClass "has-error"
       handler.open
         name: "Make a Direct Donation"
-        description: "To #{campaign_name}"
+        description: "To #{fundraiser_name}"
         amount: amount * 100
     return
 

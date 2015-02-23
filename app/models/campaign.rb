@@ -31,7 +31,6 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  has_many :direct_donations, dependent: :destroy
   has_many :impressions, as: :impressionable
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
