@@ -10,7 +10,7 @@
             = f.inputs do
               .row
                 .col-md-12
-                  .lead = t("titles.subscribers.#{position}", role: object)
+                  .lead = t("titles.subscribers.#{position}", role: object).html_safe
                   = f.input :name
                   = f.input :organization
                   = f.input :phone

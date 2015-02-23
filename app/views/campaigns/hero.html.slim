@@ -108,10 +108,10 @@
                     h4 Your organization name here
                   - else
                     h4 = auto_link @pledge.sponsor, truncate: 40
-                    a data-toggle='modal' data-target='#sp_subs_modal'
+                    a data-toggle='modal' data-target='#sp_contact_subs_modal'
                       span.glyphicon.glyphicon-envelope
                       span  Contact us!
-                    = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp'}
+                    = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.contact'}
                 .col-md-6.no-padding
                   h4 = auto_link @campaign.fundraiser, truncate: 40
                   a data-toggle='modal' data-target='#campaign_top_subs_modal' 
@@ -161,10 +161,19 @@
               .caption = @campaign.avatar_caption
               .fundraiser-name
                 h4 = auto_link @campaign.fundraiser
-              a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
-                span.glyphicon.glyphicon-envelope
-                span  Volunteer with Us!
-              = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+
+              .volunteer-with-us
+                a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
+                  span.glyphicon.glyphicon-envelope
+                  span  Volunteer with Us!
+                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+
+              - if @pledge.sponsor.present?
+                .thank-sp
+                  a data-toggle='modal' data-target='#sp_thank_subs_modal'
+                    span.glyphicon.glyphicon-envelope
+                    span  Please thank our partner: #{@pledge.sponsor}
+                  = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
 
     .container
       .row.text-center
@@ -192,7 +201,6 @@
       /   / DISQUS COMMENTS
       /   .col-md-12.text-center.campaign-story
       /     = render partial:'campaigns/show/disqus'
-
 
     / CAUSES/SPONSORS CIRCLES
     = render partial: 'layouts/choose_path'
