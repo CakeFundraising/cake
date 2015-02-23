@@ -20,8 +20,8 @@
         = f.input :name
         = f.input :email
       .col-md-4
-          = f.input :phone
-          = f.input :website          
+        = f.input :phone
+        = f.input :website
     .row.section-wrapper    
       /.col-md-4
       = render partial:'locations/form', locals:{f: f}
@@ -31,8 +31,8 @@
         = f.input :manager_name
         = f.input :manager_title
       .col-md-4
-          = f.input :manager_email
-          = f.input :manager_phone          
+        = f.input :manager_email
+        = f.input :manager_phone
     .row.section-wrapper
       h4 Company Mission
       .col-md-6
@@ -42,9 +42,11 @@
     .row.section-wrapper
       h4 Fundraising Requirements
       .col-md-4
-        = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS, input_html: {class: 'checkbox-pill'}
-      .col-md-4
-        = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES, input_html: {class: 'checkbox-pill'}
+        label.control-label Fundraising Organization Requirements
+        = f.input :cause_requirements, as: :check_boxes, collection: Sponsor::CAUSE_REQUIREMENTS, label: false, member_label: Proc.new { |cr| cr.humanize }, input_html: {class: 'checkbox-pill'}
+      .col-md-6
+        label.control-label Types Of Campaigns We Sponsor
+        = f.input :scopes, as: :check_boxes, collection: Sponsor::SCOPES, label: false, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       h4 Organization Causes
       .col-md-12
