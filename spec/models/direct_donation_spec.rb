@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe DirectDonation do
-  it { should belong_to(:campaign) }
+  it { should belong_to(:fundraiser) }
   it { should have_one(:charge) }
 
-  it { should validate_presence_of(:campaign) }
+  it { should validate_presence_of(:fundraiser) }
   it { should validate_presence_of(:card_token) }
   it { should validate_presence_of(:email) }
 

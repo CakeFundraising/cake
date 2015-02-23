@@ -134,8 +134,8 @@ group :test do
   gem 'webmock'
   gem 'selenium-webdriver', '~> 2.43.0'
   gem 'simplecov', require: false
-  gem 'shoulda-matchers'
-  gem "launchy"
+  gem 'shoulda-matchers', require: false
+  gem 'launchy'
 end
 
 group :production do

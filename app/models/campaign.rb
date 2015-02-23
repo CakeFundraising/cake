@@ -239,8 +239,6 @@ class Campaign < ActiveRecord::Base
         next_range = range.call(sponsor_categories[i+1])
 
         errors.add(:sponsor_categories, "The max and min values must not overlap.") if current_range.overlaps?(next_range)
-        # if sc.persisted? and sponsor_categories[i+1].persisted?
-        # end
       end
     end
   end
