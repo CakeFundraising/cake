@@ -6,17 +6,23 @@
 = semantic_form_for @fundraiser_email_setting, url: fundraiser_email_settings_path do |f|
   = f.inputs nil do
     .row.section-wrapper
-      .row
-        .col-md-12
-          = f.input :new_pledge, input_html: {class: 'checkbox-pill'}              
-          = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}        
-          = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'} 
-          = f.input :campaign_end, input_html: {class: 'checkbox-pill'}            
-          = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}  
-          = f.input :account_change, input_html: {class: 'checkbox-pill'}          
-          = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
+      .col-md-12.text-center
+        .check_boxes.input.optional.form-group
+          .checkbox
+            = f.input :new_pledge, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :campaign_end, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :account_change, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
-      .row
-        .col-md-12.text-center
-          = f.actions do
-            = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg'}
+      .col-md-12.text-center
+        = f.actions do
+          = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg'}

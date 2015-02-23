@@ -34,14 +34,15 @@
                 br
                 button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
         .row.section-wrapper.text-center
-            h2 Download Your Campaign Image
-            p.text-muted You can use a PNG of your Campaign for emails and mailings
-            .toggle-container.text-left
-              .screenshot
-                = screenshot_tag_for pledge
-              div.pull-right
-                br
-                = link_to "Download", pledge.screenshot_url, class:'btn btn-primary', :download => 'pledge.png'
+          h2 Download Your Pledge Image
+          p.text-muted You can use a PNG of your Pledge for emails and mailings
+          .toggle-container.text-left
+            .screenshot
+              = screenshot_tag_for pledge
+            div.pull-right
+              br
+              = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge.id), class:'btn btn-primary', :download => 'pledge.png'
+              /= link_to "Download", pledge.screenshot_url, class:'btn btn-primary', :download => 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
           p.text-muted Copy the source code below and past it on your website
