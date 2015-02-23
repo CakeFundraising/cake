@@ -27,7 +27,7 @@ class Pledge < ActiveRecord::Base
 
   has_many :pledge_news, dependent: :destroy
 
-  delegate :main_cause, :active?, :hero, to: :campaign
+  delegate :main_cause, :active?, :hero, to: :campaign, prefix: true
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
@@ -203,6 +203,19 @@ class Pledge < ActiveRecord::Base
 
   def total_impressions
     views_count + bonus_clicks_count + clicks_count
+  end
+
+  ### Delegates
+  def main_cause
+    campaign_main_cause if campaign.present?
+  end
+  
+  def active?
+    campaign_active? if campaign.present?
+  end
+
+  def hero
+    campaign_hero if campaign.present?
   end
 
   #Coupons & News
