@@ -9,8 +9,8 @@
           .data.help-block
             div.fr-name = @sponsor.manager_name
             div.fr-manager-email 
-            	span = @sponsor.manager_email
-            	span.fr-manager-email-edit = link_to "Edit", public_profile_path
+              span = @sponsor.manager_email
+              span.fr-manager-email-edit = link_to "Edit", public_profile_path
 
           - if @stripe_account.nil?
             hr
