@@ -31,7 +31,7 @@ class CampaignsController < InheritedResources::Base
     
     if @pledge.present?
       @coupons = @pledge.coupons_sample.decorate 
-      @news = @pledge.news_sample.first.decorate if @pledge.news_sample.any?
+      @news = @pledge.news_sample.decorate if @pledge.news_sample.present?
     end
   end
 

@@ -22,10 +22,24 @@ module CouponsHelper
   end
 
   def all_coupons_button(pledge, partial=:box)
-    link_to 'See More Offers', load_all_coupons_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_coupons' if pledge.coupons.count > 2
+    if pledge.coupons.count > 2
+      content_tag(:div, class: :see_more) do
+        link_to('See More Offers', load_all_coupons_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_coupons') + 
+        content_tag(:div, class: 'hidden page-spinner') do
+          image_tag 'loading.gif'
+        end
+      end
+    end
   end
 
   def all_news_button(pledge, partial=:box)
-    link_to 'See More', load_all_pledge_news_index_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_news' if pledge.pledge_news.count > 1
+    if pledge.pledge_news.count > 1
+      content_tag(:div, class: :see_more) do
+        link_to('See More', load_all_pledge_news_index_path(pledge_id: pledge, partial: partial), remote: true, class:'btn btn-primary btn-lg load_all_news') + 
+        content_tag(:div, class: 'hidden page-spinner') do
+          image_tag 'loading.gif'
+        end
+      end
+    end
   end
 end

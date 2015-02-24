@@ -31,7 +31,7 @@ gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-gem 'formtastic-bootstrap', '~> 3.1.0'
+gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'bootstrap-switch-rails'
 gem 'cocoon'
 gem 'cocoon_limiter'
@@ -135,8 +135,8 @@ group :test do
   gem 'webmock'
   gem 'selenium-webdriver', '~> 2.43.0'
   gem 'simplecov', require: false
-  gem 'shoulda-matchers'
-  gem "launchy"
+  gem 'shoulda-matchers', require: false
+  gem 'launchy'
 end
 
 group :production do

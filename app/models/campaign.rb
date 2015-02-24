@@ -31,7 +31,6 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  has_many :direct_donations, dependent: :destroy
   has_many :impressions, as: :impressionable
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
@@ -240,8 +239,6 @@ class Campaign < ActiveRecord::Base
         next_range = range.call(sponsor_categories[i+1])
 
         errors.add(:sponsor_categories, "The max and min values must not overlap.") if current_range.overlaps?(next_range)
-        # if sc.persisted? and sponsor_categories[i+1].persisted?
-        # end
       end
     end
   end

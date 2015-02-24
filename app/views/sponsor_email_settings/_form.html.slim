@@ -6,18 +6,28 @@
 = semantic_form_for @sponsor_email_setting, url: sponsor_email_settings_path do |f|
   = f.inputs nil do
     .row.section-wrapper
-      .row.slideCheckbox
-        .col-md-12
-          = f.input :new_pledge_request, input_html: {class: 'checkbox-pill'}              
-          = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}        
-          = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'} 
-          = f.input :pledge_accepted, input_html: {class: 'checkbox-pill'} 
-          = f.input :pledge_rejected, input_html: {class: 'checkbox-pill'} 
-          = f.input :account_change, input_html: {class: 'checkbox-pill'}          
-          = f.input :campaign_launch, input_html: {class: 'checkbox-pill'}            
-          = f.input :campaign_end, input_html: {class: 'checkbox-pill'}            
-          = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}  
-          = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
+      .col-md-12.text-center
+        .check_boxes.input.optional.form-group
+          .checkbox
+            = f.input :new_pledge_request, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_accepted, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_rejected, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :account_change, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :campaign_launch, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :campaign_end, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
     .row.section-wrapper
       .row
         .col-md-12.text-center

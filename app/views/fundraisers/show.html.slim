@@ -30,8 +30,8 @@
             h4.share-info.pull-left Please share our Profile!
             
           .follow-button-wrapper.pull-right
-            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
-            = render partial:'subscriptions/follow_modal', locals:{object: @fundraiser}
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#campaign_top_subs_modal' Contact Us!
+            = render partial:'subscriptions/modal', locals:{object: @fundraiser, origin: @fundraiser, position: 'campaign.top'}
 
       .col-md-4.sidebar
         .sidebar-bkg.no-border
@@ -177,6 +177,8 @@
           hr
           .boldest.init-caps = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
+        .direct-donation
+          = render partial:'fundraisers/show/direct_donations/section', locals:{fundraiser: @fundraiser}
     .row
       .col-md-12
         ul.nav.nav-tabs

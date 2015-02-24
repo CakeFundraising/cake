@@ -23,8 +23,8 @@
             h4.share-info.pull-left Please share our Campaign!
 
           .follow-button-wrapper.pull-right
-            a.btn.btn-transparent-light data-toggle='modal' data-target='#follow_modal' Follow Us!
-            = render partial:'subscriptions/follow_modal', locals:{object: @campaign.fundraiser}
+            a.btn.btn-transparent-light data-toggle='modal' data-target='#campaign_top_subs_modal' Contact Us!
+            = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position: 'campaign.top'}
 
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
@@ -112,22 +112,25 @@
           p.story.expander = @campaign.story
 
     .container
-      .row
-        .col-md-4.col-md-push-8.text-center
-          / MAKE A PLEDGE BANNER
-          - if not @campaign.past?
-            .make-pledge.well
-              .row
-                .col-md-12s
-                  h4.attention-owners
-                    b> Attention Business Owners!
-                    | Support us and reach new customers!
-                  = link_to "Make a Pledge Today", new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-md'
-        .col-md-8.col-md-pull-4.campaign-story
+      .row.text-center
+        .col-md-12.campaign-story
           / DIRECT DONATION 
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
+          br
+          br
+        .col-md-12
+          .make-pledge.well
+            .row
+              .col-md-12s
+                h4.attention-owners
+                  b> Business Owners:
+                  | You can Partner with #{@campaign.fundraiser} too!
+                a.btn.btn-primary data-toggle='modal' data-target='#campaign_partner_subs_modal' Learn How
+                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.partner'}
       .row
         .col-md-12
+          br
+          br
           / SHARE BUTTONS 
           .text-center.med-hide 
             h2 Please share our campaign with your family and friends!

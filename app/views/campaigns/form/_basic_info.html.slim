@@ -12,8 +12,9 @@
           br
         .row
           .col-md-6
-              = f.input :title, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
-              span.help-block.italic Keep it simple.
+            label.control-label Campaign Name
+            = f.input :title, as: :string, label: false, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
+            span.help-block.italic Keep it simple.
           .col-md-6
             label.control-label Target Launch & End Dates
             .input-daterange
@@ -23,8 +24,8 @@
             span.help-block.italic These dates are when your campaign starts and ends. You launch your Campaign only when you decide, and you can extend the End Date after you have launched your Campaign if you wish to do so.
         .row.section-wrapper.text-center
           .col-md-12
-            h2 Hero Campaign
-            = f.input :hero, as: :boolean, input_html: {class:'boolean_switch'}, label: ' I am seeking only one exclusive Sponsor for this Campaign.'
+            h2 How Many Business Sponsors Do You Want?
+            = f.input :hero, as: :boolean, input_html: {id:'hero_campaign_switch'}, label: false
         .row.section-wrapper.text-center
           h2 Campaign Goal
           p.text-muted How much do you want to raise for this Campaign? 

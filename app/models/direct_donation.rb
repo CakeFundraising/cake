@@ -1,10 +1,10 @@
 class DirectDonation < ActiveRecord::Base
-  belongs_to :campaign
+  belongs_to :fundraiser
   has_one :charge, as: :chargeable
 
   monetize :amount_cents
 
-  validates :campaign, :card_token, :amount, :email, presence: true
+  validates :fundraiser, :card_token, :amount, :email, presence: true
 
   before_create :stripe_charge_card
 
@@ -18,13 +18,13 @@ class DirectDonation < ActiveRecord::Base
       description: "Direct Donation from #{self.email}",
       application_fee: (self.amount_cents*Cake::APPLICATION_FEE).round # amount in cents
       },
-      self.campaign.fundraiser.stripe_account.token # user's access token from the Stripe Connect flow
+      self.fundraiser.stripe_account.token # user's access token from the Stripe Connect flow
     )
     store_transaction(charge) 
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.campaign.fundraiser.stripe_account.token)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.fundraiser.stripe_account.token)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,

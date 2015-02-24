@@ -180,9 +180,12 @@ describe Ability do
       end
 
       it_behaves_like "an owned object" do
+        @sponsor = FactoryGirl.create(:sponsor)
+        @user = @sponsor.manager
+        @ability = Ability.new(@user)
         pledge = FactoryGirl.create(:pledge, sponsor: @sponsor)
         
-        let(:owned_object) { FactoryGirl.create(:coupon, pledge: pledge) }
+        let(:owned_object) { FactoryGirl.create(:coupon, pledge: pledge, sponsor: @sponsor) }
         let(:foreign_object) { FactoryGirl.create(:coupon) }
       end
     end

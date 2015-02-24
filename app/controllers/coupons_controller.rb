@@ -26,6 +26,10 @@ class CouponsController < InheritedResources::Base
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)
       end
+      failure.html do
+        @pledge = resource.decorate
+        render :edit
+      end
     end
   end
 

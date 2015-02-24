@@ -18,10 +18,17 @@ seeLess = (model, container)->
 seeMore = (model)->
   buttons = $(".load_all_#{model}")
 
-  buttons.on "ajax:success", (e, data, status, xhr) ->
-    container = $(this).closest(".#{model}, ##{model}")
-    
+  buttons.click ->
+    spinner = $(this).siblings()
+    spinner.removeClass('hidden')
     $(this).hide()
+    return
+
+  buttons.on "ajax:success", (e, data, status, xhr) ->
+    spinner = $(this).siblings()
+    spinner.hide()
+
+    container = $(this).closest(".#{model}, ##{model}")
     container.append(data)
 
     seeLess(model, container)

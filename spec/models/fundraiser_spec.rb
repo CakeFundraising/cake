@@ -26,7 +26,8 @@ describe Fundraiser do
   it { should have_many(:campaigns).dependent(:destroy) }
   it { should have_many(:pledges).through(:campaigns) }
   it { should have_many(:invoices).through(:pledges) }
-  
+
+  it { should have_many(:direct_donations).dependent(:destroy) }
   it { should have_many(:received_payments).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:location).update_only(true) }

@@ -5,7 +5,7 @@ ActiveAdmin.register Invoice do
     selectable_column
 
     column :invoice do |invoice|
-      link_to "##{invoice.id}", admin_invoice_path(invoice)
+      link_to invoice.id, admin_invoice_path(invoice)
     end
     column :pledge
     column :clicks

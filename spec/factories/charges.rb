@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :charge do
     stripe_id "MyString"
     kind "MyString"
-    amount ""
-    total_fee ""
+    amount "0"
+    total_fee "0"
     fee_details '{"foo":"bar"}'
     chargeable_type "MyString"
     chargeable_id 1

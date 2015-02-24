@@ -1,0 +1,27 @@
+- cache [:subs_modal, object, origin, position]
+  .modal.fade.contact-modal id=(position.gsub(".", "_") + '_subs_modal')
+    .modal-dialog
+      .modal-content
+        .modal-header 
+          button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+          h3.modal-title Contact #{object}
+        .modal-body
+          = semantic_form_for object.subscriptors.build(origin: origin) do |f|
+            = f.inputs do
+              .row
+                .col-md-12
+                  .lead = t("titles.subscribers.#{position}", role: object).html_safe
+                  = f.input :name
+                  = f.input :organization
+                  = f.input :phone
+                  = f.input :email
+                  = f.input :message, input_html: {rows: 5, placeholder: '2,000 words or less', maxlength: 2000}
+                  = f.input :object_type, as: :hidden
+                  = f.input :object_id, as: :hidden
+                  = f.input :origin_type, as: :hidden
+                  = f.input :origin_id, as: :hidden
+            = f.actions do
+              = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg'}
+      /! /.modal-content
+    /! /.modal-dialog
+  /! /.modal
