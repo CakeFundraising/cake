@@ -1,0 +1,59 @@
+= display_meta("Cakester")
+
+h1.dash-head
+  span My Dashboard
+  .page-cta
+    = link_to "Start A New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
+
+= semantic_form_for @cakester do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    .row.fr-dash
+      = render partial:'cakesters/media'
+      = f.actions do
+        .meta
+          = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}
+      
+      / hr
+      / .row
+      /   .col-md-4
+      /     .sidebar-bkg
+      /       .row
+      /         .col-xs-12.text-center
+      /           p.donation-stats = @cakester.active_campaigns_donation
+      /           p Amount Earned From Active Campaigns
+      /       .row
+      /         .col-xs-12.rank-rows
+      /           = basic_list_item("Total Fundraised Lifetime", @cakester.total_raised)
+      /           = basic_list_item(Cakester.human_attribute_name(:invoices_due), @cakester.invoices_due)
+      /   .col-md-4
+      /     .sidebar-bkg
+      /       .row
+      /         .col-xs-12.text-center
+      /           p.donation-stats = @cakester.rank
+      /           p = Cakester.human_attribute_name(:rank)
+      /       .row
+      /         .col-xs-12.rank-rows
+      /           = basic_list_item("Top Cause Rank", @cakester.top_cause_name(0))
+      /           = basic_list_item(Cakester.human_attribute_name(:local_rank), @cakester.local_rank)
+      /   .col-md-4
+      /     .sidebar-bkg
+      /       .row
+      /         .col-xs-12.text-center
+      /           p.donation-stats = @cakester.campaigns_count
+      /           p = Cakester.human_attribute_name(:campaigns_count)
+      /       .row
+      /         .col-xs-12.rank-rows
+      /           = basic_list_item(t('semantic.average', model: 'Unique Clicks/Campaign'), @cakester.average_clicks_per_campaign)
+      /           = basic_list_item(t('semantic.average', model: 'Unique Clicks/Pledge'), @cakester.average_clicks_per_pledge)
+      /           = basic_list_item(t('semantic.average', model: 'Campaign Views'), @cakester.average_campaign_views )
+      /           = basic_list_item(Cakester.human_attribute_name(:unique_clicks), @cakester.unique_clicks)
+      /           = basic_list_item(Cakester.human_attribute_name(:bonus_clicks), @cakester.bonus_clicks)
+
+- pictures_status = raw({avatar: @cakester.avatar.present?, banner: @cakester.banner.present?}.to_json)
+
+javascript:
+  Cake.pictures.added_images(#{pictures_status});
+  $('#crop_button').click(function() {
+    $(this).parents('form').submit();
+  });

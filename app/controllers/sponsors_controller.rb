@@ -17,7 +17,7 @@ class SponsorsController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        current_user.set_sponsor(@sponsor)
+        current_user.set_role(@sponsor)
 
         if cookies[:pledge_campaign].present?
           redirect_to new_pledge_path(campaign: cookies[:pledge_campaign])

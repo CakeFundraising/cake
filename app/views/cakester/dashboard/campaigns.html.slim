@@ -1,0 +1,10 @@
+= display_meta("Active Campaigns")
+
+h1.dash-head
+	span Active Campaigns
+	.page-cta
+		= link_to "Start A New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
+.row
+  .col-md-12
+    = render partial:'campaigns/show/tables/active_table', locals:{campaigns: @campaigns}
+

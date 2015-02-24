@@ -5,7 +5,7 @@
   p.text-muted.text-center Who are you a Sponsor for?
 
 = semantic_form_for @sponsor do |f|
-    = f.inputs nil do
+    = f.inputs do
       .container.first-of-all.wizard-wrap
         .row.text-center
           h2 Contact Information
@@ -21,7 +21,6 @@
         .row
           .col-md-2
           .col-md-8
-            /= render partial:'locations/form', locals:{f: f}
             = f.semantic_fields_for :location do |l|
               = l.input :address
               = l.input :city

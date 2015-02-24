@@ -1,13 +1,10 @@
 require 'robots_generator'
 
 Cake::Application.routes.draw do
-  resources :cakesters
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: 
-  {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions}
-
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions}
+  
   root to: "home#index"
 
   authenticated :user do
@@ -112,6 +109,8 @@ Cake::Application.routes.draw do
     end 
   end
 
+  resources :cakesters, except: [:index, :destroy]
+
   resources :fr_sponsors, except: [:index, :show]
   
   resources :pledge_requests do
@@ -137,6 +136,15 @@ Cake::Application.routes.draw do
 
   #Sponsor Dashboard
   namespace :sponsor, controller: :dashboard do
+    get :home
+    get :billing
+    get :pledge_requests
+    get :active_pledges
+    get :history
+  end
+
+  #Cakester Dashboard
+  namespace :cakester, controller: :dashboard do
     get :home
     get :billing
     get :pledge_requests
@@ -192,6 +200,7 @@ Cake::Application.routes.draw do
     get :account, to: redirect('users/edit')
     resource :fundraiser_email_settings, only: [:edit, :update]
     resource :sponsor_email_settings, only: [:edit, :update]
+    resource :cakester_email_settings, only: [:edit, :update]
   end
 
   resources :users, only: :index do

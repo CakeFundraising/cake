@@ -28,9 +28,7 @@ class Cakester < ActiveRecord::Base
   delegate :city, :state, :state_code, :country, :address, to: :location
 
   after_initialize do
-    if self.new_record?
-      self.build_location
-    end
+    self.build_location if self.new_record?
   end
 
   SUBSCRIBER_RANGES = [
@@ -50,5 +48,12 @@ class Cakester < ActiveRecord::Base
 
   def self.popular
     self.with_picture.with_location.latest.first(12)
+  end
+
+  #Notify profile update
+  def notify_update
+    users.each do |user|
+      UserNotification.cakester_profile_updated(self.id, user.id).deliver if user.cakester_email_setting.public_profile_change
+    end
   end
 end

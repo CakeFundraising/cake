@@ -18,7 +18,7 @@ class FundraisersController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        current_user.set_fundraiser(@fundraiser)
+        current_user.set_role(@fundraiser)
         redirect_to fundraiser_home_path, notice: 'Now you can start creating a new campaign!'  
       end
     end

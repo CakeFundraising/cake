@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     current_user.sponsor if current_user.present?
   end
 
+  def current_cakester
+    current_user.cakester if current_user.present?
+  end
+
   def current_browser
     token = evercookie_get_value(:cfbid)
     Browser.find_by_token(token) if token.present?
