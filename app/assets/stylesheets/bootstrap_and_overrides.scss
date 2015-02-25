@@ -1182,7 +1182,9 @@ h2 {
     margin: 0;
   }
 }
-#fundraiser_picture_attributes_banner_input, #sponsor_picture_attributes_banner_input {
+#fundraiser_picture_attributes_banner_input, 
+#cakester_picture_attributes_banner_input, 
+#sponsor_picture_attributes_banner_input {
   .banner {
     width: 100%;
     height: auto;
@@ -1192,7 +1194,9 @@ h2 {
     }
   }
 }
-#fundraiser_picture_attributes_avatar_input, #sponsor_picture_attributes_avatar_input {
+#fundraiser_picture_attributes_avatar_input, 
+#cakester_picture_attributes_avatar_input, 
+#sponsor_picture_attributes_avatar_input {
   .avatar {
     width: 100%;
     height: auto;

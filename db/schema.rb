@@ -61,16 +61,16 @@ ActiveRecord::Schema.define(version: 20150224192946) do
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
   create_table "cakester_email_settings", force: :cascade do |t|
-    t.boolean  "new_pledge"
-    t.boolean  "pledge_increased"
-    t.boolean  "pledge_fully_subscribed"
-    t.boolean  "campaign_end"
-    t.boolean  "missed_launch_campaign"
-    t.boolean  "account_change"
-    t.boolean  "public_profile_change"
+    t.boolean  "new_pledge",              default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "cakesters", force: :cascade do |t|

@@ -6,8 +6,7 @@ ul.nav.nav-tabs.pad-top
   li.active
     a data-toggle="tab" href="#profile" Account
   li
-    = link_to "Email Notifications", edit_fundraiser_email_settings_path if current_fundraiser.present?
-    = link_to "Email Notifications", edit_sponsor_email_settings_path if current_sponsor.present?
+    = link_to "Email Notifications", send("edit_#{current_user.roles.first}_email_settings_path")
 
 .tab-content
   #profile.tab-pane.active

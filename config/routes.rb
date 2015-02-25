@@ -147,8 +147,8 @@ Cake::Application.routes.draw do
   namespace :cakester, controller: :dashboard do
     get :home
     get :billing
-    get :pledge_requests
     get :pledges
+    get :campaigns
     get :history
   end
 

@@ -44,6 +44,12 @@ class Ability
       can :crud, FrSponsor, fundraiser_id: user.fundraiser.id
     end
 
+    if user.has_role?(:cakester)
+      #Cakester
+      can :create, Cakester
+      can :crud, Cakester, id: user.cakester.id
+    end
+
     can :read, :all
     can :load_all, PledgeNews
     can [:badge, :hero], Campaign

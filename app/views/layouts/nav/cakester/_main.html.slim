@@ -2,6 +2,7 @@
   ul.nav.navbar-nav
     = menu_item "My Dashboard", cakester_home_path
     = menu_item "Pledges", cakester_pledges_path
+    = menu_item "Campaigns", cakester_campaigns_path
     = render partial: 'layouts/nav/search_form', locals:{collection: :campaigns}
   ul.nav.navbar-nav.navbar-right
     li.dropdown

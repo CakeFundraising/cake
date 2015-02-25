@@ -1,60 +1,78 @@
-= form_for @cakester do |f|
-  - if @cakester.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@cakester.errors.count, "error")} prohibited this cakester from being saved:"
-      ul
-        - @cakester.errors.full_messages.each do |message|
-          li = message
+= display_meta("Edit Profile")
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :website
-    = f.text_field :website
-  .field
-    = f.label :manager_name
-    = f.text_field :manager_name
-  .field
-    = f.label :manager_email
-    = f.text_field :manager_email
-  .field
-    = f.label :manager_title
-    = f.text_field :manager_title
-  .field
-    = f.label :manager_phone
-    = f.text_field :manager_phone
-  .field
-    = f.label :mission
-    = f.text_area :mission
-  .field
-    = f.label :about
-    = f.text_area :about
-  .field
-    = f.label :causes_mask
-    = f.number_field :causes_mask
-  .field
-    = f.label :scopes_mask
-    = f.number_field :scopes_mask
-  .field
-    = f.label :cause_requirements_mask
-    = f.number_field :cause_requirements_mask
-  .field
-    = f.label :email_subscribers
-    = f.text_field :email_subscribers
-  .field
-    = f.label :facebook_subscribers
-    = f.text_field :facebook_subscribers
-  .field
-    = f.label :twitter_subscribers
-    = f.text_field :twitter_subscribers
-  .field
-    = f.label :pinterest_subscribers
-    = f.text_field :pinterest_subscribers
-  .actions = f.submit
+.row.edit-profile-head
+  .col-md-2.col-md-push-10    
+    = link_to 'View Profile', @cakester, class:'btn btn-primary pull-right' 
+  .col-md-10.col-md-pull-2  
+    h1 Edit #{Cakester.model_name.human} Profile
+
+= semantic_form_for @cakester do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    .row 
+      .col-md-8
+        = render partial:'pictures/banner_form', locals:{f: f}
+      .col-md-4
+        = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+    .row.section-wrapper
+      h4 Company Information
+      .col-md-4
+        = f.input :name
+        = f.input :email
+      .col-md-4
+        = f.input :phone
+        = f.input :website
+    .row.section-wrapper    
+      = render partial:'locations/form', locals:{f: f}
+    .row.section-wrapper
+      h4 Manager Information
+      .col-md-4
+        = f.input :manager_name
+        = f.input :manager_title
+      .col-md-4
+        = f.input :manager_email
+        = f.input :manager_phone
+    .row.section-wrapper
+      h4 Company Mission
+      .col-md-6
+        = f.input :mission, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+      .col-md-6
+        = f.input :about, input_html: {class: 'autogrow', rows: 7, cols: 20, maxlength: 500 }
+    .row.section-wrapper
+      h4 Fundraising Requirements
+      .col-md-4
+        label.control-label Fundraising Organization Requirements
+        = f.input :cause_requirements, as: :check_boxes, collection: Cakester::CAUSE_REQUIREMENTS, label: false, member_label: Proc.new { |cr| cr.humanize }, input_html: {class: 'checkbox-pill'}
+      .col-md-6
+        label.control-label Types Of Campaigns We Cakester
+        = f.input :scopes, as: :check_boxes, collection: Cakester::SCOPES, label: false, input_html: {class: 'checkbox-pill'}
+    .row.section-wrapper
+      h4 Organization Causes
+      .col-md-12
+        = f.label Cakester::CAUSES_HIERARCHY.keys.last, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Cakester::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
+        = f.label Cakester::CAUSES_HIERARCHY.keys.first, class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Cakester::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+      .col-md-12
+        = f.label Cakester::CAUSES_HIERARCHY.keys[1], class:'control-label'
+        = f.input :causes, as: :check_boxes, collection: Cakester::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
+    .row.section-wrapper
+      h4 Community
+      .col-md-3
+        = f.input :email_subscribers, as: :select, collection: Cakester::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :facebook_subscribers, as: :select, collection: Cakester::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :twitter_subscribers, as: :select, collection: Cakester::SUBSCRIBER_RANGES
+      .col-md-3
+        = f.input :pinterest_subscribers, as: :select, collection: Cakester::SUBSCRIBER_RANGES
+    .row.section-wrapper
+      .col-xs-12.text-center
+        = f.actions do
+          = f.action :submit, label: 'Save Changes', button_html: {class: 'btn btn-success btn-lg'}
+
+- pictures_status = raw({avatar: @cakester.avatar.present?, banner: @cakester.banner.present?}.to_json)
+
+javascript:
+  Cake.pictures.added_images(#{pictures_status});
