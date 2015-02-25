@@ -69,6 +69,8 @@ class ApplicationController < ActionController::Base
       sponsor_home_path
     elsif current_fundraiser.present?
       fundraiser_home_path
+    elsif current_cakester.present?
+      cakester_home_path
     elsif resource.is_a? AdminUser
       admin_root_path
     else

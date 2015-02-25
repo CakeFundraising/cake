@@ -11,6 +11,8 @@ class Cakester < ActiveRecord::Base
 
   has_many :users, as: :role, dependent: :destroy
 
+  has_many :subscriptors, as: :object
+
   validates :name, :email, :phone, presence: true
   validates :email, email: true
   

@@ -37,15 +37,15 @@
         .sidebar-bkg.no-border
           .row.text-center
             .col-xs-6.border-right
-              p.donation-stats = @cakester.total_donation
-              p = Sponsor.human_attribute_name :total_donation
+              / p.donation-stats = @cakester.total_donation
+              p = Cakester.human_attribute_name :total_donation
             .col-xs-6
-              p.donation-stats = @cakester.total_clicks
-              p = Sponsor.human_attribute_name :total_clicks
+              / p.donation-stats = @cakester.total_clicks
+              p = Cakester.human_attribute_name :total_clicks
           .row
             .col-md-12.rank-rows
-              = basic_list_item(Sponsor.human_attribute_name(:rank), @cakester.rank)
-              = basic_list_item(Sponsor.human_attribute_name(:local_rank), @cakester.local_rank)
+              / = basic_list_item(Cakester.human_attribute_name(:rank), @cakester.rank)
+              / = basic_list_item(Cakester.human_attribute_name(:local_rank), @cakester.local_rank)
           - if can? :create, PledgeRequest
             .row
               .col-md-12.text-center
@@ -70,49 +70,49 @@
           table.table.table-bordered.performance-summary
             tr
               td 
-                p.summery-stats = @cakester.pledges_count
-                p = Sponsor.human_attribute_name :pledges_count
+                / p.summery-stats = @cakester.pledges_count
+                p = Cakester.human_attribute_name :pledges_count
               td 
-                p.summery-stats = @cakester.average_pledge
+                / p.summery-stats = @cakester.average_pledge
                 p = t('semantic.average', model: 'Pledge')
               td 
-                p.summery-stats = @cakester.average_donation_per_click
+                / p.summery-stats = @cakester.average_donation_per_click
                 p = t('semantic.average', model: 'Donation/Click')
               td 
-                p.summery-stats = @cakester.average_donation
+                / p.summery-stats = @cakester.average_donation
                 p = t('semantic.average', model: 'Donation')
             tr
               td
-                p.summery-stats = @cakester.average_clicks_per_pledge
+                / p.summery-stats = @cakester.average_clicks_per_pledge
                 p = t('semantic.average', model: 'Clicks/Pledge')
               td
-                p.summery-stats = @cakester.average_campaign_views
+                / p.summery-stats = @cakester.average_campaign_views
                 p = t('semantic.average', model: 'Campaign Views')
               td
-                p.summery-stats = @cakester.average_pledge_views
+                / p.summery-stats = @cakester.average_pledge_views
                 p = t('semantic.average', model: 'Pledge Views')
               td
-                p.summery-stats = @cakester.average_engagement
+                / p.summery-stats = @cakester.average_engagement
                 p = t('semantic.average', model: 'Engagement')
         .col-md-4
-          - if @cakester.top_causes.keys.any?
-            div.top-causes
-              h3 = Sponsor.human_attribute_name :top_causes
-              .causes 
-                span = @cakester.top_cause_name(0)
-                .progress
-                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
-                    span.sr-only 100% Complete (success)
-              .causes
-                span = @cakester.top_cause_name(1)
-                .progress
-                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@cakester.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@cakester.top_cause_amount_percentile(1)}%"
-                    span.sr-only #{@cakester.top_cause_amount_percentile(1)}% Complete (success)
-              .causes
-                span = @cakester.top_cause_name(2)
-                .progress
-                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@cakester.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@cakester.top_cause_amount_percentile(2)}%"
-                    span.sr-only #{@cakester.top_cause_amount_percentile(2)}% Complete (success)
+          / - if @cakester.top_causes.keys.any?
+          /   div.top-causes
+          /     h3 = Cakester.human_attribute_name :top_causes
+          /     .causes 
+          /       span = @cakester.top_cause_name(0)
+          /       .progress
+          /         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=100 aria-valuemin="0" aria-valuemax="100" style="width: 100%"
+          /           span.sr-only 100% Complete (success)
+          /     .causes
+          /       span = @cakester.top_cause_name(1)
+          /       .progress
+          /         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@cakester.top_cause_amount_percentile(1)) aria-valuemin="0" aria-valuemax="100" style="width: #{@cakester.top_cause_amount_percentile(1)}%"
+          /           span.sr-only #{@cakester.top_cause_amount_percentile(1)}% Complete (success)
+          /     .causes
+          /       span = @cakester.top_cause_name(2)
+          /       .progress
+          /         .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@cakester.top_cause_amount_percentile(2)) aria-valuemin="0" aria-valuemax="100" style="width: #{@cakester.top_cause_amount_percentile(2)}%"
+          /           span.sr-only #{@cakester.top_cause_amount_percentile(2)}% Complete (success)
   .pointer
   .container
     .row.min-case
@@ -127,19 +127,19 @@
           hr
           .row
             .col-md-12
-              h3 = Sponsor.human_attribute_name :causes
+              h3 = Cakester.human_attribute_name :causes
               div = @cakester.causes
 
           hr
           .row
             .col-md-12
-              h3 = Sponsor.human_attribute_name :scopes
+              h3 = Cakester.human_attribute_name :scopes
               div = @cakester.scopes
 
           hr
           .row
             .col-md-12
-              h3 = Sponsor.human_attribute_name :our_community
+              h3 = Cakester.human_attribute_name :our_community
           .row
             .col-md-4
               strong Email subscribers:
@@ -163,15 +163,15 @@
           .row
             .col-md-12
               .profile-message 
-                h3 = Sponsor.human_attribute_name :mission
+                h3 = Cakester.human_attribute_name :mission
                 p = @cakester.mission
           
           hr
           .row
             .col-md-12
               .demographics
-                h3 = Sponsor.human_attribute_name :customer_demographics
-                p = @cakester.customer_demographics
+                h3 = Cakester.human_attribute_name :about
+                p = @cakester.about
       .col-md-4
         .avatar 
           = link_to @cakester do
@@ -179,13 +179,13 @@
         .avatar-content
           .caption = @cakester.avatar_caption
           h4 Contact:
-          .boldest = Sponsor.human_attribute_name :manager_name
+          .boldest = Cakester.human_attribute_name :manager_name
           div #{@cakester.manager_name}, #{@cakester.manager_title} 
           hr
-          .boldest = Sponsor.human_attribute_name :manager_email
+          .boldest = Cakester.human_attribute_name :manager_email
           div = mail_to @cakester.manager_email, @cakester.manager_email
           hr
-          .boldest = Sponsor.human_attribute_name :manager_phone
+          .boldest = Cakester.human_attribute_name :manager_phone
           div = @cakester.manager_phone
     .row
       .col-md-12
@@ -199,11 +199,11 @@
 
         .tab-content
           #active-pledges.tab-pane.active
-            = render partial:'cakesters/public_profile/pledges_table', locals: {pledges: @active_pledges, kind: :active}
+            / = render partial:'cakesters/public_profile/pledges_table', locals: {pledges: @active_pledges, kind: :active}
           #past.tab-pane
-            = render partial:'cakesters/public_profile/pledges_table', locals: {pledges: @past_pledges, kind: :past}
+            / = render partial:'cakesters/public_profile/pledges_table', locals: {pledges: @past_pledges, kind: :past}
           #top.tab-pane
-            = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers, cakester: @cakester}
+            / = render partial:'fundraisers/show/table', locals:{fundraisers: @fundraisers, cakester: @cakester}
 css:
   .hero{ background-image: url("#{@cakester.picture.banner_path}"); }
 

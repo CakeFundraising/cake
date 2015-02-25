@@ -1,6 +1,10 @@
 class CakestersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
 
+  def show
+    @cakester = resource.decorate
+  end
+
   def create
     @cakester = Cakester.new(*resource_params)
     @cakester.build_location(resource_params.first['location_attributes'])
