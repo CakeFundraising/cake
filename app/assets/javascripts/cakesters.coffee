@@ -26,6 +26,7 @@ validation = ->
       'cakester[causes][]':
         required: true
       'cakester[website]':
+        required: true
         url: true
       'cakester[manager_name]':
         required: true
@@ -42,7 +43,7 @@ validation = ->
         minlength: 10
       'cakester[mission]':
         required: true
-      'cakester[supporter_demographics]':
+      'cakester[about]':
         required: true
   )
   return

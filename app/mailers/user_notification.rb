@@ -44,6 +44,15 @@ class UserNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your public profile has been modified.')
   end
 
+  def cakester_profile_updated(ck_id, user_id)
+    user = find_user(user_id)
+    ck = find_ck(ck_id)
+
+    @receiver = user.decorate
+    @attributes_changed = ck.previous_changes
+    mail(to: @receiver.email, subject: 'Your public profile has been modified.')
+  end
+
   #Partnership Request
   def fr_partnership_request(fr_id, sp_id, message)
     @fr = find_fr(fr_id)
@@ -70,5 +79,9 @@ class UserNotification < AsyncMailer
 
   def find_sp(id)
     Sponsor.find(id)
+  end
+
+  def find_ck(id)
+    Cakester.find(id)
   end
 end
