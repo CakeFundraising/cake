@@ -148,7 +148,7 @@ Cake::Application.routes.draw do
     get :home
     get :billing
     get :pledge_requests
-    get :active_pledges
+    get :pledges
     get :history
   end
 

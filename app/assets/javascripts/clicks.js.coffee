@@ -1,6 +1,6 @@
 Cake.clicks ?= {}
 
-Cake.clicks.after_click = (website_url)->
+Cake.clicks.after_click = ->
   click_button = $('.click_link')
   modal = $('#click_counted.modal').first()
   thanks_msg = 'Thanks! Visit our Website Again'
@@ -39,9 +39,11 @@ Cake.clicks.hero_campaign = ->
   pic_link = $('.hero-pictures-section .click-link')
   click_button = $('.click_link')
   thanks_msg = 'Thanks! Visit our Website Again'
+  modal = $('#click_counted.modal').first()
 
   pic_link.click ->
     click_button.text(thanks_msg)
+    modal.modal('show')
     return
 
   click_button.click ->
@@ -51,4 +53,5 @@ Cake.clicks.hero_campaign = ->
 Cake.clicks.init = ->
   Cake.clicks.hero_campaign()
   Cake.clicks.mini_pledge()
+  Cake.clicks.after_click()
   return

@@ -25,6 +25,7 @@ nav.navbar.navbar-default role="navigation"
               span.icon-bar
         = render partial:'layouts/nav/fundraiser/main' if current_fundraiser.present? and current_fundraiser.persisted?
         = render partial:'layouts/nav/sponsor/main' if current_sponsor.present? and current_sponsor.persisted?
+        = render partial:'layouts/nav/cakester/main' if current_cakester.present? and current_cakester.persisted?
       - else
         .navbar-header
           .logo

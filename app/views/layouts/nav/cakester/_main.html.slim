@@ -1,0 +1,22 @@
+#bs-example-navbar-collapse-1.collapse.navbar-collapse
+  ul.nav.navbar-nav
+    = menu_item "My Dashboard", cakester_home_path
+    = menu_item "Pledges", cakester_pledges_path
+    = render partial: 'layouts/nav/search_form', locals:{collection: :campaigns}
+  ul.nav.navbar-nav.navbar-right
+    li.dropdown
+      a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
+        = current_user.full_name
+        span.glyphicon.glyphicon-cog
+        span.caret
+      ul.dropdown-menu
+        = menu_item "My Dashboard", cakester_home_path
+        = menu_item "Billing", cakester_billing_path
+        = menu_item "History", cakester_history_path
+        li.divider
+        = menu_item "Public Profile", cakester_path(current_cakester)
+        = menu_item "Edit Profile", public_profile_path
+        = menu_item "Account Settings", account_path
+        = menu_item "Email Notifications", edit_cakester_email_settings_path
+        li.divider
+        = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete

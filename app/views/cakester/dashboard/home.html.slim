@@ -3,7 +3,7 @@
 h1.dash-head
   span My Dashboard
   .page-cta
-    = link_to "Start A New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
+    = link_to "Find a New Campaign", search_campaigns_path, class:'btn btn-primary btn-md'
 
 = semantic_form_for @cakester do |f|
   = f.semantic_errors *f.object.errors.keys
