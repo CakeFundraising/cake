@@ -136,10 +136,9 @@
                 span.boldest#amount_per_click = @pledge.amount_per_click
                 span  up to 
                 span.boldest #{@pledge.total_amount}! 
-            br
-            br
             .col-md-4.col-md-push-4
-              = render partial:'clicks/pledge', locals: {pledge: @pledge}
+              .blue-banner-click-button
+                = render partial:'clicks/pledge', locals: {pledge: @pledge}
 
       = render partial:'pledges/show/coupons_and_news'
 
