@@ -10,8 +10,8 @@
   .col-md-9
     .coupons-container.row-fluid.transitions-enabled
       .coupons
-        - if @coupons.any?
-          = render partial: "coupons/show/grid", collection: @coupons, as: :coupon
+        - if @collection.any?
+          = render partial: "coupons/show/grid", collection: @collection, as: :coupon
           .col-md-12
             = link_to "See All Our Coupons", search_coupons_path, class:'btn btn-primary btn-md'
         - else

@@ -45,6 +45,25 @@ Cake.utils.load_all = ->
     seeMore(model)
   return
 
+remoteTabs = ->
+  $('[data-toggle="remoteTab"]').click (e) ->
+    e.preventDefault()
+    
+    $this = $(this)
+    loadurl = $this.attr('href')
+    $targ = $($this.attr('data-target'))
+
+    if $targ.is(':empty')
+      $.get loadurl, (data) ->
+        $targ.html data
+        $targ.css('background', 'none')
+        return
+
+    $this.tab 'show'
+    return
+  return
+
 Cake.utils.init = ->
   Cake.utils.load_all()
+  remoteTabs()
   return

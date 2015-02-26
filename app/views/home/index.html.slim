@@ -37,20 +37,17 @@
           a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns"
             span Campaigns Seeking Sponsors
         li
-          a data-toggle="tab" id="tab-sponsors" href="#pop-sponsors"
-            span All Sponsors
+          = home_tab_button(:sponsor, 'All Sponsors')
         li
-          a data-toggle="tab" id="tab-fundraisers" href="#pop-fundraisers"
-            span All Causes
+          = home_tab_button(:fundraiser, 'All Causes')
         li
-          a data-toggle="tab" id="tab-fundraisers" href="#"
+          a data-toggle="tab" id="tab-cakesters" href="#pop-cakesters"
             span All Cakesters
         li
-          a data-toggle="tab" id="tab-fundraisers" href="#"
+          a data-toggle="tab" id="tab-comissions" href="#pop-comissions"
             span Commissions
         li
-          a data-toggle="tab" id="tab-coupons" href="#pop-coupons"
-            span Best Discounts
+          = home_tab_button(:coupon, 'Best Discounts')
 								
 /- main content							
 .container.main-home

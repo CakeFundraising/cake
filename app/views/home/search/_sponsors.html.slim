@@ -11,8 +11,8 @@
   .col-md-9
     .sponsors-container.row-fluid.transitions-enabled
       .sponsors
-        - if @sponsors.any?
-          = render partial: "sponsors/show/grid", collection: @sponsors, as: :sponsor
+        - if @collection.any?
+          = render partial: "sponsors/show/grid", collection: @collection, as: :sponsor
           .col-md-12
             = link_to "See All Our Sponsors", search_sponsors_path, class:'btn btn-primary btn-md'
         - else
