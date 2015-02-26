@@ -51,8 +51,6 @@
               .col-md-12.text-center
                 .request-pledge
                   .main-cta
-                    /= link_to "Request Pledge", new_pledge_request_path(cakester_id: @cakester), class:'btn btn-primary btn-xl'
-
                     button.btn.btn-xl.btn-primary data-target="#cakester_modal_#{@cakester.id}" data-toggle="modal"
                       = "Request Pledge"
                     = render partial:'cakesters/show/modal', locals:{cakester: @cakester}
