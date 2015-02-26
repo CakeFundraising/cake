@@ -1,6 +1,9 @@
-Cake.search = Cake.search or {}
+Cake.search ?= {}
 
-Cake.search = (form, resultsDiv) ->
+Cake.search.init = ->
+  return
+
+Cake.search.page = (form, resultsDiv) ->
   $form = $(form)
   $input = $form.find("#search")
 

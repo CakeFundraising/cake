@@ -14,6 +14,7 @@ Cake::Application.routes.draw do
 
   namespace :home, path:'/' do
     get :get_started
+    get :load_tab
   end
 
   #Static pages

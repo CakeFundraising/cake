@@ -4,13 +4,17 @@ class HomeController < ApplicationController
 
   def index
     @campaigns = CampaignDecorator.decorate_collection Campaign.popular
-    @fundraisers = FundraiserDecorator.decorate_collection Fundraiser.popular
-    @sponsors = SponsorDecorator.decorate_collection Sponsor.popular
-    @coupons = CouponDecorator.decorate_collection Coupon.popular
   end
 
   def get_started
     session.delete(:new_user)
+  end
+
+  def load_tab
+    model = params[:model].camelize
+
+    @collection = "#{model}Decorator".constantize.decorate_collection model.constantize.popular
+    render partial:"home/search/#{params[:model].pluralize}"
   end
 
   protected

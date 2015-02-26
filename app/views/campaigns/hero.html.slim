@@ -30,6 +30,35 @@
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
           .row
+            - if @campaign.past?
+              .col-md-12.text-center
+                .main-cta.alert.alert-danger.ended_campaign This campaign is over
+            - elsif not @campaign.hero_pledge?
+              .col-md-12.text-center
+                .main-cta
+                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-success btn-xl'
+            - else 
+              .col-md-12.text-center
+                .main-cta
+                  = render partial:'clicks/campaign'
+          .row
+            .col-md-12
+              .progress.campaign-thermometer
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
+              .campaign-stats
+                span
+                  span.boldest.raised = @campaign.raised_by_status
+                span.pull-right
+                  span.boldest = @campaign.goal
+                  |  Goal
+          hr
+          .row
+            .col-md-12.pledges_total
+              span Total Donations Earned: 
+              span.boldest.raised = @campaign.raised_by_status
+          hr
+          .row
             .col-xs-12
               p.timer-ital Campaign Ends In:
           .row.text-center#campaign_countdown
@@ -42,51 +71,19 @@
             .col-xs-4
               span.campaign-timer.mins
               span m.
-          hr
-          .row
-            .col-md-12.pledges_total
-              span Total Donations Earned: 
-              span.boldest.raised = @campaign.raised_by_status
-          hr
-          .row
-            .col-md-12
-              .progress.campaign-thermometer
-                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
-                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
-              .campaign-stats
-                span
-                  span.boldest.raised = @campaign.raised_by_status
-                span.pull-right
-                  span.boldest = @campaign.goal
-                  |  Goal
-
-          .row
-            - if @campaign.past?
-              .col-md-12.text-center
-                .main-cta.alert.alert-danger.ended_campaign This campaign is over
-            - elsif not @campaign.hero_pledge?
-              .col-md-12.text-center
-                .main-cta
-                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-success btn-xl'
-            - else 
-              .col-md-12.text-center
-                .main-cta
-                  = render partial:'clicks/campaign'
+        .row
+          .col-md-12
+            #how-it-works-link
+              a data-toggle='modal' data-target='#how_it_works'
+                span.glyphicon.glyphicon-expand
+                span See how Cake works!
+              = render partial:'layouts/how_it_works_modal'
 
 = content_for :bottom_section do
   .main-background
     - if @pledge.present?
       .white
         .container
-          .row
-            .col-md-12
-              #how-it-works-link.pull-right.no-height
-                a.btn data-toggle='modal' data-target='#how_it_works'
-                  h4 
-                    span.glyphicon.glyphicon-expand
-                    span See how Cake works!
-                = render partial:'layouts/how_it_works_modal'
-
           .row.sponsor-profile
             .col-md-6.campaign-story
               h3 = @pledge.headline
@@ -103,7 +100,7 @@
               .row
                 = render partial:'campaigns/hero/shaking_pictures'
               .campaign_and_fundraiser.row
-                .col-md-6.no-padding
+                .col-md-6.col-sm-6.col-xs-6.no-padding
                   - if @pledge.pending?
                     h4 Your organization name here
                   - else
@@ -112,12 +109,21 @@
                       span.glyphicon.glyphicon-envelope
                       span  Contact us!
                     = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.contact'}
-                .col-md-6.no-padding
+                .col-md-6.col-sm-6.col-xs-6.no-padding
                   h4 = auto_link @campaign.fundraiser, truncate: 40
-                  a data-toggle='modal' data-target='#campaign_top_subs_modal' 
-                    span.glyphicon.glyphicon-envelope
-                    span  Contact us!
-                  = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.top'}
+
+                  .volunteer-with-us
+                    a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
+                      span.glyphicon.glyphicon-envelope
+                      span  Volunteer with Us!
+                    = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+
+                  - if @pledge.sponsor.present?
+                    .thank-sp
+                      a data-toggle='modal' data-target='#sp_thank_subs_modal'
+                        span.glyphicon.glyphicon-envelope
+                        span  Please thank #{@pledge.sponsor}
+                      = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
 
       .blue
         .container
@@ -131,7 +137,8 @@
                 span  up to 
                 span.boldest #{@pledge.total_amount}! 
             .col-md-4.col-md-push-4
-              = render partial:'clicks/pledge', locals: {pledge: @pledge}
+              .blue-banner-click-button
+                = render partial:'clicks/pledge', locals: {pledge: @pledge}
 
       = render partial:'pledges/show/coupons_and_news'
 
@@ -172,7 +179,7 @@
                 .thank-sp
                   a data-toggle='modal' data-target='#sp_thank_subs_modal'
                     span.glyphicon.glyphicon-envelope
-                    span  Please thank our partner: #{@pledge.sponsor}
+                    span  Please thank #{@pledge.sponsor}
                   = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
 
     .container
