@@ -9,7 +9,7 @@
             = link_to 'Thanks! Visit our Website Again!', click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-xl'
           - else
             .click_buttons_section
-              = link_to "Click to Help. It's Free!", click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-block btn-xl click_link'
+              = link_to "Click here to help!", click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-block btn-xl click_link'
             = render partial:'clicks/campaign_success_modal', locals: {pledge: @pledge, coupons: @coupons, news: @news} if @coupons.any? or @news.present?
         - else
           / Browser not registered.
