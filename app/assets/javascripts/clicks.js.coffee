@@ -8,6 +8,7 @@ Cake.clicks.after_click = ->
   click_button.click ->
     modal.modal('show')
     click_button.text(thanks_msg)
+    click_button.removeClass('click_link')
     return
   return
 
