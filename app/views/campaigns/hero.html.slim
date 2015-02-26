@@ -100,7 +100,7 @@
               .row
                 = render partial:'campaigns/hero/shaking_pictures'
               .campaign_and_fundraiser.row
-                .col-md-6.no-padding
+                .col-md-6.col-sm-6.col-xs-6.no-padding
                   - if @pledge.pending?
                     h4 Your organization name here
                   - else
@@ -109,7 +109,7 @@
                       span.glyphicon.glyphicon-envelope
                       span  Contact us!
                     = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.contact'}
-                .col-md-6.no-padding
+                .col-md-6.col-sm-6.col-xs-6.no-padding
                   h4 = auto_link @campaign.fundraiser, truncate: 40
 
                   .volunteer-with-us
