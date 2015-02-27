@@ -1,5 +1,5 @@
 .row
-  .col-md-3.col-xs-12
+  .col-md-3.hidden-xs.hidden-sm
     - cache [:search_sidebar, :campaigns] do
       = render 'home/search/search_form', collection: :campaigns
       #filters.panel-group
