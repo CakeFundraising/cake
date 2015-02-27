@@ -13,7 +13,6 @@
       .fundraisers
         - if @collection.any?
           = render partial: "fundraisers/show/grid", collection: @collection, as: :fundraiser
-          .col-md-12
-            = link_to "See All Our Causes", search_fundraisers_path, class:'btn btn-primary btn-md'
+          = link_to "See All Our Causes", search_fundraisers_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

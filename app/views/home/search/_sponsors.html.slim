@@ -13,7 +13,6 @@
       .sponsors
         - if @collection.any?
           = render partial: "sponsors/show/grid", collection: @collection, as: :sponsor
-          .col-md-12
-            = link_to "See All Our Sponsors", search_sponsors_path, class:'btn btn-primary btn-md'
+          = link_to "See All Our Sponsors", search_sponsors_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

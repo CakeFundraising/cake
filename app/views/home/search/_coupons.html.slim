@@ -12,7 +12,6 @@
       .coupons
         - if @collection.any?
           = render partial: "coupons/show/grid", collection: @collection, as: :coupon
-          .col-md-12
-            = link_to "See All Our Coupons", search_coupons_path, class:'btn btn-primary btn-md'
+          = link_to "See All Our Coupons", search_coupons_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.
