@@ -2312,7 +2312,6 @@ ul.share-coupon {
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  height: 70px;
   @include box-shadow(0 0 3px $gray-darker);
 }
 
@@ -2690,7 +2689,6 @@ header {
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  height: 60px;
   @include box-shadow(0 0 3px $gray-light);
 }
 
@@ -4003,7 +4001,7 @@ ul#share-block {
 
 // HERO CAMPAIGN
 @media (max-width: $screen-md-min) {
-  .alert, .med-hide{
+  .med-hide{
     display:none;
   }
   .campaign-intro {
