@@ -2,20 +2,20 @@
   = render partial:'pledge_news/form/actions', locals: {pledge_news: pledge_news}
   - cache [:pledge_news_box, pledge_news] do 
     .coupon_box.clearfix
-      .col-xs-1
-      .col-xs-10.coupon
+      .col-md-1
+      .col-md-10.col-xs-12.coupon
         .row
-          .col-md-4
+          .col-md-4.col-xs-4
             = pledge_news_pic(pledge_news)
             .pledge_news-edge
-          .col-md-6
+          .col-md-6.col-xs-8
             div.pledge_news-content
               h2 = pledge_news
               hr
               p 
                 span = pledge_news.story
                 span = link_to 'Read more', pledge_news.url, target: :_blank
-          .col-md-2.text-right
+          .col-md-2.hidden-xs.hidden-sm.text-right
             = pledge_news.picture.qrcode
-      .col-xs-1
+      .col-md-1
 

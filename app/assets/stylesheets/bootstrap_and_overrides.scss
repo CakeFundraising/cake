@@ -324,19 +324,6 @@ hr{
 }
 
 
-@media (max-width: $screen-md-min) {
-  .alert, .med-hide{
-    display:none;
-  }
-  .campaign-intro {
-    bottom: 0px !important;
-  }
-  .hero {
-    height: 600px !important;
-    background-position: 50% -100px;
-  }
-}
-
 @media (max-width: 620px){
     .navbar-text{
       display:none;
@@ -4010,4 +3997,23 @@ ul#share-block {
 
 .page-spinner{
   margin: 70px 0;
+}
+
+//######### MOBILE STYLES ###############
+
+// HERO CAMPAIGN
+@media (max-width: $screen-md-min) {
+  .alert, .med-hide{
+    display:none;
+  }
+  .campaign-intro {
+    bottom: 0px !important;
+  }
+  .hero {
+    height: 600px !important;
+    background-position: 50% -100px;
+  }
+  .sidebar-bkg.campaign-sidebar{
+    margin-top: 0;
+  }
 }
