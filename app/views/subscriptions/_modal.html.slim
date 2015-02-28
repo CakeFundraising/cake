@@ -3,9 +3,14 @@
     .modal-dialog
       .modal-content
         .modal-header
-          - if local_assigns.has_key? :visitor_url
-            .meta
-              a.visitor-url href="#{url_with_protocol(visitor_url)}"
+          - if local_assigns.has_key? :visitor_url and local_assigns.has_key? :visitor_action
+            - if not visitor_url.blank? and not visitor_action.blank?
+              .meta
+                a.visitor-url href="#{url_with_protocol(visitor_url)}"
+              javascript:
+                $('.close, #subscriptor_submit_action').click(function () {
+                  window.open($('.visitor-url').attr('href'), '_blank');
+                });
           button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
           h3.modal-title Contact #{object}
         .modal-body
@@ -14,7 +19,10 @@
               .row
                 .col-md-12
                   - if local_assigns.has_key? :visitor_action
-                    .lead = t("titles.subscribers.#{position}", {role: object, visitor_action: visitor_action}).html_safe
+                    - action = ""
+                    - if not visitor_action.blank?
+                      - action = "#{visitor_action}!"
+                    .lead = t("titles.subscribers.#{position}", {role: object, visitor_action: action}).html_safe
                   - else
                     .lead = t("titles.subscribers.#{position}", role: object).html_safe
                   = f.input :name
@@ -32,7 +40,3 @@
     /! /.modal-dialog
   /! /.modal
 
-javascript:
-  $('.close, #subscriptor_submit_action').click(function () {
-    window.open($('.visitor-url').attr('href'), '_blank');
-  });
