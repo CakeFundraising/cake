@@ -4,11 +4,9 @@
       .modal-content
         .modal-header
           - if local_assigns.has_key? :visitor_url
-            button.close.forward-visitor aria-hidden="true" data-dismiss="modal" type="button" &times;
             .meta
               a.visitor-url href="#{url_with_protocol(visitor_url)}"
-          - else
-            button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+          button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
           h3.modal-title Contact #{object}
         .modal-body
           = semantic_form_for object.subscriptors.build(origin: origin) do |f|
@@ -29,12 +27,12 @@
                   = f.input :origin_type, as: :hidden
                   = f.input :origin_id, as: :hidden
             = f.actions do
-              = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg forward-visitor'}
+              = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg'}
       /! /.modal-content
     /! /.modal-dialog
   /! /.modal
 
 javascript:
-  $('.forward-visitor').click(function () {
+  $('.close, #subscriptor_submit_action').click(function () {
     window.open($('.visitor-url').attr('href'), '_blank');
   });
