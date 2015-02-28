@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20150227215917) do
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
+  create_table "cakester_email_settings", force: :cascade do |t|
+    t.boolean  "new_pledge",              default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
   create_table "cakesters", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -104,7 +117,7 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.integer  "impressions_count",    limit: 8,   default: 0
     t.boolean  "visible",                          default: false
     t.string   "screenshot_url",       limit: 255
-    t.string   "screenshot_version",   limit: 255, default: ""
+    t.string   "screenshot_version",   limit: 255
     t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
     t.boolean  "hero",                             default: true
     t.string   "url"
@@ -335,7 +348,7 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.string   "name",                      limit: 255
     t.integer  "impressions_count",         limit: 8,   default: 0
     t.string   "screenshot_url",            limit: 255
-    t.string   "screenshot_version",        limit: 255, default: ""
+    t.string   "screenshot_version",        limit: 255
     t.integer  "bonus_clicks_count",        limit: 8,   default: 0,             null: false
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
@@ -470,9 +483,9 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "fundraiser_id"
-    t.integer  "sponsor_id"
     t.boolean  "registered",                         default: false
+    t.string   "role_type"
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

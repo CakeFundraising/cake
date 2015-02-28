@@ -1,5 +1,11 @@
 Cake.subscriptors ?= {}
 
+Cake.subscriptors.open_url = (url)->
+  $('#subscription-modal .close, #subscription-modal #subscriptor_submit_action').click ->
+    window.open url, '_blank'
+    return
+  return
+
 Cake.subscriptors.validation = ->
   $('.formtastic.subscriptor').each ->
     $(this).validate(

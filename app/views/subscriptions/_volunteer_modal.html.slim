@@ -10,7 +10,7 @@
             = f.inputs do
               .row
                 .col-md-12
-                  .lead = t("titles.subscribers.#{position}", {role: object}).html_safe
+                  .lead = t("titles.subscribers.#{position}", {role: object, visitor_action: "#{origin.visitor_action}!"}).html_safe
                   = f.input :name
                   = f.input :organization
                   = f.input :phone
@@ -25,4 +25,6 @@
       /! /.modal-content
     /! /.modal-dialog
   /! /.modal
-
+  - unless origin.visitor_url.blank?
+    javascript:
+      Cake.subscriptors.open_url("#{position.gsub(".", "_") + '_subs_modal'}", "#{url_with_protocol(origin.visitor_url)}");
