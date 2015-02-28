@@ -27,4 +27,4 @@
   /! /.modal
   - unless origin.visitor_url.blank?
     javascript:
-      Cake.subscriptors.open_url("#{position.gsub(".", "_") + '_subs_modal'}", "#{url_with_protocol(origin.visitor_url)}");
+      Cake.subscriptors.open_url("##{position.gsub(".", "_") + '_subs_modal'}", "#{url_with_protocol(origin.visitor_url)}");
