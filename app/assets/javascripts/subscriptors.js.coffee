@@ -13,3 +13,11 @@ Cake.subscriptors.validation = ->
     )
     return
   return
+
+Cake.subscriptors.forwardVisitors = ->
+  forwardButtons = $('.close, #subscriptor_submit_action')
+  visitorUrl = $('.visitor-url').attr('href')
+
+  forwardButtons.click ->
+    window.open(visitorUrl, '_blank')
+    return
