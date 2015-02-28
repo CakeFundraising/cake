@@ -2,10 +2,12 @@ class Campaign < ActiveRecord::Base
   include Cause
   include Scope
   include Statusable
+  include Formats
   include Analytics
   include Picturable
   include Screenshotable
   include SponsorAlias
+  include VisitorActions
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -40,6 +42,7 @@ class Campaign < ActiveRecord::Base
 
   validates :goal, numericality: {greater_than: 0}
 
+  validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
   validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates_associated :sponsor_categories, if: :custom_pledge_levels
