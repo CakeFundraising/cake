@@ -1,7 +1,7 @@
 Cake.subscriptors ?= {}
 
-Cake.subscriptors.open_url = (url)->
-  $('#subscription-modal .close, #subscription-modal #subscriptor_submit_action').click ->
+Cake.subscriptors.open_url = (modal_id, url)->
+  $("#{modal_id} .close, #{modal_id} #subscriptor_submit_action").click ->
     window.open url, '_blank'
     return
   return
