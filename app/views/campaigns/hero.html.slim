@@ -107,7 +107,7 @@
                     h4 = auto_link @pledge.sponsor, truncate: 40
                     a data-toggle='modal' data-target='#sp_contact_subs_modal'
                       span.glyphicon.glyphicon-envelope
-                      span  Contact us!
+                      span.clickable  Contact us!
                     = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.contact'}
 
                 .col-md-6.col-sm-6.col-xs-6.no-padding
@@ -118,12 +118,11 @@
                       span.glyphicon.glyphicon-envelope
                       span.clickable  #{@campaign.visitor_action} with Us!
                     = render partial:'subscriptions/volunteer_modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
-
                   - if @pledge.sponsor.present?
                     .thank-sp
                       a data-toggle='modal' data-target='#sp_thank_subs_modal'
                         span.glyphicon.glyphicon-envelope
-                        span  Please thank #{@pledge.sponsor}
+                        span.clickable  Please thank #{@pledge.sponsor}
                       = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
 
       .blue
@@ -180,7 +179,7 @@
                 .thank-sp
                   a data-toggle='modal' data-target='#sp_thank_subs_modal'
                     span.glyphicon.glyphicon-envelope
-                    span  Please thank #{@pledge.sponsor}
+                    span.clickable  Please thank #{@pledge.sponsor}
                   = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
 
     .container
