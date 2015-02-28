@@ -29,10 +29,7 @@
                   = f.input :origin_type, as: :hidden
                   = f.input :origin_id, as: :hidden
             = f.actions do
-              - if local_assigns.has_key? :visitor_url
-                = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg forward-visitor'}
-              - else
-                = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg'}
+              = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg forward-visitor'}
       /! /.modal-content
     /! /.modal-dialog
   /! /.modal
