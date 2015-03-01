@@ -5,6 +5,7 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 @import 'stripe_button';
+@import 'chosen-sass/bootstrap-chosen';
 
 //Grid Layout ----------------------------------------------------------------------------
 /* centered columns styles */
@@ -768,6 +769,13 @@ p.signup-social span:before, p.signup-social span:after {
     float: left;
     color: #555555;
     font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
+}
+
+.transparent-panel{
+  .panel{
+    background: transparent !important;
+    border: none;
   }
 }
 

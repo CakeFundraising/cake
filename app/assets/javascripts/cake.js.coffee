@@ -23,6 +23,7 @@ Cake.init = ->
   Cake.clicks.init()
   Cake.utils.init()
   Cake.cakesters.init()
+  Cake.chosen.init()
   return
 
 $(document).ready(Cake.init)

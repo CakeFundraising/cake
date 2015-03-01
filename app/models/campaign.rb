@@ -13,6 +13,7 @@ class Campaign < ActiveRecord::Base
   attr_accessor :step
 
   belongs_to :fundraiser
+  belongs_to :cakester
   
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy

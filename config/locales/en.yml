@@ -263,6 +263,8 @@ en:
         scopes: Type
         main_cause: Cause
         total_donations: Total Donations
+        any_cakester: Offer this Campaign to all Cakesters in Cake.
+        cakester_id: "I wish to offer this Campaign ONLY to the Cakester known as: "
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level

@@ -1,12 +1,13 @@
-# $(document).ready ->
-#   $('.chosen-select').chosen
-#     allow_single_deselect: true
-#     search_contains: true
-#     no_results_text: 'No results matched'
-#     width: '200px'
+Cake.chosen ?= {}
 
-# $(document).on 'has_many_add:after', ->
-#   $('.chosen-select').chosen
-#     allow_single_deselect: true
-#     no_results_text: 'No results matched'
-#     width: '200px'
+@chosenify = (select) ->
+  select.chosen
+    allow_single_deselect: true
+
+general = ->
+  chosenify $(".chosen-select")
+  return
+
+Cake.chosen.init = ->
+  general()
+  return

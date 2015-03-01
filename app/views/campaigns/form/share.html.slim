@@ -4,12 +4,24 @@
     
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    = render partial:"campaigns/form/share/#{@campaign.object.status}"
+    h1 Would you like help securing Sponsorships for your Campaign?
 
-    - unless @campaign.incomplete?
-      .row.section-wrapper.text-center
-        .row.solicit-choose
-          .col-md-12.text-center
-            /= link_to "Search for sponsors", search_sponsors_path, class:'btn btn-primary'
-            /span.text-muted.italic or
-            = link_to "Go to My Account", fundraiser_home_path, class:'btn btn-success'
+    .text-center
+      a aria-controls="cakester-panel" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#cakester-panel" class='btn btn-success btn-lg' Yes
+      a aria-controls="no-cakester" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#no-cakester" class='btn btn-danger btn-lg' No
+
+    #accordion.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
+      .panel.panel-default
+        #cakester-panel.panel-collapse.collapse role="tabpanel" 
+          .panel-body
+            = render partial:"campaigns/form/share/cakester_intro"
+      .panel.panel-default
+        #no-cakester.panel-collapse.collapse role="tabpanel" 
+          .panel-body
+            = render partial:"campaigns/form/share/#{@campaign.object.status}"
+            
+            - unless @campaign.incomplete?
+              .row.section-wrapper.text-center
+                .row.solicit-choose
+                  .col-md-12.text-center
+                    = link_to "Go to My Account", fundraiser_home_path, class:'btn btn-success'

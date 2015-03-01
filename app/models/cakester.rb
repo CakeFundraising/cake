@@ -13,6 +13,8 @@ class Cakester < ActiveRecord::Base
 
   has_many :subscriptors, as: :object
 
+  has_many :campaigns
+
   validates :name, :email, :phone, presence: true
   validates :email, email: true
   
@@ -32,6 +34,8 @@ class Cakester < ActiveRecord::Base
   after_initialize do
     self.build_location if self.new_record?
   end
+
+  COMMISSIONS = %w{ 5 10 15 20 25 30 35 40 45 50 }
 
   SUBSCRIBER_RANGES = [
     '0 to 500',

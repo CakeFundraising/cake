@@ -1,0 +1,21 @@
+= semantic_form_for @campaign do |f|
+  = f.inputs do
+    .row.text-center
+      .col-md-12
+        h1 Choose a Cakester
+        .text-muted Do you have someone who could help you to find Sponsors, or would you want to offer this campaign to any Cakester in Cake?
+        .row
+          .col-md-6.col-md-push-3
+            = f.input :any_cakester, as: :boolean
+            hr
+            = f.input :cakester_id, as: :select, collection: Cakester.all, input_html:{class:'chosen-select'}
+    .row.section-wrapper.text-center
+      .col-md-12
+        h1 Cakester Commision Percentage
+        .text-muted I am willing to pay the Cakester a commission on any revenues collected from a Sponsor introduced by such Cakester through the Cake platform equal to:
+        .row
+          .col-md-6.col-md-push-3
+            = f.input :cakester_commission_percentage, as: :select, collection: Cakester::COMMISSIONS, label: false
+  = f.actions do
+    .text-center
+      = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
