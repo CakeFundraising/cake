@@ -106,7 +106,20 @@ Cake.campaigns.validation = ->
   )
   return
 
+choose_cakester = ->
+  input = $('input[name="campaign[any_cakester]"]')
+  selectCakesterContainer = $('#one-cakester-input')
+
+  input.on 'switchChange.bootstrapSwitch', (event, state)->
+    if state
+      selectCakesterContainer.hide()
+    else
+      selectCakesterContainer.show()
+    return
+  return
+
 Cake.campaigns.init = ->
   Cake.campaigns.visibility()
   Cake.campaigns.launch()
+  choose_cakester()
   return

@@ -6,9 +6,11 @@
         .text-muted Do you have someone who could help you to find Sponsors, or would you want to offer this campaign to any Cakester in Cake?
         .row
           .col-md-6.col-md-push-3
-            = f.input :any_cakester, as: :boolean
-            hr
-            = f.input :cakester_id, as: :select, collection: Cakester.all, input_html:{class:'chosen-select'}
+            h3 I wish to offer this Campaign
+            div = f.input :any_cakester, as: :boolean, input_html: {id:'any_cakester_switch', label: false}
+            br
+            #one-cakester-input
+              = f.input :cakester_id, as: :select, collection: Cakester.all, input_html:{class:'chosen-select'}, label: false
     .row.section-wrapper.text-center
       .col-md-12
         h1 Cakester Commision Percentage

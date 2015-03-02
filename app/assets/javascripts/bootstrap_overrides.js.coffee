@@ -41,9 +41,13 @@ Cake.bootstrap_overrides.bootstrap_switch = ->
 
   $('#hero_campaign_switch').bootstrapSwitch 
     onColor: 'success'
-    offColor: 'danger'
+    offColor: 'default'
     onText: 'ONE Sponsor'
     offText: 'TWO OR MORE Sponsors'
+
+  $('#any_cakester_switch').bootstrapSwitch 
+    onText: 'To all Cakesters in Cake'
+    offText: 'ONLY to the Cakester known as:'
   return
 
 Cake.bootstrap_overrides.init = ->
