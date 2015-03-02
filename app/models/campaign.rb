@@ -223,6 +223,11 @@ class Campaign < ActiveRecord::Base
     )
   end
 
+  #Cakester
+  def cakester_chosen?
+    self.cakester_id.present? or self.cakester_commission_percentage.present? or self.any_cakester
+  end
+
   private
 
   def sponsor_categories_max_min_value

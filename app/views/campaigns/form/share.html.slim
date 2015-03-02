@@ -4,7 +4,7 @@
     
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    h1 Would you like help securing Sponsorships for your Campaign?
+    h1.text-center Would you like help securing Sponsorships for your Campaign?
 
     br
     br
@@ -14,11 +14,11 @@
 
     #accordion.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
       .panel.panel-default
-        #cakester-panel.panel-collapse.collapse role="tabpanel" 
+        #cakester-panel role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.cakester_chosen?}"
           .panel-body
             = render partial:"campaigns/form/share/cakester_intro"
       .panel.panel-default
-        #no-cakester.panel-collapse.collapse role="tabpanel" 
+        #no-cakester role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.cakester_chosen?}"
           .panel-body
             = render partial:"campaigns/form/share/#{@campaign.object.status}"
             

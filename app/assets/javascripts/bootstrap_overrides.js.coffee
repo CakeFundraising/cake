@@ -38,19 +38,26 @@ Cake.bootstrap_overrides.bootstrap_switch = ->
     offColor: 'danger'
     onText: 'Yes'
     offText: 'No'
+  return
 
-  $('#hero_campaign_switch').bootstrapSwitch 
-    onColor: 'success'
-    offColor: 'default'
-    onText: 'ONE Sponsor'
-    offText: 'TWO OR MORE Sponsors'
+booleanButtonInput = ->
+  $('button.boolean-button-input').on 'click', (e) ->
+    e.preventDefault()
 
-  $('#any_cakester_switch').bootstrapSwitch 
-    onText: 'To all Cakesters in Cake'
-    offText: 'ONLY to the Cakester known as:'
+    input = $(this).closest('.boolean_button').find('input[type=hidden]')
+
+    $(this).closest('.boolean-button-container').find('button.boolean-button-input').removeClass('active')
+    $(this).addClass('active')
+
+    if input.length > 0
+      if input.val().toString() != $(this).data('value').toString()
+        input.val($(this).data('value')).trigger 'change'
+    return
+
   return
 
 Cake.bootstrap_overrides.init = ->
   Cake.bootstrap_overrides.hide_alert()
   Cake.bootstrap_overrides.bootstrap_switch()
+  booleanButtonInput()
   return
