@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150301152535) do
     t.string   "url"
     t.string   "visitor_url",                                default: ""
     t.string   "visitor_action",                             default: ""
+    t.boolean  "uses_cakester",                              default: true
     t.integer  "cakester_id"
     t.integer  "cakester_commission_percentage"
     t.boolean  "any_cakester",                               default: false

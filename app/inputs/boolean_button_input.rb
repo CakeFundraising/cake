@@ -14,6 +14,23 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
     end
   end
 
+  def input_wrapping(&block)
+    template.content_tag(:div,
+      [template.capture(&block), error_html, hint_html].join("\n").html_safe,
+      wrapper_html_options
+    )
+  end
+
+  #Hidden field
+  def hidden_field_html
+    template.hidden_field_tag(input_html_options[:name], hidden_field_value, id: nil, disabled: input_html_options[:disabled] )
+  end
+
+  def hidden_field_value
+    BOOLEAN_MAPPER[BOOLEAN_MAPPER[object.send(method).to_s.to_sym]]
+  end
+
+  #Buttons
   def buttons
     template.content_tag(:div, class:'boolean-button-container') do
       template.content_tag(:button, input_html_options[:on_text], button_options(:on) ) + 
@@ -23,7 +40,7 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
 
   def button_options(status)
     options = {type: "button", data:{value: BOOLEAN_MAPPER[status]} }.merge(button_classes(status))
-    options = options.merge({data: {value: BOOLEAN_MAPPER[status], toggle: "collapse", parent: input_html_options[:collapsible][:parent], target: "##{status}_collapse_panel"}, aria: {expanded: "false", controls: "#{status}_collapse"} }) if input_html_options[:collapsible].present?
+    options = options.merge({data: {value: BOOLEAN_MAPPER[status], toggle: "collapse", parent: input_html_options[:collapsible][:parent], target: input_html_options[:collapsible][:"#{status}_panel"]}, aria: {expanded: "false", controls: "#{status}_collapse"} }) if input_html_options[:collapsible].present?
     options
   end
 

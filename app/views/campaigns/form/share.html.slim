@@ -7,23 +7,25 @@
     h1.text-center Would you like help securing Sponsorships for your Campaign?
 
     br
-    br
-    .text-center
-      a aria-controls="cakester-panel" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#cakester-panel" class='btn btn-success btn-lg' Yes
-      a aria-controls="no-cakester" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#no-cakester" class='btn btn-default btn-lg' No
 
-    #accordion.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
-      .panel.panel-default
-        #cakester-panel role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.cakester_chosen?}"
-          .panel-body
-            = render partial:"campaigns/form/share/cakester_intro"
-      .panel.panel-default
-        #no-cakester role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.cakester_chosen?}"
-          .panel-body
-            = render partial:"campaigns/form/share/#{@campaign.object.status}"
-            
-            - unless @campaign.incomplete?
-              .row.section-wrapper.text-center
-                .row.solicit-choose
-                  .col-md-12.text-center
-                    = link_to "Go to My Account", fundraiser_home_path, class:'btn btn-success'
+    = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
+      = f.inputs do
+        .text-center
+          = f.input :uses_cakester, as: :boolean_button, label: false, input_html: {on_text: 'YES', off_text: 'NO', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg', collapsible: {parent: '#uses_cakester_accordion', on_panel: '#uses_cakester_panel', off_panel: '#no_cakester_panel'}}
+
+        #uses_cakester_accordion.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
+          .panel.panel-default
+            #uses_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.uses_cakester}"
+              .panel-body
+                = render partial:"campaigns/form/share/cakester_intro", locals:{f: f}
+          .panel.panel-default
+            #no_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.uses_cakester}"
+              .panel-body
+                = render partial:"campaigns/form/share/#{@campaign.object.status}"
+                
+        = f.input :step, as: :hidden, input_html:{value: :show} 
+
+      = f.actions do
+        .text-center
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

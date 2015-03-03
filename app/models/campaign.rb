@@ -43,8 +43,11 @@ class Campaign < ActiveRecord::Base
 
   validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
-  validates_associated :sponsor_categories, if: :custom_pledge_levels
 
+  validates :cakester_commission_percentage, presence: true, if: :uses_cakester
+  validates :cakester_id, presence: true, if: ->(c){ c.uses_cakester and !c.any_cakester }
+  
+  validates_associated :sponsor_categories, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
@@ -221,11 +224,6 @@ class Campaign < ActiveRecord::Base
       website_url: "http://yourdomain.com",
       status: :pending
     )
-  end
-
-  #Cakester
-  def cakester_chosen?
-    self.cakester_id.present? or self.cakester_commission_percentage.present? or self.any_cakester
   end
 
   private
