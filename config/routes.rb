@@ -120,6 +120,13 @@ Cake::Application.routes.draw do
     end
   end
 
+  resources :cakester_requests do
+    member do
+      patch :accept
+      patch :reject
+    end
+  end
+
   scope :payments, controller: :payments do
     post :invoice_payment
     post :quick_invoice_payment

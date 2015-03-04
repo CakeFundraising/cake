@@ -1,0 +1,20 @@
+- cache [:table, :cakester, cakester_request] do 
+  tr.pledge
+    td.td-header(data-title='Fundraiser') 
+      = auto_link cakester_request.fundraiser
+    td.td-header(data-title='Campaign') 
+      = auto_link cakester_request.campaign
+    td.td-header(data-title='Hero') 
+      = cakester_request.hero
+    td.td-header(data-title='End date') 
+      = cakester_request.end_date
+    td.td-header(data-title='Cause') 
+      = cakester_request.cause
+    td.td-header(data-title='Type') 
+      = cakester_request.scopes
+    td.td-header(data-title='Rate')
+      = cakester_request.rate
+    td.truncate.min-width
+      = render partial:'cakester_requests/tables/cakester/actions', locals:{cakester_request: cakester_request}
+            
+  tr.empty-tr

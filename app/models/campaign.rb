@@ -33,6 +33,7 @@ class Campaign < ActiveRecord::Base
   end
 
   has_many :impressions, as: :impressionable
+  has_many :cakester_requests, dependent: :destroy
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
@@ -224,6 +225,14 @@ class Campaign < ActiveRecord::Base
       website_url: "http://yourdomain.com",
       status: :pending
     )
+  end
+
+  #Cakester
+  def new_cakester_request
+    self.cakester_requests.build(
+      fundraiser_id: self.fundraiser.id,
+      cakester_id: self.cakester_id
+    ).save!
   end
 
   private

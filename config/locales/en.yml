@@ -98,6 +98,9 @@ en:
       sponsors: sponsors
       fundraisers: fundraisers
       fr_sponsors: sponsors
+      cakesters:
+        exclusive_campaigns: exclusive clients
+        other_campaigns: other clients
     causes:
       disaster_and_emergency: Disaster & Emergencies
       causes_and_organizations: Causes & Organizations

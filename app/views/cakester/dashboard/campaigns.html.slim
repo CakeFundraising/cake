@@ -1,10 +1,15 @@
-= display_meta("Active Campaigns")
+= display_meta("Cakester Campaigns")
 
 h1.dash-head
-	span Active Campaigns
-	.page-cta
-		= link_to "Start A New Campaign", new_campaign_path, class:'btn btn-primary btn-md'
-.row
-  .col-md-12
-    = render partial:'campaigns/show/tables/active_table', locals:{campaigns: @campaigns}
+	span Campaigns
+
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#exclusive" = t('titles.empty_results.cakesters.exclusive_campaigns')
+  li 
+    a data-toggle="tab" href="#other" = t('titles.empty_results.cakesters.other_campaigns')
+.tab-content
+  #exclusive.tab-pane.active
+    = render partial:'cakester_requests/tables/cakester/table', locals:{requests: @cakester_requests}
+  #other.tab-pane
 

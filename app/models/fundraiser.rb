@@ -25,6 +25,8 @@ class Fundraiser < ActiveRecord::Base
 
   has_many :subscriptors, as: :object
 
+  has_many :cakester_requests, dependent: :destroy
+
   delegate :city, :state, :state_code, :country, :address, to: :location
 
   validates :name, :email, :phone, :causes, presence: true

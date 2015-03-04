@@ -13,7 +13,9 @@ class Cakester < ActiveRecord::Base
 
   has_many :subscriptors, as: :object
 
-  has_many :campaigns
+  has_many :cakester_requests, dependent: :destroy
+  has_many :accepted_cakester_requests, ->{ accepted }, class_name: 'CakesterRequest', dependent: :destroy
+  has_many :campaigns, through: :accepted_cakester_requests
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true

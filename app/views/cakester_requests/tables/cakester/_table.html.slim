@@ -1,0 +1,17 @@
+- if requests.any?
+  #no-more-tables
+    table#cakester_requests.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = CakesterRequest.human_attribute_name :fundraiser
+          th = CakesterRequest.human_attribute_name :campaign
+          th = CakesterRequest.human_attribute_name :hero
+          th = CakesterRequest.human_attribute_name :end_date
+          th = CakesterRequest.human_attribute_name :cause
+          th = CakesterRequest.human_attribute_name :type
+          th = CakesterRequest.human_attribute_name :rate
+          th
+      tbody
+        = render partial:'cakester_requests/tables/cakester/row', collection: requests, as: :cakester_request
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.cakesters.exclusive_campaigns')}

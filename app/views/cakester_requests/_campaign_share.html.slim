@@ -3,9 +3,6 @@
     .modal-content
       .modal-body
        
-        /Needs to get reset when the modal is opened
-        /= display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
-        
         - if campaign.pending?
 
           button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
@@ -35,7 +32,7 @@
               .addthis_sharing_toolbox#social data-url='#{campaign_url(campaign.id)}' data-title='Click and help support us! It is 100% free!'
 
           .row.section-wrapper.text-center
-            h2 Email Your Campaign
+            h2 Email Campaign
             p.text-muted Email your Campaign directly to your friends and supporters
             .toggle-container.text-left
               div
@@ -44,9 +41,9 @@
               div.pull-right
                 br
                 button.clipboard.btn.btn-primary data-clipboard-target="campaign_url" Copy
-
+                
           .row.section-wrapper.text-center
-            h2 Download Your Campaign Image
+            h2 Download Campaign Image
             p.text-muted You can use a PNG of your Campaign for emails and mailings
             .toggle-container.text-left
               .screenshot
@@ -56,7 +53,7 @@
                 = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + campaign_url(campaign.id), class:'btn btn-primary', :download => 'campaign.png'
 
           .row.section-wrapper.text-center       
-            h2 Embed Badge on Your Website
+            h2 Embed Badge on Website
             p.text-muted Copy the source code below and past it on your website
             .toggle-container.text-left
               div

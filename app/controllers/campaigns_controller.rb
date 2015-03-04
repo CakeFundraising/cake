@@ -53,8 +53,9 @@ class CampaignsController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        p resource
         update_campaign_screenshot(resource)
+        resource.new_cakester_request if params[:campaign][:step] == 'show'
+
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do
