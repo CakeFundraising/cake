@@ -44,10 +44,20 @@ booleanButtonInput = ->
   $('button.boolean-button-input').on 'click', (e) ->
     e.preventDefault()
 
-    input = $(this).closest('.boolean_button').find('input[type=hidden]')
+    #Toggle classes
+    oppositeButton = $(this).closest('.boolean-button-container').find('button.boolean-button-input')
 
-    $(this).closest('.boolean-button-container').find('button.boolean-button-input').removeClass('active')
-    $(this).addClass('active')
+    onClasses = $(this).data('on-classes')
+    offClasses = $(this).data('off-classes')
+
+    currentClasses = $.trim $(this).attr('class').replace('boolean-button-input', '').replace('btn', '')
+    newClasses = if currentClasses == onClasses then offClasses else onClasses
+
+    oppositeButton.removeClass().addClass("btn boolean-button-input #{currentClasses}")
+    $(this).removeClass().addClass("btn boolean-button-input #{newClasses}")
+
+    #Update hidden field
+    input = $(this).closest('.boolean_button').find('input[type=hidden]')
 
     if input.length > 0
       if input.val().toString() != $(this).data('value').toString()

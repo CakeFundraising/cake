@@ -39,13 +39,33 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
   end
 
   def button_options(status)
-    options = {type: "button", data:{value: BOOLEAN_MAPPER[status]} }.merge(button_classes(status))
-    options = options.merge({data: {value: BOOLEAN_MAPPER[status], toggle: "collapse", parent: input_html_options[:collapsible][:parent], target: input_html_options[:collapsible][:"#{status}_panel"]}, aria: {expanded: "false", controls: "#{status}_collapse"} }) if input_html_options[:collapsible].present?
+    options = {type: "button", data:{value: BOOLEAN_MAPPER[status], on_classes: input_html_options[:on_classes], off_classes: input_html_options[:off_classes]} }.merge(button_classes(status))
+    
+    options = options.merge({
+      data: {
+        value: BOOLEAN_MAPPER[status], 
+        on_classes: input_html_options[:on_classes], 
+        off_classes: input_html_options[:off_classes], 
+        toggle: "collapse", 
+        parent: input_html_options[:collapsible][:parent], 
+        target: input_html_options[:collapsible][:"#{status}_panel"]
+      }, 
+      aria: {expanded: "false", controls: "#{status}_collapse"}
+    }) if input_html_options[:collapsible].present?
+
     options
   end
 
   def button_classes(status)
-    classes = input_html_options[:"#{status}_classes"]
-    {class: "btn boolean-button-input #{classes} #{'active' if BOOLEAN_MAPPER[object.send(method).to_s.to_sym] == status }"}
+    field_value = object.send(method)
+
+    # If and only if statements
+    if (field_value and status == :on) or (not field_value and status == :off)
+      classes = input_html_options[:on_classes]
+    elsif (field_value and status == :off) or (not field_value and status == :on)
+      classes = input_html_options[:off_classes]
+    end
+
+    {class: "btn boolean-button-input #{classes}"}
   end
 end
