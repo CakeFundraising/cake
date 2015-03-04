@@ -1,0 +1,12 @@
+- cache [:box, cakester] do
+  .cakester_grid.col-md-4.col-sm-4.col-xs-6
+    .thumbnail
+      .avatar-container
+        = link_to cakester do
+          = cakester.picture.avatar
+      .caption
+        h4.truncate = auto_link cakester
+        .location.truncate = [cakester.object.city, cakester.object.state_code, cakester.location.zip_code].join(', ')
+        .cause.truncate = cakester.object.causes.first
+      .buttons
+        / = link_to 'Request a Partnership', request_partnership_cakester_path(cakester), class:'btn btn-success btn-block'

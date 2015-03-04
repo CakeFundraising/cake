@@ -57,6 +57,10 @@ module ApplicationHelper
     }
   end
 
+  def underscore_to_dash(string)
+    string.gsub("_", "-")
+  end
+
   ## Global data
   def cake_global_raised
     Invoice.paid.sum(:due_cents).to_i/100

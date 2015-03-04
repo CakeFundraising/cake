@@ -54,6 +54,31 @@ class Cakester < ActiveRecord::Base
     '5,000,000+'
   ]
 
+  #Solr
+  searchable do
+    text :name, boost: 2
+    text :mission, :website, :email, :manager_name, :manager_email, :manager_phone
+    text :city, :state_code
+
+    text :zip_code do
+      location.zip_code  
+    end
+
+    # text :pledges_names do
+    #   pledges.map {|p| p.name }
+    # end
+
+    text :causes
+    string :scopes, multiple: true
+    string :causes, multiple: true
+
+    string :zip_code do
+      location.zip_code  
+    end
+
+    time :created_at
+  end
+
   def self.popular
     self.with_picture.with_location.latest.first(12)
   end

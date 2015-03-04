@@ -71,6 +71,9 @@ class Campaign < ActiveRecord::Base
 
   scope :hero, ->{ where(hero: true) }
   scope :not_hero, ->{ where(hero: false) }
+
+  scope :uses_cakester, ->{ where(uses_cakester: true) }
+  scope :any_cakester, ->{ where(any_cakester: true) }
   
   #Solr
   searchable do
@@ -100,6 +103,8 @@ class Campaign < ActiveRecord::Base
 
     boolean :active, using: :active?
     boolean :visible
+    boolean :uses_cakester
+    boolean :any_cakester
 
     string :scopes, multiple: true
     string :main_cause

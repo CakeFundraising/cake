@@ -41,15 +41,12 @@
         li
           = home_tab_button(:fundraiser, 'All Causes')
         li
-          a data-toggle="tab" id="tab-cakesters" href="#pop-cakesters"
-            span All Cakesters
+          = home_tab_button(:cakester, 'All Cakesters')
         li
-          a data-toggle="tab" id="tab-comissions" href="#pop-comissions"
-            span Commissions
+          = home_tab_button(:campaign_commission, 'Commissions')
         li
           = home_tab_button(:coupon, 'Best Discounts')
 								
-/- main content							
 .container.main-home
 	= render partial:'home/search/section'
 
@@ -130,6 +127,3 @@
           /img src='/assets/partners/logo_tc.gif'/
           img src='/assets/partners/logo_tech.gif'/
 
-javascript:
-  $(document).ready(Cake.slider.init);
-	

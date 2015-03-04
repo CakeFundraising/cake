@@ -27,6 +27,8 @@ Cake::Application.routes.draw do
     get :search_sponsors, path:'sponsors'
     get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
+    get :search_cakesters, path:'cakesters'
+    get :search_commisions, path:'commisions'
   end
 
   resources :campaigns do
@@ -49,6 +51,8 @@ Cake::Application.routes.draw do
   end
 
   get '/hero_campaigns/:id', to: 'campaigns#hero', as:'hero_campaign'
+
+  resources :campaign_commissions, path: :campaigns, controller: :campaigns, only: :show
 
   resources :pledges do
     collection do
