@@ -1,5 +1,5 @@
 .row
-  .col-md-3
+  .col-md-3.hidden-xs.hidden-sm
     - cache [:search_sidebar, :campaigns] do
       = render 'home/search/search_form', collection: :campaigns
       #filters.panel-group
@@ -8,12 +8,11 @@
             h4 = t("titles.causes.#{group.first}")
             - group.last.each do |cause|
               li = link_to cause, search_campaigns_path(main_cause: cause)
-  .col-md-9
+  .col-md-9.col-xs-12
     .campaigns-container.row-fluid.transitions-enabled
       .campaigns
         - if @campaigns.any?
           = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
-          .col-md-12
-            = link_to "See All Our Good Causes", search_campaigns_path, class:'btn btn-primary btn-md'
+          = link_to "See All Our Good Causes", search_campaigns_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

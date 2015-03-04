@@ -10,12 +10,12 @@
             h4 #{"(Simply use the coupon below and #{coupon.sponsor} will make an extra contribution)"}
       .col-xs-12.coupon.coupon-modal
         .row
-          .col-md-4
+          .col-md-4.col-xs-4
             - if coupon.extra_donation_pledge
               div.label.label-purple Extra Contribution
             = coupon_pic(coupon)
             .coupon-edge
-          .col-md-6
+          .col-md-6.col-xs-8
             div.coupon-content
               h3 = coupon
               h4 
@@ -27,7 +27,7 @@
               .row.terms
                 .col-xs-12
                   a data-target="#coupon_terms" data-toggle="modal" View Terms & Conditions
-          .col-md-2.text-right
+          .col-md-2.hidden-xs.hidden-sm.text-right
             = coupon.picture.qrcode
             .promo-code
               .boldest.text-right Promo Code

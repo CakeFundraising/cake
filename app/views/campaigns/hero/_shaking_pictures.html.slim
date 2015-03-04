@@ -1,13 +1,13 @@
 - if @pledge.pending?
-  .col-md-6.no-padding
+  .col-md-6.col-sm-6.col-xs-6.no-padding
     = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
 - else
-  .col-md-6.no-padding.overlay-effects.clearfix#effect-6
+  .col-md-6.col-sm-6.col-xs-6.no-padding.overlay-effects.clearfix#effect-6
     = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
 
 .hero-shake
 
-.col-md-6.no-padding
+.col-md-6.col-sm-6.col-xs-6.no-padding
   = link_to @campaign.fundraiser do
     = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
       

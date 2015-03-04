@@ -24,6 +24,7 @@ Cake.init = ->
   Cake.utils.init()
   Cake.cakesters.init()
   Cake.chosen.init()
+  Cake.search.init()
   return
 
 $(document).ready(Cake.init)

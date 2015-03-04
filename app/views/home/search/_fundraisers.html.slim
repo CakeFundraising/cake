@@ -1,5 +1,5 @@
 .row
-  .col-md-3
+  .col-md-3.hidden-xs.hidden-sm
     - cache [:search_sidebar, :coupons] do
       = render 'home/search/search_form', collection: :fundraisers
       #filters.panel-group
@@ -8,12 +8,11 @@
             h4 = t("titles.causes.#{group.first}")
             - group.last.each do |cause|
               li = link_to cause, search_fundraisers_path(causes: cause)
-  .col-md-9
+  .col-md-9.col-xs-12
     .fundraisers-container.row-fluid.transitions-enabled
       .fundraisers
-        - if @fundraisers.any?
-          = render partial: "fundraisers/show/grid", collection: @fundraisers, as: :fundraiser
-          .col-md-12
-            = link_to "See All Our Causes", search_fundraisers_path, class:'btn btn-primary btn-md'
+        - if @collection.any?
+          = render partial: "fundraisers/show/grid", collection: @collection, as: :fundraiser
+          = link_to "See All Our Causes", search_fundraisers_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.
