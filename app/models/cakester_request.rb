@@ -10,16 +10,29 @@ class CakesterRequest < ActiveRecord::Base
   validates :cakester_id, uniqueness: {scope: [:campaign_id, :fundraiser_id]}
 
   scope :latest, ->{ order(created_at: :desc) }
+  scope :pending_or_accepted, ->{ where("cakester_requests.status = ? OR cakester_requests.status = ?", :pending, :accepted) }
 
   delegate :main_cause, :scopes, :cakester_commission_percentage, :hero, to: :campaign 
 
   after_create :notify_cakester
+  after_destroy :rollback_campaign
 
   def accept!
     notify_approval if self.accepted!
   end
 
+  def reject!(message)
+    if self.rejected!
+      notify_rejection(message)
+      rollback_campaign
+    end
+  end
+
   private
+
+  def rollback_campaign
+    self.campaign.update_attributes(uses_cakester: false, cakester_id: nil)
+  end
 
   def notify_cakester
     cakester.users.each do |user|

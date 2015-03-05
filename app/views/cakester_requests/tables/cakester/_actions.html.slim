@@ -2,7 +2,7 @@
   - if can? :accept, cakester_request
     span = link_to "Accept", accept_cakester_request_path(cakester_request), method: :patch, class:'btn btn-success btn-sm'
   - if can? :reject, cakester_request
-    span = link_to "Reject", reject_cakester_request_path(cakester_request), method: :patch, class:'btn btn-danger btn-sm'
+    span = link_to "Reject", reject_message_cakester_request_path(cakester_request), class:'btn btn-danger btn-sm'
 
 - if cakester_request.accepted?
   

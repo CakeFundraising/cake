@@ -28,7 +28,7 @@ Cake::Application.routes.draw do
     get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
     get :search_cakesters, path:'cakesters'
-    get :search_commisions, path:'commisions'
+    get :search_commissions, path:'commisions'
   end
 
   resources :campaigns do
@@ -129,6 +129,7 @@ Cake::Application.routes.draw do
     member do
       patch :accept
       patch :reject
+      get :reject_message
     end
   end
 

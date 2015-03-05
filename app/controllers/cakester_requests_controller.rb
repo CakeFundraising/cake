@@ -3,7 +3,7 @@ class CakesterRequestsController < InheritedResources::Base
   
   def destroy
     destroy! do |success, failure|
-      success.html{ redirect_to fundraiser_pledges_path }
+      success.html{ redirect_to root_path }
     end
   end
 
@@ -12,15 +12,18 @@ class CakesterRequestsController < InheritedResources::Base
     redirect_to cakester_campaigns_path, notice: 'Request accepted.' if resource.accept!
   end
 
+  def reject_message
+  end
+
   def reject
     message = params[:reject_message][:message] if params[:reject_message].present?
 
     if message.present?
-      resource.notify_rejection(message) if resource.rejected!
-      redirect_to sponsor_cakester_requests_path, alert: "Pledge request rejected."
+      resource.reject!(message)
+      redirect_to cakester_campaigns_path, alert: "Pledge request rejected."
     else
       @cakester_request = resource
-      render 'pr_reject_message'
+      render 'reject_message'
     end
   end
 

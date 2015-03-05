@@ -54,7 +54,7 @@ class Ability
       can :crud, Cakester, id: user.cakester.id
 
       #CakesterRequest
-      can [:accept, :reject, :destroy], CakesterRequest, cakester_id: user.cakester.id
+      can [:accept, :reject, :reject_message, :destroy], CakesterRequest, cakester_id: user.cakester.id
     end
 
     can :read, :all

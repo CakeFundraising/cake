@@ -1,13 +1,13 @@
 .row
   .search-sidebar.col-md-3.hidden-xs.hidden-sm
-    - cache [:search_sidebar, :commisions] do
-      = render 'home/search/search_form', collection: :commisions
+    - cache [:search_sidebar, :commissions] do
+      = render 'home/search/search_form', collection: :commissions
       #filters.panel-group
         ul.cats
           - Campaign::CAUSES_HIERARCHY.each do |group|
             h4 = t("titles.causes.#{group.first}")
             - group.last.each do |cause|
-              li = link_to cause, search_commisions_path(main_cause: cause)
+              li = link_to cause, search_commissions_path(main_cause: cause)
   .col-md-9.col-xs-12
     .commisions-container.row-fluid.transitions-enabled
       .commisions
@@ -15,6 +15,6 @@
           = render partial: "campaigns/show/commission_grid", collection: @collection, as: :commission
           .row
             .col-md-12.col-sm-12.col-xs-12
-              = link_to "See All Commissions", search_commisions_path, class:'btn btn-primary btn-md'
+              = link_to "See All Commissions", search_commissions_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

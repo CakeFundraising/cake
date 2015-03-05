@@ -238,7 +238,7 @@ class Campaign < ActiveRecord::Base
       self.cakester_requests.build(
         fundraiser_id: self.fundraiser.id,
         cakester_id: self.cakester_id
-      ).save!
+      ).save
     end
   end
 

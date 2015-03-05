@@ -1,0 +1,28 @@
+= display_meta("Search Commissions")
+
+#search_commissions
+  h1.dash-head Search Commissions
+  
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :commissions
+      .controls
+        .counter 
+          span.boldest #{@commissions.total_count} commissions 
+          span match the criteria
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        = link_to t('helpers.filters.clear'), search_commissions_path, class:'btn btn-primary'
+    .col-md-9
+      .commissions-container.row-fluid.transitions-enabled
+        .commissions
+          - if @commissions.any?
+            = render partial: "campaigns/show/commission_grid", collection: @commissions, as: :commission
+          - else
+            .alert.alert-info No results found.
+            
+    = pagination(@commissions)
+
+javascript:
+  Cake.search.page("#commissions-search", "#search_commissions");

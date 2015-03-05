@@ -13,9 +13,14 @@ class Cakester < ActiveRecord::Base
 
   has_many :subscriptors, as: :object
 
+  #Cakester Requests
   has_many :cakester_requests, dependent: :destroy
+
+  has_many :ap_cakester_requests, ->{ pending_or_accepted }, class_name: 'CakesterRequest', dependent: :destroy
+  has_many :ap_exclusive_campaigns, through: :ap_cakester_requests, class_name: 'Campaign'
+  
   has_many :accepted_cakester_requests, ->{ accepted }, class_name: 'CakesterRequest', dependent: :destroy
-  has_many :exclusive_campaigns, through: :accepted_cakester_requests, class_name: 'Campaign'
+  has_many :accepted_exclusive_campaigns, through: :accepted_cakester_requests, class_name: 'Campaign'
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true

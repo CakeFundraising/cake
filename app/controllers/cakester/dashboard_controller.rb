@@ -21,7 +21,7 @@ class Cakester::DashboardController < ApplicationController
   end
 
   def campaigns
-    @cakester_requests = current_cakester.cakester_requests.latest.decorate
+    @cakester_requests = current_cakester.ap_cakester_requests.latest.decorate
   end
 
   def history

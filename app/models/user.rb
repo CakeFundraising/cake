@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_one :cakester_email_setting, dependent: :destroy
 
   def notify_account_update
-    UserNotification.account_updated(self.id).deliver if self.send("#{self.role_type.downcase}_email_setting.account_change")
+    UserNotification.account_updated(self.id).deliver if self.send("#{self.role_type.downcase}_email_setting").account_change
   end
 
   #User roles methods

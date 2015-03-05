@@ -1,0 +1,29 @@
+= display_meta("Search Cakesters")
+
+#search_cakesters
+  h1.dash-head Search Cakesters
+  
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :cakesters
+      
+      .controls.clearfix
+        .counter 
+          span.boldest #{@cakesters.total_count} cakesters 
+          span match the criteria
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        = link_to t('helpers.filters.clear'), search_cakesters_path, class:'btn btn-primary'
+    .col-md-9
+      .cakesters-container.row-fluid.transitions-enabled
+        .cakesters
+          - if @cakesters.any?
+            = render partial: "cakesters/show/grid", collection: @cakesters, as: :cakester
+          - else
+            .alert.alert-info No results found.
+          
+    = pagination(@cakesters)
+
+javascript:
+  Cake.search.page("#cakesters-search", "#search_cakesters");
