@@ -20,6 +20,10 @@ class CouponDecorator < ApplicationDecorator
     object.expires_at.strftime("%m/%d/%Y") unless object.expires_at.nil?
   end
 
+  def city_state
+    [object.sponsor.city, object.sponsor.state_code].join(', ')
+  end
+
   def to_s
   	object.title
   end

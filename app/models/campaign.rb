@@ -234,10 +234,12 @@ class Campaign < ActiveRecord::Base
 
   #Cakester
   def new_cakester_request
-    self.cakester_requests.build(
-      fundraiser_id: self.fundraiser.id,
-      cakester_id: self.cakester_id
-    ).save!
+    unless self.cakester_id.blank?
+      self.cakester_requests.build(
+        fundraiser_id: self.fundraiser.id,
+        cakester_id: self.cakester_id
+      ).save!
+    end
   end
 
   private

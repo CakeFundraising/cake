@@ -6,7 +6,7 @@
           = commission.picture.avatar
       .caption
         h4.truncate = auto_link commission
-        .location.truncate = [commission.fundraiser.city, commission.fundraiser.state_code].join(', ')
+        .location.truncate = commission.city_state
         .cause.truncate = commission.object.main_cause
         hr
         .fundraiser_name.truncate = auto_link commission.fundraiser
@@ -17,12 +17,12 @@
               span.sr-only #{commission.pledges_thermometer}% Complete (success)          
           .commission-stats
             strong = commission.raised_by_status
-            span 
-            /Raised
-            span.pull-right 
-            /Goal
             strong.pull-right = commission.goal
         hr
-        .commissions
-          .rate = commission.rate
-          .accept_button.pull-right = link_to 'Accept', nil, class:'btn btn-success'
+        .commissions.row
+          .col-md-6.col-sm-6.col-xs-6
+            .rate = commission.rate
+          .col-md-6.col-sm-6.col-xs-6
+            span.accept_button.pull-right
+              = link_to 'Accept', nil, class:'btn btn-success'
+

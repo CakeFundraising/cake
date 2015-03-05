@@ -35,6 +35,10 @@ class CampaignDecorator < ApplicationDecorator
     object.scopes.join(", ")
   end
 
+  def city_state
+    [object.fundraiser.city, object.fundraiser.state_code].join(', ')
+  end
+
   def total_donation_per_click
     h.humanized_money_with_symbol object.total_donation_per_click
   end

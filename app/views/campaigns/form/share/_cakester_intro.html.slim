@@ -23,5 +23,5 @@
     .text-muted I am willing to pay the Cakester a commission on any revenues collected from a Sponsor introduced by such Cakester through the Cake platform equal to:
     .row
       .col-md-6.col-md-push-3
-        = f.input :cakester_commission_percentage, as: :select, collection: Cakester::COMMISSIONS, label: false
+        = f.input :cakester_commission_percentage, as: :select, collection: commissions_percentage, label: false
 

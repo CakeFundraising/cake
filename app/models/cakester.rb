@@ -37,7 +37,7 @@ class Cakester < ActiveRecord::Base
     self.build_location if self.new_record?
   end
 
-  COMMISSIONS = %w{ 5 10 15 20 25 30 35 40 45 50 }
+  COMMISSIONS = (5..50).step(5).to_a
 
   SUBSCRIBER_RANGES = [
     '0 to 500',

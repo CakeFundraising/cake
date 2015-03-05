@@ -6,7 +6,7 @@
           = cakester.picture.avatar
       .caption
         h4.truncate = auto_link cakester
-        .location.truncate = [cakester.object.city, cakester.object.state_code, cakester.location.zip_code].join(', ')
-        .cause.truncate = cakester.object.causes.first
+        .location.truncate = cakester.city_state
+        .cause.truncate = cakester.cause
       .buttons
         / = link_to 'Request a Partnership', request_partnership_cakester_path(cakester), class:'btn btn-success btn-block'

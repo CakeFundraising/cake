@@ -23,6 +23,14 @@ class CakesterDecorator < ApplicationDecorator
     h.auto_mail object
   end
 
+  def city_state
+    [object.city, object.state_code, location.zip_code].join(', ')
+  end
+
+  def cause
+    object.causes.first
+  end
+
   def website
     h.auto_attr_link website_url, target: :_blank unless object.website.blank?
   end

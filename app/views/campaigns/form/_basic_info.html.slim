@@ -5,6 +5,7 @@
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active
     = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .text-center
           h1 Let's start your Campaign

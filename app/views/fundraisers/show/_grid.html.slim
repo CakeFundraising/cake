@@ -6,7 +6,7 @@
           = fundraiser.picture.avatar
       .caption
         h4.truncate = auto_link fundraiser
-        .location.truncate = [fundraiser.object.city, fundraiser.object.state_code, fundraiser.location.zip_code].join(', ')
-        .cause.truncate = fundraiser.object.causes.first
+        .location.truncate = fundraiser.city_state
+        .cause.truncate = fundraiser.cause
       .buttons
         = link_to 'Request a Partnership', request_partnership_fundraiser_path(fundraiser), class:'btn btn-success btn-block'
