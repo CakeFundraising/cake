@@ -350,7 +350,11 @@ hr{
       display:none;
     }
 
-    #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+    #tab-campaigns span, 
+    #tab-sponsors span, 
+    #tab-fundraisers span, 
+    #tab-cakesters span, 
+    #tab-coupons span{
       display: none;
     }
     #tab-campaigns:after{
@@ -361,6 +365,9 @@ hr{
     }
     #tab-fundraisers:after{
       content: "Causes";
+    }
+    #tab-cakesters:after{
+      content: "Cakesters";
     }
     #tab-coupons:after{
       content: "Coupons";
@@ -4048,6 +4055,13 @@ ul#share-block {
     text-transform: none;
   }
 }
+
+.vid-thumb{
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0px 0px 10px $gray;
+}
+
 //######### MOBILE STYLES ###############
 
 // HERO CAMPAIGN
