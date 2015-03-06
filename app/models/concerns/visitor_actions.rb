@@ -1,5 +1,5 @@
 module VisitorActions
   extend ActiveSupport::Concern
 
-  VISITOR_ACTIONS = ['Join Our Organization!', 'Sign Up Now!', 'Volunteer With Us!']
+  VISITOR_ACTIONS = ['Join Our Organization!', 'Sign Up Now!', 'Volunteer With Us!', 'Join, Sign Up, or Volunteer With Us!']
 end
