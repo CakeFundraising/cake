@@ -171,10 +171,10 @@ ActiveRecord::Schema.define(version: 20150306164028) do
   end
 
   create_table "extra_clicks", force: :cascade do |t|
-    t.integer  "object_id"
-    t.string   "object_type"
+    t.integer  "clickable_id"
+    t.string   "clickable_type"
     t.integer  "browser_id"
-    t.boolean  "bonus",       default: false
+    t.boolean  "bonus",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
