@@ -79,7 +79,7 @@ en:
         partner: "Business Owners: Partner with us! Cake is 100% free for businesses. Sign up today! Or share another message."
         volunteer: "%{visitor_action} Or share another message."
       sp:
-        contact: "Thank you for contacting %{role}! Sign up your good cause for free on Cake and connect with us! Or share another message."
+        contact: "Thank you for contacting %{role}! Sign up for free on Cake and connect with us! Or share another message."
         thank: "Please let %{role} know you appreciate their generosity and community spirit!"
     empty_results:
       pledges:
