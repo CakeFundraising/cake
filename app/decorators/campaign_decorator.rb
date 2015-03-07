@@ -72,7 +72,7 @@ class CampaignDecorator < ApplicationDecorator
   end
 
   def visitor_action
-    return "Join, Sign up or Volunteer" if object.visitor_action.blank?
+    return "Join, Sign Up or Volunteer!" if object.visitor_action.blank?
     object.visitor_action
   end
 
