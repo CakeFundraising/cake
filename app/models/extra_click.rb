@@ -1,6 +1,6 @@
 class ExtraClick < ActiveRecord::Base
 
-  belongs_to :clickable, polymorphic: true, touch: true
+  belongs_to :clickable, polymorphic: true, touch: true, counter_cache: true
   belongs_to :browser
 
   # counter_culture :clickable, column_name: Proc.new {|click| click.bonus ? 'bonus_clicks_count' : 'clicks_count' },
