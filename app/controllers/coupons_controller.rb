@@ -1,6 +1,22 @@
 class CouponsController < InheritedResources::Base
   respond_to :pdf, only: :download
   load_and_authorize_resource
+  skip_authorize_resource :only => :click
+
+  include UrlHelper
+
+  def click
+    if current_browser.present?
+      if resource.pledge.active?
+        resource.extra_clicks.create(browser: current_browser)
+        redirect_to url_with_protocol(resource.url)
+      else
+        redirect_to url_with_protocol(resource.url)
+      end
+    else
+      redirect_to resource.pledge, alert: 'There was an error when trying to count your click. Please try again.'
+    end
+  end
 
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])

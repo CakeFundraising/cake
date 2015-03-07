@@ -4,7 +4,7 @@ module CouponsHelper
       coupon.picture.avatar
     else
       # Link with rollover
-      picture_rollover(coupon.picture.avatar, coupon.url) do
+      picture_rollover(coupon.picture.avatar, click_coupon_path(coupon)) do
         content_tag(:div, 'Click to learn more') + content_tag(:div, 'about this offer!')
       end
     end

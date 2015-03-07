@@ -153,6 +153,8 @@ Cake::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+
+      get :click
     end
   end
 

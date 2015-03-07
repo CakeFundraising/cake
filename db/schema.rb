@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306164028) do
+ActiveRecord::Schema.define(version: 20150306214832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,11 +134,11 @@ ActiveRecord::Schema.define(version: 20150306164028) do
 
   create_table "clicks", force: :cascade do |t|
     t.string   "email",      limit: 255
-    t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "browser_id"
     t.boolean  "bonus",                  default: false
+    t.integer  "pledge_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(version: 20150306164028) do
     t.boolean  "extra_donation_pledge",                   default: false
     t.integer  "merchandise_categories_mask", limit: 8
     t.string   "url",                         limit: 255
+    t.integer  "clicks_count",                limit: 8,   default: 0,     null: false
+    t.integer  "bonus_clicks_count",          limit: 8,   default: 0,     null: false
   end
 
   create_table "direct_donations", force: :cascade do |t|
@@ -344,7 +346,7 @@ ActiveRecord::Schema.define(version: 20150306164028) do
     t.string   "name",                      limit: 255
     t.integer  "impressions_count",         limit: 8,   default: 0
     t.string   "screenshot_url",            limit: 255
-    t.string   "screenshot_version",        limit: 255
+    t.string   "screenshot_version",        limit: 255, default: ""
     t.integer  "bonus_clicks_count",        limit: 8,   default: 0,             null: false
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255

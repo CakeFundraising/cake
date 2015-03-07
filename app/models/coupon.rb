@@ -1,6 +1,7 @@
 class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include Picturable
+  include Clickable
   
   belongs_to :pledge
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'
