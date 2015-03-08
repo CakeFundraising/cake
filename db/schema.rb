@@ -158,7 +158,6 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.integer  "merchandise_categories_mask", limit: 8
     t.string   "url",                         limit: 255
     t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
-    t.integer  "bonus_extra_clicks_count",    limit: 8,   default: 0,     null: false
   end
 
   create_table "direct_donations", force: :cascade do |t|
