@@ -1,6 +1,6 @@
 class CakesterRequest < ActiveRecord::Base
   include Statusable
-  has_statuses :pending, :accepted, :rejected
+  has_statuses :pending, :accepted, :rejected, :past
 
   belongs_to :cakester
   belongs_to :campaign

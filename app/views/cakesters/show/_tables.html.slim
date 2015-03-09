@@ -1,0 +1,12 @@
+- if campaign.cakester_requests.accepted.any?
+  .row
+    .lead Active Cakesters
+    = render partial:'cakesters/tables/table', locals: {cakester_requests: campaign.cakester_requests.accepted.decorate}
+- if campaign.cakester_requests.pending.any?
+  .row
+    .lead Pending Cakesters
+    = render partial:'cakesters/tables/table', locals: {cakester_requests: campaign.cakester_requests.pending.decorate}
+- if campaign.cakester_requests.past.any?
+  .row
+    .lead Past Cakesters
+    = render partial:'cakesters/tables/table', locals: {cakester_requests: campaign.cakester_requests.past.decorate}

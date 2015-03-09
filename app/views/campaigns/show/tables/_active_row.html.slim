@@ -9,7 +9,11 @@
     td data-title=(t('semantic.number_of', model: 'Pledges'))
       = campaign.pledges_count
       - if campaign.pledges_count > 0
-        = link_to " View", "#campaign-#{campaign.id}", class: "btn btn-sm btn-primary btn-right", data: {toggle: :modal}
+        = link_to " View", "#campaign-#{campaign.id}", data: {toggle: :modal}
+    td data-title=(t('semantic.number_of', model: 'Cakesters'))
+      = campaign.cakesters_count
+      - if campaign.cakesters_count > 0
+        = link_to " View", "#cakesters-campaign-#{campaign.id}", data: {toggle: :modal}
     td data-title=(t('semantic.average', model: 'Pledge'))
       = campaign.average_pledge
     td data-title=(t('semantic.average', model: 'Don/Click'))
@@ -26,6 +30,7 @@
     td.truncate
       = render partial:'campaigns/show/actions', locals:{campaign: campaign}
       = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+      = render partial:'cakesters/show/table_modal', locals:{campaign: campaign}
   tr.empty-tr
 
 

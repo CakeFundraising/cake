@@ -1,0 +1,15 @@
+- cache [:table, cakester_request] do
+  tr.cakester_request
+    td data-title=(Cakester.model_name.human)
+      = auto_link cakester_request.cakester
+    td data-title=(Cakester.human_attribute_name :status)
+      = cakester_request.kind
+    td data-title=(Cakester.human_attribute_name :pledge)
+      = cakester_request.pledge
+    td data-title=(Cakester.human_attribute_name :email)
+      = cakester_request.cakester.email
+    td
+      = link_to cakester_request, method: :delete, data: {confirm: 'Are you sure you want to remove this Cakester?'}, class:'btn btn-sm btn-danger' do
+        span.glyphicon.glyphicon-trash
+    
+  tr.empty-tr
