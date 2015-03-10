@@ -16,11 +16,15 @@ class Cakester < ActiveRecord::Base
   #Cakester Requests
   has_many :cakester_requests, dependent: :destroy
 
+  has_many :campaign_cakesters, dependent: :destroy
+
   has_many :ap_cakester_requests, ->{ pending_or_accepted }, class_name: 'CakesterRequest', dependent: :destroy
-  has_many :ap_exclusive_campaigns, through: :ap_cakester_requests, class_name: 'Campaign'
+
+  has_many :campaigns, through: :campaign_cakesters
+  # has_many :ap_exclusive_campaigns, through: :ap_cakester_requests, class_name: 'Campaign'
   
-  has_many :accepted_cakester_requests, ->{ accepted }, class_name: 'CakesterRequest', dependent: :destroy
-  has_many :accepted_exclusive_campaigns, through: :accepted_cakester_requests, class_name: 'Campaign'
+  # has_many :accepted_cakester_requests, ->{ accepted }, class_name: 'CakesterRequest', dependent: :destroy
+  # has_many :accepted_exclusive_campaigns, through: :accepted_cakester_requests, class_name: 'Campaign'
 
   validates :name, :email, :phone, presence: true
   validates :email, email: true
@@ -93,5 +97,11 @@ class Cakester < ActiveRecord::Base
     users.each do |user|
       UserNotification.cakester_profile_updated(self.id, user.id).deliver if user.cakester_email_setting.public_profile_change
     end
+  end
+
+  #Campaigns
+  def add_campaign(campaign)
+    self.campaigns << campaign
+    self.save
   end
 end

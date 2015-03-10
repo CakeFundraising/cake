@@ -34,7 +34,9 @@ class Campaign < ActiveRecord::Base
 
   has_many :impressions, as: :impressionable
   has_many :cakester_requests, dependent: :destroy
-  has_many :exclusive_cakesters, through: :cakester_requests, class_name: 'Cakester', source: :cakester
+  
+  has_many :campaign_cakesters, dependent: :destroy
+  has_many :cakesters, through: :campaign_cakesters
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank

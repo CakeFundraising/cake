@@ -1,5 +1,6 @@
 class CakestersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
+  before_action :allow_only_cakesters, only: :accept_campaign
 
   def show
     @cakester = resource.decorate
@@ -27,6 +28,17 @@ class CakestersController < InheritedResources::Base
     end
   end
 
+
+  def accept_campaign
+    campaign = Campaign.find(params[:campaign])
+
+    if current_cakester.add_campaign(campaign)
+      redirect_to cakester_campaigns_path, notice: 'Campaign added to Non-Exclusive Clients tab.'
+    else
+      redirect_to root_path, alert: 'There was an error when trying to add this Campaign, please try again.'
+    end
+  end
+
   private
 
   def send_notification
@@ -35,6 +47,13 @@ class CakestersController < InheritedResources::Base
 
   def check_if_account_created
     redirect_to root_path, alert:'Please sign out and create a new account if you want to create a new Cakester account.' if current_user.nil? or current_cakester.present?
+  end
+
+  def allow_only_cakesters
+    unless current_cakester.present?
+      sign_out current_user if current_user.present?
+      redirect_to new_user_registration_path, alert: "In order to accept this Campaign you have first to register as a Cakester."
+    end
   end
 
   def permitted_params

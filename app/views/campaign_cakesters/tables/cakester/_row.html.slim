@@ -1,0 +1,20 @@
+/- cache [:table, campaign_cakester] do 
+tr.pledge
+  td.td-header(data-title='Fundraiser') 
+    = auto_link campaign_cakester.fundraiser
+  td.td-header(data-title='Campaign') 
+    = auto_link campaign_cakester.campaign
+  td.td-header(data-title='Hero') 
+    = campaign_cakester.hero
+  td.td-header(data-title='End date') 
+    = campaign_cakester.end_date
+  td.td-header(data-title='Cause') 
+    = campaign_cakester.main_cause
+  td.td-header(data-title='Type') 
+    = campaign_cakester.scopes
+  td.td-header(data-title='Rate')
+    = campaign_cakester.rate
+  td.truncate.min-width
+    = render partial:'campaign_cakesters/tables/cakester/actions', locals:{campaign_cakester: campaign_cakester}
+          
+tr.empty-tr

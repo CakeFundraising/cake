@@ -39,7 +39,7 @@ class SearchesController < ApplicationController
 
     @search = Campaign.solr_search(include: [:picture]) do
       fulltext params[:search]
-      without :status, :incomplete
+      without :status, [:incomplete, :past]
       with :visible, true
       with :uses_cakester, true
       with :any_cakester, true

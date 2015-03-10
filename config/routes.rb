@@ -114,7 +114,13 @@ Cake::Application.routes.draw do
     end 
   end
 
-  resources :cakesters, except: [:index, :destroy]
+  resources :cakesters, except: [:index, :destroy] do
+    collection do
+      post :accept_campaign
+    end
+  end
+
+  resources :campaign_cakesters, only: :destroy
 
   resources :fr_sponsors, except: [:index, :show]
   

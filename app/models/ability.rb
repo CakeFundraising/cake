@@ -55,6 +55,8 @@ class Ability
 
       #CakesterRequest
       can [:accept, :reject, :reject_message, :destroy], CakesterRequest, cakester_id: user.cakester.id
+      
+      can :destroy, CampaignCakester, cakester_id: user.cakester.id
     end
 
     can :read, :all

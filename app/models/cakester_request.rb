@@ -5,6 +5,7 @@ class CakesterRequest < ActiveRecord::Base
   belongs_to :cakester
   belongs_to :campaign
   belongs_to :fundraiser
+  has_one :campaign_cakester, dependent: :destroy
 
   validates :cakester, :campaign, :fundraiser, presence: true
   validates :cakester_id, uniqueness: {scope: [:campaign_id, :fundraiser_id]}
