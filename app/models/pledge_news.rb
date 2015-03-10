@@ -1,5 +1,6 @@
 class PledgeNews < ActiveRecord::Base
   include Picturable
+  include Clickable
 
   belongs_to :pledge
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'

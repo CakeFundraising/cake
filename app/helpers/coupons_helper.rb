@@ -15,7 +15,7 @@ module CouponsHelper
       pledge_news.picture.avatar
     else
       # Link with rollover
-      picture_rollover(pledge_news.picture.avatar, pledge_news.url) do
+      picture_rollover(pledge_news.picture.avatar, click_pledge_news_path(pledge_news)) do
         content_tag(:div, 'Click to') + content_tag(:div, 'learn more')
       end
     end

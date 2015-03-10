@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.string   "url"
     t.string   "visitor_url",                      default: ""
     t.string   "visitor_action",                   default: ""
+    t.integer  "extra_clicks_count",   limit: 8,   default: 0,             null: false
   end
 
   create_table "charges", force: :cascade do |t|
@@ -312,8 +313,9 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.text     "story"
     t.string   "url"
     t.integer  "pledge_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "extra_clicks_count", limit: 8, default: 0, null: false
   end
 
   create_table "pledge_requests", force: :cascade do |t|

@@ -8,6 +8,7 @@ class Campaign < ActiveRecord::Base
   include Screenshotable
   include SponsorAlias
   include VisitorActions
+  include Clickable
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status

@@ -39,6 +39,7 @@ Cake::Application.routes.draw do
         get :share
       end
       get :badge
+      get :click
       patch :launch
       patch :save_for_launch
       patch :toggle_visibility
@@ -166,6 +167,8 @@ Cake::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+
+      get :click
     end
   end
 
