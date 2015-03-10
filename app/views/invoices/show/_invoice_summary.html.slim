@@ -59,11 +59,20 @@
                   th Bonus Clicks
                   th Pledge Views 
                   th Total Impressions
+
+                  - if invoice.coupon_extra_clicks > 0
+                    th Coupon Clicks
+                  - if invoice.pledge_news_extra_clicks > 0
+                    th Pledge News Clicks
               tbody
                 tr
                   td = invoice.pledge.bonus_clicks_count
                   td = invoice.pledge.impressions_count
                   td = invoice.pledge.total_impressions
+                  - if invoice.coupon_extra_clicks > 0
+                    td = invoice.coupon_extra_clicks
+                  - if invoice.pledge_news_extra_clicks > 0
+                    td = invoice.pledge_news_extra_clicks
 
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close

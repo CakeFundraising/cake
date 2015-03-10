@@ -227,6 +227,14 @@ class Pledge < ActiveRecord::Base
     self.pledge_news.latest.first
   end
 
+  def coupon_extra_clicks
+    self.coupons.to_a.sum(&:extra_clicks_count)
+  end
+
+  def pledge_news_extra_clicks
+    self.pledge_news.to_a.sum(&:extra_clicks_count)
+  end
+
   private
 
   def max_amount
