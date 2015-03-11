@@ -1,15 +1,17 @@
-- cache [:table, cakester_request] do
-  tr.cakester_request
-    td data-title=(Cakester.model_name.human)
-      = auto_link cakester_request.cakester
-    td data-title=(Cakester.human_attribute_name :status)
-      = cakester_request.kind
-    td data-title=(Cakester.human_attribute_name :pledge)
-      = cakester_request.pledge
-    td data-title=(Cakester.human_attribute_name :email)
-      = cakester_request.cakester.email
-    td
-      = link_to cakester_request, method: :delete, data: {confirm: 'Are you sure you want to remove this Cakester?'}, class:'btn btn-sm btn-danger' do
-        span.glyphicon.glyphicon-trash
-    
-  tr.empty-tr
+/- cache [:table, campaign_cakester] do
+tr.campaign_cakester
+  td data-title=(Cakester.model_name.human)
+    = auto_link campaign_cakester.cakester
+  td data-title=(Cakester.human_attribute_name :email)
+    = campaign_cakester.cakester.email
+  td data-title=(Cakester.human_attribute_name :pledge)
+    = campaign_cakester.pledge
+  td data-title=(Cakester.human_attribute_name :kind)
+    = campaign_cakester.kind
+  td data-title=(Cakester.human_attribute_name :status)
+    = campaign_cakester.status
+  td
+    = link_to campaign_cakester, method: :delete, data: {confirm: 'Are you sure you want to remove this Cakester?'}, class:'btn btn-sm btn-danger' do
+      span.glyphicon.glyphicon-trash
+  
+tr.empty-tr

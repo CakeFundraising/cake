@@ -27,13 +27,4 @@ class CakesterRequestDecorator < ApplicationDecorator
   def status
     object.status.upcase
   end
-
-  def kind
-    "Exclusive"
-  end
-
-  def pledge
-    "-"
-  end
-
 end

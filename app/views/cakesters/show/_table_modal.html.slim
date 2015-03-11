@@ -5,7 +5,9 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h3.modal-title #{ auto_link campaign} Cakesters.
       .modal-body
-        = render partial:'cakesters/show/tables', locals:{campaign: campaign}
+        .row
+          .col-md-12 
+            = render partial:'cakesters/tables/table', locals: {campaign_cakesters: campaign.campaign_cakesters.decorate}
       .modal-footer
         button.btn.btn-md.btn-primary data-dismiss="modal" type="button" Close
     /! /.modal-content

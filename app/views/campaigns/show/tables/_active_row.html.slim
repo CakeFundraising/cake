@@ -1,36 +1,35 @@
-- cache [:table, :active, campaign] do
-  tr.campaign 
-    td data-title=(Campaign.model_name.human)
-      = auto_link campaign
-    td data-title=(Campaign.human_attribute_name :end_date)
-      = campaign.end_date
-    td data-title=(Campaign.human_attribute_name :total)
-      = campaign.raised
-    td data-title=(t('semantic.number_of', model: 'Pledges'))
-      = campaign.pledges_count
-      - if campaign.pledges_count > 0
-        = link_to " View", "#campaign-#{campaign.id}", data: {toggle: :modal}
-    td data-title=(t('semantic.number_of', model: 'Cakesters'))
-      = campaign.cakesters_count
-      - if campaign.cakesters_count > 0
-        = link_to " View", "#cakesters-campaign-#{campaign.id}", data: {toggle: :modal}
-    td data-title=(t('semantic.average', model: 'Pledge'))
-      = campaign.average_pledge
-    td data-title=(t('semantic.average', model: 'Don/Click'))
-      = campaign.average_donation_per_click
-    td data-title=(Campaign.human_attribute_name :unique_clicks)
-      = campaign.unique_clicks
-    td data-title=(t('semantic.average', model: 'Clicks/Pledge'))
-      = campaign.average_clicks_per_pledge
-    - unless campaign.past?
-      td data-title=(Campaign.human_attribute_name :status)
-        = status_buttons(campaign)
-    td data-title=(Campaign.human_attribute_name :visibility)
-      = visibility_buttons(campaign)
-    td.truncate
-      = render partial:'campaigns/show/actions', locals:{campaign: campaign}
-      = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
-      = render partial:'cakesters/show/table_modal', locals:{campaign: campaign}
-  tr.empty-tr
+/- cache [:table, :active, campaign] do
 
-
+tr.campaign 
+  td data-title=(Campaign.model_name.human)
+    = auto_link campaign
+  td data-title=(Campaign.human_attribute_name :end_date)
+    = campaign.end_date
+  td data-title=(Campaign.human_attribute_name :total)
+    = campaign.raised
+  td data-title=(t('semantic.number_of', model: 'Pledges'))
+    = campaign.pledges_count
+    - if campaign.pledges_count > 0
+      = link_to " View", "#campaign-#{campaign.id}", data: {toggle: :modal}
+  td data-title=(t('semantic.number_of', model: 'Cakesters'))
+    = campaign.campaign_cakesters.count
+    - if campaign.campaign_cakesters.count > 0
+      = link_to " View", "#cakesters-campaign-#{campaign.id}", data: {toggle: :modal}
+  td data-title=(t('semantic.average', model: 'Pledge'))
+    = campaign.average_pledge
+  td data-title=(t('semantic.average', model: 'Don/Click'))
+    = campaign.average_donation_per_click
+  td data-title=(Campaign.human_attribute_name :unique_clicks)
+    = campaign.unique_clicks
+  td data-title=(t('semantic.average', model: 'Clicks/Pledge'))
+    = campaign.average_clicks_per_pledge
+  - unless campaign.past?
+    td data-title=(Campaign.human_attribute_name :status)
+      = status_buttons(campaign)
+  td data-title=(Campaign.human_attribute_name :visibility)
+    = visibility_buttons(campaign)
+  td.truncate
+    = render partial:'campaigns/show/actions', locals:{campaign: campaign}
+    = render partial:'campaigns/show/pledges/modal', locals:{campaign: campaign}
+    = render partial:'cakesters/show/table_modal', locals:{campaign: campaign}
+tr.empty-tr

@@ -19,7 +19,10 @@ class CakesterRequest < ActiveRecord::Base
   after_destroy :rollback_campaign
 
   def accept!
-    notify_approval if self.accepted!
+    if self.accepted!
+      notify_approval
+      create_campaign_cakester
+    end
   end
 
   def reject!(message)
@@ -30,6 +33,10 @@ class CakesterRequest < ActiveRecord::Base
   end
 
   private
+
+  def create_campaign_cakester
+    self.build_campaign_cakester(campaign_id: self.campaign_id, cakester_id: self.cakester_id).save
+  end
 
   def rollback_campaign
     self.campaign.update_attributes(uses_cakester: false, cakester_id: nil)

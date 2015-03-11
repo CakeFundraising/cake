@@ -69,6 +69,7 @@ class Campaign < ActiveRecord::Base
   scope :with_outstanding_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
+  scope :with_campaign_cakesters, ->{ eager_load(:campaign_cakesters) }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
 
