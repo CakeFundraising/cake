@@ -34,6 +34,7 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
   def buttons
     template.content_tag(:div, class:'boolean-button-container') do
       template.content_tag(:button, input_html_options[:on_text], button_options(:on) ) + 
+      template.content_tag(:span, (input_html_options[:middle_text] || '').html_safe) +
       template.content_tag(:button, input_html_options[:off_text], button_options(:off) )
     end
   end

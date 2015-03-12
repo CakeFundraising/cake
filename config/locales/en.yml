@@ -266,6 +266,7 @@ en:
         scopes: Type
         main_cause: Cause
         total_donations: Total Donations
+        any_cakester: To any and all Cakesters in Cake
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level

@@ -66,8 +66,21 @@ booleanButtonInput = ->
 
   return
 
+booleanCollapse = ->
+  input = $('#boolean-collapse-input')
+  panel = $('#boolean_collapse_panel')
+
+  input.change ->
+    if this.checked
+      panel.collapse('show')
+    else
+      panel.collapse('hide')
+    return
+  return
+
 Cake.bootstrap_overrides.init = ->
   Cake.bootstrap_overrides.hide_alert()
   Cake.bootstrap_overrides.bootstrap_switch()
   booleanButtonInput()
+  booleanCollapse()
   return

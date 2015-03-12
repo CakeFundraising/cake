@@ -46,6 +46,8 @@ class Ability
       can :crud, QuickPledge, fundraiser: user.fundraiser
       #FrSponsor
       can :crud, FrSponsor, fundraiser_id: user.fundraiser.id
+      
+      can :destroy, CampaignCakester, fundraiser_id: user.fundraiser.id
     end
 
     if user.has_role?(:cakester)

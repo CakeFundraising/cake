@@ -3,7 +3,12 @@ class CakesterRequestsController < InheritedResources::Base
   
   def destroy
     destroy! do |success, failure|
-      success.html{ redirect_to root_path }
+      success.html do 
+        path = current_fundraiser.present? ? fundraiser_campaigns_path : cakester_campaigns_path
+        message = current_fundraiser.present? ? 'Cakester removed.' : 'Campaign removed.'
+
+        redirect_to path, notice: message
+      end
     end
   end
 

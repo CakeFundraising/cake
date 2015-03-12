@@ -14,19 +14,11 @@ class CampaignCakester < ActiveRecord::Base
     self.kind = self.cakester_request_id.nil? ? :regular : :exclusive
   end
 
-  after_destroy :destroy_cakester_request
-
   def regular?
     self.kind == 'regular'
   end
 
   def exclusive?
     self.kind == 'exclusive'
-  end
-
-  private
-
-  def destroy_cakester_request
-    self.cakester_request.destroy if self.cakester_request.present?
   end
 end

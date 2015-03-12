@@ -49,7 +49,6 @@ class Campaign < ActiveRecord::Base
   validates :mission, :headline, :story, presence: true, if: :persisted?
 
   validates :cakester_commission_percentage, presence: true, if: :uses_cakester
-  validates :cakester_id, presence: true, if: ->(c){ c.uses_cakester and !c.any_cakester }
   
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
@@ -237,15 +236,6 @@ class Campaign < ActiveRecord::Base
   end
 
   #Cakester
-  def new_cakester_request
-    unless self.cakester_id.blank?
-      self.cakester_requests.build(
-        fundraiser_id: self.fundraiser.id,
-        cakester_id: self.cakester_id
-      ).save
-    end
-  end
-
   def cakesters_count
     cakester_requests.not_rejected.count
   end
@@ -255,7 +245,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def exclusive_cakester?
-    self.uses_cakester and not self.any_cakester and self.cakester_id.present?
+    self.uses_cakester and not self.any_cakester and self.cakester_requests.accepted.any?
   end
 
   private

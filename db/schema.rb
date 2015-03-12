@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310140842) do
+ActiveRecord::Schema.define(version: 20150311195905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20150310140842) do
     t.string   "status",        default: "pending"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "rate"
+    t.text     "message"
   end
 
   create_table "cakesters", force: :cascade do |t|
@@ -142,9 +144,8 @@ ActiveRecord::Schema.define(version: 20150310140842) do
     t.string   "visitor_url",                                default: ""
     t.string   "visitor_action",                             default: ""
     t.boolean  "uses_cakester",                              default: false
-    t.integer  "cakester_id"
-    t.integer  "cakester_commission_percentage"
     t.boolean  "any_cakester",                               default: false
+    t.integer  "cakester_commission_percentage"
   end
 
   create_table "charges", force: :cascade do |t|
