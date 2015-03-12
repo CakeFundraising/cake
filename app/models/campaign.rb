@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   attr_accessor :step
 
   belongs_to :fundraiser
-  belongs_to :cakester
+  belongs_to :exclusive_cakester, class_name:'Cakester', foreign_key: :exclusive_cakester_id
   
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
@@ -68,6 +68,7 @@ class Campaign < ActiveRecord::Base
   scope :with_outstanding_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
+  scope :with_cakester_requests, ->{ eager_load(:cakester_requests) }
   scope :with_campaign_cakesters, ->{ eager_load(:campaign_cakesters) }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
@@ -236,16 +237,16 @@ class Campaign < ActiveRecord::Base
   end
 
   #Cakester
-  def cakesters_count
-    cakester_requests.not_rejected.count
-  end
-
   def any_cakester?
-    self.uses_cakester and self.any_cakester
+    self.uses_cakester and self.any_cakester and self.exclusive_cakester_id.nil?
   end
 
   def exclusive_cakester?
-    self.uses_cakester and not self.any_cakester and self.cakester_requests.accepted.any?
+    exclusive_cakester_id.present?
+  end
+
+  def cakesters_list
+    self.cakester_requests.not_accepted.decorate + self.campaign_cakesters.decorate
   end
 
   private

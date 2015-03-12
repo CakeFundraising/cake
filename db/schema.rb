@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20150311195905) do
     t.boolean  "uses_cakester",                              default: false
     t.boolean  "any_cakester",                               default: false
     t.integer  "cakester_commission_percentage"
+    t.integer  "exclusive_cakester_id"
   end
 
   create_table "charges", force: :cascade do |t|

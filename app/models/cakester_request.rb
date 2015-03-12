@@ -7,15 +7,20 @@ class CakesterRequest < ActiveRecord::Base
   belongs_to :fundraiser
   has_one :campaign_cakester, dependent: :destroy
 
-  validates :cakester, :campaign, :fundraiser, presence: true
+  validates :cakester, :campaign, :fundraiser, :rate, :message, presence: true
   validates :cakester_id, uniqueness: {scope: [:campaign_id, :fundraiser_id]}
 
   scope :latest, ->{ order(created_at: :desc) }
+  scope :from_campaign, ->(campaign){ where(campaign: campaign) }
   scope :pending_or_accepted, ->{ where("cakester_requests.status = ? OR cakester_requests.status = ?", :pending, :accepted) }
 
-  delegate :main_cause, :scopes, :cakester_commission_percentage, :hero, to: :campaign 
+  delegate :main_cause, :scopes, :hero, to: :campaign 
 
-  after_create :notify_cakester
+  before_validation do
+    self.fundraiser = self.campaign.fundraiser
+  end
+
+  after_create :update_campaign, :notify_cakester
   after_destroy :rollback_campaign
 
   def accept!
@@ -32,14 +37,26 @@ class CakesterRequest < ActiveRecord::Base
     end
   end
 
+  def notify_termination(message, terminated_by_id)
+    users = fundraiser.users + cakester.users
+    users.each do |user|
+      CakesterNotification.terminated_cakester_request(self.campaign.id, user.id, terminated_by_id, message).deliver
+    end
+  end
+
   private
 
   def create_campaign_cakester
     self.build_campaign_cakester(campaign_id: self.campaign_id, cakester_id: self.cakester_id).save
+    self.campaign.update_attribute(:exclusive_cakester_id, self.cakester_id) #Set up campaign's exclusive cakester
+  end
+
+  def update_campaign
+    self.campaign.update_attributes(uses_cakester: true, any_cakester: false)
   end
 
   def rollback_campaign
-    self.campaign.update_attributes(uses_cakester: false, cakester_id: nil)
+    self.campaign.update_attributes(uses_cakester: false, exclusive_cakester_id: nil)
   end
 
   def notify_cakester
@@ -61,4 +78,5 @@ class CakesterRequest < ActiveRecord::Base
       CakesterNotification.rejected_cakester_request(self.id, user.id, message).deliver
     end
   end
+
 end

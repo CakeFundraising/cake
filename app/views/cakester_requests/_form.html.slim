@@ -1,0 +1,10 @@
+= semantic_form_for @cakester_request do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :campaign_id, as: :select, collection: current_fundraiser.campaigns.active
+    = f.input :rate, as: :select, collection: commissions_percentage
+    = f.input :message, input_html: {rows: 5, placeholder: '2,000 words or less', maxlength: 2000}
+    = f.input :cakester_id, as: :hidden
+  = f.actions do
+    .text-center
+      = f.action :submit, label: 'Submit Request', button_html: {class: 'btn btn-success btn-lg'}

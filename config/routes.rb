@@ -136,6 +136,7 @@ Cake::Application.routes.draw do
       patch :accept
       patch :reject
       get :reject_message
+      get :delete
     end
   end
 

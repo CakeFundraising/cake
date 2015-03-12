@@ -10,5 +10,5 @@
   = render partial:'cakester_requests/campaign_share', locals:{campaign: cakester_request.campaign}
 
   - if can? :destroy, cakester_request
-    = link_to cakester_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
+    = link_to delete_cakester_request_path(cakester_request), data: {confirm: 'Are you sure you want to terminate this partnership?'}, class:'btn btn-sm btn-danger' do
       span.glyphicon.glyphicon-trash

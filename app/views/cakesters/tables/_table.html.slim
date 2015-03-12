@@ -1,4 +1,4 @@
-- if campaign_cakesters.any?
+- if cakesters.any?
   #no-more-tables
     table#cakesters.table.table-hover.table-bordered.table-striped.data-table
       thead.cf
@@ -7,9 +7,10 @@
           th = Cakester.human_attribute_name :email
           th = Cakester.human_attribute_name :pledge
           th = Cakester.human_attribute_name :kind
+          th = Cakester.human_attribute_name :rate
           th = Cakester.human_attribute_name :status
           th
       tbody
-        = render partial:'cakesters/tables/row', collection: campaign_cakesters, as: :campaign_cakester
+        = render partial:'cakesters/tables/row', collection: cakesters, as: :campaign_cakester
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.cakesters')}

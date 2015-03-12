@@ -12,8 +12,8 @@ tr.campaign
     - if campaign.pledges_count > 0
       = link_to " View", "#campaign-#{campaign.id}", data: {toggle: :modal}
   td data-title=(t('semantic.number_of', model: 'Cakesters'))
-    = campaign.campaign_cakesters.count
-    - if campaign.campaign_cakesters.count > 0
+    = campaign.cakesters_list.count
+    - if campaign.cakesters_list.count > 0
       = link_to " View", "#cakesters-campaign-#{campaign.id}", data: {toggle: :modal}
   td data-title=(t('semantic.average', model: 'Pledge'))
     = campaign.average_pledge

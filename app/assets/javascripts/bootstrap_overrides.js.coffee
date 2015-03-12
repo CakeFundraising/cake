@@ -70,6 +70,11 @@ booleanCollapse = ->
   input = $('#boolean-collapse-input')
   panel = $('#boolean_collapse_panel')
 
+  if input.is(':checked')
+    panel.collapse('show')
+  else
+    panel.collapse('hide')
+
   input.change ->
     if this.checked
       panel.collapse('show')

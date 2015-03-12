@@ -21,7 +21,7 @@ class Fundraiser::DashboardController < ApplicationController
   end
 
   def campaigns
-    @campaigns = current_fundraiser.campaigns.active.with_pledges.with_campaign_cakesters.latest.decorate
+    @campaigns = current_fundraiser.campaigns.active.with_pledges.with_campaign_cakesters.with_cakester_requests.latest.decorate
   end
 
   def history

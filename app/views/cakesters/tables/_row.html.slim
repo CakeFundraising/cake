@@ -8,10 +8,11 @@ tr.campaign_cakester
     = campaign_cakester.pledge
   td data-title=(Cakester.human_attribute_name :kind)
     = campaign_cakester.kind
+  td data-title=(Cakester.human_attribute_name :kind)
+    = campaign_cakester.rate
   td data-title=(Cakester.human_attribute_name :status)
     = campaign_cakester.status
   td
-    = link_to campaign_cakester, method: :delete, data: {confirm: 'Are you sure you want to remove this Cakester?'}, class:'btn btn-sm btn-danger' do
-      span.glyphicon.glyphicon-trash
+    = destroy_cakester_button(campaign_cakester)
   
 tr.empty-tr

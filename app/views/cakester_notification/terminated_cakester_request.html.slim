@@ -1,0 +1,7 @@
+h2 Hello #{@receiver}, 
+
+div Unfortunately #{link_to @terminator, polymorphic_url(@terminator) } has terminated your partnership for #{ link_to @campaign, campaign_url(@campaign) } campaign.
+
+div This is what they said:
+
+div "#{@message}"

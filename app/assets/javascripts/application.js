@@ -87,7 +87,8 @@
 //= require ./jquery.countdown.min     
 //= require ./search
 //= require ./campaigns     
-//= require ./cakesters     
+//= require ./cakesters    
+//= require ./cakester_requests    
 //= require ./direct_donations    
 //= require ./jquery.expander.min      
 //= require ./chosen_js.coffee      

@@ -17,7 +17,7 @@ class CakesterRequestDecorator < ApplicationDecorator
   end
 
   def rate
-    "#{object.cakester_commission_percentage}%"
+    "#{object.rate}%"
   end
 
   def hero
@@ -26,5 +26,13 @@ class CakesterRequestDecorator < ApplicationDecorator
 
   def status
     object.status.upcase
+  end
+
+  def pledge
+    '-'
+  end
+
+  def kind
+    'Exclusive'
   end
 end

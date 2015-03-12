@@ -1,4 +1,4 @@
-- cache [:box, cakester] do
+- cache [:box, :cakester_request, cakester] do
   .cakester_grid.col-md-4.col-sm-4.col-xs-6
     .thumbnail
       .avatar-container
@@ -8,5 +8,3 @@
         h4.truncate = auto_link cakester
         .location.truncate = cakester.city_state
         .cause.truncate = cakester.cause
-      .buttons
-        = link_to 'Request an Exclusive Partnership', new_cakester_request_path(cakester: cakester), class:'btn btn-success btn-block'

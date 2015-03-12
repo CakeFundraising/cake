@@ -37,7 +37,7 @@ class Ability
 
       #CakesterRequest
       can :create, CakesterRequest
-      can [:update, :destroy], CakesterRequest, fundraiser_id: user.fundraiser.id
+      can [:update, :delete, :destroy], CakesterRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
       can [:accept, :reject, :add_reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
@@ -56,7 +56,7 @@ class Ability
       can :crud, Cakester, id: user.cakester.id
 
       #CakesterRequest
-      can [:accept, :reject, :reject_message, :destroy], CakesterRequest, cakester_id: user.cakester.id
+      can [:accept, :reject, :reject_message, :delete, :destroy], CakesterRequest, cakester_id: user.cakester.id
       
       can :destroy, CampaignCakester, cakester_id: user.cakester.id
     end

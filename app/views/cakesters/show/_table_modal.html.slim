@@ -7,7 +7,7 @@
       .modal-body
         .row
           .col-md-12 
-            = render partial:'cakesters/tables/table', locals: {campaign_cakesters: campaign.campaign_cakesters.decorate}
+            = render partial:'cakesters/tables/table', locals: {cakesters: campaign.cakesters_list}
       .modal-footer
         button.btn.btn-md.btn-primary data-dismiss="modal" type="button" Close
     /! /.modal-content

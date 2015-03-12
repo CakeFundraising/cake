@@ -3,6 +3,6 @@ class CakesterRequestsRefactoring < ActiveRecord::Migration
     add_column :cakester_requests, :rate, :integer
     add_column :cakester_requests, :message, :text
 
-    remove_column :campaigns, :cakester_id, :integer
+    rename_column :campaigns, :cakester_id, :exclusive_cakester_id
   end
 end
