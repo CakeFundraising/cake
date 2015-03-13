@@ -9,11 +9,12 @@ class PledgeRequest < ActiveRecord::Base
 
   belongs_to :sponsor
   belongs_to :campaign
-  belongs_to :fundraiser
 
-  validates :sponsor, :campaign, :fundraiser, presence: true
+  belongs_to :requester, polymorphic: true
 
-  scope :by_pledge, ->(pledge){ where(sponsor_id: pledge.sponsor.id, campaign_id: pledge.campaign.id, fundraiser_id: pledge.fundraiser.id) }
+  validates :sponsor, :campaign, :requester, presence: true
+
+  scope :by_pledge, ->(pledge){ where(sponsor_id: pledge.sponsor.id, campaign_id: pledge.campaign.id) }
   scope :latest, ->{ order(created_at: :desc) }
 
   def notify_sponsor(message)

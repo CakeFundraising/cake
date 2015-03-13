@@ -15,12 +15,14 @@ class Cakester < ActiveRecord::Base
 
   #Cakester Requests
   has_many :cakester_requests, dependent: :destroy
-
   has_many :campaign_cakesters, dependent: :destroy
+  has_many :pledge_requests, as: :requester, dependent: :destroy
 
   has_many :ap_cakester_requests, ->{ pending_or_accepted }, class_name: 'CakesterRequest', dependent: :destroy
-
   has_many :campaigns, through: :campaign_cakesters
+
+  has_many :pledges
+  
   # has_many :ap_exclusive_campaigns, through: :ap_cakester_requests, class_name: 'Campaign'
   
   # has_many :accepted_cakester_requests, ->{ accepted }, class_name: 'CakesterRequest', dependent: :destroy

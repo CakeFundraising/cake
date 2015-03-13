@@ -1,7 +1,7 @@
 - cache [:table, :sp, pledge_request] do 
   tr.pledge
     td data-title = (PledgeRequest.human_attribute_name :fundraiser )
-      = auto_link pledge_request.fundraiser
+      = auto_link pledge_request.campaign.fundraiser
     td data-title = (PledgeRequest.human_attribute_name :campaign)
       = auto_link pledge_request.campaign 
     td data-title = (PledgeRequest.human_attribute_name :causes)

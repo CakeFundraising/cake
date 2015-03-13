@@ -3,18 +3,14 @@
 h1.dash-head
 	span Pledges
 	.page-cta
-		= link_to "Search For Pledges", search_sponsors_path, class:'btn btn-primary btn-md'
+		= link_to "Find a Campaign to Promote", search_commissions_path, class:'btn btn-primary btn-md'
 ul.nav.nav-tabs
-  li.active
-    a data-toggle="tab" href="#unsolicited" = t('titles.empty_results.pledges.from_sponsors')
-  li 
+  li.active 
     a data-toggle="tab" href="#requested" = t('titles.empty_results.pledges.my_pledge_requests')
   li 
     a data-toggle="tab" href="#active" = t('titles.empty_results.pledges.active')
 .tab-content
-  #unsolicited.tab-pane.active
-    = render partial:'pledges/tables/pending/fundraiser/table', locals:{pledges: @unsolicited_pledges}
-  #requested.tab-pane
+  #requested.tab-pane.active
     = render partial:'pledge_requests/tables/fundraiser/table', locals:{pledges: @requested_pledges}
   #active.tab-pane
     = render partial:'pledges/tables/active/fundraiser/table', locals:{pledges: @accepted_pledges}

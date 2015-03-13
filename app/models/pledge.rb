@@ -11,6 +11,8 @@ class Pledge < ActiveRecord::Base
   
   belongs_to :sponsor, polymorphic: true
   belongs_to :campaign, touch: true
+  belongs_to :cakester
+
   has_one :fundraiser, through: :campaign
   
   has_one :video, as: :recordable, dependent: :destroy

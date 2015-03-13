@@ -1,8 +1,8 @@
 h2 Hello #{@receiver}, 
 div
-  strong Congratulations, you have a pledge request from #{ link_to @pr.fundraiser.decorate, fundraiser_url(@pr.fundraiser) } for #{ link_to @pr.campaign.decorate, campaign_url(@pr.campaign) }.
+  strong Congratulations, you have a pledge request from #{ link_to @requester, polymorphic_url(@requester) } for #{ link_to @campaign, campaign_url(@campaign) }.
   br
-div #{@pr.fundraiser.decorate} has a message for you.
+div #{@requester} has a message for you.
 div.italic "#{@message}"  
 br
 div

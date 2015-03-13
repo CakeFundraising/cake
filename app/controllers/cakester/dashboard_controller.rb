@@ -15,9 +15,8 @@ class Cakester::DashboardController < ApplicationController
   end
 
   def pledges
-    # @unsolicited_pledges = current_cakester.pledges.normal.pending.decorate
-    # @requested_pledges = current_cakester.pledge_requests.decorate
-    # @accepted_pledges = current_cakester.pledges.normal.accepted.decorate
+    @requested_pledges = current_cakester.pledge_requests.latest.decorate
+    @accepted_pledges = current_cakester.pledges.normal.accepted.latest.decorate
   end
 
   def campaigns

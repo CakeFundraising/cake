@@ -4,17 +4,22 @@ class PledgeNotification < AsyncMailer
   #Pledge Requests
   def new_pledge_request(pledge_request_id, message)
     @pr = find_pledge_request(pledge_request_id).decorate
+    
     @receiver = @pr.sponsor.manager.decorate
-    @sender = @pr.fundraiser.manager.decorate
+    @requester = @pr.requester.decorate
+    @campaign = @pr.campaign.decorate
     @message = message
+
     mail(to: @receiver.email, subject: 'You have a new pledge request.')          
   end
 
   def rejected_pledge_request(pledge_request_id, message)
     @pr = find_pledge_request(pledge_request_id).decorate
-    @receiver = @pr.fundraiser.manager.decorate
-    @sender = @pr.sponsor.manager.decorate
+
+    @receiver = @pr.requester.manager.decorate
+    @campaign = @pr.campaign.decorate
     @message = message
+
     mail(to: @receiver.email, subject: 'Your Pledge Request has been rejected.')
   end
 

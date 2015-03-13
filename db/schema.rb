@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311195905) do
+ActiveRecord::Schema.define(version: 20150313140034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,9 +346,11 @@ ActiveRecord::Schema.define(version: 20150311195905) do
     t.integer  "sponsor_id"
     t.integer  "fundraiser_id"
     t.integer  "campaign_id"
-    t.string   "status",        limit: 255, default: "pending"
+    t.string   "status",         limit: 255, default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "requester_id"
+    t.string   "requester_type"
   end
 
   create_table "pledges", force: :cascade do |t|
@@ -377,6 +379,7 @@ ActiveRecord::Schema.define(version: 20150311195905) do
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
     t.string   "sponsor_type",              limit: 255
+    t.integer  "cakester_id"
   end
 
   create_table "sponsor_categories", force: :cascade do |t|

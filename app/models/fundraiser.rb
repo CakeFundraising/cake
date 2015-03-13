@@ -10,7 +10,7 @@ class Fundraiser < ActiveRecord::Base
   has_many :users, as: :role, dependent: :destroy
   has_many :campaigns, dependent: :destroy
   
-  has_many :pledge_requests, dependent: :destroy
+  has_many :pledge_requests, as: :requester, dependent: :destroy
 
   has_many :pledges, ->{ normal }, through: :campaigns
   has_many :quick_pledges, ->{ quick }, through: :campaigns

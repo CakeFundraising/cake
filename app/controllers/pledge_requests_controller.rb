@@ -1,26 +1,28 @@
 class PledgeRequestsController < InheritedResources::Base
   load_and_authorize_resource
+  before_action :get_requester, only: [:new, :create]
   
   def new
-    @pledge_request = current_fundraiser.pledge_requests.build(sponsor_id: params[:sponsor_id])
+    @pledge_request = @requester.pledge_requests.build(sponsor_id: params[:sponsor_id])
     @sponsor = @pledge_request.sponsor.decorate
+    @campaigns = @requester.campaigns.active
   end
   
   def create
-    @pledge_request = current_fundraiser.pledge_requests.build(permitted_params[:pledge_request])
+    @pledge_request = @requester.pledge_requests.build(permitted_params[:pledge_request])
     message = permitted_params[:pledge_request][:message]
     
     create! do |success, failure|
       success.html do
         @pledge_request.notify_sponsor(message)
-        redirect_to fundraiser_pledges_path 
+        redirect_to requester_path 
       end
     end
   end
 
   def destroy
     destroy! do |success, failure|
-      success.html{ redirect_to fundraiser_pledges_path }
+      success.html{ redirect_to requester_path }
     end
   end
 
@@ -34,11 +36,21 @@ class PledgeRequestsController < InheritedResources::Base
 
     if message.present?
       resource.notify_rejection(message) if resource.rejected!
-      redirect_to sponsor_pledge_requests_path, alert: "Pledge request rejected."
+      redirect_to sponsor_pledge_requests_path, notice: "Pledge request rejected."
     else
       @pledge_request = resource
       render 'pr_reject_message'
     end
+  end
+
+  private
+
+  def get_requester
+    @requester = current_fundraiser || current_cakester
+  end
+
+  def requester_path
+    send("#{current_user.roles.first}_pledges_path")
   end
 
   def permitted_params
