@@ -39,7 +39,6 @@ Cake::Application.routes.draw do
         get :share
       end
       get :badge
-      get :click
       patch :launch
       patch :save_for_launch
       patch :toggle_visibility
@@ -99,6 +98,7 @@ Cake::Application.routes.draw do
       end
       get :request_partnership
       post :send_partnership
+      get :click
     end  
   end
 

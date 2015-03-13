@@ -66,4 +66,8 @@ class Coupon < ActiveRecord::Base
   def self.popular
     self.active.latest.first(12)
   end
+
+  def active?
+    self.pledge.active?
+  end
 end

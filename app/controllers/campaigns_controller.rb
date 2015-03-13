@@ -14,7 +14,6 @@ class CampaignsController < InheritedResources::Base
   include ImpressionablesController
   include PastResource
   include CampaignsHelper
-  include UrlHelper
 
   def show
     @campaign = resource.decorate
@@ -125,17 +124,6 @@ class CampaignsController < InheritedResources::Base
   def toggle_visibility
     resource.toggle! :visible
     render nothing: true
-  end
-
-  def click(redirect=true)
-    if current_browser.present?
-      if resource.active?
-        resource.extra_clicks.create(browser: current_browser) unless resource.unique_click_browsers.include?(current_browser)
-      end
-      redirect_to url_with_protocol(resource.url) if redirect
-    else
-      redirect_to resource, alert: 'There was an error when trying to count your click. Please try again.' if redirect
-    end
   end
 
   protected

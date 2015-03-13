@@ -161,7 +161,7 @@
         .col-md-4.col-xs-8.col-xs-push-2.col-md-push-0
           .sidebar-bkg-2
             .avatar 
-              = picture_rollover(@campaign.picture.avatar, click_campaign_path(@campaign)) do
+              = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
                 div Please visit 
                 div our Website!
               end

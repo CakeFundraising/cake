@@ -10,4 +10,8 @@ class PledgeNews < ActiveRecord::Base
   validates :headline, :story, :url, :pledge_id, presence: true
 
   delegate :city, :state_code, to: :sponsor
+
+  def active?
+    self.pledge.active?
+  end
 end

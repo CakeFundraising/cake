@@ -4,6 +4,8 @@ class FundraisersController < InheritedResources::Base
   before_action :require_password, only: :bank_account
   before_action :require_sp, only: :request_partnership
 
+  include ExtraClickController
+
   def show
     @fundraiser = resource.decorate
     @active_campaigns = @fundraiser.campaigns.active.decorate
@@ -64,6 +66,11 @@ class FundraisersController < InheritedResources::Base
     @sp = current_sponsor.decorate
 
     redirect_to root_path, notice: "We've sent your message to #{@fr}!" if UserNotification.fr_partnership_request(@fr.id, @sp.id, @message).deliver
+  end
+
+  def click
+    campaign = Campaign.find_by_id(params[:campaign_id])
+    self.extra_click(campaign.url, campaign)
   end
 
   def permitted_params

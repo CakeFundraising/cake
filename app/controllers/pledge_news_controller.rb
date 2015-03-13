@@ -2,6 +2,7 @@ class PledgeNewsController < InheritedResources::Base
   load_and_authorize_resource
 
   include UrlHelper
+  include ExtraClickController
 
   def new
     @pledge_news = PledgeNews.new(pledge_id: params[:pledge_id])
@@ -45,15 +46,8 @@ class PledgeNewsController < InheritedResources::Base
     @news.any? ? render(:load_all, layout: false) : render(nothing: true)
   end
 
-  def click(redirect=true)
-    if current_browser.present?
-      if resource.pledge.active?
-        resource.extra_clicks.create(browser: current_browser) unless resource.unique_click_browsers.include?(current_browser)
-      end
-      redirect_to url_with_protocol(resource.url) if redirect
-    else
-      redirect_to resource.pledge, alert: 'There was an error when trying to count your click. Please try again.' if redirect
-    end
+  def click
+    self.extra_click(resource.url, resource.pledge)
   end
 
   def permitted_params

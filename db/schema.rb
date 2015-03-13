@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.string   "url"
     t.string   "visitor_url",                      default: ""
     t.string   "visitor_action",                   default: ""
-    t.integer  "extra_clicks_count",   limit: 8,   default: 0,             null: false
   end
 
   create_table "charges", force: :cascade do |t|
@@ -229,6 +228,7 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.string   "facebook_subscribers",        limit: 255
     t.string   "twitter_subscribers",         limit: 255
     t.string   "pinterest_subscribers",       limit: 255
+    t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
   end
 
   create_table "impressions", force: :cascade do |t|

@@ -3,6 +3,7 @@ class Fundraiser < ActiveRecord::Base
   include Formats
   include Analytics
   include Picturable
+  include Clickable
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
@@ -153,5 +154,9 @@ class Fundraiser < ActiveRecord::Base
   def average_clicks_per_campaign
     return 0 if campaigns_count.zero?
     (unique_clicks/campaigns_count).floor
+  end
+
+  def active?
+    campaigns.active.any?
   end
 end
