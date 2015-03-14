@@ -3,6 +3,7 @@ class PledgeRequestDecorator < ApplicationDecorator
   decorates_association :campaign
   decorates_association :sponsor
   decorates_association :fundraiser
+  decorates_association :pledge
 
   def start_end_dates
     "#{campaign.launch_date} to #{campaign.end_date}"

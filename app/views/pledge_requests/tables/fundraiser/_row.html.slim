@@ -7,10 +7,10 @@
     td.td-header(data-title='Timing') 
       = pledge_request.start_end_dates
     td.td-header(data-title='Status') 
-      - if pledge_request.pending?
-        = t('semantic.Pending')
       - if pledge_request.rejected?
         .text-danger = t('semantic.Rejected')
+      - else
+        = pledge_request.status
     td.truncate.min-width
       - if can? :destroy, pledge_request
         div 

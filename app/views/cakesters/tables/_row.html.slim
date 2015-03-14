@@ -1,18 +1,18 @@
-/- cache [:table, campaign_cakester] do
-tr.campaign_cakester
-  td data-title=(Cakester.model_name.human)
-    = auto_link campaign_cakester.cakester
-  td data-title=(Cakester.human_attribute_name :email)
-    = campaign_cakester.cakester.email
-  td data-title=(Cakester.human_attribute_name :pledge)
-    = campaign_cakester.pledge
-  td data-title=(Cakester.human_attribute_name :kind)
-    = campaign_cakester.kind
-  td data-title=(Cakester.human_attribute_name :kind)
-    = campaign_cakester.rate
-  td data-title=(Cakester.human_attribute_name :status)
-    = campaign_cakester.status
-  td
-    = destroy_cakester_button(campaign_cakester)
-  
-tr.empty-tr
+- cache [:table, campaign_cakester] do
+  tr.campaign_cakester
+    td data-title=(Cakester.model_name.human)
+      = auto_link campaign_cakester.cakester
+    td data-title=(Cakester.human_attribute_name :email)
+      = campaign_cakester.cakester.email
+    td data-title=(Cakester.human_attribute_name :pledge)
+      = auto_link campaign_cakester.pledge
+    td data-title=(Cakester.human_attribute_name :kind)
+      = campaign_cakester.kind
+    td data-title=(Cakester.human_attribute_name :kind)
+      = campaign_cakester.rate
+    td data-title=(Cakester.human_attribute_name :status)
+      = campaign_cakester.status
+    td
+      = destroy_cakester_button(campaign_cakester)
+    
+  tr.empty-tr

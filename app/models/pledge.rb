@@ -12,6 +12,7 @@ class Pledge < ActiveRecord::Base
   belongs_to :sponsor, polymorphic: true
   belongs_to :campaign, touch: true
   belongs_to :cakester
+  belongs_to :pledge_request
 
   has_one :fundraiser, through: :campaign
   
@@ -75,14 +76,12 @@ class Pledge < ActiveRecord::Base
     self.max_clicks = self.current_max_clicks
   end
 
+  after_create :set_cakester
+
   #Actions
   def launch!
-    delete_pledge_requests
+    self.pledge_request.accepted!
     notify_launch if self.pending!
-  end
-
-  def delete_pledge_requests
-    PledgeRequest.by_pledge(self).destroy_all
   end
 
   def notify_launch
@@ -227,6 +226,11 @@ class Pledge < ActiveRecord::Base
 
   def news_sample
     self.pledge_news.latest.first
+  end
+
+  #Cakester
+  def set_cakester
+    self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.requester.is_a?(Cakester)
   end
 
   private

@@ -2,6 +2,7 @@ class CampaignCakesterDecorator < ApplicationDecorator
   delegate_all
   decorates_association :campaign
   decorates_association :cakester
+  decorates_association :pledge
 
   delegate :fundraiser, :end_date, :main_cause, :scopes, to: :campaign
 
@@ -15,11 +16,6 @@ class CampaignCakesterDecorator < ApplicationDecorator
 
   def rate
     "#{campaign.cakester_commission_percentage}%"
-  end
-
-  def pledge
-    #object.pledge || '-'
-    '-'
   end
 
   def status

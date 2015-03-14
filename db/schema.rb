@@ -379,6 +379,7 @@ ActiveRecord::Schema.define(version: 20150313140034) do
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
     t.string   "sponsor_type",              limit: 255
+    t.integer  "pledge_request_id"
     t.integer  "cakester_id"
   end
 

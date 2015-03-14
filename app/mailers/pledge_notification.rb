@@ -26,8 +26,11 @@ class PledgeNotification < AsyncMailer
   #Pledges
   def launch_pledge(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate
+    @cakester = @p.cakester
+
     @receiver = find_user(user_id).decorate
     @sender = @p.sponsor.manager.decorate
+    
     mail(to: @receiver.email, subject: 'You have a new pledge offer.')
   end
 

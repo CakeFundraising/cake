@@ -1,6 +1,6 @@
 class PledgesController < InheritedResources::Base
   load_and_authorize_resource
-  before_action :allow_only_sponsors, :clear_cookies, only: :new
+  before_action :allow_only_sponsors, :clear_cookies, :check_pledge_request, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :news, :share]
   before_action :check_hero_campaign, only: :accept
   before_action :redirect_to_hero_campaign, only: :show
@@ -182,14 +182,13 @@ class PledgesController < InheritedResources::Base
     params.permit(
       pledge: [
         :name, :mission, :headline, :description, :amount_per_click,
-        :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :step, video_attributes: [:id, :url, :auto_show],
+        :total_amount, :show_coupons, :website_url, :terms, :campaign_id, :pledge_request_id, 
+        :step, video_attributes: [:id, :url, :auto_show],
         picture_attributes: [
           :id, :banner, :avatar, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
           :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
-        ],
-        sweepstakes_attributes: [:id, :title, :description, :terms_conditions, :avatar, :winners_quantity,
-        :claim_prize_instructions, :standard_terms, :_destroy]
+        ]
       ],
       click: [:browser_plugins]
     )
@@ -218,6 +217,13 @@ class PledgesController < InheritedResources::Base
 
   def check_hero_campaign
     redirect_to resource.campaign, alert:'This campaign have already got a Hero Pledge.' if resource.campaign.hero_pledge?
+  end
+
+  def check_pledge_request
+    if params[:pledge_request].present?
+      pledge_request = PledgeRequest.find_by(id: params[:pledge_request])
+      redirect_to sponsor_home_path, alert: 'The provided pledge request is not yours.' unless current_sponsor.pledge_requests.pending.exists?(pledge_request)
+    end
   end
 
   def redirect_to_hero_campaign

@@ -11,6 +11,6 @@ ul.nav.nav-tabs
     a data-toggle="tab" href="#active" = t('titles.empty_results.pledges.active')
 .tab-content
   #requested.tab-pane.active
-    = render partial:'pledge_requests/tables/fundraiser/table', locals:{pledges: @requested_pledges}
+    = render partial:'pledge_requests/tables/cakester/table', locals:{pledges: @requested_pledges}
   #active.tab-pane
     = render partial:'pledges/tables/active/fundraiser/table', locals:{pledges: @accepted_pledges}

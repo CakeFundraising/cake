@@ -28,7 +28,7 @@ class PledgeRequestsController < InheritedResources::Base
 
   #Actions
   def accept
-    redirect_to new_pledge_path(campaign: resource.campaign), notice: 'Please complete your pledge offer.'
+    redirect_to new_pledge_path(campaign: resource.campaign, pledge_request: resource), notice: 'Please complete your pledge offer.'
   end
 
   def reject

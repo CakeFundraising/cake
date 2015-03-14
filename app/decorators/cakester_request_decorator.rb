@@ -3,6 +3,7 @@ class CakesterRequestDecorator < ApplicationDecorator
   decorates_association :campaign
   decorates_association :cakester
   decorates_association :fundraiser
+  decorates_association :pledge
 
   def end_date
     campaign.end_date
@@ -26,10 +27,6 @@ class CakesterRequestDecorator < ApplicationDecorator
 
   def status
     object.status.upcase
-  end
-
-  def pledge
-    '-'
   end
 
   def kind
