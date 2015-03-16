@@ -18,6 +18,7 @@ class PledgeNotification < AsyncMailer
 
     @receiver = @pr.requester.manager.decorate
     @campaign = @pr.campaign.decorate
+    @sp = @pr.sponsor
     @message = message
 
     mail(to: @receiver.email, subject: 'Your Pledge Request has been rejected.')
@@ -31,7 +32,7 @@ class PledgeNotification < AsyncMailer
     @receiver = find_user(user_id).decorate
     @sender = @p.sponsor.manager.decorate
     
-    mail(to: @receiver.email, subject: 'You have a new pledge offer.', template_path: 'mailers/pledge/fundraiser', template_name: 'launch_pledge')
+    mail(to: @receiver.email, subject: 'You have a new pledge offer.', template_path: "pledge_notification/pledge/#{@receiver.roles.first}", template_name: 'launch_pledge')
   end
 
   def accepted_pledge(pledge_id, user_id)
@@ -39,7 +40,7 @@ class PledgeNotification < AsyncMailer
     @receiver = find_user(user_id).decorate
     @sender = @p.fundraiser.manager.decorate
 
-    mail(to: @receiver.email, subject: 'Your Pledge has been accepted.', template_path: "mailers/pledge/#{@receiver.roles.first}", template_name: 'accepted_pledge')
+    mail(to: @receiver.email, subject: 'Your Pledge has been accepted.', template_path: "pledge_notification/pledge/#{@receiver.roles.first}", template_name: 'accepted_pledge')
   end
 
   def rejected_pledge(pledge_id, user_id, message)
@@ -48,20 +49,20 @@ class PledgeNotification < AsyncMailer
     @receiver = find_user(user_id).decorate
     @sender = @p.fundraiser.manager.decorate
 
-    mail(to: @receiver.email, subject: 'Your Pledge has been rejected.', template_path: "mailers/pledge/#{@receiver.roles.first}", template_name: 'rejected_pledge')
+    mail(to: @receiver.email, subject: 'Your Pledge has been rejected.', template_path: "pledge_notification/pledge/#{@receiver.roles.first}", template_name: 'rejected_pledge')
   end
 
   #Pledge Fully Subscribed
   def fr_pledge_fully_subscribed(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate
     @receiver = find_user(user_id).decorate
-    mail(to: @receiver.email, subject: "Your campaign's pledge has been 100% subscribed.", template_path: 'mailers/pledge/fundraiser', template_name: 'pledge_fully_subscribed')
+    mail(to: @receiver.email, subject: "Your campaign's pledge has been 100% subscribed.", template_path: 'pledge_notification/pledge/fundraiser', template_name: 'pledge_fully_subscribed')
   end
 
   def sp_pledge_fully_subscribed(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate
     @receiver = find_user(user_id).decorate
-    mail(to: @receiver.email, subject: 'Your pledge has been 100% subscribed.', template_path: 'mailers/pledge/sponsor', template_name: 'pledge_fully_subscribed')
+    mail(to: @receiver.email, subject: 'Your pledge has been 100% subscribed.', template_path: 'pledge_notification/pledge/sponsor', template_name: 'pledge_fully_subscribed')
   end
 
   #Pledge Increase
@@ -69,13 +70,13 @@ class PledgeNotification < AsyncMailer
     @p = find_pledge(pledge_id).decorate
     @changes = @p.previous_changes
     @receiver = find_user(user_id).decorate
-    mail(to: @receiver.email, subject: "Your campaign's pledge has been increased.", template_path: 'mailers/pledge/fundraiser', template_name: 'pledge_increased')
+    mail(to: @receiver.email, subject: "Your campaign's pledge has been increased.", template_path: 'pledge_notification/pledge/fundraiser', template_name: 'pledge_increased')
   end
 
   def pledge_increase_request(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate
     @receiver = find_user(user_id).decorate
-    mail(to: @receiver.email, subject: "Your pledge has a new increase request.", template_path: 'mailers/pledge/sponsor', template_name: 'pledge_increase_request')
+    mail(to: @receiver.email, subject: "Your pledge has a new increase request.", template_path: 'pledge_notification/pledge/sponsor', template_name: 'pledge_increase_request')
   end
 
   #Quick Pledges

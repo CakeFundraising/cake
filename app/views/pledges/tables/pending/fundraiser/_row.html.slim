@@ -16,5 +16,5 @@ tr.pledge
       - unless pledge.hero and pledge.campaign.hero_pledge?
         span = link_to "Accept", accept_pledge_path(pledge), method: :patch, class:'btn btn-success btn-sm'
     - if can? :reject, pledge
-      span = link_to "Reject", add_reject_message_pledge_path(pledge), class:'btn btn-danger btn-sm'
+      span = link_to "Reject", reject_message_pledge_path(pledge), class:'btn btn-danger btn-sm'
 tr.empty-tr

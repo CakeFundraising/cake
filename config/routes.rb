@@ -80,7 +80,9 @@ Cake::Application.routes.draw do
 
       patch :accept
       patch :reject
-      get :add_reject_message
+      scope :reject do
+        get :reject_message, path: :message
+      end
 
       get :click
     end
@@ -128,6 +130,9 @@ Cake::Application.routes.draw do
     member do
       patch :accept
       patch :reject
+      scope :reject do
+        get :reject_message, path: :message
+      end
     end
   end
 

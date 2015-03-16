@@ -1,7 +1,10 @@
 class PledgeRequestsController < InheritedResources::Base
+  include Messagable
+
   load_and_authorize_resource
   before_action :get_requester, only: [:new, :create]
-  
+  messagable :reject
+
   def new
     @pledge_request = @requester.pledge_requests.build(sponsor_id: params[:sponsor_id])
     @sponsor = @pledge_request.sponsor.decorate
@@ -37,9 +40,6 @@ class PledgeRequestsController < InheritedResources::Base
     if message.present?
       resource.notify_rejection(message) if resource.rejected!
       redirect_to sponsor_pledge_requests_path, notice: "Pledge request rejected."
-    else
-      @pledge_request = resource
-      render 'pr_reject_message'
     end
   end
 

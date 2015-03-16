@@ -18,7 +18,7 @@ class Ability
       can :crud, PledgeNews, sponsor: user.sponsor
 
       #PledgeRequest
-      can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id
+      can [:accept, :reject, :reject_message], PledgeRequest, sponsor_id: user.sponsor.id
     end
 
     if user.has_role?(:fundraiser)
@@ -40,7 +40,7 @@ class Ability
       can [:update, :delete, :destroy], CakesterRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
-      can [:accept, :reject, :add_reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
+      can [:accept, :reject, :reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
 
       #QuickPledge
       can :crud, QuickPledge, fundraiser: user.fundraiser

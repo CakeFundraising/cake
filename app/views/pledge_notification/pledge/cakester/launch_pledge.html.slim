@@ -1,0 +1,8 @@
+h2 Hello #{@receiver}, 
+div
+  strong Congratulations, #{ link_to @p.sponsor, sponsor_url(@p.sponsor) } accepted and launched the pledge #{ link_to @p, pledge_url(@p) } for #{ link_to @p.campaign, campaign_url(@p.campaign) }. 
+
+  div Now the Fundraiser should accept it in order to be included in that campaign.
+  br
+div
+  span Click #{ link_to t('semantic.here').downcase, cakester_pledges_url } to view all your pledges.

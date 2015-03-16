@@ -1,6 +1,6 @@
 h2 Hello #{@receiver}, 
 div
-  strong Unfortunately your pledge request for #{ link_to @campaign, campaign_url(@campaign) } has been rejected by the Sponsor.
+  strong Unfortunately your pledge request for #{ link_to @campaign, campaign_url(@campaign) } has been rejected by the Sponsor #{ link_to @sp, sponsor_url(@sp) }.
 br
 div.italic "#{@message}"  
 div

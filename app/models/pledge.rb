@@ -88,6 +88,11 @@ class Pledge < ActiveRecord::Base
     fundraiser.users.each do |user|
       PledgeNotification.launch_pledge(self.id, user.id).deliver if user.fundraiser_email_setting.reload.new_pledge
     end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.launch_pledge(self.id, user.id).deliver
+      end
+    end
   end
 
   def accept!

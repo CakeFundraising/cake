@@ -1,9 +1,13 @@
 class PledgesController < InheritedResources::Base
+  include Messagable
+
   load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, :check_pledge_request, only: :new
   before_action :block_fully_subscribed, only: [:edit, :tell_your_story, :add_coupon, :news, :share]
   before_action :check_hero_campaign, only: :accept
   before_action :redirect_to_hero_campaign, only: :show
+
+  messagable :reject, 'pledges/form/reject_message'
 
   WIZARD_STEPS = [
     :your_pledge,
@@ -123,11 +127,6 @@ class PledgesController < InheritedResources::Base
   def reject
     message = params[:reject_message][:message]
     redirect_to fundraiser_pledges_path, notice: 'Pledge rejected.' if resource.reject!(message)
-  end
-
-  def add_reject_message
-    @pledge = resource
-    render 'pledges/form/reject_message'
   end
 
   def launch
