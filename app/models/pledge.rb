@@ -98,6 +98,11 @@ class Pledge < ActiveRecord::Base
     sponsor.users.each do |user|
       PledgeNotification.accepted_pledge(self.id, user.id).deliver if user.sponsor_email_setting.reload.pledge_accepted
     end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.accepted_pledge(self.id, user.id).deliver
+      end
+    end
   end
 
   def reject!(message)
@@ -107,6 +112,11 @@ class Pledge < ActiveRecord::Base
   def notify_rejection(message)
     sponsor.users.each do |user|
       PledgeNotification.rejected_pledge(self.id, user.id, message).deliver if user.sponsor_email_setting.reload.pledge_rejected
+    end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.rejected_pledge(self.id, user.id, message).deliver
+      end
     end
   end
 

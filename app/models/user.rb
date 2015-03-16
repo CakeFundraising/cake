@@ -39,4 +39,16 @@ class User < ActiveRecord::Base
   def cakester
     self.role if self.role_type == 'Cakester'
   end
+
+  def sponsor?
+    has_role?(:sponsor)
+  end
+
+  def fundraiser?
+    has_role?(:fundraiser)
+  end
+
+  def cakester?
+    has_role?(:cakester)
+  end
 end

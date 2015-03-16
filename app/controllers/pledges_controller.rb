@@ -117,8 +117,7 @@ class PledgesController < InheritedResources::Base
 
   #Actions
   def accept
-    resource.notify_approval if resource.accepted!
-    redirect_to resource.campaign, notice: 'Pledge accepted.'
+    redirect_to resource.campaign, notice: 'Pledge accepted.' if resource.accept!
   end
 
   def reject
