@@ -52,6 +52,17 @@ class PledgeNotification < AsyncMailer
     mail(to: @receiver.email, subject: 'Your Pledge has been rejected.', template_path: "pledge_notification/pledge/#{@receiver.roles.first}", template_name: 'rejected_pledge')
   end
 
+  def reevaluate_pledge(pledge_id, user_id)
+    @p = find_pledge(pledge_id).decorate
+    @cakester = @p.cakester
+    @sp = @p.sponsor
+
+    @receiver = find_user(user_id).decorate
+    
+    #mail(to: @receiver.email, subject: 'Please reevaluate this Pledge.', template_path: "pledge_notification/pledge/#{@receiver.roles.first}", template_name: 'reevaluate_pledge')
+    mail(to: @receiver.email, subject: 'Please reevaluate this Pledge.', template_path: "pledge_notification/pledge/fundraiser", template_name: 'reevaluate_pledge')
+  end
+
   #Pledge Fully Subscribed
   def fr_pledge_fully_subscribed(pledge_id, user_id)
     @p = find_pledge(pledge_id).decorate

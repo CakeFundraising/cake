@@ -1,0 +1,6 @@
+h2 Hello #{@receiver}, 
+div
+  strong #{link_to @sp, sponsor_url(@sp)} wants you to reconsider their Pledge offer for #{ link_to @p.campaign, campaign_url(@p.campaign) }.
+div
+  br
+  span Check #{ link_to t('semantic.here').downcase, fundraiser_pledges_url } and click 'Offers from Sponsors' to see this offer.

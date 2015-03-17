@@ -83,6 +83,7 @@ Cake::Application.routes.draw do
       scope :reject do
         get :reject_message, path: :message
       end
+      patch :resend
 
       get :click
     end
@@ -133,6 +134,7 @@ Cake::Application.routes.draw do
       scope :reject do
         get :reject_message, path: :message
       end
+      patch :resend
     end
   end
 

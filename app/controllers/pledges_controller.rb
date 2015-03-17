@@ -1,5 +1,6 @@
 class PledgesController < InheritedResources::Base
   include Messagable
+  include Requestable
 
   load_and_authorize_resource
   before_action :allow_only_sponsors, :clear_cookies, :check_pledge_request, only: :new
@@ -8,6 +9,7 @@ class PledgesController < InheritedResources::Base
   before_action :redirect_to_hero_campaign, only: :show
 
   messagable :reject, 'pledges/form/reject_message'
+  resend! :sponsor_pledge_requests_path, 'This pledge was sent to the Fundraiser for re-evaluation.'
 
   WIZARD_STEPS = [
     :your_pledge,

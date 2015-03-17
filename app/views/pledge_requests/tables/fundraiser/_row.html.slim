@@ -12,6 +12,9 @@
       - else
         = pledge_request.status
     td.truncate.min-width
+      - if pledge_request.rejected? and can? :resend, pledge_request
+        = link_to 'Resend', resend_pledge_request_path(pledge_request), method: :patch, class: 'btn btn-primary btn-sm'
+        
       - if can? :destroy, pledge_request
         div 
           = link_to pledge_request, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do

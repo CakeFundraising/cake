@@ -80,7 +80,7 @@ class Pledge < ActiveRecord::Base
 
   #Actions
   def launch!
-    self.pledge_request.accepted!
+    self.pledge_request.destroy!
     notify_launch if self.pending!
   end
 
@@ -122,6 +122,16 @@ class Pledge < ActiveRecord::Base
       cakester.users.each do |user|
         PledgeNotification.rejected_pledge(self.id, user.id, message).deliver
       end
+    end
+  end
+
+  def resend!
+    notify_reevaluation if self.pending!
+  end
+
+  def notify_reevaluation
+    fundraiser.users.each do |user|
+      PledgeNotification.reevaluate_pledge(self.id, user.id).deliver
     end
   end
 

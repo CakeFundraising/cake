@@ -12,7 +12,7 @@ class Ability
 
       #Pledge
       can :create, Pledge
-      can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
+      can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign, :resend] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       can :crud, Coupon, sponsor: user.sponsor
       can :crud, PledgeNews, sponsor: user.sponsor
@@ -33,7 +33,7 @@ class Ability
       
       #PledgeRequest
       can :create, PledgeRequest
-      can [:update, :destroy], PledgeRequest, requester: user.fundraiser
+      can [:update, :destroy, :resend], PledgeRequest, requester: user.fundraiser
 
       #CakesterRequest
       can :create, CakesterRequest
@@ -63,7 +63,7 @@ class Ability
 
       #PledgeRequest
       can :create, PledgeRequest
-      can [:update, :destroy], PledgeRequest, requester: user.cakester
+      can [:update, :destroy, :resend], PledgeRequest, requester: user.cakester
     end
 
     can :read, :all

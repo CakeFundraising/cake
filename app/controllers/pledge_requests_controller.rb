@@ -1,9 +1,12 @@
 class PledgeRequestsController < InheritedResources::Base
   include Messagable
+  include Requestable
 
   load_and_authorize_resource
   before_action :get_requester, only: [:new, :create]
+
   messagable :reject
+  resend! :requester_path, 'This request was sent to the Sponsor for re-evaluation.'
 
   def new
     @pledge_request = @requester.pledge_requests.build(sponsor_id: params[:sponsor_id])

@@ -27,4 +27,9 @@ class PledgeRequest < ActiveRecord::Base
   def notify_rejection(message)
     PledgeNotification.rejected_pledge_request(self.id, message).deliver
   end
+
+  def resend!
+    message = "Please #{self.sponsor.name} reconsider this request again. I believe this campaign might be useful for you."
+    notify_sponsor(message) if self.pending!
+  end
 end

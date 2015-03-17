@@ -8,9 +8,13 @@ ul.nav.nav-tabs
   li.active 
     a data-toggle="tab" href="#requested" = t('titles.empty_results.pledges.my_pledge_requests')
   li 
+    a data-toggle="tab" href="#pending" = t('titles.empty_results.pledges.pending')
+  li 
     a data-toggle="tab" href="#active" = t('titles.empty_results.pledges.active')
 .tab-content
   #requested.tab-pane.active
     = render partial:'pledge_requests/tables/cakester/table', locals:{pledges: @requested_pledges}
+  #pending.tab-pane
+    = render partial:'pledges/tables/pending/fundraiser/table', locals:{pledges: @pending_pledges}
   #active.tab-pane
     = render partial:'pledges/tables/active/fundraiser/table', locals:{pledges: @accepted_pledges}
