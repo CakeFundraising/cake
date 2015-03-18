@@ -63,4 +63,8 @@ class PledgeDecorator < ApplicationDecorator
   def engagement
     "#{object.engagement}%"
   end
+
+  def click_path
+    object.instance_of?(Pledge) ? h.click_pledge_path(object) : h.click_quick_pledge_path(object)
+  end
 end
