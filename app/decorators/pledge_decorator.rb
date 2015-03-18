@@ -60,8 +60,17 @@ class PledgeDecorator < ApplicationDecorator
     (object.website_url=~/^https?:\/\//).nil? ? "http://#{object.website_url}" : object.website_url
   end
 
-  ##impressions
+  #Impressions
   def engagement
     "#{object.engagement}%"
+  end
+
+  #Cakester
+  def cakester_rate
+    "#{object.cakester_rate}%"
+  end
+
+  def cakester_commission
+    h.humanized_money_with_symbol object.cakester_commission
   end
 end

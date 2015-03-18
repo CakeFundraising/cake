@@ -15,6 +15,6 @@ ul.nav.nav-tabs
   #requested.tab-pane.active
     = render partial:'pledge_requests/tables/cakester/table', locals:{pledges: @requested_pledges}
   #pending.tab-pane
-    = render partial:'pledges/tables/pending/fundraiser/table', locals:{pledges: @pending_pledges}
+    = render partial:'pledges/tables/pending/cakester/table', locals:{pledges: @pending_pledges}
   #active.tab-pane
-    = render partial:'pledges/tables/active/fundraiser/table', locals:{pledges: @accepted_pledges}
+    = render partial:'pledges/tables/active/cakester/table', locals:{pledges: @accepted_pledges}

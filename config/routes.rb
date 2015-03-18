@@ -118,6 +118,10 @@ Cake::Application.routes.draw do
   end
 
   resources :cakesters, except: [:index, :destroy] do
+    member do
+      get :bank_account
+      patch :set_bank_account
+    end
     collection do
       post :accept_campaign
     end

@@ -8,10 +8,9 @@ class Cakester::DashboardController < ApplicationController
   end
 
   def billing
-    # @cakester = current_cakester.decorate
-    # @campaigns_with_outstanding_invoices = CampaignDecorator.decorate_collection current_cakester.campaigns.with_outstanding_invoices
+    @campaigns_with_outstanding_invoices = CampaignDecorator.decorate_collection current_cakester.campaigns.with_outstanding_invoices
     # @qp_invoices = current_cakester.qp_invoices.due_to_pay.latest.decorate
-    # @stripe_account = current_cakester.stripe_account
+    @stripe_account = current_cakester.stripe_account
   end
 
   def pledges

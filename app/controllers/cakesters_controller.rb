@@ -1,6 +1,8 @@
 class CakestersController < InheritedResources::Base
+  include BankAccountController
+  
   before_action :check_if_account_created, only: [:new, :create]
-  before_action :allow_only_cakesters, only: :accept_campaign
+  before_action :allow_only_cakesters, only: [:accept_campaign, :bank_account]
 
   def show
     @cakester = resource.decorate
@@ -41,6 +43,15 @@ class CakestersController < InheritedResources::Base
 
   private
 
+  #Bank Account
+  def after_ba_set_path
+    cakester_home_path
+  end
+
+  def ba_path
+    bank_account_cakester_path(current_cakester)
+  end
+
   def send_notification
     resource.notify_update
   end
@@ -52,7 +63,7 @@ class CakestersController < InheritedResources::Base
   def allow_only_cakesters
     unless current_cakester.present?
       sign_out current_user if current_user.present?
-      redirect_to new_user_registration_path, alert: "In order to accept this Campaign you have first to register as a Cakester."
+      redirect_to new_user_registration_path, alert: "In order to take this action you have first to register as a Cakester."
     end
   end
 

@@ -1,0 +1,22 @@
+- cache [:table, :ck, invoice] do 
+  tr.invoice
+    td data-title=(Sponsor.model_name.human)
+      = invoice.created_at
+    td data-title=(Invoice.model_name.human)
+      = invoice.id
+    td data-title=(Sponsor.model_name.human)
+      = auto_link invoice.sponsor
+    td data-title=(Invoice.human_attribute_name :unique_clicks)
+      = invoice.clicks
+    td data-title=(Invoice.human_attribute_name :amount_click)
+      = invoice.click_donation
+    td data-title=(Invoice.human_attribute_name :amount_due)
+      = invoice.due
+    td data-title=(Invoice.human_attribute_name :gateway_fees)
+      = invoice.estimated_fees
+    td data-title=(Invoice.human_attribute_name :status)
+     = invoice.status
+    td.truncate.min-width
+      a.btn.btn-success.btn-sm data-toggle="modal" data-target="#summary_#{invoice.object.id}" More 
+      = render partial:'invoices/show/invoice_summary', locals:{invoice: invoice, sponsor: false}
+  tr.empty-tr

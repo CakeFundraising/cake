@@ -1,0 +1,17 @@
+- cache [:table, :pending, :ck, pledge] do
+  tr.pledge
+    td data-title=(Pledge.human_attribute_name :pledge_name)
+      = auto_link pledge
+    td data-title=(Sponsor.model_name.human)
+      = auto_link pledge.sponsor
+    td data-title=(Campaign.model_name.human)
+      = auto_link pledge.campaign
+    td data-title=(Pledge.human_attribute_name :amount)
+      = humanized_money_with_symbol pledge.amount_per_click
+    td data-title=(Pledge.model_name.human)
+      = humanized_money_with_symbol pledge.total_amount
+    td data-title=(Pledge.human_attribute_name :commission_rate)
+      = pledge.cakester_rate
+    td data-title=(Pledge.human_attribute_name :commission)
+      = pledge.cakester_commission
+  tr.empty-tr

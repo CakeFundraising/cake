@@ -14,6 +14,8 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :fundraiser
   belongs_to :exclusive_cakester, class_name:'Cakester', foreign_key: :exclusive_cakester_id
+
+  has_one :exclusive_cakester_request, ->(c){ from_campaign(c) }, through: :exclusive_cakester, class_name:'CakesterRequest', source: :cakester_requests
   
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
@@ -247,6 +249,10 @@ class Campaign < ActiveRecord::Base
 
   def cakesters_list
     self.cakester_requests.not_accepted.decorate + self.campaign_cakesters.decorate
+  end
+
+  def cakester_rate
+    self.exclusive_cakester? ? self.exclusive_cakester_request.rate : self.cakester_commission_percentage
   end
 
   private

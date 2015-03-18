@@ -2,15 +2,15 @@
 
 h1.dash-head Billing
 
-div = link_to "See History", fundraiser_history_path, class:'btn btn-default pull-right'
+div = link_to "See History", cakester_history_path, class:'btn btn-default pull-right'
 
 .help-block Note: paid invoices do not appear under the Past Invoices tab until all invoices for a campaign have been paid or otherwise discharged.
 
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#outstanding" Outstanding Invoices
-  li 
-    a data-toggle="tab" href="#qp" Quick Pledge Invoices
+  / li 
+  /   a data-toggle="tab" href="#qp" Quick Pledge Invoices
   li 
     a data-toggle="tab" href="#info" Billing Information
 
@@ -18,15 +18,15 @@ ul.nav.nav-tabs
   #outstanding.tab-pane.active
     #outstanding_invoices.panel-group
       - if @campaigns_with_outstanding_invoices.any?
-        = render partial:'invoices/show/fundraiser/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
+        = render partial:'invoices/show/cakester/collapse', collection: @campaigns_with_outstanding_invoices, as: :campaign
       - else
         = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.outstanding')}
-  #qp.tab-pane
-    #qp_invoices.panel-group
-      - if @qp_invoices.any?
-        = render partial:'quick_pledges/invoices/table', locals:{invoices: @qp_invoices}
-      - else
-        = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.qp')}
+  / #qp.tab-pane
+  /   #qp_invoices.panel-group
+  /     - if @qp_invoices.any?
+  /       = render partial:'quick_pledges/invoices/table', locals:{invoices: @qp_invoices}
+  /     - else
+  /       = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.qp')}
   #info.tab-pane
     .stripe_account
       h3 Stripe Account
@@ -50,5 +50,5 @@ ul.nav.nav-tabs
           span.help-block = t('messages.stripe.fundraisers.bank_account_not_found')
           
         br
-        div = link_to 'Update Bank Account', bank_account_fundraiser_path(current_fundraiser), class:'btn btn-primary'
+        div = link_to 'Update Bank Account', bank_account_cakester_path(current_cakester), class:'btn btn-primary'
   

@@ -1,0 +1,16 @@
+- if pledges.any? 
+  #no-more-tables
+    table#unsolicited_pledges.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Pledge.human_attribute_name :pledge_name
+          th = Sponsor.model_name.human
+          th = Campaign.model_name.human
+          th = Pledge.human_attribute_name :amount
+          th = Pledge.model_name.human
+          th = Pledge.human_attribute_name :commission_rate
+          th = Pledge.human_attribute_name :commission
+      tbody
+        = render partial:'pledges/tables/pending/cakester/row', collection: pledges, as: :pledge
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pledges.from_sponsors')}

@@ -31,6 +31,7 @@ class Pledge < ActiveRecord::Base
   has_many :pledge_news, dependent: :destroy
 
   delegate :main_cause, :active?, :hero, to: :campaign, prefix: true
+  delegate :cakester_rate, to: :campaign
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
@@ -256,6 +257,10 @@ class Pledge < ActiveRecord::Base
   #Cakester
   def set_cakester
     self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.requester.is_a?(Cakester)
+  end
+
+  def cakester_commission
+    (cakester_rate.to_f/100)*total_charge
   end
 
   private
