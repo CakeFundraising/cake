@@ -2,6 +2,9 @@ class CouponsController < InheritedResources::Base
   respond_to :pdf, only: :download
   load_and_authorize_resource
 
+  include UrlHelper
+  include ExtraClickController
+
   def new
     @coupon = Coupon.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
@@ -45,7 +48,12 @@ class CouponsController < InheritedResources::Base
     end
   end
 
+  def click
+    self.extra_click(resource.url, resource.pledge)
+  end
+
   def download
+    self.extra_click(resource.url, resource.pledge, redirect=false)
     respond_with(resource) do |format|
       format.html do
         pdf = CouponPdf.new(resource.decorate)

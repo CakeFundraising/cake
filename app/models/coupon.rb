@@ -1,6 +1,7 @@
 class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include Picturable
+  include Clickable
   
   belongs_to :pledge
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'
@@ -64,5 +65,9 @@ class Coupon < ActiveRecord::Base
 
   def self.popular
     self.active.latest.first(12)
+  end
+
+  def active?
+    self.pledge.active?
   end
 end

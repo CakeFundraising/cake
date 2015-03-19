@@ -1,6 +1,9 @@
 class PledgeNewsController < InheritedResources::Base
   load_and_authorize_resource
 
+  include UrlHelper
+  include ExtraClickController
+
   def new
     @pledge_news = PledgeNews.new(pledge_id: params[:pledge_id])
     @pledge = Pledge.find(params[:pledge_id])
@@ -41,6 +44,10 @@ class PledgeNewsController < InheritedResources::Base
     @partial = params[:partial]
 
     @news.any? ? render(:load_all, layout: false) : render(nothing: true)
+  end
+
+  def click
+    self.extra_click(resource.url, resource.pledge)
   end
 
   def permitted_params

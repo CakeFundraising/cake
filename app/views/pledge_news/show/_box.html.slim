@@ -14,7 +14,7 @@
               hr
               p 
                 span = pledge_news.story
-                span = link_to 'Read more', pledge_news.url, target: :_blank
+                span = link_to 'Read more', click_pledge_news_path(pledge_news), target: :_blank
           .col-md-2.hidden-xs.hidden-sm.text-right
             = pledge_news.picture.qrcode
       .col-md-1

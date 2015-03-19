@@ -23,6 +23,8 @@ class Invoice < ActiveRecord::Base
   scope :normal, ->{ where(type: nil) }
 
   delegate :bonus_clicks_count, to: :pledge
+  delegate :coupon_extra_clicks, to: :pledge
+  delegate :pledge_news_extra_clicks, to: :pledge
 
   def fees
     self.charges.sum(&:total_fee_cents).to_i
