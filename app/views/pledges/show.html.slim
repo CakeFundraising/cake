@@ -138,7 +138,7 @@
           .row.pledgebluestripe.campaign
             .col-md-12.text-center
               span.h1
-                span Learn More About
+                span Learn More About 
                 span.boldest = @campaign.fundraiser
   .container
     .row.sponsor-profile
@@ -189,7 +189,7 @@
     /     / DISQUS COMMENTS
     /     = render partial:'pledges/show/disqus'
 
-  / CAUSES/SPONSORS CIRCLES        
+  / CAUSES/SPONSORS CIRCLES
   = render partial: 'layouts/choose_path'
 
 = render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
@@ -198,11 +198,11 @@ css:
   .hero{ background-image: url("#{@pledge.campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( 
+  $(document).ready(
     Cake.campaigns.show(
-      '#{@pledge.campaign.object.end_date}', 
+      '#{@pledge.campaign.object.end_date}',
       "#{@impression.id if @impression.present?}"
-    ) 
+    )
   );
 
   var addthis_share = addthis_share || {}
@@ -211,11 +211,11 @@ javascript:
           shorten: {
             twitter: 'bitly'
           }
-      }, 
+      },
     shorteners : {
-      bitly : {} 
+      bitly : {}
     },
-    templates: { 
+    templates: {
       twitter: "Click to help #{@pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
-    }   
+    }
   }
