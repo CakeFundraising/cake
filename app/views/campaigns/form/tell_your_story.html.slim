@@ -13,7 +13,7 @@
         .row
           .col-md-3
           .col-md-6
-            = f.input :mission, :as => :text, label: 'Campaign Purpose', input_html: {rows: 4, placeholder: '120 characters or less', maxlength: 120}
+            = f.input :mission, :as => :text, label: 'Campaign Purpose', input_html: {rows: 4, placeholder: '140 characters or less', maxlength: 140}
           .col-md-3
         .row.section-wrapper.text-center
           h2 Tell your story in more detail
@@ -44,7 +44,16 @@
           .col-md-12.text-center
             .help-block.italic Suggested size: 1400x700 px
             = render partial:'pictures/banner_form', locals:{f: f}
-          
+
+        .row.section-wrapper.text-center
+          h2 Ask Visitors to Join, Sign Up or Volunteer With Your Organization
+          p.text-muted Enter the URL of the website where visitors can Join, Sign Up or Volunteer (optional)
+          .row.text-left
+            .col-md-3
+            .col-md-6
+              = f.input :visitor_action, label: 'I want my visitors to', as: :select, collection: Campaign::VISITOR_ACTIONS, input_html: {size: 1, class: 'dropdown'}, include_blank: true
+              = f.input :visitor_url, label: 'By Going To This Website', placeholder: 'Enter your URL here...', input_html: { :size => "60" }
+
         = f.input :step, as: :hidden, input_html:{value: :sponsors} 
         br
         = f.actions do

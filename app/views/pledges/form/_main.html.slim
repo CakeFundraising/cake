@@ -39,7 +39,7 @@
 
         = f.input :step, as: :hidden, input_html:{value: :tell_your_story} 
       .text-center
-        = f.input :terms, as: :boolean, label:'  I agree to the terms of this agreement' if f.object.new_record?
+        = f.input :terms, as: :boolean, label:'I am authorized to create this Pledge' if f.object.new_record?
         br
         = f.actions do
           = f.action :submit, label: 'Agree & Continue', button_html: {class: 'btn btn-success btn-lg agree-btn ten-t checkbox-pill'}
