@@ -13,7 +13,6 @@ class Cakester < ActiveRecord::Base
 
   has_many :subscriptors, as: :object
 
-  #Cakester Requests
   has_many :cakester_requests, dependent: :destroy
   has_many :campaign_cakesters, dependent: :destroy
   has_many :pledge_requests, as: :requester, dependent: :destroy
@@ -22,6 +21,7 @@ class Cakester < ActiveRecord::Base
   has_many :campaigns, through: :campaign_cakesters
 
   has_many :pledges
+  has_many :invoices, through: :pledges
   
   validates :name, :email, :phone, presence: true
   validates :email, email: true

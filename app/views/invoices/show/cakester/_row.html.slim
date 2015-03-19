@@ -12,11 +12,10 @@
       = invoice.click_donation
     td data-title=(Invoice.human_attribute_name :amount_due)
       = invoice.due
-    td data-title=(Invoice.human_attribute_name :gateway_fees)
-      = invoice.estimated_fees
     td data-title=(Invoice.human_attribute_name :status)
      = invoice.status
-    td.truncate.min-width
-      a.btn.btn-success.btn-sm data-toggle="modal" data-target="#summary_#{invoice.object.id}" More 
-      = render partial:'invoices/show/invoice_summary', locals:{invoice: invoice, sponsor: false}
+    td data-title=(Invoice.human_attribute_name :cakester_rate)
+      = invoice.cakester_rate
+    td data-title=(Invoice.human_attribute_name :cakester_commission)
+      = invoice.cakester_commission
   tr.empty-tr

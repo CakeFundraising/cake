@@ -11,6 +11,7 @@ class CampaignCakester < ActiveRecord::Base
   scope :exclusive, ->{ where(kind: :exclusive) }
 
   scope :with_campaign, ->{ eager_load(:campaign) }
+  scope :active, ->{ where('campaigns.status != ? AND campaigns.end_date > ?', :past, Time.zone.now) }
 
   before_save do
     self.kind = self.cakester_request_id.nil? ? :regular : :exclusive

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
-gem 'rails', '~> 4.2.1.rc3'
+gem 'rails', '~> 4.2.1'
 gem 'turbolinks', '~> 2.5.3'
 #gem 'jquery-turbolinks'
 gem 'meta-tags', :require => 'meta_tags'

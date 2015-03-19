@@ -21,7 +21,7 @@ class Cakester::DashboardController < ApplicationController
 
   def campaigns
     @exclusive_clients = current_cakester.ap_cakester_requests.latest.decorate
-    @non_exclusive_clients = current_cakester.campaign_cakesters.with_campaign.regular.decorate
+    @non_exclusive_clients = current_cakester.campaign_cakesters.with_campaign.regular.active.decorate
   end
 
   def history

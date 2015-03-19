@@ -172,20 +172,19 @@ class Pledge < ActiveRecord::Base
   end
 
   #Invoices
+  def total_charge_cents
+    clicks_count*amount_per_click_cents
+  end
+
   def total_charge
     clicks_count*amount_per_click
   end
 
   def generate_invoice
     unless clicks_count.zero?
-      create_invoice
+      Invoice.create_from_pledge!(self)
       notify_invoice(invoice)
     end     
-  end
-
-  def create_invoice
-    status = (total_charge < Invoice::MIN_DUE) ? :paid : :due_to_pay
-    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge, status: status).save!
   end
 
   def notify_invoice(invoice)
@@ -255,12 +254,16 @@ class Pledge < ActiveRecord::Base
   end
 
   #Cakester
+  def cakester?
+    cakester_id.present?  
+  end
+
   def set_cakester
     self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.requester.is_a?(Cakester)
   end
 
   def cakester_commission
-    (cakester_rate.to_f/100)*total_charge
+    (cakester_rate.to_f/100)*total_charge if cakester?
   end
 
   private

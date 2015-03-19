@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313140034) do
+ActiveRecord::Schema.define(version: 20150318202352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,16 +267,23 @@ ActiveRecord::Schema.define(version: 20150313140034) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer  "clicks",                  limit: 8
-    t.integer  "click_donation_cents",                default: 0,            null: false
-    t.string   "click_donation_currency", limit: 255, default: "USD",        null: false
-    t.integer  "due_cents",               limit: 8
-    t.string   "due_currency",            limit: 255, default: "USD",        null: false
-    t.string   "status",                  limit: 255, default: "due_to_pay"
+    t.integer  "clicks",                       limit: 8
+    t.integer  "click_donation_cents",                     default: 0,            null: false
+    t.string   "click_donation_currency",      limit: 255, default: "USD",        null: false
+    t.integer  "due_cents",                    limit: 8
+    t.string   "due_currency",                 limit: 255, default: "USD",        null: false
+    t.string   "status",                       limit: 255, default: "due_to_pay"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type",                    limit: 255
+    t.string   "type",                         limit: 255
+    t.integer  "net_amount_cents",                         default: 0,            null: false
+    t.string   "net_amount_currency",                      default: "USD",        null: false
+    t.integer  "fees_cents",                               default: 0,            null: false
+    t.string   "fees_currency",                            default: "USD",        null: false
+    t.integer  "cakester_rate"
+    t.integer  "cakester_commission_cents",                default: 0,            null: false
+    t.string   "cakester_commission_currency",             default: "USD",        null: false
   end
 
   create_table "locations", force: :cascade do |t|

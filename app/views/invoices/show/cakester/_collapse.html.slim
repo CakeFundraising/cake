@@ -25,8 +25,8 @@
               th = Invoice.human_attribute_name :unique_clicks
               th = Invoice.human_attribute_name :amount_click
               th = Invoice.human_attribute_name :amount_due
-              th = Invoice.human_attribute_name :gateway_fees
               th = Invoice.human_attribute_name :status
-              th
+              th = Invoice.human_attribute_name :cakester_rate
+              th = Invoice.human_attribute_name :cakester_commission
           tbody
-            = render partial:'invoices/show/fundraiser/row', collection: campaign.invoices.normal.decorate, as: :invoice
+            = render partial:'invoices/show/cakester/row', collection: campaign.invoices.normal.decorate, as: :invoice

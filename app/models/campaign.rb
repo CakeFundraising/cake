@@ -196,6 +196,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def rollback_end
+    pledges.each do |p|
+      p.accepted!
+      p.invoice.try(:destroy)
+    end
+    launched!
+  end
+
   def launch!
     notify_launch if self.launched! and self.update_attribute(:visible, true)
   end
