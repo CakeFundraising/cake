@@ -1,12 +1,12 @@
 - if @campaign.launched? and @pledge.accepted?
-  - cache [:pledge_click_button, @pledge, current_browser] do 
+  - cache [:pledge_click_button, @pledge, current_browser] do
     - if @pledge.fully_subscribed?
       = link_to "Please visit our Sponsor", click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-xl'
     - else
       .main-cta
         - if current_browser.present?
           - if @pledge.unique_click_for_browser?(current_browser) #Bonus Click
-            = link_to 'Thanks! Visit our Website Again!', click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-xl'
+            = link_to 'Thanks! Visit our Website Again!', click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-xl extra_click_link'
           - else
             .click_buttons_section
               = link_to "Click here to help!", click_pledge_path(@pledge), target: :_blank, class:'btn btn-success btn-block btn-xl click_link'

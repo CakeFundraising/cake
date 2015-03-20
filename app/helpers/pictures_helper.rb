@@ -8,7 +8,7 @@ module PicturesHelper
     options = {quality: "jpegmini:0", sign_url: true, class: 'img-responsive'}.merge options
     cl_image_tag(object.screenshot_url, options)
   end
-  
+
   def banner_tag_for(object, options={})
     options = {crop: :fill, width: 1400, height: 700, quality: "jpegmini:0", sign_url: true}.merge options
     cl_image_path(object.banner, options)
@@ -20,14 +20,14 @@ module PicturesHelper
   end
 
   def picture_rollover(picture, url, &text)
-    if url.blank? 
+    if url.blank?
       picture
     else
       content_tag(:div, class:'overlay-effects', id:'effect-6') do
         content_tag(:div, class:'overlay-img') do
-          picture + 
+          picture +
           content_tag(:div, class:'effect-overlay') do
-            link_to url, target: :_blank, class:'expand' do
+            link_to url, target: :_blank, class:'expand extra_click_link' do
               text.call
             end
           end

@@ -23,6 +23,7 @@ Cake.init = ->
   Cake.browsers.fingerprint()
 
   Cake.clicks.init()
+  Cake.extra_clicks.init()
 
   Cake.utils.init()
   Cake.search.init()
