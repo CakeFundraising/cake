@@ -10,12 +10,14 @@ class Invoice < ActiveRecord::Base
   has_one :campaign, through: :pledge
   has_one :fundraiser, through: :campaign
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'
+  has_one :cakester, through: :pledge
 
   has_one :payment, as: :item
   has_many :charges, through: :payment
 
   monetize :click_donation_cents
   monetize :due_cents
+  monetize :fees_cents
   monetize :cakester_commission_cents
 
   scope :outstanding, ->{ where.not(status: :paid) }
@@ -48,14 +50,24 @@ class Invoice < ActiveRecord::Base
   protected
 
   def self.fr_net_amount(pledge)
-    net_amount = self.net_amount(pledge.total_charge_cents)
-    (net_amount*((100-pledge.cakester_rate).to_f/100)).round
+    if pledge.cakester? and pledge.cakester_rate.present?
+      net_amount = self.net_amount(pledge.total_charge_cents)
+      amount = (net_amount*((100-pledge.cakester_rate).to_f/100)).round
+    else
+      amount = self.net_amount(pledge.total_charge_cents)
+    end
+    amount
   end
 
   def self.calculate_cakester_commission(pledge)
-    net_amount = self.net_amount(pledge.total_charge_cents)
-    commission = (net_amount*(pledge.cakester_rate.to_f/100)).round
-    net_commission = (commission*(1-Cake::CAKESTER_FEE)).round
+    if pledge.cakester? and pledge.cakester_rate.present?
+      net_amount = self.net_amount(pledge.total_charge_cents)
+      commission = (net_amount*(pledge.cakester_rate.to_f/100)).round
+      net_commission = (commission*(1-Cake::CAKESTER_FEE)).round
+      net_commission
+    else
+      net_commission = 0
+    end
     net_commission
   end
 

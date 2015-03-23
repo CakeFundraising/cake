@@ -4,6 +4,7 @@ class InvoiceDecorator < ApplicationDecorator
   decorates_association :sponsor
   decorates_association :fundraiser
   decorates_association :pledge
+  decorates_association :cakester
 
   def status
     object.status.titleize

@@ -50,4 +50,20 @@ class CakesterDecorator < ApplicationDecorator
   def subscriptors_count
     object.subscriptors.count
   end
+
+  def total_commissions
+    h.humanized_money_with_symbol object.total_commissions
+  end
+
+  def average_pledge
+    h.humanized_money_with_symbol object.average_pledge
+  end
+
+  def average_donation
+    h.humanized_money_with_symbol object.average_donation
+  end
+
+  def average_commission
+    h.humanized_money_with_symbol object.average_commission
+  end
 end

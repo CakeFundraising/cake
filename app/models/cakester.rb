@@ -101,4 +101,21 @@ class Cakester < ActiveRecord::Base
     self.campaigns << campaign
     self.save
   end
+
+  #Analytics
+  def total_commissions
+    0
+  end
+
+  def average_pledge
+    0
+  end
+
+  def average_donation
+    0
+  end
+
+  def average_commission
+    0
+  end
 end

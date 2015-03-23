@@ -26,6 +26,12 @@ class Fundraiser < ActiveRecord::Base
   has_many :subscriptors, as: :object
 
   has_many :cakester_requests, dependent: :destroy
+  has_many :campaign_cakesters, through: :campaigns
+  has_many :cakesters, through: :campaign_cakesters
+
+  has_many :past_campaigns, ->{ past }, class_name: 'Campaign'
+  has_many :past_campaign_cakesters, through: :past_campaigns, source: :campaign_cakesters
+  has_many :past_cakesters, through: :past_campaign_cakesters, source: :cakester
 
   delegate :city, :state, :state_code, :country, :address, to: :location
 

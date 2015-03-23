@@ -259,7 +259,7 @@ class Pledge < ActiveRecord::Base
   end
 
   def set_cakester
-    self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.requester.is_a?(Cakester)
+    self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.present? and self.pledge_request.requester.is_a?(Cakester)
   end
 
   def cakester_commission

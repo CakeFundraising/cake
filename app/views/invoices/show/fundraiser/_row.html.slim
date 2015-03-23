@@ -12,6 +12,10 @@
       = invoice.click_donation
     td data-title=(Invoice.human_attribute_name :amount_due)
       = invoice.due
+    td data-title=(Invoice.human_attribute_name :cakester)
+      = auto_link invoice.cakester
+    td data-title=(Invoice.human_attribute_name :cakester_commission)
+      = invoice.cakester_commission
     td data-title=(Invoice.human_attribute_name :gateway_fees)
       = invoice.estimated_fees
     td data-title=(Invoice.human_attribute_name :status)
