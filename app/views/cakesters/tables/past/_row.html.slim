@@ -1,0 +1,15 @@
+- cache [:table, :past, cakester] do
+  tr.cakester
+    td data-title=(Cakester.model_name.human)
+      = auto_link cakester
+    td data-title=(Cakester.human_attribute_name :total_commissions)
+      = cakester.total_commissions
+    td data-title=(t('semantic.number_of', model: 'Pledges'))
+      = cakester.pledges.count
+    td data-title=(t('semantic.average', model: 'Pledge'))
+      = cakester.average_pledge
+    td data-title=(t('semantic.average', model: 'Donation'))
+      = cakester.average_donation
+    td data-title=(t('semantic.average', model: 'Commission'))
+      = cakester.average_commission
+  tr.empty-tr

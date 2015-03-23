@@ -7,6 +7,6 @@
       .caption
         h4.truncate = link_to coupon, pledge_path(coupon.pledge, anchor: :coupons)
         .sponsor = auto_link coupon.sponsor
-        .location.truncate = [coupon.sponsor.city, coupon.sponsor.state_code].join(', ')
+        .location.truncate = coupon.city_state
         hr
         .description.truncate = coupon.trunc_description

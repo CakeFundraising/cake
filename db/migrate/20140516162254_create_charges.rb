@@ -8,7 +8,11 @@ class CreateCharges < ActiveRecord::Migration
       t.monetize :total_fee
       t.boolean :paid
       t.boolean :captured
-      t.json :fee_details
+      if Rails.env.test?
+        t.string :fee_details
+      else
+        t.json :fee_details
+      end
       t.string :chargeable_type
       t.integer :chargeable_id
 

@@ -15,9 +15,9 @@
                 section.main-banner.text-center
                   h3.boldest Raise Money For A Good Cause
                   a.btn data-toggle='modal' data-target='#home_video_fr'
-                    img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
+                    = image_tag 'https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg', class:'vid-thumb'
                     .center-play
-                      img.play-btn src='/assets/play_video.png'/
+                      = image_tag 'play_video.png', class:'play-btn'
               .learn-more
                 section.main-banner.text-center
                   = link_to 'Learn More', help_page_path('faq'), class:'btn btn-primary btn-md learn-more'
@@ -25,9 +25,9 @@
                 section.main-banner.text-center
                   h3.boldest Promote Your Business
                   a.btn data-toggle='modal' data-target='#home_video_sp'
-                    img src='https://img.youtube.com/vi/cgd5AZoJR70/mqdefault.jpg'
+                    = image_tag 'https://img.youtube.com/vi/cgd5AZoJR70/mqdefault.jpg', class:'vid-thumb'
                     .center-play
-                      img.play-btn src='/assets/play_video.png'/
+                      = image_tag 'play_video.png', class:'play-btn'
   		
   		= render partial:'home/home_video'
   			
@@ -41,15 +41,12 @@
         li
           = home_tab_button(:fundraiser, 'All Causes')
         li
-          a data-toggle="tab" id="tab-cakesters" href="#pop-cakesters"
-            span All Cakesters
+          = home_tab_button(:cakester, 'All Cakesters')
         li
-          a data-toggle="tab" id="tab-comissions" href="#pop-comissions"
-            span Commissions
+          = home_tab_button(:campaign_commission, 'Commissions')
         li
           = home_tab_button(:coupon, 'Best Discounts')
 								
-/- main content							
 .container.main-home
 	= render partial:'home/search/section'
 
@@ -130,6 +127,3 @@
           /img src='/assets/partners/logo_tc.gif'/
           img src='/assets/partners/logo_tech.gif'/
 
-javascript:
-  $(document).ready(Cake.slider.init);
-	

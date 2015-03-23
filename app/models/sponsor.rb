@@ -5,11 +5,11 @@ class Sponsor < ActiveRecord::Base
   include Formats
   include Analytics
   include Picturable
+  include Stripable
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
-  has_one :stripe_account, as: :account, dependent: :destroy
-  has_many :users
+  has_many :users, as: :role, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
   has_many :pledges, as: :sponsor, dependent: :destroy
   has_many :campaigns, through: :pledges
@@ -106,19 +106,6 @@ class Sponsor < ActiveRecord::Base
   #### SP dashboard home
   def active_pledges_clicks_count
     pledges.active.sum(:clicks_count).to_i
-  end
-
-  #### Stripe Account
-  def stripe_account?
-    stripe_account.present?
-  end
-
-  def create_stripe_account(auth)
-    self.build_stripe_account(
-      uid: auth.uid,
-      stripe_publishable_key: auth.info.stripe_publishable_key,
-      token: auth.credentials.token
-    ).save
   end
 
   #Notify profile update

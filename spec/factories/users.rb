@@ -19,6 +19,10 @@ FactoryGirl.define do
         roles [:fundraiser]
       end
 
+      factory :cakester_user do
+        roles [:cakester]
+      end
+
       factory :social_connected_user do
         provider { User.omniauth_providers.sample }
         uid { SecureRandom.hex(8) }

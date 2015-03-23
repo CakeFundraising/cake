@@ -1,7 +1,7 @@
 h2 Hello #{@receiver}, 
 div
-  strong Unfortunately your pledge request for #{ link_to @pr.campaign.decorate, campaign_url(@pr.campaign) } has been rejected by the Sponsor.
+  strong Unfortunately your pledge request for #{ link_to @campaign, campaign_url(@campaign) } has been rejected by the Sponsor #{ link_to @sp, sponsor_url(@sp) }.
 br
 div.italic "#{@message}"  
 div
-  span Please check #{ link_to t('semantic.here').downcase, fundraiser_pledges_url } and click 'My Pledge Requests' to see all your pledge requests.
+  span Please check #{ link_to t('semantic.here').downcase, send("#{@pr.requester_type.downcase}_pledges_url") } and click 'My Pledge Requests' to see all your pledge requests.

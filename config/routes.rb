@@ -3,9 +3,8 @@ require 'robots_generator'
 Cake::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: 
-  {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions}
-
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions}
+  
   root to: "home#index"
 
   authenticated :user do
@@ -28,6 +27,8 @@ Cake::Application.routes.draw do
     get :search_sponsors, path:'sponsors'
     get :search_fundraisers, path:'fundraisers'
     get :search_coupons, path:'coupons'
+    get :search_cakesters, path:'cakesters'
+    get :search_commissions, path:'commisions'
   end
 
   resources :campaigns do
@@ -50,6 +51,8 @@ Cake::Application.routes.draw do
   end
 
   get '/hero_campaigns/:id', to: 'campaigns#hero', as:'hero_campaign'
+
+  resources :campaign_commissions, path: :campaigns, controller: :campaigns, only: :show
 
   resources :pledges do
     collection do
@@ -77,7 +80,10 @@ Cake::Application.routes.draw do
 
       patch :accept
       patch :reject
-      get :add_reject_message
+      scope :reject do
+        get :reject_message, path: :message
+      end
+      patch :resend
 
       get :click
     end
@@ -111,12 +117,37 @@ Cake::Application.routes.draw do
     end 
   end
 
+  resources :cakesters, except: [:index, :destroy] do
+    member do
+      get :bank_account
+      patch :set_bank_account
+    end
+    collection do
+      post :accept_campaign
+    end
+  end
+
+  resources :campaign_cakesters, only: :destroy
+
   resources :fr_sponsors, except: [:index, :show]
   
   resources :pledge_requests do
     member do
       patch :accept
       patch :reject
+      scope :reject do
+        get :reject_message, path: :message
+      end
+      patch :resend
+    end
+  end
+
+  resources :cakester_requests do
+    member do
+      patch :accept
+      patch :reject
+      get :reject_message
+      get :delete
     end
   end
 
@@ -140,6 +171,15 @@ Cake::Application.routes.draw do
     get :billing
     get :pledge_requests
     get :active_pledges
+    get :history
+  end
+
+  #Cakester Dashboard
+  namespace :cakester, controller: :dashboard do
+    get :home
+    get :billing
+    get :pledges
+    get :campaigns
     get :history
   end
 
@@ -191,6 +231,7 @@ Cake::Application.routes.draw do
     get :account, to: redirect('users/edit')
     resource :fundraiser_email_settings, only: [:edit, :update]
     resource :sponsor_email_settings, only: [:edit, :update]
+    resource :cakester_email_settings, only: [:edit, :update]
   end
 
   resources :users, only: :index do

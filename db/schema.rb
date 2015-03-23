@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220200934) do
+ActiveRecord::Schema.define(version: 20150318202352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,31 +60,93 @@ ActiveRecord::Schema.define(version: 20150220200934) do
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
+  create_table "cakester_email_settings", force: :cascade do |t|
+    t.boolean  "new_pledge",              default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  create_table "cakester_requests", force: :cascade do |t|
+    t.integer  "cakester_id"
+    t.integer  "fundraiser_id"
+    t.integer  "campaign_id"
+    t.string   "status",        default: "pending"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "rate"
+    t.text     "message"
+  end
+
+  create_table "cakesters", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "manager_name"
+    t.string   "manager_email"
+    t.string   "manager_title"
+    t.string   "manager_phone"
+    t.text     "mission"
+    t.text     "about"
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
+    t.integer  "cause_requirements_mask"
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
+    t.integer  "manager_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "campaign_cakesters", force: :cascade do |t|
+    t.string   "kind"
+    t.integer  "campaign_id"
+    t.integer  "cakester_id"
+    t.integer  "cakester_request_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "campaigns", force: :cascade do |t|
-    t.string   "title",                limit: 255
+    t.string   "title",                          limit: 255
     t.datetime "launch_date"
     t.datetime "end_date"
-    t.string   "headline",             limit: 255
+    t.string   "headline",                       limit: 255
     t.text     "story"
-    t.boolean  "custom_pledge_levels",             default: false
+    t.boolean  "custom_pledge_levels",                       default: false
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",               limit: 255, default: "incomplete"
+    t.string   "status",                         limit: 255, default: "incomplete"
     t.text     "mission"
-    t.string   "processed_status",     limit: 255, default: "unprocessed"
-    t.integer  "goal_cents",                       default: 0,             null: false
-    t.string   "goal_currency",        limit: 255, default: "USD",         null: false
-    t.string   "main_cause",           limit: 255
-    t.integer  "impressions_count",    limit: 8,   default: 0
-    t.boolean  "visible",                          default: false
-    t.string   "screenshot_url",       limit: 255
-    t.string   "screenshot_version",   limit: 255
-    t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
-    t.boolean  "hero",                             default: true
+    t.string   "processed_status",               limit: 255, default: "unprocessed"
+    t.integer  "goal_cents",                                 default: 0,             null: false
+    t.string   "goal_currency",                  limit: 255, default: "USD",         null: false
+    t.string   "main_cause",                     limit: 255
+    t.integer  "impressions_count",              limit: 8,   default: 0
+    t.boolean  "visible",                                    default: false
+    t.string   "screenshot_url",                 limit: 255
+    t.string   "screenshot_version",             limit: 255
+    t.string   "sponsor_alias",                  limit: 255, default: "Sponsors"
+    t.boolean  "hero",                                       default: true
     t.string   "url"
+    t.string   "visitor_url",                                default: ""
+    t.string   "visitor_action",                             default: ""
+    t.boolean  "uses_cakester",                              default: false
+    t.boolean  "any_cakester",                               default: false
+    t.integer  "cakester_commission_percentage"
+    t.integer  "exclusive_cakester_id"
   end
 
   create_table "charges", force: :cascade do |t|
@@ -205,16 +267,23 @@ ActiveRecord::Schema.define(version: 20150220200934) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer  "clicks",                  limit: 8
-    t.integer  "click_donation_cents",                default: 0,            null: false
-    t.string   "click_donation_currency", limit: 255, default: "USD",        null: false
-    t.integer  "due_cents",               limit: 8
-    t.string   "due_currency",            limit: 255, default: "USD",        null: false
-    t.string   "status",                  limit: 255, default: "due_to_pay"
+    t.integer  "clicks",                       limit: 8
+    t.integer  "click_donation_cents",                     default: 0,            null: false
+    t.string   "click_donation_currency",      limit: 255, default: "USD",        null: false
+    t.integer  "due_cents",                    limit: 8
+    t.string   "due_currency",                 limit: 255, default: "USD",        null: false
+    t.string   "status",                       limit: 255, default: "due_to_pay"
     t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type",                    limit: 255
+    t.string   "type",                         limit: 255
+    t.integer  "net_amount_cents",                         default: 0,            null: false
+    t.string   "net_amount_currency",                      default: "USD",        null: false
+    t.integer  "fees_cents",                               default: 0,            null: false
+    t.string   "fees_currency",                            default: "USD",        null: false
+    t.integer  "cakester_rate"
+    t.integer  "cakester_commission_cents",                default: 0,            null: false
+    t.string   "cakester_commission_currency",             default: "USD",        null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -284,9 +353,11 @@ ActiveRecord::Schema.define(version: 20150220200934) do
     t.integer  "sponsor_id"
     t.integer  "fundraiser_id"
     t.integer  "campaign_id"
-    t.string   "status",        limit: 255, default: "pending"
+    t.string   "status",         limit: 255, default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "requester_id"
+    t.string   "requester_type"
   end
 
   create_table "pledges", force: :cascade do |t|
@@ -315,6 +386,8 @@ ActiveRecord::Schema.define(version: 20150220200934) do
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
     t.string   "sponsor_type",              limit: 255
+    t.integer  "pledge_request_id"
+    t.integer  "cakester_id"
   end
 
   create_table "sponsor_categories", force: :cascade do |t|
@@ -445,9 +518,9 @@ ActiveRecord::Schema.define(version: 20150220200934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "fundraiser_id"
-    t.integer  "sponsor_id"
     t.boolean  "registered",                         default: false
+    t.string   "role_type"
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

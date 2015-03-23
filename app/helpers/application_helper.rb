@@ -33,6 +33,8 @@ module ApplicationHelper
   end
 
   def auto_link(object, opts={})
+    return '-' if object.nil?
+
     if opts.symbolize_keys![:truncate].present?
       link_to truncate(object.to_s, length: opts[:truncate]), object, opts
     else
@@ -55,6 +57,10 @@ module ApplicationHelper
       :keywords    => 'Site, Login, Members',
       :separator   => "&mdash;".html_safe,
     }
+  end
+
+  def underscore_to_dash(string)
+    string.gsub("_", "-")
   end
 
   ## Global data

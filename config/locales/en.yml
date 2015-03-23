@@ -98,6 +98,9 @@ en:
       sponsors: sponsors
       fundraisers: fundraisers
       fr_sponsors: sponsors
+      cakesters:
+        exclusive_campaigns: exclusive clients
+        other_campaigns: non-exclusive clients
     causes:
       disaster_and_emergency: Disaster & Emergencies
       causes_and_organizations: Causes & Organizations
@@ -263,6 +266,7 @@ en:
         scopes: Type
         main_cause: Cause
         total_donations: Total Donations
+        any_cakester: To any and all Cakesters in Cake
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level
@@ -305,3 +309,5 @@ en:
         amount_click: Amt. Earned/Unique Click
         due: Amount Due
         bonus_clicks: Bonus Clicks (Free)
+        cakester_rate: Rate
+        cakester_commission: Net Commission

@@ -1,0 +1,7 @@
+h2 Please explain the Fundraiser why you're rejecting this request
+
+= semantic_form_for :reject_message, url: reject_cakester_request_path(@cakester_request), method: :patch do |f|
+  = f.inputs do
+    = f.input :message, as: :text, input_html:{class: 'autogrow', rows: 10, cols: 20 }
+    = f.actions do
+      = f.action :submit, label: 'Send', button_html: {class: 'btn btn-success pull-right'}

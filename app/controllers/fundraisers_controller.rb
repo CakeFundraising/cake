@@ -1,4 +1,6 @@
 class FundraisersController < InheritedResources::Base
+  include BankAccountController
+
   before_action :check_if_account_created, only: [:new, :create]
   before_action :allow_fr_only, only: :bank_account
   before_action :require_password, only: :bank_account
@@ -18,7 +20,7 @@ class FundraisersController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        current_user.set_fundraiser(@fundraiser)
+        current_user.set_role(@fundraiser)
         redirect_to fundraiser_home_path, notice: 'Now you can start creating a new campaign!'  
       end
     end
@@ -30,26 +32,6 @@ class FundraisersController < InheritedResources::Base
         send_notification
         redirect_to resource, notice: 'Profile saved.'
       end
-    end
-  end
-
-  #Bank Accounts
-  def bank_account
-    @bank_account = BankAccount.new
-    render 'bank_accounts/new'
-  end
-
-  def set_bank_account
-    @stripe_account = resource.stripe_account
-    @bank_account = BankAccount.new(permitted_params[:bank_account])
-
-    if @bank_account.valid?
-      if @stripe_account.store_ba(@bank_account)
-        session.delete(:password_confirmed)
-        redirect_to fundraiser_home_path, notice: 'Your bank account information has been saved.' 
-      end
-    else
-      render 'bank_accounts/new', alert: 'You bank account information is incorrect.'
     end
   end
 
@@ -87,6 +69,15 @@ class FundraisersController < InheritedResources::Base
 
   private
 
+  #Bank Account
+  def after_ba_set_path
+    fundraiser_home_path
+  end
+
+  def ba_path
+    bank_account_fundraiser_path(current_fundraiser)
+  end
+
   def allow_fr_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource
   end
@@ -96,10 +87,6 @@ class FundraisersController < InheritedResources::Base
       sign_out current_user if current_user.present?
       redirect_to new_user_registration_path, alert: "In order to request partnership to this Fundraiser you have first to register as a Sponsor."
     end
-  end
-
-  def require_password
-    redirect_to confirm_path(url: bank_account_fundraiser_path(current_fundraiser)) unless session[:password_confirmed]
   end
 
   def send_notification

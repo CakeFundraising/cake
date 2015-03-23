@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2.1'
 gem 'turbolinks', '~> 2.5.3'
 #gem 'jquery-turbolinks'
 gem 'meta-tags', :require => 'meta_tags'
@@ -39,6 +39,7 @@ gem 'draper'
 
 #Storage
 gem 'pg'
+gem 'sqlite3'
 
 #Solr
 gem 'sunspot_rails'
@@ -65,7 +66,7 @@ group :development do
 end
 
 #Utils
-gem 'money-rails', '~> 1.2.0'
+gem 'money-rails', '~> 1.3.0'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'

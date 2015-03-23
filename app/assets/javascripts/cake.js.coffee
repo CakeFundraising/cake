@@ -13,19 +13,20 @@ Cake.init = ->
   Cake.placeholder_fix()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
-  Cake.bootstrap_overrides.init()
   Cake.initAddthis()
+  Cake.sponsors_form()
+  Cake.browsers.fingerprint()
+  Cake.bootstrap_overrides.init()
   Cake.validations.init()
   Cake.crop.init()
-  Cake.sponsors_form()
   Cake.campaigns.init()
-
-  Cake.browsers.fingerprint()
-
   Cake.clicks.init()
-
   Cake.utils.init()
+  Cake.cakesters.init()
+  Cake.chosen.init()
   Cake.search.init()
+  Cake.slider.init()
+  Cake.cakester_requests.init()
   return
 
 $(document).ready(Cake.init)

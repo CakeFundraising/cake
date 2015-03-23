@@ -1,0 +1,15 @@
+- if cakesters.any?
+  #no-more-tables
+    table#cakesters.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = Cakester.model_name.human
+          th = Cakester.human_attribute_name :total_commissions
+          th = t('semantic.number_of', model: 'Pledges')
+          th = t('semantic.average', model: 'Pledge')
+          th = t('semantic.average', model: 'Donation')
+          th = t('semantic.average', model: 'Commission')
+      tbody
+        = render partial:'cakesters/tables/past/row', collection: cakesters, as: :cakester
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.cakesters')}

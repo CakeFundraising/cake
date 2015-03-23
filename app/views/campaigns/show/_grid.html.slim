@@ -11,14 +11,10 @@
       .caption
         h4.truncate = auto_link campaign
         .pull-right
-          - if can? :edit, campaign
-            = link_to edit_campaign_path(campaign) do
-              span.glyphicon.glyphicon-pencil
-          - if can? :destroy, campaign
-            = link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
-              span.glyphicon.glyphicon-trash
-        .location.truncate = [campaign.fundraiser.city, campaign.fundraiser.state_code].join(', ')
-        .cause.truncate = campaign.object.main_cause
+          = edit_campaign_link(campaign)
+          = delete_campaign_link(campaign)
+        .location.truncate = campaign.city_state
+        .cause.truncate = campaign.main_cause
         hr
         .fundraiser_name.truncate = auto_link campaign.fundraiser
         hr

@@ -103,6 +103,17 @@ Cake.campaigns.validation = ->
         required: true
       'campaign[story]':
         required: true
+      'campaign[uses_cakester]':
+        required: true
+      'campaign[any_cakester]':
+        required: ->
+          return $('input[name="campaign[uses_cakester]"]').val() == '1'
+      'campaign[cakester_id]':
+        required: ->
+          return $('input[name="campaign[any_cakester]"]').val() == '0'
+      'campaign[cakester_commission_percentage]':
+        required: ->
+          return $('input[name="campaign[uses_cakester]"]').val() == '1'
   )
   return
 

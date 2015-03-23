@@ -8,7 +8,8 @@ class CampaignsController < InheritedResources::Base
     :tell_your_story,
     :sponsors,
     :launch_wizard,
-    :share
+    :share,
+    :show
   ]
 
   include ImpressionablesController
@@ -50,13 +51,13 @@ class CampaignsController < InheritedResources::Base
   end
 
   def update
-
     update! do |success, failure|
       success.html do
         update_campaign_screenshot(resource)
         redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
       end
       failure.html do
+        @campaign = resource.decorate
         step_action = WIZARD_STEPS[WIZARD_STEPS.index(params[:campaign][:step].to_sym)-1].to_s
         render 'campaigns/form/' + step_action
       end
@@ -138,8 +139,8 @@ class CampaignsController < InheritedResources::Base
 
   def permitted_params
     params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
-    :headline, :step, :hero, :url, :main_cause, :sponsor_alias, :visible, causes: [], scopes: [], 
-    video_attributes: [:id, :url, :auto_show],
+    :headline, :step, :hero, :url, :main_cause, :sponsor_alias, :visible, :any_cakester,
+    :cakester_commission_percentage, :uses_cakester, causes: [], scopes: [], video_attributes: [:id, :url, :auto_show],
     picture_attributes: [
       :id, :banner, :avatar, :avatar_caption,
       :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,

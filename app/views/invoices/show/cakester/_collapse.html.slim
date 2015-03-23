@@ -1,0 +1,32 @@
+.campaign_panel.panel.panel-default
+  .panel-heading
+    a data-parent="#accordion" data-toggle="collapse" href="##{campaign.id}"
+      .container-fluid
+        .panel-title = campaign.title
+        ul.panel-title-right.bolder
+          div.stat
+            span = campaign.end_date
+            p Campaign End Date
+          div.stat
+            span = campaign.raised(:past)
+            p Raised 
+          div.stat
+            span = campaign.total_raised
+            p Paid
+  .panel-collapse.collapse id=(campaign.id)
+    .panel-body
+      #no-more-tables
+        table.table.table-hover.table-bordered.table-striped.data-table
+          thead.cf
+            tr
+              th = 'Campaign End Date'
+              th = Invoice.model_name.human
+              th = Sponsor.model_name.human
+              th = Invoice.human_attribute_name :unique_clicks
+              th = Invoice.human_attribute_name :amount_click
+              th = Invoice.human_attribute_name :amount_due
+              th = Invoice.human_attribute_name :status
+              th = Invoice.human_attribute_name :cakester_rate
+              th = Invoice.human_attribute_name :cakester_commission
+          tbody
+            = render partial:'invoices/show/cakester/row', collection: campaign.invoices.normal.decorate, as: :invoice

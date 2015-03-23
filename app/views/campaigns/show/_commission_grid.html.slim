@@ -1,0 +1,28 @@
+- cache [:box, :commissions, commission] do 
+  .commission_grid.col-md-4.col-sm-4.col-xs-6
+    .thumbnail
+      .avatar-container
+        = link_to commission do
+          = commission.picture.avatar
+      .caption
+        h4.truncate = auto_link commission
+        .location.truncate = commission.city_state
+        .cause.truncate = commission.object.main_cause
+        hr
+        .fundraiser_name.truncate = auto_link commission.fundraiser
+        hr
+        .thermometer
+          .progress
+            .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(commission.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{commission.pledges_thermometer}%"
+              span.sr-only #{commission.pledges_thermometer}% Complete (success)          
+          .commission-stats
+            strong = commission.raised_by_status
+            strong.pull-right = commission.goal
+        hr
+        .commissions.row
+          .col-md-6.col-sm-6.col-xs-6
+            .rate = commission.rate
+          .col-md-6.col-sm-6.col-xs-6
+            span.accept_button.pull-right
+              = link_to 'Accept', accept_campaign_cakesters_path(campaign: commission.id), method: :post, class:'btn btn-success'
+

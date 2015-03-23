@@ -1,0 +1,16 @@
+= display_meta("Cakester Campaigns")
+
+h1.dash-head
+	span Campaigns
+
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#exclusive" = t('titles.empty_results.cakesters.exclusive_campaigns')
+  li 
+    a data-toggle="tab" href="#other" = t('titles.empty_results.cakesters.other_campaigns')
+.tab-content
+  #exclusive.tab-pane.active
+    = render partial:'cakester_requests/tables/cakester/table', locals:{requests: @exclusive_clients}
+  #other.tab-pane
+    = render partial:'campaign_cakesters/tables/cakester/table', locals:{campaign_cakesters: @non_exclusive_clients}
+

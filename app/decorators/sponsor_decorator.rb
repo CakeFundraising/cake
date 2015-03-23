@@ -12,6 +12,14 @@ class SponsorDecorator < ApplicationDecorator
     object.causes.join(", ")
   end
 
+  def main_cause
+    object.causes.first || '-'
+  end
+
+  def city_state
+    [object.city, object.state_code].join(', ')
+  end
+
   def email
     h.auto_mail object
   end

@@ -34,6 +34,10 @@ module Rolable
       end
     end
 
+    def role_name
+      roles.first
+    end
+
     def has_role?(role)
       if role.is_a?(Symbol)
         roles.include?(role)

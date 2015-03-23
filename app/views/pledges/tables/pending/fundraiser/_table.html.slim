@@ -8,6 +8,7 @@
           th = Campaign.model_name.human
           th = Pledge.human_attribute_name :amount
           th = Pledge.model_name.human
+          th = Cakester.model_name.human
           th
       tbody
         = render partial:'pledges/tables/pending/fundraiser/row', collection: pledges, as: :pledge

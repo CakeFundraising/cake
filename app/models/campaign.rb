@@ -13,6 +13,9 @@ class Campaign < ActiveRecord::Base
   attr_accessor :step
 
   belongs_to :fundraiser
+  belongs_to :exclusive_cakester, class_name:'Cakester', foreign_key: :exclusive_cakester_id
+
+  has_one :exclusive_cakester_request, ->(c){ from_campaign(c) }, through: :exclusive_cakester, class_name:'CakesterRequest', source: :cakester_requests
   
   has_one :video, as: :recordable, dependent: :destroy
   has_many :pledge_requests, dependent: :destroy
@@ -32,6 +35,10 @@ class Campaign < ActiveRecord::Base
   end
 
   has_many :impressions, as: :impressionable
+  has_many :cakester_requests, dependent: :destroy
+  
+  has_many :campaign_cakesters, dependent: :destroy
+  has_many :cakesters, through: :campaign_cakesters
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
@@ -42,8 +49,10 @@ class Campaign < ActiveRecord::Base
 
   validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
-  validates_associated :sponsor_categories, if: :custom_pledge_levels
 
+  validates :cakester_commission_percentage, presence: true, if: :uses_cakester
+  
+  validates_associated :sponsor_categories, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
@@ -61,11 +70,16 @@ class Campaign < ActiveRecord::Base
   scope :with_outstanding_invoices, ->{ 
     past.with_invoices.select{|c| c.invoices.normal.any? && c.invoices.present? && c.invoices.map(&:status).include?('due_to_pay') }
   }
+  scope :with_cakester_requests, ->{ eager_load(:cakester_requests) }
+  scope :with_campaign_cakesters, ->{ eager_load(:campaign_cakesters) }
 
   scope :latest, ->{ order('campaigns.created_at DESC') }
 
   scope :hero, ->{ where(hero: true) }
   scope :not_hero, ->{ where(hero: false) }
+
+  scope :uses_cakester, ->{ where(uses_cakester: true) }
+  scope :any_cakester, ->{ where(any_cakester: true) }
   
   #Solr
   searchable do
@@ -95,6 +109,8 @@ class Campaign < ActiveRecord::Base
 
     boolean :active, using: :active?
     boolean :visible
+    boolean :uses_cakester
+    boolean :any_cakester
 
     string :scopes, multiple: true
     string :main_cause
@@ -180,6 +196,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def rollback_end
+    pledges.each do |p|
+      p.accepted!
+      p.invoice.try(:destroy)
+    end
+    launched!
+  end
+
   def launch!
     notify_launch if self.launched! and self.update_attribute(:visible, true)
   end
@@ -220,6 +244,23 @@ class Campaign < ActiveRecord::Base
       website_url: "http://yourdomain.com",
       status: :pending
     )
+  end
+
+  #Cakester
+  def any_cakester?
+    self.uses_cakester and self.any_cakester and self.exclusive_cakester_id.nil?
+  end
+
+  def exclusive_cakester?
+    exclusive_cakester_id.present?
+  end
+
+  def cakesters_list
+    self.cakester_requests.not_accepted.decorate + self.campaign_cakesters.decorate
+  end
+
+  def cakester_rate
+    self.exclusive_cakester? ? self.exclusive_cakester_request.rate : self.cakester_commission_percentage
   end
 
   private

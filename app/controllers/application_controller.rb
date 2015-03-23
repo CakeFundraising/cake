@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_fundraiser, :current_sponsor, :current_browser
+  helper_method :current_fundraiser, :current_sponsor, :current_cakester, :current_browser
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
 
   def current_sponsor
     current_user.sponsor if current_user.present?
+  end
+
+  def current_cakester
+    current_user.cakester if current_user.present?
   end
 
   def current_browser
@@ -65,6 +69,8 @@ class ApplicationController < ActionController::Base
       sponsor_home_path
     elsif current_fundraiser.present?
       fundraiser_home_path
+    elsif current_cakester.present?
+      cakester_home_path
     elsif resource.is_a? AdminUser
       admin_root_path
     else

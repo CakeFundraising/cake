@@ -5,6 +5,7 @@
 @import 'mixins-buttons';
 @import 'fr_public_profile';
 @import 'stripe_button';
+@import 'chosen-sass/bootstrap-chosen';
 
 //Grid Layout ----------------------------------------------------------------------------
 /* centered columns styles */
@@ -349,7 +350,11 @@ hr{
       display:none;
     }
 
-    #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+    #tab-campaigns span, 
+    #tab-sponsors span, 
+    #tab-fundraisers span, 
+    #tab-cakesters span, 
+    #tab-coupons span{
       display: none;
     }
     #tab-campaigns:after{
@@ -360,6 +365,9 @@ hr{
     }
     #tab-fundraisers:after{
       content: "Causes";
+    }
+    #tab-cakesters:after{
+      content: "Cakesters";
     }
     #tab-coupons:after{
       content: "Coupons";
@@ -753,6 +761,13 @@ p.signup-social span:before, p.signup-social span:after {
   }
 }
 
+.transparent-panel{
+  .panel{
+    background: transparent !important;
+    border: none;
+  }
+}
+
 .shared-links{
 	text-align:left;
 	margin-top:20px;
@@ -833,6 +848,17 @@ form{
   padding: 40px 15px;
   margin: 0 auto;
   background-color: $brand-primary;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
+}
+.cakesters-cir {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  color: #fff;
+  padding: 40px 15px;
+  margin: 0 auto;
+  background-color: $brand-purple;
   border-radius: 500px;
   border: 7px solid rgba(0,0,0,.1);
 }
@@ -1153,7 +1179,9 @@ h2 {
     margin: 0;
   }
 }
-#fundraiser_picture_attributes_banner_input, #sponsor_picture_attributes_banner_input {
+#fundraiser_picture_attributes_banner_input, 
+#cakester_picture_attributes_banner_input, 
+#sponsor_picture_attributes_banner_input {
   .banner {
     width: 100%;
     height: auto;
@@ -1163,7 +1191,9 @@ h2 {
     }
   }
 }
-#fundraiser_picture_attributes_avatar_input, #sponsor_picture_attributes_avatar_input {
+#fundraiser_picture_attributes_avatar_input, 
+#cakester_picture_attributes_avatar_input, 
+#sponsor_picture_attributes_avatar_input {
   .avatar {
     width: 100%;
     height: auto;
@@ -1714,6 +1744,7 @@ table.performance-summary {
   color:#363636;
   text-decoration: none;
 }
+.cakester_grid,
 .fundraiser_grid{
   .caption h4 a{
     color: $link-color;
@@ -2373,7 +2404,12 @@ header {
   }
 }
 // home box views (temp?) --------------------------------------------------------
-.campaign_grid, .sponsor_grid, .coupon_grid, .fundraiser_grid {
+.campaign_grid, 
+.sponsor_grid, 
+.coupon_grid,
+.commission_grid,
+.cakester_grid,
+.fundraiser_grid {
   padding-left: 5px;
   padding-right: 5px;
 
@@ -2394,6 +2430,15 @@ header {
     border-radius: 0px;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
+  }
+}
+
+.commission_grid{
+  .commissions{
+    .rate{
+      font-size: 18px;
+      margin-top: 5px;
+    }
   }
 }
 
@@ -2496,6 +2541,14 @@ header {
 
 
 //Home Sidebar Search form ---------------------------------------------------
+.search-sidebar{
+  background: white;
+  padding-top: 15px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
 #custom-search-input {
   margin:0;
   margin-top: 10px;
@@ -3995,6 +4048,28 @@ ul#share-block {
 
 .page-spinner{
   margin: 70px 0;
+}
+
+
+.bootstrap-switch-container{
+  span{
+    text-transform: none;
+  }
+}
+
+.vid-thumb{
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0px 0px 10px $gray;
+}
+
+.boolean-button-input{
+  margin: 0 10px;
+}
+#campaign_any_cakester_input{
+  label{
+    font-size: 20px;
+  }
 }
 
 //######### MOBILE STYLES ###############

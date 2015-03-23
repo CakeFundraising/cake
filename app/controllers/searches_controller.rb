@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
+
   def search_campaigns
-    #facets = [:zip_code, :main_cause, :scopes, :tax_exempt, :active]
     facets = [:main_cause, :scopes, :tax_exempt, :zip_code]
 
     @search = Campaign.solr_search(include: [:picture]) do
@@ -31,6 +31,42 @@ class SearchesController < ApplicationController
       render "searches/campaigns", layout: false
     else
       render "searches/campaigns"
+    end
+  end
+
+  def search_commissions
+    facets = [:main_cause, :scopes, :tax_exempt, :zip_code]
+
+    @search = Campaign.solr_search(include: [:picture]) do
+      fulltext params[:search]
+      without :status, [:incomplete, :past]
+      with :visible, true
+      with :uses_cakester, true
+      with :any_cakester, true
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 21
+
+      facets.each do |f|
+        send(:facet, f)
+        
+        if params[f].present?
+          if view_context.is_boolean?(params[f])
+            send(:with, f, view_context.to_boolean(params[f]) ) 
+          else
+            send(:with, f, params[f]) 
+          end
+        end
+      end
+
+    end
+
+    @facets = facets
+    @commissions = CampaignCommissionDecorator.decorate_collection @search.results
+
+    if request.xhr?
+      render "searches/commissions", layout: false
+    else
+      render "searches/commissions"
     end
   end
 
@@ -79,6 +115,30 @@ class SearchesController < ApplicationController
       render "searches/fundraisers", layout: false
     else
       render "searches/fundraisers"
+    end
+  end
+
+  def search_cakesters
+    facets = [:zip_code, :causes, :scopes]
+
+    @search = Cakester.solr_search(include: [:picture]) do
+      fulltext params[:search]
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 21
+
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) if params[f].present?
+      end
+    end
+
+    @facets = facets
+    @cakesters = CakesterDecorator.decorate_collection @search.results
+
+    if request.xhr?
+      render "searches/cakesters", layout: false
+    else
+      render "searches/cakesters"
     end
   end
 

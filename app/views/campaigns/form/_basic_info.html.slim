@@ -5,6 +5,7 @@
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active
     = semantic_form_for @campaign do |f|
+      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
         .text-center
           h1 Let's start your Campaign
@@ -25,7 +26,7 @@
         .row.section-wrapper.text-center
           .col-md-12
             h2 How Many Business Sponsors Do You Want?
-            = f.input :hero, as: :boolean, input_html: {id:'hero_campaign_switch'}, label: false
+            = f.input :hero, as: :boolean_button, label: false, input_html: {on_text: 'ONE Sponsor', off_text: 'TWO OR MORE Sponsors', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg'}
         .row.section-wrapper.text-center
           h2 Campaign Goal
           p.text-muted How much do you want to raise for this Campaign? 

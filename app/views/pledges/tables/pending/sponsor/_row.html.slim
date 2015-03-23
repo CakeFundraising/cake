@@ -22,6 +22,9 @@
       - if pledge.rejected? or pledge.incomplete?
         .text-danger = pledge.status.capitalize
     td.truncate.min-width
+      - if pledge.rejected? and can? :resend, pledge
+        = link_to 'Resend', resend_pledge_path(pledge), method: :patch, class: 'btn btn-primary btn-sm'
+
       = link_to "Increase", increase_pledge_path(pledge), class:'btn btn-success btn-sm' if can? :increase, pledge
 
       - if can? :edit, pledge

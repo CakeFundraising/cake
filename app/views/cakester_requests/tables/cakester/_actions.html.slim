@@ -1,0 +1,14 @@
+- if cakester_request.pending?
+  - if can? :accept, cakester_request
+    span = link_to "Accept", accept_cakester_request_path(cakester_request), method: :patch, class:'btn btn-success btn-sm'
+  - if can? :reject, cakester_request
+    span = link_to "Reject", reject_message_cakester_request_path(cakester_request), class:'btn btn-danger btn-sm'
+
+- if cakester_request.accepted?
+  
+  button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{cakester_request.campaign.id}" data-toggle="modal" Share
+  = render partial:'cakester_requests/campaign_share', locals:{campaign: cakester_request.campaign}
+
+  - if can? :destroy, cakester_request
+    = link_to delete_cakester_request_path(cakester_request), data: {confirm: 'Are you sure you want to terminate this partnership?'}, class:'btn btn-sm btn-danger' do
+      span.glyphicon.glyphicon-trash

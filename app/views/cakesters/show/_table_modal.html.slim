@@ -1,0 +1,15 @@
+.modal.fade id="cakesters-campaign-#{campaign.id}"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h3.modal-title #{ auto_link campaign} Cakesters.
+      .modal-body
+        .row
+          .col-md-12 
+            = render partial:'cakesters/tables/table', locals: {cakesters: campaign.cakesters_list}
+      .modal-footer
+        button.btn.btn-md.btn-primary data-dismiss="modal" type="button" Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

@@ -4,6 +4,7 @@ class InvoiceDecorator < ApplicationDecorator
   decorates_association :sponsor
   decorates_association :fundraiser
   decorates_association :pledge
+  decorates_association :cakester
 
   def status
     object.status.titleize
@@ -22,10 +23,18 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def estimated_fees
-    h.humanized_money_with_symbol object.estimated_fees/100
+    h.humanized_money_with_symbol object.fees
   end
 
-  def estimated_net_donation
-    h.humanized_money_with_symbol object.estimated_net_donation/100
+  def estimated_net_amount
+    h.humanized_money_with_symbol object.net_amount
+  end
+
+  def cakester_rate
+    "#{object.cakester_rate}%"
+  end
+
+  def cakester_commission
+    h.humanized_money_with_symbol object.cakester_commission
   end
 end

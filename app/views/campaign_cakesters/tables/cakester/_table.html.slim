@@ -1,0 +1,17 @@
+- if campaign_cakesters.any?
+  #no-more-tables
+    table#cakester_requests.table.table-hover.table-bordered.table-striped.data-table
+      thead.cf
+        tr
+          th = CampaignCakester.human_attribute_name :fundraiser
+          th = CampaignCakester.human_attribute_name :campaign
+          th = CampaignCakester.human_attribute_name :hero
+          th = CampaignCakester.human_attribute_name :end_date
+          th = CampaignCakester.human_attribute_name :cause
+          th = CampaignCakester.human_attribute_name :type
+          th = CampaignCakester.human_attribute_name :rate
+          th
+      tbody
+        = render partial:'campaign_cakesters/tables/cakester/row', collection: campaign_cakesters, as: :campaign_cakester
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.cakesters.other_campaigns')}

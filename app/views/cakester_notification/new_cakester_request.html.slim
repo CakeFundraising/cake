@@ -1,0 +1,9 @@
+h2 Hello #{@receiver}, 
+
+div You have a new request for this campaign: #{ link_to @cakester_request.campaign, campaign_url(@cakester_request.campaign) }.
+
+div #{link_to @fundraiser, fundraiser_url(@fundraiser) } has sent you a message also:
+
+div "#{@cakester_request.message}"
+
+div Click #{ link_to t('semantic.here').downcase, cakester_campaigns_url } to see your pending requests.

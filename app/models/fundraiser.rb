@@ -3,14 +3,14 @@ class Fundraiser < ActiveRecord::Base
   include Formats
   include Analytics
   include Picturable
+  include Stripable
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
-  has_one :stripe_account, as: :account, dependent: :destroy
-  has_many :users
+  has_many :users, as: :role, dependent: :destroy
   has_many :campaigns, dependent: :destroy
   
-  has_many :pledge_requests, dependent: :destroy
+  has_many :pledge_requests, as: :requester, dependent: :destroy
 
   has_many :pledges, ->{ normal }, through: :campaigns
   has_many :quick_pledges, ->{ quick }, through: :campaigns
@@ -24,6 +24,14 @@ class Fundraiser < ActiveRecord::Base
   has_many :direct_donations, dependent: :destroy
 
   has_many :subscriptors, as: :object
+
+  has_many :cakester_requests, dependent: :destroy
+  has_many :campaign_cakesters, through: :campaigns
+  has_many :cakesters, through: :campaign_cakesters
+
+  has_many :past_campaigns, ->{ past }, class_name: 'Campaign'
+  has_many :past_campaign_cakesters, through: :past_campaigns, source: :campaign_cakesters
+  has_many :past_cakesters, through: :past_campaign_cakesters, source: :cakester
 
   delegate :city, :state, :state_code, :country, :address, to: :location
 
@@ -109,19 +117,6 @@ class Fundraiser < ActiveRecord::Base
 
   def sponsors
     pledges.accepted_or_past.includes(:sponsor).map(&:sponsor).uniq
-  end
-
-  #Stripe Account
-  def stripe_account?
-    stripe_account.present?
-  end
-
-  def create_stripe_account(auth)
-    self.build_stripe_account(
-      uid: auth.uid,
-      stripe_publishable_key: auth.info.stripe_publishable_key,
-      token: auth.credentials.token
-    ).save
   end
 
   #Notify profile update

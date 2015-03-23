@@ -16,6 +16,10 @@ class FundraiserDecorator < ApplicationDecorator
     object.causes.first
   end
 
+  def city_state
+    [object.city, object.state_code, location.zip_code].join(', ')
+  end
+
   def min_pledge
     h.humanized_money_with_symbol object.min_pledge
   end

@@ -9,18 +9,23 @@
   p.text-muted Thanks for signing up. Now, let start your first steps on CakeCauseMarketing.
 
 .row.choose-role 
-  .col-md-6.divider-vert
+  .col-md-4.divider-vert
     .fundraisers-cir
       h2 Causes,
       p create your free "pay-per-click" campaign today!
-      = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
-  .col-md-6
+      = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success start-now-btn'
+  .col-md-4.divider-vert
     .sponsors-cir
       h2 Sponsors,
       p support great causes on a risk free "pay-per-click" basis
-      = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
+      = link_to "Start Now!", roles_users_path(role: :sponsor), method: :patch, class:'btn btn-primary start-now-btn'
+  .col-md-4
+    .cakesters-cir
+      h2 Cakesters,
+      p earn money by connecting Sponsors & Causes!
+      = link_to "Start Now!", roles_users_path(role: :cakester), method: :patch, class:'btn btn-purple start-now-btn'
 .row
   .col-md-12.text-center
     p.text-muted.explore
-      span I am not a Fundraiser or a Sponsor. I want to 
+      span I am not a Fundraiser, nor a Sponsor, nor a Cakester. I want to 
       = link_to 'cancel my account.', registration_path(current_user), method: :delete, data: {confirm: 'Are you sure?'}

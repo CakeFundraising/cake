@@ -1,0 +1,7 @@
+- if campaign_cakester.regular?
+  button.btn.btn-sm.btn-warning data-target="#campaign_modal_#{campaign_cakester.campaign.id}" data-toggle="modal" Share
+  = render partial:'cakester_requests/campaign_share', locals:{campaign: campaign_cakester.campaign}
+
+  - if can? :destroy, campaign_cakester
+    = link_to campaign_cakester, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-sm btn-danger' do
+      span.glyphicon.glyphicon-trash

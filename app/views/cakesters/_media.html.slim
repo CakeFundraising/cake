@@ -1,0 +1,20 @@
+.media
+  = semantic_form_for @cakester do |f|
+    = f.inputs do
+      .row 
+        .col-md-4
+          = render partial:'pictures/avatar_form', locals:{f: f}
+        .col-md-8.media-block
+          h4.media-heading = @cakester.name
+          .data
+            div.fr-name = @cakester.manager_name
+            div.fr-manager-email 
+              span = @cakester.manager_email
+              span.fr-manager-email-edit = link_to "Edit", public_profile_path
+
+          / - if @stripe_account.nil?
+          /   hr
+          /   .stripe
+          /     h4 Stripe Account
+          /     span.help-block = t('messages.stripe.cakesters.not_found')
+          /     = stripe_buttons

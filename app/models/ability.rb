@@ -12,13 +12,13 @@ class Ability
 
       #Pledge
       can :create, Pledge
-      can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
+      can [:update, :destroy, :launch, :increase, :set_increase, :select_campaign, :resend] + PledgesController::WIZARD_STEPS, Pledge, sponsor_id: user.sponsor.id
 
       can :crud, Coupon, sponsor: user.sponsor
       can :crud, PledgeNews, sponsor: user.sponsor
 
       #PledgeRequest
-      can [:accept, :reject], PledgeRequest, sponsor_id: user.sponsor.id
+      can [:accept, :reject, :reject_message], PledgeRequest, sponsor_id: user.sponsor.id
     end
 
     if user.has_role?(:fundraiser)
@@ -33,15 +33,37 @@ class Ability
       
       #PledgeRequest
       can :create, PledgeRequest
-      can [:update, :destroy], PledgeRequest, fundraiser_id: user.fundraiser.id
+      can [:update, :destroy, :resend], PledgeRequest, requester: user.fundraiser
+
+      #CakesterRequest
+      can :create, CakesterRequest
+      can [:update, :delete, :destroy], CakesterRequest, fundraiser_id: user.fundraiser.id
       
       #Pledge
-      can [:accept, :reject, :add_reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
+      can [:accept, :reject, :reject_message, :increase_request, :destroy], Pledge, fundraiser: user.fundraiser
 
       #QuickPledge
       can :crud, QuickPledge, fundraiser: user.fundraiser
       #FrSponsor
       can :crud, FrSponsor, fundraiser_id: user.fundraiser.id
+      
+      can :destroy, CampaignCakester, fundraiser_id: user.fundraiser.id
+    end
+
+    if user.has_role?(:cakester)
+      #Cakester
+      can :create, Cakester
+      can :crud, Cakester, id: user.cakester.id
+
+      #CakesterRequest
+      can [:accept, :reject, :reject_message, :delete, :destroy], CakesterRequest, cakester_id: user.cakester.id
+      
+      #CampaignCakester
+      can :destroy, CampaignCakester, cakester_id: user.cakester.id
+
+      #PledgeRequest
+      can :create, PledgeRequest
+      can [:update, :destroy, :resend], PledgeRequest, requester: user.cakester
     end
 
     can :read, :all

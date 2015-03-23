@@ -13,6 +13,8 @@ ul.nav.nav-tabs
     a data-toggle="tab" href="#paid_qp" Paid Quick Pledge Invoices
   li 
     a data-toggle="tab" href="#sponsors" = Sponsor.model_name.human.pluralize(count: 2)
+  li 
+    a data-toggle="tab" href="#cakesters" = Cakester.model_name.human.pluralize(count: 2)
 
 .tab-content
   #campaigns-tab.tab-pane.active
@@ -31,3 +33,5 @@ ul.nav.nav-tabs
         = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.invoices.qp')}
   #sponsors.tab-pane
     = render partial:'sponsors/show/table', locals:{sponsors: @sponsors, fr: current_fundraiser}
+  #cakesters.tab-pane
+    = render partial:'cakesters/tables/past/table', locals:{cakesters: @cakesters}

@@ -53,4 +53,21 @@ module CampaignsHelper
       Resque.enqueue(ResqueSchedule::CampaignScreenshot, campaign.id, campaign_url(campaign)) #update screenshot
     end
   end
+
+  #Action buttons
+  def edit_campaign_link(campaign)
+    if can? :edit, campaign
+      link_to edit_campaign_path(campaign) do
+        content_tag(:span, nil, class:'glyphicon glyphicon-pencil')
+      end
+    end
+  end
+
+  def delete_campaign_link(campaign)
+    if can? :destroy, campaign
+      link_to campaign, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete' do
+        content_tag(:span, nil, class:'glyphicon glyphicon-trash')
+      end
+    end
+  end
 end

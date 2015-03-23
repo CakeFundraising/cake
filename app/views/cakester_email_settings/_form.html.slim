@@ -1,0 +1,28 @@
+.row
+  .col-md-12
+    h1 Email Notifications
+    p.text-muted Change your email notification settings.
+
+= semantic_form_for @cakester_email_setting, url: cakester_email_settings_path do |f|
+  = f.inputs nil do
+    .row.section-wrapper
+      .col-md-12.text-center
+        .check_boxes.input.optional.form-group
+          .checkbox
+            = f.input :new_pledge, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_increased, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :pledge_fully_subscribed, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :campaign_end, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :missed_launch_campaign, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :account_change, input_html: {class: 'checkbox-pill'}
+          .checkbox
+            = f.input :public_profile_change, input_html: {class: 'checkbox-pill'}
+    .row.section-wrapper
+      .col-md-12.text-center
+        = f.actions do
+          = f.action :submit, label: 'Save Settings', button_html: {class: 'btn btn-success btn-lg'}

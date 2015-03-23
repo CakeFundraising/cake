@@ -1,19 +1,21 @@
 - cache [:table, :sp, pledge_request] do 
   tr.pledge
-    td data-title = (PledgeRequest.human_attribute_name :fundraiser )
-      = auto_link pledge_request.fundraiser
-    td data-title = (PledgeRequest.human_attribute_name :campaign)
+    td data-title=(PledgeRequest.human_attribute_name :fundraiser )
+      = auto_link pledge_request.campaign.fundraiser
+    td data-title=(PledgeRequest.human_attribute_name :campaign)
       = auto_link pledge_request.campaign 
-    td data-title = (PledgeRequest.human_attribute_name :causes)
+    td data-title=(PledgeRequest.human_attribute_name :causes)
       = pledge_request.cause
-    td data-title = (PledgeRequest.human_attribute_name :type)
+    td data-title=(PledgeRequest.human_attribute_name :type)
       = pledge_request.scopes.first
-    td data-title = (PledgeRequest.human_attribute_name :timing)
+    td data-title=(PledgeRequest.human_attribute_name :timing)
       .truncate = pledge_request.start_end_dates
+    td data-title=(PledgeRequest.human_attribute_name :requester)
+      = auto_link pledge_request.requester 
     td.truncate.min-width
       - if pledge_request.pending?
         - if can? :accept, pledge_request
           span = link_to "Accept", accept_pledge_request_path(pledge_request), method: :patch, class:'btn btn-success btn-sm'
         - if can? :reject, pledge_request
-          span = link_to "Reject", reject_pledge_request_path(pledge_request), method: :patch, class:'btn btn-danger btn-sm'
+          span = link_to "Reject", reject_message_pledge_request_path(pledge_request), class:'btn btn-danger btn-sm'
   tr.empty-tr

@@ -4,12 +4,32 @@
     
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    = render partial:"campaigns/form/share/#{@campaign.object.status}"
+    - if @campaign.exclusive_cakester?
+      h1.text-center Exclusive Cakester
+      .row
+        .col-md-4
+        = render partial:'cakester_requests/show/cakester_grid', locals:{cakester: @campaign.exclusive_cakester.decorate}
+    - else
+      h1.text-center Would you like help securing Sponsorships for your Campaign?
+      br
+      = semantic_form_for @campaign do |f|
+        = f.semantic_errors *f.object.errors.keys
+        = f.inputs do
+          .text-center
+            = f.input :uses_cakester, as: :boolean_button, label: false, input_html: {on_text: 'YES', off_text: 'NO', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg', collapsible: {parent: '#uses_cakester_accordion', on_panel: '#uses_cakester_panel', off_panel: '#no_cakester_panel'}}
 
-    - unless @campaign.incomplete?
-      .row.section-wrapper.text-center
-        .row.solicit-choose
-          .col-md-12.text-center
-            /= link_to "Search for sponsors", search_sponsors_path, class:'btn btn-primary'
-            /span.text-muted.italic or
-            = link_to "Go to My Account", fundraiser_home_path, class:'btn btn-success'
+          #uses_cakester_accordion.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
+            .panel.panel-default
+              #uses_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.uses_cakester}"
+                .panel-body
+                    = render partial:"campaigns/form/share/cakester_intro", locals:{f: f}
+            .panel.panel-default
+              #no_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.uses_cakester}"
+                .panel-body
+                  = render partial:"campaigns/form/share/#{@campaign.object.status}"
+                  
+          = f.input :step, as: :hidden, input_html:{value: :show} 
+
+        = f.actions do
+          .text-center
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

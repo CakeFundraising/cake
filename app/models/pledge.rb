@@ -11,6 +11,9 @@ class Pledge < ActiveRecord::Base
   
   belongs_to :sponsor, polymorphic: true
   belongs_to :campaign, touch: true
+  belongs_to :cakester
+  belongs_to :pledge_request
+
   has_one :fundraiser, through: :campaign
   
   has_one :video, as: :recordable, dependent: :destroy
@@ -28,6 +31,7 @@ class Pledge < ActiveRecord::Base
   has_many :pledge_news, dependent: :destroy
 
   delegate :main_cause, :active?, :hero, to: :campaign, prefix: true
+  delegate :cakester_rate, to: :campaign
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sweepstakes, reject_if: proc {|attrs| attrs[:title].blank? }, allow_destroy: true
@@ -73,19 +77,22 @@ class Pledge < ActiveRecord::Base
     self.max_clicks = self.current_max_clicks
   end
 
+  after_create :set_cakester
+
   #Actions
   def launch!
-    delete_pledge_requests
+    self.pledge_request.destroy!
     notify_launch if self.pending!
-  end
-
-  def delete_pledge_requests
-    PledgeRequest.by_pledge(self).destroy_all
   end
 
   def notify_launch
     fundraiser.users.each do |user|
       PledgeNotification.launch_pledge(self.id, user.id).deliver if user.fundraiser_email_setting.reload.new_pledge
+    end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.launch_pledge(self.id, user.id).deliver
+      end
     end
   end
 
@@ -97,6 +104,11 @@ class Pledge < ActiveRecord::Base
     sponsor.users.each do |user|
       PledgeNotification.accepted_pledge(self.id, user.id).deliver if user.sponsor_email_setting.reload.pledge_accepted
     end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.accepted_pledge(self.id, user.id).deliver
+      end
+    end
   end
 
   def reject!(message)
@@ -106,6 +118,21 @@ class Pledge < ActiveRecord::Base
   def notify_rejection(message)
     sponsor.users.each do |user|
       PledgeNotification.rejected_pledge(self.id, user.id, message).deliver if user.sponsor_email_setting.reload.pledge_rejected
+    end
+    if self.cakester.present?
+      cakester.users.each do |user|
+        PledgeNotification.rejected_pledge(self.id, user.id, message).deliver
+      end
+    end
+  end
+
+  def resend!
+    notify_reevaluation if self.pending!
+  end
+
+  def notify_reevaluation
+    fundraiser.users.each do |user|
+      PledgeNotification.reevaluate_pledge(self.id, user.id).deliver
     end
   end
 
@@ -145,20 +172,19 @@ class Pledge < ActiveRecord::Base
   end
 
   #Invoices
+  def total_charge_cents
+    clicks_count*amount_per_click_cents
+  end
+
   def total_charge
     clicks_count*amount_per_click
   end
 
   def generate_invoice
     unless clicks_count.zero?
-      create_invoice
+      Invoice.create_from_pledge!(self)
       notify_invoice(invoice)
     end     
-  end
-
-  def create_invoice
-    status = (total_charge < Invoice::MIN_DUE) ? :paid : :due_to_pay
-    build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge, status: status).save!
   end
 
   def notify_invoice(invoice)
@@ -225,6 +251,19 @@ class Pledge < ActiveRecord::Base
 
   def news_sample
     self.pledge_news.latest.first
+  end
+
+  #Cakester
+  def cakester?
+    cakester_id.present?  
+  end
+
+  def set_cakester
+    self.update_attribute(:cakester_id, self.pledge_request.requester_id) if self.pledge_request.present? and self.pledge_request.requester.is_a?(Cakester)
+  end
+
+  def cakester_commission
+    (cakester_rate.to_f/100)*total_charge if cakester?
   end
 
   private

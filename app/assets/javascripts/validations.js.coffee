@@ -1,6 +1,8 @@
 Cake.validations ?= {}
 
 Cake.validations.custom_methods = ->
+  $.validator.setDefaults({ ignore: ":hidden:not(.chosen-select)" })
+
   $.validator.addMethod "onlyletters", ((value, element, params) ->
     this.optional(element) || /^[a-z\s]+$/i.test(value)
   ), (params, element) ->
@@ -31,7 +33,6 @@ Cake.validations.custom_methods = ->
     this.optional(element) || /^\w+\s+\w+$/i.test(value)
   ), (params, element) ->
     "Please enter First and Last Name."
-
   return
 
 Cake.validations.form_leaving = ->

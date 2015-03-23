@@ -9,11 +9,13 @@ class PledgeRequest < ActiveRecord::Base
 
   belongs_to :sponsor
   belongs_to :campaign
-  belongs_to :fundraiser
 
-  validates :sponsor, :campaign, :fundraiser, presence: true
+  belongs_to :requester, polymorphic: true
 
-  scope :by_pledge, ->(pledge){ where(sponsor_id: pledge.sponsor.id, campaign_id: pledge.campaign.id, fundraiser_id: pledge.fundraiser.id) }
+  has_one :pledge
+
+  validates :sponsor, :campaign, :requester, presence: true
+
   scope :latest, ->{ order(created_at: :desc) }
 
   def notify_sponsor(message)
@@ -24,5 +26,10 @@ class PledgeRequest < ActiveRecord::Base
 
   def notify_rejection(message)
     PledgeNotification.rejected_pledge_request(self.id, message).deliver
+  end
+
+  def resend!
+    message = "Please #{self.sponsor.name} reconsider this request again. I believe this campaign might be useful for you."
+    notify_sponsor(message) if self.pending!
   end
 end

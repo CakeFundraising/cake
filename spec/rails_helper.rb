@@ -4,7 +4,7 @@ require 'rails_helper'
 require File.expand_path("../../config/environment", __FILE__)
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 require 'rspec/rails'
-#require 'rspec/autorun'
+require 'shoulda/matchers'
 require 'capybara/rspec'
 require 'simplecov'
 require 'cancan/matchers'
@@ -31,10 +31,18 @@ SimpleCov.start 'rails'
 #
 # Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+#Use sqlite
+setup_sqlite_db = lambda do
+  ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+
+  #load "#{Rails.root.to_s}/db/schema.rb" # use db agnostic schema by default
+  ActiveRecord::Migrator.up('db/migrate') # use migrations
+end
+silence_stream(STDOUT, &setup_sqlite_db)
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -65,7 +73,6 @@ RSpec.configure do |config|
   config.include MoneyRails::TestHelpers
 
   config.before(:suite) do
-    #ActiveRecord::Migration.maintain_test_schema!
     DatabaseCleaner.clean_with :truncation
   end
   
