@@ -87,6 +87,10 @@ class Sponsor < ActiveRecord::Base
     '5,000,000+'
   ]
 
+  def self.home_logos
+    PictureDecorator.decorate_collection Picture.sponsor.with_avatar.last(4)
+  end
+
   def self.popular
     self.with_picture.with_location.latest.first(12)
   end

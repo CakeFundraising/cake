@@ -16,6 +16,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery.expander.min
 //= require jquery.Jcrop
+//= require owl.carousel.min
 
 //= require jssor
 //= require jssor.slider.min

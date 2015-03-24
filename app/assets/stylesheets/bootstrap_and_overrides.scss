@@ -2535,17 +2535,13 @@ header {
 
 .hero-home {
   border:0px;
-  /*background-image: url('success-bkg.jpg');*/
   overflow: hidden;
-  padding-bottom: 1em;
+  padding-bottom: 0;
   background-image: url('hero-home.jpg');
-  /*background-size: 100% auto;
-  @include background-size(cover);
-  background-position: 50% 0px;
-  */
 
   h1 {
     padding: 0 1em;
+    margin-top: 0;
   }
   h3 {
     color: #FFFFFF;
@@ -2629,12 +2625,22 @@ header {
     position: absolute;
     width: 5em;
   }
-}
 
-.home {
-  text-align: center;
-  color: #fff;
-  max-width:100%;
+  .home-banner {
+    text-align: center;
+    color: #fff;
+    max-width:100%;
+    padding: 50px 0px;
+    background: rgba(0,0,0,0.15);
+    #home_carousel{
+      margin-top: 25px;
+      img.item{
+        width: 165px;
+        height: auto;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
 .cta {
@@ -3113,6 +3119,10 @@ ul#share-block {
   margin: 5px 0px;
 }
 
+.btn-mega{
+  font-size: 30px;
+  padding: 10px 50px !important; 
+}
 
 #sponsors_donations{
   .btn-selected{

@@ -20,6 +20,10 @@ class Picture < ActiveRecord::Base
 
   validates :avatar, presence: true, if: :persisted?
 
+  scope :with_avatar, ->{ where.not(avatar: nil) }
+  scope :sponsor, ->{ where(picturable_type: 'Sponsor') }
+  scope :fundraiser, ->{ where(picturable_type: 'Fundraiser') }
+
   before_save do
     unless Rails.env.test?
       get_cloudinary_identifier(:avatar) if self.avatar.present? and self.avatar_changed?

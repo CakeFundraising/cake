@@ -2,36 +2,23 @@
 
 = content_for :header do 
   - cache [:home, :header] do
-  	.banner.hero-home
-      .home
-        .hero-home
-          section.main-banner.text-center
-            h1.boldest Create Powerful Win/Win Social Media Partnerships in Minutes!
-          .how_it_works
-            a.btn.btn-success.btn-sm#how_it_works_btn data-toggle='collapse' data-target='#home_videos' See How It Works
-          .container.collapse#home_videos
-            .row.vertical-align.wrap
-              .intro_video
-                section.main-banner.text-center
-                  h3.boldest Raise Money For A Good Cause
-                  a.btn data-toggle='modal' data-target='#home_video_fr'
-                    img.vid-thumb src='https://img.youtube.com/vi/_zEtobIg5W8/mqdefault.jpg'
-                    .center-play
-                      img.play-btn src='/assets/play_video.png'/
-              .learn-more
-                section.main-banner.text-center
-                  = link_to 'Learn More', help_page_path('faq'), class:'btn btn-primary btn-md learn-more'
-              .intro_video
-                section.main-banner.text-center
-                  h3.boldest Promote Your Business
-                  a.btn data-toggle='modal' data-target='#home_video_sp'
-                    img src='https://img.youtube.com/vi/cgd5AZoJR70/mqdefault.jpg'
-                    .center-play
-                      img.play-btn src='/assets/play_video.png'/
-  		
-  		= render partial:'home/home_video'
-  			
-  	.secondary-navbar
+  	.hero-home
+      .home-banner
+        section.main-banner.text-center
+          h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+          h2 The World's #1 Digital Sponsorship & Partnership Platform
+        br
+        br
+        section.sign-up-button
+          = link_to new_user_registration_path, class:'btn btn-purple btn-mega' do
+            span.glyphicon.glyphicon-ok
+            span  Sign Up Free
+        br
+        section.logos_carousel.row.hidden-sm.hidden-xs
+          #home_carousel.owl-carousel.col-md-6.col-md-push-3
+            = render partial:'home/banner/carousel', collection: @carousel_pics, as: :pic
+
+    .secondary-navbar
       ul.nav.nav-pills.popular
         li.active
           a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns"
@@ -49,7 +36,6 @@
         li
           = home_tab_button(:coupon, 'Best Discounts')
 								
-/- main content							
 .container.main-home
 	= render partial:'home/search/section'
 
@@ -73,13 +59,9 @@
             p.total-type RAISED
       h3 Let your friends know that Cake is the best way to raise money online.
       .share-block-wrap
-          /.text-center = render partial:'layouts/share_buttons'
-
-            .text-center
-                .share-buttons
-                    .addthis_jumbo_share#social
-
-          /	= render partial:'share/share_block'
+        .text-center
+          .share-buttons
+            .addthis_jumbo_share#social
 	.quotes
       .container.quote-container
         .row
@@ -130,6 +112,3 @@
           /img src='/assets/partners/logo_tc.gif'/
           img src='/assets/partners/logo_tech.gif'/
 
-javascript:
-  $(document).ready(Cake.slider.init);
-	

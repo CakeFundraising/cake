@@ -99,6 +99,10 @@ class Fundraiser < ActiveRecord::Base
     time :created_at
   end
 
+  def self.home_logos
+    PictureDecorator.decorate_collection Picture.fundraiser.with_avatar.last(4)
+  end
+
   def self.popular
     self.with_picture.with_location.latest.first(12)
   end

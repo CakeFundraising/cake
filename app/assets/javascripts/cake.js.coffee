@@ -19,13 +19,11 @@ Cake.init = ->
   Cake.crop.init()
   Cake.sponsors_form()
   Cake.campaigns.init()
-
-  Cake.browsers.fingerprint()
-
   Cake.clicks.init()
-
   Cake.utils.init()
   Cake.search.init()
+  Cake.home.init()
+  Cake.browsers.fingerprint()
   return
 
 $(document).ready(Cake.init)

@@ -1,6 +1,11 @@
 - cache :default_navbar do 
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-left
+      li
+        = render partial:'layouts/how_it_works_modal'
+        a data-toggle="modal" data-target="#how_it_works" href=''
+          span.glyphicon.glyphicon-play-circle
+          span  Watch the Video
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
           | About Cake
@@ -9,13 +14,11 @@
           = menu_item "About", about_page_path('cake')
           = menu_item "Questions", help_page_path('faq')
           = menu_item "Success Stories", about_page_path('success_stories')
-      /= menu_item "Start a Campaign", new_user_registration_path
-      /= menu_item "Questions", help_page_path('faq')
     ul.nav.navbar-nav
-      = menu_item "Promote Your Business", "#"
-      = menu_item "Raise Money", "#"
-      = menu_item "Earn Money", "#"
+      = menu_item "Promote Your Business!", about_page_path('sponsoring')
+      = menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
+      /= menu_item "Earn Money", "#"
     ul.nav-cta.navbar-right
-      = menu_item t("links.user.sign_in"), new_user_session_path, { :class=>"btn-signup btn btn-primary" }
-      = menu_item t("links.user.sign_up"), new_user_registration_path, { :class=>"btn-signup btn btn-success" }
+      = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}
+      = menu_item t("links.user.sign_up"), new_user_registration_path, {class: "btn-signup btn btn-success"}
       br

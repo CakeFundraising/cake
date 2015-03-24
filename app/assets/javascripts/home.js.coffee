@@ -1,3 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+Cake.home ?= {}
+
+carousel = ->
+  $('#home_carousel').owlCarousel
+    items: 4
+    loop: true
+    margin: 10
+    autoWidth:true
+    autoplay: true
+    autoplayTimeout: 1000
+    autoplayHoverPause: true
+  return
+
+Cake.home.init = ->
+  carousel()
+  return
