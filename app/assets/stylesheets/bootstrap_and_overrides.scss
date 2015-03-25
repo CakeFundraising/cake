@@ -153,6 +153,7 @@ hr{
 .navbar {
   margin-bottom: 0;
   background-color: #FFFFFF;
+  z-index: 1;
   /*float:right;*/
   .form-control{
     height: 34px;
@@ -2312,7 +2313,8 @@ ul.share-coupon {
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  @include box-shadow(0 0 3px $gray-darker);
+  padding-top: 10px;
+  @include box-shadow(0, 0, 3px, $gray-darker);
 }
 
 .tab-content {
@@ -2542,10 +2544,14 @@ header {
   h1 {
     padding: 0 1em;
     margin-top: 0;
+    text-shadow: 0px 0px 2px black;
+    font-size: 3em;
+    margin-bottom: 30px;
   }
-  h3 {
+  h2{
     color: #FFFFFF;
-    padding-bottom: 1em;
+    text-shadow: 0px 0px 2px black;
+    margin-bottom: 2em;
   }
 
   .row.vertical-align {
@@ -2626,16 +2632,46 @@ header {
     width: 5em;
   }
 
+  #banner-video-container{
+    position: relative;
+    z-index: 0;
+    #banner-video-overlay{
+      position: absolute;
+      width: 100%;
+      height: 545px;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    #banner-video{
+      position: absolute;
+      width: 100%;
+      height: auto;
+
+      @media (max-width: $screen-xs-max){
+        width: auto;
+      }
+    }
+  }
+
   .home-banner {
     text-align: center;
     color: #fff;
     max-width:100%;
     padding: 50px 0px;
     background: rgba(0,0,0,0.15);
+    z-index: 9;
+
+    .sign-up-button{
+      margin-bottom: 3em;
+    }
+    .main-banner{
+      position: relative;
+    }
     #home_carousel{
       margin-top: 25px;
+      margin-bottom: 2em;
       img.item{
-        width: 165px;
+        width: 138px;
         height: auto;
         border-radius: 5px;
       }
@@ -2695,7 +2731,7 @@ header {
 // Tab styles ----------------------------------
 .secondary-navbar {
   background-color: #fff;
-  @include box-shadow(0 0 3px $gray-light);
+  @include box-shadow(0, 0, 3px, $gray-light);
 }
 
 /*.popular > li:after {
@@ -3120,8 +3156,20 @@ ul#share-block {
 }
 
 .btn-mega{
-  font-size: 30px;
+  font-size: 36px;
   padding: 10px 50px !important; 
+  position: relative;
+  border: 0 !important;
+  &:focus { outline: 0; }
+  &:hover { top: 2px; }
+  &:active { top: 6px; }
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold !important;
+  
+  @include border-radius(10px);
+  @include transition(all, 50ms, ease);
+  @include tridimensional-btn($brand-warning, 20%);
 }
 
 #sponsors_donations{

@@ -12,6 +12,7 @@
  *= require bootstrap-datepicker3
  *= require bootstrap3-switch
  *= require owl.carousel
+ *= require video-js.min
  *= require chosen
  *= require_self
  *= require jquery.Jcrop

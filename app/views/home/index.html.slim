@@ -3,19 +3,19 @@
 = content_for :header do 
   - cache [:home, :header] do
   	.hero-home
+      = render partial:'home/banner/bg_video'
       .home-banner
         section.main-banner.text-center
           h1.boldest Create Win/Win Social Media Partnerships in Minutes!
-          h2 The World's #1 Digital Sponsorship & Partnership Platform
-        br
-        br
+          h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
+
         section.sign-up-button
-          = link_to new_user_registration_path, class:'btn btn-purple btn-mega' do
+          = link_to new_user_registration_path, class:'btn btn-success btn-mega' do
             span.glyphicon.glyphicon-ok
             span  Sign Up Free
         br
         section.logos_carousel.row.hidden-sm.hidden-xs
-          #home_carousel.owl-carousel.col-md-6.col-md-push-3
+          #home_carousel.owl-carousel.col-md-10.col-md-push-1
             = render partial:'home/banner/carousel', collection: @carousel_pics, as: :pic
 
     .secondary-navbar

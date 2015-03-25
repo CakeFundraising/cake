@@ -11,6 +11,7 @@ Cake.init = ->
   Cake.limit_cocoon()
   Cake.locations()
   Cake.placeholder_fix()
+  Cake.browsers.fingerprint()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.init()
@@ -23,7 +24,6 @@ Cake.init = ->
   Cake.utils.init()
   Cake.search.init()
   Cake.home.init()
-  Cake.browsers.fingerprint()
   return
 
 $(document).ready(Cake.init)
