@@ -16,10 +16,8 @@
 //= require jquery.validate.additional-methods
 //= require jquery.expander.min
 //= require jquery.Jcrop
-//= require owl.carousel.min
 
-//= require jssor
-//= require jssor.slider.min
+//= require slick.min
 
 //= require turbolinks
 
@@ -59,7 +57,6 @@
 //= require ./extra_donation_pledges  
 //= require ./locations     
 //= require ./sponsors_form
-//= require ./slider
 //= require ./clipboard     
 //= require ./fundraisers 
 //= require ./fr_sponsors 
@@ -70,6 +67,7 @@
 //= require ./cloudinary_crop   
 //= require ./help
 //= require ./mailers
+//= require ./jcarousel
 //= require ./users
 //= require ./coupons     
 //= require ./home

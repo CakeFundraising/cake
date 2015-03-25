@@ -88,7 +88,7 @@ class Sponsor < ActiveRecord::Base
   ]
 
   def self.home_logos
-    PictureDecorator.decorate_collection Picture.sponsor.with_avatar.last(4)
+    PictureDecorator.decorate_collection Picture.sponsor.with_avatar.last(8)
   end
 
   def self.popular

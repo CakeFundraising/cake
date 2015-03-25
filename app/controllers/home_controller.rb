@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @carousel_pics = (Sponsor.home_logos + Fundraiser.home_logos).shuffle
+    p @carousel_pics.count
     @campaigns = CampaignDecorator.decorate_collection Campaign.popular
   end
 

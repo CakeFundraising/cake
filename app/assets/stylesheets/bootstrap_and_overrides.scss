@@ -2638,7 +2638,7 @@ header {
     #banner-video-overlay{
       position: absolute;
       width: 100%;
-      height: 545px;
+      height: 548px;
       background: rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
@@ -2667,15 +2667,20 @@ header {
     .main-banner{
       position: relative;
     }
+
     #home_carousel{
       margin-top: 25px;
       margin-bottom: 2em;
-      img.item{
-        width: 138px;
-        height: auto;
-        border-radius: 5px;
+
+      .slick-slide{
+        margin-right: 10px;
+        img.item{
+          border-radius: 5px;
+          width: 100%;
+        }
       }
     }
+
   }
 }
 

@@ -100,7 +100,7 @@ class Fundraiser < ActiveRecord::Base
   end
 
   def self.home_logos
-    PictureDecorator.decorate_collection Picture.fundraiser.with_avatar.last(4)
+    PictureDecorator.decorate_collection Picture.fundraiser.with_avatar.last(8)
   end
 
   def self.popular
