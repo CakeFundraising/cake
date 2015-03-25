@@ -43,4 +43,12 @@ class SponsorDecorator < ApplicationDecorator
   def subscriptors_count
     object.subscriptors.count
   end
+
+  def main_cause
+    object.causes.first || '-'
+  end
+
+  def city_state
+    [object.city, object.state_code].join(', ')
+  end
 end

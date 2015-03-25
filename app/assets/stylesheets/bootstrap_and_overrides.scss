@@ -2905,6 +2905,14 @@ header {
 }
 
 //Home Sidebar Search form ---------------------------------------------------
+.search-sidebar{
+  background: white;
+  padding-top: 15px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
 #custom-search-input {
         margin:0;
         margin-top: 10px;
