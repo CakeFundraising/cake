@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227215917) do
+ActiveRecord::Schema.define(version: 20150307195055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,7 +133,8 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.string   "total_donation_currency",               default: "USD", null: false
     t.boolean  "extra_donation_pledge",                 default: false
     t.integer  "merchandise_categories_mask", limit: 8
-    t.string   "url"
+    t.string   "url",                         limit: 255
+    t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
   end
 
   create_table "direct_donations", force: :cascade do |t|
@@ -145,6 +146,16 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fundraiser_id"
+  end
+
+  create_table "extra_clicks", force: :cascade do |t|
+    t.integer  "clickable_id"
+    t.string   "clickable_type"
+    t.integer  "browser_id"
+    t.string   "email",          limit: 255
+    t.boolean  "bonus",                      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fr_sponsors", force: :cascade do |t|
@@ -186,14 +197,15 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
-    t.integer  "min_pledge_cents",            default: 0,     null: false
-    t.string   "min_pledge_currency",         default: "USD", null: false
-    t.integer  "min_click_donation_cents",    default: 0,     null: false
-    t.string   "min_click_donation_currency", default: "USD", null: false
-    t.string   "email_subscribers"
-    t.string   "facebook_subscribers"
-    t.string   "twitter_subscribers"
-    t.string   "pinterest_subscribers"
+    t.integer  "min_pledge_cents",                        default: 0,     null: false
+    t.string   "min_pledge_currency",         limit: 255, default: "USD", null: false
+    t.integer  "min_click_donation_cents",                default: 0,     null: false
+    t.string   "min_click_donation_currency", limit: 255, default: "USD", null: false
+    t.string   "email_subscribers",           limit: 255
+    t.string   "facebook_subscribers",        limit: 255
+    t.string   "twitter_subscribers",         limit: 255
+    t.string   "pinterest_subscribers",       limit: 255
+    t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -278,8 +290,9 @@ ActiveRecord::Schema.define(version: 20150227215917) do
     t.text     "story"
     t.string   "url"
     t.integer  "pledge_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "extra_clicks_count", limit: 8, default: 0, null: false
   end
 
   create_table "pledge_requests", force: :cascade do |t|

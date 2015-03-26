@@ -98,6 +98,7 @@ Cake::Application.routes.draw do
       end
       get :request_partnership
       post :send_partnership
+      get :click
     end  
   end
 
@@ -153,6 +154,8 @@ Cake::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+
+      get :click
     end
   end
 
@@ -164,6 +167,8 @@ Cake::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+
+      get :click
     end
   end
 
