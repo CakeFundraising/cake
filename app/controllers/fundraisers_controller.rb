@@ -70,7 +70,7 @@ class FundraisersController < InheritedResources::Base
 
   def click
     campaign = Campaign.find_by_id(params[:campaign_id])
-    self.extra_click(campaign.url, campaign)
+    extra_click(campaign.url, campaign)
   end
 
   def permitted_params

@@ -3,6 +3,8 @@ class HomeController < ApplicationController
   before_action :block_registered_user, only: :get_started
 
   def index
+    @carousel_pics = (Sponsor.home_logos + Fundraiser.home_logos).shuffle
+    p @carousel_pics.count
     @campaigns = CampaignDecorator.decorate_collection Campaign.popular
   end
 

@@ -11,6 +11,7 @@ Cake.init = ->
   Cake.limit_cocoon()
   Cake.locations()
   Cake.placeholder_fix()
+  Cake.browsers.fingerprint()
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.init()
@@ -19,14 +20,11 @@ Cake.init = ->
   Cake.crop.init()
   Cake.sponsors_form()
   Cake.campaigns.init()
-
-  Cake.browsers.fingerprint()
-
   Cake.clicks.init()
   Cake.extra_clicks.init()
-
   Cake.utils.init()
   Cake.search.init()
+  Cake.carousel.init()
   return
 
 $(document).ready(Cake.init)
@@ -34,5 +32,4 @@ $(document).on('page:load', Cake.init)
 
 $(document).on "page:before-change", ->
   ZeroClipboard.destroy()
-  Cake.slider.destroy()
   return

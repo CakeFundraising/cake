@@ -1,5 +1,5 @@
 .row
-  .col-md-3.hidden-xs.hidden-sm
+  .search-sidebar.col-md-3.hidden-xs.hidden-sm
     - cache [:search_sidebar, :campaigns] do
       = render 'home/search/search_form', collection: :campaigns
       #filters.panel-group
@@ -13,6 +13,8 @@
       .campaigns
         - if @campaigns.any?
           = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
-          = link_to "See All Our Good Causes", search_campaigns_path, class:'btn btn-primary btn-md'
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              = link_to "See All Our Good Causes", search_campaigns_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

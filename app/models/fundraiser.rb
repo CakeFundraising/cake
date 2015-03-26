@@ -3,7 +3,7 @@ class Fundraiser < ActiveRecord::Base
   include Formats
   include Analytics
   include Picturable
-  include Clickable
+  include ExtraClickable
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
@@ -98,6 +98,10 @@ class Fundraiser < ActiveRecord::Base
     end
 
     time :created_at
+  end
+
+  def self.home_logos
+    PictureDecorator.decorate_collection Picture.fundraiser.with_avatar.last(8)
   end
 
   def self.popular

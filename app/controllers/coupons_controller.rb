@@ -49,11 +49,12 @@ class CouponsController < InheritedResources::Base
   end
 
   def click
-    self.extra_click(resource.url, resource.pledge)
+    extra_click(resource.url, resource.pledge)
   end
 
   def download
-    self.extra_click(resource.url, resource.pledge, redirect=false)
+    extra_click(resource.url, resource.pledge, redirect=false)
+
     respond_with(resource) do |format|
       format.html do
         pdf = CouponPdf.new(resource.decorate)
