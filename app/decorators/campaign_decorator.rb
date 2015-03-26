@@ -71,6 +71,11 @@ class CampaignDecorator < ApplicationDecorator
     h.auto_attr_link url, target: :_blank
   end
 
+  def visitor_action
+    return "Join, Sign Up or Volunteer!" if object.visitor_action.blank?
+    object.visitor_action
+  end
+
   def url
     unless object.url.blank?
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220200934) do
+ActiveRecord::Schema.define(version: 20150227215917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,42 @@ ActiveRecord::Schema.define(version: 20150220200934) do
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
+  create_table "cakester_email_settings", force: :cascade do |t|
+    t.boolean  "new_pledge",              default: true
+    t.boolean  "pledge_increased",        default: true
+    t.boolean  "pledge_fully_subscribed", default: true
+    t.boolean  "campaign_end",            default: true
+    t.boolean  "missed_launch_campaign",  default: true
+    t.boolean  "account_change",          default: true
+    t.boolean  "public_profile_change",   default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  create_table "cakesters", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "manager_name"
+    t.string   "manager_email"
+    t.string   "manager_title"
+    t.string   "manager_phone"
+    t.text     "mission"
+    t.text     "about"
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
+    t.integer  "cause_requirements_mask"
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
+    t.integer  "manager_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                limit: 255
     t.datetime "launch_date"
@@ -85,6 +121,8 @@ ActiveRecord::Schema.define(version: 20150220200934) do
     t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
     t.boolean  "hero",                             default: true
     t.string   "url"
+    t.string   "visitor_url",                      default: ""
+    t.string   "visitor_action",                   default: ""
   end
 
   create_table "charges", force: :cascade do |t|
@@ -445,9 +483,9 @@ ActiveRecord::Schema.define(version: 20150220200934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "fundraiser_id"
-    t.integer  "sponsor_id"
     t.boolean  "registered",                         default: false
+    t.string   "role_type"
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
