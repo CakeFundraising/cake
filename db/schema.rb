@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.string   "total_donation_currency",               default: "USD", null: false
     t.boolean  "extra_donation_pledge",                 default: false
     t.integer  "merchandise_categories_mask", limit: 8
-    t.string   "url",                         limit: 255
-    t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
+    t.string   "url"
+    t.integer  "extra_clicks_count",          limit: 8, default: 0,     null: false
   end
 
   create_table "direct_donations", force: :cascade do |t|
@@ -180,9 +180,9 @@ ActiveRecord::Schema.define(version: 20150307195055) do
   end
 
   create_table "fundraisers", force: :cascade do |t|
-    t.boolean  "donations_kind",              default: false
-    t.boolean  "tax_exempt",                  default: false
-    t.boolean  "unsolicited_pledges",         default: false
+    t.boolean  "donations_kind",                        default: false
+    t.boolean  "tax_exempt",                            default: false
+    t.boolean  "unsolicited_pledges",                   default: false
     t.string   "manager_name"
     t.string   "manager_title"
     t.string   "manager_email"
@@ -197,15 +197,15 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
-    t.integer  "min_pledge_cents",                        default: 0,     null: false
-    t.string   "min_pledge_currency",         limit: 255, default: "USD", null: false
-    t.integer  "min_click_donation_cents",                default: 0,     null: false
-    t.string   "min_click_donation_currency", limit: 255, default: "USD", null: false
-    t.string   "email_subscribers",           limit: 255
-    t.string   "facebook_subscribers",        limit: 255
-    t.string   "twitter_subscribers",         limit: 255
-    t.string   "pinterest_subscribers",       limit: 255
-    t.integer  "extra_clicks_count",          limit: 8,   default: 0,     null: false
+    t.integer  "min_pledge_cents",                      default: 0,     null: false
+    t.string   "min_pledge_currency",                   default: "USD", null: false
+    t.integer  "min_click_donation_cents",              default: 0,     null: false
+    t.string   "min_click_donation_currency",           default: "USD", null: false
+    t.string   "email_subscribers"
+    t.string   "facebook_subscribers"
+    t.string   "twitter_subscribers"
+    t.string   "pinterest_subscribers"
+    t.integer  "extra_clicks_count",          limit: 8, default: 0,     null: false
   end
 
   create_table "impressions", force: :cascade do |t|

@@ -1,0 +1,21 @@
+#extra_click_counted.modal.fade.hero_campaign_modal
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        .modal-title.text-center
+          h2 Please Choose One!
+      .modal-body
+        .container
+          .row
+            .col-md-6.divider-vert
+              .volunteer-with-us
+                #volunteer_inner_modal.btn.btn-success.btn-block.btn-xl data-toggle='modal' data-target='#campaign_volunteer_subs_modal'
+                  = @campaign.visitor_action
+                = render partial: 'subscriptions/volunteer_modal', locals: {object: @campaign.fundraiser, origin: @campaign, position: 'campaign.volunteer'}
+
+            .col-md-6.text-center
+              h2 Share!
+              = render partial: 'layouts/share_buttons'
+
+
