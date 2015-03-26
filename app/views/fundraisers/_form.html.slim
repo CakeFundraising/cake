@@ -49,9 +49,9 @@
     .row.section-wrapper
       h4 Our Mission
       .col-md-6       
-        = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
+        = f.input :mission, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 1000 }
       .col-md-6
-        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 500 }
+        = f.input :supporter_demographics, input_html: {class: 'autogrow', rows: 10, cols: 20, maxlength: 1000 }
       .col-md-12.text-center
         = f.label Fundraiser::CAUSES_HIERARCHY.keys.last, class:'control-label'
         = f.input :causes, as: :check_boxes, collection: Fundraiser::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}

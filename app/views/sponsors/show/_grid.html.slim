@@ -6,5 +6,5 @@
           = sponsor.picture.avatar
       .caption
         h4.truncate = auto_link sponsor
-        .location.truncate = [sponsor.object.city, sponsor.object.state_code].join(', ')
-        .cause.truncate = sponsor.object.causes.first
+        .location.truncate = sponsor.city_state
+        .cause.truncate = sponsor.main_cause

@@ -29,6 +29,7 @@ gem 'zeroclipboard-rails', '~> 0.1.0'
 gem 'slim'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
@@ -65,7 +66,7 @@ group :development do
 end
 
 #Utils
-gem 'money-rails', '~> 1.2.0'
+gem 'money-rails', '~> 1.3.0'
 gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
