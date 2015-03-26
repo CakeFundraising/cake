@@ -1,0 +1,8 @@
+= f.semantic_fields_for :cakester_commission_setting, f.object.cakester_commission_setting || f.object.build_cakester_commission_setting do |cc|
+  = cc.inputs do
+    = cc.input :deal_type, as: :select, collection: CakesterCommission::DEAL_TYPES.map(&:titleize), include_blank: false, input_html:{id: 'cakester_commission_deal_type_input'}
+    #deal_values
+      label.control-label Choose a value
+      = cc.input :deal_value, label: false, input_html:{id: 'cakester_commission_flat_input'}
+      = cc.input :deal_value, as: :select, collection: commissions_percentage, label: false, input_html:{id: 'cakester_commission_percentage_input'}
+  

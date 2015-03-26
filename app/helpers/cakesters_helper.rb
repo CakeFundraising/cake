@@ -1,6 +1,6 @@
 module CakestersHelper
   def commissions_percentage
-    Cakester::COMMISSIONS.map{|v| ["#{v}%", v]}
+    CakesterCommission::DEAL_VALUES.map{|v| ["#{v}%", v]}
   end
 
   def destroy_cakester_button(campaign_cakester)

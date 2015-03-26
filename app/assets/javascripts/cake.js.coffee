@@ -27,6 +27,7 @@ Cake.init = ->
   Cake.search.init()
   Cake.slider.init()
   Cake.cakester_requests.init()
+  Cake.cakester_commissions.init()
   return
 
 $(document).ready(Cake.init)

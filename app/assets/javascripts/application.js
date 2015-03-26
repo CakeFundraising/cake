@@ -88,7 +88,8 @@
 //= require ./search
 //= require ./campaigns     
 //= require ./cakesters    
-//= require ./cakester_requests    
+//= require ./cakester_requests
+//= require ./cakester_commissions
 //= require ./direct_donations    
 //= require ./jquery.expander.min      
 //= require ./chosen_js.coffee      

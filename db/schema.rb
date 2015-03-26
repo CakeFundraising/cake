@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318202352) do
+ActiveRecord::Schema.define(version: 20150326194124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20150318202352) do
 
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
+
+  create_table "cakester_commissions", force: :cascade do |t|
+    t.string   "deal_type",           default: "flat"
+    t.integer  "deal_value",          default: 0
+    t.integer  "commissionable_id"
+    t.string   "commissionable_type"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "cakester_email_settings", force: :cascade do |t|
     t.boolean  "new_pledge",              default: true
@@ -117,35 +126,34 @@ ActiveRecord::Schema.define(version: 20150318202352) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.string   "title",                          limit: 255
+    t.string   "title",                 limit: 255
     t.datetime "launch_date"
     t.datetime "end_date"
-    t.string   "headline",                       limit: 255
+    t.string   "headline",              limit: 255
     t.text     "story"
-    t.boolean  "custom_pledge_levels",                       default: false
+    t.boolean  "custom_pledge_levels",              default: false
     t.integer  "fundraiser_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
-    t.string   "status",                         limit: 255, default: "incomplete"
+    t.string   "status",                limit: 255, default: "incomplete"
     t.text     "mission"
-    t.string   "processed_status",               limit: 255, default: "unprocessed"
-    t.integer  "goal_cents",                                 default: 0,             null: false
-    t.string   "goal_currency",                  limit: 255, default: "USD",         null: false
-    t.string   "main_cause",                     limit: 255
-    t.integer  "impressions_count",              limit: 8,   default: 0
-    t.boolean  "visible",                                    default: false
-    t.string   "screenshot_url",                 limit: 255
-    t.string   "screenshot_version",             limit: 255
-    t.string   "sponsor_alias",                  limit: 255, default: "Sponsors"
-    t.boolean  "hero",                                       default: true
+    t.string   "processed_status",      limit: 255, default: "unprocessed"
+    t.integer  "goal_cents",                        default: 0,             null: false
+    t.string   "goal_currency",         limit: 255, default: "USD",         null: false
+    t.string   "main_cause",            limit: 255
+    t.integer  "impressions_count",     limit: 8,   default: 0
+    t.boolean  "visible",                           default: false
+    t.string   "screenshot_url",        limit: 255
+    t.string   "screenshot_version",    limit: 255
+    t.string   "sponsor_alias",         limit: 255, default: "Sponsors"
+    t.boolean  "hero",                              default: true
     t.string   "url"
-    t.string   "visitor_url",                                default: ""
-    t.string   "visitor_action",                             default: ""
-    t.boolean  "uses_cakester",                              default: false
-    t.boolean  "any_cakester",                               default: false
-    t.integer  "cakester_commission_percentage"
+    t.string   "visitor_url",                       default: ""
+    t.string   "visitor_action",                    default: ""
+    t.boolean  "uses_cakester",                     default: false
+    t.boolean  "any_cakester",                      default: false
     t.integer  "exclusive_cakester_id"
   end
 

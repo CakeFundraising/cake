@@ -6,6 +6,7 @@ class Campaign < ActiveRecord::Base
   include Picturable
   include Screenshotable
   include SponsorAlias
+  include CakesterCommissionable
 
   has_statuses :incomplete, :pending, :launched, :past
   has_statuses :unprocessed, :missed_launch, column_name: :processed_status
@@ -35,8 +36,9 @@ class Campaign < ActiveRecord::Base
   end
 
   has_many :impressions, as: :impressionable
+
+  has_one :cakester_commission_setting, as: :commissionable, class_name:'CakesterCommission'
   has_many :cakester_requests, dependent: :destroy
-  
   has_many :campaign_cakesters, dependent: :destroy
   has_many :cakesters, through: :campaign_cakesters
 
