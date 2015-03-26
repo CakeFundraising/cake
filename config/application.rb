@@ -28,6 +28,8 @@ module Cake
 
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.assets.paths << "#{config.root}/app/assets/videos"
+
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
       #{config.root}/app/jobs
