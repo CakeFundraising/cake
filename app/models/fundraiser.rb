@@ -3,7 +3,7 @@ class Fundraiser < ActiveRecord::Base
   include Formats
   include Analytics
   include Picturable
-  include Clickable
+  include ExtraClickable
 
   belongs_to :manager, class_name: "User", dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy

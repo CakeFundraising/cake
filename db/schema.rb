@@ -60,29 +60,6 @@ ActiveRecord::Schema.define(version: 20150307195055) do
   add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
   add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
-  create_table "cakesters", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "website"
-    t.string   "manager_name"
-    t.string   "manager_email"
-    t.string   "manager_title"
-    t.string   "manager_phone"
-    t.text     "mission"
-    t.text     "about"
-    t.integer  "causes_mask"
-    t.integer  "scopes_mask"
-    t.integer  "cause_requirements_mask"
-    t.string   "email_subscribers"
-    t.string   "facebook_subscribers"
-    t.string   "twitter_subscribers"
-    t.string   "pinterest_subscribers"
-    t.integer  "manager_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                limit: 255
     t.datetime "launch_date"
@@ -104,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.integer  "impressions_count",    limit: 8,   default: 0
     t.boolean  "visible",                          default: false
     t.string   "screenshot_url",       limit: 255
-    t.string   "screenshot_version",   limit: 255, default: ""
+    t.string   "screenshot_version",   limit: 255
     t.string   "sponsor_alias",        limit: 255, default: "Sponsors"
     t.boolean  "hero",                             default: true
     t.string   "url"
@@ -134,11 +111,11 @@ ActiveRecord::Schema.define(version: 20150307195055) do
 
   create_table "clicks", force: :cascade do |t|
     t.string   "email",      limit: 255
+    t.integer  "pledge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "browser_id"
     t.boolean  "bonus",                  default: false
-    t.integer  "pledge_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -348,7 +325,7 @@ ActiveRecord::Schema.define(version: 20150307195055) do
     t.string   "name",                      limit: 255
     t.integer  "impressions_count",         limit: 8,   default: 0
     t.string   "screenshot_url",            limit: 255
-    t.string   "screenshot_version",        limit: 255, default: ""
+    t.string   "screenshot_version",        limit: 255
     t.integer  "bonus_clicks_count",        limit: 8,   default: 0,             null: false
     t.integer  "clicks_count",              limit: 8,   default: 0,             null: false
     t.string   "type",                      limit: 255
