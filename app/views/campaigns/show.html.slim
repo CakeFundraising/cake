@@ -8,6 +8,7 @@
 
     = render partial:'videos/button', locals:{object: @campaign}
     = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
+
     .hero-screen
   .container
     .content.row.pull-up
@@ -21,10 +22,6 @@
           .social.med-hide.pull-left
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
-
-          .follow-button-wrapper.pull-right
-            a.btn.btn-transparent-light data-toggle='modal' data-target='#campaign_top_subs_modal' Contact Us!
-            = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position: 'campaign.top'}
 
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border

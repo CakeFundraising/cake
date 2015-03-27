@@ -90,6 +90,7 @@ class PledgesController < InheritedResources::Base
   def add_coupon
     @pledge = resource
     @coupons = @pledge.coupons
+    @campaign = @pledge.campaign
     render 'pledges/form/add_coupon'
   end
 
