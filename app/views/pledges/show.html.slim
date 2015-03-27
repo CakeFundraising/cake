@@ -20,9 +20,6 @@
             .social.med-hide.pull-left
               = render partial:'layouts/share_buttons'
               h4.share-info.pull-left Please share our Pledge!
-            .follow-button-wrapper.pull-right
-              a.btn.btn-transparent-light data-toggle='modal' data-target='#sp_contact_subs_modal' Contact Us!
-              = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'}
 
       .col-md-4.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
