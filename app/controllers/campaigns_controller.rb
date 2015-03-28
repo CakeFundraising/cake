@@ -140,13 +140,14 @@ class CampaignsController < InheritedResources::Base
   def permitted_params
     params.permit(campaign: [:title, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
     :headline, :step, :hero, :url, :main_cause, :sponsor_alias, :visible, :any_cakester,
-    :cakester_commission_percentage, :uses_cakester, causes: [], scopes: [], video_attributes: [:id, :url, :auto_show],
+    :uses_cakester, causes: [], scopes: [], video_attributes: [:id, :url, :auto_show],
     picture_attributes: [
       :id, :banner, :avatar, :avatar_caption,
       :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
       :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
     ],
-    sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy]
+    sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy],
+    cakester_commission_setting_attributes: [:deal_type, :deal_value]
     ])
   end
 end

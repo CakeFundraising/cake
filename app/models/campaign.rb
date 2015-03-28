@@ -52,8 +52,6 @@ class Campaign < ActiveRecord::Base
   validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
 
-  validates :cakester_commission_percentage, presence: true, if: :uses_cakester
-  
   validates_associated :sponsor_categories, if: :custom_pledge_levels
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
 

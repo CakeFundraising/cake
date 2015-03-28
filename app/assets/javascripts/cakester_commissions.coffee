@@ -28,6 +28,10 @@ dealValue = ->
     return
   return
 
+validation = ->
+  return
+
 Cake.cakester_commissions.init = ->
   dealValue()
+  #validation()
   return
