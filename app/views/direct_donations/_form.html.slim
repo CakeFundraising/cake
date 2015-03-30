@@ -1,7 +1,7 @@
 = semantic_form_for fundraiser.direct_donations.build do |f|
   = f.inputs do
     = f.input :fundraiser_id, as: :hidden, input_html:{value: fundraiser.id}
-    - if local_assigns.has_key? :campaign
+    - if defined? campaign
       = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
     = f.input :email, as: :hidden
     = f.input :card_token, as: :hidden
@@ -10,13 +10,22 @@
     .row.row-centered
       .col-md-12.col-centered
         .direct-donation-form
-          .input-group
-            span.input-group-addon $
-            input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+          h4 I'd like to give...
+          #donation-buttons.btn-group role="group" 
+            button.btn.btn-default type="button" data-value='5' $5
+            button.btn.btn-default type="button" data-value='10' $10
+            button.btn.btn-default type="button" data-value='20' $20
+            button.btn.btn-default type="button" data-value='50' $50
+            button.btn.btn-default type="button" data-value='100' $100
+
+            #other-donation-input.input-group
+              span.input-group-addon $
+              input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
           br
-          button#donate_button.btn.btn-success.btn-md Make a Direct Donation
+          br
+          button#donate_button.btn.btn-success.btn-md Give
 
   script src="https://checkout.stripe.com/checkout.js"
 
 javascript:
-  Cake.direct_donation("#{fundraiser}", "#{fundraiser.stripe_account.stripe_publishable_key}", '#{fundraiser.picture.avatar_path}');
+  Cake.direct_donation.donate("#{fundraiser}", "#{fundraiser.stripe_account.stripe_publishable_key}", '#{fundraiser.picture.avatar_path}');
