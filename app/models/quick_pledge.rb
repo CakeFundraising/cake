@@ -14,7 +14,6 @@ class QuickPledge < Pledge
   validates :terms, acceptance: true, if: :new_record?
 
   validate :max_amount, :total_amount_greater_than_amount_per_click, :not_hero_campaign
-  validate :decreased_amounts, if: :persisted?
 
   def create_invoice
     build_invoice(clicks: clicks_count, click_donation: amount_per_click, due: total_charge).save!

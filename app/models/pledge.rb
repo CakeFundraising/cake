@@ -42,10 +42,9 @@ class Pledge < ActiveRecord::Base
 
   validates :website_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}
   validates :name, :headline, :description, presence: true, if: -> (pledge){ pledge.persisted? and pledge.type.nil? } 
-  # validates :mission, presence: true, if: -> (pledge){ pledge.persisted? and pledge.type.nil? and !pledge.hero }
   validates :terms, acceptance: true, if: :new_record?
   validate :max_amount, :total_amount_greater_than_amount_per_click
-  validate :decreased_amounts, if: :persisted?
+  validate :decreased_amounts, if: -> (pledge){ pledge.persisted? and pledge.type.nil? }
 
   scope :active, ->{ accepted.includes(:campaign).where("campaigns.end_date >= ? AND campaigns.status != 'past'", Date.today).references(:campaign) }
   scope :pending_or_rejected, ->{ where("pledges.status = ? OR pledges.status = ?", :pending, :rejected) }
