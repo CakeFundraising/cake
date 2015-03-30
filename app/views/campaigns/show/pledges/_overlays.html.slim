@@ -1,5 +1,5 @@
 - cache [:mini_pledge_overlay, pledge.campaign, pledge] do
-  - if pledge.active?
+  - if pledge.active? and pledge.campaign.launched?
     - if pledge.unique_click_for_browser?(current_browser) or pledge.bonus_click_for_browser?(current_browser)
       .avatar-container.overlay-img
         = pledge.picture.avatar

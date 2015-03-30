@@ -88,17 +88,19 @@
 
           .col-md-6.hero-pictures-section
             .row
-              = render partial: 'campaigns/hero/shaking_pictures', locals: {}
+              .col-md-6.col-sm-6.col-xs-6.no-padding.overlay-effects.clearfix#effect-6
+                = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
+              .hero-shake
+              .col-md-6.col-sm-6.col-xs-6.no-padding
+                = link_to @campaign.fundraiser do
+                  = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
             .campaign_and_fundraiser.row
               .col-md-6.col-sm-6.col-xs-6.no-padding
-                - if @pledge.pending?
-                  h4 Your organization name here
-                - else
-                  h4 = auto_link @pledge.sponsor, truncate: 40
-                  a data-toggle='modal' data-target='#sp_contact_subs_modal'
-                    span.glyphicon.glyphicon-envelope
-                    span.clickable  Contact us!
-                  = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'}
+                h4 = auto_link @pledge.sponsor, truncate: 40
+                a data-toggle='modal' data-target='#sp_contact_subs_modal'
+                  span.glyphicon.glyphicon-envelope
+                  span.clickable  Contact us!
+                = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'}                  
               .col-md-6.col-sm-6.col-xs-6.no-padding
                 h4 = auto_link @pledge.fundraiser, truncate: 40
 
