@@ -1278,6 +1278,18 @@ table.performance-summary {
   top: 75px;
 }
 
+.campaign-banner{
+  background-color: $brand-primary;
+  color: white;
+  padding: 20px 0px;
+  .expand-nav{
+    cursor: pointer;
+    img{
+      width: 120px;
+    }
+  }
+}
+
 .blue {
   background-color: $brand-primary;
   margin-bottom: 30px;

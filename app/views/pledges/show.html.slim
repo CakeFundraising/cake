@@ -1,12 +1,14 @@
 = display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@pledge.screenshot_version}/#{pledge_url(@pledge.id)}", description: @pledge.mission, url: request.original_url})
 
 = content_for :header do
+  .campaign-banner.text-center
+    .container
+      span.pull-left.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      span.h1 = t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe
+
   .banner.hero
-    .alert.alert-transparent.alert-dismissable.text-center.green-bkg
-      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span
-        = t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe
     = render partial:'videos/button', locals:{object: @pledge}
+
     .hero-screen
   .container
     .content.row.pull-up
@@ -137,7 +139,7 @@
           .row.pledgebluestripe.campaign
             .col-md-12.text-center
               span.h1
-                span Learn More About
+                span Learn More About 
                 span.boldest = @campaign.fundraiser
   .container
     .row.sponsor-profile

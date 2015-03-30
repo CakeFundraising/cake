@@ -165,12 +165,12 @@ en:
         share: 5. Confirm Your Pledge
   information:
     hero_campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> Click below and %{sp} will give %{amount} for you!"
+      banner: "Help <span class='boldest'>%{fr}!</span> Click below and <span class='boldest'>%{sp}</span> will give %{amount} for you!"
       no_pledge: "<span class='boldest'>%{fr}</span> needs a Hero! Become our exclusive Sponsor today!"
     campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> <br /> Click on the logos of our generous %{sp_name} below. <span class='boldest'>You click and they give!</span>"
+      banner: "Help <span class='boldest'>%{fr}!</span> Click on the logos of our generous %{sp_name} below. <span class='boldest'>You click and they give!</span>"
     pledge:
-      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
+      banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and <span class='boldest'>%{sponsor}</span> will give %{donation_per_click} up to %{total_donation}!"
     wizards:
       campaign:
 

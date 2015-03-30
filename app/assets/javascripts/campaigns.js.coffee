@@ -44,7 +44,18 @@ Cake.campaigns.mini_pledges = ->
       return
   return
 
+toggleNav = ->
+  nav = $('nav.navbar.navbar-default')
+  expandLogo = $('.expand-nav')
+
+  nav.hide()
+  expandLogo.click ->
+    nav.fadeToggle(500)
+    return
+  return
+
 Cake.campaigns.show = (end_date, impression_id, campaignId)->
+  toggleNav()
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)
   Cake.campaigns.mini_pledges()

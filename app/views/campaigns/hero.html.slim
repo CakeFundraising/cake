@@ -1,11 +1,12 @@
 = campaign_page_meta
 
 = content_for :header do
+  .campaign-banner.text-center
+    .container
+      span.pull-left.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      span.h1 = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
+      
   .banner.hero
-    .alert.alert-transparent.alert-dismissable.text-center
-      button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
-      span = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
-
     = render partial:'videos/button', locals:{object: @campaign}
     = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
     
