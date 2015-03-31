@@ -1286,6 +1286,11 @@ table.performance-summary {
   background-color: $brand-primary;
   color: white;
   padding: 10px 0px;
+  .h1{
+    @media (min-width: $screen-md-min) {
+      margin-left: -76px;
+    }
+  }
 }
 
 .expand-nav{
