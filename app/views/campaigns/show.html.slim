@@ -3,7 +3,8 @@
 = content_for :header do
   .campaign-banner.text-center
     .container
-      span.pull-left.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      - if current_user.nil?
+        .expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
       span.h1 = t('information.campaign.banner', {fr: @campaign.fundraiser, sp_name: @campaign.sponsor_alias}).html_safe
 
   .banner.hero
@@ -120,6 +121,9 @@
 
     .container
       .row.text-center
+        hr
+        br
+        br
         .col-md-6.col-md-push-3
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
           br

@@ -15,7 +15,6 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.init()
-  Cake.direct_donation.init()
   Cake.initAddthis()
   Cake.validations.init()
   Cake.crop.init()

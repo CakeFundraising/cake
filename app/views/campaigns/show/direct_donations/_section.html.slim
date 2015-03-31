@@ -2,10 +2,7 @@
   - if campaign.fundraiser.stripe_account?
     .row
       .col-md-12
-        .level-divide
-          .text-center
-            h2 Every Dollar Helps!
-            = render partial:'direct_donations/form', locals:{fundraiser: campaign.fundraiser, campaign: campaign}
+        = render partial:'direct_donations/form', locals:{fundraiser: campaign.fundraiser, campaign: campaign}
             
   - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
     .alert.alert-warning 

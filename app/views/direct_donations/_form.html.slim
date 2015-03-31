@@ -1,31 +1,39 @@
-= semantic_form_for fundraiser.direct_donations.build do |f|
-  = f.inputs do
-    = f.input :fundraiser_id, as: :hidden, input_html:{value: fundraiser.id}
-    - if defined? campaign
-      = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
-    = f.input :email, as: :hidden
-    = f.input :card_token, as: :hidden
+#donation-widget
+  h1 Every Dollar Helps!
 
-  #direct_donation_amount_input
-    .row.row-centered
-      .col-md-12.col-centered
-        .direct-donation-form
-          h4 I'd like to give...
-          #donation-buttons.btn-group role="group" 
-            button.btn.btn-default type="button" data-value='5' $5
-            button.btn.btn-default type="button" data-value='10' $10
-            button.btn.btn-default type="button" data-value='20' $20
-            button.btn.btn-default type="button" data-value='50' $50
-            button.btn.btn-default type="button" data-value='100' $100
+  = semantic_form_for fundraiser.direct_donations.build do |f|
+    = f.inputs do
+      = f.input :fundraiser_id, as: :hidden, input_html:{value: fundraiser.id}
+      - if defined? campaign
+        = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
+      = f.input :email, as: :hidden
+      = f.input :card_token, as: :hidden
 
-            #other-donation-input.input-group
-              span.input-group-addon $
-              input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
-          br
-          br
-          button#donate_button.btn.btn-success.btn-md Give
+    #direct_donation_amount_input
+      .row.row-centered
+        .col-md-12.col-centered
+          .direct-donation-form
+            h2 I'd like to give . . .
 
-  script src="https://checkout.stripe.com/checkout.js"
+            br
+            #donation-buttons
+              button.btn.btn-warning.fixed-amount type="button" data-value='10' $10
+              button.btn.btn-warning.fixed-amount type="button" data-value='20' $20
+              button.btn.btn-warning.fixed-amount type="button" data-value='50' $50
+              button.btn.btn-warning.fixed-amount type="button" data-value='100' $100
+              button.btn.btn-warning type="button" data-toggle="collapse" data-target="#other-donation-input" aria-expanded="false" aria-controls="other-donation-input" You Choose
+
+            br
+            br
+            #other-donation-input.collapse
+              .input-group
+                span.input-group-addon $
+                input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+                span.input-group-btn 
+                  button#donate_button.btn.btn-success.btn-md Give
+
+  .stripe-powered
+    = image_tag 'powered_by_stripe.jpg'
 
 javascript:
   Cake.direct_donation.donate("#{fundraiser}", "#{fundraiser.stripe_account.stripe_publishable_key}", '#{fundraiser.picture.avatar_path}');

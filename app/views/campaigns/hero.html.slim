@@ -3,7 +3,8 @@
 = content_for :header do
   .campaign-banner.text-center
     .container
-      span.pull-left.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      - if current_user.nil?
+        .expand-nav.hidden-xs.hidden-sm = image_tag 'cake_logo_white.png'
       span.h1 = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
       
   .banner.hero

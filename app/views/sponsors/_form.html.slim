@@ -17,13 +17,12 @@
     .row.section-wrapper
       h4 Company Information
       .col-md-4
-        = f.input :name, input_html:{maxlength: 60 }
+        = f.input :name, input_html:{maxlength: 40 }
         = f.input :email
       .col-md-4
         = f.input :phone
         = f.input :website
     .row.section-wrapper    
-      /.col-md-4
       = render partial:'locations/form', locals:{f: f}
     .row.section-wrapper
       h4 Manager Information
