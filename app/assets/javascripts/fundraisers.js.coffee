@@ -1,5 +1,3 @@
-Cake.fundraisers ?= {}
-
 Cake.fundraisers.validation = ->
   $('.formtastic.fundraiser').validate(
     errorElement: "span"

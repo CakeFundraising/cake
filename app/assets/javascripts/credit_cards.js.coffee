@@ -1,5 +1,3 @@
-Cake.credit_cards ?= {}
-
 Cake.credit_cards.send_to_stripe = ->
   stripeResponseHandler = (status, response) ->
     if response.error

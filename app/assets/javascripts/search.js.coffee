@@ -1,5 +1,3 @@
-Cake.search ?= {}
-
 Cake.search.init = ->
   return
 

@@ -1,5 +1,3 @@
-Cake.users ?= {}
-
 Cake.users.validation = ->
   $('.formtastic.user').validate(
     errorElement: "span"

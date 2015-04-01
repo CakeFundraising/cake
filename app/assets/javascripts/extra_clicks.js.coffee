@@ -1,5 +1,3 @@
-Cake.extra_clicks ?= {}
-
 Cake.extra_clicks.after_click = ->
   click_button = $('.extra_click_link')
   modal = $('#extra_click_counted.modal').first()

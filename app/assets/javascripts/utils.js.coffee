@@ -1,5 +1,3 @@
-Cake.utils ?= {}
-
 seeLess = (model, container)->
   button = "<div class='text-center'>
               <a class='btn btn-primary see_less_#{model}'>See Less</a>

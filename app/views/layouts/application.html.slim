@@ -11,9 +11,13 @@ html lang="en"
     /[if lt IE 9]
       | <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
 
+    /! Assets
     = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
-    = javascript_include_tag "//f.vimeocdn.com/js/froogaloop2.min.js", "//js.pusher.com/2.2/pusher.min.js", "https://checkout.stripe.com/checkout.js", "application", "data-turbolinks-track" => true
+    = javascript_include_tag "https://checkout.stripe.com/checkout.js", "init", "data-turbolinks-track" => true
+    = javascript_include_tag "//f.vimeocdn.com/js/froogaloop2.min.js", "//js.pusher.com/2.2/pusher.min.js", "application", "data-turbolinks-track" => true, async: true
+    = javascript_include_tag "deferred", "data-turbolinks-track" => true, defer: true
     = cloudinary_js_config
+
     /! For third-generation iPad with high-resolution Retina display:
     /! Size should be 144 x 144 pixels
     = favicon_link_tag '/assets/apple-touch-icon-144x144.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '144x144'

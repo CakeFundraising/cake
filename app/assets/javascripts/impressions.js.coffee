@@ -1,5 +1,3 @@
-Cake.impressions ?= {}
-
 Cake.impressions.rendered = (impression_id)->
   if impression_id
     $('body').on 'current_browser_ready', ->

@@ -1,7 +1,3 @@
-Cake.pledge_levels ?= {}
-Cake.pledge_levels.validation ?= {}
-Cake.pledge_levels.set_levels ?= {}
-
 # Validation
 Cake.pledge_levels.validation.set_rules = ->
   jQuery.validator.addClassRules

@@ -1,5 +1,4 @@
 Cake.remember_me = ->
-  console.log "Cake.remember_me"
   if !$(".checkbox").hasClass("done")
     #$(".checkbox").last().addClass "custom-checkbox"
     #$(".checkbox").last().addClass "onoffswitch"

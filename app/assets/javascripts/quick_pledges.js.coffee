@@ -1,5 +1,3 @@
-Cake.quick_pledges ?= {}
-
 Cake.quick_pledges.validation = ->
   $('.formtastic.quick_pledge').validate(
     errorElement: "span"

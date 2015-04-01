@@ -1,5 +1,3 @@
-window.Cake ?= {}
-
 String::capitalize = ->
   @charAt(0).toUpperCase() + @slice(1)
 
@@ -24,7 +22,7 @@ Cake.init = ->
   Cake.extra_clicks.init()
   Cake.utils.init()
   Cake.search.init()
-  Cake.carousel.init()
+  #Cake.carousel.init()
   return
 
 $(document).ready(Cake.init)

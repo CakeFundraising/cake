@@ -1,5 +1,3 @@
-Cake.pledges ?= {}
-
 Cake.pledges.update_triggers = ->
   $('#coupons').on 'cocoon:after-insert', ->
     Cake.extra_donation_pledges()
