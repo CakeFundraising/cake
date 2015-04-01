@@ -1,5 +1,3 @@
-Cake.campaigns ?= {}
-
 #Campaign Show Functions
 Cake.campaigns.countdown = (end_date) ->
   # There is a timezone issue that needs to be resolved

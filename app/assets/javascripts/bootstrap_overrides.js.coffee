@@ -1,5 +1,3 @@
-Cake.bootstrap_overrides ?= {}
-
 Cake.bootstrap_overrides.hide_alert = ->
   whitelisted_messages = [
     'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
@@ -46,7 +44,12 @@ Cake.bootstrap_overrides.bootstrap_switch = ->
     offText: 'TWO OR MORE Sponsors'
   return
 
+Cake.bootstrap_overrides.tooltip = ->
+  $('[data-toggle="tooltip"]').tooltip()
+  return
+
 Cake.bootstrap_overrides.init = ->
   Cake.bootstrap_overrides.hide_alert()
   Cake.bootstrap_overrides.bootstrap_switch()
+  Cake.bootstrap_overrides.tooltip()
   return

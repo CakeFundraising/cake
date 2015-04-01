@@ -1,5 +1,3 @@
-Cake.carousel ?= {}
-
 homeCarousel = ->
   $('#home_carousel').slick
     infinite: true

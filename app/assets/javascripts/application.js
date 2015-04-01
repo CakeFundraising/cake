@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+
 //= require jquery_ujs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
@@ -21,12 +21,7 @@
 
 //= require turbolinks
 
-//= require modernizr
 //= require fingerprint
-
-//= require cloudinary/jquery.ui.widget
-//= require cloudinary/jquery.iframe-transport
-//= require cloudinary/jquery.fileupload
 
 //= require cocoon
 //= require cocoon_limiter
@@ -39,13 +34,10 @@
 //= require bootstrap-datepicker/core
 //= require zeroclipboard
 
-//= require cake
-
 //= require ./videojs
 //= require ./evercookie/evercookie
 //= require ./evercookie/swfobject-2.2.min
 
-//= require ./pusher
 //= require ./uuid
 //= require ./google_analytics
 //= require ./about
@@ -58,10 +50,9 @@
 //= require ./extra_donation_pledges
 //= require ./locations
 //= require ./sponsors_form
-//= require ./clipboard     
+//= require ./clipboard
 //= require ./fundraisers 
 //= require ./fr_sponsors 
-//= require ./subscriptors
 //= require ./pledge_levels
 //= require ./quick_pledges
 //= require ./pledge_levels_form
@@ -76,19 +67,12 @@
 //= require ./bank_accounts
 //= require ./credit_cards
 //= require ./imgLiquid.min
-//= require ./impressions
 //= require ./pledges
 //= require ./pledge_news
-//= require ./pictures
-//= require ./videos
-//= require ./jquery.cloudinary
 //= require ./remember_me
 //= require ./cake_popover
 //= require ./datepicker
-//= require ./jquery.countdown.min
 //= require ./search
-//= require ./campaigns
-//= require ./direct_donations
 //= require ./jquery.expander.min
 //= require ./chosen_js.coffee
 //= require ./expander

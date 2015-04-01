@@ -1,5 +1,3 @@
-Cake.validations ?= {}
-
 Cake.validations.custom_methods = ->
   $.validator.addMethod "onlyletters", ((value, element, params) ->
     this.optional(element) || /^[a-z\s]+$/i.test(value)

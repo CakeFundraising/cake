@@ -1,5 +1,3 @@
-Cake.sponsors ?= {}
-
 Cake.sponsors.validation = ->
   $('.formtastic.sponsor').validate(
     errorElement: "span"

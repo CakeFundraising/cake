@@ -1,9 +1,5 @@
-Cake.pusher ?= {}
-
 Cake.pusher.client = ->
   return new Pusher(Cake.pusher.appKey)
-
-Cake.pusher.campaigns ?= {}
 
 Cake.pusher.campaigns.updateRaised = (campaignId)->
   pusher = Cake.pusher.client()

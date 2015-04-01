@@ -1,5 +1,3 @@
-Cake.pictures ?= {}
-
 Cake.pictures.added_images = (stored_images)->
   form = $('.formtastic.pledge, .formtastic.campaign, .formtastic.fundraiser, .formtastic.sponsor')
   file_inputs = form.find('input[type="file"]')
@@ -40,7 +38,6 @@ class PictureValidation
     message = "<div class='text-danger' id=\"#{@errorMessageId}\">Please upload a picture.</div>"
     pictureContainer = $(".#{@picType}")
     pictureContainer.before(message) unless $("##{@errorMessageId}").length > 0
-    #alert "Please check you've uploaded all required #{self.picType} pictures."
     return
 
   removeMessage: ->
@@ -58,8 +55,6 @@ class PictureValidation
         self.removeMessage()
       return
     return
-
-Cake.pictures.validation ?= {}
 
 Cake.pictures.validation.coupons = ->
   avatarValidator = new PictureValidation(

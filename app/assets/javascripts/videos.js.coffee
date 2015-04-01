@@ -1,5 +1,3 @@
-Cake.videos ?= {}
-
 class Video
   constructor: (args) ->
     @modal = $(args.modal)

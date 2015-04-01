@@ -1,5 +1,3 @@
-Cake.coupons ?= {}
-
 Cake.coupons.tos_toggle = ->
   checkbox = $('#coupons .boolean.checkbox input[type="checkbox"]')
   standard_tos = $('#std_tos_text').val()

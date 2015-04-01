@@ -1,6 +1,3 @@
-Cake.pictures ?= {}
-Cake.crop ?= {}
-
 ########### Objects =================================================================
 Cake.pictures.avatarConstants =
   ratio: 1.5
@@ -302,28 +299,30 @@ Cake.crop.init = (selector)->
   Cake.crop.input_selector = selector || $('.cloudinary-fileupload')
 
   #Initialize Cloudinary
-  Cake.crop.uploader(Cake.crop.input_selector)
+  if Cake.crop.input_selector.length > 0
 
-  Cake.crop.input_selector.on 'cloudinarystart', ->
-    # Store vars
-    Cake.crop.input = $(this)
-    Cake.crop.type = $(this).data('cloudinary-field').split("[")[$(this).data('cloudinary-field').split("[").length - 1].replace("]", '')
-    Cake.crop.image_previewer = $(this).siblings('.uploader .'+ Cake.crop.type)
-    Cake.crop.coords_container = $('#' + Cake.crop.type + '_coords')
+    Cake.crop.uploader(Cake.crop.input_selector)
 
-    #Show modal
-    Cake.crop.modal.show()
-    Cake.crop.modal.footer.hide()
+    Cake.crop.input_selector.on 'cloudinarystart', ->
+      # Store vars
+      Cake.crop.input = $(this)
+      Cake.crop.type = $(this).data('cloudinary-field').split("[")[$(this).data('cloudinary-field').split("[").length - 1].replace("]", '')
+      Cake.crop.image_previewer = $(this).siblings('.uploader .'+ Cake.crop.type)
+      Cake.crop.coords_container = $('#' + Cake.crop.type + '_coords')
 
-    #Start when upload complete
-    $(this).on 'cloudinarydone', (e, data)->
-      Cake.crop.main(data.result)
+      #Show modal
+      Cake.crop.modal.show()
+      Cake.crop.modal.footer.hide()
+
+      #Start when upload complete
+      $(this).on 'cloudinarydone', (e, data)->
+        Cake.crop.main(data.result)
+        return
       return
-    return
 
-  Cake.crop.input_selector.on 'cloudinaryprogressall', (e, data)->
-    progress = parseInt(data.loaded/data.total * 100, 10);
-    $('#overlay_loading').html '<span class="upload-progress">' + progress + '&#37;</span>'
-    return
+    Cake.crop.input_selector.on 'cloudinaryprogressall', (e, data)->
+      progress = parseInt(data.loaded/data.total * 100, 10);
+      $('#overlay_loading').html '<span class="upload-progress">' + progress + '&#37;</span>'
+      return
 
   return

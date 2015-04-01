@@ -1,5 +1,3 @@
-Cake.direct_donation ?= {}
-
 class DirectDonation
   constructor: (fundraiser_name, key, image) ->
     @fundraiser = fundraiser_name

@@ -1,5 +1,3 @@
-Cake.browsers ?= {}
-
 Cake.browsers.fingerprint = ->
   if Cake.browsers.current
     $('body').trigger('current_browser_ready')

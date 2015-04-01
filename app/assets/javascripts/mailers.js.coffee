@@ -1,5 +1,3 @@
-Cake.mailers ?= {}
-
 Cake.mailers.contact_validation = ->
   $('.formtastic.contact_mailer').validate(
     errorElement: "span"
