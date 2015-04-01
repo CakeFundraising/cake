@@ -22,7 +22,7 @@ Cake.init = ->
   Cake.extra_clicks.init()
   Cake.utils.init()
   Cake.search.init()
-  Cake.carousel.init()
+  #Cake.carousel.init()
   return
 
 $(document).ready(Cake.init)

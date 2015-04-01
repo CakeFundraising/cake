@@ -59,7 +59,6 @@
 //= require ./cloudinary_crop
 //= require ./help
 //= require ./mailers
-//= require ./jcarousel
 //= require ./users
 //= require ./coupons
 //= require ./home

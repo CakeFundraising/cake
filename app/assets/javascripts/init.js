@@ -5,6 +5,7 @@
 //= require ./jquery.cloudinary
 //= require ./jquery.countdown.min
 //= require modernizr
+//= require slick.min
 
 //= require ./cake_namespaces
 //= require ./pictures
@@ -14,3 +15,4 @@
 //= require ./campaigns
 //= require ./direct_donations
 //= require ./subscriptors
+//= require ./jcarousel
