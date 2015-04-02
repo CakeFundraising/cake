@@ -1,5 +1,7 @@
 class CakesterRequest < ActiveRecord::Base
   include Statusable
+  include CakesterCommissionable
+
   has_statuses :pending, :accepted, :rejected, :past
 
   belongs_to :cakester
@@ -9,7 +11,7 @@ class CakesterRequest < ActiveRecord::Base
 
   has_one :pledge, ->(cc){ where(campaign_id: cc.campaign_id) }, through: :cakester, class_name:'Pledge', source: :pledges
 
-  validates :cakester, :campaign, :fundraiser, :rate, :message, presence: true
+  validates :cakester, :campaign, :fundraiser, :message, presence: true
   validates :cakester_id, uniqueness: {scope: [:campaign_id, :fundraiser_id]}
 
   scope :latest, ->{ order(created_at: :desc) }

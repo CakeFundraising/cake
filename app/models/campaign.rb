@@ -37,7 +37,6 @@ class Campaign < ActiveRecord::Base
 
   has_many :impressions, as: :impressionable
 
-  has_one :cakester_commission_setting, as: :commissionable, class_name:'CakesterCommission'
   has_many :cakester_requests, dependent: :destroy
   has_many :campaign_cakesters, dependent: :destroy
   has_many :cakesters, through: :campaign_cakesters

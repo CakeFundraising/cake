@@ -2,7 +2,7 @@
   = f.semantic_errors *f.object.errors.keys
   = f.inputs do
     = f.input :campaign_id, as: :select, collection: current_fundraiser.campaigns.active
-    = f.input :rate, as: :select, collection: commissions_percentage
+    = render partial:'cakester_commissions/fields', locals: {f: f}
     = f.input :message, input_html: {rows: 5, placeholder: '2,000 words or less', maxlength: 2000}
     = f.input :cakester_id, as: :hidden
   = f.actions do

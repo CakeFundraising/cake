@@ -54,6 +54,9 @@ class CakesterRequestsController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(cakester_request: [:message, :campaign_id, :sponsor_id, :cakester_id, :rate])
+    params.permit(cakester_request: [
+      :message, :campaign_id, :sponsor_id, :cakester_id,
+      cakester_commission_setting_attributes: [:deal_type, :percentage_value, :flat_value]
+    ])
   end
 end

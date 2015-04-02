@@ -7,7 +7,7 @@ class CakesterCommissionsForm
     @flatInput = $('#cakester_commission_flat_input')
     @percentageInput = $('#cakester_commission_percentage_input')
 
-    @submitButton = $('.formtastic.campaign input[type="submit"]')
+    @submitButton = $('.formtastic.campaign input[type="submit"], .formtastic.cakester_request input[type="submit"]')
     return
 
   onChange: (value)->
