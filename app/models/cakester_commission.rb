@@ -1,7 +1,9 @@
 class CakesterCommission < ActiveRecord::Base
   belongs_to :commissionable, polymorphic: true
 
-  validates :deal_type, :deal_value, presence: true
+  validates :deal_type, presence: true
+  validates :percentage_value, presence: true, if: ->(cc){ cc.deal_type == 'Percentage' }
+  validates :flat_value, presence: true, if: ->(cc){ cc.deal_type == 'Flat' }
 
   DEAL_TYPES = %w{probono flat percentage}
 

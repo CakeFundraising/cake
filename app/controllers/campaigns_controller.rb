@@ -147,7 +147,7 @@ class CampaignsController < InheritedResources::Base
       :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
     ],
     sponsor_categories_attributes: [:id, :name, :min_value, :max_value, :position, :_destroy],
-    cakester_commission_setting_attributes: [:deal_type, :deal_value]
+    cakester_commission_setting_attributes: [:deal_type, :percentage_value, :flat_value]
     ])
   end
 end

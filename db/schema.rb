@@ -62,7 +62,8 @@ ActiveRecord::Schema.define(version: 20150326194124) do
 
   create_table "cakester_commissions", force: :cascade do |t|
     t.string   "deal_type",           default: "flat"
-    t.integer  "deal_value",          default: 0
+    t.integer  "percentage_value",    default: 0
+    t.integer  "flat_value",          default: 0
     t.integer  "commissionable_id"
     t.string   "commissionable_type"
     t.datetime "created_at",                           null: false
