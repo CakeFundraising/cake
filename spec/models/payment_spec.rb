@@ -48,13 +48,43 @@ describe Payment do
     it "should create a transfer object" do
       @payment.transfer!
       transfer =  @payment.transfers.first
-      
       expect(transfer).to be_instance_of(Transfer)
+    end
 
-      total_after_fees = (((1-Cake::STRIPE_FEE)*@payment.total_cents) - 30).round
-      total_after_fees = ((1-Cake::APPLICATION_FEE)*total_after_fees).round
+    context "Transfer amount" do
+      context "Regular invoice" do
+        it "should transfer total amount less stripe and cake's fees" do
+          @payment.transfer!
+          transfer =  @payment.transfers.first
 
-      expect(transfer.amount_cents).to eq total_after_fees
+          total_after_fees = @payment.item.net_amount_cents
+
+          expect(transfer.amount_cents).to eq total_after_fees
+        end
+      end
+
+      context "With Cakester Invoice" do
+        before :each do
+          @payment = FactoryGirl.create(:payment_with_cakester)
+          @payment.transfer!
+        end
+
+        it "should transfer total amount less stripe, cakester and cake's fees to FR" do
+          fr_transfer = @payment.transfers.last
+
+          total_after_fees = @payment.item.net_amount_cents
+
+          expect(transfer.amount_cents).to eq total_after_fees
+        end
+
+        it "should transfer just cakester commissions to Cakester" do
+          fr_transfer = @payment.transfers.first
+
+          cakester_commission = @payment.item.cakester_commission_cents
+
+          expect(transfer.amount_cents).to eq cakester_commission
+        end
+      end
     end
   end
 

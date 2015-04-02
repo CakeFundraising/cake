@@ -1,7 +1,5 @@
 - cache [:table, :fr, invoice] do 
   tr.invoice
-    td data-title=(Sponsor.model_name.human)
-      = invoice.created_at
     td data-title=(Invoice.model_name.human)
       = invoice.id
     td data-title=(Sponsor.model_name.human)

@@ -26,7 +26,7 @@ class Cakester::DashboardController < ApplicationController
 
   def history
     # @campaigns = current_cakester.campaigns.past.latest.decorate
-    # @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_cakester.campaigns.with_paid_invoices
+    @campaigns_with_past_invoices = CampaignDecorator.decorate_collection current_cakester.campaigns.with_paid_invoices
     # @paid_qp_invoices = current_cakester.qp_invoices.paid.latest.decorate
     # @sponsors = SponsorDecorator.decorate_collection(current_cakester.sponsors_of(:past))
   end

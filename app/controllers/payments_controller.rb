@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-        @payment.notify_normal_charge
+        @payment.notify_regular_charge
         format.html{ redirect_to sponsor_billing_path, notice: 'Payment succeeded.' }
       else
         format.html{ rredirect_to sponsor_billing_path, alert: 'There was an error with your donation, please try again..' }

@@ -32,6 +32,10 @@ class Invoice < ActiveRecord::Base
     self.due_cents > 50
   end
 
+  def has_cakester?
+    self.cakester_commission_cents.present?
+  end
+
   def self.create_from_pledge!(pledge)
     status = (pledge.total_charge < MIN_DUE) ? :paid : :due_to_pay
     
@@ -64,7 +68,6 @@ class Invoice < ActiveRecord::Base
       net_amount = self.net_amount(pledge.total_charge_cents)
       commission = (net_amount*(pledge.cakester_rate.to_f/100)).round
       net_commission = (commission*(1-Cake::CAKESTER_FEE)).round
-      net_commission
     else
       net_commission = 0
     end

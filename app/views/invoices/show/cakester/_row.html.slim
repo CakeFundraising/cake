@@ -1,7 +1,5 @@
 - cache [:table, :ck, invoice] do 
   tr.invoice
-    td data-title=(Sponsor.model_name.human)
-      = invoice.created_at
     td data-title=(Invoice.model_name.human)
       = invoice.id
     td data-title=(Sponsor.model_name.human)
@@ -12,10 +10,10 @@
       = invoice.click_donation
     td data-title=(Invoice.human_attribute_name :amount_due)
       = invoice.due
-    td data-title=(Invoice.human_attribute_name :status)
-     = invoice.status
     td data-title=(Invoice.human_attribute_name :cakester_rate)
       = invoice.cakester_rate
     td data-title=(Invoice.human_attribute_name :cakester_commission)
       = invoice.cakester_commission
+    td data-title=(Invoice.human_attribute_name :status)
+     = invoice.status
   tr.empty-tr

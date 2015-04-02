@@ -260,7 +260,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def cakester_rate
-    self.exclusive_cakester? ? self.exclusive_cakester_request.rate : self.cakester_commission_percentage
+    self.exclusive_cakester? ? self.exclusive_cakester_request.rate : self.cakester_commission_setting.percentage
   end
 
   private
