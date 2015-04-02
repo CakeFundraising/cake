@@ -81,14 +81,6 @@ Cake.campaigns.launch = ->
   return
 
 Cake.campaigns.validation = ->
-  # $('#cakester_commission_flat_input').rules 'add',
-  #   required: ->
-  #     return $('#cakester_commission_deal_type_input').val() == 'Flat'
-
-  # $('#cakester_commission_percentage_input').rules 'add',
-  #   required: ->
-  #     return $('#cakester_commission_deal_type_input').val() == 'Percentage'
-
   $('.formtastic.campaign').validate(
     errorElement: "span"
     rules:
