@@ -1,7 +1,7 @@
 = semantic_form_for @cakester_request do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.inputs do
-    = f.input :campaign_id, as: :select, collection: current_fundraiser.campaigns.active
+    = f.input :campaign_id, as: :select, collection: current_fundraiser.campaigns.without_exclusive_cakester.active
     = f.input :message, input_html: {rows: 5, placeholder: '2,000 words or less', maxlength: 2000}
     = f.input :cakester_id, as: :hidden
   = f.actions do

@@ -3,6 +3,8 @@ class CampaignCakester < ActiveRecord::Base
   belongs_to :cakester
   belongs_to :cakester_request
 
+  has_one :commission, through: :campaign, source: :cakester_commission_setting
+
   has_one :pledge, ->(cc){ where(campaign_id: cc.campaign_id) }, through: :cakester, class_name:'Pledge', source: :pledges
 
   delegate :status, to: :cakester_request, allow_nil: true

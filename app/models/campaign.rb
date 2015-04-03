@@ -79,6 +79,8 @@ class Campaign < ActiveRecord::Base
 
   scope :uses_cakester, ->{ where(uses_cakester: true) }
   scope :any_cakester, ->{ where(any_cakester: true) }
+
+  scope :without_exclusive_cakester, ->{ where(exclusive_cakester_id: nil) }
   
   #Solr
   searchable do

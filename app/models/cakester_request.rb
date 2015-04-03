@@ -8,6 +8,8 @@ class CakesterRequest < ActiveRecord::Base
   belongs_to :fundraiser
   has_one :campaign_cakester, dependent: :destroy
 
+  has_one :commission, through: :campaign, source: :cakester_commission_setting
+
   has_one :pledge, ->(cc){ where(campaign_id: cc.campaign_id) }, through: :cakester, class_name:'Pledge', source: :pledges
 
   validates :cakester, :campaign, :fundraiser, :message, presence: true

@@ -1,5 +1,5 @@
 class CakesterCommission < ActiveRecord::Base
-  belongs_to :commissionable, polymorphic: true
+  belongs_to :commissionable, polymorphic: true, touch: true
 
   validates :deal_type, presence: true
   validates :percentage_value, presence: true, if: ->(cc){ cc.deal_type == 'Percentage' }
