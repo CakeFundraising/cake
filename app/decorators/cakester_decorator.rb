@@ -15,10 +15,6 @@ class CakesterDecorator < ApplicationDecorator
     object.causes.join(", ")
   end
 
-  def cause
-    object.causes.first
-  end
-
   def email
     h.auto_mail object
   end
@@ -28,7 +24,7 @@ class CakesterDecorator < ApplicationDecorator
   end
 
   def cause
-    object.causes.first
+    object.causes.first || '-'
   end
 
   def website

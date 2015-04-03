@@ -46,14 +46,12 @@
             .col-md-12.rank-rows
               / = basic_list_item(Cakester.human_attribute_name(:rank), @cakester.rank)
               / = basic_list_item(Cakester.human_attribute_name(:local_rank), @cakester.local_rank)
-          - if can? :create, PledgeRequest
+          - if can? :create, CakesterRequest
             .row
               .col-md-12.text-center
                 .request-pledge
                   .main-cta
-                    button.btn.btn-xl.btn-primary data-target="#cakester_modal_#{@cakester.id}" data-toggle="modal"
-                      = "Request Pledge"
-                    = render partial:'cakesters/show/modal', locals:{cakester: @cakester}
+                    = link_to 'Request Partnership', new_cakester_request_path(cakester: @cakester), class:'btn btn-xl btn-primary'
           - else
             .row
               .col-md-12.text-center

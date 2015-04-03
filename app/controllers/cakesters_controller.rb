@@ -16,7 +16,7 @@ class CakestersController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_role(@cakester)
-        redirect_to cakester_home_path, notice: 'Now you can start creating a new campaign!'  
+        redirect_to cakester_home_path, notice: 'Welcome to Cake! This is your dashboard, please take some time to learn more about your account and your several dashboard pages. We hope Cake works really good for you!'  
       end
     end
   end

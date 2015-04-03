@@ -4,7 +4,7 @@ class CakesterRequest < ActiveRecord::Base
   has_statuses :pending, :accepted, :rejected, :past
 
   belongs_to :cakester
-  belongs_to :campaign
+  belongs_to :campaign, touch: true
   belongs_to :fundraiser
   has_one :campaign_cakester, dependent: :destroy
 

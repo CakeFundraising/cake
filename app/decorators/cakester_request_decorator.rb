@@ -18,7 +18,7 @@ class CakesterRequestDecorator < ApplicationDecorator
   end
 
   def rate
-    commission_settings = object.cakester_commission_setting
+    commission_settings = object.commission
 
     case commission_settings.deal_type
     when 'probono'
