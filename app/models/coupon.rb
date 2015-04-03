@@ -7,11 +7,8 @@ class Coupon < ActiveRecord::Base
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'
   has_one :campaign, through: :pledge
 
-  monetize :unit_donation_cents
-  monetize :total_donation_cents
-
-  validates :unit_donation, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
-  validates :total_donation, numericality: {greater_than: 0}, if: :extra_donation_pledge
+  monetize :unit_donation_cents, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
+  monetize :total_donation_cents, numericality: {greater_than: 0}, if: :extra_donation_pledge
 
   validates :title, :description, :merchandise_categories, :expires_at, :pledge, presence: true
 

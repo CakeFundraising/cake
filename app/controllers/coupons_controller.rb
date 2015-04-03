@@ -17,10 +17,6 @@ class CouponsController < InheritedResources::Base
 
   def create
     @pledge = resource.pledge
-    unless params.has_key?(:unit_donation) and params.has_key?(:total_donation)
-      @coupon.unit_donation_cents = 0
-      @coupon.total_donation_cents = 0
-    end
     create! do |success, failure|
       success.html do
         redirect_to add_coupon_pledge_path(resource.pledge)
