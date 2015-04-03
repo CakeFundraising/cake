@@ -4,24 +4,33 @@ class CakesterCommissionsForm
   constructor: ->
     @typeInput = $('#cakester_commission_deal_type_input')
     @inputsContainer = $('#deal_values')
+
     @flatInput = $('#cakester_commission_flat_input')
     @percentageInput = $('#cakester_commission_percentage_input')
+
+    @flatInputContainer = @flatInput.closest('.input')
+    @percentageInputContainer = @percentageInput.closest('.select')
+
+    @probonoHelpText = $('span#probono')
 
     @submitButton = $('.formtastic.campaign input[type="submit"], .formtastic.cakester_request input[type="submit"]')
     return
 
   onChange: (value)->
     switch value
-      when 'Probono'
+      when 'probono'
         @inputsContainer.hide()
-      when 'Flat'
+        @probonoHelpText.show()
+      when 'flat'
         @inputsContainer.show()
-        @percentageInput.hide()
-        @flatInput.show()
-      when 'Percentage'
+        @flatInputContainer.show()
+        @percentageInputContainer.hide()
+        @probonoHelpText.hide()
+      when 'percentage'
         @inputsContainer.show()
-        @percentageInput.show()
-        @flatInput.hide()
+        @percentageInputContainer.show()
+        @flatInputContainer.hide()
+        @probonoHelpText.hide()
     return
 
   valid: ->

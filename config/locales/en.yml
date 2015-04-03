@@ -176,6 +176,10 @@ en:
       banner: "<span class='boldest'>Help %{fundraiser}!</span> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
     wizards:
       campaign:
+    cakester_commission:
+      probono: I want a Cakester to help for free.
+      flat: I am willing to pay a flat fee upon success.
+      percentage: I am willing to pay a percentage commission upon success.
 
   messages:
     flash:
@@ -267,6 +271,9 @@ en:
         main_cause: Cause
         total_donations: Total Donations
         any_cakester: To any and all Cakesters in Cake
+      cakester_commission:
+        flat_value: Choose a dollar amount
+        percentage_value: Choose a commission rate
       sponsor_category:
         name_0: Highest Pledge Level
         name_1: Medium Pledge Level

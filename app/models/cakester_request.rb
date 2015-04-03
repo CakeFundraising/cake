@@ -1,6 +1,5 @@
 class CakesterRequest < ActiveRecord::Base
   include Statusable
-  include CakesterCommissionable
 
   has_statuses :pending, :accepted, :rejected, :past
 

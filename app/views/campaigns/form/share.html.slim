@@ -4,11 +4,8 @@
     
 .tab-content.campaign-wizard-wrap
   #share.tab-pane.active
-    - if @campaign.exclusive_cakester?
-      h1.text-center Exclusive Cakester
-      .row
-        .col-md-4
-        = render partial:'cakester_requests/show/cakester_grid', locals:{cakester: @campaign.exclusive_cakester.decorate}
+    - if @campaign.campaign_cakesters.any? or @campaign.cakester_requests.any?
+      = render partial:'campaigns/form/share/cakesters'
     - else
       h1.text-center Would you like help securing Sponsorships for your Campaign?
       br
@@ -22,7 +19,7 @@
             .panel.panel-default
               #uses_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.uses_cakester}"
                 .panel-body
-                    = render partial:"campaigns/form/share/cakester_intro", locals:{f: f}
+                  = render partial:"campaigns/form/share/cakester_deal", locals:{f: f}
             .panel.panel-default
               #no_cakester_panel role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.uses_cakester}"
                 .panel-body

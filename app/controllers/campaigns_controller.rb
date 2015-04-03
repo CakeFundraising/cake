@@ -54,7 +54,7 @@ class CampaignsController < InheritedResources::Base
     update! do |success, failure|
       success.html do
         update_campaign_screenshot(resource)
-        redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
+        after_update_redirection
       end
       failure.html do
         @campaign = resource.decorate
@@ -128,6 +128,14 @@ class CampaignsController < InheritedResources::Base
   end
 
   protected
+
+  def after_update_redirection
+    if params[:campaign][:step] == 'show' and params[:campaign][:any_cakester] == '0'
+      redirect_to search_cakesters_path, notice: "In order to start an exclusive partnership choose a Cakester and press the 'Request an Exclusive Partnership' button"
+    else
+      redirect_to controller: :campaigns, action: params[:campaign][:step], id: resource
+    end
+  end
 
   def bypass_if_hero
     redirect_to launch_wizard_campaign_path if resource.hero

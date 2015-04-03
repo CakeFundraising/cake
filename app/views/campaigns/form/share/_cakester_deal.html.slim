@@ -1,0 +1,31 @@
+.row.text-center
+  .col-md-12
+    h1 My Offer to Cakesters 
+    .text-muted How much are you willing to pay a Cakester who brings you a paying Sponsorship?
+
+    .row
+      .col-md-6.col-md-push-3
+        = render partial:'cakester_commissions/fields', locals: {f:f}
+
+    hr
+
+    h1 I Want Help From: 
+    .text-muted Do you want to make a public offer to all Cakesters, or would you like to offer a Cakester an exclusive relationship?
+    .row
+      .col-md-8.col-md-push-2
+        br
+        br
+        = f.input :any_cakester, as: :boolean_button, label: false, input_html: {on_text: 'All Cakesters', off_text: 'An Exclusive Cakester', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg', collapsible: {parent: '#cakester_type', on_panel: '#any_cakester', off_panel: '#exclusive_cakester'} }
+
+        br
+        br
+        #cakester_type.panel-group.transparent-panel aria-multiselectable="true" role="tablist" 
+          .panel.panel-default
+            #any_cakester role="tabpanel" class="panel-collapse collapse #{'in' if @campaign.any_cakester}"
+              .panel-body
+                .text-muted When choosing 'All Cakester', Cake will automatically show this Campaign and your offer to all Cakesters. Then they will have to accept your offer to bring you a Pledge offer from a Sponsor.
+          .panel.panel-default
+            #exclusive_cakester role="tabpanel" class="panel-collapse collapse #{'in' unless @campaign.any_cakester}"
+              .panel-body
+                .text-muted When selecting 'An Exclusive Cakester' you'll have to search for a Cakester and make a request to him. Then he will have to accept or reject your request.
+

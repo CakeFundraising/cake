@@ -1,0 +1,18 @@
+- if @campaign.cakester_requests.any?
+  - if @campaign.exclusive_cakester?
+    .text-center
+      h1 Exclusive Cakester
+    .row
+      .col-md-4
+      = render partial:'cakester_requests/show/cakester_grid', locals:{cakester: @campaign.exclusive_cakester.decorate}
+  - else
+    .text-center
+      h1 Pending Exclusive Cakesters
+    .row
+      br
+      br
+      = render partial:'cakesters/tables/table', locals:{cakesters: @campaign.cakester_requests.not_accepted.decorate}
+- else
+  h1.text-center Non-Exclusive Cakesters
+  .row
+    = render partial:'cakesters/tables/table', locals:{cakesters: @campaign.campaign_cakesters.decorate}
