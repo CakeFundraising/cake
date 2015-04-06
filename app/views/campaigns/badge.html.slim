@@ -1,25 +1,48 @@
 .row
-  .col-xs-12
+  .col-md-12.col-xs-12
     .campaign_badge
       h1 Help #{@campaign.fundraiser}!
       .row
-        .col-xs-6
+        .col-md-6.col-sm-6.col-xs-12
           .avatar
             = link_to campaign_url(@campaign), target: :_blank, class:'pull-left' do
               = @campaign.picture.avatar
           .avatar-content
             .caption.help-block = @campaign.picture.avatar_caption
-
+        .col-md-6.col-sm-6.col-xs-12
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends In:
+          .row.text-center#campaign_countdown
+            .col-xs-4.border-right
+              span.campaign-timer.days
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer.hours
+              span h.
+            .col-xs-4
+              span.campaign-timer.mins
+              span m.
           hr
-          .powered_by
+          .row
+            .col-md-12
+              .progress.campaign-thermometer
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
+              .campaign-stats
+                span
+                  span.boldest.raised = @campaign.raised_by_status
+                span.pull-right
+                  span.boldest = @campaign.goal
+                  |  Goal
+          hr
+          = link_to "It's 100% free to help!", campaign_url(@campaign), target: :_blank, class: 'btn btn-success btn-block main-button btn-xl'
+          hr
+          .powered_by.pull-right
             span.text Powered by 
             span.img 
               = link_to root_url, target: :_blank do
                 = image_tag 'cake_logo.png'
-        .col-xs-6
-          = render partial:'campaigns/show_page/stats'
-          hr
-          = link_to "It's 100% free to help!", campaign_url(@campaign), target: :_blank, class: 'btn btn-success btn-block main-button btn-xl'
 
 javascript:
   Cake.campaigns.countdown("#{@campaign.object.end_date}");
