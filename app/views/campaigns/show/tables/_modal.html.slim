@@ -3,9 +3,6 @@
     .modal-content
       .modal-body
        
-        /Needs to get reset when the modal is opened
-        /= display_meta(nil, {title: "Click and help support us! It is 100% free!", image: campaign.picture.avatar_path, description: campaign.mission, url: request.original_url})
-        
         - if campaign.pending?
           button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
           .row.text-center.clear
@@ -30,25 +27,6 @@
             p.text-muted This will help your Campaign reach the most people
             .share-buttons
               .addthis_sharing_toolbox#social data-url='#{campaign_url(campaign.id)}' data-title='Click and help support us! It is 100% free!'
-            /= render partial:'layouts/share_buttons'
-            /.share-buttons
-              /<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block" addthis:url="#{campaign_url(campaign.id)}" addthis:title="Click and help support us! It is 100% free!" data-url="#{campaign_url(campaign.id)}" data-title="Click and help support us! It is 100% free!">
-              /  <a class="addthis_button_facebook"></a>
-                
-                /current_fundraiser.present?
-                /current_sponsor.present?
-
-                /Need to determine if this view is being used as a SP or FR. Then modfiy the Twitter content as necessary
-
-              /  <a class="addthis_button_twitter" addthis:title="Click to help #{campaign.fundraiser}. It is 100% free! via @cakefundraising" addthis:url="#{campaign_url(campaign.id)}"></a>
-              /  <a class="addthis_button_linkedin"></a>
-              /  <a class="addthis_button_google_plusone_share"></a>
-              /  <a class="addthis_button_pinterest_share"></a>
-                
-                /Remove because the email subject is the page name and may not be able to be modified.
-                /<a class="addthis_button_email"></a>
-              /  <a class="addthis_button_compact"></a>
-              /</div>
 
           .row.section-wrapper.text-center
             h2 Email Your Campaign
@@ -68,16 +46,14 @@
                 = screenshot_tag_for campaign
               div.pull-right
                 br
-                /= link_to "Download", campaign.id, class:'btn btn-primary', :download => 'campaign.png'
                 = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + campaign_url(campaign.id), class:'btn btn-primary', :download => 'campaign.png'
           .row.section-wrapper.text-center       
             h2 Embed Badge on Your Website
             p.text-muted Copy the source code below and past it on your website
-            /= render partial:'campaigns/show/media', locals:{campaign: @campaign}
             .toggle-container.text-left
               div
                 textarea#embedded_link.form-control disabled='' rows="5" 
-                  iframe width='300px' height='300px' src=badge_campaign_url(campaign.id)
+                  iframe width='800px' height='540px' src=badge_campaign_url(campaign.id)
                     p 
                       | See this campaign here: 
                       = link_to campaign.mission, campaign_url(campaign.id), target: :_blank

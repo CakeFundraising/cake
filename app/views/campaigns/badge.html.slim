@@ -1,8 +1,25 @@
-.media
-  = link_to campaign_url(@campaign), target: :_blank, class:'pull-left' do
-    = image_tag @campaign.avatar, class:'media-object' 
-  .media-body
-    h4.media-heading = link_to @campaign.title, campaign_url(@campaign), target: :_blank
-    .end-date.help-block
-      span Ends on:
-      strong = @campaign.end_date
+.row
+  .col-xs-12
+    .campaign_badge
+      h1 Help #{@campaign.fundraiser}!
+      .row
+        .col-xs-6
+          .avatar
+            = link_to campaign_url(@campaign), target: :_blank, class:'pull-left' do
+              = @campaign.picture.avatar
+          .avatar-content
+            .caption.help-block = @campaign.picture.avatar_caption
+
+          hr
+          .powered_by
+            span.text Powered by 
+            span.img 
+              = link_to root_url, target: :_blank do
+                = image_tag 'cake_logo.png'
+        .col-xs-6
+          = render partial:'campaigns/show_page/stats'
+          hr
+          = link_to "It's 100% free to help!", campaign_url(@campaign), target: :_blank, class: 'btn btn-success btn-block main-button btn-xl'
+
+javascript:
+  Cake.campaigns.countdown("#{@campaign.object.end_date}");

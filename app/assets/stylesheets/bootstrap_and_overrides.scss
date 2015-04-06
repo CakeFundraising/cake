@@ -3920,3 +3920,29 @@ ul#share-block {
     margin-top: 0;
   }
 }
+
+//######### MOBILE STYLES ###############
+.campaign_badge{
+  border: 5px solid $brand-success;
+  border-radius: 5px;
+  padding: 30px;
+  h1{
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .main-button{
+    text-transform: uppercase;
+  }
+  .powered_by{
+    .text{
+      font-size: 20px;
+    }
+    .img{
+      img{
+        width: 100px;
+      }
+    }
+  }
+}
+

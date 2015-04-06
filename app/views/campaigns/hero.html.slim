@@ -43,36 +43,9 @@
               .col-md-12.text-center
                 .main-cta
                   = render partial:'clicks/campaign'
-          .row
-            .col-md-12
-              .progress.campaign-thermometer
-                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
-                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
-              .campaign-stats
-                span
-                  span.boldest.raised = @campaign.raised_by_status
-                span.pull-right
-                  span.boldest = @campaign.goal
-                  |  Goal
-          hr
-          .row
-            .col-md-12.pledges_total
-              span Total Donations Earned: 
-              span.boldest.raised = @campaign.raised_by_status
-          hr
-          .row
-            .col-xs-12
-              p.timer-ital Campaign Ends In:
-          .row.text-center#campaign_countdown
-            .col-xs-4.border-right
-              span.campaign-timer.days
-              span d.
-            .col-xs-4.border-right
-              span.campaign-timer.hours
-              span h.
-            .col-xs-4
-              span.campaign-timer.mins
-              span m.
+          
+          = render partial:'campaigns/show_page/stats'
+
         .row
           .col-md-12
             #how-it-works-link

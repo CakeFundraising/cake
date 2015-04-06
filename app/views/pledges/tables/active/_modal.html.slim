@@ -19,7 +19,6 @@
               <a class="addthis_button_linkedin"></a>
               <a class="addthis_button_google_plusone_share"></a>
               <a class="addthis_button_pinterest_share"></a>
-              /<a class="addthis_button_email"></a>
               <a class="addthis_button_compact"></a>
             </div>
 
@@ -42,14 +41,13 @@
             div.pull-right
               br
               = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge.id), class:'btn btn-primary', :download => 'pledge.png'
-              /= link_to "Download", pledge.screenshot_url, class:'btn btn-primary', :download => 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
           p.text-muted Copy the source code below and past it on your website
           /= render partial:'campaigns/show/media', locals:{campaign: @campaign}
           .share-embed.text-left
             textarea#embedded_link.form-control disabled='' rows="5" 
-              iframe width='300px' height='300px' src=badge_campaign_url(pledge.campaign.id)
+              iframe width='800px' height='540px' src=badge_campaign_url(pledge.campaign.id)
                 p 
                   | See this campaign here: 
                   = link_to pledge.campaign.mission, campaign_url(pledge.campaign.id), target: :_blank

@@ -98,10 +98,11 @@ class CampaignsController < InheritedResources::Base
     render 'campaigns/form/share'
   end
 
+  #Badge
   def badge
     @campaign = resource.decorate
-    render layout: false
     response.headers.except! 'X-Frame-Options'
+    render layout: 'iframe_layout'
   end
 
   #actions
