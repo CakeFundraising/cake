@@ -16,6 +16,10 @@
             = coupon_pic(coupon)
             = render partial:'subscriptions/take_action_modal', locals: {pledge: @pledge}
             .coupon-edge
+            .visible-xs.visible-sm.hidden-md
+              br
+              br
+              .download = coupon_print_button(coupon)
           .col-md-6.col-xs-8
             div.coupon-content
               h2 = coupon
@@ -33,5 +37,5 @@
             .promo-code
               .boldest.text-right Promo Code
               span = coupon.promo_code
-            .download
+            .download.pull-right
               = coupon_print_button(coupon)
