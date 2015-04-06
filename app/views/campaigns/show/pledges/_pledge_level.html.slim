@@ -1,7 +1,7 @@
 .row.win-with
   .col-md-12
     h2.sponsor-levs 
-      span.sponsor-name Visit our #{sc.name} #{@campaign.sponsor_alias}
+      span.sponsor-name Visit our #{sc.name}
       span.sponsor-pledge.bolder = sc.range
 .row
   = render partial: "campaigns/show/pledges/level_#{sc.position}_sponsors", collection: @campaign.object.send("#{sc.object.name}_pledges"), as: :pledge

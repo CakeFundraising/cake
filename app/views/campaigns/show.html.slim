@@ -105,9 +105,11 @@
           p.story.expander = @campaign.story
         .col-md-4.col-xs-8.col-xs-push-2.col-md-push-0
           .sidebar-bkg-2
-            .avatar 
-              = link_to @campaign.fundraiser do
-                = @campaign.picture.avatar
+            .avatar
+              = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
+                div Please visit 
+                div our Website!
+              end
             .avatar-content
               .caption = @campaign.avatar_caption
               .fundraiser-name
