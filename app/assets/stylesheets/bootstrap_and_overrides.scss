@@ -967,6 +967,12 @@ $lines-to-show: 2;
   &.pull-up-pledge{
     margin-top: -336px;
   }
+  @media (max-width: $screen-sm-max) {
+    margin-top: -330px;
+    &.pull-up-hero{
+     margin-top: -375px; 
+    }
+  }
 }
 
 .pull-left {
@@ -985,10 +991,13 @@ h1.name {
     font-size: 16px;
     margin-left: 5px;
   }
+
+  @media (max-width: $screen-sm-max) {
+    margin-top: 0;
+  }
 }
 
 .campaign-intro {
-  position: absolute;
   bottom: -265px;
   .name {
     color: #fff;
@@ -1064,6 +1073,13 @@ h1.name {
   text-overflow: ellipsis;
   word-break: break-word;
   text-shadow: 0 0 10px rgba(0,0,0,1);
+  @media (max-width: $screen-sm-max) {
+    font-size: 30px;
+    margin-top: 0;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 24px;
+  }
 }
 
 address {
@@ -1289,6 +1305,12 @@ table.performance-summary {
   .h1{
     @media (min-width: $screen-md-min) {
       margin-left: -76px;
+    }
+    @media (max-width: $screen-sm-max) {
+      font-size: 30px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 24px;
     }
   }
 }
@@ -1590,6 +1612,13 @@ table.performance-summary {
 
 .fundraiser-info{
   margin: 15px 0;
+}
+.fundraiser-name{
+  margin-top: 20px;
+}
+
+.direct_donation_campaign_section{
+  margin: 30px 0px;
 }
 
 #donation-widget{
@@ -3833,11 +3862,14 @@ ul#share-block {
 }
 
 #how-it-works-link{
-  margin-top: 12px;
+  margin: 12px 0;
   a{
     color: white;
     font-size: 18px;
     cursor: pointer;
+    @media (max-width: $screen-xs-max) {
+      color: $gray;
+    }
   }
 }
 .no-height{

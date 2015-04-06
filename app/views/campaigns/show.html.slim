@@ -14,7 +14,7 @@
     .hero-screen
   .container
     .content.row.pull-up
-      .col-md-8
+      .col-md-8.col-sm-6
         .campaign-intro
           h1.name 
             span.mission = @campaign.mission
@@ -25,7 +25,7 @@
             = render partial:'layouts/share_buttons'
             h4.share-info.pull-left Please share our Campaign!
 
-      .col-md-4.sidebar
+      .col-md-4.col-sm-6.sidebar
         .sidebar-bkg.campaign-sidebar.no-border
           .row
             - if @campaign.past?
@@ -89,47 +89,16 @@
     .white
       .container
         .row
+          br
+          br
           = render partial:'campaigns/show/pledges/pledges_section'
     
-    .green
-      .container
-        .row.pledgebluestripe.campaign#sponsors_banner
-          .col-md-12.text-center
-            span.h1 
-              span Learn More About 
-              span.boldest = @campaign.fundraiser
-    .container
-      .row.sponsor-profile
-        .col-md-8.campaign-story
-          h3 = @campaign.headline
-          p.story.expander = @campaign.story
-        .col-md-4.col-xs-8.col-xs-push-2.col-md-push-0
-          .sidebar-bkg-2
-            .avatar
-              = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
-                div Please visit 
-                div our Website!
-              end
-            .avatar-content
-              .caption = @campaign.avatar_caption
-              .fundraiser-name
-                h4 = auto_link @campaign.fundraiser
-
-              .volunteer-with-us
-                a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
-                  span.glyphicon.glyphicon-envelope 
-                  span.clickable  #{@campaign.visitor_action}
-                = render partial:'subscriptions/volunteer_modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+    = render partial:'campaigns/show_page/learn_about_fr'
 
     .container
       .row.text-center
-        hr
-        br
-        br
         .col-md-6.col-md-push-3
           = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-          br
-          br
         .col-md-12
           .make-pledge.well
             .row
@@ -146,11 +115,6 @@
             h2 Please share our campaign with your family and friends!
             p.text-muted Working together, we can make a difference.
             = render partial:'layouts/share_buttons'
-      / .row
-      /   .col-md-12.text-center
-      /     / DISQUS COMMENTS
-      /     = render partial:'campaigns/show/disqus'
-
 
     / CAUSES/SPONSORS CIRCLES
     = render partial: 'layouts/choose_path'

@@ -8,8 +8,7 @@
           .col-xs-12.text-center.extra-donation
             h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }!
             h3 #{"(Simply use the coupon below and #{coupon.sponsor} will make an extra contribution)"}
-      .col-md-1
-      .col-md-10.col-xs-12.coupon
+      .col-md-10.col-xs-10.col-xs-push-1.coupon
         .row
           .col-md-4.col-xs-4
             - if coupon.extra_donation_pledge
@@ -21,7 +20,7 @@
             div.coupon-content
               h2 = coupon
               h3
-                |Expires:
+                |Expires: 
                 span = coupon.expires_at
               hr
               p = coupon.description
@@ -35,7 +34,4 @@
               .boldest.text-right Promo Code
               span = coupon.promo_code
             .download
-              = link_to download_coupon_path(coupon), class:'btn btn-primary pull-right extra_click_link' do
-                span.glyphicon.glyphicon-print
-                span  Print Coupon
-      .col-md-1
+              = coupon_print_button(coupon)

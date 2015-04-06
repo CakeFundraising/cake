@@ -42,4 +42,11 @@ module CouponsHelper
       end
     end
   end
+
+  def coupon_print_button(coupon)
+    link_to download_coupon_path(coupon), class:'btn btn-primary pull-right extra_click_link' do
+      content_tag(:span, nil, class: 'glyphicon glyphicon-print') + 
+      content_tag(:span, ' Print Coupon')
+    end
+  end
 end

@@ -1,14 +1,14 @@
 .coupon-wrapper
   = render partial:'pledge_news/form/actions', locals: {pledge_news: pledge_news}
+
   - cache [:pledge_news_box, pledge_news] do 
     .coupon_box.clearfix
-      .col-md-1
-      .col-md-10.col-xs-12.coupon
+      .col-md-10.col-xs-10.col-xs-push-1.coupon
         .row
-          .col-md-4.col-xs-4
+          .col-md-3.col-xs-4
             = pledge_news_pic(pledge_news)
             .pledge_news-edge
-          .col-md-6.col-xs-8
+          .col-md-7.col-xs-8
             div.pledge_news-content
               h2 = pledge_news
               hr
@@ -17,5 +17,4 @@
                 span = link_to 'Read more', click_pledge_news_path(pledge_news), target: :_blank
           .col-md-2.hidden-xs.hidden-sm.text-right
             = pledge_news.picture.qrcode
-      .col-md-1
 
