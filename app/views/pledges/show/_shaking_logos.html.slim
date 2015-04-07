@@ -1,11 +1,13 @@
 .col-md-6.hero-pictures-section
+  
   .row
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding.overlay-effects.clearfix#effect-6
       = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-    .hero-shake
+    .hero-shake.hidden-xs
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
       = link_to @campaign.fundraiser do
         = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+
   .campaign_and_fundraiser.row
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
       h4 = auto_link @pledge.sponsor, truncate: 40

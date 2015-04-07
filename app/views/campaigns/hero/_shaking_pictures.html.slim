@@ -6,11 +6,13 @@
     .col-md-6.col-sm-5.col-xs-5.col-xs-push-1.col-md-push-0.no-padding.overlay-effects.clearfix#effect-6
       = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
 
-  .hero-shake
+  .hero-shake.hidden-xs
 
   .col-md-6.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
-    = link_to @campaign.fundraiser do
-      = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+    = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
+      div Please visit 
+      div our Website!
+    end
 
 .campaign_and_fundraiser.row
   .col-md-6.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
