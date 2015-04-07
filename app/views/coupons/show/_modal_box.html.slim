@@ -10,12 +10,12 @@
             h4 #{"(Simply use the coupon below and #{coupon.sponsor} will make an extra contribution)"}
       .col-xs-12.coupon.coupon-modal
         .row
-          .col-md-4.col-xs-4
+          .col-md-4.col-xs-12
             - if coupon.extra_donation_pledge
               div.label.label-purple Extra Contribution
             = coupon_pic(coupon)
             .coupon-edge
-          .col-md-6.col-xs-8
+          .col-md-6.col-xs-12
             div.coupon-content
               h3 = coupon
               h4 
@@ -27,12 +27,10 @@
               .row.terms
                 .col-xs-12
                   a data-target="#coupon_terms" data-toggle="modal" View Terms & Conditions
-          .col-md-2.hidden-xs.hidden-sm.text-right
-            = coupon.picture.qrcode
+          .col-md-2.col-xs-12.text-right
+            .hidden-xs.hidden-sm = coupon.picture.qrcode
             .promo-code
-              .boldest.text-right Promo Code
+              .boldest Promo Code
               span = coupon.promo_code
             .download
-              = link_to download_coupon_path(coupon), class:'btn btn-primary pull-right' do
-                span.glyphicon.glyphicon-print
-                span  Print Coupon
+              = coupon_print_button(coupon)

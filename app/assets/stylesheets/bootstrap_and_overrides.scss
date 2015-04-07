@@ -85,6 +85,24 @@ h1{
   margin-top:40px;
 }
 
+.h1{
+  @media (max-width: $screen-sm-max) {
+    font-size: 30px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 26px;
+  }
+}
+
+h3{
+  @media (max-width: $screen-sm-max) {
+    font-size: 26px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 22px;
+  }
+}
+
 h3, h4 {
   color: $brand-primary;
 }
@@ -335,7 +353,10 @@ hr{
       display:none;
     }
 
-    #tab-campaigns span, #tab-sponsors span, #tab-coupons span{
+    #tab-campaigns span, 
+    #tab-sponsors span,
+    #tab-fundraisers span,
+    #tab-coupons span{
       display: none;
     }
     #tab-campaigns:after{
@@ -511,11 +532,26 @@ p.signup-social span:before, p.signup-social span:after {
   padding: 15px 0px !important;
   width: 100% !important;
   font-size: 22px !important;
+
+  @media (max-width: $screen-sm-max) {
+    font-size: 19px !important;;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 16px !important;;
+  }
+
   &.click_link{
     font-size: 30px !important;
     text-transform: uppercase;
     padding: 10px 0px !important;
     font-weight: bold;
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px !important;;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 24px !important;;
+    }
   }
 }
 .btn-lg{
@@ -1294,8 +1330,15 @@ table.performance-summary {
   width: 48px;
   height: 48px;
   z-index: 999;
-  left: 274px;
-  top: 75px;
+  margin-left: 46%;
+  margin-top: 13%;
+  @media (max-width: $screen-sm-max) {
+    margin-left: 47%;
+    margin-top: 11%;
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-top: 10%;
+  }
 }
 
 .campaign-banner{
@@ -1305,12 +1348,6 @@ table.performance-summary {
   .h1{
     @media (min-width: $screen-md-min) {
       margin-left: -76px;
-    }
-    @media (max-width: $screen-sm-max) {
-      font-size: 30px;
-    }
-    @media (max-width: $screen-xs-max) {
-      font-size: 24px;
     }
   }
 }
@@ -1651,7 +1688,7 @@ table.performance-summary {
   }
   .stripe-powered{
     img{
-      width: 305px;
+      width: 80%;
     }
   }
 }
@@ -1976,6 +2013,12 @@ a {
     margin-top: 0;
     font-size: 32px;
     font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 22px;
+    }
   }
   p{
     font-size: 1.3em;
@@ -2033,6 +2076,7 @@ a {
   h2{
     margin-bottom: 5px;
   }
+  .pledge-news-content,
   .coupon-content{
     margin:10px 0px;
   }
@@ -3317,6 +3361,10 @@ ul#share-block {
   @media (max-width: $screen-md-min) {
     margin: 15px;
     padding: 0px;
+  }
+  @media (max-width: $screen-xs-max) {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 }
 .modal-footer{

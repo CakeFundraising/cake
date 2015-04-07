@@ -49,7 +49,7 @@
           hr
           .row
             .col-md-12.pledges_total
-              span Total Donations Earned:
+              span Total Donations Earned: 
               span.boldest = @pledge.total_charge
           hr
           .row
@@ -89,36 +89,8 @@
                   span See our video
                 = render partial: 'campaigns/hero/pledge_video', locals: {object: @pledge}
 
-          .col-md-6.hero-pictures-section
-            .row
-              .col-md-6.col-sm-6.col-xs-6.no-padding.overlay-effects.clearfix#effect-6
-                = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-              .hero-shake
-              .col-md-6.col-sm-6.col-xs-6.no-padding
-                = link_to @campaign.fundraiser do
-                  = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
-            .campaign_and_fundraiser.row
-              .col-md-6.col-sm-6.col-xs-6.no-padding
-                h4 = auto_link @pledge.sponsor, truncate: 40
-                a data-toggle='modal' data-target='#sp_contact_subs_modal'
-                  span.glyphicon.glyphicon-envelope
-                  span.clickable  Contact us!
-                = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'}                  
-              .col-md-6.col-sm-6.col-xs-6.no-padding
-                h4 = auto_link @pledge.fundraiser, truncate: 40
+          = render partial:'pledges/show/shaking_logos'
 
-                .volunteer-with-us
-                  a data-toggle='modal' data-target='#campaign_volunteer_subs_modal'
-                    span.glyphicon.glyphicon-envelope
-                    span.clickable  = @campaign.visitor_action
-                  = render partial: 'subscriptions/volunteer_modal', locals: {object: @pledge.fundraiser, origin: @campaign, position: 'campaign.volunteer'}
-
-                - if @pledge.sponsor.present?
-                  .thank-sp
-                    a data-toggle='modal' data-target='#sp_thank_subs_modal'
-                      span.glyphicon.glyphicon-envelope
-                      span.clickable  Please thank #{@pledge.sponsor}
-                    = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
     .blue#coupons
       .container
         .row.pledgebluestripe.campaign
@@ -189,10 +161,6 @@
           h2 Please share our pledge with your family and friends!
           p.text-muted Working together, we can make a difference.
           .text-center = render partial:'layouts/share_buttons'
-    / .row
-    /   .col-md-12.text-center
-    /     / DISQUS COMMENTS
-    /     = render partial:'pledges/show/disqus'
 
   / CAUSES/SPONSORS CIRCLES
   = render partial: 'layouts/choose_path'

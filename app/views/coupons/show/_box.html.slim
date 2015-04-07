@@ -5,22 +5,18 @@
     .coupon_box.clearfix
       - if coupon.extra_donation_pledge
         .row
-          .col-xs-12.text-center.extra-donation
+          .col-md-10.col-xs-10.col-xs-push-1.text-center.extra-donation
             h2 Extra contribution pledge of #{ humanized_money_with_symbol coupon.unit_donation } up to #{ humanized_money_with_symbol coupon.total_donation }!
             h3 #{"(Simply use the coupon below and #{coupon.sponsor} will make an extra contribution)"}
       .col-md-10.col-xs-10.col-xs-push-1.coupon
         .row
-          .col-md-4.col-xs-4
+          .col-md-4.col-xs-12
             - if coupon.extra_donation_pledge
               div.label.label-purple Extra Contribution
             = coupon_pic(coupon)
             = render partial:'subscriptions/take_action_modal', locals: {pledge: @pledge}
-            .coupon-edge
-            .visible-xs.visible-sm.hidden-md
-              br
-              br
-              .download = coupon_print_button(coupon)
-          .col-md-6.col-xs-8
+            .coupon-edge.hidden-xs.hidden-sm
+          .col-md-6.col-xs-12
             div.coupon-content
               h2 = coupon
               h3
@@ -32,10 +28,10 @@
               .row.terms
                 .col-xs-12
                   a data-toggle="modal" data-target="#coupon_terms" View Terms & Conditions
-          .col-md-2.hidden-xs.hidden-sm.text-right
-            = coupon.picture.qrcode
+          .col-md-2.col-xs-12.text-right
+            .hidden-xs.hidden-sm = coupon.picture.qrcode
             .promo-code
-              .boldest.text-right Promo Code
+              .boldest Promo Code
               span = coupon.promo_code
-            .download.pull-right
+            .download
               = coupon_print_button(coupon)

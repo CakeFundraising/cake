@@ -18,8 +18,9 @@ javascript:
     modal: '#video_modal',
     provider: provider,
     iframeId: "#{object.video.id}",
-    autoshow: Cake.videos.autoshow_setting
+    autoshow: false
   };
+  //autoshow: Cake.videos.autoshow_setting
 
   var youtube_init = function(){
     Cake.videos.youtube(options);
