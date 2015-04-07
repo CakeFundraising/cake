@@ -7,7 +7,6 @@ Cake.extra_clicks.after_click = ->
 
   click_button.click ->
     modal.modal('show')
-    console.log $(this).hasClass('coupon_print_button')
     $(this).text(thanks_msg) unless $(this).hasClass('coupon_print_button')
     $(this).removeClass('extra_click_link')
     return
