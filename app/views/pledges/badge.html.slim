@@ -8,15 +8,19 @@
           .row
             .col-md-6.col-sm-6.col-xs-6.left-logo
               .avatar
-                = link_to pledge_url(@pledge), target: :_blank do
-                  = image_tag @pledge.picture.avatar_path, class:'img-responsive img-loaded'
+                = picture_rollover(@pledge.picture.avatar, pledge_url(@pledge)) do
+                  div Click to help.
+                  div It's Free!
+                end
               .avatar-content.text-center
                 h3 = link_to @pledge.sponsor, pledge_url(@pledge), target: :_blank
             .hero-shake
             .col-md-6.col-sm-6.col-xs-6.right-logo
               .avatar
-                = link_to pledge_url(@pledge), target: :_blank do
-                  = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+                = picture_rollover(@campaign.picture.avatar, pledge_url(@pledge)) do
+                  div Click to help.
+                  div It's Free!
+                end
               .avatar-content.text-center
                 h3 = link_to @pledge.fundraiser, pledge_url(@pledge), target: :_blank
 

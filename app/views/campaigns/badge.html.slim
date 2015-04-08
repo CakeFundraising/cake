@@ -5,8 +5,10 @@
       .row
         .col-md-6.col-sm-6.col-xs-12
           .avatar
-            = link_to campaign_url(@campaign), target: :_blank, class:'pull-left' do
-              = @campaign.picture.avatar
+            = picture_rollover(@campaign.picture.avatar, campaign_url(@campaign)) do
+              div Click to help.
+              div It's Free!
+            end
           .avatar-content
             .caption.help-block = @campaign.picture.avatar_caption
         .col-md-6.col-sm-6.col-xs-12
