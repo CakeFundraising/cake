@@ -23,7 +23,11 @@
   .col-md-8
     h2 Embed Your Campaign on Your Website
     p.text-muted Copy the source code below and paste it on your website
-    = render partial:'campaigns/show/media', locals:{campaign: @campaign}
+
+    br
+    .text-center
+      iframe width='800px' height='540px' src=badge_campaign_url(@campaign)
+
     .share-embed.text-left
       textarea#embedded_link.form-control disabled='' rows="5" 
         iframe width='800px' height='540px' src=badge_campaign_url(@campaign)

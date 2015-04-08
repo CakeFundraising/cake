@@ -113,8 +113,9 @@ class PledgesController < InheritedResources::Base
 
   def badge
     @pledge = resource.decorate
-    render layout: false
+    @campaign = @pledge.campaign
     response.headers.except! 'X-Frame-Options'
+    render layout: 'iframe_layout'
   end
 
   #Actions

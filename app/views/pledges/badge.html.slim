@@ -1,9 +1,61 @@
-.media
-  = link_to pledge_url(@pledge), target: :_blank, class:'pull-left' do
-    = @pledge.picture.avatar class:'media-object'
-  .media-body
-    h4.media-heading = link_to @pledge.mission, pledge_url(@pledge), target: :_blank
-    .amount_per_click.help-block
-      = basic_list_item("Campaign ends in: ", @pledge.campaign.end_date)
-      = basic_list_item("Donation per click: ", humanized_money_with_symbol(@pledge.amount_per_click))
-      = basic_list_item("Pledge: ", humanized_money_with_symbol(@pledge.total_amount))
+.row
+  .col-md-12.col-xs-12
+    .pledge_badge
+      h1 Click below to help #{@pledge.fundraiser}!
+      
+      .row.shaking-hands
+        .col-md-12.col-sm-12.col-xs-12
+          .row
+            .col-md-6.col-sm-6.col-xs-6.left-logo
+              .avatar
+                = link_to pledge_url(@pledge) do
+                  = image_tag @pledge.picture.avatar_path, class:'img-responsive img-loaded'
+              .avatar-content
+                h3 = link_to @pledge.sponsor, pledge_url(@pledge)
+            .hero-shake
+            .col-md-6.col-sm-6.col-xs-6.right-logo
+              .avatar
+                = link_to pledge_url(@pledge) do
+                  = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+              .avatar-content
+                h3 = link_to @pledge.fundraiser, pledge_url(@pledge)
+
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .row
+            .col-md-12
+              .progress.campaign-thermometer
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
+              .campaign-stats
+                span
+                  span.boldest.raised = @campaign.raised_by_status
+                span.pull-right
+                  span.boldest = @campaign.goal
+                  |  Goal
+          hr
+          .row
+            .col-xs-12
+              p.timer-ital Campaign Ends In:
+          .row.text-center#campaign_countdown
+            .col-xs-4.border-right
+              span.campaign-timer.days
+              span d.
+            .col-xs-4.border-right
+              span.campaign-timer.hours
+              span h.
+            .col-xs-4
+              span.campaign-timer.mins
+              span m.
+
+        .col-md-6.col-sm-6.col-xs-12.no-padding
+          = link_to "It's 100% free to help!", pledge_url(@pledge), target: :_blank, class: 'btn btn-success btn-block main-button btn-xl'
+          br
+          .powered_by.pull-right
+            span.text Powered by 
+            span.img 
+              = link_to root_url, target: :_blank do
+                = image_tag 'cake_logo.png'
+
+javascript:
+  Cake.campaigns.countdown("#{@campaign.object.end_date}");
