@@ -7,10 +7,11 @@ class Coupon < ActiveRecord::Base
   has_one :sponsor, through: :pledge, source_type: 'Sponsor'
   has_one :campaign, through: :pledge
 
-  monetize :unit_donation_cents, numericality: {greater_than: 0, less_than_or_equal_to: 1000}, if: :extra_donation_pledge
-  monetize :total_donation_cents, numericality: {greater_than: 0}, if: :extra_donation_pledge
+  monetize :unit_donation_cents, disable_validation: true
+  monetize :total_donation_cents, disable_validation: true
 
   validates :title, :description, :merchandise_categories, :expires_at, :pledge, presence: true
+  validate :extra_donation_pledge_validation
 
   scope :extra_donation_pledges, ->{ where(extra_donation_pledge: true) }
   scope :normal, ->{ where(extra_donation_pledge: false) }
@@ -66,5 +67,17 @@ class Coupon < ActiveRecord::Base
 
   def active?
     self.pledge.active?
+  end
+
+  def extra_donation_pledge_validation
+    if self.extra_donation_pledge
+      errors.add(:unit_donation, "This must be a number") unless self.unit_donation_cents.is_a?(Fixnum)
+      errors.add(:total_donation, "This must be a number") unless self.total_donation_cents.is_a?(Fixnum)
+
+      errors.add(:unit_donation, "This must be greater than $0 and less than $10") unless self.unit_donation_cents.between?(0, 1000)
+      errors.add(:total_donation, "This must be greater than $0") unless self.total_donation_cents > 0
+
+      errors.add(:total_donation, "Must be greater than previous value.") if self.unit_donation_cents >= self.total_donation_cents
+    end
   end
 end

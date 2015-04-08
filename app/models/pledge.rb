@@ -244,7 +244,7 @@ class Pledge < ActiveRecord::Base
   end
 
   def total_amount_greater_than_amount_per_click
-    errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents > total_amount_cents
+    errors.add(:total_amount, "Must be greater than amount per click.") if amount_per_click_cents >= total_amount_cents
   end
 
   def decreased_amounts
