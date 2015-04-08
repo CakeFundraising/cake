@@ -4010,7 +4010,7 @@ ul#share-block {
 }
 .pledge_badge{
   .shaking-hands{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     .left-logo{
       padding-right: 0;
     }
@@ -4019,8 +4019,15 @@ ul#share-block {
     }
   }
   .main-button{
+    font-size: 24px !important;
+    margin-top: 8px;
     @media (max-width: $screen-xs-max) {
       margin-top: 20px;
+    }
+  }
+  h1{
+    @media (max-width: $screen-xs-max) {
+      font-size: 30px;
     }
   }
   h3{

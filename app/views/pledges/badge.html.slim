@@ -10,18 +10,18 @@
               .avatar
                 = link_to pledge_url(@pledge) do
                   = image_tag @pledge.picture.avatar_path, class:'img-responsive img-loaded'
-              .avatar-content
+              .avatar-content.text-center
                 h3 = link_to @pledge.sponsor, pledge_url(@pledge)
             .hero-shake
             .col-md-6.col-sm-6.col-xs-6.right-logo
               .avatar
                 = link_to pledge_url(@pledge) do
                   = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
-              .avatar-content
+              .avatar-content.text-center
                 h3 = link_to @pledge.fundraiser, pledge_url(@pledge)
 
       .row
-        .col-md-6.col-sm-6.col-xs-12
+        .col-md-12.col-sm-12.col-xs-12
           .row
             .col-md-12
               .progress.campaign-thermometer
@@ -33,7 +33,10 @@
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
-          hr
+
+      .row
+        br
+        .col-md-6.col-sm-6.col-xs-12
           .row
             .col-xs-12
               p.timer-ital Campaign Ends In:
@@ -48,7 +51,7 @@
               span.campaign-timer.mins
               span m.
 
-        .col-md-6.col-sm-6.col-xs-12.no-padding
+        .col-md-6.col-sm-6.col-xs-12
           = link_to "It's 100% free to help!", pledge_url(@pledge), target: :_blank, class: 'btn btn-success btn-block main-button btn-xl'
           br
           .powered_by.pull-right
