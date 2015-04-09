@@ -74,7 +74,7 @@ class Coupon < ActiveRecord::Base
       errors.add(:unit_donation, "This must be a number") unless self.unit_donation_cents.is_a?(Fixnum)
       errors.add(:total_donation, "This must be a number") unless self.total_donation_cents.is_a?(Fixnum)
 
-      errors.add(:unit_donation, "This must be greater than $0 and less than $10") unless self.unit_donation_cents.between?(0, 1000)
+      errors.add(:unit_donation, "This must be greater than $0") unless self.unit_donation_cents > 0
       errors.add(:total_donation, "This must be greater than $0") unless self.total_donation_cents > 0
 
       errors.add(:total_donation, "Must be greater than previous value.") if self.unit_donation_cents >= self.total_donation_cents
