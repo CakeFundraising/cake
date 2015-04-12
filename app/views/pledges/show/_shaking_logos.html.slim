@@ -21,7 +21,7 @@
       .volunteer-with-us
         a data-toggle='modal' data-target='#campaign_volunteer_subs_modal'
           span.glyphicon.glyphicon-envelope
-          span.clickable  = @campaign.visitor_action
+          span.clickable  #{@campaign.visitor_action}
         = render partial: 'subscriptions/volunteer_modal', locals: {object: @pledge.fundraiser, origin: @campaign, position: 'campaign.volunteer'}
 
       - if @pledge.sponsor.present?
@@ -30,3 +30,6 @@
             span.glyphicon.glyphicon-envelope
             span.clickable  Please thank #{@pledge.sponsor}
           = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
+
+      .campaign-page
+        = link_to 'Return to Our Campaign Page', @campaign

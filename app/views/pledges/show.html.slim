@@ -143,6 +143,8 @@
                   span.glyphicon.glyphicon-envelope
                   span.clickable  Please thank #{@pledge.sponsor}
                 = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
+            .campaign-page
+              = link_to 'Return to Our Campaign Page', @campaign
 
 
   .container
