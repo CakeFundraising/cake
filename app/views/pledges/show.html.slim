@@ -119,7 +119,7 @@
       .col-md-8.campaign-story
         h3 = @campaign.headline
         p.story.expander = @campaign.story
-      .col-md-4.col-xs-8.col-xs-push-2.col-md-push-0
+      .col-md-4.col-xs-10.col-xs-push-1.col-md-push-0
         .sidebar-bkg-2
           .avatar
             = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
@@ -144,7 +144,7 @@
                   span.clickable  Please thank #{@pledge.sponsor}
                 = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
             .campaign-page
-              = link_to 'Return to Our Campaign Page', @campaign
+              = link_to 'Return to Main Campaign Page', @campaign, class:'btn btn-primary sidebar-button btn-block'
 
 
   .container

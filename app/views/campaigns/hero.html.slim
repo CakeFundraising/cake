@@ -105,7 +105,7 @@
         .col-md-8.col-sm-6.campaign-story
           h3 = @campaign.headline
           p.story.expander = @campaign.story
-        .col-md-4.col-sm-6.col-xs-8.col-xs-push-2.col-sm-push-0
+        .col-md-4.col-sm-6.col-xs-10.col-xs-push-1.col-sm-push-0
           .sidebar-bkg-2
             .avatar 
               = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do

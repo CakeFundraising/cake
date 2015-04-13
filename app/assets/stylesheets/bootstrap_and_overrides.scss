@@ -1301,6 +1301,15 @@ table.performance-summary {
 .sidebar-bkg-2 {
   padding: 0 15px;
 }
+.sidebar-button{
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-top: 15px;
+  @media (max-width: $screen-xs-max) {
+    font-size: 14px;
+  }
+}
+
 .shake-wrap {
   position: relative;
   margin-bottom: 35px;
