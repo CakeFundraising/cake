@@ -15,7 +15,6 @@
           span = pledge.total_amount
       .buttons
         - if pledge.instance_of?(Pledge)
-          = pledge.link_button
-          = pledge.coupons_button
+          = pledge.inline_buttons
         - else
           = pledge.click_button

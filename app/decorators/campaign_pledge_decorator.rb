@@ -30,4 +30,18 @@ class CampaignPledgeDecorator < PledgeDecorator
       end
     end
   end
+
+  def inline_buttons
+    if object.coupons.any?
+      extra = object.coupons.extra_donation_pledges.any?
+      copy = extra ? "Extra Special Offers" : "Special Offers"
+
+      h.link_to h.pledge_path(object, anchor: :coupons), target: :_blank, class:"btn btn-#{ extra ? 'purple' : 'primary' } btn-block" do
+        h.content_tag(:span, copy)
+      end
+    else
+      click_button
+    end
+  end
+
 end
