@@ -78,6 +78,9 @@ gem 'secure_headers'
 gem 'counter_culture'
 gem 'mail_form'
 
+#API
+gem 'grape'
+
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
 
@@ -99,6 +102,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-stripe-connect'
+
+gem 'doorkeeper'
 
 #Admin panel
 gem 'activeadmin', github: 'activeadmin'
