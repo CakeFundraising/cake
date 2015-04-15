@@ -69,7 +69,7 @@ class Payment < ActiveRecord::Base
       currency: self.total_currency.downcase,
       card: self.card_token,
       customer: self.customer_id,
-      description: "CakeCauseMarketing.com #{item_type} ##{item_id} Payment",
+      description: "CakeCauseMarketing.com #{item_type} ##{item_id} Payment"
     )
     store_charge(charge) 
   end
