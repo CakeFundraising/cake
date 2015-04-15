@@ -210,7 +210,7 @@ Cake::Application.routes.draw do
     post :contact
   end
 
-  mount Api => '/'
+  mount API::Base => '/api'
 
   resources :subscriptors, only: :create
 

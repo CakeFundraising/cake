@@ -34,6 +34,14 @@ GIT
     formtastic-bootstrap (3.1.0)
       formtastic (>= 3.0)
 
+GIT
+  remote: https://github.com/jrhe/grape-active_model_serializers
+  revision: ca9c8faaa99727300ff21419aa20471ac27eed42
+  specs:
+    grape-active_model_serializers (1.3.1)
+      active_model_serializers (>= 0.9.0)
+      grape
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +64,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activejob (4.2.0)
       activesupport (= 4.2.0)
       globalid (>= 0.3.0)
@@ -76,6 +86,7 @@ GEM
     after_commit_action (0.1.4)
       activerecord (>= 3.0.0)
     american_date (1.1.0)
+    api-pagination (4.1.1)
     arbre (1.0.2)
       activesupport (>= 3.0.0)
     arel (6.0.0)
@@ -191,7 +202,7 @@ GEM
     docile (1.1.5)
     doorkeeper (2.1.4)
       railties (>= 3.2)
-    draper (1.4.0)
+    draper (2.1.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
@@ -233,6 +244,12 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
+    grape-entity (0.4.5)
+      activesupport
+      multi_json (>= 1.3.2)
+    grape-swagger (0.10.1)
+      grape (>= 0.8.0)
+      grape-entity
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -258,6 +275,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
+    kramdown (1.6.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.7)
@@ -279,7 +297,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.5.1)
+    minitest (5.6.0)
     modernizr-rails (2.7.1)
     monetize (1.1.0)
       money (~> 6.5.0)
@@ -547,6 +565,7 @@ GEM
     sunspot_solr (2.1.1)
     sunspot_test (0.4.0)
       sunspot_rails (>= 1.2.1)
+    swagger-ui_rails (0.1.7)
     temple (0.7.4)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -587,6 +606,9 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
     websocket (1.2.1)
+    wine_bouncer (0.3.1)
+      doorkeeper (>= 1.4, < 2.2)
+      grape (~> 0.8, < 0.12)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zeroclipboard-rails (0.1.0)
@@ -596,8 +618,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   activeadmin!
   american_date
+  api-pagination
   bootstrap-datepicker-rails (~> 1.3.0.2)
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.1.1)
@@ -617,7 +641,7 @@ DEPENDENCIES
   database_cleaner
   devise
   doorkeeper
-  draper
+  draper (~> 2.1.0)
   email_validator
   factory_girl_rails
   faker
@@ -625,12 +649,15 @@ DEPENDENCIES
   font-awesome-sass
   formtastic-bootstrap!
   grape
+  grape-active_model_serializers!
+  grape-swagger
   high_voltage
   inherited_resources!
   jcrop-rails-v2
   jquery-rails (~> 4.0.3)
   jquery-validation-rails
   kaminari
+  kramdown
   launchy
   mail_form
   meta-tags
@@ -673,6 +700,7 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   sunspot_test
+  swagger-ui_rails
   therubyracer
   thin
   turbolinks (~> 2.5.3)
@@ -680,4 +708,5 @@ DEPENDENCIES
   unicorn
   unicorn-worker-killer
   webmock
+  wine_bouncer
   zeroclipboard-rails (~> 0.1.0)

@@ -35,7 +35,8 @@ gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'bootstrap-switch-rails'
 gem 'cocoon'
 gem 'cocoon_limiter'
-gem 'draper'
+gem 'draper', '~> 2.1.0'
+gem 'kramdown'
 
 #Storage
 gem 'pg'
@@ -80,6 +81,13 @@ gem 'mail_form'
 
 #API
 gem 'grape'
+gem 'doorkeeper'
+gem 'wine_bouncer'
+gem 'active_model_serializers'
+gem 'grape-active_model_serializers', git: "https://github.com/jrhe/grape-active_model_serializers"
+gem 'grape-swagger'
+gem 'swagger-ui_rails'
+gem 'api-pagination'
 
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
@@ -102,8 +110,6 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-stripe-connect'
-
-gem 'doorkeeper'
 
 #Admin panel
 gem 'activeadmin', github: 'activeadmin'
