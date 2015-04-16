@@ -1,4 +1,5 @@
 require 'doorkeeper/grape/helpers'
+require 'grape/jbuilder'
 
 module API
   module V1
@@ -8,6 +9,16 @@ module API
       default_error_formatter :json
       content_type :json, 'application/json'
       use ::WineBouncer::OAuth2
+      add_swagger_documentation base_path: "/api",
+        api_version: 'v1',
+        hide_format: true, # don't show .json
+        hide_documentation_path: true,
+        mount_path: "/swagger_doc",
+        markdown: GrapeSwagger::Markdown::KramdownAdapter,
+        info: {
+          title: "Grape Swagger base app",
+          description: "This is the base api provided by the awesome sample app - https://github.com/sethherr/grape-doorkeeper",
+        }
 
       rescue_from :all do |e|
         eclass = e.class.to_s
@@ -26,7 +37,7 @@ module API
 
         opts = { error: "#{message || e.message}" }
         opts[:trace] = e.backtrace[0,10] unless Rails.env.production?
-        
+
         Rack::Response.new(opts.to_json, status, {
           'Content-Type' => "application/json",
           'Access-Control-Allow-Origin' => '*',
@@ -34,22 +45,12 @@ module API
         }).finish
       end
 
-      add_swagger_documentation base_path: "/api",
-        api_version: 'v1',
-        hide_format: true, # don't show .json
-        hide_documentation_path: true,
-        mount_path: "/swagger_doc",
-        markdown: GrapeSwagger::Markdown::KramdownAdapter,
-        info: {
-          title: "Grape Swagger base app",
-          description: "This is the base api provided by the awesome sample app - https://github.com/sethherr/grape-doorkeeper",
-        }
+      mount API::V1::Users
 
       route :any, '*path' do
         raise StandardError, "Unable to find endpoint"
       end
 
-      mount API::V1::Users
     end
 
   end

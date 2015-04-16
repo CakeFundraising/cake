@@ -3,16 +3,18 @@ module API
     module Defaults
       extend ActiveSupport::Concern
       included do 
-        formatter :json, Grape::Formatter::ActiveModelSerializers
-        
+        helpers Doorkeeper::Grape::Helpers
+        formatter :json, Grape::Formatter::Jbuilder
+
         before do
+          doorkeeper_authorize!
           header['Access-Control-Allow-Origin'] = '*'
           header['Access-Control-Request-Method'] = '*'
         end
 
         helpers do
           def current_token
-            doorkeeper_access_token
+            doorkeeper_token
           end
           
           def current_user

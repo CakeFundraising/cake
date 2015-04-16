@@ -71,7 +71,7 @@ gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
 gem 'american_date'
-gem "jquery-validation-rails"
+gem 'jquery-validation-rails'
 gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
@@ -83,11 +83,11 @@ gem 'mail_form'
 gem 'grape'
 gem 'doorkeeper'
 gem 'wine_bouncer'
-gem 'active_model_serializers'
-gem 'grape-active_model_serializers', git: "https://github.com/jrhe/grape-active_model_serializers"
 gem 'grape-swagger'
 gem 'swagger-ui_rails'
 gem 'api-pagination'
+gem 'jbuilder'
+gem 'grape-jbuilder'
 
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
@@ -99,7 +99,7 @@ gem 'newrelic_rpm'
 gem 'pusher'
 
 #User registration
-gem "devise"
+gem 'devise'
 
 #User permissions
 gem 'cancancan'
