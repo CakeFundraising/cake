@@ -1,5 +1,4 @@
-json.user do
-  json.(@user, :id)
+json.(@user, :id)
   json.info do
     json.(@user, :full_name, :email, :roles_mask, :fundraiser_id, :sponsor_id)
   end
@@ -9,7 +8,7 @@ json.user do
     end
   end
   json.extra do
-    if @user.fundraiser.present?
+    if @user.fundraiser?
       json.fundraiser do
         json.(@user.fundraiser, :id, :name, :mission, :website, :phone, :email, :manager_id)
         json.location do
@@ -27,4 +26,3 @@ json.user do
       end
     end
   end
-end
