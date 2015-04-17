@@ -13,8 +13,8 @@
           span.amount_per_click = pledge.amount_per_click
           span.text-muted Per Click
         span.pull-right
+          span.text-muted Up to 
           span = pledge.total_amount
-          span.text-muted Pledge
       .buttons.row
         - if pledge.instance_of?(Pledge)
           .col-md-6

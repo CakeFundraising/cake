@@ -11,6 +11,8 @@
     = render partial:'videos/button', locals:{object: @campaign}
     = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
 
+    = render partial:'clicks/success_modal', locals: {object: @campaign} if params[:donated].present?
+
     .hero-screen
   .container
     .content.row.pull-up
@@ -31,6 +33,11 @@
             - if @campaign.past?
               .col-md-12.text-center
                 .main-cta.alert.alert-danger.ended_campaign This campaign is over
+            - elsif current_user.nil? and @campaign.launched? and @campaign.fundraiser.stripe_account?
+              .col-md-12.text-center
+                .main-cta
+                  a.btn.btn-warning.btn-block.btn-xl.donate_now_button data-toggle="modal" data-target="#direct_donation_modal" Donate Now!
+                = render partial:'direct_donations/modal', locals: {donable: @campaign}
             - else
               .col-md-12.text-center
                 .main-cta
@@ -55,10 +62,11 @@
           .row.pledgebluestripe.campaign#sponsors_banner
             .col-md-12.text-center
               span.h1 
-                span Click on every logo and 
-                span.boldest #{@campaign.fundraiser} 
-                span will receive a total of  
-                span.boldest #{@campaign.total_donation_per_click}!
+                div Please get to know our generous business sponsors below!
+                div 
+                  span When you click on each of their logos, they will contribute 
+                  span.boldest up to $31 
+                  span too! 
     .white
       .container
         .row

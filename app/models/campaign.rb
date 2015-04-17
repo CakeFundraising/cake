@@ -33,7 +33,8 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  has_many :impressions, as: :impressionable
+  has_many :impressions, as: :impressionable, dependent: :destroy
+  has_many :direct_donations, as: :donable
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
@@ -48,6 +49,8 @@ class Campaign < ActiveRecord::Base
   validates_associated :sponsor_categories, if: :custom_pledge_levels
 
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
+
+  delegate :stripe_account, to: :fundraiser
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
@@ -158,6 +161,14 @@ class Campaign < ActiveRecord::Base
 
   def pledges_thermometer
     (raised_by_status/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  def donations_thermometer
+    (donations_raised/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  def donations_raised
+    direct_donations.map(&:amount).sum.to_f
   end
 
   def self.popular

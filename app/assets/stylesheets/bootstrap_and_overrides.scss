@@ -1678,12 +1678,22 @@ table.performance-summary {
   margin: 30px 0px;
 }
 
+.donate_now_button{
+  text-transform: uppercase;
+  font-size: 30px !important;
+  font-weight: bold;
+}
+
 #donation-widget{
-  border: 1px solid #ccc;
-  padding: 30px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0px 2px 3px #ccc;
+  &.donation-box{
+    border: 1px solid #ccc;
+    padding: 30px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px #ccc;
+    margin: 30px 0px;
+  }
+  
   h1{
     font-size: 40px;
     margin-top: 0;
@@ -1692,9 +1702,17 @@ table.performance-summary {
     margin-top: 0;
     color: $gray-light;
   }
+  .direct-donation-thermometer{
+    margin-bottom: 50px;
+  }
+
   #donation-buttons{
+    clear: both;
+    margin-bottom: 10px;
     button{
       margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 24px;
     }
   }
   #direct_donation_amount_input{
@@ -1707,9 +1725,8 @@ table.performance-summary {
     }
   }
   .stripe-powered{
-    img{
-      width: 80%;
-    }
+    margin-bottom: 35px;
+    margin-top: 15px;
   }
 }
 
@@ -2038,6 +2055,9 @@ a {
     }
     @media (max-width: $screen-xs-max) {
       font-size: 22px;
+    }
+    a{
+      text-decoration: none;
     }
   }
   p{

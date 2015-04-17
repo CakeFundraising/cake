@@ -8,7 +8,7 @@
 .container
   .row.sponsor-profile
     .col-md-8.col-sm-6.campaign-story
-      h3 = @campaign.headline
+      h3 = campaign_fr_website_link(@campaign.headline)
       p.story.expander = @campaign.story
     .col-md-4.col-sm-6.col-xs-10.col-xs-push-1.col-sm-push-0
       .sidebar-bkg-2
@@ -20,7 +20,7 @@
         .avatar-content
           .caption = @campaign.avatar_caption
           .fundraiser-name
-            h4 = auto_link @campaign.fundraiser
+            h4 = campaign_fr_website_link(@campaign.fundraiser)
 
           .volunteer-with-us
             a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 

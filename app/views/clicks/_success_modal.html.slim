@@ -3,10 +3,10 @@
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h4.modal-title Thank you for helping!
+        h1.modal-title Thank You!
       .modal-body
-        .lead
-          p Please share our pledge with your family and friends. Every click counts!
+        .lead.text-center
+          p Please share our #{object.object.class.name} via email, Facebook & Twitter!
           hr
           = render partial:'layouts/share_buttons'
       .modal-footer

@@ -1,10 +1,10 @@
 - if campaign.launched?
   - if campaign.fundraiser.stripe_account?
-    .direct_donation_campaign_section.row
+    #donate-now.row
       .col-md-12
-        = render partial:'direct_donations/form', locals:{fundraiser: campaign.fundraiser, campaign: campaign}
+        = render partial:'direct_donations/form', locals:{donable: campaign}
   - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
-    .direct_donation_campaign_section.row
+    #donate-now.row
       .col-md-12
         .alert.alert-warning 
           span Your Campaign can't receive Direct Donations yet.

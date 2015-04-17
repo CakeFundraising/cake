@@ -4,7 +4,7 @@
       .level-divide
         .text-center
           h2 Every Dollar Helps!
-          = render partial:'direct_donations/form', locals:{fundraiser: fundraiser}
+          = render partial:'direct_donations/form', locals:{donable: fundraiser}
 
 - elsif current_fundraiser.present? and current_fundraiser == fundraiser
   .alert.alert-warning

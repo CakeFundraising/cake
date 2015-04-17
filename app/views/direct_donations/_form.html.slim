@@ -1,39 +1,47 @@
-#donation-widget
-  h1 Every Dollar Helps!
+#donation-widget.donation-box
+  h1 Donate Now!
 
-  = semantic_form_for fundraiser.direct_donations.build do |f|
+  = semantic_form_for donable.direct_donations.build do |f|
     = f.inputs do
-      = f.input :fundraiser_id, as: :hidden, input_html:{value: fundraiser.id}
-      - if defined? campaign
-        = f.input :campaign_id, as: :hidden, input_html:{value: campaign.id}
       = f.input :email, as: :hidden
       = f.input :card_token, as: :hidden
+      = f.input :donable_id, as: :hidden
+      = f.input :donable_type, as: :hidden
 
     #direct_donation_amount_input
-      .row.row-centered
-        .col-md-12.col-centered
+      .row
+        .col-md-12
           .direct-donation-form
-            h2 I'd like to give . . .
 
-            br
+            - if donable.is_a?(Campaign)
+              .direct-donation-thermometer
+                .progress
+                  .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(donable.donations_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{donable.donations_thermometer}%"
+                    span.sr-only #{donable.donations_thermometer}% Complete (success)
+                .campaign-stats
+                  span.pull-left
+                    span.boldest.raised = donable.donations_raised
+                  span.pull-right
+                    span.boldest = donable.goal
+                    |  Goal
+
             #donation-buttons
-              button.btn.btn-warning.fixed-amount type="button" data-value='10' $10
               button.btn.btn-warning.fixed-amount type="button" data-value='20' $20
               button.btn.btn-warning.fixed-amount type="button" data-value='50' $50
               button.btn.btn-warning.fixed-amount type="button" data-value='100' $100
-              button.btn.btn-warning type="button" data-toggle="collapse" data-target="#other-donation-input" aria-expanded="false" aria-controls="other-donation-input" You Choose
+              button.btn.btn-warning type="button" data-toggle="collapse" data-target="#other-donation-input-box" aria-expanded="false" aria-controls="other-donation-input" You Choose
 
-            br
-            br
-            #other-donation-input.collapse
+            #other-donation-input-box.collapse
               .input-group
                 span.input-group-addon $
                 input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
                 span.input-group-btn 
-                  button#donate_button.btn.btn-success.btn-md Give
+                  button#donate_button.btn.btn-success.btn-md Donate
 
   .stripe-powered
-    = image_tag 'powered_by_stripe.jpg'
+    .pull-right 
+      = link_to 'https://stripe.com', target: :blank do
+        = image_tag 'powered_by_stripe.png'
 
 javascript:
-  Cake.direct_donation.donate("#{fundraiser}", "#{fundraiser.stripe_account.stripe_publishable_key}", '#{fundraiser.picture.avatar_path}');
+  Cake.direct_donation.donate("#{donable}", "#{donable.stripe_account.stripe_publishable_key}", '#{donable.picture.avatar_path}');

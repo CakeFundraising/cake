@@ -48,6 +48,14 @@ module CampaignsHelper
     )
   end
 
+  def campaign_fr_website_link(text)
+    if current_user.present?
+      link_to text, @campaign.fundraiser
+    else
+      link_to text, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign), target: :_blank
+    end
+  end
+
   def update_campaign_screenshot(campaign)
     if Rails.env.production? or Rails.env.development?
       Resque.enqueue(ResqueSchedule::CampaignScreenshot, campaign.id, campaign_url(campaign)) #update screenshot

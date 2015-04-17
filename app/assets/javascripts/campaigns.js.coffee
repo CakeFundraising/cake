@@ -57,8 +57,13 @@ toggleNav = ->
       return
   return
 
+afterDonation = ->
+  $('#click_counted').modal('show')
+  return
+
 Cake.campaigns.show = (end_date, impression_id, campaignId)->
   toggleNav()
+  afterDonation()
   Cake.campaigns.countdown(end_date)
   Cake.impressions.rendered(impression_id)
   Cake.campaigns.mini_pledges()
