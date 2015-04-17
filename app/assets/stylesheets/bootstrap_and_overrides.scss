@@ -1109,7 +1109,7 @@ h1.name {
     margin-bottom: 0;
     box-shadow: 0px 0px 15px $gray-dark;
     &.regular-campaign-sidebar{
-      margin-top: -120px;
+      margin-top: -100px;
       @media (max-width: $screen-xs-max) {
         margin-top: 0;
       }
