@@ -5,8 +5,10 @@
       = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
     .hero-shake.hidden-xs
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
-      = link_to @campaign.fundraiser do
-        = image_tag @campaign.picture.avatar_path, class:'img-responsive img-loaded'
+      = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
+        div Please visit 
+        div our Website!
+      end
 
   .campaign_and_fundraiser.row
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
@@ -14,8 +16,10 @@
       a data-toggle='modal' data-target='#sp_contact_subs_modal'
         span.glyphicon.glyphicon-envelope
         span.clickable  Contact us!
-      = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'}                  
+      = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'} 
+
     .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
+      h4 = campaign_fr_website_link(@pledge.fundraiser)
       h4 = auto_link @pledge.fundraiser, truncate: 40
 
       .volunteer-with-us
