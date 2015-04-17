@@ -1,13 +1,14 @@
-#click_counted.modal.fade
+#click_counted.modal.fade.thank_you_modal
   .modal-dialog
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h1.modal-title Thank You!
+        h1.modal-title.text-center Thank You!
       .modal-body
-        .lead.text-center
-          p Please share our #{object.object.class.name} via email, Facebook & Twitter!
-          hr
+        .text-center 
           = render partial:'layouts/share_buttons'
+        .row
+          .col-md-10.col-md-push-1
+            h3.text-center Please share our #{object.object.class.name} via email, Facebook & Twitter!
       .modal-footer
         button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close

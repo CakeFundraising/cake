@@ -28,7 +28,7 @@
             h4.share-info.pull-left Please share our Campaign!
 
       .col-md-4.col-sm-6.sidebar
-        .sidebar-bkg.campaign-sidebar.no-border
+        .sidebar-bkg.campaign-sidebar.no-border.regular-campaign-sidebar
           .row
             - if @campaign.past?
               .col-md-12.text-center
@@ -43,7 +43,7 @@
                 .main-cta
                   = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-primary btn-xl'
           
-          = render partial:'campaigns/show_page/stats'
+          = render partial:'campaigns/show_page/regular_campaign_stats'
         
         .row
           .col-md-12
