@@ -5,8 +5,9 @@
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
         h1.modal-title.text-center Thank You!
       .modal-body
-        .text-center 
-          = render partial:'layouts/share_buttons'
+        .text-center
+          .share-buttons
+            .addthis_sharing_toolbox#social data-url=(polymorphic_url(object))
         .row
           .col-md-10.col-md-push-1
             h3.text-center Please share our #{object.object.class.name} via email, Facebook & Twitter!
