@@ -17,24 +17,8 @@ css:
   .hero{ background-image: url("#{@pledge.campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready(
-    Cake.campaigns.show(
-      '#{@pledge.campaign.object.end_date}',
-      "#{@impression.id if @impression.present?}"
-    )
+  Cake.campaigns.show(
+    '#{@pledge.campaign.object.end_date}',
+    "#{@impression.id if @impression.present?}"
   );
-
-  var addthis_share = addthis_share || {}
-  addthis_share = {
-    url_transforms : {
-          shorten: {
-            twitter: 'bitly'
-          }
-      },
-    shorteners : {
-      bitly : {}
-    },
-    templates: {
-      twitter: "Click to help #{@pledge.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
-    }
-  }
+  Cake.addThis.share.campaign("#{@pledge.fundraiser}", "#{pledge_url(@pledge)}");

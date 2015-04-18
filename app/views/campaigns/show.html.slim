@@ -15,26 +15,9 @@ css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( 
-    Cake.campaigns.show(
-      "#{@campaign.object.end_date}", 
-      "#{@impression.id if @impression.present? }",
-      "#{@campaign.id}"
-    ) 
+  Cake.campaigns.show(
+    "#{@campaign.object.end_date}", 
+    "#{@impression.id if @impression.present? }",
+    "#{@campaign.id}"
   );
-
-  var addthis_share = addthis_share || {};
-  addthis_share = {
-    url_transforms : {
-      shorten: {
-        twitter: 'bitly'
-      }      
-    }, 
-    shorteners : {
-      bitly : {} 
-    },
-    templates: { 
-      twitter: "Click to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
-    }   
-  };
-    
+  Cake.addThis.share.campaign("#{@campaign.fundraiser}", "#{campaign_url(@campaign)}");
