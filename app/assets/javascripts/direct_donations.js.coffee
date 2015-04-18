@@ -59,9 +59,14 @@ class DirectDonation
       return
     return
 
+afterDonation = ->
+  $('#direct_donations_thank_you_modal').modal('show') if window.location.search is '?donated=1'
+  return
+
 Cake.direct_donation.donate = (fundraiser_name, key, image)->
   new DirectDonation(fundraiser_name, key, image)
   return
 
 Cake.direct_donation.init = ->
+  afterDonation()
   return

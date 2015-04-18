@@ -25,6 +25,7 @@ Cake.init = ->
   Cake.utils.init()
   Cake.search.init()
   Cake.carousel.init()
+  Cake.direct_donation.init()
   return
 
 $(document).ready(Cake.init)
