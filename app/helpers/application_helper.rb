@@ -3,6 +3,7 @@ module ApplicationHelper
     "active" if current_page?(path)
   end
 
+  #Boolean helpers
   def b(value, options = {})
     options = {
       :true => :yes,
@@ -25,6 +26,7 @@ module ApplicationHelper
     ['true', 'false'].include?(string)
   end
 
+  #List helper
   def basic_list_item(name, value)
     content_tag(:div, class: name) do
       content_tag(:span, name, class:'boldest')+
@@ -32,6 +34,7 @@ module ApplicationHelper
     end
   end
 
+  #Auto helpers
   def auto_link(object, opts={})
     if opts.symbolize_keys![:truncate].present?
       link_to truncate(object.to_s, length: opts[:truncate]), object, opts
@@ -46,15 +49,6 @@ module ApplicationHelper
 
   def auto_mail(object)
     mail_to object.email, object.email
-  end
-
-  def default_meta_tags
-    {
-      :title       => 'Member Login',
-      :description => 'Member login page.',
-      :keywords    => 'Site, Login, Members',
-      :separator   => "&mdash;".html_safe,
-    }
   end
 
   ## Global data

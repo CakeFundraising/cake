@@ -3,10 +3,16 @@ en:
   application:
     name: CakeCauseMarketing
     meta:
-      description: "Check out Cake and launch a 100% free fundraising campaign for your good cause today! Earn the money you need to do good deeds!"
-      keywords: "1,2,3,4,5"
+      description: "Create Win/Win Social Media Partnerships in Minutes! The World's #1 Digital Sponsorship & Partnership Platform"
+      keywords: "Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship"
       og: 
-        title: "Cake - 100% Free, Pay Per Click Fundraising for Good Causes."
+        title: "CakeCauseMarketing - The World's #1 Digital Sponsorship & Partnership Platform."
+        campaigns:
+          title: "Support %{fr}!"
+        fundraisers:
+          title: "%{fr} on CakeCauseMarketing"
+        sponsors:
+          title: "%{sp} on CakeCauseMarketing"
     terms_and_conditions:
       standard: >
         <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>

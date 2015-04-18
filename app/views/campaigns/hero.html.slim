@@ -1,4 +1,4 @@
-= campaign_page_meta
+= campaign_page_meta(@campaign)
 
 = content_for :header do
   = render partial:'campaigns/show_page/header', locals:{resource: @campaign, banner_message: t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe, sidebar_path: 'campaigns/show_page/hero/sidebar'}

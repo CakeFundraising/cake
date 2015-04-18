@@ -246,8 +246,6 @@ GEM
     mail_form (1.5.0)
       actionmailer (>= 3.2, < 5)
       activemodel (>= 3.2, < 5)
-    meta-tags (2.0.0)
-      actionpack (>= 3.0.0)
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -600,7 +598,6 @@ DEPENDENCIES
   kaminari
   launchy
   mail_form
-  meta-tags
   meta_request
   metamagic
   modernizr-rails (~> 2.7.1)

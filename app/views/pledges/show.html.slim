@@ -1,4 +1,4 @@
-= display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@pledge.screenshot_version}/#{pledge_url(@pledge.id)}", description: @pledge.mission, url: request.original_url})
+= pledge_page_meta(@pledge)
 
 = content_for :header do
   = render partial:'campaigns/show_page/header', locals:{resource: @pledge, banner_message: t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe, sidebar_path: 'pledges/show/sidebar'}
