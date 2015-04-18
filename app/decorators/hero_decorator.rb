@@ -10,4 +10,8 @@ class HeroDecorator < CampaignDecorator
   def self.primary_key
     'id'
   end
+
+  def self.base_class
+    Campaign
+  end
 end
