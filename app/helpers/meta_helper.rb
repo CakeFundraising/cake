@@ -1,7 +1,7 @@
 module MetaHelper
 	def display_meta(title)
 		content_tag(:span, class: 'meta') do
-			meta {title: title}
+			meta({title: title})
 		end
 	end
 
