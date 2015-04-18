@@ -11,6 +11,14 @@ class PledgeDecorator < ApplicationDecorator
     object.name
   end
 
+  def class_name
+    object.class.name
+  end
+
+  def instance_name
+    class_name.downcase
+  end
+
   def end_date
     campaign.end_date
   end

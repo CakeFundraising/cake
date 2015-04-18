@@ -1,0 +1,24 @@
+- if @campaign.accepted_pledges.any?
+  .green
+    .container
+      .row.pledgebluestripe.campaign#sponsors_banner
+        .col-md-12.text-center
+          span.h1 
+            div Please get to know our generous business sponsors below!
+            div 
+              span When you click on each of their logos, they will contribute 
+              span.boldest up to #{@campaign.total_donation_per_click}!
+.white
+  .container
+    .row
+      br
+      br
+      - if @custom_pledge_levels
+        = render partial:'campaigns/show/pledges/pledge_level', collection: @sponsor_categories, as: :sc
+      - else
+        - if @campaign.active? and @campaign.accepted_pledges.any?
+          .row
+            = render partial:'campaigns/show/pledges/level_2_sponsors', collection: CampaignPledgeDecorator.decorate_collection(@campaign.accepted_pledges), as: :pledge    
+        - else
+          .row 
+            = render partial:'campaigns/show/pledges/level_2_sponsors', collection: CampaignPledgeDecorator.decorate_collection(@campaign.pledges.past), as: :pledge 

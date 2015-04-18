@@ -58,7 +58,7 @@ toggleNav = ->
   return
 
 afterDonation = ->
-  $('#click_counted').modal('show') if window.location.search is '?donated=1'
+  $('#direct_donations_thank_you_modal').modal('show') if window.location.search is '?donated=1'
   return
 
 Cake.campaigns.show = (end_date, impression_id, campaignId)->

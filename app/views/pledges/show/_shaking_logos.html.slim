@@ -1,38 +1,56 @@
-.col-md-6.hero-pictures-section
-  
-  .row
-    .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding.overlay-effects.clearfix#effect-6
+.row
+  - if is_hero and @pledge.pending?
+    .col-md-6.col-sm-5.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
+      = image_tag 'http://placehold.it/300x200&text=Your+logo+here', class:'img-responsive img-loaded'
+  - else
+    .col-md-6.col-sm-5.col-xs-5.col-xs-push-1.col-md-push-0.no-padding.overlay-effects.clearfix#effect-6
       = render partial:'campaigns/show/pledges/overlays', locals:{pledge: @pledge}
-    .hero-shake.hidden-xs
-    .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
-      = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
-        div Please visit 
-        div our Website!
-      end
 
-  .campaign_and_fundraiser.row
-    .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
+  .hero-shake.hidden-xs
+
+  .col-md-6.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
+    = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
+      div Please visit 
+      div our Website!
+    end
+
+.campaign_and_fundraiser.row
+  .col-md-6.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
+    - if is_hero and @pledge.pending?
+      h4 Your organization name here
+    - else
       h4 = auto_link @pledge.sponsor, truncate: 40
       a data-toggle='modal' data-target='#sp_contact_subs_modal'
         span.glyphicon.glyphicon-envelope
         span.clickable  Contact us!
-      = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.contact'} 
+      - if is_hero
+        = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.contact'}
+      - else
+        = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @pledge, position:'sp.contact'}
 
-    .col-md-5.col-sm-5.col-xs-5.col-xs-push-1.no-padding
-      h4 = campaign_fr_website_link(@pledge.fundraiser)
+  .col-md-6.col-xs-5.col-xs-push-1.col-md-push-0.no-padding
+    h4 = auto_link @campaign.fundraiser, truncate: 40
 
-      .volunteer-with-us
-        a data-toggle='modal' data-target='#campaign_volunteer_subs_modal'
+    .volunteer-with-us
+      a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
+        span.glyphicon.glyphicon-envelope
+        span.clickable  #{@campaign.visitor_action}
+      - if is_hero
+        = render partial:'subscriptions/volunteer_modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+      - else
+        = render partial:'subscriptions/volunteer_modal', locals:{object: @pledge.fundraiser, origin: @campaign, position:'campaign.volunteer'}
+
+
+    - if @pledge.sponsor.present?
+      .thank-sp
+        a data-toggle='modal' data-target='#sp_thank_subs_modal'
           span.glyphicon.glyphicon-envelope
-          span.clickable  #{@campaign.visitor_action}
-        = render partial: 'subscriptions/volunteer_modal', locals: {object: @pledge.fundraiser, origin: @campaign, position: 'campaign.volunteer'}
+          span.clickable  Please thank #{@pledge.sponsor}
+        - if is_hero
+          = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
+        - else
+          = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @pledge, position:'sp.thank'}
 
-      - if @pledge.sponsor.present?
-        .thank-sp
-          a data-toggle='modal' data-target='#sp_thank_subs_modal'
-            span.glyphicon.glyphicon-envelope
-            span.clickable  Please thank #{@pledge.sponsor}
-          = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
-
+    - unless is_hero
       .campaign-page
         = link_to 'Return to Main Campaign Page', @campaign

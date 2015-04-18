@@ -1,0 +1,25 @@
+.container
+  .row.text-center
+    .col-md-6.col-md-push-3
+      = render partial:'campaigns/show_page/direct_donation', locals:{campaign: @campaign}
+      
+    - unless defined? is_pledge
+      .col-md-12
+        .make-pledge.well
+          .row
+            .col-md-12s
+              h4.attention-owners
+                b> Business Owners:
+                | You can Partner with #{@campaign.fundraiser} too!
+              a.btn.btn-primary data-toggle='modal' data-target='#campaign_partner_subs_modal' Learn How
+              = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.partner'}
+  .row
+    .col-md-12
+      / SHARE BUTTONS 
+      .text-center.med-hide 
+        h2 Please share our campaign with your family and friends!
+        p.text-muted Working together, we can make a difference.
+        = render partial:'layouts/share_buttons'
+
+/ CAUSES/SPONSORS CIRCLES
+= render partial: 'layouts/choose_path'

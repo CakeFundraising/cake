@@ -7,6 +7,14 @@ class CampaignDecorator < ApplicationDecorator
   decorates_association :picture
   decorates_association :sponsor_categories
 
+  def class_name
+    object.class.name
+  end
+
+  def instance_name
+    class_name.downcase
+  end
+
   def launch_date
     object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
   end

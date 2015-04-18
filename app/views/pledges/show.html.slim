@@ -1,173 +1,17 @@
 = display_meta("Pledge", {title: "Click now! It is 100% free to help!", image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@pledge.screenshot_version}/#{pledge_url(@pledge.id)}", description: @pledge.mission, url: request.original_url})
 
 = content_for :header do
-  .campaign-banner.text-center
-    .container
-      - if current_user.nil?
-        .expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
-      span.h1 = t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe
-
-  .banner.hero
-    = render partial:'videos/button', locals:{object: @pledge}
-
-    .hero-screen
-  .container
-    .content.row.pull-up.pull-up-pledge
-      .col-md-8
-        .campaign-intro
-          h1.name
-            span.mission = @campaign.mission
-            - if can? :edit, @pledge and not @pledge.past?
-              span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge)
-          .row.clearfix
-            .social.med-hide.pull-left
-              = render partial:'layouts/share_buttons'
-              h4.share-info.pull-left Please share our Pledge!
-
-      .col-md-4.sidebar
-        .sidebar-bkg.campaign-sidebar.no-border
-          .row
-            - if @campaign.past?
-              .col-md-12.text-center
-                .main-cta.alert.alert-danger.ended_campaign This campaign is over
-            - else
-              .col-md-12.text-center
-                .main-cta
-                  = render partial:'clicks/pledge', locals:{pledge: @pledge}
-          .row
-            .col-md-12
-              - if @pledge.max_clicks > 0
-                .progress
-                  .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@pledge.thermometer}%"
-                    span.sr-only #{@pledge.thermometer}% Complete (success)
-              .donation_per_click.text-center
-                span
-                  span.boldest = humanized_money_with_symbol(@pledge.amount_per_click)
-                span  Per Click Up To 
-                span
-                  span.boldest = humanized_money_with_symbol(@pledge.total_amount)
-          hr
-          .row
-            .col-md-12.pledges_total
-              span Total Donations Earned: 
-              span.boldest = @pledge.total_charge
-          hr
-          .row
-            .col-xs-12
-              p.timer-ital Campaign Ends in:
-          .row.text-center#campaign_countdown
-            .col-xs-4.border-right
-              span.campaign-timer.days
-              span d.
-            .col-xs-4.border-right
-              span.campaign-timer.hours
-              span h.
-            .col-xs-4
-              span.campaign-timer.mins
-              span m.
-        .row
-          .col-md-12
-            #how-it-works-link
-              a data-toggle='modal' data-target='#how_it_works'
-                span.glyphicon.glyphicon-expand
-                span See how Cake works!
-              = render partial: 'layouts/how_it_works_modal'
+  = render partial:'campaigns/show_page/header', locals:{resource: @pledge, banner_message: t('information.pledge.banner', sponsor: @pledge.sponsor, donation_per_click: humanized_money_with_symbol(@pledge.amount_per_click), total_donation: humanized_money_with_symbol(@pledge.total_amount), fundraiser: @pledge.fundraiser).html_safe, sidebar_path: 'pledges/show/sidebar'}
 
 = content_for :bottom_section do
   .main-background
-    .white
-      .container
-        .row.sponsor-profile
-          .col-md-6.campaign-story
-            h3 = @pledge.headline
-            p.story.expander
-              = @pledge.description
-            - if @pledge.video.present?
-              p.video-link
-                a data-target="#pledge_video_modal" data-toggle="modal"
-                  span.glyphicon.glyphicon-expand
-                  span See our video
-                = render partial: 'campaigns/hero/pledge_video', locals: {object: @pledge}
-
-          = render partial:'pledges/show/shaking_logos'
-
-    .blue#coupons
-      .container
-        .row.pledgebluestripe.campaign
-          .col-md-12.text-center
-            span.h1.text-center Click and #{@pledge.sponsor_name(26)} will give #{humanized_money_with_symbol(@pledge.amount_per_click)} up to #{humanized_money_with_symbol(@pledge.total_amount)}!
-            .clearfix
-              .col-md-4
-              .col-md-4
-                .btn-holder.text-center
-                  = render partial:'clicks/pledge', locals:{pledge: @pledge}
-              .col-md-4
+    = render partial:'pledges/show/description', locals:{is_hero: false}
 
     = render partial:'pledges/show/coupons_and_news'
 
-    - if @coupons.any? or @news.present?
-      br
-      .green
-        .container
-          .row.pledgebluestripe.campaign
-            .col-md-12.text-center
-              span.h1
-                span Learn More About 
-                span.boldest = @campaign.fundraiser
-  .container
-    .row.sponsor-profile
-      .col-md-8.campaign-story
-        h3 = campaign_fr_website_link(@campaign.headline)
-        p.story.expander = @campaign.story
-      .col-md-4.col-xs-10.col-xs-push-1.col-md-push-0
-        .sidebar-bkg-2
-          .avatar
-            = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
-              div Please visit
-              div our Website!
-            end
-          .avatar-content
-            .caption = @campaign.avatar_caption
-            .fundraiser-name
-              h4 = campaign_fr_website_link(@campaign.fundraiser)
+  = render partial:'pledges/show/fr_section', locals:{is_hero: false}
 
-            .volunteer-with-us
-              a data-toggle='modal' data-target='#campaign_volunteer_subs_modal'
-                span.glyphicon.glyphicon-envelope
-                span.clickable  Join, Sign up or Volunteer with Us!
-              = render partial: 'subscriptions/volunteer_modal', locals: {object: @pledge.fundraiser, origin: @campaign, position: 'campaign.volunteer'}
-
-            - if @pledge.sponsor.present?
-              .thank-sp
-                a data-toggle='modal' data-target='#sp_thank_subs_modal'
-                  span.glyphicon.glyphicon-envelope
-                  span.clickable  Please thank #{@pledge.sponsor}
-                = render partial: 'subscriptions/modal', locals: {object: @pledge.sponsor, origin: @pledge, position: 'sp.thank'}
-            .campaign-page
-              = link_to 'Return to Main Campaign Page', @campaign, class:'btn btn-primary sidebar-button btn-block'
-
-
-  .container
-    .row.text-center
-      hr
-      br
-      br
-      .col-md-6.col-md-push-3
-        = render partial: 'campaigns/show/direct_donations/section', locals: {campaign: @campaign}
-    .row
-      .col-md-12
-        br
-        br
-        / SHARE BUTTONS
-        .text-center.med-hide
-          h2 Please share our pledge with your family and friends!
-          p.text-muted Working together, we can make a difference.
-          .text-center = render partial:'layouts/share_buttons'
-
-  / CAUSES/SPONSORS CIRCLES
-  = render partial: 'layouts/choose_path'
-
-= render partial:'videos/modal', locals:{object: @pledge} if @pledge.video.present?
+  = render partial:'campaigns/show_page/bottom', locals:{is_pledge: true}
 
 css:
   .hero{ background-image: url("#{@pledge.campaign.picture.banner_path}"); }

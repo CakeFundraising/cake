@@ -26,7 +26,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def hero
-    @campaign = resource.decorate
+    @campaign = HeroDecorator.decorate(resource)
     @pledge = HeroPledgeDecorator.decorate(@campaign.hero_pledge || @campaign.build_hero_pledge)
     
     if @pledge.present?
