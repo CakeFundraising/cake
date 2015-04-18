@@ -17,7 +17,11 @@
       .campaign-intro
         / MISSION
         h1.name 
-          span.mission = @campaign.mission
+          span.mission 
+            | #{ @campaign.mission }
+            span.learn-more
+              a href="#learn-more" Learn More 
+
           - if can? :edit, resource and not resource.past?
             br
             span.edit = link_to "Edit #{resource.class_name}", edit_polymorphic_path(resource)
@@ -25,11 +29,8 @@
             br
             span.edit = link_to 'Edit Pledge', edit_pledge_path(pledge)
         / SHARE BUTTONS
-        .row.clearfix
-          .social.med-hide.pull-left
-            = render partial:'layouts/share_buttons'
-          .fr-learn-more.pull-right
-            a.btn.btn-transparent-light href="#learn-more" Learn More              
+        .social.pull-left.hidden-xs
+          = render partial:'layouts/share_buttons'
 
     / SIDEBAR
     .col-md-4.col-sm-6.sidebar
