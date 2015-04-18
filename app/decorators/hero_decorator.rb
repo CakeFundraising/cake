@@ -6,4 +6,8 @@ class HeroDecorator < CampaignDecorator
   def class_name
     "Campaign"  
   end
+
+  def self.primary_key
+    'id'
+  end
 end
