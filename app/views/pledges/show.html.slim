@@ -17,8 +17,12 @@ css:
   .hero{ background-image: url("#{@pledge.campaign.picture.banner_path}"); }
 
 javascript:
-  Cake.campaigns.show(
-    '#{@pledge.campaign.object.end_date}',
-    "#{@impression.id if @impression.present?}"
-  );
-  Cake.addThis.share.campaign("#{@pledge.fundraiser}", "#{pledge_url(@pledge)}");
+  var current_init = function(){
+    Cake.campaigns.show(
+      '#{@pledge.campaign.object.end_date}',
+      "#{@impression.id if @impression.present?}"
+    );
+    Cake.addThis.share.campaign("#{@pledge.fundraiser}", "#{pledge_url(@pledge)}");
+  };
+  $(document).ready(current_init);
+  $(document).on('page:load', current_init);

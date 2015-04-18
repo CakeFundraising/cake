@@ -6,7 +6,7 @@
     - elsif current_user.nil? and resource.launched? and resource.fundraiser.stripe_account?
       .col-md-12.text-center
         .main-cta
-          a.btn.btn-warning.btn-block.btn-xl.donate_now_button data-toggle="modal" data-target="#direct_donation_modal" Donate Now!
+          a.btn.btn-warning.btn-block.btn-xl.donate_now_button data-toggle="modal" data-target="#direct_donation_modal" Donate Now
         = render partial:'direct_donations/modal', locals: {donable: resource}
     - else
       .col-md-12.text-center

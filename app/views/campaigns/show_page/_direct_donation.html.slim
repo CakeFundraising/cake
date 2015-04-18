@@ -3,7 +3,7 @@
     #donate-now.row
       .col-md-12
         = render partial:'direct_donations/form', locals:{donable: campaign}
-        = render partial:'direct_donations/thank_you', locals: {object: @campaign} if params[:donated].present?
+        = render partial:'direct_donations/thank_you_modal', locals: {object: campaign} if params[:donated].present?
   - elsif current_fundraiser.present? and current_fundraiser == campaign.fundraiser
     #donate-now.row
       .col-md-12
