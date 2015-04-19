@@ -12,7 +12,7 @@
 
   = render partial:'pledges/show/fr_section', locals:{is_hero: true}
 
-  = render partial:'campaigns/show_page/bottom'
+  = render partial:'campaigns/show_page/bottom', locals: {direct_donations: true}
 
 css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }

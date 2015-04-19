@@ -7,7 +7,7 @@
           = link_to pledge.click_path, target: :_blank, class:"expand #{classes if defined? classes}" do
             div.thanks Thank you! 
             div.earning You earned #{pledge.amount_per_click} for #{pledge.fundraiser}!
-    -else
+    - else
       .avatar-container.overlay-img
         = pledge.picture.avatar
         .effect-overlay

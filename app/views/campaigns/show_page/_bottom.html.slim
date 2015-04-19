@@ -1,7 +1,8 @@
 .container
   .row.text-center
-    .col-md-6.col-md-push-3
-      = render partial:'campaigns/show_page/direct_donation', locals:{campaign: @campaign}
+    - if defined? direct_donations
+      .col-md-6.col-md-push-3
+        = render partial:'campaigns/show_page/direct_donation', locals:{campaign: @campaign}
       
     - unless defined? is_pledge
       .col-md-12
