@@ -8,6 +8,7 @@
         .main-cta
           a.btn.btn-warning.btn-block.btn-xl.donate_now_button data-toggle="modal" data-target="#direct_donation_modal" Donate Now
         = render partial:'direct_donations/modal', locals: {donable: resource}
+        = render partial:'direct_donations/thank_you_modal', locals: {object: resource} if params[:donated].present?
     - else
       .col-md-12.text-center
         .main-cta
