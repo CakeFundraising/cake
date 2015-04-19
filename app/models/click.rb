@@ -23,8 +23,8 @@ class Click < ActiveRecord::Base
       campaign = self.pledge.campaign
 
       Pusher.trigger("campaign_#{campaign.id}_raised", 'update', {
-        raised: campaign.decorate.raised,
-        campaign_thermometer: campaign.pledges_thermometer,
+        raised: campaign.decorate.total_donations_and_clicks,
+        campaign_thermometer: campaign.donation_clicks_thermometer,
         pledge_id: self.pledge_id,
         pledge_thermometer: self.pledge.reload.thermometer
       })

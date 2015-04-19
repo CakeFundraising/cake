@@ -134,7 +134,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def redirect_to_hero_campaign
-    redirect_to hero_campaign_path(resource) if resource.hero
+    redirect_to hero_campaign_path(resource, request.query_parameters) if resource.hero
   end
 
   def permitted_params

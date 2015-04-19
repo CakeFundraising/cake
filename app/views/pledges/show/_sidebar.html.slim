@@ -13,11 +13,12 @@
         .progress
           .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@pledge.thermometer}%"
             span.sr-only #{@pledge.thermometer}% Complete (success)
-      .donation_per_click.text-center
+      .donation_per_click
         span
           span.boldest = humanized_money_with_symbol(@pledge.amount_per_click)
-        span  Per Click Up To 
-        span
+          span  Per Click
+        span.pull-right
+          span Up to 
           span.boldest = humanized_money_with_symbol(@pledge.total_amount)
   hr
   .row

@@ -71,6 +71,10 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.donations_raised
   end
 
+  def total_donations_and_clicks
+    h.humanized_money_with_symbol object.total_donations_and_clicks
+  end
+
   def status
     object.status.titleize
   end
