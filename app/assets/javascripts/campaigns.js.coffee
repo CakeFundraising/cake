@@ -47,13 +47,13 @@ Cake.campaigns.mini_pledges = ->
 toggleNav = ->
   nav = $('nav.navbar.navbar-default')
 
-  if nav.find('a.user-logged-in').length is 0
+  if nav.find('.logged-out').length isnt 0
     expandLogo = $('.expand-nav')
 
     nav.hide()
     expandLogo.click ->
+      nav.fadeIn 500
       $(this).hide()
-      nav.fadeToggle(500)
       return
   return
 
