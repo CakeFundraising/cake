@@ -29,11 +29,11 @@
           .row
             .col-md-12
               .progress.campaign-thermometer
-                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
-                  span.sr-only #{@campaign.pledges_thermometer}% Complete (success)
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.donation_clicks_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.donation_clicks_thermometer}%"
+                  span.sr-only #{@campaign.donation_clicks_thermometer}% Complete (success)
               .campaign-stats
                 span
-                  span.boldest.raised = @campaign.raised_by_status
+                  span.boldest.raised = @campaign.total_donations_and_clicks
                 span.pull-right
                   span.boldest = @campaign.goal
                   |  Goal
