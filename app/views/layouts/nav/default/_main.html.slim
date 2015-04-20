@@ -14,8 +14,8 @@
           = menu_item "Questions", help_page_path('faq')
           = menu_item "Success Stories", about_page_path('success_stories')
     ul.nav.navbar-nav
-      = menu_item "Promote Your Business!", about_page_path('sponsoring')
-      = menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
+      /= menu_item "Promote Your Business!", about_page_path('sponsoring')
+      /= menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
       /= menu_item "Earn Money", "#"
     ul.nav-cta.navbar-right
       = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}

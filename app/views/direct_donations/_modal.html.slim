@@ -1,3 +1,6 @@
+- thermometer = donable.try(:donation_clicks_thermometer) || donable.donations_thermometer
+- raised = donable.try(:total_donations_and_clicks) || donable.donations_raised
+
 #direct_donation_modal.modal.fade
   .modal-dialog
     .modal-content
@@ -22,11 +25,11 @@
                     - if donable.is_a?(Campaign)
                       .direct-donation-thermometer
                         .progress
-                          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(donable.donations_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{donable.donations_thermometer}%"
-                            span.sr-only #{donable.donations_thermometer}% Complete (success)
+                          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{thermometer}%"
+                            span.sr-only #{thermometer}% Complete (success)
                         .campaign-stats
                           span.pull-left
-                            span.boldest.raised = donable.donations_raised
+                            span.boldest.raised = raised
                           span.pull-right
                             span.boldest = donable.goal
                             |  Goal
