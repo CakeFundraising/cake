@@ -35,7 +35,7 @@ module MetaHelper
 			title: t('application.meta.og.campaigns.title', fr: campaign.fundraiser),
 			og: {
 				title: t('application.meta.og.campaigns.title', fr: campaign.fundraiser), 
-				image: campaign.screenshot_url, 
+				image: campaign.shareable_screenshot_url, 
 				description: campaign.mission, 
 				url: campaign_url(campaign)
 			},
@@ -44,7 +44,7 @@ module MetaHelper
 				site: '@CakeCauses',
 				title: t('application.meta.og.campaigns.title', fr: campaign.fundraiser),
 				description: campaign.mission, 
-				image: campaign.screenshot_url, 
+				image: campaign.shareable_screenshot_url, 
 				url: campaign_url(campaign)
 			}
 		}
@@ -59,7 +59,7 @@ module MetaHelper
 			og: {
 				title: t('application.meta.og.campaigns.title', fr: pledge.fundraiser), 
 				description: pledge.mission, 
-				image: pledge.screenshot_url, 
+				image: pledge.shareable_screenshot_url, 
 				url: pledge_url(pledge)
 			},
 			twitter: {
@@ -67,7 +67,7 @@ module MetaHelper
 				site: '@CakeCauses',
 				title: t('application.meta.og.campaigns.title', fr: pledge.fundraiser),
 				description: pledge.mission, 
-				image: pledge.screenshot_url, 
+				image: pledge.shareable_screenshot_url, 
 				url: pledge_url(pledge)
 			}
 		}

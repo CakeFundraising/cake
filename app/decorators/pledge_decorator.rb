@@ -75,4 +75,8 @@ class PledgeDecorator < ApplicationDecorator
   def click_path
     object.instance_of?(Pledge) ? h.click_pledge_path(object) : h.click_quick_pledge_path(object)
   end
+
+  def shareable_screenshot_url
+    object.screenshot_url.split('url2png').join('url2png/w_1200,h_600,c_fill,g_north,r_10') unless object.screenshot_url.blank?
+  end
 end
