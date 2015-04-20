@@ -1,8 +1,9 @@
-- cache [:mini_pledge, pledge.campaign, pledge] do
-  .col-md-3.col-sm-3.col-xs-10.col-xs-push-1.col-md-push-0.col-sm-push-0.mini-pledge
-    .platinum id=(pledge.id)
-      .overlay-effects.clearfix#effect-6
-        = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-md'}
+.col-md-3.col-sm-3.col-xs-10.col-xs-push-1.col-md-push-0.col-sm-push-0.mini-pledge
+  .platinum id=(pledge.id)
+    .overlay-effects.clearfix#effect-6
+      = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-md'}
+      
+    - cache [:mini_pledge, pledge.campaign, pledge] do
       .levels
         .sponsor-name.truncate = pledge.sponsor_autolink
         .location.truncate = pledge.sponsor_location
