@@ -102,7 +102,7 @@ class CampaignsController < InheritedResources::Base
   def badge
     @campaign = resource.decorate
     response.headers.except! 'X-Frame-Options'
-    render layout: 'iframe_layout'
+    render 'badge', layout: 'iframe_layout'
   end
 
   #actions
