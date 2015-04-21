@@ -10,7 +10,6 @@
               .avatar
                 = picture_rollover(@pledge.picture.avatar, pledge_url(@pledge)) do
                   div Click to help.
-                  div It's Free!
                 end
               .avatar-content.text-center
                 h3 = link_to @pledge.sponsor, pledge_url(@pledge), target: :_blank
@@ -19,7 +18,6 @@
               .avatar
                 = picture_rollover(@campaign.picture.avatar, pledge_url(@pledge)) do
                   div Click to help.
-                  div It's Free!
                 end
               .avatar-content.text-center
                 h3 = link_to @pledge.fundraiser, pledge_url(@pledge), target: :_blank
