@@ -26,11 +26,11 @@
 
     br
     .text-center
-      iframe width='800px' height='540px' src=badge_campaign_url(@campaign)
+      iframe width='800px' height='540px' src=badge_url(@campaign)
 
     .share-embed.text-left
       textarea#embedded_link.form-control disabled='' rows="5" 
-        iframe width='800px' height='540px' src=badge_campaign_url(@campaign)
+        iframe width='800px' height='540px' src=badge_url(@campaign)
           p 
             | See this campaign here: 
             = link_to @campaign.mission, campaign_url(@campaign), target: :_blank

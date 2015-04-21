@@ -40,13 +40,13 @@
               = screenshot_tag_for pledge
             div.pull-right
               br
-              = link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + pledge_url(pledge), class:'btn btn-primary', :download => 'pledge.png'
+              = link_to "Download", pledge.screenshot_url, class:'btn btn-primary', download: 'pledge.png'
         .row.section-wrapper.text-center       
           h2 Embed on Your Website
           p.text-muted Copy the source code below and past it on your website
           .share-embed.text-left
             textarea#embedded_link.form-control disabled='' rows="5" 
-              iframe width='800px' height='600px' src=badge_pledge_url(pledge)
+              iframe width='800px' height='600px' src=badge_url(pledge)
                 p 
                   | See this Pledge here: 
                   = link_to pledge, pledge_url(pledge), target: :_blank

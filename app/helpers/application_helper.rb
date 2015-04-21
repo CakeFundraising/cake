@@ -67,4 +67,8 @@ module ApplicationHelper
   def sponsors_count
     number_to_human(Sponsor.count, units: :numbers, format: '%n%u')
   end
+
+  def badge_url(object)
+    "#{Cake::IFRAME_HOST}/badges/#{object.object.class.name.downcase}/#{object.id}"
+  end
 end

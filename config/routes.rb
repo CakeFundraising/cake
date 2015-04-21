@@ -38,7 +38,7 @@ Cake::Application.routes.draw do
         get :launch_wizard, path: :launch
         get :share
       end
-      get :badge
+      get :badge, to: redirect {|params| "#{Cake::IFRAME_HOST}/badges/campaign/#{params[:id]}"}
       patch :launch
       patch :save_for_launch
       patch :toggle_visibility
@@ -72,7 +72,7 @@ Cake::Application.routes.draw do
       patch :set_increase
       patch :increase_request
 
-      get :badge
+      get :badge, to: redirect {|params| "#{Cake::IFRAME_HOST}/badges/pledge/#{params[:id]}"}
       patch :launch
 
       patch :accept

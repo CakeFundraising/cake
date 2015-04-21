@@ -98,13 +98,6 @@ class CampaignsController < InheritedResources::Base
     render 'campaigns/form/share'
   end
 
-  #Badge
-  def badge
-    @campaign = resource.decorate
-    response.headers.except! 'X-Frame-Options'
-    render 'badge', layout: 'iframe_layout'
-  end
-
   #actions
   def save_for_launch
     resource.pending!

@@ -111,13 +111,6 @@ class PledgesController < InheritedResources::Base
     render 'pledges/form/share'
   end
 
-  def badge
-    @pledge = resource.decorate
-    @campaign = @pledge.campaign
-    response.headers.except! 'X-Frame-Options'
-    render layout: 'iframe_layout'
-  end
-
   #Actions
   def accept
     resource.notify_approval if resource.accepted!
