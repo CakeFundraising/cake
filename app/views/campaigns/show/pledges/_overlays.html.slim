@@ -1,5 +1,4 @@
-/ - if pledge.active? and pledge.campaign.launched?
-- if true
+- if pledge.active? and pledge.campaign.launched?
   - if pledge.unique_click_for_browser?(current_browser) or pledge.bonus_click_for_browser?(current_browser)
     .avatar-container.overlay-img
       = pledge.picture.avatar
@@ -13,8 +12,6 @@
       .effect-overlay
         = link_to pledge.click_path, target: :_blank, class:"expand #{classes if defined? classes} click-link" do
           div.click_to_help Click to earn #{pledge.amount_per_click} for #{pledge.fundraiser}!
-          /div It's 100% free
-          /div No strings attached
         a.close-overlay.hidden x
 - else
   .avatar-container.overlay-img

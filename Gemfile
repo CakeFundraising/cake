@@ -26,7 +26,7 @@ gem 'zeroclipboard-rails', '~> 0.1.0'
 #Views
 gem 'slim'
 gem 'slim-rails'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.4.1'
 gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
