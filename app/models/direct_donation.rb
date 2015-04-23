@@ -1,5 +1,5 @@
 class DirectDonation < ActiveRecord::Base
-  belongs_to :donable, polymorphic: true
+  belongs_to :donable, polymorphic: true, touch: true
   has_one :charge, as: :chargeable
 
   monetize :amount_cents
