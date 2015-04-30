@@ -2,15 +2,13 @@
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-left
       li
-        a data-toggle="modal" data-target="#how_it_works" href=''
-          span.glyphicon.glyphicon-play-circle
-          span  Watch the Video
+        = menu_item "How Cake Works?", about_page_path('how_it_works')
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
           | About Cake
           span.caret
         ul.dropdown-menu
-          = menu_item "About", about_page_path('cake')
+          = menu_item "About Cake", about_page_path('cake')
           = menu_item "Questions", help_page_path('faq')
           = menu_item "Success Stories", about_page_path('success_stories')
     ul.nav.navbar-nav
