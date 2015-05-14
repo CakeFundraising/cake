@@ -14,6 +14,7 @@ json.(@user, :id)
         json.location do
           json.(@user.fundraiser.location, :complete)
         end
+        json.picture @user.fundraiser.picture
       end
     end
 
@@ -23,6 +24,7 @@ json.(@user, :id)
         json.location do
           json.(@user.sponsor.location, :complete)
         end
+        json.picture @user.sponsor.picture
       end
     end
   end
