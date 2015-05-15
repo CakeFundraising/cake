@@ -27,6 +27,7 @@
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
 //= require cloudinary/jquery.fileupload
+//= require ./jquery.cloudinary
 
 //= require cocoon
 //= require cocoon_limiter
@@ -65,7 +66,7 @@
 //= require ./pledge_levels
 //= require ./quick_pledges
 //= require ./pledge_levels_form
-//= require ./cloudinary_crop
+//= require ./cloudinary_widget
 //= require ./help
 //= require ./mailers
 //= require ./jcarousel
@@ -81,7 +82,6 @@
 //= require ./pledge_news
 //= require ./pictures
 //= require ./videos
-//= require ./jquery.cloudinary
 //= require ./remember_me
 //= require ./cake_popover
 //= require ./datepicker

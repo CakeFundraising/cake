@@ -3504,6 +3504,17 @@ ul#share-block {
 
   }
 
+  .upload-button {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 120px);
+    z-index: 999;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px #111;
+    border: 1px solid;
+    color: white;
+  }
+
   span {
     background: #08c1dc;
     border: 1px solid #07abc3;

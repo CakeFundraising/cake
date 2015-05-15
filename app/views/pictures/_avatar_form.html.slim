@@ -1,30 +1,20 @@
-= f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
-  = p.input :avatar, as: :uploader, removable: false, parent: f
-  = p.input :avatar_caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
-  #avatar_coords
-    = p.input :avatar_crop_x, as: :hidden, input_html:{class: 'crop_x'}
-    = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
-    = p.input :avatar_crop_w, as: :hidden, input_html:{class: 'crop_w'}
-    = p.input :avatar_crop_h, as: :hidden, input_html:{class: 'crop_h'}
-    
-  - if f.object.errors.present?
-    = p.input :avatar, as: :hidden
+#avatar_form_wrapper
+  = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
+    = p.input :avatar, as: :uploader
+    = p.input :avatar_caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
+    .coords
+      = p.input :avatar_crop_x, as: :hidden, input_html:{class: 'crop_x'}
+      = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
+      = p.input :avatar_crop_w, as: :hidden, input_html:{class: 'crop_w'}
+      = p.input :avatar_crop_h, as: :hidden, input_html:{class: 'crop_h'}
 
-  /! Crop modal
-  #crop_modal.modal.fade aria-hidden="true" data-backdrop="static" aria-labelledby="use_label" role="dialog" tabindex="-1" 
-    .modal-dialog
-      .modal-content
-        .modal-header
-          h3#use_label.modal-title Uploading your image...
-        .modal-body
-          #image-container
-          #no_upload.text-center 
-            = image_tag 'cake_logo.jpg', width: '100%'
-            #overlay_loading
-          .success
-        .modal-footer
-          button.btn.btn-default data-dismiss="modal" type="button" Cancel
-          button.btn.btn-primary#crop_button type="button" Crop
+    - if f.object.errors.present?
+      = p.input :avatar, as: :hidden
 
-  javascript:
-    Cake.pictures.avatarPresent = #{p.object.avatar.present?};
+    javascript:
+      var options = {
+        wrapper: '#avatar_form_wrapper',
+        preview: '.uploader.input .avatar',
+        ratio: 1.5
+      };
+      Cake.widget.new(options);

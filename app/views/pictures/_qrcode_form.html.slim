@@ -1,10 +1,16 @@
-= f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
-  = p.input :qrcode, as: :uploader, removable: false, parent: f
-  #qrcode_coords
-    = p.input :qrcode_crop_x, as: :hidden, input_html:{class: 'crop_x'}
-    = p.input :qrcode_crop_y, as: :hidden, input_html:{class: 'crop_y'}
-    = p.input :qrcode_crop_w, as: :hidden, input_html:{class: 'crop_w'}
-    = p.input :qrcode_crop_h, as: :hidden, input_html:{class: 'crop_h'}
+#qrcode_form_wrapper
+  = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
+    = p.input :qrcode, as: :uploader
+    .coords
+      = p.input :qrcode_crop_x, as: :hidden, input_html:{class: 'crop_x'}
+      = p.input :qrcode_crop_y, as: :hidden, input_html:{class: 'crop_y'}
+      = p.input :qrcode_crop_w, as: :hidden, input_html:{class: 'crop_w'}
+      = p.input :qrcode_crop_h, as: :hidden, input_html:{class: 'crop_h'}
 
-  javascript:
-    Cake.pictures.qrcodePresent = #{p.object.qrcode.present?};
+    javascript:
+      var options = {
+        wrapper: '#qrcode_form_wrapper',
+        preview: '.uploader.input .qrcode',
+        ratio: 1
+      };
+      Cake.widget.new(options);
