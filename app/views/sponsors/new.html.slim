@@ -9,9 +9,12 @@
       .container.first-of-all.wizard-wrap
         .row.text-center
           h2 Contact Information
+          br
         .row
           .col-md-2
-          .col-md-8
+          .col-md-4
+            = render partial:'pictures/avatar_form', locals:{f: f}
+          .col-md-4
             = f.input :name, input_html:{maxlength: 20 }
             = f.input :email
             = f.input :phone
@@ -21,7 +24,6 @@
         .row
           .col-md-2
           .col-md-8
-            /= render partial:'locations/form', locals:{f: f}
             = f.semantic_fields_for :location do |l|
               = l.input :address
               = l.input :city

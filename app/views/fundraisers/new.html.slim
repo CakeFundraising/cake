@@ -15,7 +15,9 @@
           h2 Contact Information
         .row
           .col-md-2
-          .col-md-8
+          .col-md-4
+            = render partial:'pictures/avatar_form', locals:{f: f}
+          .col-md-4
             = f.input :name, input_html:{maxlength: 20 }
             = f.input :email
             = f.input :phone
