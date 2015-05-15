@@ -9,6 +9,8 @@ module API
       default_error_formatter :json
       content_type :json, 'application/json'
       use ::WineBouncer::OAuth2
+      formatter :json, Grape::Formatter::Jbuilder
+
       add_swagger_documentation base_path: "/api",
         api_version: 'v1',
         hide_format: true, # don't show .json
@@ -46,6 +48,8 @@ module API
       end
 
       mount API::V1::Users
+      mount API::V1::Fundraisers
+      mount API::V1::Sponsors
 
       route :any, '*path' do
         raise StandardError, "Unable to find endpoint"

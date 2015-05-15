@@ -4,7 +4,6 @@ module API
       extend ActiveSupport::Concern
       included do 
         helpers Doorkeeper::Grape::Helpers
-        formatter :json, Grape::Formatter::Jbuilder
 
         before do
           doorkeeper_authorize!
