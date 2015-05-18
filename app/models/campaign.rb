@@ -139,7 +139,7 @@ class Campaign < ActiveRecord::Base
 
   #Click Analytics
   def total_donation_per_click
-    pledges.accepted.sum(:amount_per_click_cents)/100.0
+    pledges.accepted.not_fully_subscribed.sum(:amount_per_click_cents)/100.0
   end
 
   def current_pledges_total
