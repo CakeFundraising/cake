@@ -2,7 +2,7 @@
   - if pledge.unique_click_for_browser?(current_browser) or pledge.bonus_click_for_browser?(current_browser)
     .avatar-container.overlay-img
       - if pledge.fully_subscribed?
-        span.label.label-purple.overlapped.hero-label Fully Subscribed
+        span.label.label-purple.overlapped.fully-subscribed-label Fully Subscribed
       = pledge.picture.avatar
       .effect-overlay.blue-bg
         = link_to pledge.click_path, target: :_blank, class:"expand #{classes if defined? classes}" do
@@ -11,7 +11,7 @@
   - else
     .avatar-container.overlay-img
       - if pledge.fully_subscribed?
-        span.label.label-purple.overlapped.hero-label Fully Subscribed
+        span.label.label-purple.overlapped.fully-subscribed-label Fully Subscribed
       = pledge.picture.avatar
       .effect-overlay
         = link_to pledge.click_path, target: :_blank, class:"expand #{classes if defined? classes} click-link" do
@@ -20,6 +20,6 @@
 - else
   .avatar-container.overlay-img
     - if pledge.fully_subscribed?
-      span.label.label-purple.overlapped.hero-label Fully Subscribed
+      span.label.label-purple.overlapped.fully-subscribed-label Fully Subscribed
     = link_to pledge.website_url, target: :_blank do
       = pledge.picture.avatar 
