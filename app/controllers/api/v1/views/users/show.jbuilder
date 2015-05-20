@@ -12,8 +12,7 @@ json.extra do
     json.fundraiser do
       json.(@user.fundraiser, :id, :name, :mission, :website, :phone, :email, :manager_id)
       json.location do
-        json.(@user.fundraiser.location, :address, :state_code, :country_code, :city, :zip_code)
-        json.(@user.fundraiser.location, :complete)
+        json.(@user.fundraiser.location, :address, :state_code, :country_code, :city, :zip_code, :complete)
       end
       json.picture @user.fundraiser.picture
     end
@@ -23,8 +22,7 @@ json.extra do
     json.sponsor do
       json.(@user.sponsor, :id, :name, :mission, :website, :phone, :email, :manager_id)
       json.location do
-        json.(@user.sponsor.location, :address, :state_code, :country_code, :city, :zip_code)
-        json.(@user.sponsor.location, :complete)
+        json.(@user.sponsor.location, :address, :state_code, :country_code, :city, :zip_code, :complete)
       end
       json.picture @user.sponsor.picture
     end
