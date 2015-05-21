@@ -27,9 +27,9 @@ class Fundraiser < ActiveRecord::Base
   has_many :subscriptors, as: :object
 
   delegate :city, :state, :state_code, :country, :address, to: :location
-  delegate :stripe_publishable_key, :token, to: :stripe_account
 
-  alias_method :stripe_token, :token
+  delegate :stripe_publishable_key, to: :stripe_account, allow_nil: true
+  delegate :uid, :token, to: :stripe_account, prefix: true, allow_nil: true
 
   validates :name, :email, :phone, :causes, presence: true
   validates :email, email: true
