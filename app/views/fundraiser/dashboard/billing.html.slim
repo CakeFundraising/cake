@@ -32,23 +32,24 @@ ul.nav.nav-tabs
       h3 Stripe Account
 
       - if @stripe_account.present?
-        strong ID: 
-        span = @stripe_account.uid
+        h5 
+          span Account ID: 
+          span = @stripe_account.uid
       - else
         span.help-block = t('messages.stripe.fundraisers.not_found')
       br
       div = stripe_buttons
 
-    - if @stripe_account.present?
-      .credit_card
-        h3 Bank Account
+    / - if @stripe_account.present?
+    /   .credit_card
+    /     h3 Bank Account
 
-        - if @stripe_account.recipient?
-          strong Stripe Bank Account token:
-          span = @stripe_account.stripe_recipient_id
-        - else
-          span.help-block = t('messages.stripe.fundraisers.bank_account_not_found')
+    /     - if @stripe_account.recipient?
+    /       strong Stripe Bank Account token:
+    /       span = @stripe_account.stripe_recipient_id
+    /     - else
+    /       span.help-block = t('messages.stripe.fundraisers.bank_account_not_found')
           
-        br
-        div = link_to 'Update Bank Account', bank_account_fundraiser_path(current_fundraiser), class:'btn btn-primary'
+    /     br
+    /     div = link_to 'Update Bank Account', bank_account_fundraiser_path(current_fundraiser), class:'btn btn-primary'
   

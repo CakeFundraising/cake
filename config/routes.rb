@@ -93,8 +93,8 @@ Cake::Application.routes.draw do
 
   resources :fundraisers, except: [:index, :destroy] do
     member do
-      get :bank_account
-      patch :set_bank_account
+      #get :bank_account
+      #patch :set_bank_account
       scope :pictures, controller: :cropping do
         post :crop
       end
