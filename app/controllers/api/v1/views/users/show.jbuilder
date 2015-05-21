@@ -10,7 +10,7 @@ end
 json.extra do
   if @user.fundraiser?
     json.fundraiser do
-      json.(@user.fundraiser, :id, :name, :mission, :website, :phone, :email, :manager_id)
+      json.(@user.fundraiser, :id, :name, :mission, :website, :phone, :email, :manager_id, :stripe_publishable_key, :stripe_token)
       json.location do
         json.(@user.fundraiser.location, :address, :state_code, :country_code, :city, :zip_code, :complete)
       end
