@@ -7,6 +7,14 @@ class CampaignDecorator < ApplicationDecorator
   decorates_association :picture
   decorates_association :sponsor_categories
 
+  def class_name
+    object.class.name
+  end
+
+  def instance_name
+    class_name.downcase
+  end
+
   def launch_date
     object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
   end
@@ -59,6 +67,14 @@ class CampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.goal
   end
 
+  def donations_raised
+    h.humanized_money_with_symbol object.donations_raised
+  end
+
+  def total_donations_and_clicks
+    h.humanized_money_with_symbol object.total_donations_and_clicks
+  end
+
   def status
     object.status.titleize
   end
@@ -80,5 +96,9 @@ class CampaignDecorator < ApplicationDecorator
     unless object.url.blank?
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
     end
+  end
+
+  def shareable_screenshot_url
+    object.screenshot_url.split('url2png').join('url2png/w_1200,h_600,c_fill,g_north,r_10') unless object.screenshot_url.blank?
   end
 end

@@ -33,7 +33,8 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  has_many :impressions, as: :impressionable
+  has_many :impressions, as: :impressionable, dependent: :destroy
+  has_many :direct_donations, as: :donable
 
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
   accepts_nested_attributes_for :sponsor_categories, allow_destroy: true, reject_if: :all_blank
@@ -48,6 +49,8 @@ class Campaign < ActiveRecord::Base
   validates_associated :sponsor_categories, if: :custom_pledge_levels
 
   validate :sponsor_categories_max_min_value, if: :custom_pledge_levels
+
+  delegate :stripe_account, to: :fundraiser
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
@@ -134,6 +137,15 @@ class Campaign < ActiveRecord::Base
     pledges.accepted.order(total_amount_cents: :desc, amount_per_click_cents: :desc)
   end
 
+  #Click Analytics
+  def total_donation_per_click
+    pledges.accepted.not_fully_subscribed.sum(:amount_per_click_cents)/100.0
+  end
+
+  def current_pledges_total
+    pledges.accepted.sum(:total_amount_cents)/100
+  end
+
   def raised(status=:accepted)
     pledges.send(status).map(&:total_charge).sum.to_f
   end
@@ -141,14 +153,6 @@ class Campaign < ActiveRecord::Base
   def raised_by_status
     status = self.launched? ? :accepted : self.status
     pledges.send(status).map(&:total_charge).sum.to_f
-  end
-
-  def total_donation_per_click
-    pledges.accepted.sum(:amount_per_click_cents)/100.0
-  end
-
-  def current_pledges_total
-    pledges.accepted.sum(:total_amount_cents)/100
   end
 
   def current_average_donation
@@ -160,6 +164,24 @@ class Campaign < ActiveRecord::Base
     (raised_by_status/goal.amount)*100 unless goal.amount == 0.0
   end
 
+  #Direct Donation Analytics
+  def donations_thermometer
+    (donations_raised/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  def donations_raised
+    direct_donations.map(&:amount).sum.to_f
+  end
+
+  def total_donations_and_clicks
+    raised_by_status + donations_raised
+  end
+
+  def donation_clicks_thermometer
+    (total_donations_and_clicks/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  #Popular
   def self.popular
     self.with_picture.with_pledges.not_past.not_incomplete.visible.latest.first(12)
   end

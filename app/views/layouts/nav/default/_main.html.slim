@@ -2,20 +2,18 @@
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-left
       li
-        a data-toggle="modal" data-target="#how_it_works" href=''
-          span.glyphicon.glyphicon-play-circle
-          span  Watch the Video
+        = menu_item "How Cake Works?", about_page_path('how_cake_works')
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
           | About Cake
           span.caret
         ul.dropdown-menu
-          = menu_item "About", about_page_path('cake')
+          = menu_item "About Cake", about_page_path('cake')
           = menu_item "Questions", help_page_path('faq')
           = menu_item "Success Stories", about_page_path('success_stories')
     ul.nav.navbar-nav
-      = menu_item "Promote Your Business!", about_page_path('sponsoring')
-      = menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
+      /= menu_item "Promote Your Business!", about_page_path('sponsoring')
+      /= menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
       /= menu_item "Earn Money", "#"
     ul.nav-cta.navbar-right
       = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}

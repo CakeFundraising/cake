@@ -24,10 +24,10 @@
         hr
         .thermometer
           .progress
-            .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.pledges_thermometer}%"
-              span.sr-only #{campaign.pledges_thermometer}% Complete (success)          
+            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(campaign.donation_clicks_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.donation_clicks_thermometer}%"
+              span.sr-only #{campaign.donation_clicks_thermometer}% Complete (success)          
           .campaign-stats
-            strong = campaign.raised_by_status
+            strong = campaign.total_donations_and_clicks
             span 
             /Raised
             span.pull-right 

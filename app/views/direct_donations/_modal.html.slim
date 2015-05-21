@@ -1,0 +1,62 @@
+- thermometer = donable.try(:donation_clicks_thermometer) || donable.donations_thermometer
+- raised = donable.try(:total_donations_and_clicks) || donable.donations_raised
+
+#direct_donation_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true" &times;
+        h1.modal-title Donate Now
+      .modal-body
+        #donation-widget
+          = semantic_form_for donable.direct_donations.build do |f|
+            = f.inputs do
+              = f.input :email, as: :hidden
+              = f.input :card_token, as: :hidden
+              = f.input :donable_id, as: :hidden
+              = f.input :donable_type, as: :hidden
+
+            #direct_donation_amount_input
+              .row
+                .col-md-12
+                  .direct-donation-form
+
+                    - if donable.is_a?(Campaign)
+                      .direct-donation-thermometer
+                        .progress
+                          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{thermometer}%"
+                            span.sr-only #{thermometer}% Complete (success)
+                        .campaign-stats
+                          span.pull-left
+                            span.boldest.raised = raised
+                          span.pull-right
+                            span.boldest = donable.goal
+                            |  Goal
+
+                    #donation-buttons
+                      button.btn.btn-warning.fixed-amount type="button" data-value='20' $20
+                      button.btn.btn-warning.fixed-amount type="button" data-value='50' $50
+                      button.btn.btn-warning.fixed-amount type="button" data-value='100' $100
+                      button.btn.btn-warning type="button" data-toggle="collapse" data-target="#other-donation-input" aria-expanded="false" aria-controls="other-donation-input" You Choose
+
+                    #other-donation-input.collapse
+                      .input-group
+                        span.input-group-addon $
+                        input type="text" class="form-control" name="direct_donation[amount]" placeholder="Donation Amount" id="direct_donation_amount"
+                        span.input-group-btn 
+                          button#donate_button.btn.btn-success.btn-md Donate
+
+          .stripe-powered
+            .pull-right 
+              = link_to 'https://stripe.com', target: :blank do
+                = image_tag 'powered_by_stripe.png'
+
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modals
+
+javascript:
+  Cake.direct_donation.donate("#{donable}", "#{donable.stripe_account.stripe_publishable_key}", '#{donable.picture.avatar_path}');

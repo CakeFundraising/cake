@@ -1,0 +1,15 @@
+.white
+  .container
+    .row.sponsor-profile
+      .col-md-6.campaign-story
+        h3 = @pledge.headline
+        p.story.expander
+          = @pledge.description
+        - if @pledge.video.present?
+          p.video-link
+            a data-target="#pledge_video_modal" data-toggle="modal"
+              span.glyphicon.glyphicon-expand
+              span See our video
+            = render partial: 'campaigns/hero/pledge_video', locals: {object: @pledge}
+      .col-md-6.hero-pictures-section
+        = render partial:'pledges/show/shaking_logos', locals:{is_hero: is_hero}

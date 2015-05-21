@@ -3,8 +3,8 @@
     .col-md-12
       .level-divide
         .text-center
-          h2 Every Dollar Helps!
-          = render partial:'direct_donations/form', locals:{fundraiser: fundraiser}
+          = render partial:'direct_donations/form', locals:{donable: fundraiser}
+          = render partial:'direct_donations/thank_you_modal', locals: {object: fundraiser} if params[:donated].present?
 
 - elsif current_fundraiser.present? and current_fundraiser == fundraiser
   .alert.alert-warning

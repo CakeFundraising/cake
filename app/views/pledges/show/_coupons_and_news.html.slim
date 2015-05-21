@@ -1,3 +1,18 @@
+.blue#coupons
+  .container
+    .row.pledgebluestripe.campaign#sponsors_banner
+      .col-md-12.text-center
+        span.h1 
+          span Click below and 
+          span.boldest = (@pledge.sponsor || 'YOUR NAME')
+          span  will give  
+          span.boldest#amount_per_click = @pledge.amount_per_click
+          span  up to 
+          span.boldest #{@pledge.total_amount}! 
+      .col-md-4.col-md-push-4
+        .blue-banner-click-button
+          = render partial:'clicks/pledge', locals: {pledge: @pledge}
+
 - if @coupons.any? and @pledge.show_coupons
   .row
     .col-md-12.special-offers

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414171949) do
+ActiveRecord::Schema.define(version: 20150417153922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,11 @@ ActiveRecord::Schema.define(version: 20150414171949) do
     t.string   "amount_currency", limit: 255, default: "USD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fundraiser_id"
+    t.integer  "donable_id"
+    t.string   "donable_type"
   end
+
+  add_index "direct_donations", ["donable_type", "donable_id"], name: "index_direct_donations_on_donable_type_and_donable_id", using: :btree
 
   create_table "extra_clicks", force: :cascade do |t|
     t.integer  "clickable_id"

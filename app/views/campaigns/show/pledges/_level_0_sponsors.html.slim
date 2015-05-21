@@ -1,13 +1,14 @@
-- cache [:mini_pledge, pledge.campaign, pledge] do
-  .col-md-2.col-sm-2.col-xs-10.col-xs-push-1.col-md-push-0.col-sm-push-0.mini-pledge
-    .platinum id=(pledge.id)
-      .overlay-effects.clearfix#effect-6
-        = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-sm'}
+.col-md-2.col-sm-3.col-xs-10.col-xs-push-1.col-md-push-0.col-sm-push-0.mini-pledge
+  .platinum id=(pledge.id)
+    .overlay-effects.clearfix#effect-6
+      = render partial:'campaigns/show/pledges/overlays', locals:{pledge: pledge, classes:'expand-level-0'}
+      
+    - cache [:mini_pledge, pledge.campaign, pledge] do
       .levels
         .sponsor-name.truncate = pledge.sponsor_autolink
         .location.truncate = pledge.sponsor_location
         .progress
-          .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
+          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{pledge.thermometer}%"
             span.sr-only #{pledge.thermometer}% Complete (success)
         span
           span.amount_per_click = pledge.amount_per_click

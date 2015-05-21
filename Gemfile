@@ -4,7 +4,6 @@ ruby '2.2.0'
 
 gem 'rails', '4.2.0'
 gem 'turbolinks', '~> 2.5.3'
-gem 'meta-tags', :require => 'meta_tags'
 gem 'metamagic'
 
 #Analytics
@@ -27,7 +26,7 @@ gem 'zeroclipboard-rails', '~> 0.1.0'
 #Views
 gem 'slim'
 gem 'slim-rails'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.4.1'
 gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'

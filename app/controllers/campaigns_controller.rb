@@ -26,7 +26,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def hero
-    @campaign = resource.decorate
+    @campaign = HeroDecorator.decorate(resource)
     @pledge = HeroPledgeDecorator.decorate(@campaign.hero_pledge || @campaign.build_hero_pledge)
     
     if @pledge.present?
@@ -98,13 +98,6 @@ class CampaignsController < InheritedResources::Base
     render 'campaigns/form/share'
   end
 
-  #Badge
-  def badge
-    @campaign = resource.decorate
-    response.headers.except! 'X-Frame-Options'
-    render layout: 'iframe_layout'
-  end
-
   #actions
   def save_for_launch
     resource.pending!
@@ -134,7 +127,7 @@ class CampaignsController < InheritedResources::Base
   end
 
   def redirect_to_hero_campaign
-    redirect_to hero_campaign_path(resource) if resource.hero
+    redirect_to hero_campaign_path(resource, request.query_parameters) if resource.hero
   end
 
   def permitted_params

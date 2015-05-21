@@ -5,7 +5,7 @@ html lang="en"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
     meta name="apple-mobile-web-app-title" content="CakeFundraising"
-    = display_meta_tags :site => t('application.name'), :title => '', :description => t('application.meta.description'), :keywords => '', :og => { :title => t('application.meta.og.title'), :url => request.original_url, :image => image_url("fb_share.png"), :description => t('application.meta.description') }
+    = cake_meta_tags
     = csrf_meta_tags
     /! Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
@@ -40,8 +40,6 @@ html lang="en"
     - if content_for? :header
       header
         = yield :header
-    
-    = render partial:'layouts/how_it_works_modal'
     
     - if content_for? :sidebar
       .container#main-container

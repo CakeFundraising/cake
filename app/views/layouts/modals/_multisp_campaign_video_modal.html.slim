@@ -1,0 +1,28 @@
+#multisp_campaign_video.modal.fade.video_modal
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h2.modal-title How Cake works - Single-Sponsor Hero Campaign
+      .modal-body
+        iframe id="multisp_campaign_video_iframe" class="youtube_video" title="YouTube video player" width="100%" height="400px" src="//www.youtube.com/embed/12BS_9tXzwc?theme=light" frameborder="0" allowfullscreen
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
+
+javascript:
+  var yt_init = function(){
+    Cake.videos.youtube({
+      modal: '#multisp_campaign_video',
+      provider: 'youtube',
+      iframeId: "multisp_campaign_video_iframe",
+      autoshow: true
+    });
+  };
+
+  if(window.YT){
+    yt_init();
+  }else{
+    Cake.videos.youtubeApi();
+    Cake.videos.queueFunctions(yt_init);
+  }

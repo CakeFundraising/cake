@@ -23,7 +23,7 @@
 
     br
     .text-center
-      iframe width='800px' height='720px' src=badge_pledge_url(@pledge)
+      iframe width='800px' height='720px' src=badge_url(@pledge)
 
     .share-embed.row.text-center
       h3 Place a Pledge Badge on your website that links to your Pledge!.
@@ -31,7 +31,7 @@
 
       h4 Copy code to paste into your website:
       textarea#embedded_link.form-control.pledge-badge disabled='' rows="5" 
-        iframe width='800px' height='720px' src=badge_pledge_url(@pledge)
+        iframe width='800px' height='720px' src=badge_url(@pledge)
           p 
             | See this pledge here: 
             = link_to @pledge.mission, pledge_url(@pledge), target: :_blank

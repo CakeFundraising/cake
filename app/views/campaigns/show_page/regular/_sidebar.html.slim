@@ -1,0 +1,44 @@
+.sidebar-bkg.campaign-sidebar.no-border.regular-campaign-sidebar
+  .row
+    - if resource.past?
+      .col-md-12.text-center
+        .main-cta.alert.alert-danger.ended_campaign This campaign is over
+    - elsif current_user.nil? and resource.launched? and resource.fundraiser.stripe_account?
+      .col-md-12.text-center
+        .main-cta
+          a.btn.btn-warning.btn-block.btn-xl.donate_now_button data-toggle="modal" data-target="#direct_donation_modal" Donate Now
+          /a.earn_extra_link href="#sponsors_banner" Earn extra contributions!
+
+        = render partial:'direct_donations/modal', locals: {donable: resource}
+        = render partial:'direct_donations/thank_you_modal', locals: {object: resource} if params[:donated].present?
+    - else
+      .col-md-12.text-center
+        .main-cta
+          = link_to t('actions.make_pledge'), new_pledge_path(campaign: resource), class:'btn btn-primary btn-xl'
+  
+  hr
+  .row
+    .col-md-12
+      .progress.campaign-thermometer
+        .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(resource.donation_clicks_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{resource.donation_clicks_thermometer}%"
+          span.sr-only #{resource.donation_clicks_thermometer}% Complete (success)
+      .campaign-stats
+        span
+          span.boldest.raised = resource.total_donations_and_clicks
+        span.pull-right
+          span.boldest = resource.goal
+          |  Goal
+  hr
+  .row
+    .col-xs-12
+      h4.campaign-ends.timer-ital Campaign Ends In:
+  .row.text-center#campaign_countdown
+    .col-xs-4.border-right
+      span.campaign-timer.days
+      span d.
+    .col-xs-4.border-right
+      span.campaign-timer.hours
+      span h.
+    .col-xs-4
+      span.campaign-timer.mins
+      span m.

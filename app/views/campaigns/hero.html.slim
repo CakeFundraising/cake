@@ -1,187 +1,29 @@
-= campaign_page_meta
+= campaign_page_meta(@campaign)
 
 = content_for :header do
-  .campaign-banner.text-center
-    .container
-      - if current_user.nil?
-        .expand-nav.hidden-xs.hidden-sm = image_tag 'cake_logo_white.png'
-      span.h1 = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
-      
-  .banner.hero
-    = render partial:'videos/button', locals:{object: @campaign}
-    = render partial:'videos/modal', locals:{object: @campaign} if @campaign.video.present?
-    
-    .hero-screen
-  .container
-    .content.row.pull-up.pull-up-hero
-      .col-md-8.col-sm-6
-        .campaign-intro
-          h1.name 
-            span.mission = @campaign.mission
-            - if can? :edit, @campaign and not @campaign.past?
-              br
-              span.edit = link_to 'Edit Campaign', edit_campaign_path(@campaign) 
-            - if can? :edit, @pledge and not @pledge.past?
-              br
-              span.edit = link_to 'Edit Pledge', edit_pledge_path(@pledge) 
-          .row.clearfix
-            .social.med-hide.pull-left
-              = render partial:'layouts/share_buttons'
-              h4.share-info.pull-left Please share our Campaign!
-
-      .col-md-4.col-sm-6.sidebar
-        .sidebar-bkg.campaign-sidebar.no-border
-          .row
-            - if @campaign.past?
-              .col-md-12.text-center
-                .main-cta.alert.alert-danger.ended_campaign This campaign is over
-            - elsif not @campaign.hero_pledge?
-              .col-md-12.text-center
-                .main-cta
-                  = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-success btn-xl'
-            - else 
-              .col-md-12.text-center
-                .main-cta
-                  = render partial:'clicks/campaign'
-          
-          = render partial:'campaigns/show_page/stats'
-
-        .row
-          .col-md-12
-            #how-it-works-link
-              a data-toggle='modal' data-target='#how_it_works'
-                span.glyphicon.glyphicon-expand
-                span See how Cake works!
-              = render partial:'layouts/how_it_works_modal'
+  = render partial:'campaigns/show_page/header', locals:{resource: @campaign, banner_message: t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe, sidebar_path: 'campaigns/show_page/hero/sidebar', how_it_works_path: 'campaigns/show_page/hero/how_it_works_modal'}
 
 = content_for :bottom_section do
   .main-background
     - if @pledge.present?
-      .white
-        .container
-          .row.sponsor-profile
-            .col-md-6.campaign-story
-              h3 = @pledge.headline
-              p.story.expander 
-                = @pledge.description
-              - if @pledge.video.present?
-                p.video-link
-                  a data-target="#pledge_video_modal" data-toggle="modal" 
-                    span.glyphicon.glyphicon-expand
-                    span See our video
-                  = render partial:'campaigns/hero/pledge_video', locals:{object: @pledge}
-              
-            .col-md-6.hero-pictures-section
-              = render partial:'campaigns/hero/shaking_pictures'
-      .blue
-        .container
-          .row.pledgebluestripe.campaign#sponsors_banner
-            .col-md-12.text-center
-              span.h1 
-                span Click below and 
-                span.boldest = (@pledge.sponsor || 'YOUR NAME')
-                span  will give  
-                span.boldest#amount_per_click = @pledge.amount_per_click
-                span  up to 
-                span.boldest #{@pledge.total_amount}! 
-            .col-md-4.col-md-push-4
-              .blue-banner-click-button
-                = render partial:'clicks/pledge', locals: {pledge: @pledge}
+      = render partial:'pledges/show/description', locals:{is_hero: true}
 
       = render partial:'pledges/show/coupons_and_news'
 
-      - if @coupons.any? or @news.present?
-        br
-        .green
-          .container
-            .row.pledgebluestripe.campaign
-              .col-md-12.text-center
-                span.h1 
-                  span Learn More About 
-                  span.boldest = @campaign.fundraiser
+  = render partial:'pledges/show/fr_section', locals:{is_hero: true}
 
-    .container
-      .row.sponsor-profile
-        .col-md-8.col-sm-6.campaign-story
-          h3 = @campaign.headline
-          p.story.expander = @campaign.story
-        .col-md-4.col-sm-6.col-xs-10.col-xs-push-1.col-sm-push-0
-          .sidebar-bkg-2
-            .avatar 
-              = picture_rollover(@campaign.picture.avatar, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign)) do
-                div Please visit 
-                div our Website!
-              end
-            .avatar-content
-              .caption = @campaign.avatar_caption
-              .fundraiser-name
-                h4 = auto_link @campaign.fundraiser
-
-              .volunteer-with-us
-                a data-toggle='modal' data-target='#campaign_volunteer_subs_modal' 
-                  span.glyphicon.glyphicon-envelope
-                  span.clickable  #{@campaign.visitor_action}
-                = render partial:'subscriptions/volunteer_modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.volunteer'}
-
-              - if @pledge.sponsor.present?
-                .thank-sp
-                  a data-toggle='modal' data-target='#sp_thank_subs_modal'
-                    span.glyphicon.glyphicon-envelope
-                    span.clickable  Please thank #{@pledge.sponsor}
-                  = render partial:'subscriptions/modal', locals:{object: @pledge.sponsor, origin: @campaign, position:'sp.thank'}
-
-    .container
-      .row.text-center
-        .col-md-6.col-md-push-3
-          = render partial:'campaigns/show/direct_donations/section', locals:{campaign: @campaign}
-        .col-md-12
-          .make-pledge.well
-            .row
-              .col-md-12s
-                h4.attention-owners
-                  b> Business Owners:
-                  | You can Partner with #{@campaign.fundraiser} too!
-                a.btn.btn-primary data-toggle='modal' data-target='#campaign_partner_subs_modal' Learn How
-                = render partial:'subscriptions/modal', locals:{object: @campaign.fundraiser, origin: @campaign, position:'campaign.partner'}
-      .row
-        .col-md-12
-          / SHARE BUTTONS 
-          .text-center.med-hide 
-            h2 Please share our campaign with your family and friends!
-            p.text-muted Working together, we can make a difference.
-            = render partial:'layouts/share_buttons'
-      / .row
-      /   / DISQUS COMMENTS
-      /   .col-md-12.text-center.campaign-story
-      /     = render partial:'campaigns/show/disqus'
-
-    / CAUSES/SPONSORS CIRCLES
-    = render partial: 'layouts/choose_path'
+  = render partial:'campaigns/show_page/bottom', locals: {direct_donations: true}
 
 css:
   .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
 
 javascript:
-  $(document).ready( 
+  var current_init = function(){
     Cake.campaigns.show(
       "#{@campaign.object.end_date}", 
       "#{@impression.id if @impression.present? }",
       "#{@campaign.id}"
-    ) 
-  );
-
-  var addthis_share = addthis_share || {};
-  addthis_share = {
-    url_transforms : {
-      shorten: {
-        twitter: 'bitly'
-      }      
-    }, 
-    shorteners : {
-      bitly : {} 
-    },
-    templates: { 
-      twitter: "Click to help #{@campaign.fundraiser}. It is 100% free! {{url}} via @cakefundraising"
-    }   
+    );
+    Cake.addThis.share.campaign("#{@campaign.fundraiser}", "#{campaign_url(@campaign)}");
   };
-    
+  $(document).ready(current_init);

@@ -1,0 +1,41 @@
+.sidebar-bkg.campaign-sidebar.no-border
+  .row
+    - if @campaign.past?
+      .col-md-12.text-center
+        .main-cta.alert.alert-danger.ended_campaign This campaign is over
+    - else
+      .col-md-12.text-center
+        .main-cta
+          = render partial:'clicks/pledge', locals:{pledge: @pledge}
+  .row
+    .col-md-12
+      - if @pledge.max_clicks > 0
+        .progress
+          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@pledge.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@pledge.thermometer}%"
+            span.sr-only #{@pledge.thermometer}% Complete (success)
+      .donation_per_click
+        span
+          span.boldest = humanized_money_with_symbol(@pledge.amount_per_click)
+          span  Per Click
+        span.pull-right
+          span Up to 
+          span.boldest = humanized_money_with_symbol(@pledge.total_amount)
+  hr
+  .row
+    .col-md-12.pledges_total
+      span Total Donations Earned: 
+      span.boldest = @pledge.total_charge
+  hr
+  .row
+    .col-xs-12
+      p.timer-ital Campaign Ends in:
+  .row.text-center#campaign_countdown
+    .col-xs-4.border-right
+      span.campaign-timer.days
+      span d.
+    .col-xs-4.border-right
+      span.campaign-timer.hours
+      span h.
+    .col-xs-4
+      span.campaign-timer.mins
+      span m.

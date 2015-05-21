@@ -1,13 +1,15 @@
-#click_counted.modal.fade
+#click_counted.modal.fade.thank_you_modal
   .modal-dialog
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h4.modal-title Thank you for helping!
+        h1.modal-title.text-center Thank You!
       .modal-body
-        .lead
-          p Please share our pledge with your family and friends. Every click counts!
-          hr
-          = render partial:'layouts/share_buttons'
+        .text-center
+          .share-buttons
+            .addthis_sharing_toolbox#social data-url=(polymorphic_url(object.object))
+        .row
+          .col-md-10.col-md-push-1
+            h3.text-center Please share our #{object.object.class.name} via email, Facebook & Twitter!
       .modal-footer
         button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close

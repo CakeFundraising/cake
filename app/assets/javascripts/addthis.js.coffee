@@ -1,4 +1,7 @@
-Cake.initAddthis = ->
+Cake.addThis ?= {}
+Cake.addThis.share ?= {}
+
+initialize = ->
   # Remove all global properties set by addthis, otherwise it won't reinitialize
   if window.addthis
     window.addthis = null
@@ -18,4 +21,16 @@ Cake.initAddthis = ->
     window.addthis.init()
     return
     
+  return
+
+Cake.addThis.share.campaign = (fr, url)->
+  window.addthis_share ?= {}
+  window.addthis_share =
+    url_transforms: shorten: twitter: 'bitly'
+    shorteners: bitly: {}
+    templates: twitter: "Support #{fr}! Your click can make a difference! #{url} via @CakeCauses"
+  return
+
+Cake.addThis.init = ->
+  initialize()
   return

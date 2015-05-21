@@ -1,4 +1,4 @@
-= display_meta(@fundraiser.name, {title: @fundraiser.name + " – Check out our Cake profile. See how we rank! Pledge a campaign today!", image: @fundraiser.picture.avatar_path, description: "Cake – 100% free donation per click fundraising for good causes! Start a free campaign today!", url: request.original_url})
+= fr_page_meta(@fundraiser)
 
 = content_for :header do
   .banner.hero
@@ -178,6 +178,7 @@
           .boldest.init-caps = Fundraiser.human_attribute_name :manager_phone
           div = @fundraiser.manager_phone
         .direct-donation
+        
           = render partial:'fundraisers/show/direct_donations/section', locals:{fundraiser: @fundraiser}
     .row
       .col-md-12

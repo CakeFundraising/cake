@@ -36,16 +36,12 @@ module CampaignsHelper
     end
   end
 
-  def campaign_page_meta
-    display_meta(
-      @campaign.fundraiser.name, 
-      { 
-        title: "Click and help support us! It is 100% free!", 
-        image: "http://res.cloudinary.com/cakefundraising/image/url2png/w_1200,h_630,c_fill,g_north,r_10/#{@campaign.screenshot_version}/#{campaign_url(@campaign.id)}", 
-        description: @campaign.mission, 
-        url: request.original_url
-      }
-    )
+  def campaign_fr_website_link(text)
+    if current_user.present?
+      link_to text, @campaign.fundraiser
+    else
+      link_to text, click_fundraiser_path(@campaign.fundraiser, campaign_id: @campaign), target: :_blank
+    end
   end
 
   def update_campaign_screenshot(campaign)

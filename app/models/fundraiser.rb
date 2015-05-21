@@ -22,7 +22,7 @@ class Fundraiser < ActiveRecord::Base
 
   has_many :received_payments, as: :recipient, class_name:'Payment', dependent: :destroy
 
-  has_many :direct_donations, dependent: :destroy
+  has_many :direct_donations, as: :donable, dependent: :destroy
 
   has_many :subscriptors, as: :object
 

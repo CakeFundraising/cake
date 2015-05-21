@@ -2,6 +2,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'variables';
+@import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'mixins';
 @import 'mixins-buttons';
@@ -112,6 +113,9 @@ h3{
 
 h3, h4 {
   color: $brand-primary;
+  &.campaign-ends{
+    color: black;
+  }
 }
 
 hr{
@@ -503,7 +507,7 @@ p.signup-social span:before, p.signup-social span:after {
 }
 
 .btn-transparent-light{
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
   border: 1px solid;
   &:hover{
     border: 1px solid $link-color;
@@ -669,19 +673,10 @@ form{
     width: 342px;
     height: 150px;
   }
-
-  /*.avatar{
-    overflow: hidden;
-    max-width: 305px;
-    max-height: 230px;
-    width: 100%;
-    height: 100%;
-  }*/
 }
 
 .form-control{
 	height: 40px;
-	/*font-size: 16px;*/
 }
 
 .input-group{
@@ -1006,9 +1001,12 @@ $lines-to-show: 2;
 }
 
 .pull-up {
-  margin-top: -315px;
+  margin-top: -270px;
+  &.pull-up-hero{
+   margin-top: -315px; 
+  }
   &.pull-up-pledge{
-    margin-top: -336px;
+    margin-top: -315px;
   }
   @media (max-width: $screen-sm-max) {
     margin-top: -330px;
@@ -1102,7 +1100,14 @@ h1.name {
     margin-top: -80px;
     margin-bottom: 0;
     box-shadow: 0px 0px 15px $gray-dark;
+    &.regular-campaign-sidebar{
+      margin-top: -120px;
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0;
+      }
+    }
   }
+
 }
 
 
@@ -1122,6 +1127,11 @@ h1.name {
   }
   @media (max-width: $screen-xs-max) {
     font-size: 24px;
+  }
+  .learn-more{
+    float: none;
+    font-size: 16px;
+    margin-left: 12px;
   }
 }
 
@@ -1482,8 +1492,17 @@ table.performance-summary {
   }
 }
 
+.visit_our_sps{
+  font-size: 50px;
+  font-weight: bold;
+}
+
 .blue-banner-click-button{
   margin-top: 15px;
+}
+
+#learn-more-banner{
+  margin-top: -1px;
 }
 
 .make-pledge {
@@ -1520,6 +1539,8 @@ table.performance-summary {
     height: 1000px;
   }
 }
+
+
 .bottom-arrow {
   background: image-url("bottom-arrow.png") no-repeat;
   height: 96px;
@@ -1527,6 +1548,7 @@ table.performance-summary {
   @include background-size(cover);
   background-position: 50% 0px;
 }
+
 .never-easier {
   margin-top: 135px;
   color: #fff;
@@ -1678,12 +1700,33 @@ table.performance-summary {
   margin: 30px 0px;
 }
 
+.donate_now_button{
+  text-transform: uppercase;
+  font-size: 34px !important;
+  font-weight: bold;
+  padding: 10px 0px !important;
+  @media (max-width: $screen-xs-max) {
+    font-size: 32px !important;
+  }
+  margin-bottom: 10px;
+}
+.earn_extra_link{
+  font-size: 20px;
+  display: block;
+  margin-bottom: -15px;
+  margin-top: 13px;
+}
+
 #donation-widget{
-  border: 1px solid #ccc;
-  padding: 30px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0px 2px 3px #ccc;
+  &.donation-box{
+    border: 1px solid #ccc;
+    padding: 30px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px #ccc;
+    margin: 30px 0px;
+  }
+  
   h1{
     font-size: 40px;
     margin-top: 0;
@@ -1692,9 +1735,17 @@ table.performance-summary {
     margin-top: 0;
     color: $gray-light;
   }
+  .direct-donation-thermometer{
+    margin-bottom: 50px;
+  }
+
   #donation-buttons{
+    clear: both;
+    margin-bottom: 10px;
     button{
       margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 24px;
     }
   }
   #direct_donation_amount_input{
@@ -1707,9 +1758,8 @@ table.performance-summary {
     }
   }
   .stripe-powered{
-    img{
-      width: 80%;
-    }
+    margin-bottom: 35px;
+    margin-top: 15px;
   }
 }
 
@@ -1811,14 +1861,14 @@ a {
     font-size: 30px;
     text-decoration: none;
     height: 100%;
-    &.expand-sm{
+    &.expand-level-0{
       @media (min-width: $screen-md-min) {
         text-shadow: 0px 0px 1px $gray;
         font-size: 16px;
         line-height: 16px;
       }
     }
-    &.expand-md{
+    &.expand-level-1{
       @media (min-width: $screen-md-min) {
         line-height: 25px;
         font-size: 25px;
@@ -1910,13 +1960,13 @@ a {
           font-size: 36px;
         }
       }
-      a.expand-md{
+      a.expand-level-1{
         padding-top: 10%;
         .thanks{
           font-size: 32px;
         }
       }
-      a.expand-sm{
+      a.expand-level-0{
         padding-top: 10%;
         .thanks{
           font-size: 20px;
@@ -1934,6 +1984,39 @@ a {
       -moz-transition: all 0.5s;
       -o-transition: all 0.5s;
       transition: all 0.5s;
+      .click_to_help{
+        font-size: 34px;
+        padding: 15px;
+        margin-bottom: 15px;
+        line-height: 1em;
+      }
+      &.expand-level-1{
+        .click_to_help{
+          font-size: 30px;
+          @media (max-width: $screen-sm-max) {
+            font-size: 24px;
+          }
+          @media (max-width: $screen-xs-max) {
+            font-size: 34px;
+            padding: 15px;
+            margin-bottom: 15px;
+            line-height: 1em;
+          }
+        }
+      }
+      &.expand-level-0{
+        .click_to_help{
+          font-size: 22px;
+          line-height: 1.2em;
+          @media (max-width: $screen-xs-max) {
+            font-size: 34px;
+            padding: 15px;
+            margin-bottom: 15px;
+            line-height: 1em;
+          }
+        }
+      }
+
     }
   }
   // Green overlay
@@ -1942,30 +2025,32 @@ a {
     opacity: 1;
     a.expand {
       // Top Level
-      padding-top:18%;
+      padding-top:16%;
       opacity: 1;
-      .click_to_help{
-        font-size: 36px;
-        margin-bottom: 15px; 
+      @media (max-width: $screen-sm-max) {
+        padding-top: 8%;
+      }
+      @media (max-width: $screen-xs-max) {
+        padding-top:12%;
       }
       // Medium Level
-      &.expand-sm{
-        @media (min-width: $screen-md-min) {
-          padding-top:18%;
-          .click_to_help{
-            font-size: 20px;
-            margin-bottom: 10px; 
-          }
+      &.expand-level-1{
+        padding-top: 12%;
+        @media (max-width: $screen-sm-max) {
+          padding-top: 5%;
+        }
+        @media (max-width: $screen-xs-max) {
+          padding-top:12%;
         }
       }
       // Lowest Level
-      &.expand-md{
-        @media (min-width: $screen-md-min) {
-          padding-top:18%;
-          .click_to_help{
-            font-size: 32px;
-            margin-bottom: 12px; 
-          }
+      &.expand-level-0{
+        padding-top: 5%;
+        @media (max-width: $screen-xs-max) {
+          padding-top: 2%;
+        }
+        @media (max-width: $screen-xs-max) {
+          padding-top:12%;
         }
       }
     }
@@ -1974,8 +2059,6 @@ a {
       a.expand{
         opacity: 0;
       }
-      a.expand-md{
-      }
     }
   }
 }
@@ -1983,6 +2066,10 @@ a {
 .hero-label{
   font-size:16px;
   box-shadow: 1px 1px 0px #999;
+}
+.fully-subscribed-label{
+  font-size: 18px;
+  left: 0px !important;
 }
 
 // Mini Pledges -----------------------------------------------------------------
@@ -2038,6 +2125,9 @@ a {
     }
     @media (max-width: $screen-xs-max) {
       font-size: 22px;
+    }
+    a{
+      text-decoration: none;
     }
   }
   p{
@@ -3908,7 +3998,7 @@ ul#share-block {
 
 .label.overlapped{
   position: absolute;
-  z-index: 9;
+  z-index: 99;
   top: 0;
 }
 
@@ -4057,3 +4147,8 @@ ul#share-block {
   }
 }
 
+.about-page{
+  p{
+    font-size: 18px;
+  }
+}

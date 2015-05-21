@@ -1,0 +1,15 @@
+#direct_donations_thank_you_modal.modal.fade.thank_you_modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h1.modal-title.text-center Thank You!
+      .modal-body
+        .text-center
+          .share-buttons
+            .addthis_sharing_toolbox#social data-url=(polymorphic_url(object.object))
+        .row
+          .col-md-10.col-md-push-1
+            h3.text-center Please share our #{object.object.class.name} via email, Facebook & Twitter!
+      .modal-footer
+        button.btn.btn-default.pull-right data-dismiss="modal" type="button" Close

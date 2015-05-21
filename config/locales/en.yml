@@ -3,10 +3,16 @@ en:
   application:
     name: CakeCauseMarketing
     meta:
-      description: "Check out Cake and launch a 100% free fundraising campaign for your good cause today! Earn the money you need to do good deeds!"
-      keywords: "1,2,3,4,5"
+      description: "Create Win/Win Social Media Partnerships in Minutes! The World's #1 Digital Sponsorship & Partnership Platform"
+      keywords: "Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship"
       og: 
-        title: "Cake - 100% Free, Pay Per Click Fundraising for Good Causes."
+        title: "CakeCauseMarketing - The World's #1 Digital Sponsorship & Partnership Platform."
+        campaigns:
+          title: "Support %{fr}!"
+        fundraisers:
+          title: "%{fr} on CakeCauseMarketing"
+        sponsors:
+          title: "%{sp} on CakeCauseMarketing"
     terms_and_conditions:
       standard: >
         <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
@@ -165,12 +171,12 @@ en:
         share: 5. Confirm Your Pledge
   information:
     hero_campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> <br/> Click below and %{sp} will give %{amount} for you!"
+      banner: "Support <span class='boldest'>%{fr}!</span> <br/> Click below and %{sp} will give %{amount} for you!"
       no_pledge: "<span class='boldest'>%{fr}</span> needs a Hero! Become our exclusive Sponsor today!"
     campaign:
-      banner: "Help <span class='boldest'>%{fr}!</span> <br/> Click on our generous %{sp_name} below. <span class='boldest'>You click and they give!</span>"
+      banner: "Support <span class='boldest'>%{fr}!</span>"
     pledge:
-      banner: "<span class='boldest'>Help %{fundraiser}!</span> <br/> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
+      banner: "<span class='boldest'>Support %{fundraiser}!</span> <br/> Click below and %{sponsor} will give %{donation_per_click} up to %{total_donation}!"
     wizards:
       campaign:
 

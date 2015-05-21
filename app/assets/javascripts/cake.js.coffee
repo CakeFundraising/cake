@@ -15,7 +15,7 @@ Cake.init = ->
   Cake.extra_donation_pledges()
   Cake.pledges.update_triggers()
   Cake.bootstrap_overrides.init()
-  Cake.initAddthis()
+  Cake.addThis.init()
   Cake.validations.init()
   Cake.sponsors_form()
   Cake.campaigns.init()
@@ -24,6 +24,7 @@ Cake.init = ->
   Cake.utils.init()
   Cake.search.init()
   Cake.carousel.init()
+  Cake.direct_donation.init()
   return
 
 $(document).ready(Cake.init)

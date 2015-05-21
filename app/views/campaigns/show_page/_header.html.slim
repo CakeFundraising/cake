@@ -1,0 +1,41 @@
+.campaign-banner.text-center
+  .container
+    / TOP BANNER
+    - if current_user.nil?
+      .expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+    span.h1 = banner_message
+
+.banner.hero
+  / VIDEOS
+  = render partial:'videos/button', locals:{object: resource}
+  = render partial:'videos/modal', locals:{object: resource} if resource.video.present?
+  .hero-screen
+
+.container
+  div class="content row pull-up pull-up-#{resource.instance_name}"
+    .col-md-8.col-sm-6
+      .campaign-intro
+        / MISSION
+        h1.name 
+          span.mission 
+            | #{ @campaign.mission }
+            span.learn-more
+              a href="#learn-more-banner" Learn More 
+
+          - if can? :edit, resource and not resource.past?
+            br
+            span.edit = link_to "Edit #{resource.class_name}", edit_polymorphic_path(resource)
+          - if defined? pledge and can? :edit, pledge and not pledge.past?
+            br
+            span.edit = link_to 'Edit Pledge', edit_pledge_path(pledge)
+        / SHARE BUTTONS
+        .social.pull-left.hidden-xs
+          = render partial:'layouts/share_buttons'
+
+    / SIDEBAR
+    .col-md-4.col-sm-6.sidebar
+      = render partial: sidebar_path, locals: {resource: resource}
+      
+      .row
+        .col-md-12
+          = render partial: how_it_works_path

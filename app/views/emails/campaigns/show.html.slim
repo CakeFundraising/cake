@@ -33,7 +33,7 @@
           .row
             .col-md-12.click-btn
               .progress
-                .progress-bar.progress-bar-success.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
+                .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.pledges_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.pledges_thermometer}%"
                   span.sr-only #{@campaign.pledges_thermometer}% Complete (success)                
               .campaign-stats
                 strong = @campaign.raised
@@ -72,7 +72,7 @@
             p/
 
   .container
-    = render partial:'campaigns/show/pledges/pledges_section'
+    = render partial:'campaigns/show_page/regular/pledge_section'
     .row
       .col-md-12
         .make-pledge.well
