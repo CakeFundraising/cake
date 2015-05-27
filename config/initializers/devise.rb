@@ -6,6 +6,11 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = '7568ece03d2359cde7fb8976033ea66b00e0a15eec0a846271e4790306f7d841169d53ac0821c870de61df9f1bd2e2132ccdad0c181b473eec444b9b1d8cf16f'
 
+  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET']
+  config.omniauth :twitter, ENV['TW_APP_ID'], ENV['TW_APP_SECRET']
+  config.omniauth :linkedin, ENV['LI_APP_ID'], ENV['LI_APP_SECRET']
+  config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['STRIPE_SECRET_KEY'], scope: 'read_write', stripe_landing: 'login'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -253,17 +258,4 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
-  # Put this in config/initializers/devise.rb with the rest of your Devise configuration
-  if Rails.env.production?
-    config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET']
-    config.omniauth :twitter, ENV['TW_APP_ID'], ENV['TW_APP_SECRET']
-    config.omniauth :linkedin, ENV['LI_APP_ID'], ENV['LI_APP_SECRET']
-    config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['STRIPE_SECRET_KEY'], scope: 'read_write', stripe_landing: 'login' # or :stripe_landing => 'register'
-  else
-    config.omniauth :facebook, '791515824214877', 'e80c240e39b51d287671193db675c572' #dev
-    config.omniauth :twitter, 'iBrgyZ3KHCdWSuiuu08qQ', '6Fy4KkYW7nM1PKmt8hxOgXgf7ygSPNx3HTicFPnHJGY' #CakeFundraising 
-    config.omniauth :linkedin, '75adconoxd5t9f', 'ZzC4CUKTUBU5YUb4' #Cake Staging
-    config.omniauth :stripe_connect, 'ca_42CxDvyNbYgal8JucbXyQATSYhHIUMbp', 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4', :scope => 'read_write', :stripe_landing => 'login' # or :stripe_landing => 'register'
-  end
 end

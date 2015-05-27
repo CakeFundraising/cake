@@ -1,9 +1,9 @@
 Cake::Application.configure do
   require 'pusher'
 
-  Pusher.app_id = '100062'
-  Pusher.key    = '1b066386c4d59e4bd908'
-  Pusher.secret = 'f2682fa6eb7689082bc7'
+  Pusher.app_id = ENV['PUSHER_APP_ID']
+  Pusher.key    = ENV['PUSHER_APP_KEY']
+  Pusher.secret = ENV['PUSHER_APP_SECRET']
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -38,8 +38,8 @@ Cake::Application.configure do
 
   config.action_controller.perform_caching = true
 
-  config.stripe.publishable_key = 'pk_test_thOuCW1JppceqrIlFAroRDO0'
-  config.stripe.secret_key = 'sk_test_fTjyMsvdIhE1Vn4v165Q5Wy4'
+  config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
+  config.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
@@ -47,8 +47,8 @@ Cake::Application.configure do
     address:              'smtp.mandrillapp.com',
     port:                 587,
     enable_starttls_auto: true,
-    user_name:            'emiliano@bytelion.com',
-    password:             'Iec7U1YW1JnYe3LYdCk7cg',
+    user_name:            ENV['MANDRILL_USERNAME'],
+    password:             ENV['MANDRILL_PASSWORD'],
     authentication:       'plain'
   }
 end
