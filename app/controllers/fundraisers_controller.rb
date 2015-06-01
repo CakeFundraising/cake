@@ -21,7 +21,8 @@ class FundraisersController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_fundraiser(@fundraiser)
-        redirect_to fundraiser_home_path, notice: 'Now you can start creating a new campaign!'  
+        redirect_to after_create_path, notice: 'Now you can start creating a new campaign!'
+        cookies.delete(:redirect_to) if cookies[:redirect_to].present?
       end
     end
   end
@@ -93,6 +94,10 @@ class FundraisersController < InheritedResources::Base
   end
 
   private
+
+  def after_create_path
+    cookies[:redirect_to].present? ? cookies[:redirect_to] : fundraiser_home_path
+  end
 
   def allow_fr_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource

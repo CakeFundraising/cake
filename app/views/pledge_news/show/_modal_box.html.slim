@@ -1,7 +1,7 @@
 .coupon-wrapper
   = render partial:'pledge_news/form/actions', locals: {pledge_news: pledge_news}
   
-  - cache [:pledge_news_box, pledge_news] do 
+  - cache [:pledge_news_box, :modal, pledge_news] do 
     .coupon_box.clearfix
       .col-xs-12.coupon.coupon-modal
         .row
