@@ -18,8 +18,7 @@ class SponsorsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_sponsor(@sponsor)
-        redirect_to after_create_path
-        cookies.delete(:redirect_to) if cookies[:redirect_to].present?
+        after_create_redirect
       end
     end
   end
@@ -72,15 +71,16 @@ class SponsorsController < InheritedResources::Base
 
   private
 
-  def after_create_path
+  def after_create_redirect
     if cookies[:redirect_to].present?
-      cookies[:redirect_to]
+      redirect_to "#{cookies[:redirect_to]}&cat=#{Doorkeeper::AccessToken.create!(application_id: Doorkeeper::Application.last.id, resource_owner_id: current_user.id, expires_in: 2.hours).token}"
+      cookies.delete(:redirect_to)
     elsif cookies[:pledge_campaign].present?
-      new_pledge_path(campaign: cookies[:pledge_campaign])
+      redirect_to new_pledge_path(campaign: cookies[:pledge_campaign])
     elsif cookies[:pledge_fundraiser].present?
-      new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
+      redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
     else
-      sponsor_home_path
+      redirect_to sponsor_home_path
     end
   end
 
