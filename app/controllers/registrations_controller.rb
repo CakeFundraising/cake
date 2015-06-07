@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def new
-    cookies[:redirect_to] = URI.unescape params[:redirect_to]
+    cookies[:redirect_to] = URI.unescape(params[:redirect_to]) if params[:redirect_to].present?
     super
   end
 
