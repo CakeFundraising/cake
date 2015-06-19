@@ -6,7 +6,7 @@ module API
 
         desc "Return fundraiser's data given an UID"
         params do
-          requires :id, type: Integer, desc: "Fundraiser ID"
+          requires :id, type: Integer, desc: "Fundraiser ID", allow_blank: false
         end
         route_param :id do
           get jbuilder: 'fundraisers/show' do

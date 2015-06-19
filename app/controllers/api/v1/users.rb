@@ -13,7 +13,7 @@ module API
 
         desc "Return user's data given an UID"
         params do
-          requires :id, type: Integer, desc: "User ID"
+          requires :id, type: Integer, desc: "User ID", allow_blank: false
         end
         route_param :id do
           get jbuilder: 'users/show' do

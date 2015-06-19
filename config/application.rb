@@ -30,10 +30,7 @@ module Cake
 
     config.assets.paths << "#{config.root}/app/assets/videos"
 
-    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-
     config.autoload_paths += %W(
-      #{config.root}/app/api
       #{config.root}/app/decorators/concerns
       #{config.root}/app/jobs
       #{config.root}/app/downloads

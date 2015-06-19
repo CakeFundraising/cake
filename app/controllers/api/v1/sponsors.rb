@@ -6,7 +6,7 @@ module API
 
         desc "Return sponsor's data given an UID"
         params do
-          requires :id, type: Integer, desc: "Sponsor ID"
+          requires :id, type: Integer, desc: "Sponsor ID", allow_blank: false
         end
         route_param :id do
           get jbuilder: 'sponsors/show' do
