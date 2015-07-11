@@ -1,4 +1,4 @@
-class FundraisersController < InheritedResources::Base
+ class FundraisersController < InheritedResources::Base
   before_action :check_if_account_created, only: [:new, :create]
   before_action :allow_fr_only, only: :bank_account
   before_action :require_password, only: :bank_account
@@ -21,7 +21,7 @@ class FundraisersController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_fundraiser(@fundraiser)
-        redirect_to fundraiser_home_path, notice: 'Now you can start creating a new campaign!'  
+        after_create_redirect
       end
     end
   end
@@ -93,6 +93,15 @@ class FundraisersController < InheritedResources::Base
   end
 
   private
+
+  def after_create_redirect
+    if cookies[:redirect_to].present?
+      redirect_to "#{cookies[:redirect_to]}&cat=#{Doorkeeper::AccessToken.create!(application_id: Doorkeeper::Application.last.id, resource_owner_id: current_user.id, expires_in: 2.hours).token}"
+      cookies.delete(:redirect_to)
+    else
+      redirect_to fundraiser_home_path, notice: 'Now you can start creating a new campaign!'
+    end
+  end
 
   def allow_fr_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_fundraiser != resource

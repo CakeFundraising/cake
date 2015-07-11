@@ -1,14 +1,16 @@
 unless Rails.env.test?
   Dir[Rails.root.join('app/jobs/*.rb')].each { |file| require file }
 
-  redis_url = ENV["REDISTOGO_URL"] || "redis://localhost:6379/0/cake"
+  redis_url = ENV["REDISTOGO_URL"]
 
+  # Cache & Session Store
   Cake::Application.config.cache_store = :redis_store, redis_url
   Cake::Application.config.session_store :redis_store, redis_server: redis_url
 
+  # Resque
   if Rails.env.development?
     Resque.redis = redis_url
-  elsif Rails.env.production? and ENV["REDISTOGO_URL"].present?
+  elsif Rails.env.production?
     uri = URI.parse(ENV["REDISTOGO_URL"])
     Resque.redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, :thread_safe => true)
 
@@ -18,5 +20,6 @@ unless Rails.env.test?
     end
   end 
 
+  # Resque Schedule
   Resque.schedule = YAML.load_file(Rails.root.join('config/schedule.yml'))
 end

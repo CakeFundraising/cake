@@ -18,14 +18,7 @@ class SponsorsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         current_user.set_sponsor(@sponsor)
-
-        if cookies[:pledge_campaign].present?
-          redirect_to new_pledge_path(campaign: cookies[:pledge_campaign])
-        elsif cookies[:pledge_fundraiser].present?
-          redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
-        else
-          redirect_to sponsor_home_path, notice: 'Now you can start using Cake!'
-        end
+        after_create_redirect
       end
     end
   end
@@ -77,6 +70,19 @@ class SponsorsController < InheritedResources::Base
   end
 
   private
+
+  def after_create_redirect
+    if cookies[:redirect_to].present?
+      redirect_to "#{cookies[:redirect_to]}&cat=#{Doorkeeper::AccessToken.create!(application_id: Doorkeeper::Application.last.id, resource_owner_id: current_user.id, expires_in: 2.hours).token}"
+      cookies.delete(:redirect_to)
+    elsif cookies[:pledge_campaign].present?
+      redirect_to new_pledge_path(campaign: cookies[:pledge_campaign])
+    elsif cookies[:pledge_fundraiser].present?
+      redirect_to new_pledge_path(fundraiser: cookies[:pledge_fundraiser])
+    else
+      redirect_to sponsor_home_path
+    end
+  end
 
   def allow_sp_only
     redirect_to root_path, alert:"You don't have permissions to see this page" if current_user.nil? or current_sponsor != resource

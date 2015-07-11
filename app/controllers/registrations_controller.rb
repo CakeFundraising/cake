@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def new
+    cookies[:redirect_to] = URI.unescape(params[:redirect_to]) if params[:redirect_to].present?
+    super
+  end
+
   def create
     build_resource(sign_up_params)
 

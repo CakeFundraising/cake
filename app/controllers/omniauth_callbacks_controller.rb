@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
 
       if @stripe_account
-        redirect_to bank_account_fundraiser_path(current_fundraiser), notice: "Please add your bank account information" 
+        redirect_to fundraiser_home_path, notice: "Thanks for connecting your Stripe accout. Now you can receive payments from Sponsors." 
       else
         redirect_to fundraiser_home_path, alert: t('errors.stripe_account.account_taken')
       end 
@@ -24,7 +24,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @stripe_account = current_sponsor.create_stripe_account(request.env["omniauth.auth"])
       
       if @stripe_account
-        redirect_to credit_card_sponsor_path(current_sponsor), notice: "Please add your credit card information" 
+        redirect_to credit_card_sponsor_path(current_sponsor), notice: "Please add your credit card data to make automatic payments. This sensitive information is not being saved in our servers." 
       else
         redirect_to sponsor_home_path, alert: t('errors.stripe_account.account_taken')
       end

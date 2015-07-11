@@ -3,8 +3,8 @@ module FacebookOpenGraph
   
   def self.clear_cache(url)
     params = {
-      :client_id => ENV['FB_APP_ID'] || '791515824214877',
-      :client_secret => ENV['FB_APP_SECRET'] || 'e80c240e39b51d287671193db675c572',
+      :client_id => ENV['FB_APP_ID'],
+      :client_secret => ENV['FB_APP_SECRET'],
       :grant_type => "client_credentials"
     }
 

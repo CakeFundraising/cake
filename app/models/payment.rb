@@ -67,7 +67,7 @@ class Payment < ActiveRecord::Base
     charge = Stripe::Charge.create(
       amount: self.total_cents,
       currency: self.total_currency.downcase,
-      card: self.card_token,
+      source: self.card_token,
       customer: self.customer_id,
       description: "CakeCauseMarketing.com #{item_type} ##{item_id} Payment"
     )
@@ -105,7 +105,6 @@ class Payment < ActiveRecord::Base
   end
 
   def balance_available?
-
     balance = self.get_stripe_balance
 
     available_amount = balance.available.first.amount
@@ -116,8 +115,9 @@ class Payment < ActiveRecord::Base
     transfer = Stripe::Transfer.create(
       amount: transfer_amount,
       currency: self.total_currency.downcase,
-      recipient: self.recipient.stripe_account.stripe_recipient_id,
-      statement_description: "CakeCauseMarketing.com Invoice #{item.id} Payment"
+      destination: self.recipient.stripe_account.uid,
+      description: "CakeCauseMarketing.com Invoice #{item.id} Payment",
+      statement_descriptor: "CakeCauseMarketing.com Invoice #{item.id} Payment"
     )
     store_transfer(transfer)
   end

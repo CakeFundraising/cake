@@ -80,6 +80,7 @@ Cake::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
+  config.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
 
   config.roadie.url_options = {host: ENV['HOST'], scheme: "http"}
 

@@ -1,10 +1,12 @@
 require 'robots_generator'
 
 Cake::Application.routes.draw do
+  use_doorkeeper
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: 
-  {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions}
+
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions, confirmations: :confirmations}
 
   root to: "home#index"
 
@@ -91,8 +93,8 @@ Cake::Application.routes.draw do
 
   resources :fundraisers, except: [:index, :destroy] do
     member do
-      get :bank_account
-      patch :set_bank_account
+      #get :bank_account
+      #patch :set_bank_account
       scope :pictures, controller: :cropping do
         post :crop
       end
@@ -207,6 +209,8 @@ Cake::Application.routes.draw do
   namespace :mailers do
     post :contact
   end
+
+  mount API::Base => '/api'
 
   resources :subscriptors, only: :create
 

@@ -34,7 +34,8 @@ gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'bootstrap-switch-rails'
 gem 'cocoon'
 gem 'cocoon_limiter'
-gem 'draper'
+gem 'draper', '~> 2.1.0'
+gem 'kramdown'
 
 #Storage
 gem 'pg'
@@ -69,13 +70,23 @@ gem 'carmen-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'shareable'
 gem 'american_date'
-gem "jquery-validation-rails"
+gem 'jquery-validation-rails'
 gem 'high_voltage'
 gem 'roadie-rails'
 gem 'prawn'
 gem 'secure_headers'
 gem 'counter_culture'
 gem 'mail_form'
+
+#API
+gem 'grape'
+gem 'doorkeeper'
+gem 'wine_bouncer'
+gem 'grape-swagger'
+gem 'swagger-ui_rails'
+gem 'api-pagination'
+gem 'jbuilder'
+gem 'grape-jbuilder'
 
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
@@ -87,7 +98,7 @@ gem 'newrelic_rpm'
 gem 'pusher'
 
 #User registration
-gem "devise"
+gem 'devise'
 
 #User permissions
 gem 'cancancan'

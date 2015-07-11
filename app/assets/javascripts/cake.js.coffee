@@ -17,7 +17,6 @@ Cake.init = ->
   Cake.bootstrap_overrides.init()
   Cake.addThis.init()
   Cake.validations.init()
-  Cake.crop.init()
   Cake.sponsors_form()
   Cake.campaigns.init()
   Cake.clicks.init()
