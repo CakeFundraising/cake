@@ -1,0 +1,33 @@
+/- cache [:templates, :mobile, :header, @campaign] do
+.row-fluid
+  .container.no-padding
+    .campaign-banner.top_banner_mobile
+      .first = t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe
+    .top_banner_logo
+      = content_tag :a, href:'#learn-more-banner' do
+        = image_tag @campaign.picture.avatar_path, class:'img-responsive'
+.white
+  br
+  .row-fluid
+    - if @campaign.past?
+      .col-md-12.text-center
+        .main-cta.alert.alert-danger.ended_campaign This campaign is over
+    - elsif not @campaign.hero_pledge?
+      .col-md-12.text-center
+        .main-cta
+          = link_to t('actions.make_pledge'), new_pledge_path(campaign: @campaign), class:'btn btn-success btn-xl'
+    - else 
+      .col-md-12.text-center
+        .main-cta
+          = render partial:'clicks/campaign'
+  .row-fluid
+    .col-md-12
+      .progress.campaign-thermometer
+        .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@campaign.donation_clicks_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@campaign.donation_clicks_thermometer}%"
+          span.sr-only #{@campaign.donation_clicks_thermometer}% Complete (success)
+      .campaign-stats
+        span
+          span.boldest.raised = @campaign.total_donations_and_clicks
+        span.pull-right
+          span.boldest = @campaign.goal
+          |  Goal

@@ -14,10 +14,10 @@
           = render partial:'clicks/pledge', locals: {pledge: @pledge}
 
 - if @coupons.any? and @pledge.show_coupons
-  .row
+  .row-fluid
     .col-md-12.special-offers
       h1 Special Offers from #{@pledge.sponsor}
-  .row
+  .row-fluid
     .coupons
       = render partial:'coupons/show/box', collection: @coupons, as: :coupon
       = render partial:'coupons/show/terms'
@@ -25,10 +25,10 @@
         = all_coupons_button(@pledge)
 
 - if @news.present?
-  .row
+  .row-fluid
     .col-md-12.special-offers
       h1 Important News from #{@pledge.sponsor}
-  .row
+  .row-fluid
     .news
       = render partial:'pledge_news/show/box', locals: {pledge_news: @news}
       .text-center

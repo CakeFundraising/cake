@@ -287,7 +287,8 @@ hr{
 
 @media (max-width: 420px){
   #main-container {
-    margin-bottom: 35px;
+    padding-bottom: 35px;
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
   }
@@ -3250,12 +3251,7 @@ ul#share-block {
   color: black;
   margin: 10px 0 50px;
 }
-.solicit-choose {
-  margin: 40px 0;
-  span {
-    margin: 0 10px;
-  }
-}
+
 // Pledge Wizard ---------------------------------------------------------
 #pledge_amount_per_click_input, #pledge_total_amount_input {
   margin-bottom: 15px;
@@ -4091,6 +4087,69 @@ ul#share-block {
 }
 
 //######### MOBILE STYLES ###############
+.top_banner_mobile,
+.top_banner{
+  margin: 0;
+  .first{
+    margin: 0;
+    font-size: 40px;
+    margin-top: 3px;
+    margin-bottom: -5px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 28px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 18px;
+    }
+    .boldest{
+      font-size: 42px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 28px;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 19px;
+      }
+    }
+  }
+  .last{
+    font-size: 27px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    
+    @media (max-width: $screen-sm-max) {
+      font-size: 20px;
+      margin-top: -4px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 20px;
+    }
+    span.boldest{
+      font-size: 28px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 22px;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.top_banner_mobile{
+  .first, .last{
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+  }
+}
+.top_banner_logo{
+  img{
+    width: 100%;
+    box-shadow: 0px 0px 5px darken($brand-primary, 30%);
+  }
+}
+
 .pledge_badge,
 .campaign_badge{
   border: 5px solid $brand-success;

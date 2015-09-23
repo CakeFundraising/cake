@@ -1,0 +1,81 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
+    meta name="apple-mobile-web-app-title" content="CakeFundraising"
+    = cake_meta_tags
+    = csrf_meta_tags
+    = javascript_include_tag *Cake::ASYNC_CAMPAIGN_JS, async: true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = cloudinary_js_config
+    = favicon_link_tag '/favicon.ico', :rel => 'shortcut icon'
+    /= analytics_init if Rails.env.production?
+    javascript:
+      Cake.pusher.appKey = "#{Pusher.key}"
+
+  body.fixed
+    = stylesheet_link_tag "application", media: "all"
+
+    = render partial: 'layouts/main_nav'
+
+    .container = bootstrap_flash
+    - if content_for? :header
+      header
+        = yield :header
+    
+    - if content_for? :sidebar
+      .container#main-container
+        .row
+          #sidebar.col-md-3
+            .sidebar-nav
+              = yield :sidebar
+          .col-md-9.with-sidebar
+            = yield
+    - else
+      .container#main-container
+        .row
+          .col-md-12
+            = yield
+      /! /row
+    /! /container
+    - if content_for? :bottom_section
+      .bottom_section
+        = yield :bottom_section
+  footer
+    .container
+      .row
+        .col-md-4.col-sm-4.col-xs-4
+          h4 Company
+          ul
+            li
+              = link_to "About Cake", about_page_path('cake')
+            li
+              = link_to "Blog", "http://blog.cakecausemarketing.com"
+            li
+              = link_to "Press", about_page_path('press')
+            li
+              = link_to "Contact", about_page_path('contact')
+            li
+              = link_to "Privacy", about_page_path('privacy')
+            li
+              = link_to "Terms of Use", about_page_path('terms_of_use')
+        .col-md-4.col-sm-4.col-xs-4
+          h4 Learn
+          ul
+            li
+              = link_to "FAQs", help_page_path('faq')
+        .col-md-4.col-sm-4.col-xs-4
+          h4 Follow Us  
+          div.addthis_custom_follow
+          br
+
+      .row.Colophon
+        .col-md-9
+          h4.boldest CakeCauseMarketing.com 
+          p makes it easy to launch and manage exciting "pay-per-click" cause marketing campaigns that produce great results for your organizations and your corporate sponsors.
+        .col-md-3
+          .hidden#today = Date.today
+          p.pull-right &copy;#{Time.now.year} #{t('application.name')}, Inc.
+

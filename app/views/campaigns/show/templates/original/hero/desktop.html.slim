@@ -1,0 +1,29 @@
+= campaign_page_meta(@campaign)
+
+= content_for :header do
+  = render partial:'campaigns/show_page/header', locals:{resource: @campaign, banner_message: t('information.hero_campaign.banner', {fr: @campaign.fundraiser, sp: (@pledge.sponsor || 'YOUR NAME'), amount: @pledge.amount_per_click}).html_safe, sidebar_path: 'campaigns/show_page/hero/sidebar', how_it_works_path: 'campaigns/show_page/hero/how_it_works_modal'}
+
+= content_for :bottom_section do
+  .main-background
+    - if @pledge.present?
+      = render partial:'pledges/show/description', locals:{is_hero: true}
+
+      = render partial:'pledges/show/coupons_and_news'
+
+  = render partial:'pledges/show/fr_section', locals:{is_hero: true}
+
+  = render partial:'campaigns/show_page/bottom', locals: {direct_donations: true}
+
+css:
+  .hero{ background-image: url("#{@campaign.picture.banner_path}"); }
+
+javascript:
+  var current_init = function(){
+    Cake.campaigns.show(
+      "#{@campaign.object.end_date}", 
+      "#{@impression.id if @impression.present? }",
+      "#{@campaign.id}"
+    );
+    Cake.addThis.share.campaign("#{@campaign.fundraiser}", "#{campaign_url(@campaign)}");
+  };
+  $(document).ready(current_init);

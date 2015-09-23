@@ -1,7 +1,6 @@
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
   before_action :bypass_if_hero, only: :sponsors
-  before_action :redirect_to_hero_campaign, only: :show
 
   WIZARD_STEPS = [
     :basic_info,
@@ -14,26 +13,7 @@ class CampaignsController < InheritedResources::Base
   include ImpressionablesController
   include PastResource
   include CampaignsHelper
-
-  def show
-    @campaign = resource.decorate
-    @custom_pledge_levels = @campaign.custom_pledge_levels
-
-    if @custom_pledge_levels
-      @sponsor_categories = resource.sponsor_categories.order(min_value_cents: :desc).decorate
-      @campaign.past? ? @campaign.rank_levels(:past) : @campaign.rank_levels
-    end
-  end
-
-  def hero
-    @campaign = HeroDecorator.decorate(resource)
-    @pledge = HeroPledgeDecorator.decorate(@campaign.hero_pledge || @campaign.build_hero_pledge)
-    
-    if @pledge.present?
-      @coupons = @pledge.coupons_sample.decorate 
-      @news = @pledge.news_sample.decorate if @pledge.news_sample.present?
-    end
-  end
+  include CampaignShowActionsController
 
   def create
     @campaign = current_fundraiser.campaigns.build(*resource_params)
@@ -124,10 +104,6 @@ class CampaignsController < InheritedResources::Base
 
   def bypass_if_hero
     redirect_to launch_wizard_campaign_path if resource.hero
-  end
-
-  def redirect_to_hero_campaign
-    redirect_to hero_campaign_path(resource, request.query_parameters) if resource.hero
   end
 
   def permitted_params
