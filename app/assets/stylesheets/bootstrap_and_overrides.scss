@@ -2364,17 +2364,10 @@ header {
 .campaign_grid, .sponsor_grid, .coupon_grid, .fundraiser_grid {
   padding-left: 5px;
   padding-right: 5px;
-
   .thumbnail {
     background-color: #fff;
     padding:0px;
-    /*border:0px;*/
-
-    img {
-      /*max-height: 200px;*/
-    }
   }
-
   .img-thumbnail{
     padding: 0px;
     margin: 0px;
